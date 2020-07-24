@@ -1,0 +1,361 @@
+{
+  "screens": {
+    "onboarding": {
+      "first": {
+        "title": "Muito obrigado por se juntar a nós no combate à COVID-19.\n\nConsigo ficamos mais fortes!"
+      },
+      "second": {
+        "title": "Proteja-se",
+        "description": "A STAYAWAY COVID funciona como um radar ao partilhar identificadores aleatórios com os telemóveis próximos do seu. Estes identificadores são guardados durante 14 dias e apenas nos telemóveis.\n\nA STAYAWAY COVID não acede à sua localização ou a quaisquer dados pessoais, nem seus nem de ninguém."
+      },
+      "third": {
+        "title": "Alerta atempado",
+        "description": "A STAYAWAY COVID mostra um alerta se recentemente tiver estado muito perto de alguém diagnosticado com COVID-19.\n\nAssim, poderá atempadamente avaliar o seu risco de infeção e tomar decisões em relação à sua saúde e à das pessoas com quem vive e convive."
+      },
+      "fourth": {
+        "title": "Proteja os outros",
+        "description": "Se lhe for diagnosticada COVID-19, obterá, junto com o resultado do teste, um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
+      },
+      "informed_consent": {
+        "title": "Consentimento informado",
+        "description": {
+          "first": "Para mais informações pode ler a nossa política de privacidade e termos de utilização a qualquer momento. ",
+          "second": "Política de privacidade ",
+          "third": "e ",
+          "fourth": "termos de utilização.\n"
+        },
+        "consents": {
+          "read_and_understood": {
+            "first": "Li e compreendi a informação sobre a aplicação STAYAWAY, incluindo:\n• A identidade do Responsável - ",
+            "second": "DGS.\n",
+            "third": "• Os tipos de dados recolhidos e voluntariamente partilhadas após diagnóstico de infeção, através de chaves de identificadores aleatórias.\n• O objetivo da recolha e do respetivo tratamento, relativo ao envio de alertas.\n• A forma como serão armazenados os dados e durante quanto tempo.\n• Que posso livremente retirar o meu consentimento a qualquer momento, desinstalando a aplicação, sem que tal afete a licitude do tratamento anterior.\n• Que no caso de menores de 13 anos o consentimento só pode ser dado ou autorizado pelos titulares das responsabilidades parentais.\n• O contacto do encarregado de proteção de dados do Responsável: ",
+            "fourth": "dpo@inesctec.pt.\n"
+          },
+          "data_treatment": "Consinto no tratamento dos meus dados pessoais, de acordo com a política de privacidade, incluindo os relativos à minha condição de saúde, necessários ao envio de alertas de exposição a risco de contágio, com a finalidade de ajudar à interrupção das cadeias de transmissão da doença por Covid 19."
+        },
+        "actions": {
+          "accept": "Aceitar e Começar"
+        }
+      }
+    },
+    "home": {
+      "last_updated": "Atualizado a",
+      "never_updated": "Sem atualizações",
+      "actions": {
+        "settings": {
+          "accessibility": {
+            "label": "Definições",
+            "hint": "Navega para o ecrã de definições"
+          }
+        }
+      },
+      "healthy": {
+        "title": "Não foram registados quaisquer contactos de proximidade com elevado risco de contágio.",
+        "description": {
+          "first": "A STAYAWAY COVID está em vigilância permanente ",
+          "second": "e mostrará um alerta caso esta condição se altere. Evite contactos a menos de 2 metros de distância."
+        }
+      },
+      "exposed": {
+        "title": "Esteve próximo de alguém a quem foi diagnosticada COVID-19.",
+        "description": {
+          "first": "Isto não significa que tenha havido contágio; ",
+          "second": "deve, porém, manter-se em isolamento e contactar os serviços de saúde.\n\n",
+          "third": "Mesmo que não apresente sintomas, deve ligar para a ",
+          "fourth": "Linha SNS 24 (808 24 24 24) ",
+          "fifth": "ou para o seu médico de família."
+        }
+      },
+      "infected": {
+        "title": "Muito obrigado por ter colaborado na proteção de todos.",
+        "description": {
+          "first": "Desejamos-lhe uma sólida recuperação!\n\n",
+          "second": "Com o seu diagnóstico positivo à COVID-19, a STAYAWAY COVID é desativada e deixa de monitorizar os contactos de proximidade.\n\nQuando recuperar, deverá reinstalar a STAYAWAY COVID para reiniciar o processo de monitorização."
+        }
+      },
+      "errors": {
+        "bluetooth": {
+          "title": "Bluetooth desligado",
+          "message": "Ligue o Bluetooth do seu telemóvel para que a STAYAWAY COVID possa funcionar adequadamente",
+          "accessibility": {
+            "label": "Ligar",
+            "hint": "Ligar os serviços de bluetooth"
+          }
+        },
+        "location": {
+          "title": "Localização desligada",
+          "message": "Ative os serviços de localização para que a STAYAWAY COVID possa funcionar adequadamente",
+          "accessibility": {
+            "label": "Ligar",
+            "hint": "Ligar os serviços de localização"
+          }
+        },
+        "battery": {
+          "title": "Otimização de bateria ligada",
+          "message": "Desative a optimização da bateria para que a STAYAWAY COVID possa funcionar adequadamente",
+          "accessibility": {
+            "label": "Desativar",
+            "hint": "Desativar as otimizações de bateria"
+          }
+        },
+        "gaen": {
+          "title": "Rastreamento desativado",
+          "message": "Ative a função notificações de exposição à COVID-19 para que a STAYAWAY COVID possa funcionar adequadamente",
+          "accessibility": {
+            "label": "Ativar",
+            "hint": "Ativar a função notificações de exposição "
+          }
+        }
+      }
+    },
+    "recommendations": {
+      "title": "Proteja-se e proteja os outros.",
+      "healthy": {
+        "distance": "Evite contactos a menos de 2 metros",
+        "social_contacts": "Evite contactos sociais desnecessários",
+        "wash_hands": "Lave ou desinfete as mãos regularmente",
+        "feeling_sick": "Se se sentir doente, fique em casa"
+      },
+      "infected": {
+        "encloused_spaces": "Não esteja em espaços fechados com quem não resida consigo",
+        "stay_home": "Mantenha-se em casa",
+        "increase_hygiene": "Reforce a higiene das mãos e das superfícies",
+        "wear_mask": "Use máscara para se proteger e aos outros"
+      }
+    },
+    "settings": {
+      "tracking": {
+        "label": "Rastreio"
+      },
+      "instructions": {
+        "label": "Instruções de Utilização"
+      },
+      "faqs": {
+        "label": "Perguntas Frequentes",
+        "accessibility": {
+          "label": "Perguntas Frequentes",
+          "hint": "Link para a página web das perguntas frequentes"
+        }
+      },
+      "terms_of_use": {
+        "label": "Termos de Utilização",
+        "accessibility": {
+          "label": "Termos de Utilização",
+          "hint": "Link para a página web dos termos de utilização"
+        }
+      },
+      "privacy_policy": {
+        "label": "Política de Privacidade",
+        "accessibility": {
+          "label": "Política de Privacidade",
+          "hint": "Link para a página web da política de privacidade"
+        }
+      },
+      "debug": {
+        "label": "Debug"
+      },
+      "technical_sheet": {
+        "label": "Ficha Técnica"
+      },
+      "actions": {
+        "back": {
+          "accessibility": {
+            "label": "Para trás",
+            "hint": "Navega para trás para o ecrã principal"
+          }
+        }
+      }
+    },
+    "tracking": {
+      "title": "Rastreio",
+      "description": "Mantenha a STAYAWAY COVID ativa e junte-se ao combate à COVID-19.",
+      "switch": {
+        "label": "Rastreio",
+        "legend": "Se desativar o rastreio, impede a aplicação STAYAWAY COVID de emitir e receber os identificadores aleatórios.",
+        "accessibility": {
+          "label": "Rastreio"
+        }
+      },
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "hint": "Para atrás",
+            "label": "Navega para trás para o ecrã de definições"
+          }
+        }
+      }
+    },
+    "diagnosis": {
+      "code_input": {
+        "title": "Teve resultado positivo no teste de diagnóstico da COVID-19?",
+        "description": {
+          "first": "Digite o código que recebeu com o seu diagnóstico ",
+          "second": "para permitir à aplicação partilhar anonimamente os seus identificadores aleatórios. Este código é válido durante 24h."
+        }
+      },
+      "completed": {
+        "title": "Muito obrigado!",
+        "description": "A partilha anónima desta informação é valiosa para conter a transmissão da COVID-19."
+      }
+    },
+    "debug": {
+      "title": "Debug",
+      "sign_up": "Registo",
+      "last_sync": "Última atualização",
+      "infection_status": {
+        "label": "Estado de Infecção",
+        "healthy": "Saudável",
+        "exposed": "Exposto",
+        "infected": "Infectado"
+      },
+      "exposure_days": "Dias de exposição",
+      "errors": "Erros",
+      "actions": {
+        "settings": {
+          "accessibility": {
+            "label": "Para trás",
+            "hint": "Navega para trás para o ecrã de definições"
+          }
+        }
+      }
+    },
+    "operation": {
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "hint": "Para atrás",
+            "label": "Navega para trás para o ecrã de definições"
+          }
+        }
+      }
+    },
+    "technical_sheet": {
+      "title": "Ficha Técnica",
+      "coordination": "Coordenador",
+      "partners": "Parceiros",
+      "inesctec": {
+        "accessibility": {
+          "label": "INESCTEC",
+          "hint": "Link para a página web do INESCTEC"
+        }
+      },
+      "ispup": {
+        "accessibility": {
+          "label": "ISPUP",
+          "hint": "Link para a página web do ISPUP"
+        }
+      },
+      "keyruptive": {
+        "accessibility": {
+          "label": "Keyruptive",
+          "hint": "Link para a página web do Keyruptive"
+        }
+      },
+      "ubirider": {
+        "accessibility": {
+          "label": "Ubirider",
+          "hint": "Link para a página web do Ubirider"
+        }
+      },
+      "version": "v{{version}} ({{build}})",
+      "go_back": {
+        "accessibility": {
+          "hint": "Para atrás",
+          "label": "Navega para trás para o ecrã de definições"
+        }
+      }
+    }
+  },
+  "common": {
+    "app_name": "STAYAWAY COVID",
+    "links": {
+      "app_page": {
+        "google_play": "https://play.google.com/store/apps",
+        "app_store": "https://apps.apple.com/pt"
+      },
+      "home_page": "https://stayaway.inesctec.pt/",
+      "privacy_policy": "https://stayaway.inesctec.pt/politica-de-privacidade/",
+      "terms_of_use": "https://stayaway.inesctec.pt/termos-condicoes/",
+      "faqs": "https://stayaway.inesctec.pt/faq/",
+      "dgs": "https://www.dgs.pt/",
+      "data_protection": "mailto:dpo@inesctec.pt",
+      "inesctec": "https://www.inesctec.pt/pt",
+      "ispup": "https://ispup.up.pt/?lang=pt",
+      "keyruptive": "https://keyruptive.com/",
+      "ubirider": "https://www.pick.ubirider.com/",
+      "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude/"
+    },
+    "words": {
+      "and": "e",
+      "enabled": "Ativo",
+      "disabled": "Desativado"
+    },
+    "tab_bar": {
+      "diagnosis": "Diagnóstico",
+      "home": "Home",
+      "recommendations": "Recomendações"
+    },
+    "placeholders": {
+      "code": "xxx xxx xxx xxx"
+    },
+    "dialogs": {
+      "network": {
+        "title": "Sem ligação à internet",
+        "description": "Por favor verifique a sua ligação à internet e tente novamente."
+      },
+      "server_error": {
+        "title": "Sem comunicação com o servidor",
+        "description": "Por favor aguarde e tente novamente mais tarde."
+      },
+      "too_much_requests": {
+        "title": "Demasiados pedidos efetuados",
+        "description": "Efetuou demasiados pedidos seguidos ao servidor. Por favor tente mais tarde."
+      },
+      "invalid_code": {
+        "title": "Código Inválido",
+        "description": "Por favor insira um código válido para proceder."
+      },
+      "expired_code": {
+        "title": "Código Expirado",
+        "description": "O código que inseriu expirou. Por favor insira um código válido para prosseguir."
+      },
+      "playstore": {
+        "title": "Serviços do Google Play",
+        "description": "Para ativar o rastreamento é necessário atualizar a versão dos Serviços do Google Play. Se a atualização não estiver ainda disponível no seu dispositivo, tente mais tarde."
+      },
+      "share": {
+        "subject": "Partilhe a STAYAWAY COVID!",
+        "message": "Ajude a combater a COVID-19, instale a STAYAWAY COVID e junte-se a nós."
+      },
+      "loading": {
+        "description": "A submeter os dados. Por favor aguarde."
+      },
+      "permissions": {
+        "title": "Permissão Negada",
+        "description": "Para utilizar a STAYAWAY COVID precisa de aceitar todas as permissões."
+      },
+      "gaen": {
+        "enable": {
+          "title": "Notificações de exposição à COVID-19",
+          "description": "Para utilizar a STAYAWAY COVID precisa de ativar as notificações de exposição à COVID-19"
+        },
+        "export": {
+          "title": "Partilha de IDs aleatórios",
+          "description": "Para submeter o seu diagnóstico precisa de partilhar os seus IDs aleatórios com a STAYAWAY COVID"
+        }
+      }
+    },
+    "actions": {
+      "ok": "Ok",
+      "submit": "Submeter",
+      "cancel": "Cancelar"
+    },
+    "errors": {
+      "general": "Algo de errado aconteceu, por favor tente de novo",
+      "submit": {
+        "code": "O código introduzido é inválido, por favor tente de novo"
+      },
+      "network": "Sem conecção à internet, conecte-se e tente novamente"
+    }
+  }
+}

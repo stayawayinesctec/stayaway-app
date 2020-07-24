@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ~ Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+ ~
+ ~ This Source Code Form is subject to the terms of the European Union
+ ~ Public License, v. 1.2. If a copy of the EUPL was not distributed with
+ ~ this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+ ~
+ ~ SPDX-License-Identifier: EUPL-1.2
+ ~
+ -->
+
+<resources>
+	<!-- Divoc App -->
+    <string name="app_name">STAYAWAY</string>
+
+	<!-- Tracing Manager -->
+	<string name="dp3t_sdk_service_notification_channel">STAYAWAY COVID</string>
+	<string name="dp3t_sdk_service_notification_title">STAYAWAY COVID</string>
+	<string name="dp3t_sdk_service_notification_text">Procurando por pessoas próximas...</string>
+	<string name="dp3t_sdk_service_notification_errors">A app não está a funcionar corretamente:</string>
+	<string name="dp3t_sdk_service_notification_error_location_service">serviço de localização desativado</string>
+	<string name="dp3t_sdk_service_notification_error_bluetooth_disabled">bluetooth desativado</string>
+	<string name="dp3t_sdk_service_notification_error_bluetooth_not_supported">bluetooth low-energy não é suportado neste dispositivo</string>
+	<string name="dp3t_sdk_service_notification_error_sync_server">falha ao carregar novos dados de infecção (erro do servidor)</string>
+	<string name="dp3t_sdk_service_notification_error_sync_network">falha ao carregar novos dados de infecção (erro de rede)</string>
+	<string name="dp3t_sdk_service_notification_error_no_space">falha ao carregar novos dados de infecção (sem espaço no dispositivo)</string>
+	<string name="dp3t_sdk_service_notification_error_sync_ssltls">falha ao carregar novos dados de infecção (erro de ssl/tls)</string>
+	<string name="dp3t_sdk_service_notification_error_sync_timing">a hora do dispositivo não corresponde à hora do servidor</string>
+	<string name="dp3t_sdk_service_notification_error_sync_signature">falha ao carregar novos dados de infecção (assinatura inválida)</string>
+	<string name="dp3t_sdk_service_notification_error_sync_api">falha ao carregar novos dados de infeção</string>
+	<string name="dp3t_sdk_service_notification_error_gaen_not_available">notificações de exposição da google não estão disponíveis neste dispositivo</string>
+	<string name="dp3t_sdk_service_notification_error_gaen_unexpectedly_disabled">notificações de exposição da google estão desativadas embora devessem estar ativas</string>
+	<string name="dp3t_sdk_service_notification_error_battery_optimization">otimização da bateria ativada</string>
+
+	<string name="stayaway_covid_service_notification_exposed_title">Foi detetada uma exposição de risco</string>
+	<string name="stayaway_covid_service_notification_exposed_text">Esteve em contacto com alguém a quem foi diagnosticada COVID-19.</string>
+
+	<string name="stayaway_covid_service_notification_sync_error_title">A STAYAWAY COVID precisa de ligação à internet</string>
+	<string name="stayaway_covid_service_notification_sync_error_text">A app já não atualiza a sua informação há mais de 2 dias.</string>
+
+	<string name="stayaway_covid_service_notification_update">A STAYAWAY COVID precisa de ser atualizada</string>
+</resources>

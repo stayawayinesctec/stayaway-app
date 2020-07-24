@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ~ Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+ ~
+ ~ This Source Code Form is subject to the terms of the European Union
+ ~ Public License, v. 1.2. If a copy of the EUPL was not distributed with
+ ~ this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+ ~
+ ~ SPDX-License-Identifier: EUPL-1.2
+ ~
+ -->
+
+<resources>
+	<!-- Divoc App -->
+    <string name="app_name">STAYAWAY</string>
+
+	<!-- Tracing Manager -->
+	<string name="dp3t_sdk_service_notification_channel">STAYAWAY COVID</string>
+	<string name="dp3t_sdk_service_notification_title">STAYAWAY COVID</string>
+	<string name="dp3t_sdk_service_notification_text">Looking for people nearby…</string>
+	<string name="dp3t_sdk_service_notification_errors">App can\'t function properly:</string>
+	<string name="dp3t_sdk_service_notification_error_location_service">location service disabled</string>
+	<string name="dp3t_sdk_service_notification_error_bluetooth_disabled">bluetooth is disabled</string>
+	<string name="dp3t_sdk_service_notification_error_bluetooth_not_supported">bluetooth low-energy is not supported on this device</string>
+	<string name="dp3t_sdk_service_notification_error_sync_server">failed to load new infection data (server error)</string>
+	<string name="dp3t_sdk_service_notification_error_sync_network">failed to load new infection data (network error)</string>
+	<string name="dp3t_sdk_service_notification_error_no_space">failed to load new infection data (no space on device)</string>
+	<string name="dp3t_sdk_service_notification_error_sync_ssltls">failed to load new infection data (ssl/tls error)</string>
+	<string name="dp3t_sdk_service_notification_error_sync_timing">device time does not match server time</string>
+	<string name="dp3t_sdk_service_notification_error_sync_signature">failed to load new infection data (invalid signature)</string>
+	<string name="dp3t_sdk_service_notification_error_sync_api">failed to load new infection data</string>
+	<string name="dp3t_sdk_service_notification_error_gaen_not_available">google exposure notifications are not available on this device</string>
+	<string name="dp3t_sdk_service_notification_error_gaen_unexpectedly_disabled">google exposure notifications disabled, but was expected to be active</string>
+	<string name="dp3t_sdk_service_notification_error_battery_optimization">battery optimization enabled</string>
+
+	<string name="stayaway_covid_service_notification_exposed_title">An exposure of significant risk was detected</string>
+	<string name="stayaway_covid_service_notification_exposed_text">You were in contact with someone who was diagnosed with COVID-19.</string>
+
+	<string name="stayaway_covid_service_notification_sync_error_title">STAYAWAY COVID needs internet connection</string>
+	<string name="stayaway_covid_service_notification_sync_error_text">The app has not sync for more than 2 days.</string>
+
+	<string name="stayaway_covid_service_notification_update">STAYAWAY COVID needs to be updated</string>
+</resources>

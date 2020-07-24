@@ -1,0 +1,1545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00E356F31AD99517003FC87E /* DivocTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* DivocTests.m */; };
+		08D80D04D99F6A4FE1D678E5 /* libPods-Divoc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D699EBE23BD4B6E38BA14505 /* libPods-Divoc.a */; };
+		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		5C8E635409871A7102F65861 /* libPods-Divoc-DivocTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7161B0CB97C2B6786008D8 /* libPods-Divoc-DivocTests.a */; };
+		80377DBA24B0F41C005452C6 /* TracingLocalPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DB924B0F41C005452C6 /* TracingLocalPush.swift */; };
+		80377DBE24B0F83F005452C6 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBC24B0F83F005452C6 /* Keychain.swift */; };
+		80377DBF24B0F83F005452C6 /* KeychainPersisted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBD24B0F83F005452C6 /* KeychainPersisted.swift */; };
+		8069970624CB3182001F8F1D /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 8069970524CB3182001F8F1D /* DP3TSDK */; };
+		8085C61124AB55BE00B02F6F /* TracingManagerGlue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C60524AB55BE00B02F6F /* TracingManagerGlue.swift */; };
+		8085C61224AB55BE00B02F6F /* TracingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085C60624AB55BE00B02F6F /* TracingManager.m */; };
+		8085C62724AB55E500B02F6F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C61A24AB55E500B02F6F /* Roboto-Medium.ttf */; };
+		8085C62824AB55E500B02F6F /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C61B24AB55E500B02F6F /* Roboto-Light.ttf */; };
+		8085C62924AB55E500B02F6F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C61C24AB55E500B02F6F /* Roboto-Regular.ttf */; };
+		8085C62A24AB55E500B02F6F /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C61D24AB55E500B02F6F /* Roboto-MediumItalic.ttf */; };
+		8085C62B24AB55E500B02F6F /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C61E24AB55E500B02F6F /* Roboto-ThinItalic.ttf */; };
+		8085C62C24AB55E500B02F6F /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C61F24AB55E500B02F6F /* Roboto-BoldItalic.ttf */; };
+		8085C62D24AB55E500B02F6F /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C62024AB55E500B02F6F /* Roboto-LightItalic.ttf */; };
+		8085C62E24AB55E500B02F6F /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C62124AB55E500B02F6F /* Roboto-Italic.ttf */; };
+		8085C62F24AB55E500B02F6F /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C62224AB55E500B02F6F /* Roboto-BlackItalic.ttf */; };
+		8085C63024AB55E500B02F6F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C62324AB55E500B02F6F /* Roboto-Bold.ttf */; };
+		8085C63124AB55E500B02F6F /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C62424AB55E500B02F6F /* Roboto-Thin.ttf */; };
+		8085C63224AB55E500B02F6F /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C62524AB55E500B02F6F /* Roboto-Black.ttf */; };
+		8085C66624AB915200B02F6F /* AuthorizationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C65924AB915200B02F6F /* AuthorizationModels.swift */; };
+		8085C66724AB915200B02F6F /* CodeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C65A24AB915200B02F6F /* CodeValidator.swift */; };
+		8085C66824AB915200B02F6F /* Environment+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C65B24AB915200B02F6F /* Environment+Endpoints.swift */; };
+		8085C66924AB915200B02F6F /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C65D24AB915200B02F6F /* Backend.swift */; };
+		8085C66A24AB915200B02F6F /* URLSession+pinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C65E24AB915200B02F6F /* URLSession+pinning.swift */; };
+		8085C66B24AB915200B02F6F /* Endpoint+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C65F24AB915200B02F6F /* Endpoint+Request.swift */; };
+		8085C66C24AB915200B02F6F /* UBPinnedCertificatesTrustEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C66024AB915200B02F6F /* UBPinnedCertificatesTrustEvaluator.swift */; };
+		8085C66D24AB915200B02F6F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C66124AB915200B02F6F /* NetworkError.swift */; };
+		8085C66E24AB915200B02F6F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C66224AB915200B02F6F /* Endpoint.swift */; };
+		8085C66F24AB915200B02F6F /* Errors+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C66324AB915200B02F6F /* Errors+Localized.swift */; };
+		8085C67024AB915200B02F6F /* Bundle+BuildInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C66524AB915200B02F6F /* Bundle+BuildInfo.swift */; };
+		80958B6224B4D20A0017BD51 /* AppVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80958B6124B4D20A0017BD51 /* AppVersionManager.swift */; };
+		80E7D2C724ACDEF000E8D586 /* FakePublishManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E7D2C624ACDEF000E8D586 /* FakePublishManager.swift */; };
+		80E7D2C924ACE20C00E8D586 /* ReportingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E7D2C824ACE20C00E8D586 /* ReportingManager.swift */; };
+		C935026A24B37E22007887E2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C935026824B37E22007887E2 /* InfoPlist.strings */; };
+		C935026D24B37E3C007887E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C935026B24B37E3C007887E2 /* Localizable.strings */; };
+		C935027424B37EBD007887E2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C935027224B37EBD007887E2 /* InfoPlist.strings */; };
+		C935027724B37EE3007887E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C935027524B37EE3007887E2 /* Localizable.strings */; };
+		C981BFE524B384490005AB5D /* String+NS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981BFE424B384490005AB5D /* String+NS.swift */; };
+		C99EEAC024C5D3A800A0599F /* ParametersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99EEABF24C5D3A800A0599F /* ParametersManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = Divoc;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00E356EE1AD99517003FC87E /* DivocTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DivocTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* DivocTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DivocTests.m; sourceTree = "<group>"; };
+		0D774486A1C77640A8800354 /* Pods-Divoc-tvOSTests.uirelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.uirelease.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.uirelease.xcconfig"; sourceTree = "<group>"; };
+		0E0B84CC7EBF37C9B78E3F9B /* Pods-Divoc.release.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.release.ui.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.release.ui.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* STAYAWAY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = STAYAWAY.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Divoc/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Divoc/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Divoc/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Divoc/main.m; sourceTree = "<group>"; };
+		163457948A8FB93AA9FEED2C /* Pods-Divoc-tvOSTests.alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.alpha.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.alpha.xcconfig"; sourceTree = "<group>"; };
+		23F344EA738AAB3CFD3F45DE /* Pods-Divoc-DivocTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.debug.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D031E2E76DF5E3B1A3F9F52 /* Pods-Divoc.productionrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.productionrelease.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.productionrelease.xcconfig"; sourceTree = "<group>"; };
+		33B3A42F7BB1035D8822F028 /* Pods-Divoc-tvOSTests.productiondebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.productiondebug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.productiondebug.xcconfig"; sourceTree = "<group>"; };
+		3849B0357C9AEAC08471F2E3 /* libPods-Divoc-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F77C67815C910E3D2A72300 /* Pods-Divoc-DivocTests.productiondebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.productiondebug.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.productiondebug.xcconfig"; sourceTree = "<group>"; };
+		4527C3CCC04008A3C832D474 /* Pods-Divoc-DivocTests.uidebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.uidebug.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.uidebug.xcconfig"; sourceTree = "<group>"; };
+		4715632ABB9E6A5A94A02166 /* Pods-Divoc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.debug.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.debug.xcconfig"; sourceTree = "<group>"; };
+		49474ADEE711F42161969173 /* Pods-Divoc-tvOS.productiondebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.productiondebug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.productiondebug.xcconfig"; sourceTree = "<group>"; };
+		4B6689D9B56928EF1708A247 /* Pods-Divoc.debug.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.debug.ui.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.debug.ui.xcconfig"; sourceTree = "<group>"; };
+		5966257F3BA4C447842464B5 /* Pods-Divoc-tvOS.productionrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.productionrelease.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.productionrelease.xcconfig"; sourceTree = "<group>"; };
+		6658D2F42DE088FF4EF98BD7 /* Pods-Divoc-tvOSTests.release.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.release.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.release.ui.xcconfig"; sourceTree = "<group>"; };
+		6B56C24C5E7810A097BE3A1F /* Pods-Divoc-tvOSTests.debug.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.debug.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.debug.ui.xcconfig"; sourceTree = "<group>"; };
+		7154156B1603271072789D8A /* Pods-Divoc-DivocTests.release.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.release.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.release.ui.xcconfig"; sourceTree = "<group>"; };
+		799C7903ACF58F4A9926E1FC /* Pods-Divoc-tvOS.release.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.release.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.release.ui.xcconfig"; sourceTree = "<group>"; };
+		7A7161B0CB97C2B6786008D8 /* libPods-Divoc-DivocTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc-DivocTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80377DB924B0F41C005452C6 /* TracingLocalPush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracingLocalPush.swift; sourceTree = "<group>"; };
+		80377DBC24B0F83F005452C6 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		80377DBD24B0F83F005452C6 /* KeychainPersisted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPersisted.swift; sourceTree = "<group>"; };
+		8085C60124AB55BE00B02F6F /* React-Native-Config-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "React-Native-Config-Header.h"; sourceTree = "<group>"; };
+		8085C60524AB55BE00B02F6F /* TracingManagerGlue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracingManagerGlue.swift; sourceTree = "<group>"; };
+		8085C60624AB55BE00B02F6F /* TracingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TracingManager.m; sourceTree = "<group>"; };
+		8085C60C24AB55BE00B02F6F /* Divoc-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Divoc-Bridging-Header.h"; sourceTree = "<group>"; };
+		8085C60E24AB55BE00B02F6F /* TracingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TracingManager.h; sourceTree = "<group>"; };
+		8085C61824AB55E500B02F6F /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
+		8085C61A24AB55E500B02F6F /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		8085C61B24AB55E500B02F6F /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		8085C61C24AB55E500B02F6F /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		8085C61D24AB55E500B02F6F /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		8085C61E24AB55E500B02F6F /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		8085C61F24AB55E500B02F6F /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		8085C62024AB55E500B02F6F /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		8085C62124AB55E500B02F6F /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		8085C62224AB55E500B02F6F /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		8085C62324AB55E500B02F6F /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		8085C62424AB55E500B02F6F /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		8085C62524AB55E500B02F6F /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		8085C62624AB55E500B02F6F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8085C65924AB915200B02F6F /* AuthorizationModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationModels.swift; sourceTree = "<group>"; };
+		8085C65A24AB915200B02F6F /* CodeValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeValidator.swift; sourceTree = "<group>"; };
+		8085C65B24AB915200B02F6F /* Environment+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Environment+Endpoints.swift"; sourceTree = "<group>"; };
+		8085C65D24AB915200B02F6F /* Backend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
+		8085C65E24AB915200B02F6F /* URLSession+pinning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+pinning.swift"; sourceTree = "<group>"; };
+		8085C65F24AB915200B02F6F /* Endpoint+Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Endpoint+Request.swift"; sourceTree = "<group>"; };
+		8085C66024AB915200B02F6F /* UBPinnedCertificatesTrustEvaluator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBPinnedCertificatesTrustEvaluator.swift; sourceTree = "<group>"; };
+		8085C66124AB915200B02F6F /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		8085C66224AB915200B02F6F /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		8085C66324AB915200B02F6F /* Errors+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Errors+Localized.swift"; sourceTree = "<group>"; };
+		8085C66524AB915200B02F6F /* Bundle+BuildInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+BuildInfo.swift"; sourceTree = "<group>"; };
+		80958B6124B4D20A0017BD51 /* AppVersionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionManager.swift; sourceTree = "<group>"; };
+		80E7D2C624ACDEF000E8D586 /* FakePublishManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePublishManager.swift; sourceTree = "<group>"; };
+		80E7D2C824ACE20C00E8D586 /* ReportingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportingManager.swift; sourceTree = "<group>"; };
+		823DB9F922E378F8163B1CAB /* Pods-Divoc-tvOS.uidebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.uidebug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.uidebug.xcconfig"; sourceTree = "<group>"; };
+		831357654415E939528E1BA9 /* Pods-Divoc-tvOS.alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.alpha.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.alpha.xcconfig"; sourceTree = "<group>"; };
+		835AE5FC45BE01D85BEFF0FE /* Pods-Divoc-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		8583B3BA318F55C4437E8BD6 /* Pods-Divoc-tvOS.debug.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.debug.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.debug.ui.xcconfig"; sourceTree = "<group>"; };
+		90E2D2EE77AF0236321E4B8A /* Pods-Divoc-DivocTests.alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.alpha.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.alpha.xcconfig"; sourceTree = "<group>"; };
+		9FBEB56610A05E27E09A6823 /* Pods-Divoc.alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.alpha.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.alpha.xcconfig"; sourceTree = "<group>"; };
+		A99905D20A9D5D128731C28B /* Pods-Divoc.uidebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.uidebug.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.uidebug.xcconfig"; sourceTree = "<group>"; };
+		AA2185E06C1AD18977B03B8D /* Pods-Divoc-DivocTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.release.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.release.xcconfig"; sourceTree = "<group>"; };
+		AB8A559B0313A8286B23E3D4 /* Pods-Divoc-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		B00035218E29BA4FDB1709F5 /* Pods-Divoc-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B702AE4D7D51F5CF4FF06F7C /* Pods-Divoc-tvOSTests.uidebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.uidebug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.uidebug.xcconfig"; sourceTree = "<group>"; };
+		BE2E19305820BC2F375DEBEB /* Pods-Divoc-tvOS.uirelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.uirelease.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.uirelease.xcconfig"; sourceTree = "<group>"; };
+		C6D26CCA909E2C929B716519 /* Pods-Divoc-tvOSTests.productionrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.productionrelease.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.productionrelease.xcconfig"; sourceTree = "<group>"; };
+		C935026924B37E22007887E2 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = InfoPlist.strings; sourceTree = "<group>"; };
+		C935026C24B37E3C007887E2 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = Localizable.strings; sourceTree = "<group>"; };
+		C935027324B37EBD007887E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		C935027624B37EE3007887E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		C981BFE424B384490005AB5D /* String+NS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NS.swift"; sourceTree = "<group>"; };
+		C99EEABF24C5D3A800A0599F /* ParametersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersManager.swift; sourceTree = "<group>"; };
+		D51AC7281E0C3B50AFA82582 /* Pods-Divoc-DivocTests.debug.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.debug.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.debug.ui.xcconfig"; sourceTree = "<group>"; };
+		D699EBE23BD4B6E38BA14505 /* libPods-Divoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF474FE17F02EB1FD2F2F6C /* Pods-Divoc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.release.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.release.xcconfig"; sourceTree = "<group>"; };
+		E0F7827CA2898441284C50EB /* Pods-Divoc.productiondebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.productiondebug.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.productiondebug.xcconfig"; sourceTree = "<group>"; };
+		E2D2CEB2C7BED6934F39DDA7 /* Pods-Divoc-DivocTests.productionrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.productionrelease.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.productionrelease.xcconfig"; sourceTree = "<group>"; };
+		E91C8F7E70FCDA030B159C3C /* libPods-Divoc-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F25852D414D27F175762102A /* Pods-Divoc-DivocTests.uirelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.uirelease.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.uirelease.xcconfig"; sourceTree = "<group>"; };
+		F5B14702FD4E0857F2E35B0F /* Pods-Divoc-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		F8ACDBA43CD6239366A3498E /* Pods-Divoc.uirelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.uirelease.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.uirelease.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00E356EB1AD99517003FC87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C8E635409871A7102F65861 /* libPods-Divoc-DivocTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8069970624CB3182001F8F1D /* DP3TSDK in Frameworks */,
+				08D80D04D99F6A4FE1D678E5 /* libPods-Divoc.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E356EF1AD99517003FC87E /* DivocTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F21AD99517003FC87E /* DivocTests.m */,
+				00E356F01AD99517003FC87E /* Supporting Files */,
+			);
+			path = DivocTests;
+			sourceTree = "<group>";
+		};
+		00E356F01AD99517003FC87E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F11AD99517003FC87E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13B07FAE1A68108700A75B9A /* Divoc */ = {
+			isa = PBXGroup;
+			children = (
+				C935026624B37DC2007887E2 /* Translations */,
+				8085C65624AB915200B02F6F /* Imported */,
+				8085C61724AB55E500B02F6F /* Supporting Files */,
+				8085C60024AB55BE00B02F6F /* Bridge */,
+				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
+				13B07FB71A68108700A75B9A /* main.m */,
+			);
+			name = Divoc;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
+				D699EBE23BD4B6E38BA14505 /* libPods-Divoc.a */,
+				7A7161B0CB97C2B6786008D8 /* libPods-Divoc-DivocTests.a */,
+				3849B0357C9AEAC08471F2E3 /* libPods-Divoc-tvOS.a */,
+				E91C8F7E70FCDA030B159C3C /* libPods-Divoc-tvOSTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		499EEC2B8E4EB5DD3A030279 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4715632ABB9E6A5A94A02166 /* Pods-Divoc.debug.xcconfig */,
+				DDF474FE17F02EB1FD2F2F6C /* Pods-Divoc.release.xcconfig */,
+				23F344EA738AAB3CFD3F45DE /* Pods-Divoc-DivocTests.debug.xcconfig */,
+				AA2185E06C1AD18977B03B8D /* Pods-Divoc-DivocTests.release.xcconfig */,
+				F5B14702FD4E0857F2E35B0F /* Pods-Divoc-tvOS.debug.xcconfig */,
+				AB8A559B0313A8286B23E3D4 /* Pods-Divoc-tvOS.release.xcconfig */,
+				B00035218E29BA4FDB1709F5 /* Pods-Divoc-tvOSTests.debug.xcconfig */,
+				835AE5FC45BE01D85BEFF0FE /* Pods-Divoc-tvOSTests.release.xcconfig */,
+				9FBEB56610A05E27E09A6823 /* Pods-Divoc.alpha.xcconfig */,
+				90E2D2EE77AF0236321E4B8A /* Pods-Divoc-DivocTests.alpha.xcconfig */,
+				831357654415E939528E1BA9 /* Pods-Divoc-tvOS.alpha.xcconfig */,
+				163457948A8FB93AA9FEED2C /* Pods-Divoc-tvOSTests.alpha.xcconfig */,
+				4B6689D9B56928EF1708A247 /* Pods-Divoc.debug.ui.xcconfig */,
+				0E0B84CC7EBF37C9B78E3F9B /* Pods-Divoc.release.ui.xcconfig */,
+				D51AC7281E0C3B50AFA82582 /* Pods-Divoc-DivocTests.debug.ui.xcconfig */,
+				7154156B1603271072789D8A /* Pods-Divoc-DivocTests.release.ui.xcconfig */,
+				8583B3BA318F55C4437E8BD6 /* Pods-Divoc-tvOS.debug.ui.xcconfig */,
+				799C7903ACF58F4A9926E1FC /* Pods-Divoc-tvOS.release.ui.xcconfig */,
+				6B56C24C5E7810A097BE3A1F /* Pods-Divoc-tvOSTests.debug.ui.xcconfig */,
+				6658D2F42DE088FF4EF98BD7 /* Pods-Divoc-tvOSTests.release.ui.xcconfig */,
+				A99905D20A9D5D128731C28B /* Pods-Divoc.uidebug.xcconfig */,
+				F8ACDBA43CD6239366A3498E /* Pods-Divoc.uirelease.xcconfig */,
+				4527C3CCC04008A3C832D474 /* Pods-Divoc-DivocTests.uidebug.xcconfig */,
+				F25852D414D27F175762102A /* Pods-Divoc-DivocTests.uirelease.xcconfig */,
+				823DB9F922E378F8163B1CAB /* Pods-Divoc-tvOS.uidebug.xcconfig */,
+				BE2E19305820BC2F375DEBEB /* Pods-Divoc-tvOS.uirelease.xcconfig */,
+				B702AE4D7D51F5CF4FF06F7C /* Pods-Divoc-tvOSTests.uidebug.xcconfig */,
+				0D774486A1C77640A8800354 /* Pods-Divoc-tvOSTests.uirelease.xcconfig */,
+				E0F7827CA2898441284C50EB /* Pods-Divoc.productiondebug.xcconfig */,
+				2D031E2E76DF5E3B1A3F9F52 /* Pods-Divoc.productionrelease.xcconfig */,
+				3F77C67815C910E3D2A72300 /* Pods-Divoc-DivocTests.productiondebug.xcconfig */,
+				E2D2CEB2C7BED6934F39DDA7 /* Pods-Divoc-DivocTests.productionrelease.xcconfig */,
+				49474ADEE711F42161969173 /* Pods-Divoc-tvOS.productiondebug.xcconfig */,
+				5966257F3BA4C447842464B5 /* Pods-Divoc-tvOS.productionrelease.xcconfig */,
+				33B3A42F7BB1035D8822F028 /* Pods-Divoc-tvOSTests.productiondebug.xcconfig */,
+				C6D26CCA909E2C929B716519 /* Pods-Divoc-tvOSTests.productionrelease.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		80377DBB24B0F83F005452C6 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				80377DBC24B0F83F005452C6 /* Keychain.swift */,
+				80377DBD24B0F83F005452C6 /* KeychainPersisted.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		8085C60024AB55BE00B02F6F /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				8085C60124AB55BE00B02F6F /* React-Native-Config-Header.h */,
+				8085C60524AB55BE00B02F6F /* TracingManagerGlue.swift */,
+				8085C60624AB55BE00B02F6F /* TracingManager.m */,
+				8085C60C24AB55BE00B02F6F /* Divoc-Bridging-Header.h */,
+				8085C60E24AB55BE00B02F6F /* TracingManager.h */,
+			);
+			name = Bridge;
+			path = Divoc/Bridge;
+			sourceTree = "<group>";
+		};
+		8085C61724AB55E500B02F6F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8085C61824AB55E500B02F6F /* Entitlements.entitlements */,
+				8085C61924AB55E500B02F6F /* fonts */,
+				8085C62624AB55E500B02F6F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			path = "Divoc/Supporting Files";
+			sourceTree = "<group>";
+		};
+		8085C61924AB55E500B02F6F /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8085C61A24AB55E500B02F6F /* Roboto-Medium.ttf */,
+				8085C61B24AB55E500B02F6F /* Roboto-Light.ttf */,
+				8085C61C24AB55E500B02F6F /* Roboto-Regular.ttf */,
+				8085C61D24AB55E500B02F6F /* Roboto-MediumItalic.ttf */,
+				8085C61E24AB55E500B02F6F /* Roboto-ThinItalic.ttf */,
+				8085C61F24AB55E500B02F6F /* Roboto-BoldItalic.ttf */,
+				8085C62024AB55E500B02F6F /* Roboto-LightItalic.ttf */,
+				8085C62124AB55E500B02F6F /* Roboto-Italic.ttf */,
+				8085C62224AB55E500B02F6F /* Roboto-BlackItalic.ttf */,
+				8085C62324AB55E500B02F6F /* Roboto-Bold.ttf */,
+				8085C62424AB55E500B02F6F /* Roboto-Thin.ttf */,
+				8085C62524AB55E500B02F6F /* Roboto-Black.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		8085C65624AB915200B02F6F /* Imported */ = {
+			isa = PBXGroup;
+			children = (
+				80377DBB24B0F83F005452C6 /* Keychain */,
+				8085C65724AB915200B02F6F /* Networking */,
+				8085C66324AB915200B02F6F /* Errors+Localized.swift */,
+				8085C66424AB915200B02F6F /* Helpers */,
+			);
+			name = Imported;
+			path = Divoc/Imported;
+			sourceTree = "<group>";
+		};
+		8085C65724AB915200B02F6F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				80377DB924B0F41C005452C6 /* TracingLocalPush.swift */,
+				8085C65824AB915200B02F6F /* Reporting */,
+				8085C65B24AB915200B02F6F /* Environment+Endpoints.swift */,
+				8085C65C24AB915200B02F6F /* Base */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8085C65824AB915200B02F6F /* Reporting */ = {
+			isa = PBXGroup;
+			children = (
+				80E7D2C824ACE20C00E8D586 /* ReportingManager.swift */,
+				80E7D2C624ACDEF000E8D586 /* FakePublishManager.swift */,
+				80958B6124B4D20A0017BD51 /* AppVersionManager.swift */,
+				C99EEABF24C5D3A800A0599F /* ParametersManager.swift */,
+				8085C65924AB915200B02F6F /* AuthorizationModels.swift */,
+				8085C65A24AB915200B02F6F /* CodeValidator.swift */,
+			);
+			path = Reporting;
+			sourceTree = "<group>";
+		};
+		8085C65C24AB915200B02F6F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8085C65D24AB915200B02F6F /* Backend.swift */,
+				8085C65E24AB915200B02F6F /* URLSession+pinning.swift */,
+				8085C65F24AB915200B02F6F /* Endpoint+Request.swift */,
+				8085C66024AB915200B02F6F /* UBPinnedCertificatesTrustEvaluator.swift */,
+				8085C66124AB915200B02F6F /* NetworkError.swift */,
+				8085C66224AB915200B02F6F /* Endpoint.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		8085C66424AB915200B02F6F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8085C66524AB915200B02F6F /* Bundle+BuildInfo.swift */,
+				C981BFE424B384490005AB5D /* String+NS.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				13B07FAE1A68108700A75B9A /* Divoc */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				00E356EF1AD99517003FC87E /* DivocTests */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				499EEC2B8E4EB5DD3A030279 /* Pods */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* STAYAWAY.app */,
+				00E356EE1AD99517003FC87E /* DivocTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C935026624B37DC2007887E2 /* Translations */ = {
+			isa = PBXGroup;
+			children = (
+				C935026E24B37E7B007887E2 /* en.lproj */,
+				C935026724B37DF6007887E2 /* pt.lproj */,
+			);
+			path = Translations;
+			sourceTree = "<group>";
+		};
+		C935026724B37DF6007887E2 /* pt.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				C935026824B37E22007887E2 /* InfoPlist.strings */,
+				C935026B24B37E3C007887E2 /* Localizable.strings */,
+			);
+			path = pt.lproj;
+			sourceTree = "<group>";
+		};
+		C935026E24B37E7B007887E2 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				C935027224B37EBD007887E2 /* InfoPlist.strings */,
+				C935027524B37EE3007887E2 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00E356ED1AD99517003FC87E /* DivocTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "DivocTests" */;
+			buildPhases = (
+				EDEC59EE409E48ACDA0281AE /* [CP] Check Pods Manifest.lock */,
+				00E356EA1AD99517003FC87E /* Sources */,
+				00E356EB1AD99517003FC87E /* Frameworks */,
+				00E356EC1AD99517003FC87E /* Resources */,
+				80A4AB3592CF833C44514AB6 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00E356F51AD99517003FC87E /* PBXTargetDependency */,
+			);
+			name = DivocTests;
+			productName = DivocTests;
+			productReference = 00E356EE1AD99517003FC87E /* DivocTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13B07F861A680F5B00A75B9A /* Divoc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Divoc" */;
+			buildPhases = (
+				F32D6283ED2A86363F6A4989 /* [CP] Check Pods Manifest.lock */,
+				FD10A7F022414F080027D42C /* Start Packager */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				2A05C372670CCCB61CB319C3 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Divoc;
+			packageProductDependencies = (
+				8069970524CB3182001F8F1D /* DP3TSDK */,
+			);
+			productName = Divoc;
+			productReference = 13B07F961A680F5B00A75B9A /* STAYAWAY.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				TargetAttributes = {
+					00E356ED1AD99517003FC87E = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1140;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Divoc" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"pt-PT",
+				pt,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				8069970424CB3182001F8F1D /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
+			);
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* Divoc */,
+				00E356ED1AD99517003FC87E /* DivocTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00E356EC1AD99517003FC87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				8085C63024AB55E500B02F6F /* Roboto-Bold.ttf in Resources */,
+				8085C62C24AB55E500B02F6F /* Roboto-BoldItalic.ttf in Resources */,
+				C935026A24B37E22007887E2 /* InfoPlist.strings in Resources */,
+				C935027424B37EBD007887E2 /* InfoPlist.strings in Resources */,
+				8085C62924AB55E500B02F6F /* Roboto-Regular.ttf in Resources */,
+				8085C62B24AB55E500B02F6F /* Roboto-ThinItalic.ttf in Resources */,
+				8085C62D24AB55E500B02F6F /* Roboto-LightItalic.ttf in Resources */,
+				8085C62F24AB55E500B02F6F /* Roboto-BlackItalic.ttf in Resources */,
+				8085C62824AB55E500B02F6F /* Roboto-Light.ttf in Resources */,
+				8085C62E24AB55E500B02F6F /* Roboto-Italic.ttf in Resources */,
+				8085C62A24AB55E500B02F6F /* Roboto-MediumItalic.ttf in Resources */,
+				C935027724B37EE3007887E2 /* Localizable.strings in Resources */,
+				8085C63224AB55E500B02F6F /* Roboto-Black.ttf in Resources */,
+				C935026D24B37E3C007887E2 /* Localizable.strings in Resources */,
+				8085C63124AB55E500B02F6F /* Roboto-Thin.ttf in Resources */,
+				8085C62724AB55E500B02F6F /* Roboto-Medium.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		2A05C372670CCCB61CB319C3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Divoc/Pods-Divoc-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Divoc/Pods-Divoc-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Divoc/Pods-Divoc-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80A4AB3592CF833C44514AB6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDEC59EE409E48ACDA0281AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Divoc-DivocTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F32D6283ED2A86363F6A4989 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Divoc-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F022414F080027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00E356EA1AD99517003FC87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E356F31AD99517003FC87E /* DivocTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8085C66924AB915200B02F6F /* Backend.swift in Sources */,
+				C981BFE524B384490005AB5D /* String+NS.swift in Sources */,
+				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				8085C66B24AB915200B02F6F /* Endpoint+Request.swift in Sources */,
+				8085C66E24AB915200B02F6F /* Endpoint.swift in Sources */,
+				80377DBA24B0F41C005452C6 /* TracingLocalPush.swift in Sources */,
+				C99EEAC024C5D3A800A0599F /* ParametersManager.swift in Sources */,
+				80377DBF24B0F83F005452C6 /* KeychainPersisted.swift in Sources */,
+				8085C61224AB55BE00B02F6F /* TracingManager.m in Sources */,
+				8085C66C24AB915200B02F6F /* UBPinnedCertificatesTrustEvaluator.swift in Sources */,
+				8085C66824AB915200B02F6F /* Environment+Endpoints.swift in Sources */,
+				80E7D2C924ACE20C00E8D586 /* ReportingManager.swift in Sources */,
+				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				80958B6224B4D20A0017BD51 /* AppVersionManager.swift in Sources */,
+				8085C66724AB915200B02F6F /* CodeValidator.swift in Sources */,
+				80377DBE24B0F83F005452C6 /* Keychain.swift in Sources */,
+				8085C66624AB915200B02F6F /* AuthorizationModels.swift in Sources */,
+				8085C66F24AB915200B02F6F /* Errors+Localized.swift in Sources */,
+				8085C67024AB915200B02F6F /* Bundle+BuildInfo.swift in Sources */,
+				80E7D2C724ACDEF000E8D586 /* FakePublishManager.swift in Sources */,
+				8085C66D24AB915200B02F6F /* NetworkError.swift in Sources */,
+				8085C61124AB55BE00B02F6F /* TracingManagerGlue.swift in Sources */,
+				8085C66A24AB915200B02F6F /* URLSession+pinning.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* Divoc */;
+			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13B07FB21A68108700A75B9A /* Base */,
+			);
+			name = LaunchScreen.xib;
+			path = Divoc;
+			sourceTree = "<group>";
+		};
+		C935026824B37E22007887E2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C935026924B37E22007887E2 /* pt */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C935026B24B37E3C007887E2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C935026C24B37E3C007887E2 /* pt */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C935027224B37EBD007887E2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C935027324B37EBD007887E2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C935027524B37EE3007887E2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C935027624B37EE3007887E2 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00E356F61AD99517003FC87E /* ProductionDebug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F77C67815C910E3D2A72300 /* Pods-Divoc-DivocTests.productiondebug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DivocTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Divoc.app/Divoc";
+			};
+			name = ProductionDebug;
+		};
+		00E356F71AD99517003FC87E /* ProductionRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2D2CEB2C7BED6934F39DDA7 /* Pods-Divoc-DivocTests.productionrelease.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = DivocTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Divoc.app/Divoc";
+			};
+			name = ProductionRelease;
+		};
+		13B07F941A680F5B00A75B9A /* ProductionDebug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0F7827CA2898441284C50EB /* Pods-Divoc.productiondebug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.debug;
+				BUNDLE_ID_SUFFIX = .debug;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VB258YUFG3;
+				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"FB_SONARKIT_ENABLED=1",
+				);
+				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransportCCTSupport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-bluetooth-status\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-location\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
+					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
+					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/TrustKit\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/Permission-Notifications\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNDeviceInfo\"",
+				);
+				MARKETING_VERSION = 0.2.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
+				PRODUCT_NAME = STAYAWAY;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_MODULE_NAME = STAYAWAY_COVID;
+				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_SUFFIX = Debug;
+			};
+			name = ProductionDebug;
+		};
+		13B07F951A680F5B00A75B9A /* ProductionRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D031E2E76DF5E3B1A3F9F52 /* Pods-Divoc.productionrelease.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_ID_SUFFIX = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H4F6Z9HC74;
+				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransportCCTSupport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-bluetooth-status\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-location\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
+					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
+					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/TrustKit\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/Permission-Notifications\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNDeviceInfo\"",
+				);
+				MARKETING_VERSION = 0.2.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
+				PRODUCT_NAME = STAYAWAY;
+				PROVISIONING_PROFILE_SPECIFIER = "STAYAWAY EN";
+				SWIFT_MODULE_NAME = STAYAWAY_COVID;
+				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = ProductionRelease;
+		};
+		83CBBA201A601CBA00E9B192 /* ProductionDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = ProductionDebug;
+		};
+		83CBBA211A601CBA00E9B192 /* ProductionRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = ProductionRelease;
+		};
+		C9BA4D7F2472A56200328373 /* UiDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = UiDebug;
+		};
+		C9BA4D802472A56200328373 /* UiDebug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A99905D20A9D5D128731C28B /* Pods-Divoc.uidebug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = UiAppIcon.debug;
+				BUNDLE_ID_SUFFIX = .ui.debug;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VB258YUFG3;
+				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"FB_SONARKIT_ENABLED=1",
+				);
+				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransportCCTSupport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-bluetooth-status\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-location\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
+					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
+					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/TrustKit\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/Permission-Notifications\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNDeviceInfo\"",
+				);
+				MARKETING_VERSION = 0.2.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
+				PRODUCT_NAME = "STAYAWAY UI";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_MODULE_NAME = STAYAWAY_COVID;
+				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_SUFFIX = UiDebug;
+			};
+			name = UiDebug;
+		};
+		C9BA4D812472A56200328373 /* UiDebug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4527C3CCC04008A3C832D474 /* Pods-Divoc-DivocTests.uidebug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DivocTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Divoc.app/Divoc";
+			};
+			name = UiDebug;
+		};
+		C9BA4D842472A56E00328373 /* UiRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = UiRelease;
+		};
+		C9BA4D852472A56E00328373 /* UiRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8ACDBA43CD6239366A3498E /* Pods-Divoc.uirelease.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = UiAppIcon;
+				BUNDLE_ID_SUFFIX = .ui;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VB258YUFG3;
+				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransportCCTSupport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-bluetooth-status\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-location\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
+					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
+					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/TrustKit\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/Permission-Notifications\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNDeviceInfo\"",
+				);
+				MARKETING_VERSION = 0.2.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
+				PRODUCT_NAME = "STAYAWAY UI";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_MODULE_NAME = STAYAWAY_COVID;
+				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_SUFFIX = Ui;
+			};
+			name = UiRelease;
+		};
+		C9BA4D862472A56E00328373 /* UiRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F25852D414D27F175762102A /* Pods-Divoc-DivocTests.uirelease.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = DivocTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Divoc.app/Divoc";
+			};
+			name = UiRelease;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "DivocTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E356F61AD99517003FC87E /* ProductionDebug */,
+				C9BA4D812472A56200328373 /* UiDebug */,
+				00E356F71AD99517003FC87E /* ProductionRelease */,
+				C9BA4D862472A56E00328373 /* UiRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = ProductionRelease;
+		};
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Divoc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* ProductionDebug */,
+				C9BA4D802472A56200328373 /* UiDebug */,
+				13B07F951A680F5B00A75B9A /* ProductionRelease */,
+				C9BA4D852472A56E00328373 /* UiRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = ProductionRelease;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Divoc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* ProductionDebug */,
+				C9BA4D7F2472A56200328373 /* UiDebug */,
+				83CBBA211A601CBA00E9B192 /* ProductionRelease */,
+				C9BA4D842472A56E00328373 /* UiRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = ProductionRelease;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8069970424CB3182001F8F1D /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DP-3T/dp3t-sdk-ios.git";
+			requirement = {
+				kind = revision;
+				revision = c9f2db9d11f32b1236180171594f6d6ccf8e17af;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8069970524CB3182001F8F1D /* DP3TSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8069970424CB3182001F8F1D /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
+			productName = DP3TSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}

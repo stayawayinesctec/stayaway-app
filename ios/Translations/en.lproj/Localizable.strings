@@ -1,0 +1,6 @@
+"exposed_notification_title" = "An exposure of significant risk was detected";
+"exposed_notification_body" = "You were in contact with someone who was diagnosed with COVID-19.";
+"sync_notification_title" = "STAYAWAY COVID needs internet connection";
+"sync_notification_body" = "The app has not sync for more than 2 days.";
+"app_version_notification_title" = "STAYAWAY COVID needs to be updated.";
+"app_version_notification_body" = "There is a new version of STAYAWAY COVID. Please update for it to work properly.";

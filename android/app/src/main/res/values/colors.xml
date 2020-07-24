@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ~ Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+ ~
+ ~ This Source Code Form is subject to the terms of the European Union
+ ~ Public License, v. 1.2. If a copy of the EUPL was not distributed with
+ ~ this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+ ~
+ ~ SPDX-License-Identifier: EUPL-1.2
+ ~
+ -->
+<resources>
+    <color name="primary_dark">#264B99</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#191847</color>
+    <color name="blue">#264B99</color>
+    <color name="green">#00CF15</color>
+    <color name="yellow">#F7C000</color>
+</resources>

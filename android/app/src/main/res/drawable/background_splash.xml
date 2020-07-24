@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ~ Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+ ~
+ ~ This Source Code Form is subject to the terms of the European Union
+ ~ Public License, v. 1.2. If a copy of the EUPL was not distributed with
+ ~ this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+ ~
+ ~ SPDX-License-Identifier: EUPL-1.2
+ ~
+ -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@color/blue"
+        />
+
+    <item
+        android:width="193dp"
+        android:height="81dp"
+        android:gravity="center"
+        android:drawable="@mipmap/splash_icon"
+        />
+
+    <item
+        android:width="450dp"
+        android:height="450dp"
+        android:top="-200dp"
+        android:left="-200dp"
+        android:gravity="top|left"
+        android:drawable="@mipmap/splash_background"
+        />
+    <item
+        android:width="450dp"
+        android:height="450dp"
+        android:bottom="-200dp"
+        android:right="-200dp"
+        android:gravity="bottom|right"
+        android:drawable="@mipmap/splash_background"
+        />
+
+</layer-list>

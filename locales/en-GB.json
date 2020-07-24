@@ -1,0 +1,349 @@
+{
+  "screens": {
+    "onboarding": {
+      "first": {
+        "title": "Thank you for joining us in the fight against COVID-19!\n\nWith your help we grow stronger."
+      },
+      "second": {
+        "title": "Protect yourself",
+        "description": "The STAYAWAY COVID app works as a radar by sharing randomly generated depersonalised identifiers with nearby mobile phones. These identifiers are stored for 14 days on your mobile phone only.\n\nThe app does not require access to an individual's location nor to personal data."
+      },
+      "third": {
+        "title": "Timely Alert Notifications",
+        "description": "If someone you have been in close contact with very recently later tests positive for COVID-19, STAYAWAY COVID will alert you.\n\nWith this information on your side, you can self-assess your infection risk and make decisions that will affect your health and the health of those you live and interact with."
+      },
+      "fourth": {
+        "title": "Protect others around you",
+        "description": "If you have been diagnosed with COVID-19, with the result of your test you will be given a code that will allow STAYAWAY COVID to alert all of those you have come in close contact with in the past 14 days but preserving your anonimity.\n\nThis a fundamental step to break chains of infection and protect your and others’ health."
+      },
+      "informed_consent": {
+        "title": "Informed consent",
+        "description": {
+          "first": "For more information, you can read our privacy policy and terms of use at any time. ",
+          "second": "Privacy policy ",
+          "third": "and ",
+          "fourth": "terms of use.\n"
+        },
+        "consents": {
+          "read_and_understood": {
+            "first": "I read and understood the information about the STAYAWAY application, namely:\n• Identity of the Controller - ",
+            "second": "DGS.\n",
+            "third": "• The types of data collected and voluntarily shared after any diagnosis confirming infection, through random identifier keys.\n• The purpose of data collection and processing, namely concerning the notifications sent.\n• How data will be stored and for how long.\n• That I can freely revoke my consent at any time, by uninstalling the application, without affecting the legality of the previous processing actions.\n• That in the cases of children under 13, consent can only be given or authorised by the holders of parental responsibilities.\n• Contact of Data Protection Officer: ",
+            "fourth": "dpo@inesctec.pt.\n"
+          },
+          "data_treatment": "I agree with the processing of my personal data, in compliance with the privacy policy, including data related to my health condition, required to send notifications on the exposure to potential risks of contagion, in order to help interrupting the chains of COVID-19 infection."
+        },
+        "actions": {
+          "accept": "Accept and Start"
+        }
+      }
+    },
+    "home": {
+      "last_updated": "Last updated",
+      "never_updated": "Never updated",
+      "actions": {
+        "settings": {
+          "accessibility": {
+            "label": "Settings",
+            "hint": "Navigates to the settings screen"
+          }
+        }
+      },
+      "healthy": {
+        "title": "No high-risk contacts have been detected.",
+        "description": {
+          "first": "STAYAWAY COVID will be constantly monitoring your risk level ",
+          "second": "and will alert you if you have been exposed to risk. Avoid contacts closer than 2 metres from you."
+        }
+      },
+      "exposed": {
+        "title": "Have you been near someone tested positive for COVID-19?",
+        "description": {
+          "first": "It doesn’t mean you are infected, ",
+          "second": "but you should self-isolate and contact health services.\n\n",
+          "third": "Even if you show no symptoms, you should call ",
+          "fourth": "SNS 24 (808 24 24 24) ",
+          "fifth": "or your family doctor."
+        }
+      },
+      "infected": {
+        "title": "Thank you for playing your part protecting others’ lives.",
+        "description": {
+          "first": "We wish you a quick recovery.\n\n",
+          "second": "Since you have tested positive for COVID-19, STAYAWAY COVID will be disabled and stop tracing your contacts.\n\nOnce recovered, make sure you reinstall the app in order to restart contact tracing."
+        }
+      },
+      "errors": {
+        "bluetooth": {
+          "title": "Bluetooth disabled",
+          "message": "Turn on Bluetooth to allow STAYAWAY COVID to work properly"
+        },
+        "location": {
+          "title": "Location services disabled",
+          "message": "Enable location services to allow STAYAWAY COVID to work properly"
+        },
+        "battery": {
+          "title": "Battery optimization enabled",
+          "message": "Disable battery optimization to allow STAYAWAY COVID to work properly"
+        },
+        "gaen": {
+          "title": "Monitoring disabled",
+          "message": "Please enable Exposure Notifications logging to allow STAYAWAY COVID to work properly"
+        }
+      }
+    },
+    "recommendations": {
+      "title": "Protect others and yourself.",
+      "healthy": {
+        "distance": "Keep at least 2 metres away from others",
+        "social_contacts": "Avoid unnecessary social contact",
+        "wash_hands": "Wash or sanitise your hands as frequently as possible",
+        "feeling_sick": "If you feel unwell, stay at home"
+      },
+      "infected": {
+        "encloused_spaces": "Avoid socialising in enclosed spaces with people outside of your household",
+        "stay_home": "Stay at home",
+        "increase_hygiene": "Reinforce hand hygiene and cleaning of surfaces",
+        "wear_mask": "Wear a cloth face mask to protect others and yourself"
+      }
+    },
+    "settings": {
+      "tracking": {
+        "label": "Monitoring"
+      },
+      "instructions": {
+        "label": "How to use the app"
+      },
+      "faqs": {
+        "label": "FAQs",
+        "accessibility": {
+          "label": "FAQs",
+          "hint": "Links to the FAQs webpage"
+        }
+      },
+      "terms_of_use": {
+        "label": "Terms of Use",
+        "accessibility": {
+          "label": "Terms of Use",
+          "hint": "Links to the Terms of Use webpage"
+        }
+      },
+      "privacy_policy": {
+        "label": "Privacy Policy",
+        "accessibility": {
+          "label": "Privacy Policy",
+          "hint": "Links to the Privacy Policy webpage"
+        }
+      },
+      "debug": {
+        "label": "Debug"
+      },
+      "technical_sheet": {
+        "label": "Technical Sheet"
+      },
+      "actions": {
+        "back": {
+          "accessibility": {
+            "label": "Go back",
+            "hint": "Navigates back to the home screen"
+          }
+        }
+      }
+    },
+    "tracking": {
+      "title": "Monitoring",
+      "description": "Keep STAYAWAY COVID active and play your part in the fight against the virus.",
+      "switch": {
+        "label": "Monitoring",
+        "legend": "By turning the \"Monitoring\" feature off, the app will stop sending and receiving random identifiers.",
+        "accessibility": {
+          "label": "Monitoring"
+        }
+      },
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "hint": "Go back",
+            "label": "Navigates back to the settings screen"
+          }
+        }
+      }
+    },
+    "diagnosis": {
+      "code_input": {
+        "title": "Have you tested positive for COVID-19?",
+        "description": {
+          "first": "Along with your diagnosis, you were given a code by your doctor. ",
+          "second": "Enter the code to give the app permission to anonymously share your random identifiers. This code is valid for 24 hours only."
+        }
+      },
+      "completed": {
+        "title": "Thank you!",
+        "description": "The anonymous sharing of this information is extremely important to help contain the spread of COVID-19."
+      }
+    },
+    "debug": {
+      "title": "Debug",
+      "sign_up": "Registered",
+      "last_sync": "Last sync",
+      "infection_status": {
+        "label": "Infection Status",
+        "healthy": "Healty",
+        "exposed": "Exposed",
+        "infected": "Infected"
+      },
+      "exposure_days": "Exposure Days",
+      "errors": "Errors",
+      "actions": {
+        "back": {
+          "accessibility": {
+            "label": "Go back",
+            "hint": "Navigates back to the settings screen"
+          }
+        }
+      }
+    },
+    "operation": {
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "hint": "Go back",
+            "label": "Navigates back to the settings screen"
+          }
+        }
+      }
+    },
+    "technical_sheet": {
+      "title": "Technical Sheet",
+      "coordination": "Coordenação",
+      "partners": "Partners",
+      "inesctec": {
+        "accessibility": {
+          "label": "INESCTEC",
+          "hint": "Links to the INESCTEC webpage"
+        }
+      },
+      "ispup": {
+        "accessibility": {
+          "label": "ISPUP",
+          "hint": "Links to the ISPUP webpage"
+        }
+      },
+      "keyruptive": {
+        "accessibility": {
+          "label": "Keyruptive",
+          "hint": "Links to the Keyruptive webpage"
+        }
+      },
+      "ubirider": {
+        "accessibility": {
+          "label": "Ubirider",
+          "hint": "Links to the Ubirider webpage"
+        }
+      },
+      "spms": {
+        "accessibility": {
+          "label": "SPMS",
+          "hint": "Links to the SPMS webpage"
+        }
+      },
+      "version": "v{{version}} ({{build}})",
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "hint": "Go back",
+            "label": "Navigates back to the settings screen"
+          }
+        }
+      }
+    }
+  },
+  "common": {
+    "app_name": "STAYAWAY COVID",
+    "links": {
+      "app_page": {
+        "google_play": "https://play.google.com/store/apps",
+        "app_store": "https://apps.apple.com/pt"
+      },
+      "home_page": "https://stayaway.inesctec.pt/en/",
+      "privacy_policy": "https://stayaway.inesctec.pt/privacy-policy-2/",
+      "terms_of_use": "https://stayaway.inesctec.pt/terms-conditions/",
+      "faqs": "https://stayaway.inesctec.pt/en/",
+      "dgs": "https://www.dgs.pt/",
+      "data_protection": "mailto:dpo@inesctec.pt",
+      "inesctec": "https://www.inesctec.pt/en",
+      "ispup": "https://ispup.up.pt/",
+      "keyruptive": "https://keyruptive.com/",
+      "ubirider": "https://www.pick.ubirider.com/?lang=en",
+      "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude/"
+    },
+    "words": {
+      "and": "and",
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    },
+    "tab_bar": {
+      "diagnosis": "Diagnosis",
+      "home": "Home",
+      "recommendations": "Recommendations"
+    },
+    "placeholders": {
+      "code": "xxx xxx xxx xxx"
+    },
+    "dialogs": {
+      "network": {
+        "title": "No Internet connection",
+        "description": "Please verify your Internet connection and try again."
+      },
+      "server_error": {
+        "title": "No connection with the server",
+        "description": "Please, wait a moment and try again."
+      },
+      "too_much_requests": {
+        "title": "Too many requests",
+        "description": "You made too many requests in a row to the server. Please, try again later."
+      },
+      "invalid_code": {
+        "title": "Invalid Code",
+        "description": "Please, enter a valid code to proceed."
+      },
+      "expired_code": {
+        "title": "Expired Code",
+        "description": "The code that you entered has expired. Please, enter a valid code to proceed."
+      },
+      "playstore": {
+        "title": "Google Play Services",
+        "description": "To enable the use of the Exposure Notification API an update to Google Play Services is required. If an update is not yet available on your device, try again later."
+      },
+      "loading": {
+        "description": "Sending data. Please hold."
+      },
+      "permissions": {
+        "title": "Permission denied",
+        "description": "In order to use STAYAWAY COVID these permissions are required."
+      },
+      "gaen": {
+        "enable": {
+          "title": "Exposure Notification Logging",
+          "description": "Exposure Notification Loggin needs to be active in order for STAYAWAY COVID to work properly"
+        },
+        "export": {
+          "title": "Sharing your random IDs",
+          "description": "In order to submit your positive diagnosis you need to share your random IDs"
+        }
+      }
+    },
+    "actions": {
+      "ok": "Ok",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    },
+    "errors": {
+      "general": "Something went wrong, please try again",
+      "submit": {
+        "code": "The entered code is invalid, please try again"
+      },
+      "network": "No Internet connection, connect and try again"
+    }
+  }
+}

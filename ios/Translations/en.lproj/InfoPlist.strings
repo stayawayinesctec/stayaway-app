@@ -1,0 +1,3 @@
+"NSBluetoothPeripheralUsageDescription" = "Encounters will be recognised in the background via low energy Bluetooth.";
+"NSBluetoothAlwaysUsageDescription" = "Encounters will be recognised in the background via low energy Bluetooth.";
+  
