@@ -102,7 +102,7 @@ const styles = (colors) => StyleSheet.create({
   sponsorsImages: {
     flexDirection: 'row',
   },
-  governoImage: {
+  republicaPortuguesaImage: {
     marginRight: sizes.size24,
   },
   dgsImage: {
@@ -208,7 +208,7 @@ export default function TechnicalSheet (props) {
           <View style={styles(colors).imagesContainer}>
             <View style={styles(colors).sponsors}>
               <View style={styles(colors).sponsorsImages}>
-                <Image source={Images.logo_governo} style={styles(colors).governoImage} />
+                <Image source={Images.republica_portuguesa} style={styles(colors).republicaPortuguesaImage} />
                 <Image source={Images.logo_dgs} style={styles(colors).dgsImage} />
               </View>
               <Text size='small' weight='bold' style={styles(colors).version}>{i18n.translate('screens.technical_sheet.version', { version, build })}</Text>

@@ -84,7 +84,7 @@ const styles = (colors) => StyleSheet.create({
     left: sizes.size24,
     zIndex: 0,
   },
-  governoImage: {
+  republicaPortuguesaImage: {
     marginRight: sizes.size24,
   },
   dgsImage: {
@@ -183,7 +183,7 @@ export default function Info(props) {
           </Layout>
           <View style={styles(colors).imagesContainer}>
             <View style={styles(colors).sponsors}>
-              <Image source={Images.logo_governo} style={styles(colors).governoImage} />
+              <Image source={Images.republica_portuguesa} style={styles(colors).republicaPortuguesaImage} />
               <Image source={Images.logo_dgs} style={styles(colors).dgsImage} />
             </View>
             <Image source={Images.splash} style={styles(colors).splashImage} />

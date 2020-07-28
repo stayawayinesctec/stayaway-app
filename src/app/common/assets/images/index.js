@@ -17,7 +17,7 @@ import Healthy from './sources/healthy.png';
 import Infected from './sources/infected.png';
 import Diagnosis from './sources/diagnosis.png';
 import Splash from './sources/splash.png';
-import LogoGoverno from './sources/logo_governo.png';
+import RepublicaPortuguesa from './sources/republica_portuguesa.png';
 import LogoDGS from './sources/logo_dgs.png';
 import LogoInesctec from './sources/logo_inesctec.png';
 import LogoISPUP from './sources/logo_ispup.png';
@@ -35,7 +35,7 @@ export default {
   infected: Infected,
   diagnosis: Diagnosis,
   splash: Splash,
-  logo_governo: LogoGoverno,
+  republica_portuguesa: RepublicaPortuguesa,
   logo_dgs: LogoDGS,
   logo_inesctec: LogoInesctec,
   logo_ispup: LogoISPUP,
