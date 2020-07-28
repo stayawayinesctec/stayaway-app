@@ -882,9 +882,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-bluetooth-status\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-location\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
@@ -895,7 +893,6 @@
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
-					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNDeviceInfo\"",
 				);
 				MARKETING_VERSION = 0.2.2;
 				OTHER_LDFLAGS = (
@@ -971,9 +968,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-bluetooth-status\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-location\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
@@ -984,7 +979,6 @@
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
-					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNDeviceInfo\"",
 				);
 				MARKETING_VERSION = 0.2.2;
 				OTHER_LDFLAGS = (
@@ -1251,9 +1245,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-bluetooth-status\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-location\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
@@ -1264,7 +1256,6 @@
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
-					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNDeviceInfo\"",
 				);
 				MARKETING_VERSION = 0.2.2;
 				OTHER_LDFLAGS = (
@@ -1426,9 +1417,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-bluetooth-status\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-location\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
@@ -1439,7 +1428,6 @@
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
-					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNDeviceInfo\"",
 				);
 				MARKETING_VERSION = 0.2.2;
 				OTHER_LDFLAGS = (

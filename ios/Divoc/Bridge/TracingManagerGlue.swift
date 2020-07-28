@@ -166,7 +166,9 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
           resolve(self.EN_CANCELLED);
         }
         else{
-          self.sync({_ in }, rejecter: {_,_,_ in })
+          DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+              self.sync({_ in }, rejecter: {_,_,_ in })
+          }
           resolve(self.EN_SUCCEEDED);
           NSLog("DP3T START SUCCESS")
         }

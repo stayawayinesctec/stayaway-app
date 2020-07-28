@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
  *
