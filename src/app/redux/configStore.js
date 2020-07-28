@@ -11,7 +11,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import navigationDebouncer from 'react-navigation-redux-debouncer';
 import createSagaMiddleware from 'redux-saga';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
 export default (rootReducer, rootSaga) => {
     const middleware = [];
@@ -26,7 +25,7 @@ export default (rootReducer, rootSaga) => {
 
     const store = createStore(
       rootReducer,
-      composeWithDevTools(applyMiddleware(...middleware)),
+      applyMiddleware(...middleware),
     );
 
     // Run root saga

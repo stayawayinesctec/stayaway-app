@@ -4,7 +4,7 @@
 <br />
 
 <div align="center">
-  <img widht="256" height="256" src="images/logo.png">
+  <img widht="256" height="256" src="docs/logo.png">
 </div>
 
 <div align="center">
@@ -15,7 +15,7 @@
     </a>
     <!-- Version -->
     <a href="https://github.com/stayawayinesctec/stayaway-app">
-      <img alt="v.2.2.0"
+      <img alt="v.0.2.2"
       src="https://img.shields.io/badge/Version-0.2.2-blue">
     </a>
 </div>
@@ -32,10 +32,10 @@ Thanks to STAYAWAY COVID, we are able to find out if we are at risk of being inf
 The project was led by [INESC TEC](https://www.inesctec.pt) with the collaboration of [Keyruptive](https://www.keyruptive.com) and [Ubirider](https://www.ubirider.com).
 
 <p align="center">
-<img src="images/screenshot_1.png" width="20%">
-<img src="images/screenshot_2.png" width="20%">
-<img src="images/screenshot_3.png" width="20%">
-<img src="images/screenshot_4.png" width="20%">
+<img src="docs/screenshot_1.png" width="20%">
+<img src="docs/screenshot_2.png" width="20%">
+<img src="docs/screenshot_3.png" width="20%">
+<img src="docs/screenshot_4.png" width="20%">
 </p>
 
 # Installation and Building
@@ -145,6 +145,5 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 | [react-navigation-redux-debouncer](https://www.npmjs.com/package/react-navigation-redux-debouncer)                | MIT          |
 | [react-redux](https://www.npmjs.com/package/react-redux)                                                          | MIT          |
 | [redux-actions](https://www.npmjs.com/package/redux-actions)                                                      | MIT          |
-| [redux-devtools-extension](https://www.npmjs.com/package/redux-devtools-extension)                                | MIT          |
 | [redux-saga](https://www.npmjs.com/package/redux-saga)                                                            | MIT          |
 | [reselect](https://www.npmjs.com/package/reselect)                                                                | MIT          |
