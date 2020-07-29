@@ -81,7 +81,7 @@ yarn
 ```
 
 ## Building
-- And finnaly, build the project:
+- And finally, build the project:
 ```sh
 yarn android # or yarn android-ui
 yarn ios # or yarn ios-ui
