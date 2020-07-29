@@ -1,0 +1,93 @@
+#
+# Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+#
+# This Source Code Form is subject to the terms of the European Union
+# Public License, v. 1.2. If a copy of the EUPL was not distributed with
+# this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+#
+# SPDX-License-Identifier: EUPL-1.2
+#
+
+name: Android Production Build
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        name: Cache npm dependencies
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install npm dependencies
+        run: |
+          yarn --ignore-scripts
+          yarn postinstall_android
+
+      - name: Setup environment
+        run: |
+          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
+          echo "${{secrets.ENV_PRODUCTION}}" > android/.env
+          echo "${{secrets.GOOGLE_SERVICE_PRODUCTION}}" > android/app/src/productionRelease/google-services.json
+          echo "${{secrets.ANDROID_KEYSTORE}}" > divoc.keystore.asc
+          gpg -d --passphrase '${{secrets.ANDROID_KEYSTORE_PASSWORD}}' --batch divoc.keystore.asc > android/app/divoc.keystore
+
+      - name: Build ABB
+        run: |
+          cd android
+          ./gradlew bundleProductionRelease \
+            -PkeystoreFile="$GITHUB_WORKSPACE/android/app/divoc.keystore" \
+            -PkeystorePassword="${{secrets.KEYSTORE_PASSWORD}}" \
+            -PkeyAlias="divoc.release.key" \
+            -PkeyPassword="${{secrets.KEY_PASSWORD}}"
+
+      - name: Build APK
+        run: |
+          cd android
+          ./gradlew assembleProductionRelease \
+            -PkeystoreFile="$GITHUB_WORKSPACE/android/app/divoc.keystore" \
+            -PkeystorePassword="${{secrets.KEYSTORE_PASSWORD}}" \
+            -PkeyAlias="divoc.release.key" \
+            -PkeyPassword="${{secrets.KEY_PASSWORD}}"
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-production-release.aab
+          path: android/app/build/outputs/bundle/productionRelease/app-production-release.aab
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-production-release.apk
+          path: android/app/build/outputs/apk/production/release/app-production-release.apk
+
+      - name: Upload Mapping File
+        uses: actions/upload-artifact@v2
+        with:
+          name: mapping.text
+          path: android/app/build/outputs/mapping/productionRelease/mapping.txt
+
+  upload:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download APK artifcat
+        uses: actions/download-artifact@v2
+        with:
+          name: app-production-release.apk
+
+      - name: Upload artifact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1.1.1
+        with:
+          appName: ${{secrets.APPCENTER_ORG}}/${{secrets.APPCENTER_APP_PRODUCTION}}
+          token: ${{secrets.APPCENTER_TOKEN}}
+          group: Internal
+          file: app-production-release.apk
