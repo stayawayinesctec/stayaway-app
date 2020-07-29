@@ -93,3 +93,7 @@ android/**/google-services*.json
 .settings/
 .classpath
 .project
+
+# App Center
+# Android
+android/**/appcenter-config.json
