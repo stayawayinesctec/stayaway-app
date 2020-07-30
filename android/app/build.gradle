@@ -131,8 +131,8 @@ android {
         applicationId "fct.inesctec.stayaway"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2020
-        versionName "0.2.2"
+        versionCode 2030
+        versionName "0.2.3"
 
         resValue "string", "build_config_package", "fct.inesctec.stayaway"
         resConfigs "en", "pt"

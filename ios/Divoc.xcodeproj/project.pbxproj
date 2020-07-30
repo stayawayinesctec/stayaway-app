@@ -894,7 +894,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.2.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -980,7 +980,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.2.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1257,7 +1257,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.2.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1429,7 +1429,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
 					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.2.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
