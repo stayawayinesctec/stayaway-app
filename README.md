@@ -113,7 +113,7 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 |-------------------------------------------------------------------------------------------------------------------|--------------|
 | [@react-native-community/async-storage](https://www.npmjs.com/package/@react-native-community/async-storage)      | MIT          |
 | [@react-native-community/checkbox](https://www.npmjs.com/package/@react-native-community/checkbox)                | MIT          |
-| [@react-native-community/masked-view](https://www.npmjs.com/package/@react-native-community/masked-view)          | NO LICENSE   |
+| [@react-native-community/masked-view](https://www.npmjs.com/package/@react-native-community/masked-view)          | MIT          |
 | [@react-native-community/netinfo](https://www.npmjs.com/package/@react-native-community/netinfo)                  | MIT          |
 | [@react-navigation/bottom-tabs](https://www.npmjs.com/package/@react-navigation/bottom-tabs)                      | MIT          |
 | [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native)                                | MIT          |
