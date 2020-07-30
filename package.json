@@ -2,6 +2,17 @@
   "name": "stayawaycovid",
   "version": "0.2.2",
   "private": true,
+  "repository": {
+	"type": "git",
+		"url": "https://github.com/stayawayinesctec/stayaway-app"
+	},
+	"bugs": {
+		"url": "https://github.com/stayawayinesctec/stayaway-app/issues"
+	},
+	"homepage": "https://stayaway.inesctec.pt/",
+	"engines": {
+		"node": ">= 10.x"
+	},
   "scripts": {
     "start": "react-native start",
     "android": "ENVFILE=.env.production.debug react-native run-android --variant=productionDebug --appIdSuffix debug --tasks installProductionDebug",
