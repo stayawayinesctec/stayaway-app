@@ -53,11 +53,12 @@ To build the project you'll need to setup your React Native development environm
 Only approved government public health authorities can access the Exposure Notification APIs. STAYAWAY COVID for Android will not work properly unless either your account is whitelisted as test account or your app is approved by Google and signed with the production certificate.
 
 Required tools for building:
+- Watchman
 - Node 8.3
+- Yarn
 - Java SE Development Kit 8
 - Android Studio
 - Android SDK
-- Watchman
 
 ### iOS
 
@@ -66,6 +67,7 @@ Only approved government public health authorities can access the Exposure Notif
 Required tools for building:
 - Watchman
 - Node 8.3
+- Yarn
 - CocoaPods
 - XCode
 
