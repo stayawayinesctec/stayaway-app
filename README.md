@@ -8,15 +8,20 @@
 </div>
 
 <div align="center">
+    <!-- Version -->
+    <a href="https://github.com/stayawayinesctec/stayaway-app">
+      <img alt="v0.2.2"
+      src="https://img.shields.io/badge/Version-0.2.2-blue">
+    </a>
+    <!-- Build -->
+    <a href="https://github.com/stayawayinesctec/stayaway-app/actions?query=workflow%3A%22Android+Production+Build%22">
+      <img alt="Build"
+      src="https://img.shields.io/github/workflow/status/stayawayinesctec/stayaway-app/Android%20Production%20Build/master">
+    </a>
     <!-- License -->
     <a href="https://github.com/stayawayinesctec/stayaway-app/blob/master/LICENSE">
       <img alt="EUPL-1.2"
-      src="https://img.shields.io/badge/License-EUPL--1.2-brightgreen">
-    </a>
-    <!-- Version -->
-    <a href="https://github.com/stayawayinesctec/stayaway-app">
-      <img alt="v.0.2.2"
-      src="https://img.shields.io/badge/Version-0.2.2-blue">
+      src="https://img.shields.io/github/license/stayawayinesctec/stayaway-app">
     </a>
 </div>
 
