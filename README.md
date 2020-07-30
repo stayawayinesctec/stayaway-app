@@ -98,7 +98,7 @@ NOTE: Running `android-ui` or `ios-ui` will allow you to run and test the applic
 
 # Copyright and license
 
-Copyright (c) 2020 INESC TEC. Developed by [Keyruptive](https://keyruptive.com). This project is licensed under the terms of the EUPL-1.2 license. Please see the [LICENSE](LICENSE) file for full reference.
+Copyright (c) 2020 INESC TEC. Developed with [Keyruptive](https://keyruptive.com). This project is licensed under the terms of the EUPL-1.2 license. Please see the [LICENSE](LICENSE) file for full reference.
 
 Some files contain code from the [DP3T applications](https://github.com/DP-3T), Copyright (c) 2020 [Ubique Innovation AG](https://www.ubique.ch). These files are  are marked as such and licensed also under MPL-2.0.
 
