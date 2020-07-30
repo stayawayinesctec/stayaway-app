@@ -1,6 +1,15 @@
 {
   "name": "stayawaycovid",
+  "description": "STAYAWAY COVID is a voluntary system aiming at supporting the country in the screening of COVID-19.",
+  "author": {
+    "name": "Keyruptive",
+    "email": "team@keyruptive.com",
+    "url": "https://keyruptive.com"
+  },
+  "main": "index.js",
   "version": "0.2.2",
+  "license": "EUPL-1.2",
+  "keywords": ["covid19", "react-native", "mobile", "dp3t", "portugal", "android", "ios"],
   "private": true,
   "repository": {
     "type": "git",
@@ -9,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/stayawayinesctec/stayaway-app/issues"
   },
-  "homepage": "https://stayaway.inesctec.pt/",
+  "homepage": "https://stayaway.inesctec.pt",
   "engines": {
     "node": ">= 10.x"
   },
