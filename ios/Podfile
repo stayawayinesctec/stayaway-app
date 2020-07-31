@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: EUPL-1.2
 #
 
-platform :ios, '11.0'
+platform :ios, '13.5'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://cdn.cocoapods.org/'
