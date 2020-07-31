@@ -8,10 +8,12 @@
 # SPDX-License-Identifier: EUPL-1.2
 #
 
-name: Android Production Build
+name: Android Check Build
 
 on:
   push:
+    branches: [ master ]
+  pull_request:
     branches: [ master ]
 
 jobs:
@@ -34,15 +36,15 @@ jobs:
       - name: Setup environment
         run: |
           echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
-          echo "${{secrets.ENV_PRODUCTION}}" > android/.env
-          echo "${{secrets.GOOGLE_SERVICE_PRODUCTION}}" > android/app/src/productionRelease/google-services.json
+          echo "${{secrets.ENV_PRODUCTION_STAGING}}" > android/.env
+          echo "${{secrets.GOOGLE_SERVICE_PRODUCTION_STAGING}}" > android/app/src/productionStaging/google-services.json
           echo "${{secrets.ANDROID_KEYSTORE}}" > divoc.keystore.asc
           gpg -d --passphrase '${{secrets.ANDROID_KEYSTORE_PASSWORD}}' --batch divoc.keystore.asc > android/app/divoc.keystore
 
       - name: Build ABB
         run: |
           cd android
-          ./gradlew bundleProductionRelease \
+          ./gradlew bundleProductionStaging \
             -PkeystoreFile="$GITHUB_WORKSPACE/android/app/divoc.keystore" \
             -PkeystorePassword="${{secrets.KEYSTORE_PASSWORD}}" \
             -PkeyAlias="divoc.release.key" \
@@ -51,7 +53,7 @@ jobs:
       - name: Build APK
         run: |
           cd android
-          ./gradlew assembleProductionRelease \
+          ./gradlew assembleProductionStaging \
             -PkeystoreFile="$GITHUB_WORKSPACE/android/app/divoc.keystore" \
             -PkeystorePassword="${{secrets.KEYSTORE_PASSWORD}}" \
             -PkeyAlias="divoc.release.key" \
@@ -60,34 +62,17 @@ jobs:
       - name: Upload AAB
         uses: actions/upload-artifact@v2
         with:
-          name: app-production-release.aab
-          path: android/app/build/outputs/bundle/productionRelease/app-production-release.aab
+          name: app-production-staging.aab
+          path: android/app/build/outputs/bundle/productionStaging/app-production-staging.aab
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
-          name: app-production-release.apk
-          path: android/app/build/outputs/apk/production/release/app-production-release.apk
+          name: app-production-staging.apk
+          path: android/app/build/outputs/apk/production/staging/app-production-staging.apk
 
       - name: Upload Mapping File
         uses: actions/upload-artifact@v2
         with:
           name: mapping.text
-          path: android/app/build/outputs/mapping/productionRelease/mapping.txt
-
-  upload:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download APK artifcat
-        uses: actions/download-artifact@v2
-        with:
-          name: app-production-release.apk
-
-      - name: Upload artifact to App Center
-        uses: wzieba/AppCenter-Github-Action@v1.1.1
-        with:
-          appName: ${{secrets.APPCENTER_ORG}}/${{secrets.APPCENTER_APP_PRODUCTION}}
-          token: ${{secrets.APPCENTER_TOKEN}}
-          group: Internal
-          file: app-production-release.apk
+          path: android/app/build/outputs/mapping/productionStaging/mapping.txt
