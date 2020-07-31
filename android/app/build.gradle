@@ -33,11 +33,17 @@ project.ext.react = [
     // whether to bundle JS and assets in debug mode
     bundleInDebug: false,
 
+    // whether to bundle JS and assets in staging mode
+    bundleInStaging: true,
+
     // whether to bundle JS and assets in release mode
     bundleInRelease: true,
 
     // whether to bundle JS and assets in UI debug mode
     bundleInUiDebug: false,
+
+    // whether to bundle JS and assets in UI staging mode
+    bundleInUiStaging: true,
 
     // whether to bundle JS and assets in UI release mode
     bundleInUiRelease: true,
@@ -45,11 +51,17 @@ project.ext.react = [
     // whether to bundle JS and assets in production debug mode
     bundleInProductionDebug: false,
 
+    // whether to bundle JS and assets in production staging mode
+    bundleInProductionStaging: true,
+
     // whether to bundle JS and assets in production release mode
     bundleInProductionRelease: true,
 
     // whether to disable dev mode in debug mode
     devDisabledInDebug: false,
+
+    // whether to disable dev mode in staging mode
+    devDisabledInStaging: true,
 
     // whether to disable dev mode in release mode
     devDisabledInRelease: true,
@@ -57,11 +69,17 @@ project.ext.react = [
     // whether to disable dev mode in UI debug mode
     devDisabledInUiDebug: false,
 
+    // whether to disable dev mode in UI staging mode
+    devDisabledInUiStaging: true,
+
     // whether to disable dev mode in UI release mode
     devDisabledInUiRelease: true,
 
     // whether to disable dev mode in production debug mode
     devDisabledInProductionDebug: false,
+
+    // whether to disable dev mode in production staging mode
+    devDisabledInProductionStaging: true,
 
     // whether to disable dev mode in production release mode
     devDisabledInProductionRelease: true,
@@ -86,6 +104,8 @@ project.ext.react = [
 project.ext.envConfigFiles = [
     productionDebug: ".env.production.debug",
     uiDebug: ".env.ui.debug",
+    productionStaging: ".env.production.staging",
+    uiStaging: ".env.ui.staging",
     productionRelease: ".env.production.release",
     uiRelease: ".env.ui.release",
 ]
@@ -179,6 +199,15 @@ android {
             versionNameSuffix "-debug"
             debuggable true
         }
+        staging {
+            signingConfig signingConfigs.release
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            shrinkResources enableProguardInReleaseBuilds
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            matchingFallbacks = ['release', 'debug']
+        }
         release {
             signingConfig signingConfigs.release
             shrinkResources enableProguardInReleaseBuilds
@@ -232,6 +261,7 @@ dependencies {
 
     def dp3t_sdk_version = '1.0.2'
 	debugImplementation "org.dpppt:dp3t-sdk-android:$dp3t_sdk_version-calibration"
+	stagingImplementation "org.dpppt:dp3t-sdk-android:$dp3t_sdk_version"
 	releaseImplementation "org.dpppt:dp3t-sdk-android:$dp3t_sdk_version"
 
     implementation 'androidx.core:core:1.2.0'
@@ -260,6 +290,7 @@ dependencies {
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
         debugImplementation files(hermesPath + "hermes-debug.aar")
+        stagingImplementation files(hermesPath + "hermes-release.aar")
         releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
         implementation jscFlavor
