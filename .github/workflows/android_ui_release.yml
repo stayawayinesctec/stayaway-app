@@ -34,8 +34,8 @@ jobs:
       - name: Setup environment
         run: |
           echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
-          echo "${{secrets.ENV_UI}}" > android/.env
-          echo "${{secrets.GOOGLE_SERVICE_UI}}" > android/app/src/uiRelease/google-services.json
+          echo "${{secrets.ENV_UI_RELEASE}}" > android/.env
+          echo "${{secrets.GOOGLE_SERVICE_UI_RELEASE}}" > android/app/src/uiRelease/google-services.json
           echo "${{secrets.ANDROID_KEYSTORE}}" > divoc.keystore.asc
           gpg -d --passphrase '${{secrets.ANDROID_KEYSTORE_PASSWORD}}' --batch divoc.keystore.asc > android/app/divoc.keystore
 
