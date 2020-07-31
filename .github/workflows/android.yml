@@ -8,12 +8,12 @@
 # SPDX-License-Identifier: EUPL-1.2
 #
 
-name: Android Build
+name: Android Check Build
 
 on:
   push:
     branches: [ master ]
-  pull_requests:
+  pull_request:
     branches: [ master ]
 
 jobs:

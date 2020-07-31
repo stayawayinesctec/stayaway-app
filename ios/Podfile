@@ -13,8 +13,10 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 project 'Divoc',
         'ProductionDebug' => :debug,
+        'ProductionStaging' => :release,
         'ProductionRelease' => :release,
         'UiDebug' => :debug,
+        'UiStaging' => :release,
         'UiRelease' => :release
 
 target 'Divoc' do

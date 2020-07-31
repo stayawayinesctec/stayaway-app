@@ -17,7 +17,7 @@
 		80377DBA24B0F41C005452C6 /* TracingLocalPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DB924B0F41C005452C6 /* TracingLocalPush.swift */; };
 		80377DBE24B0F83F005452C6 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBC24B0F83F005452C6 /* Keychain.swift */; };
 		80377DBF24B0F83F005452C6 /* KeychainPersisted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBD24B0F83F005452C6 /* KeychainPersisted.swift */; };
-		8069970624CB3182001F8F1D /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 8069970524CB3182001F8F1D /* DP3TSDK */; };
+		8069970624CB3182001F8F1D /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8069970524CB3182001F8F1D /* SwiftPackageProductDependency */; };
 		8085C61124AB55BE00B02F6F /* TracingManagerGlue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C60524AB55BE00B02F6F /* TracingManagerGlue.swift */; };
 		8085C61224AB55BE00B02F6F /* TracingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085C60624AB55BE00B02F6F /* TracingManager.m */; };
 		8085C62724AB55E500B02F6F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C61A24AB55E500B02F6F /* Roboto-Medium.ttf */; };
@@ -78,6 +78,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Divoc/main.m; sourceTree = "<group>"; };
 		163457948A8FB93AA9FEED2C /* Pods-Divoc-tvOSTests.alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.alpha.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.alpha.xcconfig"; sourceTree = "<group>"; };
 		23F344EA738AAB3CFD3F45DE /* Pods-Divoc-DivocTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.debug.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.debug.xcconfig"; sourceTree = "<group>"; };
+		29E04633B5F42128E4BB78AF /* Pods-Divoc-DivocTests.productionstaging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.productionstaging.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.productionstaging.xcconfig"; sourceTree = "<group>"; };
 		2D031E2E76DF5E3B1A3F9F52 /* Pods-Divoc.productionrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.productionrelease.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.productionrelease.xcconfig"; sourceTree = "<group>"; };
 		33B3A42F7BB1035D8822F028 /* Pods-Divoc-tvOSTests.productiondebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.productiondebug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.productiondebug.xcconfig"; sourceTree = "<group>"; };
 		3849B0357C9AEAC08471F2E3 /* libPods-Divoc-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +156,10 @@
 		E91C8F7E70FCDA030B159C3C /* libPods-Divoc-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EF391B651C6E06417CC63C0A /* Pods-Divoc.uistaging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.uistaging.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.uistaging.xcconfig"; sourceTree = "<group>"; };
 		F25852D414D27F175762102A /* Pods-Divoc-DivocTests.uirelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.uirelease.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.uirelease.xcconfig"; sourceTree = "<group>"; };
+		F5516E52812E297AA1720358 /* Pods-Divoc-DivocTests.uistaging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.uistaging.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.uistaging.xcconfig"; sourceTree = "<group>"; };
+		F5A81386B14093725BA679DE /* Pods-Divoc.productionstaging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.productionstaging.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.productionstaging.xcconfig"; sourceTree = "<group>"; };
 		F5B14702FD4E0857F2E35B0F /* Pods-Divoc-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		F8ACDBA43CD6239366A3498E /* Pods-Divoc.uirelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.uirelease.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.uirelease.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,7 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8069970624CB3182001F8F1D /* DP3TSDK in Frameworks */,
+				8069970624CB3182001F8F1D /* BuildFile in Frameworks */,
 				08D80D04D99F6A4FE1D678E5 /* libPods-Divoc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +270,10 @@
 				5966257F3BA4C447842464B5 /* Pods-Divoc-tvOS.productionrelease.xcconfig */,
 				33B3A42F7BB1035D8822F028 /* Pods-Divoc-tvOSTests.productiondebug.xcconfig */,
 				C6D26CCA909E2C929B716519 /* Pods-Divoc-tvOSTests.productionrelease.xcconfig */,
+				F5A81386B14093725BA679DE /* Pods-Divoc.productionstaging.xcconfig */,
+				EF391B651C6E06417CC63C0A /* Pods-Divoc.uistaging.xcconfig */,
+				29E04633B5F42128E4BB78AF /* Pods-Divoc-DivocTests.productionstaging.xcconfig */,
+				F5516E52812E297AA1720358 /* Pods-Divoc-DivocTests.uistaging.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -479,7 +487,7 @@
 			);
 			name = Divoc;
 			packageProductDependencies = (
-				8069970524CB3182001F8F1D /* DP3TSDK */,
+				8069970524CB3182001F8F1D /* SwiftPackageProductDependency */,
 			);
 			productName = Divoc;
 			productReference = 13B07F961A680F5B00A75B9A /* STAYAWAY.app */;
@@ -514,7 +522,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				8069970424CB3182001F8F1D /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
+				8069970424CB3182001F8F1D /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -1114,6 +1122,335 @@
 			};
 			name = ProductionRelease;
 		};
+		C98CADC924D49B0D00F9C185 /* ProductionStaging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = ProductionStaging;
+		};
+		C98CADCA24D49B0D00F9C185 /* ProductionStaging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5A81386B14093725BA679DE /* Pods-Divoc.productionstaging.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.staging;
+				BUNDLE_ID_SUFFIX = .debug;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H4F6Z9HC74;
+				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransportCCTSupport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
+					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
+					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/TrustKit\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/Permission-Notifications\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
+					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
+				);
+				MARKETING_VERSION = 0.2.3;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
+				PRODUCT_NAME = STAYAWAY;
+				PROVISIONING_PROFILE_SPECIFIER = "STAYAWAY EN";
+				SWIFT_MODULE_NAME = STAYAWAY_COVID;
+				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = ProductionStaging;
+		};
+		C98CADCB24D49B0D00F9C185 /* ProductionStaging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29E04633B5F42128E4BB78AF /* Pods-Divoc-DivocTests.productionstaging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = DivocTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Divoc.app/Divoc";
+			};
+			name = ProductionStaging;
+		};
+		C98CADCC24D49B1900F9C185 /* UiStaging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = UiStaging;
+		};
+		C98CADCD24D49B1900F9C185 /* UiStaging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF391B651C6E06417CC63C0A /* Pods-Divoc.uistaging.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = UiAppIcon.staging;
+				BUNDLE_ID_SUFFIX = .ui.debug;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VB258YUFG3;
+				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCCheckbox\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TrustKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/appcenter-analytics\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/appcenter-core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/appcenter-crashes\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
+				);
+				MARKETING_VERSION = 0.2.3;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
+				PRODUCT_NAME = "STAYAWAY UI";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_MODULE_NAME = STAYAWAY_COVID;
+				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_SUFFIX = Ui;
+			};
+			name = UiStaging;
+		};
+		C98CADCE24D49B1900F9C185 /* UiStaging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5516E52812E297AA1720358 /* Pods-Divoc-DivocTests.uistaging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = DivocTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Divoc.app/Divoc";
+			};
+			name = UiStaging;
+		};
 		C9BA4D7F2472A56200328373 /* UiDebug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1463,7 +1800,9 @@
 				00E356F61AD99517003FC87E /* ProductionDebug */,
 				C9BA4D812472A56200328373 /* UiDebug */,
 				00E356F71AD99517003FC87E /* ProductionRelease */,
+				C98CADCB24D49B0D00F9C185 /* ProductionStaging */,
 				C9BA4D862472A56E00328373 /* UiRelease */,
+				C98CADCE24D49B1900F9C185 /* UiStaging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = ProductionRelease;
@@ -1474,7 +1813,9 @@
 				13B07F941A680F5B00A75B9A /* ProductionDebug */,
 				C9BA4D802472A56200328373 /* UiDebug */,
 				13B07F951A680F5B00A75B9A /* ProductionRelease */,
+				C98CADCA24D49B0D00F9C185 /* ProductionStaging */,
 				C9BA4D852472A56E00328373 /* UiRelease */,
+				C98CADCD24D49B1900F9C185 /* UiStaging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = ProductionRelease;
@@ -1485,7 +1826,9 @@
 				83CBBA201A601CBA00E9B192 /* ProductionDebug */,
 				C9BA4D7F2472A56200328373 /* UiDebug */,
 				83CBBA211A601CBA00E9B192 /* ProductionRelease */,
+				C98CADC924D49B0D00F9C185 /* ProductionStaging */,
 				C9BA4D842472A56E00328373 /* UiRelease */,
+				C98CADCC24D49B1900F9C185 /* UiStaging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = ProductionRelease;
@@ -1493,7 +1836,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8069970424CB3182001F8F1D /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
+		8069970424CB3182001F8F1D /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/DP-3T/dp3t-sdk-ios.git";
 			requirement = {
@@ -1504,9 +1847,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8069970524CB3182001F8F1D /* DP3TSDK */ = {
+		8069970524CB3182001F8F1D /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8069970424CB3182001F8F1D /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
+			package = 8069970424CB3182001F8F1D /* RemoteSwiftPackageReference */;
 			productName = DP3TSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
