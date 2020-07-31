@@ -40,8 +40,4 @@
 	<string name="stayaway_covid_service_notification_sync_error_text">The app has not sync for more than 2 days.</string>
 
 	<string name="stayaway_covid_service_notification_update">STAYAWAY COVID needs to be updated</string>
-
-	<!-- Visual Studio App Center -->
-	<string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">DO_NOT_ASK_JAVASCRIPT</string>
-	<string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
 </resources>
