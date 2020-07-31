@@ -1,0 +1,42 @@
+name: iOS Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+env:
+  CI: true
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        name: Cache npm dependencies
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install npm dependencies
+        run: |
+          yarn --ignore-scripts
+          yarn postinstall_ios
+
+      - name: Switch to Xcode 11.6
+        run: sudo xcode-select --switch /Applications/Xcode_11.6.app
+
+      - name: Build UI
+        run: |
+          cd ios
+          xcodebuild build -workspace Divoc.xcworkspace  -scheme Divoc.ui.debug -destination platform="iOS Simulator,name=iPhone 11 Pro Max"
+
+      - name: Build Production
+        run: |
+          cd ios
+          xcodebuild build -workspace Divoc.xcworkspace  -scheme Divoc.production.debug -destination platform="iOS Simulator,name=iPhone 11 Pro Max"
