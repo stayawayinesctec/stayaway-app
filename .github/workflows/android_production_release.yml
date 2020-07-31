@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: EUPL-1.2
 #
 
-name: Android Production Build
+name: Android Production Release Build
 
 on:
   push:
@@ -34,8 +34,8 @@ jobs:
       - name: Setup environment
         run: |
           echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
-          echo "${{secrets.ENV_PRODUCTION}}" > android/.env
-          echo "${{secrets.GOOGLE_SERVICE_PRODUCTION}}" > android/app/src/productionRelease/google-services.json
+          echo "${{secrets.ENV_PRODUCTION_RELEASE}}" > android/.env
+          echo "${{secrets.GOOGLE_SERVICE_PRODUCTION_RELEASE}}" > android/app/src/productionRelease/google-services.json
           echo "${{secrets.ANDROID_KEYSTORE}}" > divoc.keystore.asc
           gpg -d --passphrase '${{secrets.ANDROID_KEYSTORE_PASSWORD}}' --batch divoc.keystore.asc > android/app/divoc.keystore
 
@@ -87,7 +87,7 @@ jobs:
       - name: Upload artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1.1.1
         with:
-          appName: ${{secrets.APPCENTER_ORG}}/${{secrets.APPCENTER_APP_PRODUCTION}}
+          appName: ${{secrets.APPCENTER_ORG}}/${{secrets.APPCENTER_APP_PRODUCTION_RELEASE}}
           token: ${{secrets.APPCENTER_TOKEN}}
           group: Internal
           file: app-production-release.apk
