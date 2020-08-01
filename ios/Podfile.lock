@@ -1,6 +1,13 @@
 PODS:
+  - BlueCryptor (1.0.32)
+  - BlueECC (1.2.5)
+  - BlueRSA (1.0.34)
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
+  - DP3TSDK (1.1.0):
+    - SwiftJWT (~> 3.5)
+    - SwiftProtobuf (~> 1.6)
+    - ZIPFoundation (~> 0.9)
   - FBLazyVector (0.62.2)
   - FBReactNativeSpec (0.62.2):
     - Folly (= 2018.10.22.00)
@@ -19,6 +26,11 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - KituraContracts (1.2.1):
+    - LoggerAPI (~> 1.7)
+  - LoggerAPI (1.9.0):
+    - Logging (~> 1.1)
+  - Logging (1.2.0)
   - Permission-Notifications (2.1.5):
     - RNPermissions
   - RCTRequired (0.62.2)
@@ -273,11 +285,20 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - SwiftJWT (3.5.3):
+    - BlueCryptor (~> 1.0)
+    - BlueECC (~> 1.1)
+    - BlueRSA (~> 1.0)
+    - KituraContracts (~> 1.1)
+    - LoggerAPI (~> 1.7)
+  - SwiftProtobuf (1.10.2)
   - TrustKit (1.6.5)
   - Yoga (1.14.0)
+  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - DP3TSDK (~> 1.1)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
@@ -320,14 +341,24 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
-  - TrustKit
+  - TrustKit (~> 1.6)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - TrustKit
   trunk:
+    - BlueCryptor
+    - BlueECC
+    - BlueRSA
     - boost-for-react-native
+    - DP3TSDK
+    - KituraContracts
+    - LoggerAPI
+    - Logging
+    - SwiftJWT
+    - SwiftProtobuf
+    - ZIPFoundation
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -414,12 +445,19 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  BlueCryptor: b0aee3d9b8f367b49b30de11cda90e1735571c24
+  BlueECC: 0d18e93347d3ec6d41416de21c1ffa4d4cd3c2cc
+  BlueRSA: 6f9776d62d9773502415a7db3bcbb2bbb3f71fc3
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
+  DP3TSDK: 201bfa5d196603503f326b42110e8614d7d3c58f
   FBLazyVector: 4aab18c93cd9546e4bfed752b4084585eca8b245
   FBReactNativeSpec: 5465d51ccfeecb7faa12f9ae0024f2044ce4044e
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  KituraContracts: e845e60dc8627ad0a76fa55ef20a45451d8f830b
+  LoggerAPI: fb78461eedac5316b290f2404d88b9d614d96c57
+  Logging: 7838d379d234d7e5ae1265fa02804a9084caf04c
   Permission-Notifications: 231d0e1db2300b686548587d384ba414e6a93332
   RCTRequired: cec6a34b3ac8a9915c37e7e4ad3aa74726ce4035
   RCTTypeSafety: 93006131180074cffa227a1075802c89a49dd4ce
@@ -455,9 +493,12 @@ SPEC CHECKSUMS:
   RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  SwiftJWT: 9a47a71090cae25767078756b5810e3b630aa9a7
+  SwiftProtobuf: bec1ae7d686ff73dd09d79866154f4970b891410
   TrustKit: 073855e3adecd317417bda4ac9e9ac54a2e3b9f2
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
+  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: 8ceba8c6c06bceb2af52eeebeedf8929f8be0a06
+PODFILE CHECKSUM: c71bd549978da1976579ac09d6a2010ccfe452da
 
 COCOAPODS: 1.8.4

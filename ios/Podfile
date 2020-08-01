@@ -52,7 +52,8 @@ target 'Divoc' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'TrustKit'
+  pod 'TrustKit', '~> 1.6'
+  pod 'DP3TSDK', '~> 1.1'
 
   # Permissions
   permissions_path = '../node_modules/react-native-permissions/ios'
@@ -66,4 +67,12 @@ target 'Divoc' do
 
   use_native_modules!
 
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.5'
+    end
+  end
 end

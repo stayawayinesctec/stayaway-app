@@ -230,7 +230,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
           case .notHTTPResponse:
             NSLog("Sync. Networking notHTTPResponse error ")
           case .HTTPFailureResponse(status: let status):
-            NSLog("Sync. Networking HTTPFailureResponse error "+status.description)
+            NSLog("Sync. Networking HTTPFailureResponse error \(status.status)")
           case .noDataReturned:
             NSLog("Sync. Networking noDataReturned error ")
           case .couldNotParseData(error: let error2, origin: let origin):
