@@ -88,6 +88,6 @@ jobs:
         uses: wzieba/AppCenter-Github-Action@v1.1.1
         with:
           appName: ${{secrets.APPCENTER_ORG}}/${{secrets.APPCENTER_APP_PRODUCTION_RELEASE}}
-          token: ${{secrets.APPCENTER_TOKEN}}
+          token: ${{secrets.APPCENTER_TOKEN_PRODUCTION_RELEASE}}
           group: Internal
           file: app-production-release.apk
