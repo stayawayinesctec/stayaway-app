@@ -36,8 +36,9 @@
 	<string name="stayaway_covid_service_notification_exposed_title">Foi detetada uma exposição de risco</string>
 	<string name="stayaway_covid_service_notification_exposed_text">Esteve em contacto com alguém a quem foi diagnosticada COVID-19.</string>
 
-	<string name="stayaway_covid_service_notification_sync_error_title">A STAYAWAY COVID precisa de ligação à internet</string>
-	<string name="stayaway_covid_service_notification_sync_error_text">A app já não atualiza a sua informação há mais de 2 dias.</string>
+	<string name="stayaway_covid_service_notification_sync_error_title">A última sincronização já foi há algum tempo</string>
+	<string name="stayaway_covid_service_notification_sync_error_text">A STAYAWAY COVID já não sincroniza a sua informação há mais de 2 dias, por favor verifique a sua conexão à internet e abra a app.</string>
 
-	<string name="stayaway_covid_service_notification_update">A STAYAWAY COVID precisa de ser atualizada</string>
+	<string name="stayaway_covid_service_notification_update_title">A STAYAWAY COVID precisa de ser atualizada</string>
+	<string name="stayaway_covid_service_notification_update_text">Está disponível uma nova versão da STAYAWAY COVID. Por favor atualize a aplicação para que esta continue a funcionar normalmente.</string>
 </resources>

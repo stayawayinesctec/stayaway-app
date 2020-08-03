@@ -36,8 +36,9 @@
 	<string name="stayaway_covid_service_notification_exposed_title">An exposure of significant risk was detected</string>
 	<string name="stayaway_covid_service_notification_exposed_text">You were in contact with someone who was diagnosed with COVID-19.</string>
 
-	<string name="stayaway_covid_service_notification_sync_error_title">STAYAWAY COVID needs internet connection</string>
-	<string name="stayaway_covid_service_notification_sync_error_text">The app has not sync for more than 2 days.</string>
+	<string name="stayaway_covid_service_notification_sync_error_title">It has been some time since the last update</string>
+	<string name="stayaway_covid_service_notification_sync_error_text">STAYAWAY COVID has not synchronized for more than 2 days, please check your internet connection and open the app.</string>
 
-	<string name="stayaway_covid_service_notification_update">STAYAWAY COVID needs to be updated</string>
+	<string name="stayaway_covid_service_notification_update_title">STAYAWAY COVID needs to be updated</string>
+	<string name="stayaway_covid_service_notification_update_text">There is a new version of STAYAWAY COVID. Please update for it to work properly.</string>
 </resources>

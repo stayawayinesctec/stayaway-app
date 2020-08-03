@@ -1,6 +1,6 @@
 "exposed_notification_title" = "Foi detetada uma exposição de risco";
 "exposed_notification_body" = "Esteve em contacto com alguém a quem foi diagnosticada COVID-19.";
-"sync_notification_title" = "A STAYAWAY COVID precisa de ligação à internet";
-"sync_notification_body" = "A app já não atualiza a sua informação há mais de 2 dias.";
-"app_version_notification_title" = "A STAYAWAY COVID precisa de ser atualizada.";
-"app_version_notification_body" = "Está disponível uma nova versão da STAYAWAY COVID. Por favor atualize a aplicação para que esta continue a funcionar normalmente";
+"sync_notification_title" = "A última sincronização já foi há algum tempo";
+"sync_notification_body" = "A STAYAWAY COVID já não sincroniza a sua informação há mais de 2 dias, por favor verifique a sua conexão à internet e abra a app.";
+"app_version_notification_title" = "A STAYAWAY COVID precisa de ser atualizada";
+"app_version_notification_body" = "Está disponível uma nova versão da STAYAWAY COVID. Por favor atualize a aplicação para que esta continue a funcionar normalmente.";

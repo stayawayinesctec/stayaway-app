@@ -107,10 +107,8 @@ public class ConfigWorker extends Worker {
         String lastVersion = config.getAndroidVersion().getName();
         String currentVersion = BuildConfig.VERSION_NAME;
 
-        String message = config.getMessage();
-
         if (! lastVersion.equals(currentVersion)) {
-            showNotification(context, message);
+            createUpdateNotification(context);
         } else {
             cancelUpdateNotification(context);
         }
@@ -122,7 +120,7 @@ public class ConfigWorker extends Worker {
                 config.getParameters().getTriggerThreshold());
     }
 
-    private void showNotification(Context context, String message) {
+    private void createUpdateNotification(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationUtil.createNotificationChannel(context);
         }
@@ -135,8 +133,10 @@ public class ConfigWorker extends Worker {
 
         Notification notification =
                 new NotificationCompat.Builder(context, NotificationUtil.NOTIFICATION_CHANNEL_ID)
-                        .setContentTitle(context.getString(R.string.stayaway_covid_service_notification_update))
-                        .setContentText(message)
+                        .setContentTitle(context.getString(R.string.stayaway_covid_service_notification_update_title))
+                        .setContentText(context.getString(R.string.stayaway_covid_service_notification_update_text))
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(context.getString(R.string.stayaway_covid_service_notification_update_text)))
                         .setPriority(NotificationCompat.PRIORITY_MAX)
                         .setSmallIcon(R.drawable.ic_stayaway_logo)
                         .setContentIntent(pendingIntent)
@@ -153,5 +153,4 @@ public class ConfigWorker extends Worker {
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(NotificationUtil.NOTIFICATION_ID_UPDATE);
     }
-
 }
