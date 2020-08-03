@@ -27,8 +27,10 @@ const fallback = {
 
 const setMomentLocale = (locale) => {
   const mapper = {
+    'pt': 'pt',
     'pt-PT': 'pt',
     'pt-BR': 'pt-br',
+    'en': 'en-gb',
     'en-GB': 'en-gb',
     'en-US': 'en',
   };
@@ -40,8 +42,10 @@ const setMomentLocale = (locale) => {
 // Import locales
 const translationGetters = {
   // lazy requires (metro bundler does not support symlinks)
+  'pt': () => require('@locales/pt-PT.json'),
   'pt-PT': () => require('@locales/pt-PT.json'),
   'pt-BR': () => require('@locales/pt-PT.json'),
+  'en': () => require('@locales/en-GB.json'),
   'en-GB': () => require('@locales/en-GB.json'),
   'en-US': () => require('@locales/en-GB.json'),
 };
