@@ -83,12 +83,6 @@ yarn-error.log*
 
 .vscode/
 
-# Google Services
-# iOS
-ios/**/GoogleService-Info*.plist
-# Android
-android/**/google-services*.json
-
 # eclipse project file
 .settings/
 .classpath

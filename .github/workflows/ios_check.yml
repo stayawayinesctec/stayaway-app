@@ -1,0 +1,55 @@
+#
+# Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+#
+# This Source Code Form is subject to the terms of the European Union
+# Public License, v. 1.2. If a copy of the EUPL was not distributed with
+# this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+#
+# SPDX-License-Identifier: EUPL-1.2
+#
+
+name: iOS Check Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  CI: true
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        name: Cache npm dependencies
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - uses: actions/cache@v2
+        name: Cache pods dependencies
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-pods-modules-${{ hashFiles('**/Podfile.lock') }}
+
+      - name: Install dependencies
+        run: |
+          yarn --ignore-scripts
+          yarn postinstall_ios
+
+      - name: Switch to Xcode 11.6
+        run: sudo xcode-select --switch /Applications/Xcode_11.6.app
+
+      - name: Setup environment
+        run: |
+          cp .env.example .env.production.release
+
+      - name: Build IPA
+        run: |
+          cd ios
+          xcodebuild build -workspace Divoc.xcworkspace -configuration=ProductionRelease -scheme Divoc.production.release -destination platform="iOS Simulator,name=iPhone 11 Pro Max"
