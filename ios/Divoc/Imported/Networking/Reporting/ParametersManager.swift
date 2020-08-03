@@ -15,7 +15,7 @@ import DP3TSDK
 class ParametersManager {
   static let shared = ParametersManager()
 
-  private let queue = DispatchQueue(label: "ofct.inesctec.stayaway.parametersmanager")
+  private let queue = DispatchQueue(label: "fct.inesctec.stayaway.parametersmanager")
 
   private let operationQueue: OperationQueue = {
     let queue = OperationQueue()
@@ -118,6 +118,12 @@ private class ParametersFetchOperation: Operation {
           dp3tParameters.contactMatching.triggerThreshold = triggerThreshold
 
           DP3TTracing.parameters = dp3tParameters
+        }
+        if let appversion = dictionary["versions"] as? Dictionary<String,Dictionary<String,String>> {
+          let iosversion = appversion["ios"] ?? [:]
+          let version = iosversion["name"] ?? "0"
+          let build = iosversion["build"] ?? "0"
+          AppVersionManager.shared.checkAppVersion(version: version,buildno: build)
         }
       }
     }

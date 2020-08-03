@@ -305,8 +305,6 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
 extension TracingManagerGlue: DP3TBackgroundHandler {
   public func didScheduleBackgrounTask() {
     NSLog("Background tasks scheduled.")
-    AppVersionManager.shared.runTask{
-    }
     ParametersManager.shared.runTask{
     }
   }
@@ -316,10 +314,6 @@ extension TracingManagerGlue: DP3TBackgroundHandler {
     let group = DispatchGroup()
     group.enter()
     FakePublishManager.shared.runTask {
-      group.leave()
-    }
-    group.enter()
-    AppVersionManager.shared.runTask{
       group.leave()
     }
     group.enter()
