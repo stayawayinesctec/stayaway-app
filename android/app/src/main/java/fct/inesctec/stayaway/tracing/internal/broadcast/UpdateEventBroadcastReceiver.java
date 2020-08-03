@@ -105,32 +105,4 @@ public class UpdateEventBroadcastReceiver extends BroadcastReceiver {
         // Schedule notification
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureTimeMillis, pending);
     }
-
-    private static void createSyncErrorNotification(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationUtil.createNotificationChannel(context);
-        }
-
-        Intent resultIntent = new Intent(context, MainActivity.class);
-        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        PendingIntent pendingIntent =
-                PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification notification =
-                new NotificationCompat.Builder(context, NotificationUtil.NOTIFICATION_CHANNEL_ID)
-                        .setContentTitle(context.getString(R.string.stayaway_covid_service_notification_sync_error_title))
-                        .setContentText(context.getString(R.string.stayaway_covid_service_notification_sync_error_text))
-                        .setStyle(new NotificationCompat.BigTextStyle()
-                                .bigText(context.getString(R.string.stayaway_covid_service_notification_sync_error_title)))
-                        .setPriority(NotificationCompat.PRIORITY_MAX)
-                        .setSmallIcon(R.drawable.ic_stayaway_logo)
-                        .setContentIntent(pendingIntent)
-                        .setAutoCancel(true)
-                        .build();
-
-        NotificationManager notificationManager =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(NotificationUtil.NOTIFICATION_ID_CONTACT, notification);
-    }
 }

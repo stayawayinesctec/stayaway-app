@@ -202,7 +202,7 @@ android {
         staging {
             signingConfig signingConfigs.release
             applicationIdSuffix ".debug"
-            versionNameSuffix "-debug"
+            versionNameSuffix "-staging"
             shrinkResources enableProguardInReleaseBuilds
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"

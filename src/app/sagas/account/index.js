@@ -316,11 +316,11 @@ function* updateStatus({ payload: status }) {
 
     // Get last exposure day
     if (exposureDays.length > 0) {
-      const { exposuredDate } = exposureDays[exposureDays.length];
+      const { exposedDate } = exposureDays[exposureDays.length];
 
       // Check if has passed 15 days after last exposure
       const fifteenDaysAgo = Moment().startOf('day').subtract(15, 'days');
-      if (Moment(exposuredDate).isBefore(fifteenDaysAgo)) {
+      if (Moment(exposedDate).isBefore(fifteenDaysAgo)) {
         yield call(TrackingManager.resetInfectionStatus);
       }
     }
