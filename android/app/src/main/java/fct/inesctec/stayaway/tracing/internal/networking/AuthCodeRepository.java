@@ -66,7 +66,7 @@ public class AuthCodeRepository {
         okHttpBuilder.addInterceptor(new UserAgentInterceptor(DP3T.getUserAgent()));
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BuildConfig.AUTH_CODE_URL)
+                .baseUrl(BuildConfig.BACKEND_AUTH_CODE_URL)
                 .client(okHttpBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
