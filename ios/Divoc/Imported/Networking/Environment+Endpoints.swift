@@ -25,8 +25,8 @@ extension Endpoint {
     /// Validate Code
     static func onset(auth: AuthorizationRequestBody) -> Endpoint {
         let config = ReactNativeConfig.env();
-        let envReportUrl:String = config!["BACKEND_REPORT_URL"] as! String;
+        let envAuthCodeUrl:String = config!["BACKEND_AUTH_CODE_URL"] as! String;
 
-        return Backend(envReportUrl, version: "v1").endpoint("onset", method: .post, headers: ["accept": "*/*", "Content-Type": "application/json"], body: auth)
+        return Backend(envAuthCodeUrl, version: "v1").endpoint("onset", method: .post, headers: ["accept": "*/*", "Content-Type": "application/json"], body: auth)
     }
 }
