@@ -12,7 +12,7 @@
 import { I18nManager } from 'react-native';
 import i18n from 'i18n-js';
 import * as RNLocalize from 'react-native-localize';
-import { memoize } from 'lodash';
+import memoize from 'lodash.memoize';
 
 import Moment from 'moment';
 import 'moment/locale/pt';

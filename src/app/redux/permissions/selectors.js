@@ -9,7 +9,7 @@
  */
 
 import { createSelector } from 'reselect';
-import { pickBy } from 'lodash';
+import pickBy from 'lodash.pickby';
 
 import {
   BATTERY_PERMISSION,

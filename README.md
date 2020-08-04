@@ -126,7 +126,8 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 | [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native)                                | MIT          |
 | [@react-navigation/stack](https://www.npmjs.com/package/@react-navigation/stack)                                  | MIT          |
 | [i18n-js](https://www.npmjs.com/package/i18n-js)                                                                  | MIT          |
-| [lodash](https://www.npmjs.com/package/lodash)                                                                    | MIT          |
+| [lodash.pickby](https://www.npmjs.com/package/lodash.pickby)                                                      | MIT          |
+| [lodash.memoize](https://www.npmjs.com/package/lodash.memoize)                                                    | MIT          |
 | [mirror-creator](https://www.npmjs.com/package/mirror-creator)                                                    | MIT          |
 | [moment](https://www.npmjs.com/package/moment)                                                                    | MIT          |
 | [react](https://www.npmjs.com/package/react)                                                                      | MIT          |
