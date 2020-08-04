@@ -37,13 +37,13 @@ const styles = (colors) => StyleSheet.create({
     backgroundColor: colors.transparent,
   },
   dotStyle: {
-    width: sizes.size5,
-    height: sizes.size5,
-    borderRadius: sizes.size4,
-    marginLeft: sizes.size4,
-    marginRight: sizes.size4,
-    marginTop: sizes.size4,
-    marginBottom: sizes.size4,
+    width: sizes.size8,
+    height: sizes.size8,
+    borderRadius: sizes.size6,
+    marginLeft: sizes.size6,
+    marginRight: sizes.size6,
+    marginTop: sizes.size6,
+    marginBottom: sizes.size6,
   },
 });
 
