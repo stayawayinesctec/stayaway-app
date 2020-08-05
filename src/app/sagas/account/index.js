@@ -316,7 +316,7 @@ function* updateStatus({ payload: status }) {
 
     // Get last exposure day
     if (exposureDays.length > 0) {
-      const { exposedDate } = exposureDays[exposureDays.length];
+      const { exposedDate } = exposureDays[exposureDays.length - 1];
 
       // Check if has passed 15 days after last exposure
       const fifteenDaysAgo = Moment().startOf('day').subtract(15, 'days');
