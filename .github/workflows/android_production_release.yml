@@ -11,12 +11,15 @@
 name: Android Production Release Build
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ master ]
+    tags:
+      - '*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip-ci')"
     steps:
       - uses: actions/checkout@v2
 
