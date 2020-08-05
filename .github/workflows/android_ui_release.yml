@@ -19,7 +19,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'skip-ci')"
     steps:
       - uses: actions/checkout@v2
 
@@ -36,6 +35,7 @@ jobs:
 
       - name: Setup environment
         run: |
+          wget https://github.com/google/exposure-notifications-android/blob/master/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
           echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
           echo "${{secrets.ENV_UI_RELEASE}}" > android/.env
           echo "${{secrets.ANDROID_KEYSTORE}}" > divoc.keystore.asc

@@ -89,4 +89,4 @@ yarn-error.log*
 .project
 
 # Android libs
-android/app/libs/**
+android/app/libs/*
