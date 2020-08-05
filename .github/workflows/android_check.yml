@@ -36,7 +36,7 @@ jobs:
 
       - name: Setup environment
         run: |
-          wget https://github.com/google/exposure-notifications-android/blob/master/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
+          wget https://github.com/google/exposure-notifications-android/raw/master/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
           echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
           cp .env.example android/.env
 
