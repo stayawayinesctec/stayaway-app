@@ -9,7 +9,15 @@
   "main": "index.js",
   "version": "0.2.3",
   "license": "EUPL-1.2",
-  "keywords": ["covid19", "react-native", "mobile", "dp3t", "portugal", "android", "ios"],
+  "keywords": [
+    "covid19",
+    "react-native",
+    "mobile",
+    "dp3t",
+    "portugal",
+    "android",
+    "ios"
+  ],
   "private": true,
   "repository": {
     "type": "git",
@@ -46,7 +54,8 @@
     "@react-navigation/native": "5.6.1",
     "@react-navigation/stack": "5.6.2",
     "i18n-js": "3.7.1",
-    "lodash": "4.17.15",
+    "lodash.memoize": "4.1.2",
+    "lodash.pickby": "4.6.0",
     "mirror-creator": "1.1.0",
     "moment": "2.27.0",
     "react": "16.11.0",
