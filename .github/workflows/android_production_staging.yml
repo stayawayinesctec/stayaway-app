@@ -42,12 +42,20 @@ jobs:
       - name: Build ABB
         run: |
           cd android
-          ./gradlew bundleProductionStaging
+          ./gradlew bundleProductionStaging \
+            -PkeystoreFile="$GITHUB_WORKSPACE/android/app/debug.keystore" \
+            -PkeystorePassword="android" \
+            -PkeyAlias="androiddebugkey" \
+            -PkeyPassword="android"
 
       - name: Build APK
         run: |
           cd android
-          ./gradlew assembleProductionStaging
+          ./gradlew assembleProductionStaging \
+            -PkeystoreFile="$GITHUB_WORKSPACE/android/app/debug.keystore" \
+            -PkeystorePassword="android" \
+            -PkeyAlias="androiddebugkey" \
+            -PkeyPassword="android"
 
       - name: Upload AAB
         uses: actions/upload-artifact@v2

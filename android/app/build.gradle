@@ -200,7 +200,7 @@ android {
             debuggable true
         }
         staging {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             applicationIdSuffix ".debug"
             versionNameSuffix "-staging"
             shrinkResources enableProguardInReleaseBuilds
