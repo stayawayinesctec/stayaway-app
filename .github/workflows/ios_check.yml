@@ -12,16 +12,32 @@ name: iOS Check Build
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+
+    paths-ignore:
+      - "docs/**"
+      - "locales/**"
+      - "**/*.md"
+      - "LICENSE"
+
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+
+    paths-ignore:
+      - "docs/**"
+      - "locales/**"
+      - "**/*.md"
+      - "LICENSE"
 
 env:
-  CI: true
   DEVELOPER_DIR: /Applications/Xcode_11.6.app
+  SKIP_BUNDLING: true
+  RCT_NO_LAUNCH_PACKAGER: true
 
 jobs:
-  build:
+  test:
     runs-on: macos-latest
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
 
@@ -36,9 +52,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "10"
-
-      - name: Clean yarn cache directory
-        run: yarn cache clean
 
       - name: Get node cache directory path
         id: node-cache-dir
@@ -56,7 +69,7 @@ jobs:
         id: pods-cache
         name: Cache pods dependencies
         with:
-          path: "ios/Pods"
+          path: ios/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
           restore-keys: ${{ runner.os }}-pods-
 
@@ -70,10 +83,18 @@ jobs:
           pod install
 
       - name: Setup environment
-        run: |
-          cp .env.example .env.production.release
+        run: cp .env.example .env.production.release
+
+      - name: Run unit tests
+        run: yarn test:unit
+
+      - name: Run integration tests
+        run: yarn test:integration
+
+      - name: Run components tests
+        run: yarn test:components
 
       - name: Build IPA
         run: |
           cd ios
-          xcodebuild build -workspace Divoc.xcworkspace -configuration=ProductionRelease -scheme Divoc.production.release -destination platform="iOS Simulator,name=iPhone 11 Pro Max"
+          xcodebuild -workspace Divoc.xcworkspace -configuration ProductionRelease -scheme Divoc.production.release -sdk iphonesimulator

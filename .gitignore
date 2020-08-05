@@ -90,3 +90,6 @@ yarn-error.log*
 
 # Android libs
 android/app/libs/*
+
+# Tests coverage
+coverage/

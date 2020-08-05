@@ -12,15 +12,30 @@ name: Android Check Build
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+
+    paths-ignore:
+      - "docs/**"
+      - "locales/**"
+      - "**/*.md"
+      - "LICENSE"
+
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+
+    paths-ignore:
+      - "docs/**"
+      - "locales/**"
+      - "**/*.md"
+      - "LICENSE"
 
 env:
   ANDROID_NDK_VERSION: "21.3.6528147"
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     steps:
@@ -37,12 +52,6 @@ jobs:
           java-version: "8"
           java-package: "jdk"
           architecture: "x64"
-
-      - name: Clean yarn cache directory
-        run: yarn cache clean
-
-      - name: Clean Gradle cache directory
-        run: rm -rf ~/.gradle/caches
 
       - name: Get node cache directory path
         id: node-cache-dir
@@ -73,11 +82,16 @@ jobs:
           wget https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
           cp .env.example android/.env
 
+      - name: Run unit tests
+        run: yarn test:unit
+
+      - name: Run integration tests
+        run: yarn test:integration
+
+      - name: Run components tests
+        run: yarn test:components
+
       - name: Build APK
         run: |
           cd android
-          ./gradlew assembleProductionRelease \
-            -PkeystoreFile="$GITHUB_WORKSPACE/android/app/debug.keystore" \
-            -PkeystorePassword="android" \
-            -PkeyAlias="androiddebugkey" \
-            -PkeyPassword="android"
+          ./gradlew assembleProductionRelease

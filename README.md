@@ -53,7 +53,6 @@ The project was led by [INESC TEC](https://www.inesctec.pt) with the collaborati
 <img src="docs/screenshot_4.png" width="20%">
 </p>
 
-# Installation and Building
 ## Requirements
 
 To build the project you'll need to setup your React Native development environment, which can achieved by following the steps at [https://reactnative.dev/docs/environment-setup](https://reactnative.dev/docs/environment-setup). The requirements will depend on your development platform.
@@ -82,39 +81,86 @@ Required tools for building:
 - XCode
 
 ## Installation
-- Clone or download this repository.
+- Clone or download this repository:
 ```sh
-git clone https://github.com/stayawayinesctec/stayaway-app.git
+$ git clone https://github.com/stayawayinesctec/stayaway-app.git
 ```
 
-- Copy .env.example to .env.{production,ui}.debug and fill in the variables with your own information, eg:
+- Copy .env.example to `.env.{production,ui}.debug` and fill in the variables with your own information, eg:
 ```sh
-cp .env.example .env.production.debug
+$ cp .env.example .env.production.debug
 ```
 
 - Install dependencies by running:
 ```sh
-yarn
+$ yarn
 ```
 
-- If you're using **android**, you'll also need to manually download the binary distribution of [`play-services-nearby`](https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar) and attach it to your project on `android/app/libs`. You can do so by running on your project root:
-
+- If you're using **android**, you'll also need to manually download the binary distribution of [`play-services-nearby`](https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar) and attach it to your project on `android/app/libs`. You can do so by running on your project's root:
 ```sh
-wget https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
+$ wget https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
 ```
 
 ## Building
 - And finally, build the project:
 ```sh
-yarn android # or yarn android-ui
-yarn ios # or yarn ios-ui
+$ yarn android # or yarn android:ui
+$ yarn ios # or yarn ios:ui
 ```
 
-NOTE: Running `android-ui` or `ios-ui` will allow you to run and test the applications' user interface without requiring to activate the Exposure Notification API.
+NOTE: Running `android:ui` or `ios:ui` will allow you to run and test the applications' user interface without requiring to activate the Exposure Notification API.
 
-# Copyright and license
+## Tests
+Once you're ready, you can run the app tests. The tests structure and adopted technologies were inspired by this React Native website's [post](https://reactnative.dev/docs/testing-overview).
 
-Copyright (c) 2020 INESC TEC. Developed with [Keyruptive](https://keyruptive.com). This project is licensed under the terms of the EUPL-1.2 license. Please see the [LICENSE](LICENSE) file for full reference.
+### Unit Tests
+For unit testing we consider all tests made to one or more individual modules to see if they work as expected.
+
+The choosed technology was [JEST](https://github.com/facebook/jest).
+
+To run unit tests use the following command:
+```sh
+$ yarn test:unit
+```
+
+### Integration Tests
+For integration testing we consider all tests made to individual modules combined to see if their cooperation works as expected.
+
+The choosed technology was [JEST](https://github.com/facebook/jest).
+
+To run unit tests use the following command:
+```sh
+$ yarn test:integration
+```
+
+### Component Tests
+For components testing we consider all tests made to the components render to check if they render as expected and respond to every user's interaction.
+
+The choosed technology was [React Native Testing Library](https://github.com/callstack/react-native-testing-library).
+
+To run unit tests use the following command:
+```sh
+$ yarn test:components
+```
+
+### End-to-End
+For e2e testing we consider tests made to the app as an all. In these tests we usually tests all important app flows, as onboarding, submiting a diagnosis, changing the infection status, etc. These tests are running on an emulator/simulator which do not have access to exposure notifications api, therefore we use the UI app's version.
+
+The choosed technology was [Detox](https://github.com/wix/Detox).
+
+To run unit tests, you need to step your tests environmnet, and you do so by carefully go through every step on the setup tests environment guide ([iOS](https://github.com/wix/Detox/blob/master/docs/Introduction.IosDevEnv.md)/[Android](https://github.com/wix/Detox/blob/master/docs/Introduction.AndroidDevEnv.md)).
+
+For android the default emulator is Nexus 5X with API version 29 and for iOS the simulator is the iPhone 8, but this can be changed in `package.json`.
+
+Once your environment is set up, you can run the tests with the following commands:
+```sh
+$ yarn test:e2e:android
+$ yarn test:e2e:ios
+```
+
+## Copyright and license
+
+Copyright (c) 2020 [INESC TEC](https://www.inesctec.pt). Developed with [Keyruptive](https://keyruptive.com). This project is licensed under the terms of the EUPL-1.2 license. Please see the [LICENSE](LICENSE) file for full reference.
 
 Some files contain code from the [DP3T applications](https://github.com/DP-3T), Copyright (c) 2020 [Ubique Innovation AG](https://www.ubique.ch). These files are  are marked as such and licensed also under MPL-2.0.
 
@@ -151,6 +197,8 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 | [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native)                                | MIT          |
 | [@react-navigation/stack](https://www.npmjs.com/package/@react-navigation/stack)                                  | MIT          |
 | [i18n-js](https://www.npmjs.com/package/i18n-js)                                                                  | MIT          |
+| [jest](https://github.com/facebook/jest)                                                                          | MIT          |
+| [detox](https://github.com/wix/Detox)                                                                             | MIT          |
 | [lodash.pickby](https://www.npmjs.com/package/lodash.pickby)                                                      | MIT          |
 | [lodash.memoize](https://www.npmjs.com/package/lodash.memoize)                                                    | MIT          |
 | [mirror-creator](https://www.npmjs.com/package/mirror-creator)                                                    | MIT          |
@@ -175,6 +223,7 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 | [react-native-swiper](https://www.npmjs.com/package/react-native-swiper)                                          | MIT          |
 | [react-native-vector-icons](https://www.npmjs.com/package/react-native-vector-icons)                              | MIT          |
 | [react-native-version-number](https://www.npmjs.com/package/react-native-version-number)                          | MIT          |
+| [react-native-testing-library](https://github.com/callstack/react-native-testing-library)                         | MIT          |
 | [react-navigation-redux-debouncer](https://www.npmjs.com/package/react-navigation-redux-debouncer)                | MIT          |
 | [react-redux](https://www.npmjs.com/package/react-redux)                                                          | MIT          |
 | [redux-actions](https://www.npmjs.com/package/redux-actions)                                                      | MIT          |
