@@ -62,7 +62,7 @@ Required tools for building:
 
 ### iOS
 
-Only approved government public health authorities can access the Exposure Notification APIs. STAYAWAY COVID for iOS will only work correctly if you were granted the com.apple.developer.exposure-notification entitlement by [Apple](https://developer.apple.com/contact/request/exposure-notification-entitlement). The ExposureNotification.framework is available starting with iOS 13.5.
+Only approved government public health authorities can access the Exposure Notification APIs. STAYAWAY COVID for iOS will only work correctly if you were granted the `com.apple.developer.exposure-notification` entitlement by [Apple](https://developer.apple.com/contact/request/exposure-notification-entitlement). The `ExposureNotification.framework` is available starting with iOS 13.5.
 
 Required tools for building:
 - Watchman
@@ -77,7 +77,7 @@ Required tools for building:
 git clone https://github.com/stayawayinesctec/stayaway-app.git
 ```
 
-- Rename .env.example to .env.production.debug and fill in the variables with your own information
+- Copy .env.example to .env.{production,ui}.debug and fill in the variables with your own information, eg:
 ```sh
 cp .env.example .env.production.debug
 ```
@@ -85,6 +85,12 @@ cp .env.example .env.production.debug
 - Install dependencies by running:
 ```sh
 yarn
+```
+
+- If you're using **android**, you'll also need to manually download the binary distribution of [`play-services-nearby`](https://github.com/google/exposure-notifications-android/blob/master/app/libs/play-services-nearby-18.0.3-eap.aar) and attach it to your project on `android/app/libs`. You can do so by running on your the project root:
+
+```sh
+- wget https://github.com/google/exposure-notifications-android/blob/master/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/lib
 ```
 
 ## Building
@@ -104,16 +110,24 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 
 ## Third-party components licenses
 ### Tools
-| Name                                     | License      |
-|------------------------------------------|--------------|
-| [Gradle](https://gradle.org/)            | Apache 2.0   |
-| [Cocoapods](https://cocoapods.org/)      | MIT          |
+| Name                                  | License      |
+|---------------------------------------|--------------|
+| [Gradle](https://gradle.org/)         | Apache 2.0   |
+| [Cocoapods](https://cocoapods.org/)   | MIT          |
 
 ### Libraries
+| Name                                                            | License      |
+|-----------------------------------------------------------------|--------------|
+| [DP3T-SDK-Android](https://github.com/DP-3T/dp3t-sdk-android)   | MPL 2.0      |
+| [DP3T-SDK-iOS](https://github.com/DP-3T/dp3t-sdk-ios)           | MPL 2.0      |
+| [OkHttp](https://github.com/square/okhttp/)                     | Apache 2.0   |
+| [Retrofit](https://github.com/square/retrofit)                  | Apache 2.0   |
+| [TrustKit](https://github.com/datatheorem/TrustKit)             | MIT          |
+
+### Fonts
 | Name                                                 | License      |
 |------------------------------------------------------|--------------|
-| [OkHttp](https://github.com/square/okhttp/)          | Apache 2.0   |
-| [Retrofit](https://github.com/square/retrofit)       | Apache 2.0   |
+| [Roboto](https://fonts.google.com/specimen/Roboto)   | Apache 2.0   |
 
 ### React Native Packages
 | Name                                                                                                              | License      |
