@@ -1,5 +1,5 @@
 <h1 align="center">STAYAWAY COVID</h1>
-<h4 align="center">Covid-19 Exposure Notification App for Portugal 🇵🇹</h1>
+<h4 align="center">Covid-19 Exposure Notification App for Portugal 🇵🇹</h4>
 
 <br />
 
