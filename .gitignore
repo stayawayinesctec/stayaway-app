@@ -87,3 +87,6 @@ yarn-error.log*
 .settings/
 .classpath
 .project
+
+# Android libs
+android/app/libs/*
