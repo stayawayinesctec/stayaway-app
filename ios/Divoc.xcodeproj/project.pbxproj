@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1EE3D90024DADD5E006C7B1F /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1EE3D8FF24DADD5E006C7B1F /* DP3TSDK */; };
 		5C8E635409871A7102F65861 /* libPods-Divoc-DivocTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7161B0CB97C2B6786008D8 /* libPods-Divoc-DivocTests.a */; };
 		80377DBA24B0F41C005452C6 /* TracingLocalPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DB924B0F41C005452C6 /* TracingLocalPush.swift */; };
 		80377DBE24B0F83F005452C6 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBC24B0F83F005452C6 /* Keychain.swift */; };
@@ -176,6 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EE3D90024DADD5E006C7B1F /* DP3TSDK in Frameworks */,
 				08D80D04D99F6A4FE1D678E5 /* libPods-Divoc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +487,7 @@
 			);
 			name = Divoc;
 			packageProductDependencies = (
+				1EE3D8FF24DADD5E006C7B1F /* DP3TSDK */,
 			);
 			productName = Divoc;
 			productReference = 13B07F961A680F5B00A75B9A /* STAYAWAY.app */;
@@ -519,6 +522,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
+				1EE3D8FE24DADD5D006C7B1F /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -878,7 +882,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = H4F6Z9HC74;
+				DEVELOPMENT_TEAM = VB258YUFG3;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -892,7 +896,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = STAYAWAY;
-				PROVISIONING_PROFILE_SPECIFIER = "STAYAWAY EN";
+				PROVISIONING_PROFILE_SPECIFIER = GAEN_DEV;
 				SWIFT_MODULE_NAME = STAYAWAY_COVID;
 				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
@@ -1628,6 +1632,25 @@
 			defaultConfigurationName = ProductionRelease;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1EE3D8FE24DADD5D006C7B1F /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DP-3T/dp3t-sdk-ios.git";
+			requirement = {
+				kind = revision;
+				revision = c9f2db9d11f32b1236180171594f6d6ccf8e17af;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1EE3D8FF24DADD5E006C7B1F /* DP3TSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EE3D8FE24DADD5D006C7B1F /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
+			productName = DP3TSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
