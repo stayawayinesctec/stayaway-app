@@ -8,6 +8,16 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
+/**
+* Copyright (c) 2020 Ubique Innovation AG <https://www.ubique.ch>
+*
+* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at https://mozilla.org/MPL/2.0/.
+*
+* SPDX-License-Identifier: MPL-2.0
+*/
+
 import BackgroundTasks
 import Foundation
 
@@ -97,18 +107,15 @@ private class FakePublishOperation: Operation {
     }
 
     // add a delay so its not guessable from http traffic if a report was fake or not
-    let delay = Double(0) //Double.random(in: 20 ... 30)
+    var delay: TimeInterval { Double.random(in: 20 ... 30) }
     let group = DispatchGroup()
     group.enter()
     DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + delay) { [weak self] in
-      NSLog("Start Fake Publish")
       ReportingManager.shared.report(isFakeRequest: true) { [weak self] error in
         guard let self = self else { return }
         if error != nil {
           self.cancel()
-          NSLog("Fake request failed")
         } else {
-          NSLog("Fake request success")
           self.manager.rescheduleFakeRequest()
         }
         group.leave()
