@@ -125,6 +125,7 @@ private class ParametersFetchOperation: Operation {
           let build = iosversion["build"] ?? "0"
           AppVersionManager.shared.checkAppVersion(version: version,buildno: build)
         }
+        self.manager.updateParametersFetchData()
       }
     }
   }
