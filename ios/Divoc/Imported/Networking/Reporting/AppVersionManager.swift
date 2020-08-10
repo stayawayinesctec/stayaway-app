@@ -13,28 +13,28 @@ import Foundation
 
 class AppVersionManager {
   static let shared = AppVersionManager()
-  
+
   func checkAppVersion(version: String, buildno: String) {
-  
-    let currentVersion = UIApplication.version
-    let newVersion = version + "." + buildno
-    if(currentVersion.compare(newVersion) != .orderedSame){
+    if (shouldBroadcastNotification(lastVersion: version, lastBuild: buildno)){
       //Send local notification
       let title = "app_version_notification_title".ub_localized
       let body = "app_version_notification_body".ub_localized
       TracingLocalPush.shared.scheduleCustomNotification(title: title, body: body, completionHandler: nil)
     }
   }
-}
 
-extension UIApplication {
-  static var release: String {
-    return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String? ?? "x.x"
-  }
-  static var build: String {
-    return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String? ?? "x"
-  }
-  static var version: String {
-    return "\(release).\(build)"
+  func shouldBroadcastNotification(lastVersion: String, lastBuild: String) -> Bool {
+    let currentVersion = Bundle.appVersion
+    let currentBuild = Bundle.buildNumber
+    
+    if (lastVersion.isVersion(greaterThan: currentVersion)) {
+      return true;
+    }
+
+    if (lastVersion.isVersion(equalTo: currentVersion)) {
+      return Int(lastBuild) ?? 0 > Int(currentBuild) ?? 0;
+    }
+
+    return false;
   }
 }
