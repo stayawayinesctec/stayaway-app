@@ -5,7 +5,7 @@
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>org.dpppt.exposure-notification</string>
-    <string>org.dpppt.refresh</string>
+		<string>org.dpppt.refresh</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

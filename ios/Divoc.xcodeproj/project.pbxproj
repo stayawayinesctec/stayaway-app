@@ -52,6 +52,7 @@
 		C935027724B37EE3007887E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C935027524B37EE3007887E2 /* Localizable.strings */; };
 		C981BFE524B384490005AB5D /* String+NS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981BFE424B384490005AB5D /* String+NS.swift */; };
 		C99EEAC024C5D3A800A0599F /* ParametersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99EEABF24C5D3A800A0599F /* ParametersManager.swift */; };
+		C9EC533424E1AA0200BBFFF0 /* String+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EC533324E1AA0200BBFFF0 /* String+Version.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		C935027624B37EE3007887E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		C981BFE424B384490005AB5D /* String+NS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NS.swift"; sourceTree = "<group>"; };
 		C99EEABF24C5D3A800A0599F /* ParametersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersManager.swift; sourceTree = "<group>"; };
+		C9EC533324E1AA0200BBFFF0 /* String+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Version.swift"; sourceTree = "<group>"; };
 		D51AC7281E0C3B50AFA82582 /* Pods-Divoc-DivocTests.debug.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.debug.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.debug.ui.xcconfig"; sourceTree = "<group>"; };
 		D699EBE23BD4B6E38BA14505 /* libPods-Divoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF474FE17F02EB1FD2F2F6C /* Pods-Divoc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.release.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.release.xcconfig"; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 			children = (
 				8085C66524AB915200B02F6F /* Bundle+BuildInfo.swift */,
 				C981BFE424B384490005AB5D /* String+NS.swift */,
+				C9EC533324E1AA0200BBFFF0 /* String+Version.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				8085C66D24AB915200B02F6F /* NetworkError.swift in Sources */,
 				8085C61124AB55BE00B02F6F /* TracingManagerGlue.swift in Sources */,
 				8085C66A24AB915200B02F6F /* URLSession+pinning.swift in Sources */,
+				C9EC533424E1AA0200BBFFF0 /* String+Version.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,9 +842,9 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 2042;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VB258YUFG3;
+				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -878,11 +882,11 @@
 				BUNDLE_ID_SUFFIX = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2042;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VB258YUFG3;
+				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -896,7 +900,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = STAYAWAY;
-				PROVISIONING_PROFILE_SPECIFIER = GAEN_DEV;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_MODULE_NAME = STAYAWAY_COVID;
 				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
@@ -1065,11 +1069,6 @@
 					/usr/lib/swift,
 					"$(inherited)",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
-					"\"$(inherited)\"",
-				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1084,64 +1083,15 @@
 				BUNDLE_ID_SUFFIX = .debug;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2042;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransportCCTSupport\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
-					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
-					"\"$(PODS_CONFIGURATION_BUILD_DIR)/TrustKit\"",
-					"\"$(PODS_CONFIGURATION_BUILD_DIR)/Permission-Notifications\"",
-					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
-					"\"$(PODS_CONFIGURATION_BUILD_DIR)/RNCCheckbox\"",
 				);
 				MARKETING_VERSION = 0.2.4;
 				OTHER_LDFLAGS = (
@@ -1151,7 +1101,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = STAYAWAY;
-				PROVISIONING_PROFILE_SPECIFIER = "STAYAWAY EN";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_MODULE_NAME = STAYAWAY_COVID;
 				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
@@ -1232,11 +1182,6 @@
 					/usr/lib/swift,
 					"$(inherited)",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
-					"\"$(inherited)\"",
-				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1253,56 +1198,13 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 2042;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VB258YUFG3;
+				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCCheckbox\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/TrustKit\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/appcenter-analytics\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/appcenter-core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/appcenter-crashes\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
 				);
 				MARKETING_VERSION = 0.2.4;
 				OTHER_LDFLAGS = (
@@ -1417,9 +1319,9 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 2042;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VB258YUFG3;
+				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1539,9 +1441,9 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 2042;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VB258YUFG3;
+				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

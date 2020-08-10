@@ -65,12 +65,12 @@ private class ParametersFetchOperation: Operation {
     if manager.nextScheduledFakeRequestDate == nil {
       manager.updateParametersFetchData()
     } else {
-      guard let lastDate = manager.nextScheduledFakeRequestDate,
-        Date() >= lastDate.addingTimeInterval(60*60*24) else {
-          //waiting for 24h to pass
-          NSLog("Too early for new parameters check.")
-          return
-      }
+     guard let lastDate = manager.nextScheduledFakeRequestDate,
+       Date() >= lastDate.addingTimeInterval(60*60*24) else {
+         //waiting for 24h to pass
+         NSLog("Too early for new parameters check.")
+         return
+     }
     }
 
     DispatchQueue.global(qos: .background).asyncAfter(deadline: .now()) {
