@@ -87,10 +87,10 @@ cp .env.example .env.production.debug
 yarn
 ```
 
-- If you're using **android**, you'll also need to manually download the binary distribution of [`play-services-nearby`](https://github.com/google/exposure-notifications-android/raw/master/app/libs/play-services-nearby-18.0.3-eap.aar) and attach it to your project on `android/app/libs`. You can do so by running on your project root:
+- If you're using **android**, you'll also need to manually download the binary distribution of [`play-services-nearby`](https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar) and attach it to your project on `android/app/libs`. You can do so by running on your project root:
 
 ```sh
-wget https://github.com/google/exposure-notifications-android/raw/master/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
+wget https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
 ```
 
 ## Building
