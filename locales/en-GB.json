@@ -262,13 +262,13 @@
     "app_name": "STAYAWAY COVID",
     "links": {
       "app_page": {
-        "google_play": "https://play.google.com/store/apps",
+        "google_play": "https://play.google.com/store/apps/details?id=fct.inesctec.stayaway",
         "app_store": "https://apps.apple.com/pt"
       },
-      "home_page": "https://stayaway.inesctec.pt/en/",
-      "privacy_policy": "https://stayaway.inesctec.pt/privacy-policy-2/",
-      "terms_of_use": "https://stayaway.inesctec.pt/terms-conditions/",
-      "faqs": "https://stayaway.inesctec.pt/en/",
+      "home_page": "https://stayawaycovid/en/",
+      "privacy_policy": "https://stayawaycovid/privacy-policy-2/",
+      "terms_of_use": "https://stayawaycovid/terms-conditions/",
+      "faqs": "https://stayawaycovid.pt/frequently-asked-questions/",
       "dgs": "https://www.dgs.pt/",
       "data_protection": "mailto:dpo@inesctec.pt",
       "inesctec": "https://www.inesctec.pt/en",
