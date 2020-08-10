@@ -38,6 +38,8 @@ import androidx.work.WorkManager;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import com.g00fy2.versioncompare.Version;
+
 import org.dpppt.android.sdk.DP3T;
 import org.dpppt.android.sdk.backend.SignatureException;
 import org.dpppt.android.sdk.internal.logger.Logger;
@@ -48,7 +50,9 @@ import java.util.concurrent.TimeUnit;
 import fct.inesctec.stayaway.BuildConfig;
 import fct.inesctec.stayaway.R;
 import fct.inesctec.stayaway.tracing.internal.networking.errors.ResponseError;
+import fct.inesctec.stayaway.tracing.internal.networking.models.AppVersionModel;
 import fct.inesctec.stayaway.tracing.internal.networking.models.ConfigResponseModel;
+import fct.inesctec.stayaway.tracing.internal.networking.models.VersionModel;
 import fct.inesctec.stayaway.tracing.internal.storage.SecureStorage;
 import fct.inesctec.stayaway.tracing.internal.util.NotificationUtil;
 
@@ -103,11 +107,7 @@ public class ConfigWorker extends Worker {
         ConfigRepository configRepository = new ConfigRepository(context);
         ConfigResponseModel config = configRepository.getConfig();
 
-        // Compare app versions
-        String lastVersion = config.getAndroidVersion().getName();
-        String currentVersion = BuildConfig.VERSION_NAME;
-
-        if (! lastVersion.equals(currentVersion)) {
+        if (this.shouldBroadcastNotification(config.getAndroidVersion())) {
             createUpdateNotification(context);
         } else {
             cancelUpdateNotification(context);
@@ -152,5 +152,22 @@ public class ConfigWorker extends Worker {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(NotificationUtil.NOTIFICATION_ID_UPDATE);
+    }
+
+    private boolean shouldBroadcastNotification(VersionModel config) {
+        Version lastVersion = new Version(config.getName());
+        int lastBuild = Integer.parseInt(config.getBuild());
+        Version currentVersion = new Version(BuildConfig.VERSION_NAME);
+        int currentBuild = BuildConfig.VERSION_CODE;
+
+        if (lastVersion.isHigherThan(currentVersion)) {
+            return true;
+        }
+
+        if (lastVersion.isEqual(currentVersion)) {
+            return lastBuild > currentBuild;
+        }
+
+        return false;
     }
 }

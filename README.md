@@ -122,6 +122,7 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 | [DP3T-SDK-iOS](https://github.com/DP-3T/dp3t-sdk-ios)           | MPL 2.0      |
 | [OkHttp](https://github.com/square/okhttp/)                     | Apache 2.0   |
 | [Retrofit](https://github.com/square/retrofit)                  | Apache 2.0   |
+| [Version Compare](https://github.com/G00fY2/version-compare)    | Apache 2.0   |
 | [TrustKit](https://github.com/datatheorem/TrustKit)             | MIT          |
 
 ### Fonts
