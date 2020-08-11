@@ -842,7 +842,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2042;
+				CURRENT_PROJECT_VERSION = 2050;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				ENABLE_BITCODE = NO;
@@ -855,7 +855,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.4;
+				MARKETING_VERSION = 0.2.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -884,7 +884,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2042;
+				CURRENT_PROJECT_VERSION = 2050;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -892,7 +892,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.4;
+				MARKETING_VERSION = 0.2.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1085,7 +1085,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2042;
+				CURRENT_PROJECT_VERSION = 2050;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -1093,7 +1093,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.4;
+				MARKETING_VERSION = 0.2.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1198,7 +1198,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2042;
+				CURRENT_PROJECT_VERSION = 2050;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -1206,7 +1206,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.4;
+				MARKETING_VERSION = 0.2.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1319,7 +1319,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2042;
+				CURRENT_PROJECT_VERSION = 2050;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				ENABLE_BITCODE = NO;
@@ -1332,7 +1332,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.4;
+				MARKETING_VERSION = 0.2.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1441,7 +1441,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2042;
+				CURRENT_PROJECT_VERSION = 2050;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -1449,7 +1449,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.4;
+				MARKETING_VERSION = 0.2.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
