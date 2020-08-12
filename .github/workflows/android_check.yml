@@ -31,19 +31,25 @@ jobs:
             java-package: jdk
             architecture: x64
 
-      - uses: actions/cache@v2
-        id: npm_cache
-        name: Cache npm dependencies
-        with:
-          path: 'node_modules'
-          key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Get node cache directory path
+        id: pods-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Install npm dependencies
-        if: steps.npm_cache.outputs.cache-hit != 'true'
+      - uses: actions/cache@v2
+        id: node-cache
+        name: Cache node dependencies
+        with:
+          path: ${{ steps.pods-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install node dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
         run: yarn --ignore-scripts
 
       - name: Setup environment
         run: |
+          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.3.6528147"
           wget https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
           cp .env.example android/.env
 
