@@ -21,22 +21,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+            node-version: '10'
+      - uses: actions/setup-java@v1
+        with:
+            java-version: '1.8'
+            java-package: jdk
+            architecture: x64
+
+      - name: Get node cache directory path
+        id: pods-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - uses: actions/cache@v2
-        name: Cache npm dependencies
+        id: node-cache
+        name: Cache node dependencies
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ steps.pods-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-node-
 
-      - name: Install npm dependencies
-        run: |
-          yarn --ignore-scripts
-          yarn postinstall_android
+      - name: Install node dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: yarn --ignore-scripts
 
       - name: Setup environment
         run: |
           wget https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
-          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
+          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.3.6528147"
           echo "${{secrets.ENV_PRODUCTION_RELEASE}}" > android/.env
           echo "${{secrets.ANDROID_KEYSTORE}}" > divoc.keystore.asc
           gpg -d --passphrase '${{secrets.ANDROID_KEYSTORE_PASSWORD}}' --batch divoc.keystore.asc > android/app/divoc.keystore

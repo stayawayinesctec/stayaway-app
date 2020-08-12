@@ -176,7 +176,7 @@ Debug.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   signUp: PropTypes.object,
   status: PropTypes.shape({
-    lastSyncDate: PropTypes.number,
+    lastSyncDate: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     infectionStatus: PropTypes.number,
     exposureDays: PropTypes.array,
     errors: PropTypes.array,

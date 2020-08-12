@@ -25,23 +25,37 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     steps:
       - uses: actions/checkout@v2
-
-      - uses: actions/cache@v2
-        name: Cache npm dependencies
+      - uses: actions/setup-node@v1
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/yarn.lock') }}
+            node-version: '10'
+
+      - name: Get node cache directory path
+        id: pods-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - uses: actions/cache@v2
+        id: node-cache
+        name: Cache node dependencies
+        with:
+          path: ${{ steps.pods-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - uses: actions/cache@v2
+        id: pods-cache
         name: Cache pods dependencies
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-pods-modules-${{ hashFiles('**/Podfile.lock') }}
+          path: 'ios/Pods'
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-pods-
 
-      - name: Install dependencies
-        run: |
-          yarn --ignore-scripts
-          yarn postinstall_ios
+      - name: Install node dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: yarn --ignore-scripts
+
+      - name: Install pods dependencies
+        if: steps.pods-cache.outputs.cache-hit != 'true'
+        run: (cd ios && pod install)
 
       - name: Switch to Xcode 11.6
         run: sudo xcode-select --switch /Applications/Xcode_11.6.app
