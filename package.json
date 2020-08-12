@@ -58,14 +58,14 @@
     "lodash.pickby": "4.6.0",
     "mirror-creator": "1.1.0",
     "moment": "2.27.0",
-    "react": "16.11.0",
-    "react-native": "0.62.2",
+    "react": "16.13.1",
+    "react-native": "0.63.2",
     "react-native-android-location-enabler": "1.2.1",
     "react-native-config": "1.2.1",
     "react-native-elements": "1.2.7",
     "react-native-gesture-handler": "1.6.1",
     "react-native-indicators": "0.17.0",
-    "react-native-keyboard-aware-scroll-view": "0.9.1",
+    "react-native-keyboard-aware-scroll-view": "0.9.2",
     "react-native-localize": "1.4.0",
     "react-native-modal": "11.5.6",
     "react-native-permissions": "2.1.5",
@@ -85,11 +85,10 @@
     "reselect": "4.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.4",
-    "@babel/runtime": "7.10.4",
+    "@babel/core": "7.8.4",
+    "@babel/runtime": "7.8.4",
     "@react-native-community/eslint-config": "1.1.0",
-    "babel-eslint": "8.2.6",
-    "babel-jest": "24.9.0",
+    "babel-jest": "25.1.0",
     "babel-plugin-module-resolver": "3.2.0",
     "babel-plugin-transform-remove-console": "6.9.4",
     "eslint": "6.8.0",
@@ -104,9 +103,9 @@
     "eslint-plugin-react": "7.17.0",
     "eslint-plugin-react-native": "3.8.1",
     "jest": "25.5.4",
-    "metro-react-native-babel-preset": "0.58.0",
+    "metro-react-native-babel-preset": "0.59.0",
     "prettier": "1.19.1",
-    "react-test-renderer": "16.11.0"
+    "react-test-renderer": "16.13.1"
   },
   "jest": {
     "preset": "react-native"

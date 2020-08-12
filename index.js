@@ -10,10 +10,13 @@
 
 import 'react-native-gesture-handler';
 
-import {AppRegistry, YellowBox } from 'react-native';
+import {AppRegistry, LogBox } from 'react-native';
 import App from './src/app/containers/App';
 import {name as appName} from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
 
-YellowBox.ignoreWarnings(['Animated: `useNativeDriver` was not specified.']);
+LogBox.ignoreLogs([
+  'Animated: `useNativeDriver` was not specified.',
+  'Warning: Cannot update a component from inside the function body of a different component.',
+]);

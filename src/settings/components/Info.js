@@ -33,6 +33,8 @@ const styles = (colors) => StyleSheet.create({
   },
   closeButton: {
     alignSelf: 'flex-start',
+    padding: sizes.size8,
+    margin: -sizes.size8,
   },
   header: {
     marginBottom: sizes.size24,

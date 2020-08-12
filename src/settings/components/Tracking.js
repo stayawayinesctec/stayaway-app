@@ -30,24 +30,20 @@ import i18n from '@app/services/i18n';
 const styles = (colors) => StyleSheet.create({
   closeButton: {
     position: 'absolute',
-    top: sizes.size8,
     left: -sizes.size8,
     padding: sizes.size8,
-    alignSelf: 'flex-start',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: sizes.size48,
+    paddingVertical: sizes.size16,
   },
   layoutContainer: {
     flex: 1,
     backgroundColor: colors.transparent,
     zIndex: 10,
-  },
-  title: {
-    paddingVertical: sizes.size16,
-    marginBottom: sizes.size48,
   },
   description: {
     marginBottom: sizes.size48,
@@ -111,7 +107,7 @@ export default function Tracking (props) {
               >
                 <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
               </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors).title}>{i18n.translate('screens.tracking.title')}</Text>
+              <Text size='xlarge' weight='bold'>{i18n.translate('screens.tracking.title')}</Text>
             </View>
             <View style={styles(colors).content}>
               <Text size='xlarge' weight='bold' style={styles(colors).description}>{i18n.translate('screens.tracking.description')}</Text>

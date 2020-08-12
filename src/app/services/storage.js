@@ -15,7 +15,7 @@ class Storage {
   constructor () {
     this.storage = AsyncStorage;
     this.instance = undefined;
-    this.prefix = `divoc-app-(${Configuration.NAME}):`;
+    this.prefix = `divoc-app-(${Configuration.APP_ID}):`;
     this.prefixReg = new RegExp(`^(${ this.prefix })(.+)`, 'gi');
   }
 
