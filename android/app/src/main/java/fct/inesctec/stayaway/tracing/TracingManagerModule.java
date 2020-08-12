@@ -233,20 +233,6 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * This method must be called only on testing environment.
-     *
-     * @param authCode
-     */
-    @ReactMethod
-    public void fakeExposed(String authCode, Promise promise) {
-        DP3T.sendFakeInfectedRequest(TracingManagerModule.reactContext,
-                new ExposeeAuthMethodAuthorization(getAuthorizationHeader(authCode)));
-
-        promise.resolve(null);
-    }
-
-
-    /**
      * Reset infection status.
      */
     @ReactMethod

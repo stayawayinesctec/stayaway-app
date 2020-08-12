@@ -19,6 +19,8 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - Permission-Notifications (2.1.5):
+    - RNPermissions
   - RCTRequired (0.63.2)
   - RCTTypeSafety (0.63.2):
     - FBLazyVector (= 0.63.2)
@@ -275,6 +277,7 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - TrustKit (1.6.5)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -283,6 +286,7 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -320,11 +324,13 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - TrustKit (~> 1.6)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - boost-for-react-native
+    - TrustKit
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -337,6 +343,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  Permission-Notifications:
+    :path: "../node_modules/react-native-permissions/ios/Notifications.podspec"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -417,6 +425,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: dc7fa9088f0f2a998503a352b0554d69a4391c5a
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
+  Permission-Notifications: 231d0e1db2300b686548587d384ba414e6a93332
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
   React: e1c65dd41cb9db13b99f24608e47dd595f28ca9a
@@ -452,8 +461,9 @@ SPEC CHECKSUMS:
   RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  TrustKit: 073855e3adecd317417bda4ac9e9ac54a2e3b9f2
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 4cdbbfe5df59c77bdc5b61a5c8ebd43b7cd7026a
+PODFILE CHECKSUM: 836b3d9d33b63bb0bbcd28963ffd298ed32f920d
 
 COCOAPODS: 1.8.4

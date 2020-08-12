@@ -23,6 +23,13 @@ project 'Divoc',
 target 'Divoc' do
   config = use_native_modules!
   use_react_native!(:path => config["reactNativePath"])
+
+  # TrustKit
+  pod 'TrustKit', '~> 1.6'
+
+  # Permissions
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
 end
 
 post_install do |installer|

@@ -21,6 +21,7 @@
 package fct.inesctec.stayaway.tracing.internal.networking;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.work.Constraints;
@@ -102,7 +103,12 @@ public class FakeWorker extends Worker {
                 authCodeRepository.getAccessTokenSync(new AuthenticationCodeRequestModel(FAKE_AUTH_CODE, 1));
         String accessToken = accessTokenResponse.getAccessToken();
 
-        DP3T.sendFakeInfectedRequest(context, new ExposeeAuthMethodAuthorization(getAuthorizationHeader(accessToken)));
+        DP3T.sendFakeInfectedRequest(
+                context,
+                new ExposeeAuthMethodAuthorization(getAuthorizationHeader(accessToken)),
+                () -> Log.d(TAG, "Fake request sent"),
+                () -> Log.d(TAG, "Fake request failed")
+        );
     }
 
     private String getAuthorizationHeader(String accessToken) {
