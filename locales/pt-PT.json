@@ -14,7 +14,7 @@
       },
       "fourth": {
         "title": "Proteja os outros",
-        "description": "Se lhe for diagnosticada COVID-19, obterá, junto com o resultado do teste, um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
+        "description": "Se lhe for diagnosticada COVID-19 obterá, junto com o resultado do teste, um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
       },
       "informed_consent": {
         "title": "Consentimento informado",
@@ -31,7 +31,7 @@
             "third": "• Os tipos de dados recolhidos e voluntariamente partilhadas após diagnóstico de infeção, através de chaves de identificadores aleatórias.\n• O objetivo da recolha e do respetivo tratamento, relativo ao envio de alertas.\n• A forma como serão armazenados os dados e durante quanto tempo.\n• Que posso livremente retirar o meu consentimento a qualquer momento, desinstalando a aplicação, sem que tal afete a licitude do tratamento anterior.\n• Que no caso de menores de 13 anos o consentimento só pode ser dado ou autorizado pelos titulares das responsabilidades parentais.\n• O contacto do encarregado de proteção de dados do Responsável: ",
             "fourth": "secretariado.direcao@dgs.min-saude.pt.\n"
           },
-          "data_treatment": "Consinto no tratamento dos meus dados pessoais, de acordo com a política de privacidade, incluindo os relativos à minha condição de saúde, necessários ao envio de alertas de exposição a risco de contágio, com a finalidade de ajudar à interrupção das cadeias de transmissão da doença por Covid 19."
+          "data_treatment": "Consinto o tratamento dos meus dados pessoais, de acordo com a política de privacidade, incluindo os relativos à minha condição de saúde, necessários ao envio de alertas de exposição a risco de contágio, com a finalidade de ajudar à interrupção das cadeias de transmissão da doença COVID-19."
         },
         "actions": {
           "accept": "Aceitar e Começar"
@@ -92,7 +92,7 @@
         },
         "battery": {
           "title": "Otimização de bateria ligada",
-          "message": "Desative a optimização da bateria para que a STAYAWAY COVID possa funcionar adequadamente",
+          "message": "Desative a otimização da bateria para que a STAYAWAY COVID possa funcionar adequadamente",
           "accessibility": {
             "label": "Desativar",
             "hint": "Desativar as otimizações de bateria"
@@ -179,7 +179,7 @@
       "actions": {
         "go_back": {
           "accessibility": {
-            "hint": "Para atrás",
+            "hint": "Para trás",
             "label": "Navega para trás para o ecrã de definições"
           }
         }
@@ -203,10 +203,10 @@
       "sign_up": "Registo",
       "last_sync": "Última atualização",
       "infection_status": {
-        "label": "Estado de Infecção",
+        "label": "Estado de Infeção",
         "healthy": "Saudável",
         "exposed": "Exposto",
-        "infected": "Infectado"
+        "infected": "Infetado"
       },
       "exposure_days": "Dias de exposição",
       "errors": "Erros",
@@ -287,7 +287,7 @@
     },
     "words": {
       "and": "e",
-      "enabled": "Ativo",
+      "enabled": "Ativado",
       "disabled": "Desativado"
     },
     "tab_bar": {
@@ -328,7 +328,7 @@
         "message": "Ajude a combater a COVID-19, instale a STAYAWAY COVID e junte-se a nós."
       },
       "loading": {
-        "description": "A submeter os dados. Por favor aguarde."
+        "description": "A submeter os dados... Por favor aguarde."
       },
       "permissions": {
         "title": "Permissão Negada",
@@ -351,11 +351,11 @@
       "cancel": "Cancelar"
     },
     "errors": {
-      "general": "Algo de errado aconteceu, por favor tente de novo",
+      "general": "Algo de errado aconteceu, por favor tente novamente",
       "submit": {
-        "code": "O código introduzido é inválido, por favor tente de novo"
+        "code": "O código introduzido é inválido, por favor tente novamente"
       },
-      "network": "Sem conecção à internet, conecte-se e tente novamente"
+      "network": "Sem conexão à internet, conecte-se e tente novamente"
     }
   }
 }
