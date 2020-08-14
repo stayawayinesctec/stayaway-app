@@ -152,6 +152,7 @@ def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    ndkVersion "21.3.6528147"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -227,14 +228,6 @@ android {
         }
     }
 
-
-    packagingOptions {
-        pickFirst "lib/armeabi-v7a/libc++_shared.so"
-        pickFirst "lib/arm64-v8a/libc++_shared.so"
-        pickFirst "lib/x86/libc++_shared.so"
-        pickFirst "lib/x86_64/libc++_shared.so"
-    }
-
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -259,7 +252,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
-    def dp3t_sdk_version = '1.0.2'
+    def dp3t_sdk_version = '1.0.3'
 	debugImplementation "org.dpppt:dp3t-sdk-android:$dp3t_sdk_version-calibration"
 	stagingImplementation "org.dpppt:dp3t-sdk-android:$dp3t_sdk_version"
 	releaseImplementation "org.dpppt:dp3t-sdk-android:$dp3t_sdk_version"

@@ -14,7 +14,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1EE3D90024DADD5E006C7B1F /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1EE3D8FF24DADD5E006C7B1F /* DP3TSDK */; };
-		5C8E635409871A7102F65861 /* libPods-Divoc-DivocTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7161B0CB97C2B6786008D8 /* libPods-Divoc-DivocTests.a */; };
 		80377DBA24B0F41C005452C6 /* TracingLocalPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DB924B0F41C005452C6 /* TracingLocalPush.swift */; };
 		80377DBE24B0F83F005452C6 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBC24B0F83F005452C6 /* Keychain.swift */; };
 		80377DBF24B0F83F005452C6 /* KeychainPersisted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBD24B0F83F005452C6 /* KeychainPersisted.swift */; };
@@ -79,12 +78,9 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Divoc/main.m; sourceTree = "<group>"; };
 		163457948A8FB93AA9FEED2C /* Pods-Divoc-tvOSTests.alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.alpha.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.alpha.xcconfig"; sourceTree = "<group>"; };
 		23F344EA738AAB3CFD3F45DE /* Pods-Divoc-DivocTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.debug.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.debug.xcconfig"; sourceTree = "<group>"; };
-		29E04633B5F42128E4BB78AF /* Pods-Divoc-DivocTests.productionstaging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.productionstaging.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.productionstaging.xcconfig"; sourceTree = "<group>"; };
 		2D031E2E76DF5E3B1A3F9F52 /* Pods-Divoc.productionrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.productionrelease.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.productionrelease.xcconfig"; sourceTree = "<group>"; };
 		33B3A42F7BB1035D8822F028 /* Pods-Divoc-tvOSTests.productiondebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.productiondebug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.productiondebug.xcconfig"; sourceTree = "<group>"; };
 		3849B0357C9AEAC08471F2E3 /* libPods-Divoc-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F77C67815C910E3D2A72300 /* Pods-Divoc-DivocTests.productiondebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.productiondebug.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.productiondebug.xcconfig"; sourceTree = "<group>"; };
-		4527C3CCC04008A3C832D474 /* Pods-Divoc-DivocTests.uidebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.uidebug.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.uidebug.xcconfig"; sourceTree = "<group>"; };
 		4715632ABB9E6A5A94A02166 /* Pods-Divoc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.debug.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.debug.xcconfig"; sourceTree = "<group>"; };
 		49474ADEE711F42161969173 /* Pods-Divoc-tvOS.productiondebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.productiondebug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.productiondebug.xcconfig"; sourceTree = "<group>"; };
 		4B6689D9B56928EF1708A247 /* Pods-Divoc.debug.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.debug.ui.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.debug.ui.xcconfig"; sourceTree = "<group>"; };
@@ -93,7 +89,6 @@
 		6B56C24C5E7810A097BE3A1F /* Pods-Divoc-tvOSTests.debug.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOSTests.debug.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOSTests/Pods-Divoc-tvOSTests.debug.ui.xcconfig"; sourceTree = "<group>"; };
 		7154156B1603271072789D8A /* Pods-Divoc-DivocTests.release.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.release.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.release.ui.xcconfig"; sourceTree = "<group>"; };
 		799C7903ACF58F4A9926E1FC /* Pods-Divoc-tvOS.release.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.release.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.release.ui.xcconfig"; sourceTree = "<group>"; };
-		7A7161B0CB97C2B6786008D8 /* libPods-Divoc-DivocTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc-DivocTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80377DB924B0F41C005452C6 /* TracingLocalPush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracingLocalPush.swift; sourceTree = "<group>"; };
 		80377DBC24B0F83F005452C6 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		80377DBD24B0F83F005452C6 /* KeychainPersisted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPersisted.swift; sourceTree = "<group>"; };
@@ -154,13 +149,10 @@
 		D699EBE23BD4B6E38BA14505 /* libPods-Divoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF474FE17F02EB1FD2F2F6C /* Pods-Divoc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.release.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.release.xcconfig"; sourceTree = "<group>"; };
 		E0F7827CA2898441284C50EB /* Pods-Divoc.productiondebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.productiondebug.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.productiondebug.xcconfig"; sourceTree = "<group>"; };
-		E2D2CEB2C7BED6934F39DDA7 /* Pods-Divoc-DivocTests.productionrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.productionrelease.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.productionrelease.xcconfig"; sourceTree = "<group>"; };
 		E91C8F7E70FCDA030B159C3C /* libPods-Divoc-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EF391B651C6E06417CC63C0A /* Pods-Divoc.uistaging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.uistaging.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.uistaging.xcconfig"; sourceTree = "<group>"; };
-		F25852D414D27F175762102A /* Pods-Divoc-DivocTests.uirelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.uirelease.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.uirelease.xcconfig"; sourceTree = "<group>"; };
-		F5516E52812E297AA1720358 /* Pods-Divoc-DivocTests.uistaging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.uistaging.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.uistaging.xcconfig"; sourceTree = "<group>"; };
 		F5A81386B14093725BA679DE /* Pods-Divoc.productionstaging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.productionstaging.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.productionstaging.xcconfig"; sourceTree = "<group>"; };
 		F5B14702FD4E0857F2E35B0F /* Pods-Divoc-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Divoc-tvOS/Pods-Divoc-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		F8ACDBA43CD6239366A3498E /* Pods-Divoc.uirelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.uirelease.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.uirelease.xcconfig"; sourceTree = "<group>"; };
@@ -171,7 +163,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C8E635409871A7102F65861 /* libPods-Divoc-DivocTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +217,6 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				D699EBE23BD4B6E38BA14505 /* libPods-Divoc.a */,
-				7A7161B0CB97C2B6786008D8 /* libPods-Divoc-DivocTests.a */,
 				3849B0357C9AEAC08471F2E3 /* libPods-Divoc-tvOS.a */,
 				E91C8F7E70FCDA030B159C3C /* libPods-Divoc-tvOSTests.a */,
 			);
@@ -258,24 +248,18 @@
 				6658D2F42DE088FF4EF98BD7 /* Pods-Divoc-tvOSTests.release.ui.xcconfig */,
 				A99905D20A9D5D128731C28B /* Pods-Divoc.uidebug.xcconfig */,
 				F8ACDBA43CD6239366A3498E /* Pods-Divoc.uirelease.xcconfig */,
-				4527C3CCC04008A3C832D474 /* Pods-Divoc-DivocTests.uidebug.xcconfig */,
-				F25852D414D27F175762102A /* Pods-Divoc-DivocTests.uirelease.xcconfig */,
 				823DB9F922E378F8163B1CAB /* Pods-Divoc-tvOS.uidebug.xcconfig */,
 				BE2E19305820BC2F375DEBEB /* Pods-Divoc-tvOS.uirelease.xcconfig */,
 				B702AE4D7D51F5CF4FF06F7C /* Pods-Divoc-tvOSTests.uidebug.xcconfig */,
 				0D774486A1C77640A8800354 /* Pods-Divoc-tvOSTests.uirelease.xcconfig */,
 				E0F7827CA2898441284C50EB /* Pods-Divoc.productiondebug.xcconfig */,
 				2D031E2E76DF5E3B1A3F9F52 /* Pods-Divoc.productionrelease.xcconfig */,
-				3F77C67815C910E3D2A72300 /* Pods-Divoc-DivocTests.productiondebug.xcconfig */,
-				E2D2CEB2C7BED6934F39DDA7 /* Pods-Divoc-DivocTests.productionrelease.xcconfig */,
 				49474ADEE711F42161969173 /* Pods-Divoc-tvOS.productiondebug.xcconfig */,
 				5966257F3BA4C447842464B5 /* Pods-Divoc-tvOS.productionrelease.xcconfig */,
 				33B3A42F7BB1035D8822F028 /* Pods-Divoc-tvOSTests.productiondebug.xcconfig */,
 				C6D26CCA909E2C929B716519 /* Pods-Divoc-tvOSTests.productionrelease.xcconfig */,
 				F5A81386B14093725BA679DE /* Pods-Divoc.productionstaging.xcconfig */,
 				EF391B651C6E06417CC63C0A /* Pods-Divoc.uistaging.xcconfig */,
-				29E04633B5F42128E4BB78AF /* Pods-Divoc-DivocTests.productionstaging.xcconfig */,
-				F5516E52812E297AA1720358 /* Pods-Divoc-DivocTests.uistaging.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -456,11 +440,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "DivocTests" */;
 			buildPhases = (
-				EDEC59EE409E48ACDA0281AE /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				80A4AB3592CF833C44514AB6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -604,45 +586,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Divoc/Pods-Divoc-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		80A4AB3592CF833C44514AB6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EDEC59EE409E48ACDA0281AE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Divoc-DivocTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F32D6283ED2A86363F6A4989 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -783,7 +726,6 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* ProductionDebug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F77C67815C910E3D2A72300 /* Pods-Divoc-DivocTests.productiondebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -810,7 +752,6 @@
 		};
 		00E356F71AD99517003FC87E /* ProductionRelease */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2D2CEB2C7BED6934F39DDA7 /* Pods-Divoc-DivocTests.productionrelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1112,7 +1053,6 @@
 		};
 		C98CADCB24D49B0D00F9C185 /* ProductionStaging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29E04633B5F42128E4BB78AF /* Pods-Divoc-DivocTests.productionstaging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1226,7 +1166,6 @@
 		};
 		C98CADCE24D49B1900F9C185 /* UiStaging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5516E52812E297AA1720358 /* Pods-Divoc-DivocTests.uistaging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1353,7 +1292,6 @@
 		};
 		C9BA4D812472A56200328373 /* UiDebug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4527C3CCC04008A3C832D474 /* Pods-Divoc-DivocTests.uidebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1469,7 +1407,6 @@
 		};
 		C9BA4D862472A56E00328373 /* UiRelease */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F25852D414D27F175762102A /* Pods-Divoc-DivocTests.uirelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
