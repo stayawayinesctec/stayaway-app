@@ -83,7 +83,7 @@ private class ParametersFetchOperation: Operation {
 
       var res: Any?
       if let url = URL(string: configUrl) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.certificatePinned.dataTask(with: url) { data, response, error in
           if let data = data {
             res = try? JSONSerialization.jsonObject(with: data, options: [])
           }
