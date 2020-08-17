@@ -305,8 +305,6 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
 extension TracingManagerGlue: DP3TBackgroundHandler {
   public func didScheduleBackgrounTask() {
     NSLog("Background tasks scheduled.")
-    ParametersManager.shared.runTask{
-    }
   }
 
   public func performBackgroundTasks(completionHandler: @escaping (Bool) -> Void) {
