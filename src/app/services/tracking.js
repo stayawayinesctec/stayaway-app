@@ -82,9 +82,19 @@ export const EVENTS = {
   },
 };
 
-const addUpdateEventListener = (callback) => new NativeEventEmitter(TracingManager).addListener(EVENTS[Platform.OS].UPDATE_EVENT, callback);
+let updateEventSubscriber;
+const addUpdateEventListener = (callback) => {
+  updateEventSubscriber = new NativeEventEmitter(TracingManager).addListener(EVENTS[Platform.OS].UPDATE_EVENT, callback);
+  return updateEventSubscriber;
+};
+const removeUpdateEventListener = () => {
+  if (updateEventSubscriber) {
+    updateEventSubscriber.remove();
+  }
+};
 
 export default {
   ...TracingManager,
   addUpdateEventListener,
+  removeUpdateEventListener,
 };

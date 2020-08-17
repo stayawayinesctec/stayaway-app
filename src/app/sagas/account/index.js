@@ -95,8 +95,8 @@ function* setupNewAccount() {
 function* watchTrackingStatus() {
   // Set event listener value
   const channel = eventChannel((emitter) => {
-    const subscriber = TrackingManager.addUpdateEventListener(emitter);
-    return () => subscriber.remove();
+    TrackingManager.addUpdateEventListener(emitter);
+    return () => TrackingManager.removeUpdateEventListener();
   });
 
   try {
@@ -222,11 +222,11 @@ function* submitDiagnosis({ payload: code }) {
     }
 
     // Update status
-    yield call(TrackingManager.sync);
+    yield put(accountActions.setInfectionStatus(INFECTED_STATUS.INFECTED));
     yield put(accountActions.setErrors([]));
 
     // Stop tracing
-    yield call(TrackingManager.stop);
+    yield call(TrackingManager.removeUpdateEventListener);
     yield put(accountActions.setTrackingEnabled(false));
 
     yield put(accountActions.submitDiagnosisDone());
