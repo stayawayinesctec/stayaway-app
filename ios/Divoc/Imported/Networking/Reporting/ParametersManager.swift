@@ -73,7 +73,7 @@ private class ParametersFetchOperation: Operation {
      }
     }
 
-    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now()) {
+    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now()) { [weak self] in
       let group2 = DispatchGroup()
       group2.enter()
 
@@ -125,7 +125,7 @@ private class ParametersFetchOperation: Operation {
           let build = iosversion["build"] ?? "0"
           AppVersionManager.shared.checkAppVersion(version: version,buildno: build)
         }
-        self.manager.updateParametersFetchData()
+        self?.manager.updateParametersFetchData()
       }
     }
   }
