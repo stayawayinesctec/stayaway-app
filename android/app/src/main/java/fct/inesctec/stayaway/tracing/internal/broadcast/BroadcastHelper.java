@@ -41,7 +41,7 @@ public class BroadcastHelper {
                            String eventName,
                            @Nullable Object params) {
 
-        if (reactContext != null) {
+        if (reactContext != null && reactContext.hasActiveCatalystInstance()) {
             reactContext
                     .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                     .emit(eventName, params);
