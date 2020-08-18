@@ -120,7 +120,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
       let dict = wrapState(state);
 
       NSLog(dict.description)
-      self.tmglue.father!.eventReceived(dict)
+      self.tmglue.father?.eventReceived(dict)
     }
   }
 
@@ -305,8 +305,6 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
 extension TracingManagerGlue: DP3TBackgroundHandler {
   public func didScheduleBackgrounTask() {
     NSLog("Background tasks scheduled.")
-    ParametersManager.shared.runTask{
-    }
   }
 
   public func performBackgroundTasks(completionHandler: @escaping (Bool) -> Void) {
@@ -319,6 +317,9 @@ extension TracingManagerGlue: DP3TBackgroundHandler {
     group.enter()
     ParametersManager.shared.runTask{
       group.leave()
+    }
+    group.notify(queue: .global(qos: .background)) {
+        completionHandler(true)
     }
   }
 }

@@ -13,10 +13,10 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1EE3D90024DADD5E006C7B1F /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1EE3D8FF24DADD5E006C7B1F /* DP3TSDK */; };
 		80377DBA24B0F41C005452C6 /* TracingLocalPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DB924B0F41C005452C6 /* TracingLocalPush.swift */; };
 		80377DBE24B0F83F005452C6 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBC24B0F83F005452C6 /* Keychain.swift */; };
 		80377DBF24B0F83F005452C6 /* KeychainPersisted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBD24B0F83F005452C6 /* KeychainPersisted.swift */; };
+		805EA5D824EBD6D100A3C9EB /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 805EA5D724EBD6D100A3C9EB /* DP3TSDK */; };
 		8085C61124AB55BE00B02F6F /* TracingManagerGlue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C60524AB55BE00B02F6F /* TracingManagerGlue.swift */; };
 		8085C61224AB55BE00B02F6F /* TracingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085C60624AB55BE00B02F6F /* TracingManager.m */; };
 		8085C62724AB55E500B02F6F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C61A24AB55E500B02F6F /* Roboto-Medium.ttf */; };
@@ -170,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EE3D90024DADD5E006C7B1F /* DP3TSDK in Frameworks */,
+				805EA5D824EBD6D100A3C9EB /* DP3TSDK in Frameworks */,
 				08D80D04D99F6A4FE1D678E5 /* libPods-Divoc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,7 +472,7 @@
 			);
 			name = Divoc;
 			packageProductDependencies = (
-				1EE3D8FF24DADD5E006C7B1F /* DP3TSDK */,
+				805EA5D724EBD6D100A3C9EB /* DP3TSDK */,
 			);
 			productName = Divoc;
 			productReference = 13B07F961A680F5B00A75B9A /* STAYAWAY.app */;
@@ -507,7 +507,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				1EE3D8FE24DADD5D006C7B1F /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
+				805EA5D624EBD6D100A3C9EB /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -783,7 +783,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2052;
+				CURRENT_PROJECT_VERSION = 2069;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				ENABLE_BITCODE = NO;
@@ -796,7 +796,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -825,7 +825,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2052;
+				CURRENT_PROJECT_VERSION = 2069;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VB258YUFG3;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -833,7 +833,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1026,7 +1026,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2052;
+				CURRENT_PROJECT_VERSION = 2069;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -1034,7 +1034,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1138,7 +1138,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2052;
+				CURRENT_PROJECT_VERSION = 2069;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -1146,7 +1146,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1258,7 +1258,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2052;
+				CURRENT_PROJECT_VERSION = 2069;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				ENABLE_BITCODE = NO;
@@ -1271,7 +1271,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1379,7 +1379,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2052;
+				CURRENT_PROJECT_VERSION = 2069;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H4F6Z9HC74;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -1387,7 +1387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1473,20 +1473,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1EE3D8FE24DADD5D006C7B1F /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
+		805EA5D624EBD6D100A3C9EB /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/DP-3T/dp3t-sdk-ios.git";
+			repositoryURL = "https://github.com/DP-3T/dp3t-sdk-ios";
 			requirement = {
 				kind = revision;
-				revision = c9f2db9d11f32b1236180171594f6d6ccf8e17af;
+				revision = a65a9f0b01301202ba17051cbe3a63b1192818dd;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1EE3D8FF24DADD5E006C7B1F /* DP3TSDK */ = {
+		805EA5D724EBD6D100A3C9EB /* DP3TSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1EE3D8FE24DADD5D006C7B1F /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
+			package = 805EA5D624EBD6D100A3C9EB /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
 			productName = DP3TSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
