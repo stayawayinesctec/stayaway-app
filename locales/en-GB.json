@@ -94,6 +94,13 @@
     },
     "recommendations": {
       "title": "Protect others and yourself.",
+      "more_info": {
+        "label": "More information",
+        "accessibility": {
+          "label": "More information",
+          "hint": "Links to webpage with more information"
+        }
+      },
       "healthy": {
         "distance": "Keep at least 2 metres away from others",
         "social_contacts": "Avoid unnecessary social contact",
@@ -275,7 +282,8 @@
       "ispup": "https://ispup.up.pt/",
       "keyruptive": "https://keyruptive.com/",
       "ubirider": "https://www.pick.ubirider.com/?lang=en",
-      "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude/"
+      "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude/",
+      "min_saude_covid": "https://covid19.min-saude.pt"
     },
     "words": {
       "and": "and",

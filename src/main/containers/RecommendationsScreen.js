@@ -13,12 +13,16 @@ import { useSelector } from 'react-redux';
 
 import Recommendations from '@main/components/Recommendations';
 
+import i18n from '@app/services/i18n';
+import Linking from '@app/services/linking';
+
 import { getInfectionStatus } from '@app/redux/account/selectors';
 
 export default function SettingsScreen () {
   const infectionStatus = useSelector(getInfectionStatus);
+  const onPress = () => Linking.openURL(i18n.translate('common.links.min_saude_covid'));
 
   return (
-    <Recommendations infectionStatus={infectionStatus} />
+    <Recommendations infectionStatus={infectionStatus} onPress={onPress} />
   );
 }
