@@ -43,7 +43,6 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
 
       - name: Install node dependencies
-        if: steps.node-cache.outputs.cache-hit != 'true'
         run: yarn --ignore-scripts
 
       - name: Setup environment
