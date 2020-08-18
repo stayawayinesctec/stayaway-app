@@ -147,6 +147,7 @@ extension TracingLocalPush: UNUserNotificationCenterDelegate {
   func userNotificationCenter(_: UNUserNotificationCenter,
                               willPresent notification: UNNotification,
                               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    completionHandler([.alert])
   }
 
   func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
