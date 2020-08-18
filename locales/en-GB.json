@@ -95,10 +95,10 @@
     "recommendations": {
       "title": "Protect others and yourself.",
       "more_info": {
-        "label": "More informations",
+        "label": "More information",
         "accessibility": {
-          "label": "More informations",
-          "hint": "Links to webpage with more informations"
+          "label": "More information",
+          "hint": "Links to webpage with more information"
         }
       },
       "healthy": {
