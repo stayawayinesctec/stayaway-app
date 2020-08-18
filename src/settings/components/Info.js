@@ -171,7 +171,7 @@ export default function Info(props) {
                 <Text weight='bold'>{i18n.translate('screens.settings.privacy_policy.label')}</Text>
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
               </ButtonWrapper>
-              <ButtonWrapper style={styles(colors).item} onPress={onPressTechnicalSheet} disabled={isInfected}>
+              <ButtonWrapper style={styles(colors).item} onPress={onPressTechnicalSheet}>
                 <Text weight='bold'>{i18n.translate('screens.settings.technical_sheet.label')}</Text>
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
               </ButtonWrapper>
