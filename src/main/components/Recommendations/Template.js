@@ -133,11 +133,11 @@ export default function Recommendations (props) {
             <ButtonWrapper
               onPress={onPress}
               style={styles(colors).linkContainer}
-              accessibilityLabel={i18n.translate('screens.recommendations.more_info.accessibility.label')}
-              accessibilityHint={i18n.translate('screens.recommendations.more_info.accessibility.hint')}
+              accessibilityLabel={i18n.translate('screens.recommendations.source.accessibility.label')}
+              accessibilityHint={i18n.translate('screens.recommendations.source.accessibility.hint')}
             >
-              <Icon name="more_info" width={iconSizes.size37} height={iconSizes.size37} style={styles(colors).linkIcon} />
-              <Text size="xxsmall">{ i18n.translate('screens.recommendations.more_info.label') }</Text>
+              <Icon name="source" width={iconSizes.size37} height={iconSizes.size37} style={styles(colors).linkIcon} />
+              <Text size="xxsmall">{ i18n.translate('screens.recommendations.source.label') }</Text>
             </ButtonWrapper>
           </Layout>
         </TopComponent>

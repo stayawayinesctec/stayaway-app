@@ -110,11 +110,11 @@
     },
     "recommendations": {
       "title": "Proteja-se e proteja os outros.",
-      "more_info": {
-        "label": "Mais informações",
+      "source": {
+        "label": "Fonte",
         "accessibility": {
-          "label": "Mais informações",
-          "hint": "Link para a página web com mais informações"
+          "label": "Fonte das recomendações",
+          "hint": "Link para a página web com a fonte das recomendações"
         }
       },
       "healthy": {
