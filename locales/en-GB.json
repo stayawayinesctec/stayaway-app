@@ -195,7 +195,7 @@
       "last_sync": "Last sync",
       "infection_status": {
         "label": "Infection Status",
-        "healthy": "Healty",
+        "healthy": "Healthy",
         "exposed": "Exposed",
         "infected": "Infected"
       },
