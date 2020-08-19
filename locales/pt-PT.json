@@ -186,8 +186,8 @@
       "actions": {
         "go_back": {
           "accessibility": {
-            "hint": "Para trás",
-            "label": "Navega para trás para o ecrã de definições"
+            "label": "Para trás",
+            "hint": "Navega para trás para o ecrã de definições"
           }
         }
       }
@@ -198,11 +198,19 @@
         "description": {
           "first": "Digite o código que recebeu com o seu diagnóstico ",
           "second": "para permitir à aplicação partilhar anonimamente os seus identificadores aleatórios. Este código é válido durante 24h."
+        },
+        "accessibility": {
+          "label": "Submeter",
+          "hint": "Clique para submeter o código de diagnóstico"
         }
       },
       "completed": {
         "title": "Muito obrigado!",
         "description": "A partilha anónima desta informação é valiosa para conter a transmissão da COVID-19."
+      },
+      "accessibility": {
+        "label": "Ok",
+        "hint": "Clique para submeter ir para o ecrã principal"
       }
     },
     "debug": {
@@ -230,8 +238,8 @@
       "actions": {
         "go_back": {
           "accessibility": {
-            "hint": "Para atrás",
-            "label": "Navega para trás para o ecrã de definições"
+            "label": "Para atrás",
+            "hint": "Navega para trás para o ecrã de definições"
           }
         }
       }
@@ -267,8 +275,8 @@
       "version": "v{{version}} ({{build}})",
       "go_back": {
         "accessibility": {
-          "hint": "Para atrás",
-          "label": "Navega para trás para o ecrã de definições"
+          "label": "Para atrás",
+          "hint": "Navega para trás para o ecrã de definições"
         }
       }
     }

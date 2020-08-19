@@ -170,8 +170,8 @@
       "actions": {
         "go_back": {
           "accessibility": {
-            "hint": "Go back",
-            "label": "Navigates back to the settings screen"
+            "label": "Go back",
+            "hint": "Navigates back to the settings screen"
           }
         }
       }
@@ -182,11 +182,19 @@
         "description": {
           "first": "Along with your diagnosis, you were given a code by your doctor. ",
           "second": "Enter the code to give the app permission to anonymously share your random identifiers. This code is valid for 24 hours only."
+        },
+        "accessibility": {
+          "label": "Submit",
+          "hint": "Press to submit diagnosis code"
         }
       },
       "completed": {
         "title": "Thank you!",
-        "description": "The anonymous sharing of this information is extremely important to help contain the spread of COVID-19."
+        "description": "The anonymous sharing of this information is extremely important to help contain the spread of COVID-19.",
+        "accessibility": {
+          "label": "Ok",
+          "hint": "Press to navigate to home screen"
+        }
       }
     },
     "debug": {
@@ -214,8 +222,8 @@
       "actions": {
         "go_back": {
           "accessibility": {
-            "hint": "Go back",
-            "label": "Navigates back to the settings screen"
+            "label": "Go back",
+            "hint": "Navigates back to the settings screen"
           }
         }
       }
@@ -258,8 +266,8 @@
       "actions": {
         "go_back": {
           "accessibility": {
-            "hint": "Go back",
-            "label": "Navigates back to the settings screen"
+            "label": "Go back",
+            "hint": "Navigates back to the settings screen"
           }
         }
       }
