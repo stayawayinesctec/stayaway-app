@@ -127,7 +127,13 @@ export default function Info(props) {
               </ButtonWrapper>
             </View>
             <View style={styles(colors).itemsContainer}>
-              <ButtonWrapper style={styles(colors).item} onPress={onPressTracking} disabled={isInfected}>
+              <ButtonWrapper
+                onPress={onPressTracking}
+                style={styles(colors).item}
+                disabled={isInfected}
+                accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.settings.tracking.accessibility.hint')}
+              >
                 <Text weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
                 <View style={styles(colors).trackingStatusContainer}>
                   <Text style={styles(colors).trackingStatus}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
@@ -135,8 +141,10 @@ export default function Info(props) {
                 </View>
               </ButtonWrapper>
               <ButtonWrapper
-                style={styles(colors).item}
                 onPress={onPressHowToUse}
+                style={styles(colors).item}
+                accessibilityLabel={i18n.translate('screens.settings.instructions.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.settings.instructions.accessibility.hint')}
               >
                 <Text weight='bold'>{i18n.translate('screens.settings.how_to_use.label')}</Text>
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
@@ -171,7 +179,12 @@ export default function Info(props) {
                 <Text weight='bold'>{i18n.translate('screens.settings.privacy_policy.label')}</Text>
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
               </ButtonWrapper>
-              <ButtonWrapper style={styles(colors).item} onPress={onPressTechnicalSheet}>
+              <ButtonWrapper
+                onPress={onPressTechnicalSheet}
+                style={styles(colors).item}
+                accessibilityLabel={i18n.translate('screens.settings.technical_sheet.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.settings.technical_sheet.accessibility.hint')}
+              >
                 <Text weight='bold'>{i18n.translate('screens.settings.technical_sheet.label')}</Text>
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
               </ButtonWrapper>
@@ -197,6 +210,7 @@ export default function Info(props) {
 }
 
 Info.defaultProps = {
+  trackingEnabled: false,
   isInfected: false,
   onClose: () => {},
   onPressTracking: () => {},
@@ -209,7 +223,7 @@ Info.defaultProps = {
 };
 
 Info.propTypes = {
-  trackingEnabled: PropTypes.bool.isRequired,
+  trackingEnabled: PropTypes.bool,
   isInfected: PropTypes.bool,
   onClose: PropTypes.func,
   onPressTracking: PropTypes.func,

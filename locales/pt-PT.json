@@ -132,10 +132,18 @@
     },
     "settings": {
       "tracking": {
-        "label": "Rastreio"
+        "label": "Rastreio",
+        "accessibility": {
+          "label": "Rastreio",
+          "hint": "Clique para navegar para o rastreio"
+        }
       },
       "how_to_use": {
-        "label": "Instruções de Utilização"
+        "label": "Instruções de Utilização",
+        "accessibility": {
+          "label": "Instruções de Utilização",
+          "hint": "Clique para navegar para as instruções de utilização"
+        }
       },
       "faqs": {
         "label": "Perguntas Frequentes",
@@ -162,7 +170,11 @@
         "label": "Debug"
       },
       "technical_sheet": {
-        "label": "Ficha Técnica"
+        "label": "Ficha Técnica",
+        "accessibility": {
+          "label": "Ficha Técnica",
+          "hint": "Clique para navegar para a ficha técnica"
+        }
       },
       "actions": {
         "back": {

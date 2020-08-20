@@ -116,10 +116,18 @@
     },
     "settings": {
       "tracking": {
-        "label": "Monitoring"
+        "label": "Monitoring",
+        "accessibility": {
+          "label": "Monitoring",
+          "hint": "Press to navigate to monitoring screen"
+        }
       },
       "how_to_use": {
-        "label": "How to use the app"
+        "label": "How to use the app",
+        "accessibility": {
+          "label": "How to use the app",
+          "hint": "Press to navigate to how to use the app"
+        }
       },
       "faqs": {
         "label": "FAQs",
@@ -146,7 +154,11 @@
         "label": "Debug"
       },
       "technical_sheet": {
-        "label": "Technical Sheet"
+        "label": "Technical Sheet",
+        "accessibility": {
+          "label": "Technical Sheet",
+          "hint": "Press to navigate to technical sheet"
+        }
       },
       "actions": {
         "back": {
