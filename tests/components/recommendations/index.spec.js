@@ -1,12 +1,10 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import Moment from 'moment';
 
 import i18n from '@app/services/i18n';
 import { INFECTION_STATUS } from '@app/services/tracking';
 
-import { colors, fontWeights } from '@app/common/theme';
-import Images from '@app/common/assets/images';
+import { colors } from '@app/common/theme';
 
 import Recommendations from '@main/components/Recommendations';
 
