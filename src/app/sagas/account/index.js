@@ -15,7 +15,7 @@ import { Alert, Platform } from 'react-native';
 
 import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
-import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTED_STATUS } from '@app/services/tracking';
+import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
 
 import AppRoutes from '@app/navigation/routes';
@@ -207,7 +207,7 @@ function* submitDiagnosis({ payload: code }) {
     }
 
     // Update status
-    yield put(accountActions.setInfectionStatus(INFECTED_STATUS.INFECTED));
+    yield put(accountActions.setInfectionStatus(INFECTION_STATUS.INFECTED));
     yield put(accountActions.setErrors([]));
 
     // Stop tracing
@@ -297,7 +297,7 @@ function* switchTracking() {
 
 function* updateStatus({ payload: status }) {
   // Check if user has been exposed
-  if (status.infectionStatus === INFECTED_STATUS.EXPOSED) {
+  if (status.infectionStatus === INFECTION_STATUS.EXPOSED) {
     const { exposureDays = [] } = status;
 
     // Get last exposure day

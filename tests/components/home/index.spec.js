@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react-native';
 import Moment from 'moment';
 
 import i18n from '@app/services/i18n';
-import { INFECTED_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracking';
 
 import { fontWeights } from '@app/common/theme';
 import Images from '@app/common/assets/images';
@@ -13,7 +13,7 @@ import Home from '@main/components/Home';
 describe('Home Screen', () => {
   describe('Home renders correctly', () => {
     it('When infection status is healthy.', () => {
-      const infectionStatus = INFECTED_STATUS.HEALTHY;
+      const infectionStatus = INFECTION_STATUS.HEALTHY;
       const onPress = jest.fn();
       const onLongPress = jest.fn();
       const lastSync = new Moment();
@@ -56,7 +56,7 @@ describe('Home Screen', () => {
       expect(image.props.source).toBe(Images.healthy);
     });
     it('When infection status is exposed.', () => {
-      const infectionStatus = INFECTED_STATUS.EXPOSED;
+      const infectionStatus = INFECTION_STATUS.EXPOSED;
       const lastSync = new Moment();
       const error = {
         status: false,
@@ -104,7 +104,7 @@ describe('Home Screen', () => {
       expect(image.props.source).toBe(Images.exposed);
     });
     it('When infection status is infected.', () => {
-      const infectionStatus = INFECTED_STATUS.INFECTED;
+      const infectionStatus = INFECTION_STATUS.INFECTED;
       const lastSync = new Moment();
       const error = {
         status: false,
@@ -143,7 +143,7 @@ describe('Home Screen', () => {
       expect(image.props.source).toBe(Images.infected);
     });
     it('When an error occurs.', () => {
-      const infectionStatus = INFECTED_STATUS.HEALTHY;
+      const infectionStatus = INFECTION_STATUS.HEALTHY;
       const lastSync = new Moment();
       const error = {
         status: true,
@@ -180,7 +180,7 @@ describe('Home Screen', () => {
       expect(accessibilityHint).toBeTruthy();
     });
     it('When tracking is diabled.', () => {
-      const infectionStatus = INFECTED_STATUS.HEALTHY;
+      const infectionStatus = INFECTION_STATUS.HEALTHY;
       const lastSync = new Moment();
       const error = {
         status: false,
@@ -212,7 +212,7 @@ describe('Home Screen', () => {
   });
   describe('Home buttons interaction work', () => {
     it('When press settings button.', () => {
-      const infectionStatus = INFECTED_STATUS.HEALTHY;
+      const infectionStatus = INFECTION_STATUS.HEALTHY;
       const onPress = jest.fn();
       const onLongPress = jest.fn();
       const lastSync = new Moment();
@@ -249,7 +249,7 @@ describe('Home Screen', () => {
       expect(onLongPress.mock.calls.length).toBe(1);
     });
     it('When press error button.', () => {
-      const infectionStatus = INFECTED_STATUS.HEALTHY;
+      const infectionStatus = INFECTION_STATUS.HEALTHY;
       const lastSync = new Moment();
       const onPressError = jest.fn();
       const error = {

@@ -12,18 +12,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import RecommendationsHealthy from '@main/components/Recommendations/RecommendationsHealthy';
-import RecommendationsInfected from '@main/components/Recommendations/RecommendationsInfected';
+import RecommendationsExposed from '@main/components/Recommendations/RecommendationsExposed';
 
-import { INFECTED_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracking';
 
 export default function Recommendations (props) {
   const { infectionStatus, ...otherProps } = props;
 
-  if (infectionStatus === INFECTED_STATUS.HEALTHY ) {
+  if (infectionStatus === INFECTION_STATUS.HEALTHY ) {
     return <RecommendationsHealthy {...otherProps} />;
   }
 
-  return <RecommendationsInfected {...otherProps} />;
+  return <RecommendationsExposed {...otherProps} />;
 }
 
 Recommendations.defaultProps = {

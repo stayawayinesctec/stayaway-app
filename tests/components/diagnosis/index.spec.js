@@ -2,14 +2,14 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
 import i18n from '@app/services/i18n';
-import { INFECTED_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracking';
 
 import Diagnosis from '@main/components/Diagnosis';
 
 describe('Diagnosis Screen', () => {
   describe('Diagnosis code input renders correctly', () => {
     it('When infection status is healthy.', () => {
-      const infectionStatus = INFECTED_STATUS.HEALTHY;
+      const infectionStatus = INFECTION_STATUS.HEALTHY;
       const loading = false;
       const error = '';
 
@@ -36,7 +36,7 @@ describe('Diagnosis Screen', () => {
       expect(submit).toBeDisabled();
     });
     it('When infection status is exposed.', () => {
-      const infectionStatus = INFECTED_STATUS.EXPOSED;
+      const infectionStatus = INFECTION_STATUS.EXPOSED;
       const loading = false;
       const error = '';
 
@@ -63,7 +63,7 @@ describe('Diagnosis Screen', () => {
       expect(submit).toBeDisabled();
     });
     it('When an diagnosis code is entered.', () => {
-      const infectionStatus = INFECTED_STATUS.HEALTHY;
+      const infectionStatus = INFECTION_STATUS.HEALTHY;
       const loading = false;
       const error = '';
 
@@ -86,7 +86,7 @@ describe('Diagnosis Screen', () => {
       expect(submit).toBeEnabled();
     });
     it('When diagnosis code is being submitted.', () => {
-      const infectionStatus = INFECTED_STATUS.HEALTHY;
+      const infectionStatus = INFECTION_STATUS.HEALTHY;
       const loading = false;
       const onSubmit = jest.fn();
       const error = '';
@@ -116,7 +116,7 @@ describe('Diagnosis Screen', () => {
   });
   describe('Diagnosis completed renders correctly', () => {
     it('When infection status is infected.', () => {
-      const infectionStatus = INFECTED_STATUS.INFECTED;
+      const infectionStatus = INFECTION_STATUS.INFECTED;
       const loading = false;
       const error = '';
 
@@ -137,7 +137,7 @@ describe('Diagnosis Screen', () => {
       expect(button).toBeTruthy();
     });
     it('When "Ok" button is clicked.', () => {
-      const infectionStatus = INFECTED_STATUS.INFECTED;
+      const infectionStatus = INFECTION_STATUS.INFECTED;
       const loading = false;
       const onPress = jest.fn();
       const error = '';

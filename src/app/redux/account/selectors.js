@@ -12,7 +12,7 @@ import { Platform } from 'react-native';
 import { createSelector } from 'reselect';
 import Moment from 'moment';
 
-import { INFECTED_STATUS, ERRORS } from '@app/services/tracking';
+import { INFECTION_STATUS, ERRORS } from '@app/services/tracking';
 
 const SERVICE_ERRORS = [
   ERRORS[Platform.OS].BLE_DISABLED,
@@ -43,17 +43,17 @@ export const getLastSync = createSelector(
 
 export const isHealthy = createSelector(
   state => state.account,
-  account => account.status.infectionStatus === INFECTED_STATUS.HEALTHY,
+  account => account.status.infectionStatus === INFECTION_STATUS.HEALTHY,
 );
 
 export const isExposed = createSelector(
   state => state.account,
-  account => account.status.infectionStatus === INFECTED_STATUS.EXPOSED,
+  account => account.status.infectionStatus === INFECTION_STATUS.EXPOSED,
 );
 
 export const isInfected = createSelector(
   state => state.account,
-  account => account.status.infectionStatus === INFECTED_STATUS.INFECTED,
+  account => account.status.infectionStatus === INFECTION_STATUS.INFECTED,
 );
 
 export const getInfectionStatus = createSelector(

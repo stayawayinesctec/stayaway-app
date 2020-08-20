@@ -12,7 +12,7 @@ import { NativeModules, NativeEventEmitter, Platform } from 'react-native';
 
 const { TracingManager } = NativeModules;
 
-export const INFECTED_STATUS = {
+export const INFECTION_STATUS = {
   HEALTHY: 0,
   EXPOSED: 1,
   INFECTED: 2,

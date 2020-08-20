@@ -123,7 +123,7 @@
         "wash_hands": "Lave ou desinfete as mãos regularmente",
         "feeling_sick": "Se se sentir doente, fique em casa"
       },
-      "infected": {
+      "exposed": {
         "encloused_spaces": "Não esteja em espaços fechados com quem não resida consigo",
         "stay_home": "Mantenha-se em casa",
         "increase_hygiene": "Reforce a higiene das mãos e das superfícies",

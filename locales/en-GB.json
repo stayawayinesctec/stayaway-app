@@ -107,7 +107,7 @@
         "wash_hands": "Wash or sanitise your hands as frequently as possible",
         "feeling_sick": "If you feel unwell, stay at home"
       },
-      "infected": {
+      "exposed": {
         "encloused_spaces": "Avoid socialising in enclosed spaces with people outside of your household",
         "stay_home": "Stay at home",
         "increase_hygiene": "Reinforce hand hygiene and cleaning of surfaces",
