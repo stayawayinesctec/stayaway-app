@@ -260,9 +260,11 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
         reject(self.UNKNOWN_EXCEPTION, e.localizedDescription, e);
 
       case .success:
+        TracingLocalPush.shared.resetSyncWarningTriggers(lastSuccess: Date())
         resolve(self.SUCCESS);
       case .skipped:
         NSLog("Sync was skipped.")
+        TracingLocalPush.shared.resetSyncWarningTriggers(lastSuccess: Date())
         resolve(self.SUCCESS);
       }
     }
@@ -311,6 +313,7 @@ extension TracingManagerGlue: DP3TBackgroundHandler {
     NSLog("Background tasks performing.")
     let group = DispatchGroup()
     group.enter()
+    TracingLocalPush.shared.resetSyncWarningTriggers(lastSuccess: Date())
     FakePublishManager.shared.runTask {
       group.leave()
     }
