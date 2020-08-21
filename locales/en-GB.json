@@ -57,7 +57,7 @@
         }
       },
       "exposed": {
-        "title": "Have you been near someone tested positive for COVID-19?",
+        "title": "You have been close to someone with COVID-19.",
         "description": {
           "first": "It doesn’t mean you are infected, ",
           "second": "but you should self-isolate and contact health services.\n\n",
