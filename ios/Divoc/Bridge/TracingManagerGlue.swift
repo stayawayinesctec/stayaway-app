@@ -276,17 +276,18 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
 
     ReportingManager.shared.report(covidCode: code, isFakeRequest: false) { (problem) in
       if problem != nil {
+        NSLog("Exposed submission failed. " + problem.debugDescription);
+        
         let error = problem!
         switch(error){
-        case .failure(error: let error):
-          reject(self.UNKNOWN_EXCEPTION, self.UNKNOWN_EXCEPTION, error);
-        case .invalidCode:
-          reject(self.INVALID_CODE_EXCEPTION, self.INVALID_CODE_EXCEPTION, NetworkError.networkError);
-        case .DP3TTracingError(error: let error):
-          reject(self.UNKNOWN_EXCEPTION, self.UNKNOWN_EXCEPTION, error);
+          case .invalidCode:
+            reject(self.INVALID_CODE_EXCEPTION, self.INVALID_CODE_EXCEPTION, NetworkError.networkError);
+          case .failure:
+            reject(self.UNKNOWN_HOST_EXCEPTION, self.UNKNOWN_HOST_EXCEPTION, NetworkError.networkError);
+          default:
+            reject(self.UNKNOWN_EXCEPTION, self.UNKNOWN_EXCEPTION, NetworkError.networkError);
         }
-      }
-      else{
+     } else {
         NSLog("Exposed submission success.")
         resolve(self.SUCCESS)
       }
