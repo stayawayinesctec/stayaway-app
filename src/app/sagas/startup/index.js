@@ -21,7 +21,6 @@ import startupActions, { startupTypes } from '@app/redux/startup';
 import accountActions, { accountTypes, START_TRACKING_RESULTS } from '@app/redux/account';
 import onboardingActions from '@app/redux/onboarding';
 import { isOnboarding } from '@app/redux/onboarding/selectors';
-import servicesActions, { servicesTypes } from '@app/redux/services';
 
 function* startup() {
   try {
@@ -36,10 +35,6 @@ function* startup() {
       yield put(onboardingActions.setOnboarding(true));
       return;
     }
-
-    // Register services listnener
-    yield put(servicesActions.registerListeners());
-    yield take(servicesTypes.LISTENERS_REGISTERED);
 
     // Get previous stored state
     const trackingEnabled = yield call([Storage, 'getItem'], 'tracking_enabled', 'false');

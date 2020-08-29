@@ -13,13 +13,11 @@ import { call, fork } from 'redux-saga/effects';
 // Sagas
 import startupSagas from '@app/sagas/startup';
 import accountSagas from '@app/sagas/account';
-import servicesSagas from '@app/sagas/services';
 import permissionsSagas from '@app/sagas/permissions';
 
 export function* watch() {
   yield fork(startupSagas);
   yield fork(accountSagas);
-  yield fork(servicesSagas);
   yield fork(permissionsSagas);
 }
 

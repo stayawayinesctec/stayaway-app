@@ -14,7 +14,6 @@ import { reducer as startupReducer } from '@app/redux/startup';
 import { reducer as onboardingReducer } from '@app/redux/onboarding';
 import { reducer as accountReducer } from '@app/redux/account';
 import { reducer as modalsReducer } from '@app/redux/modals';
-import { reducer as servicesReducer } from '@app/redux/services';
 
 import rootSaga from '@app/sagas';
 import configStore from './configStore';
@@ -24,7 +23,6 @@ const appReducer = combineReducers({
   account: accountReducer,
   onboarding: onboardingReducer,
   modals: modalsReducer,
-  services: servicesReducer,
 });
 
 export default () => {

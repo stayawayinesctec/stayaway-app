@@ -38,6 +38,7 @@ import org.dpppt.android.sdk.models.ApplicationInfo;
 import org.dpppt.android.sdk.models.ExposeeAuthMethodAuthorization;
 import org.dpppt.android.sdk.util.SignatureUtil;
 
+import java.net.UnknownHostException;
 import java.security.PublicKey;
 import java.util.Date;
 import java.util.concurrent.CancellationException;
@@ -439,10 +440,10 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
                         Log.d(TAG, "AuthenticateInput failed: " + throwable.getClass().getSimpleName() + ": " + throwable.getMessage());
                         if (throwable instanceof InvalidCodeError) {
                             promise.reject(INVALID_CODE_EXCEPTION.toString(), INVALID_CODE_EXCEPTION.toString());
-                        } else if (throwable instanceof ResponseError) {
-                            promise.reject(UNKNOWN_EXCEPTION.toString(), UNKNOWN_EXCEPTION.toString());
+                        } else if (throwable instanceof UnknownHostException) {
+                            promise.reject(UNKNOWN_HOST_EXCEPTION.toString(), UNKNOWN_HOST_EXCEPTION.toString());
                         } else {
-                            promise.reject(UNKNOWN_HOST_EXCEPTION.toString(), UNKNOWN_EXCEPTION.toString());
+                            promise.reject(UNKNOWN_EXCEPTION.toString(), UNKNOWN_EXCEPTION.toString());
                         }
                     }
                 });

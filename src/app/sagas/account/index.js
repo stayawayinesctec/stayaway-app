@@ -22,18 +22,12 @@ import AppRoutes from '@app/navigation/routes';
 
 import modalsActions, { modalsTypes } from '@app/redux/modals';
 import accountActions, { accountTypes, START_TRACKING_RESULTS } from '@app/redux/account';
-import servicesActions, { servicesTypes } from '@app/redux/services';
-import { isNetworkOn } from '@app/redux/services/selectors';
 import onboardingActions from '@app/redux/onboarding';
 import { isTrackingEnabled, getStatus } from '@app/redux/account/selectors';
 import permissionsActions, { permissionsTypes } from '@app/redux/permissions';
 
 function* setupNewAccount() {
   yield put(accountActions.setupNewAccountPending());
-
-  // Register services listeners
-  yield put(servicesActions.registerListeners());
-  yield take(servicesTypes.LISTENERS_REGISTERED);
 
   // Set default state
   yield put(accountActions.updateStatus({
@@ -163,15 +157,6 @@ function* startTracking() {
 }
 
 function* submitDiagnosis({ payload: code }) {
-  // Check if network is available
-  const networkOn = yield select(isNetworkOn);
-  if (!networkOn) {
-    yield put(modalsActions.openNetworkModal());
-    yield take(modalsTypes.NETWORK_MODAL_OPEN);
-    yield put(accountActions.submitDiagnosisError(i18n.translate('common.errors.network')));
-    return;
-  }
-
   // Open loading modal
   yield put(accountActions.submitDiagnosisPending());
   yield put(modalsActions.openLoadingModal());
