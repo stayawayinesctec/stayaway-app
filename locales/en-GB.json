@@ -118,7 +118,7 @@
       "tracking": {
         "label": "Monitoring"
       },
-      "instructions": {
+      "how_to_use": {
         "label": "How to use the app"
       },
       "faqs": {
@@ -210,7 +210,7 @@
         }
       }
     },
-    "operation": {
+    "how_to_use": {
       "actions": {
         "go_back": {
           "accessibility": {

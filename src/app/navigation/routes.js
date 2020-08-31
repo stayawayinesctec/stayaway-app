@@ -21,7 +21,7 @@ const routes = {
 
   // Settings
   SETTINGS: "Settings",
-  OPERATION: "Operation",
+  HOW_TO_USE: "HowToUse",
   INFO: "Info",
   TECHNICAL_SHEET: "TechnicalSheet",
   TRACKING: "Tracking",

@@ -10,17 +10,17 @@
 
 import React from 'react';
 
-import Operation from '@settings/components/Operation';
+import HowToUse from '@settings/components/HowToUse';
 
 import NavigationService from '@app/services/navigation';
 
 import AppRoutes from '@app/navigation/routes';
 
-export default function OperationScreen () {
+export default function HowToUseScreen () {
   const props = {
     onPress: () => NavigationService.navigate(AppRoutes.INFO),
     onClose: () => NavigationService.navigate(AppRoutes.INFO),
   };
 
-  return <Operation {...props} />;
+  return <HowToUse {...props} />;
 }

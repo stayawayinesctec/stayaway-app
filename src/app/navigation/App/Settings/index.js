@@ -15,7 +15,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AppRoutes from '@app/navigation/routes';
 
 import InfoScreen from '@settings/containers/InfoScreen';
-import OperationScreen from '@settings/containers/OperationScreen';
+import HowToUseScreen from '@settings/containers/HowToUseScreen';
 import TrackingScreen from '@settings/containers/TrackingScreen';
 import DebugScreen from '@settings/containers/DebugScreen';
 import TechnicalSheetScreen from '@settings/containers/TechnicalSheetScreen';
@@ -32,8 +32,8 @@ export default () => (
       component={InfoScreen}
     />
     <Screen
-      name={AppRoutes.OPERATION}
-      component={OperationScreen}
+      name={AppRoutes.HOW_TO_USE}
+      component={HowToUseScreen}
     />
     <Screen
       name={AppRoutes.TRACKING}

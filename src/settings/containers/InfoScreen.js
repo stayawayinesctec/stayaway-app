@@ -32,8 +32,8 @@ export default function InfoScreen () {
     isInfected: useSelector(isInfected),
     onClose: () => NavigationService.navigate(AppRoutes.HOME),
     onPressTracking: () => NavigationService.navigate(AppRoutes.TRACKING),
-    onPressInstructions: () => {
-      NavigationService.navigate(AppRoutes.OPERATION);
+    onPressHowToUse: () => {
+      NavigationService.navigate(AppRoutes.HOW_TO_USE);
     },
     onPressFaqs: () => Linking.openURL(i18n.translate('common.links.faqs')),
     onPressTermsOfUse: () => Linking.openURL(i18n.translate('common.links.terms_of_use')),

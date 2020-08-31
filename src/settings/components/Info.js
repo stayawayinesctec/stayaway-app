@@ -104,7 +104,7 @@ export default function Info(props) {
     onClose,
     onPressTermsOfUse,
     onPressPrivacyPolicy,
-    onPressInstructions,
+    onPressHowToUse,
     onPressFaqs,
     onPressTracking,
     onPressTechnicalSheet,
@@ -136,9 +136,9 @@ export default function Info(props) {
               </ButtonWrapper>
               <ButtonWrapper
                 style={styles(colors).item}
-                onPress={onPressInstructions}
+                onPress={onPressHowToUse}
               >
-                <Text weight='bold'>{i18n.translate('screens.settings.instructions.label')}</Text>
+                <Text weight='bold'>{i18n.translate('screens.settings.how_to_use.label')}</Text>
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
               </ButtonWrapper>
               <ButtonWrapper
@@ -200,7 +200,7 @@ Info.defaultProps = {
   isInfected: false,
   onClose: () => {},
   onPressTracking: () => {},
-  onPressInstructions: () => {},
+  onPressHowToUse: () => {},
   onPressFaqs: () => {},
   onPressTermsOfUse: () => {},
   onPressPrivacyPolicy: () => {},
@@ -213,7 +213,7 @@ Info.propTypes = {
   isInfected: PropTypes.bool,
   onClose: PropTypes.func,
   onPressTracking: PropTypes.func,
-  onPressInstructions: PropTypes.func,
+  onPressHowToUse: PropTypes.func,
   onPressFaqs: PropTypes.func,
   onPressTermsOfUse: PropTypes.func,
   onPressPrivacyPolicy: PropTypes.func,

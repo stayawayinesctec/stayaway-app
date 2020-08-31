@@ -32,14 +32,14 @@ const styles = (colors) => StyleSheet.create({
     justifyContent: 'center',
   },
   topContainer: {
-    height: '40%',
+    height: 300,
   },
   top: {
     alignItems: 'flex-start',
     backgroundColor: colors.transparent,
   },
   bottomContainer: {
-    height: '60%',
+    flex: 1,
   },
   mainHeader: {
     marginBottom: sizes.size24,
@@ -122,8 +122,8 @@ export default function Template (props) {
                   <ButtonWrapper
                     onPress={onClose}
                     style={styles(colors).closeButton}
-                    accessibilityLabel={i18n.translate('screens.operation.actions.go_back.accessibility.hint.label')}
-                    accessibilityHint={i18n.translate('screens.operation.actions.go_back.accessibility.hint.hint')}
+                    accessibilityLabel={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.label')}
+                    accessibilityHint={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.hint')}
                   >
                     <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.blueDark} />
                   </ButtonWrapper>

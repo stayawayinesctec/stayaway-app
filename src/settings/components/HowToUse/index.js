@@ -19,7 +19,7 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 import Images from '@app/common/assets/images';
 import { sizes } from '@app/common/theme';
 
-import Template from '@settings/components/Operation/Template';
+import Template from '@settings/components/HowToUse/Template';
 
 import i18n from '@app/services/i18n';
 
@@ -89,7 +89,7 @@ const renderPagination = (index, total, {colors, insets}) => {
   );
 };
 
-export default function Operation (props) {
+export default function HowToUse (props) {
   const { onPress, onClose } = props;
 
   const [index, setIndex] = useState(0);
@@ -142,12 +142,12 @@ export default function Operation (props) {
   );
 }
 
-Operation.defaultProps = {
+HowToUse.defaultProps = {
   onPress: () => {},
   onClose: () => {},
 };
 
-Operation.propTypes = {
+HowToUse.propTypes = {
   onPress: PropTypes.func,
   onClose: PropTypes.func,
 };
