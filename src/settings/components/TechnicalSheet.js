@@ -186,8 +186,8 @@ export default function TechnicalSheet (props) {
                   style={styles(colors).item}
                   onPress={onPressUbirider}
                   accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.technical_sheet.ispup.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.technical_sheet.ispup.accessibility.hint')}
+                  accessibilityLabel={i18n.translate('screens.technical_sheet.ubirider.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.technical_sheet.ubirider.accessibility.hint')}
                 >
                   <Image source={Images.logo_ubirider} />
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
