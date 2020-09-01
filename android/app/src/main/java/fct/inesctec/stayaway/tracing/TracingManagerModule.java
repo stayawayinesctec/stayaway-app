@@ -160,7 +160,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void start(final Promise promise) {
-        DP3T.start(TracingManagerModule.reactContext.getCurrentActivity(),
+        DP3T.start(getCurrentActivity(),
                 () -> {
                     Log.d(TAG, "EN started");
                     promise.resolve(EN_SUCCEEDED);
@@ -383,7 +383,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     }
 
     private void informExposed(Date onsetDate, String authorizationHeader, Promise promise) {
-        DP3T.sendIAmInfected(TracingManagerModule.reactContext.getCurrentActivity(),
+        DP3T.sendIAmInfected(getCurrentActivity(),
                 onsetDate,
                 new ExposeeAuthMethodAuthorization(authorizationHeader),
                 new ResponseCallback<Void>() {
