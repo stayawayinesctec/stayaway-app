@@ -90,24 +90,15 @@ function* watchAppStateChange() {
   });
 
   try {
-    let previousState = '';
+    let previousState = 'unknown';
 
     while (true) {
       const nextState = yield take(channel);
       const onboarding = yield select(isOnboarding);
 
-      if (previousState !== nextState) {
-        if (onboarding || Configuration.UI) {
-          return;
-        }
-
+      if (! onboarding && previousState !== nextState) {
         if (nextState === 'active') {
           yield call(TrackingManager.sync);
-          const status = yield call(TrackingManager.getStatus);
-          console.log(status);
-
-          // Update redux store
-          yield put(accountActions.updateStatus(status));
         }
 
         previousState = nextState;
@@ -120,5 +111,8 @@ function* watchAppStateChange() {
 
 export default function* root() {
   yield fork(watchStartup);
-  yield fork(watchAppStateChange);
+
+  if (! Configuration.UI) {
+    yield fork(watchAppStateChange);
+  }
 }
