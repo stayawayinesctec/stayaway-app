@@ -4,14 +4,24 @@
 <br />
 
 <div align="center">
-  <img widht="256" height="256" src="docs/logo.png">
+  <img width="256" height="256" src="docs/logo.png" />
+  <div>
+    <!-- App Store -->
+    <a href="https://apps.apple.com/pt/app/id1519479652">
+      <img height="40" src="https://stayawaycovid.pt/wp-content/uploads/2020/07/apple2-07.png" alt="Download on the App Store" />
+    </a>
+    <!-- Google Play -->
+    <a href="https://play.google.com/store/apps/details?id=fct.inesctec.stayaway">
+      <img height="40" src="https://stayawaycovid.pt/wp-content/uploads/2020/07/google2-08.png" alt="Get it on Google Play">
+    </a>
+  </div>
 </div>
 
 <div align="center">
     <!-- Version -->
     <a href="https://github.com/stayawayinesctec/stayaway-app">
-      <img alt="v.0.2.7"
-      src="https://img.shields.io/badge/Version-0.2.7-blue">
+      <img alt="v.1.0.0"
+      src="https://img.shields.io/badge/Version-1.0.0-blue">
     </a>
     <!-- Build -->
     <a href="https://github.com/stayawayinesctec/stayaway-app/actions?query=workflow%3A%22Android+Production+Build%22">
