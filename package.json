@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/stayawayinesctec/stayaway-app/issues"
   },
-  "homepage": "https://stayaway.inesctec.pt",
+  "homepage": "https://stayawaycovid.pt/landing-page/",
   "engines": {
     "node": ">= 10.x"
   },
