@@ -181,7 +181,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void stop(Promise promise) {
-        DP3T.stop(TracingManagerModule.reactContext);
+        DP3T.stop(getReactApplicationContext());
         promise.resolve(null);
     }
 
@@ -190,7 +190,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void sync(Promise promise) {
-        DP3T.sync(TracingManagerModule.reactContext);
+        DP3T.sync(getReactApplicationContext());
         promise.resolve(null);
     }
 
@@ -208,7 +208,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void getStatus(Promise promise) {
-        TracingStatus status = DP3T.getStatus(TracingManagerModule.reactContext);
+        TracingStatus status = DP3T.getStatus(getReactApplicationContext());
 
         WritableMap writableMap = WritableMapHelper.wrapTracingStatus(status);
 
@@ -238,10 +238,10 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void resetInfectionStatus(Promise promise) {
-        boolean resettable = DP3T.getIAmInfectedIsResettable(reactContext);
+        boolean resettable = DP3T.getIAmInfectedIsResettable(getReactApplicationContext());
 
         if (resettable) {
-            DP3T.resetInfectionStatus(TracingManagerModule.reactContext);
+            DP3T.resetInfectionStatus(getReactApplicationContext());
         }
 
         promise.resolve(resettable);
@@ -252,7 +252,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void isIgnoringBatteryOptimizationsPermission(Promise promise) {
-        boolean batteryOptDeactivated = DeviceFeatureHelper.isBatteryOptimizationDeactivated(TracingManagerModule.reactContext);
+        boolean batteryOptDeactivated = DeviceFeatureHelper.isBatteryOptimizationDeactivated(getReactApplicationContext());
 
         promise.resolve(batteryOptDeactivated);
     }
@@ -268,9 +268,9 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
         TracingManagerModule.pendingBatteryPromise = promise;
 
         Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
-                Uri.parse("package:" + TracingManagerModule.reactContext.getPackageName()));
+                Uri.parse("package:" + getReactApplicationContext().getPackageName()));
 
-        if (intent.resolveActivity(TracingManagerModule.reactContext.getPackageManager()) != null) {
+        if (intent.resolveActivity(getReactApplicationContext().getPackageManager()) != null) {
             currentActivity.startActivityForResult(intent, REQUEST_IGNORE_BATTERY_OPTIMIZATIONS_CODE, null);
         }
     }
@@ -280,7 +280,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void isLocationServiceEnabled(Promise promise) {
-        boolean locationEnabled = LocationServiceUtil.isLocationEnabled(TracingManagerModule.reactContext);
+        boolean locationEnabled = LocationServiceUtil.isLocationEnabled(getReactApplicationContext());
 
         promise.resolve(locationEnabled);
     }
@@ -296,7 +296,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
         TracingManagerModule.pendingLocationPromise = promise;
 
         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        if (intent.resolveActivity(TracingManagerModule.reactContext.getPackageManager()) != null) {
+        if (intent.resolveActivity(getReactApplicationContext().getPackageManager()) != null) {
             currentActivity.startActivityForResult(intent, REQUEST_LOCATION_SERVICE_CODE, null);
         }
     }
@@ -322,7 +322,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
         TracingManagerModule.pendingBluetoothPromise = promise;
 
         Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-        if (intent.resolveActivity(TracingManagerModule.reactContext.getPackageManager()) != null) {
+        if (intent.resolveActivity(getReactApplicationContext().getPackageManager()) != null) {
             currentActivity.startActivityForResult(intent, REQUEST_BLUETOOTH_SERVICE_CODE, null);
         }
     }
@@ -332,7 +332,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void checkGAENAvailability(Promise promise) {
-        DP3T.checkGaenAvailability(reactContext, gaenAvailability -> promise.resolve(gaenAvailability.ordinal()));
+        DP3T.checkGaenAvailability(getReactApplicationContext(), gaenAvailability -> promise.resolve(gaenAvailability.ordinal()));
     }
 
     /**
@@ -417,7 +417,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     }
 
     private void authenticateInput(String authCode, Promise promise) {
-        AuthCodeRepository authCodeRepository = new AuthCodeRepository(reactContext);
+        AuthCodeRepository authCodeRepository = new AuthCodeRepository(getReactApplicationContext());
         authCodeRepository.getAccessToken(new AuthenticationCodeRequestModel(authCode, 0),
                 new ResponseCallback<AuthenticationCodeResponseModel>() {
                     @Override
