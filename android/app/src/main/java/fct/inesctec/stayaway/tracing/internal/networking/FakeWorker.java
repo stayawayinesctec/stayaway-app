@@ -21,10 +21,10 @@
 package fct.inesctec.stayaway.tracing.internal.networking;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.work.Constraints;
+import androidx.work.Data;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.ListenableWorker;
 import androidx.work.NetworkType;
@@ -38,12 +38,15 @@ import org.dpppt.android.sdk.internal.logger.Logger;
 import org.dpppt.android.sdk.models.ExposeeAuthMethodAuthorization;
 
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import fct.inesctec.stayaway.BuildConfig;
 import fct.inesctec.stayaway.tracing.internal.networking.errors.ResponseError;
 import fct.inesctec.stayaway.tracing.internal.networking.models.AuthenticationCodeRequestModel;
 import fct.inesctec.stayaway.tracing.internal.networking.models.AuthenticationCodeResponseModel;
+import fct.inesctec.stayaway.tracing.internal.storage.SecureStorage;
 import fct.inesctec.stayaway.tracing.internal.util.ExponentialDistribution;
 
 public class FakeWorker extends Worker {
@@ -52,28 +55,42 @@ public class FakeWorker extends Worker {
     private static final String WORK_TAG = "fct.inesctec.stayaway.FakeWorker";
     private static final String FAKE_AUTH_CODE = "000000000000";
 
+    private static final long FACTOR_HOUR_MILLIS = 60 * 60 * 1000L;
+	private static final long FACTOR_DAY_MILLIS = 24 * FACTOR_HOUR_MILLIS;
+	private static final long MAX_DELAY_HOURS = 48;
     private static final float SAMPLING_RATE = BuildConfig.IS_RELEASE.equals("FALSE") ? 0.2f : 1.0f;
-    private static final long FACTOR_DAY_MILLIS = 24 * 60 * 60 * 1000L;
+	private static final String KEY_T_DUMMY = "KEY_T_DUMMY";
+
+	public static Clock clock = new ClockImpl();
 
     public static void safeStartFakeWorker(Context context) {
-        startFakeWorker(context, ExistingWorkPolicy.KEEP);
-    }
+		long t_dummy = SecureStorage.getInstance(context).getTDummy();
+		if (t_dummy == -1) {
+			t_dummy = clock.currentTimeMillis() + clock.syncInterval();
+			SecureStorage.getInstance(context).setTDummy(t_dummy);
+		}
+		startFakeWorker(context, ExistingWorkPolicy.KEEP, t_dummy);
+	}
 
-    private static void startFakeWorker(Context context, ExistingWorkPolicy policy) {
-        double newDelayDays = ExponentialDistribution.sampleFromStandard() / SAMPLING_RATE;
-        long newDelayMillis = Math.round(FACTOR_DAY_MILLIS * newDelayDays);
+    private static void startFakeWorker(Context context, ExistingWorkPolicy policy, long t_dummy) {
+        long now = clock.currentTimeMillis();
+		long executionDelay = Math.max(0L, t_dummy - now);
+		double executionDelayDays = (double) executionDelay / FACTOR_DAY_MILLIS;
 
-        Logger.d(TAG, "scheduled for execution in " + newDelayDays + " days");
+		Logger.d(TAG, "scheduled for execution in " + executionDelayDays + " days");
 
-        Constraints constraints = new Constraints.Builder()
-                .setRequiredNetworkType(NetworkType.CONNECTED)
-                .build();
+		Constraints constraints = new Constraints.Builder()
+				.setRequiredNetworkType(NetworkType.CONNECTED)
+				.build();
 
-        OneTimeWorkRequest fakeWorker = new OneTimeWorkRequest.Builder(FakeWorker.class)
-                .setConstraints(constraints)
-                .setInitialDelay(newDelayMillis, TimeUnit.MILLISECONDS)
-                .build();
-        WorkManager.getInstance(context).enqueueUniqueWork(WORK_TAG, policy, fakeWorker);
+		OneTimeWorkRequest fakeWorker = new OneTimeWorkRequest.Builder(FakeWorker.class)
+				.setConstraints(constraints)
+				.setInitialDelay(executionDelay, TimeUnit.MILLISECONDS)
+				.setInputData(new Data.Builder().putLong(KEY_T_DUMMY, t_dummy).build())
+				.addTag(WORK_TAG)
+				.build();
+
+		WorkManager.getInstance(context).enqueueUniqueWork(WORK_TAG, policy, fakeWorker);
     }
 
     public FakeWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
@@ -81,38 +98,80 @@ public class FakeWorker extends Worker {
     }
 
     @NonNull
-    @Override
-    public ListenableWorker.Result doWork() {
-        Logger.d(TAG, "start");
-        DP3T.addWorkerStartedToHistory(getApplicationContext(), "fake");
-        try {
-            executeFakeRequest(getApplicationContext());
-            startFakeWorker(getApplicationContext(), ExistingWorkPolicy.APPEND);
-        } catch (IOException | ResponseError e) {
-            Logger.e(TAG, "failed", e);
-            return Result.retry();
-        }
-        Logger.d(TAG, "finished with success");
-        return Result.success();
-    }
+	@Override
+	public ListenableWorker.Result doWork() {
+		long now = clock.currentTimeMillis();
+		long t_dummy = getInputData().getLong(KEY_T_DUMMY, now);
+		while (t_dummy < now) {
+			Logger.d(TAG, "start");
+			// only do request if it was planned to do in the last 48h
+			if (t_dummy >= now - FACTOR_HOUR_MILLIS * MAX_DELAY_HOURS) {
+				DP3T.addWorkerStartedToHistory(getApplicationContext(), "fake");
+				boolean success = executeFakeRequest(getApplicationContext());
+				if (success) {
+					Logger.d(TAG, "finished with success");
+				} else {
+					Logger.e(TAG, "failed");
+					return Result.retry();
+				}
+			} else {
+				Logger.d(TAG, "outdated request is dropped.");
+			}
+			t_dummy += clock.syncInterval();
+			SecureStorage.getInstance(getApplicationContext()).setTDummy(t_dummy);
+		}
 
-    private void executeFakeRequest(Context context)
-            throws IOException, ResponseError {
-        AuthCodeRepository authCodeRepository = new AuthCodeRepository(context);
-        AuthenticationCodeResponseModel accessTokenResponse =
-                authCodeRepository.getAccessTokenSync(new AuthenticationCodeRequestModel(FAKE_AUTH_CODE, 1));
-        String accessToken = accessTokenResponse.getAccessToken();
+		startFakeWorker(getApplicationContext(), ExistingWorkPolicy.APPEND, t_dummy);
+		return Result.success();
+	}
 
-        DP3T.sendFakeInfectedRequest(
-                context,
-                new ExposeeAuthMethodAuthorization(getAuthorizationHeader(accessToken)),
-                () -> Log.d(TAG, "Fake request sent"),
-                () -> Log.d(TAG, "Fake request failed")
-        );
-    }
+    private boolean executeFakeRequest(Context context) {
+		try {
+			AuthCodeRepository authCodeRepository = new AuthCodeRepository(context);
+			AuthenticationCodeResponseModel accessTokenResponse =
+					authCodeRepository.getAccessTokenSync(new AuthenticationCodeRequestModel(FAKE_AUTH_CODE, 1));
+			String accessToken = accessTokenResponse.getAccessToken();
+
+			CountDownLatch countdownLatch = new CountDownLatch(1);
+			AtomicBoolean error = new AtomicBoolean(false);
+			DP3T.sendFakeInfectedRequest(context, new ExposeeAuthMethodAuthorization(getAuthorizationHeader(accessToken)),
+					() -> {
+						countdownLatch.countDown();
+					},
+					() -> {
+						error.set(true);
+						countdownLatch.countDown();
+					});
+			countdownLatch.await();
+			if (error.get()) return false;
+			return true;
+		} catch (IOException | ResponseError | InterruptedException e) {
+			Logger.e(TAG, "fake request failed", e);
+			return false;
+		}
+	}
 
     private String getAuthorizationHeader(String accessToken) {
         return "Bearer " + accessToken;
     }
 
+    public interface Clock {
+		long syncInterval();
+
+		long currentTimeMillis();
+
+	}
+
+
+	public static class ClockImpl implements Clock {
+		public long syncInterval() {
+			double newDelayDays = ExponentialDistribution.sampleFromStandard() / SAMPLING_RATE;
+			return (long) (newDelayDays * FACTOR_DAY_MILLIS);
+		}
+
+		public long currentTimeMillis() {
+			return System.currentTimeMillis();
+		}
+
+	}
 }

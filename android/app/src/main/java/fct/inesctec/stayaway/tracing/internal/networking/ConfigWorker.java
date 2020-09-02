@@ -65,20 +65,22 @@ public class ConfigWorker extends Worker {
     private static final String WORK_TAG = "fct.inesctec.stayaway.ConfigWorker";
 
     public static void scheduleConfigWorkerIfOutdated(Context context) {
-        if (SecureStorage.getInstance(context).getLastConfigLoadSuccess() <
-                System.currentTimeMillis() - MAX_AGE_OF_CONFIG_FOR_RELOAD_AT_APP_START) {
-            Constraints constraints = new Constraints.Builder()
-                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                    .build();
+        SecureStorage secureStorage = SecureStorage.getInstance(context);
+		if (secureStorage.getLastConfigLoadSuccess() < System.currentTimeMillis() - MAX_AGE_OF_CONFIG_FOR_RELOAD_AT_APP_START ||
+				secureStorage.getLastConfigLoadSuccessAppVersion() != BuildConfig.VERSION_CODE ||
+				secureStorage.getLastConfigLoadSuccessSdkInt() != Build.VERSION.SDK_INT) {
+			Constraints constraints = new Constraints.Builder()
+					.setRequiredNetworkType(NetworkType.CONNECTED)
+					.build();
 
-            PeriodicWorkRequest periodicWorkRequest =
-                    new PeriodicWorkRequest.Builder(ConfigWorker.class, REPEAT_INTERVAL_CONFIG_DAYS, TimeUnit.DAYS)
-                            .setConstraints(constraints)
-                            .build();
+			PeriodicWorkRequest periodicWorkRequest =
+					new PeriodicWorkRequest.Builder(ConfigWorker.class, REPEAT_INTERVAL_CONFIG_DAYS, TimeUnit.DAYS)
+							.setConstraints(constraints)
+							.build();
 
-            WorkManager workManager = WorkManager.getInstance(context);
-            workManager.enqueueUniquePeriodicWork(WORK_TAG, ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
-        }
+			WorkManager workManager = WorkManager.getInstance(context);
+			workManager.enqueueUniquePeriodicWork(WORK_TAG, ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
+		}
     }
 
     public ConfigWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
