@@ -222,7 +222,7 @@
     },
     "technical_sheet": {
       "title": "Technical Sheet",
-      "coordination": "Coordenação",
+      "coordination": "Coordination",
       "partners": "Partners",
       "inesctec": {
         "accessibility": {
@@ -333,7 +333,7 @@
       "gaen": {
         "enable": {
           "title": "Exposure Notification Logging",
-          "description": "Exposure Notification Loggin needs to be active in order for STAYAWAY COVID to work properly"
+          "description": "Exposure Notification Logging needs to be active in order for STAYAWAY COVID to work properly"
         },
         "export": {
           "title": "Sharing your random IDs",
