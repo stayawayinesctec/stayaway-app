@@ -65,7 +65,7 @@ describe('Info Screen', () => {
 
       expect(closeButton).toBeTruthy();
       fireEvent.press(closeButton);
-      expect(onClose.mock.calls.length).toBe(1);
+      expect(onClose).toHaveBeenCalled();
     });
     it('When press tracking button.', () => {
       const onPressTracking = jest.fn();
@@ -80,7 +80,7 @@ describe('Info Screen', () => {
 
       expect(trackingButton).toBeTruthy();
       fireEvent.press(trackingButton);
-      expect(onPressTracking.mock.calls.length).toBe(1);
+      expect(onPressTracking).toHaveBeenCalled();
     });
     it('When press instructions button.', () => {
       const onPressInstructions = jest.fn();
@@ -95,7 +95,7 @@ describe('Info Screen', () => {
 
       expect(instructionsButton).toBeTruthy();
       fireEvent.press(instructionsButton);
-      expect(onPressInstructions.mock.calls.length).toBe(1);
+      expect(onPressInstructions).toHaveBeenCalled();
     });
     it('When press faqs button.', () => {
       const onPressFaqs = jest.fn();
@@ -110,7 +110,7 @@ describe('Info Screen', () => {
 
       expect(faqsButton).toBeTruthy();
       fireEvent.press(faqsButton);
-      expect(onPressFaqs.mock.calls.length).toBe(1);
+      expect(onPressFaqs).toHaveBeenCalled();
     });
     it('When press terms of use button.', () => {
       const onPressTermsOfUse = jest.fn();
@@ -125,7 +125,7 @@ describe('Info Screen', () => {
 
       expect(termsButton).toBeTruthy();
       fireEvent.press(termsButton);
-      expect(onPressTermsOfUse.mock.calls.length).toBe(1);
+      expect(onPressTermsOfUse).toHaveBeenCalled();
     });
     it('When press privacy policy button.', () => {
       const onPressPrivacyPolicy = jest.fn();
@@ -140,7 +140,7 @@ describe('Info Screen', () => {
 
       expect(privacyPolicyButton).toBeTruthy();
       fireEvent.press(privacyPolicyButton);
-      expect(onPressPrivacyPolicy.mock.calls.length).toBe(1);
+      expect(onPressPrivacyPolicy).toHaveBeenCalled();
     });
     it('When press technical sheet button.', () => {
       const onPressTechnicalSheet = jest.fn();
@@ -155,7 +155,7 @@ describe('Info Screen', () => {
 
       expect(technicalSheetButton).toBeTruthy();
       fireEvent.press(technicalSheetButton);
-      expect(onPressTechnicalSheet.mock.calls.length).toBe(1);
+      expect(onPressTechnicalSheet).toHaveBeenCalled();
     });
   });
 });

@@ -72,7 +72,7 @@ describe('HowToUse Screen', () => {
       expect(closeButton).toBeTruthy();
 
       fireEvent.press(closeButton);
-      expect(onClose.mock.calls.length).toBe(1);
+      expect(onClose).toHaveBeenCalled();
     });
     it('When press HowToUse ok button', () => {
       const onPress = jest.fn();
@@ -88,7 +88,7 @@ describe('HowToUse Screen', () => {
       expect(okButton).toBeTruthy();
 
       fireEvent.press(okButton);
-      expect(onPress.mock.calls.length).toBe(1);
+      expect(onPress).toHaveBeenCalled();
     });
   });
 });

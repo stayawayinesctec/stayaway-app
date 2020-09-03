@@ -140,7 +140,7 @@ describe('Onboarding Screen', () => {
       expect(informedConsentAcceptButton).toBeDisabled();
 
       fireEvent.press(informedConsentAcceptButton);
-      expect(onPress.mock.calls.length).toBe(1);
+      expect(onPress).toHaveBeenCalled();
     });
   });
 });

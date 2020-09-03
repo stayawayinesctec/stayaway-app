@@ -47,7 +47,7 @@ describe('Technical Sheet Screen', () => {
 
       expect(closeButton).toBeTruthy();
       fireEvent.press(closeButton);
-      expect(onClose.mock.calls.length).toBe(1);
+      expect(onClose).toHaveBeenCalled();
     });
     it('When press coordinator button.', () => {
       const onPressCoordinator = jest.fn();
@@ -64,7 +64,7 @@ describe('Technical Sheet Screen', () => {
 
       expect(coordinatorButton).toBeTruthy();
       fireEvent.press(coordinatorButton);
-      expect(onPressCoordinator.mock.calls.length).toBe(1);
+      expect(onPressCoordinator).toHaveBeenCalled();
     });
     it('When press ISPUP button.', () => {
       const onPressISPUP = jest.fn();
@@ -81,7 +81,7 @@ describe('Technical Sheet Screen', () => {
 
       expect(ispupButton).toBeTruthy();
       fireEvent.press(ispupButton);
-      expect(onPressISPUP.mock.calls.length).toBe(1);
+      expect(onPressISPUP).toHaveBeenCalled();
     });
     it('When press Keyruptive button.', () => {
       const onPressKeyruptive = jest.fn();
@@ -98,7 +98,7 @@ describe('Technical Sheet Screen', () => {
 
       expect(keyruptiveButton).toBeTruthy();
       fireEvent.press(keyruptiveButton);
-      expect(onPressKeyruptive.mock.calls.length).toBe(1);
+      expect(onPressKeyruptive).toHaveBeenCalled();
     });
     it('When press Ubirider button.', () => {
       const onPressUbirider = jest.fn();
@@ -115,7 +115,7 @@ describe('Technical Sheet Screen', () => {
 
       expect(ubiriderButton).toBeTruthy();
       fireEvent.press(ubiriderButton);
-      expect(onPressUbirider.mock.calls.length).toBe(1);
+      expect(onPressUbirider).toHaveBeenCalled();
     });
     it('When press SPMS button.', () => {
       const onPressSPMS = jest.fn();
@@ -132,7 +132,7 @@ describe('Technical Sheet Screen', () => {
 
       expect(spmsButton).toBeTruthy();
       fireEvent.press(spmsButton);
-      expect(onPressSPMS.mock.calls.length).toBe(1);
+      expect(onPressSPMS).toHaveBeenCalled();
     });
   });
 });

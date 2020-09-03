@@ -69,7 +69,7 @@ describe('Recommendations Screen', () => {
 
       expect(linkButton).toBeTruthy();
       fireEvent.press(linkButton);
-      expect(onPress.mock.calls.length).toBe(1);
+      expect(onPress).toHaveBeenCalled();
     });
   });
 });

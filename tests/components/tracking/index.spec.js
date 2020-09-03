@@ -45,7 +45,7 @@ describe('Tracking Screen', () => {
 
       expect(closeButton).toBeTruthy();
       fireEvent.press(closeButton);
-      expect(onClose.mock.calls.length).toBe(1);
+      expect(onClose).toHaveBeenCalled();
     });
     it('When press tracking button.', () => {
       const onPress = jest.fn();
@@ -57,7 +57,7 @@ describe('Tracking Screen', () => {
 
       expect(trackingButton).toBeTruthy();
       fireEvent.press(trackingButton);
-      expect(onPress.mock.calls.length).toBe(1);
+      expect(onPress).toHaveBeenCalled();
     });
     it('When press tracking switch.', () => {
       const onPress = jest.fn();
@@ -69,7 +69,7 @@ describe('Tracking Screen', () => {
 
       expect(trackingSwitch).toBeTruthy();
       fireEvent.press(trackingSwitch);
-      expect(onPress.mock.calls.length).toBe(1);
+      expect(onPress).toHaveBeenCalled();
     });
   });
 });

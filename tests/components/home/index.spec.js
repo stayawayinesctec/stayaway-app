@@ -245,8 +245,8 @@ describe('Home Screen', () => {
       expect(settingsButton).toBeTruthy();
       fireEvent.press(settingsButton);
       fireEvent(settingsButton, 'onLongPress');
-      expect(onPress.mock.calls.length).toBe(1);
-      expect(onLongPress.mock.calls.length).toBe(1);
+      expect(onPress).toHaveBeenCalled();
+      expect(onLongPress).toHaveBeenCalled();
     });
     it('When press error button.', () => {
       const infectionStatus = INFECTION_STATUS.HEALTHY;
@@ -278,7 +278,7 @@ describe('Home Screen', () => {
 
       expect(errorButton).toBeTruthy();
       fireEvent.press(errorButton);
-      expect(onPressError.mock.calls.length).toBe(1);
+      expect(onPressError).toHaveBeenCalled();
     });
   });
 });

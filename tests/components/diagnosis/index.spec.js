@@ -110,8 +110,8 @@ describe('Diagnosis Screen', () => {
       fireEvent.changeText(input, '123456789012');
       expect(submit).toBeEnabled();
       fireEvent.press(submit);
-      expect(onSubmit.mock.calls.length).toBe(1);
-      expect(onSubmit.mock.calls[0][0]).toBe('123456789012');
+      expect(onSubmit).toHaveBeenCalled();
+      expect(onSubmit).toHaveBeenCalledWith('123456789012');
     });
   });
   describe('Diagnosis completed renders correctly', () => {
@@ -156,7 +156,7 @@ describe('Diagnosis Screen', () => {
       expect(button).toBeTruthy();
 
       fireEvent.press(button);
-      expect(onPress.mock.calls.length).toBe(1);
+      expect(onPress).toHaveBeenCalled();
     });
   });
 });
