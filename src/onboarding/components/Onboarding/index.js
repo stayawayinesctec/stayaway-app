@@ -19,7 +19,7 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 import Images from '@app/common/assets/images';
 import { sizes } from '@app/common/theme';
 
-import InformedConsent from '@onboarding/components/InformedConsent';
+import InformedConsent from '@onboarding/components/Onboarding/InformedConsent';
 import Template from '@onboarding/components/Onboarding/Template';
 
 import i18n from '@app/services/i18n';
