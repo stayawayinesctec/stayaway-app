@@ -16,7 +16,7 @@
 		80377DBA24B0F41C005452C6 /* TracingLocalPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DB924B0F41C005452C6 /* TracingLocalPush.swift */; };
 		80377DBE24B0F83F005452C6 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBC24B0F83F005452C6 /* Keychain.swift */; };
 		80377DBF24B0F83F005452C6 /* KeychainPersisted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80377DBD24B0F83F005452C6 /* KeychainPersisted.swift */; };
-		805EA5D824EBD6D100A3C9EB /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 805EA5D724EBD6D100A3C9EB /* DP3TSDK */; };
+		80781E4024FFFAB600A59033 /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 80781E3F24FFFAB600A59033 /* DP3TSDK */; };
 		8085C61124AB55BE00B02F6F /* TracingManagerGlue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085C60524AB55BE00B02F6F /* TracingManagerGlue.swift */; };
 		8085C61224AB55BE00B02F6F /* TracingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085C60624AB55BE00B02F6F /* TracingManager.m */; };
 		8085C62724AB55E500B02F6F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8085C61A24AB55E500B02F6F /* Roboto-Medium.ttf */; };
@@ -170,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				805EA5D824EBD6D100A3C9EB /* DP3TSDK in Frameworks */,
+				80781E4024FFFAB600A59033 /* DP3TSDK in Frameworks */,
 				08D80D04D99F6A4FE1D678E5 /* libPods-Divoc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,7 +472,7 @@
 			);
 			name = Divoc;
 			packageProductDependencies = (
-				805EA5D724EBD6D100A3C9EB /* DP3TSDK */,
+				80781E3F24FFFAB600A59033 /* DP3TSDK */,
 			);
 			productName = Divoc;
 			productReference = 13B07F961A680F5B00A75B9A /* STAYAWAY.app */;
@@ -507,7 +507,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				805EA5D624EBD6D100A3C9EB /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
+				80781E3E24FFFAB600A59033 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -1473,20 +1473,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		805EA5D624EBD6D100A3C9EB /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
+		80781E3E24FFFAB600A59033 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/DP-3T/dp3t-sdk-ios";
 			requirement = {
 				kind = revision;
-				revision = a65a9f0b01301202ba17051cbe3a63b1192818dd;
+				revision = 2b376c927023f0855b4cf4db759c5c711a9bdae7;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		805EA5D724EBD6D100A3C9EB /* DP3TSDK */ = {
+		80781E3F24FFFAB600A59033 /* DP3TSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 805EA5D624EBD6D100A3C9EB /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
+			package = 80781E3E24FFFAB600A59033 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
 			productName = DP3TSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
