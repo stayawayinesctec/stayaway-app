@@ -240,6 +240,12 @@
     },
     "how_to_use": {
       "actions": {
+        "ok": {
+          "accessibility": {
+            "label": "Ok",
+            "hint": "Navigates back to the settings screen"
+          }
+        },
         "go_back": {
           "accessibility": {
             "label": "Go back",

@@ -254,6 +254,12 @@
     },
     "operation": {
       "actions": {
+        "ok": {
+          "accessibility": {
+            "label": "Ok",
+            "hint": "Navega para trás para o ecrã de definições"
+          }
+        },
         "go_back": {
           "accessibility": {
             "label": "Para atrás",
