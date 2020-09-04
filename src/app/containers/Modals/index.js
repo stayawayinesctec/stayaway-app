@@ -18,6 +18,7 @@ import TooMuchRequestsModal from '@app/components/TooMuchRequestsModal';
 import InvalidCodeModal from '@app/components/InvalidCodeModal';
 import ExpiredCodeModal from '@app/components/ExpiredCodeModal';
 import LoadingModal from '@app/components/LoadingModal';
+import ProtectorModal from '@app/components/ProtectorModal';
 
 import modalsActions from '@app/redux/modals';
 import {
@@ -27,6 +28,7 @@ import {
   isInvalidCodeModalOpen,
   isExpiredCodeModalOpen,
   isLoadingModalOpen,
+  isProtectorModalOpen,
 } from '@app/redux/modals/selectors';
 
 export default function Modals () {
@@ -80,6 +82,14 @@ export default function Modals () {
     onModalHide: () => dispatch(modalsActions.loadingModalClosed()),
   };
 
+  const protector = {
+    visible: useSelector(isProtectorModalOpen),
+    onClose: () => {},
+    onBackButtonPress: () => {},
+    onModalShow: () => dispatch(modalsActions.protectorModalOpen()),
+    onModalHide: () => dispatch(modalsActions.protectorModalClosed()),
+  };
+
   return (
     <View>
       <NetworkModal {...network} />
@@ -88,6 +98,7 @@ export default function Modals () {
       <InvalidCodeModal {...invalidCode} />
       <ExpiredCodeModal {...expiredCode} />
       <LoadingModal {...loading} />
+      <ProtectorModal {...protector} />
     </View>
   );
 }

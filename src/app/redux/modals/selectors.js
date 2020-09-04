@@ -40,6 +40,11 @@ export const isLoadingModalOpen = createSelector(
   modals => modals.loading,
 );
 
+export const isProtectorModalOpen = createSelector(
+  state => state.modals,
+  modals => modals.protector,
+);
+
 export default {
   isNetworkModalOpen,
   isServerErrorModalOpen,
@@ -47,4 +52,5 @@ export default {
   isInvalidCodeModalOpen,
   isExpiredCodeModalOpen,
   isLoadingModalOpen,
+  isProtectorModalOpen,
 };

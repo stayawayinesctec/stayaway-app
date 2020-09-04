@@ -17,6 +17,7 @@ import Configuration from '@app/services/configuration';
 import TrackingManager, { ERRORS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
 
+import modalsActions, { modalsTypes } from '@app/redux/modals';
 import startupActions, { startupTypes } from '@app/redux/startup';
 import accountActions, { accountTypes, TRACKING_RESULTS } from '@app/redux/account';
 import onboardingActions from '@app/redux/onboarding';
@@ -107,21 +108,28 @@ function* watchAppStateChange() {
 
       if (! onboarding && previousState !== nextState) {
         if (nextState === 'active') {
-          try{
-            yield call(TrackingManager.sync);
+          yield put(modalsActions.closeProtectorModal());
+          yield take(modalsTypes.PROTECTOR_MODAL_CLOSED);
 
-            // Get status
-            const status = yield call(TrackingManager.getStatus);
-            yield put(accountActions.updateStatus(status));
-          }
-          catch (error) {
+          try {
+            if (! Configuration.UI) {
+              yield call(TrackingManager.sync);
+
+              // Get status
+              const status = yield call(TrackingManager.getStatus);
+              yield put(accountActions.updateStatus(status));
+            }
+          } catch (error) {
             // Sync error. Probably exposure check limit reached.
             console.log(error);
           }
+        } else if (nextState === 'inactive') {
+          yield put(modalsActions.openProtectorModal());
+          yield take(modalsTypes.PROTECTOR_MODAL_OPEN);
         }
-
-        previousState = nextState;
       }
+
+      previousState = nextState;
     }
   } finally {
     channel.close();
@@ -130,8 +138,5 @@ function* watchAppStateChange() {
 
 export default function* root() {
   yield fork(watchStartup);
-
-  if (! Configuration.UI) {
-    yield fork(watchAppStateChange);
-  }
+  yield fork(watchAppStateChange);
 }
