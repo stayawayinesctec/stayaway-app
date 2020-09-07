@@ -98,7 +98,13 @@ function* watchAppStateChange() {
 
       if (! onboarding && previousState !== nextState) {
         if (nextState === 'active') {
-          yield call(TrackingManager.sync);
+          try{
+            yield call(TrackingManager.sync);
+          }
+          catch (error) {
+            // Sync error. Probably exposure check limit reached. 
+            console.log(error);
+          }
         }
 
         previousState = nextState;
