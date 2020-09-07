@@ -60,7 +60,6 @@ import fct.inesctec.stayaway.tracing.internal.util.WritableMapHelper;
 
 public class TracingManagerModule extends ReactContextBaseJavaModule {
     private static ReactApplicationContext reactContext;
-    private static SecureStorage secureStorage;
 
     private static final String TAG = "TracingManager";
 
@@ -126,8 +125,6 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
         );
 
         initDP3T(context);
-
-        secureStorage = SecureStorage.getInstance(context);
 
         if (BuildConfig.IS_RELEASE.equals("TRUE") && BuildConfig.IS_UI.equals("FALSE")) {
             FakeWorker.safeStartFakeWorker(context);
@@ -222,6 +219,8 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void exposed(String authCode, final Promise promise) {
+        Context context = getReactApplicationContext();
+        SecureStorage secureStorage = SecureStorage.getInstance(context);
         long lastTimestamp = secureStorage.getLastInformRequestTime();
         String lastAuthToken = secureStorage.getLastInformToken();
 
@@ -238,10 +237,11 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void resetInfectionStatus(Promise promise) {
-        boolean resettable = DP3T.getIAmInfectedIsResettable(getReactApplicationContext());
+        Context context = getReactApplicationContext();
+        boolean resettable = DP3T.getIAmInfectedIsResettable(context);
 
         if (resettable) {
-            DP3T.resetInfectionStatus(getReactApplicationContext());
+            DP3T.resetInfectionStatus(context);
         }
 
         promise.resolve(resettable);
@@ -262,15 +262,16 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void requestIgnoreBatteryOptimizationsPermission(Promise promise) {
+        Context context = getReactApplicationContext();
         Activity currentActivity = getCurrentActivity();
 
         // Store the promise to resolve/reject when permission request returns
         TracingManagerModule.pendingBatteryPromise = promise;
 
         Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
-                Uri.parse("package:" + getReactApplicationContext().getPackageName()));
+                Uri.parse("package:" + context.getPackageName()));
 
-        if (intent.resolveActivity(getReactApplicationContext().getPackageManager()) != null) {
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
             currentActivity.startActivityForResult(intent, REQUEST_IGNORE_BATTERY_OPTIMIZATIONS_CODE, null);
         }
     }
@@ -383,6 +384,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     }
 
     private void informExposed(Date onsetDate, String authorizationHeader, Promise promise) {
+        Context context = getReactApplicationContext();
         DP3T.sendIAmInfected(getCurrentActivity(),
                 onsetDate,
                 new ExposeeAuthMethodAuthorization(authorizationHeader),
@@ -390,6 +392,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
                     @Override
                     public void onSuccess(Void response) {
                         Log.d(TAG, "Exposed success");
+                        SecureStorage secureStorage = SecureStorage.getInstance(context);
                         secureStorage.clearInformTimeAndCodeAndToken();
 
                         promise.resolve(response);
@@ -417,13 +420,14 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     }
 
     private void authenticateInput(String authCode, Promise promise) {
-        AuthCodeRepository authCodeRepository = new AuthCodeRepository(getReactApplicationContext());
+        Context context = getReactApplicationContext();
+        AuthCodeRepository authCodeRepository = new AuthCodeRepository(context);
         authCodeRepository.getAccessToken(new AuthenticationCodeRequestModel(authCode, 0),
                 new ResponseCallback<AuthenticationCodeResponseModel>() {
                     @Override
                     public void onSuccess(AuthenticationCodeResponseModel response) {
                         String accessToken = response.getAccessToken();
-
+                        SecureStorage secureStorage = SecureStorage.getInstance(context);
                         secureStorage.saveInformTimeAndCodeAndToken(authCode, accessToken);
 
                         Date onsetDate = JwtUtil.getOnsetDate(accessToken);
