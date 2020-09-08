@@ -22,7 +22,7 @@ import accountActions, { accountTypes, START_TRACKING_RESULTS } from '@app/redux
 import onboardingActions from '@app/redux/onboarding';
 import { isOnboarding } from '@app/redux/onboarding/selectors';
 
-function* startup() {
+export function* startup() {
   try {
     // Set i18 initial config
     i18n.setI18nConfig();

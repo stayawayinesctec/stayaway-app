@@ -1,6 +1,14 @@
+/**
+  * Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+  *
+  * This Source Code Form is subject to the terms of the European Union
+  * Public License, v. 1.2. If a copy of the EUPL was not distributed with
+  * this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+  *
+  * SPDX-License-Identifier: EUPL-1.2
+  */
+
 import { runSaga } from 'redux-saga';
-import { put, take } from 'redux-saga/effects';
-import { cloneableGenerator } from '@redux-saga/testing-utils';
 import { RESULTS } from 'react-native-permissions';
 
 import {
@@ -46,7 +54,7 @@ describe('Permissions Sagas', () => {
       const dispatched = [];
       await runSaga({
         dispatch: (action) => dispatched.push(action),
-      }, checkPermission, { payload: NOTIFICATIONS_PERMISSION});
+      }, checkPermission, { payload: NOTIFICATIONS_PERMISSION });
 
       // Assert
       expect(dispatched).toHaveLength(1);
