@@ -14,7 +14,11 @@ export const Platform = {
 };
 
 export const I18nManager = {
-  forceRTL: () => {},
+  forceRTL: jest.fn(),
+};
+
+export const Alert = {
+  alert: jest.fn(),
 };
 
 export const NativeModules = {
@@ -23,8 +27,8 @@ export const NativeModules = {
   },
   NativeEventEmitter () {
     return {
-      addListener: () => {},
-      removeListener: () => {},
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
     };
   },
 };

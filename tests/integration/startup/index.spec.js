@@ -15,7 +15,7 @@ import Moment from 'moment';
 
 import onboardingActions from '@app/redux/onboarding';
 import startupActions from '@app/redux/startup';
-import accountActions, { START_TRACKING_RESULTS } from '@app/redux/account';
+import accountActions, { TRACKING_RESULTS } from '@app/redux/account';
 import servicesActions from '@app/redux/services';
 import { ERRORS } from '@app/services/tracking';
 
@@ -134,7 +134,7 @@ describe('Startup Sagas', () => {
         dispatch: (action) => dispatched.push(action),
        }, startup);
       channel.put(servicesActions.listenersRegistered());
-      channel.put(accountActions.startTracking(START_TRACKING_RESULTS.SUCCESS));
+      channel.put(accountActions.startTracking(TRACKING_RESULTS.SUCCESS));
       await saga.toPromise();
 
       // Assert
@@ -181,7 +181,7 @@ describe('Startup Sagas', () => {
         dispatch: (action) => dispatched.push(action),
        }, startup);
       channel.put(servicesActions.listenersRegistered());
-      channel.put(accountActions.startTracking(START_TRACKING_RESULTS.GAEN));
+      channel.put(accountActions.startTracking(TRACKING_RESULTS.GAEN));
       await saga.toPromise();
 
       // Assert
@@ -229,7 +229,7 @@ describe('Startup Sagas', () => {
         dispatch: (action) => dispatched.push(action),
        }, startup);
       channel.put(servicesActions.listenersRegistered());
-      channel.put(accountActions.startTracking(START_TRACKING_RESULTS.FAILED));
+      channel.put(accountActions.startTracking(TRACKING_RESULTS.FAILED));
       await saga.toPromise();
 
       // Assert
