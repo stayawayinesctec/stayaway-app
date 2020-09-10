@@ -10,6 +10,7 @@
 
 export const Platform = {
   OS: 'android',
+  isTesting: true,
   select: (specifics) => specifics.android,
 };
 
@@ -22,9 +23,6 @@ export const Alert = {
 };
 
 export const NativeModules = {
-  TracingManager: {
-    isIgnoringBatteryOptimizationsPermission: () => Promise.resolve(true),
-  },
   NativeEventEmitter () {
     return {
       addListener: jest.fn(),

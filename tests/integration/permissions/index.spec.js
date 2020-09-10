@@ -8,8 +8,11 @@
   * SPDX-License-Identifier: EUPL-1.2
   */
 
+import { Platform } from 'react-native';
 import { runSaga } from 'redux-saga';
-import { RESULTS } from 'react-native-permissions';
+import { RESULTS, requestNotifications, checkNotifications } from 'react-native-permissions';
+
+import TrackingManager from '@app/services/tracking';
 
 import {
   checkNotificationsPermission,
@@ -27,121 +30,400 @@ import permissionsActions, {
   BATTERY_PERMISSION,
 } from '@app/redux/permissions';
 
+// Mock storage file
+jest.mock('@app/services/tracking');
+
 describe('Permissions Sagas', () => {
-  it('check notifications permission should return granted', async () => {
-    // Execute
-    const dispatched = [];
-    const result = await runSaga({
-      dispatch: (action) => dispatched.push(action),
-    }, checkNotificationsPermission);
+  describe('Check Notifications Permission', () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
 
-    // Assert
-    expect(result.result()).toBe(RESULTS.GRANTED);
-  });
-  it('check battery permission should return granted', async () => {
-    // Execute
-    const dispatched = [];
-    const result = await runSaga({
-      dispatch: (action) => dispatched.push(action),
-    }, checkBatteryPermission);
+    it('should return granted', async () => {
+      // Prepare
+      checkNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.GRANTED }));
 
-    // Assert
-    expect(result.result()).toBe(RESULTS.GRANTED);
+      // Execute
+      const dispatched = [];
+      const result = await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, checkNotificationsPermission).toPromise();
+
+      // Assert
+      expect(result).toBe(RESULTS.GRANTED);
+      expect(checkNotifications).toHaveBeenCalled();
+    });
+    it('should return denied', async () => {
+      // Prepare
+      checkNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.DENIED }));
+
+      // Execute
+      const dispatched = [];
+      const result = await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, checkNotificationsPermission).toPromise();
+
+      // Assert
+      expect(result).toBe(RESULTS.DENIED);
+      expect(checkNotifications).toHaveBeenCalled();
+    });
   });
-  describe('check permission should return granted', () => {
-    it('when called with notifications permission', async () => {
+  describe('Check Batttery Permission', () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
+    it('should return granted', async () => {
+      // Prepare
+      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
+
+      // Execute
+      const dispatched = [];
+      const result = await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, checkBatteryPermission).toPromise();
+
+      // Assert
+      expect(result).toBe(RESULTS.GRANTED);
+      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+    });
+
+    it('should return denied', async () => {
+      // Prepare
+      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+
+      // Execute
+      const dispatched = [];
+      const result = await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, checkBatteryPermission).toPromise();
+
+      // Assert
+      expect(result).toBe(RESULTS.DENIED);
+      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+    });
+  });
+  describe('Check Permission', () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
+    it('should return granted when checking notifications permission', async () => {
+      // Prepare
+      checkNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.GRANTED }));
+
       // Execute
       const dispatched = [];
       await runSaga({
         dispatch: (action) => dispatched.push(action),
-      }, checkPermission, { payload: NOTIFICATIONS_PERMISSION });
+      }, checkPermission, { payload: NOTIFICATIONS_PERMISSION }).toPromise();
 
       // Assert
+      expect(checkNotifications).toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
-      expect(dispatched).toEqual([permissionsActions.permissionGranted(NOTIFICATIONS_PERMISSION)]);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionGranted(NOTIFICATIONS_PERMISSION),
+      ]);
     });
-    it('when called with battery permission', async () => {
+    it('should return denied when checking notifications permission', async () => {
+      // Prepare
+      checkNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.DENIED }));
+
       // Execute
       const dispatched = [];
       await runSaga({
         dispatch: (action) => dispatched.push(action),
-      }, checkPermission, { payload: BATTERY_PERMISSION});
+      }, checkPermission, { payload: NOTIFICATIONS_PERMISSION }).toPromise();
 
       // Assert
+      expect(checkNotifications).toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
-      expect(dispatched).toEqual([permissionsActions.permissionGranted(BATTERY_PERMISSION)]);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionDenied(NOTIFICATIONS_PERMISSION),
+      ]);
     });
   });
-  it('check all permissions should return battery permission granted', async () => {
-    // Execute
-    const dispatched = [];
-    await runSaga({
-      dispatch: (action) => dispatched.push(action),
-    }, checkAllPermissions);
+  describe('Check All Permission', () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
 
-    // Assert
-    expect(dispatched).toHaveLength(2);
-    expect(dispatched).toEqual([
-      permissionsActions.permissionGranted(BATTERY_PERMISSION),
-      permissionsActions.checkAllPermissionsResult(true),
-    ]);
-  });
-  it('request notifications permission should return granted', async () => {
-    // Execute
-    const dispatched = [];
-    const result = await runSaga({
-      dispatch: (action) => dispatched.push(action),
-    }, requestNotificationsPermission);
+    it('should return check notifications on iOS and return granted', async () => {
+      // Prepare
+      Platform.OS = 'ios';
+      checkNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.GRANTED }));
 
-    // Assert
-    expect(result.result()).toBe(RESULTS.GRANTED);
-  });
-  it('request battery permission should return granted', async () => {
-    // Execute
-    const dispatched = [];
-    const result = await runSaga({
-      dispatch: (action) => dispatched.push(action),
-    }, requestBatteryPermission);
-
-    // Assert
-    expect(result.result()).toBe(RESULTS.GRANTED);
-  });
-  describe('request permission should return granted', () => {
-    it('when called with notifications permission', async () => {
       // Execute
       const dispatched = [];
       await runSaga({
         dispatch: (action) => dispatched.push(action),
-      }, requestPermission, { payload: NOTIFICATIONS_PERMISSION});
+      }, checkAllPermissions).toPromise();
 
       // Assert
-      expect(dispatched).toHaveLength(1);
-      expect(dispatched).toEqual([permissionsActions.permissionGranted(NOTIFICATIONS_PERMISSION)]);
+      expect(checkNotifications).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionGranted(NOTIFICATIONS_PERMISSION),
+        permissionsActions.checkAllPermissionsResult(true),
+      ]);
     });
-    it('when called with battery permission', async () => {
+    it('should return check notifications on iOS and return denied', async () => {
+      // Prepare
+      Platform.OS = 'ios';
+      checkNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.DENIED }));
+
       // Execute
       const dispatched = [];
       await runSaga({
         dispatch: (action) => dispatched.push(action),
-      }, requestPermission, { payload: BATTERY_PERMISSION});
+      }, checkAllPermissions).toPromise();
 
       // Assert
-      expect(dispatched).toHaveLength(1);
-      expect(dispatched).toEqual([permissionsActions.permissionGranted(BATTERY_PERMISSION)]);
+      expect(checkNotifications).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionDenied(NOTIFICATIONS_PERMISSION),
+        permissionsActions.checkAllPermissionsResult(false),
+      ]);
+    });
+
+    it('should return check battery permission on Android and return granted', async () => {
+      // Prepare
+      Platform.OS = 'android';
+      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
+
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, checkAllPermissions).toPromise();
+
+      // Assert
+      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionGranted(BATTERY_PERMISSION),
+        permissionsActions.checkAllPermissionsResult(true),
+      ]);
+    });
+    it('should return check battery permission on Android and return denied', async () => {
+      // Prepare
+      Platform.OS = 'android';
+      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, checkAllPermissions).toPromise();
+
+      // Assert
+      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionDenied(BATTERY_PERMISSION),
+        permissionsActions.checkAllPermissionsResult(false),
+      ]);
     });
   });
-  it('request all permissions should return battery permission granted', async () => {
-    // Execute
-    const dispatched = [];
-    await runSaga({
-      dispatch: (action) => dispatched.push(action),
-    }, requestAllPermissions);
+  describe('Request Notifications Permission', () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
 
-    // Assert
-    expect(dispatched).toHaveLength(2);
-    expect(dispatched).toEqual([
-      permissionsActions.permissionGranted(BATTERY_PERMISSION),
-      permissionsActions.requestAllPermissionsResult(true),
-    ]);
+    it('should return granted', async () => {
+      // Prepare
+      requestNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.GRANTED }));
+
+      // Execute
+      const dispatched = [];
+      const result = await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestNotificationsPermission).toPromise();
+
+      // Assert
+      expect(result).toBe(RESULTS.GRANTED);
+      expect(requestNotifications).toHaveBeenCalled();
+    });
+    it('should return denied', async () => {
+      // Prepare
+      requestNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.DENIED }));
+
+      // Execute
+      const dispatched = [];
+      const result = await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestNotificationsPermission).toPromise();
+
+      // Assert
+      expect(result).toBe(RESULTS.DENIED);
+      expect(requestNotifications).toHaveBeenCalled();
+    });
+  });
+  describe('Requet Batttery Permission', () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
+    it('should return granted', async () => {
+      // Prepare
+      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TrackingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
+
+      // Execute
+      const dispatched = [];
+      const result = await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestBatteryPermission).toPromise();
+
+      // Assert
+      expect(result).toBe(RESULTS.GRANTED);
+      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TrackingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
+    });
+
+    it('should return denied', async () => {
+      // Prepare
+      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TrackingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.reject(false));
+
+      // Execute
+      const dispatched = [];
+      const result = await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestBatteryPermission).toPromise();
+
+      // Assert
+      expect(result).toBe(RESULTS.DENIED);
+      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TrackingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
+    });
+  });
+  describe('Request Permission', () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
+    it('should return granted when requesting notifications permission', async () => {
+      // Prepare
+      requestNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.GRANTED }));
+
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestPermission, { payload: NOTIFICATIONS_PERMISSION }).toPromise();
+
+      // Assert
+      expect(requestNotifications).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(1);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionGranted(NOTIFICATIONS_PERMISSION),
+      ]);
+    });
+    it('should return denied when requesting notifications permission', async () => {
+      // Prepare
+      requestNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.DENIED }));
+
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestPermission, { payload: NOTIFICATIONS_PERMISSION }).toPromise();
+
+      // Assert
+      expect(requestNotifications).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(1);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionDenied(NOTIFICATIONS_PERMISSION),
+      ]);
+    });
+  });
+  describe('Request All Permission', () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
+    it('should return request notifications on iOS and return granted', async () => {
+      // Prepare
+      Platform.OS = 'ios';
+      requestNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.GRANTED }));
+
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestAllPermissions).toPromise();
+
+      // Assert
+      expect(requestNotifications).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionGranted(NOTIFICATIONS_PERMISSION),
+        permissionsActions.requestAllPermissionsResult(true),
+      ]);
+    });
+    it('should return request notifications on iOS and return denied', async () => {
+      // Prepare
+      Platform.OS = 'ios';
+      requestNotifications.mockImplementation(() => Promise.resolve({ status: RESULTS.DENIED }));
+
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestAllPermissions).toPromise();
+
+      // Assert
+      expect(requestNotifications).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionDenied(NOTIFICATIONS_PERMISSION),
+        permissionsActions.requestAllPermissionsResult(false),
+      ]);
+    });
+
+    it('should return request battery permission on Android and return granted', async () => {
+      // Prepare
+      Platform.OS = 'android';
+      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TrackingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
+
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestAllPermissions).toPromise();
+
+      // Assert
+      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TrackingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionGranted(BATTERY_PERMISSION),
+        permissionsActions.requestAllPermissionsResult(true),
+      ]);
+    });
+    it('should return request battery permission on Android and return denied', async () => {
+      // Prepare
+      Platform.OS = 'android';
+      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TrackingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.reject(false));
+
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, requestAllPermissions).toPromise();
+
+      // Assert
+      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TrackingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        permissionsActions.permissionDenied(BATTERY_PERMISSION),
+        permissionsActions.requestAllPermissionsResult(false),
+      ]);
+    });
   });
 });

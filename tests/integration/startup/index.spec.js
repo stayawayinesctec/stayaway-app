@@ -29,44 +29,41 @@ import {
 jest.mock('@app/services/storage');
 
 describe('Startup Sagas', () => {
-  it('a new user should be sent to onboarding', async () => {
-    // Prepare
-    Storage.hasItem.mockImplementation(() => Promise.resolve(false));
-
-    // Execute
-    const dispatched = [];
-    await runSaga({
-      dispatch: (action) => dispatched.push(action),
-    }, startup).toPromise();
-
-    // Assert
-    expect(Storage.hasItem).toHaveBeenCalled();
-    expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
-    expect(dispatched).toHaveLength(2);
-    expect(dispatched).toEqual([
-      onboardingActions.setOnboarding(true),
-      startupActions.setAppLaunched(true),
-    ]);
-  });
-  describe('a registered user should be should be able to restore his last configurations', () => {
-    const signUpDate = new Moment().toJSON();
-    const status = {
-      infectionStatus: 0,
-      errors: [],
-      lastSyncDate: new Moment().toJSON(),
-      exposureDays: [],
-    };
-
-    beforeEach(() => {
-      Storage.hasItem.mockImplementation(() => Promise.resolve(true));
-    });
+  describe('Startup', () => {
     afterEach(() => {
-      Storage.hasItem.mockReset();
-      Storage.getItem.mockReset();
+      jest.resetAllMocks();
     });
 
-    it('when with tracking disabled', async () => {
+    it('should navigate to onboarding when is a new user', async () => {
       // Prepare
+      Storage.hasItem.mockImplementation(() => Promise.resolve(false));
+
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, startup).toPromise();
+
+      // Assert
+      expect(Storage.hasItem).toHaveBeenCalled();
+      expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        onboardingActions.setOnboarding(true),
+        startupActions.setAppLaunched(true),
+      ]);
+    });
+    it('should restore last saved configurations when with tracking disabled', async () => {
+      // Prepare
+      const signUpDate = new Moment().toJSON();
+      const status = {
+        infectionStatus: 0,
+        errors: [],
+        lastSyncDate: new Moment().toJSON(),
+        exposureDays: [],
+      };
+
+      Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'tracking_enabled') {
           return 'false';
@@ -87,7 +84,7 @@ describe('Startup Sagas', () => {
       const saga = runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
-       }, startup);
+        }, startup);
       channel.put(servicesActions.listenersRegistered());
       await saga.toPromise();
 
@@ -110,8 +107,17 @@ describe('Startup Sagas', () => {
         startupActions.setAppLaunched(true),
       ]);
     });
-    it('when with tracking enabled and start tracking returns success', async () => {
+    it('should restore last saved configurations when with tracking enabled and start tracking returns success', async () => {
       // Prepare
+      const signUpDate = new Moment().toJSON();
+      const status = {
+        infectionStatus: 0,
+        errors: [],
+        lastSyncDate: new Moment().toJSON(),
+        exposureDays: [],
+      };
+
+      Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'tracking_enabled') {
           return 'true';
@@ -132,7 +138,7 @@ describe('Startup Sagas', () => {
       const saga = runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
-       }, startup);
+        }, startup);
       channel.put(servicesActions.listenersRegistered());
       channel.put(accountActions.startTracking(TRACKING_RESULTS.SUCCESS));
       await saga.toPromise();
@@ -157,8 +163,17 @@ describe('Startup Sagas', () => {
         startupActions.setAppLaunched(true),
       ]);
     });
-    it('when with tracking enabled and start tracking returns GAEN error', async () => {
+    it('should restore last saved configurations when with tracking enabled and start tracking returns GAEN error', async () => {
       // Prepare
+      const signUpDate = new Moment().toJSON();
+      const status = {
+        infectionStatus: 0,
+        errors: [],
+        lastSyncDate: new Moment().toJSON(),
+        exposureDays: [],
+      };
+
+      Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'tracking_enabled') {
           return 'true';
@@ -179,7 +194,7 @@ describe('Startup Sagas', () => {
       const saga = runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
-       }, startup);
+      }, startup);
       channel.put(servicesActions.listenersRegistered());
       channel.put(accountActions.startTracking(TRACKING_RESULTS.GAEN));
       await saga.toPromise();
@@ -205,8 +220,17 @@ describe('Startup Sagas', () => {
         startupActions.setAppLaunched(true),
       ]);
     });
-    it('when with tracking enabled and start tracking returns failed', async () => {
+    it('should restore last saved configurations when with tracking enabled and start tracking returns failed', async () => {
       // Prepare
+      const signUpDate = new Moment().toJSON();
+      const status = {
+        infectionStatus: 0,
+        errors: [],
+        lastSyncDate: new Moment().toJSON(),
+        exposureDays: [],
+      };
+
+      Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'tracking_enabled') {
           return 'true';
@@ -227,7 +251,7 @@ describe('Startup Sagas', () => {
       const saga = runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
-       }, startup);
+      }, startup);
       channel.put(servicesActions.listenersRegistered());
       channel.put(accountActions.startTracking(TRACKING_RESULTS.FAILED));
       await saga.toPromise();
