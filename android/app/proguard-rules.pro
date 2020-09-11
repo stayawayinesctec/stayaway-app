@@ -1,19 +1,18 @@
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in /usr/local/Cellar/android-sdk/24.3.3/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
 #
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
-
-# Add any project specific keep options here:
+# Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+#
+# This Source Code Form is subject to the terms of the European Union
+# Public License, v. 1.2. If a copy of the EUPL was not distributed with
+# this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+#
+# SPDX-License-Identifier: EUPL-1.2
+#
 
 # Package: react-native-config
 -keep class fct.inesctec.stayaway.BuildConfig { *; }
 
 # Package: react-native-svg
--keep public class com.horcrux.svg.** {*;}
+-keep public class com.horcrux.svg.** { *; }
 
 -dontobfuscate
 

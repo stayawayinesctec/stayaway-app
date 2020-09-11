@@ -33,17 +33,27 @@
   "scripts": {
     "start": "react-native start",
     "android": "ENVFILE=.env.production.debug react-native run-android --variant=productionDebug --appIdSuffix debug --tasks installProductionDebug",
-    "android-ui": "ENVFILE=.env.ui.debug react-native run-android --variant=uiDebug --appIdSuffix ui.debug --tasks installUiDebug",
+    "android:ui": "ENVFILE=.env.ui.debug react-native run-android --variant=uiDebug --appIdSuffix ui.debug --tasks installUiDebug",
     "ios": "ENVFILE=.env.production.debug react-native run-ios --configuration=ProductionDebug --scheme=Divoc.production.debug",
-    "ios-ui": "ENVFILE=.env.ui.debug react-native run-ios --configuration=UiDebug --scheme=Divoc.ui.debug",
+    "ios:ui": "ENVFILE=.env.ui.debug react-native run-ios --configuration=UiDebug --scheme=Divoc.ui.debug",
     "lint": "eslint --fix -c .eslintrc.js 'src/**/*{.js,.jsx}'",
-    "test": "jest",
-    "clean": "rm -rf node_modules yarn.lock && yarn clean_android && yarn clean_ios",
-    "clean_android": "rm -rf android/app/build",
-    "clean_ios": "rm -rf ios/Pods ios/Podfile.lock ios/build",
-    "postinstall": "yarn postinstall_android && yarn postinstall_ios",
-    "postinstall_android": "npx jetify",
-    "postinstall_ios": "(cd ios && pod install)"
+    "test": "yarn test:unit && yarn test:integration && yarn test:components && yarn test:e2e",
+    "test:unit": "jest --config tests/unit/jest.config.js",
+    "test:integration": "jest --config tests/integration/jest.config.js",
+    "test:components": "jest --config tests/components/jest.config.js",
+    "test:e2e": "yarn test:e2e:android && yarn test:e2e:ios",
+    "test:e2e:android": "yarn test:e2e:android:build && yarn test:e2e:android:run",
+    "test:e2e:android:build": "detox build -c android",
+    "test:e2e:android:run": "detox test -c android",
+    "test:e2e:ios": "yarn test:e2e:ios:build && yarn test:e2e:ios:run",
+    "test:e2e:ios:build": "detox build -c ios",
+    "test:e2e:ios:run": "detox test -c ios",
+    "clean": "rm -rf node_modules yarn.lock && yarn clean:android && yarn clean:ios",
+    "clean:android": "rm -rf android/app/build",
+    "clean:ios": "rm -rf ios/Pods ios/Podfile.lock ios/build",
+    "postinstall": "yarn postinstall:android && yarn postinstall:ios",
+    "postinstall:android": "npx jetify",
+    "postinstall:ios": "(cd ios && pod install)"
   },
   "dependencies": {
     "@react-native-community/async-storage": "1.11.0",
@@ -87,10 +97,13 @@
     "@babel/core": "7.8.4",
     "@babel/runtime": "7.8.4",
     "@react-native-community/eslint-config": "1.1.0",
-    "babel-jest": "25.1.0",
+    "@testing-library/jest-native": "3.3.0",
+    "@testing-library/react-native": "7.0.1",
     "babel-eslint": "8.2.6",
+    "babel-jest": "26.3.0",
     "babel-plugin-module-resolver": "3.2.0",
     "babel-plugin-transform-remove-console": "6.9.4",
+    "detox": "17.3.6",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "17.1.1",
     "eslint-config-prettier": "4.0.0",
@@ -102,12 +115,39 @@
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-react": "7.17.0",
     "eslint-plugin-react-native": "3.8.1",
-    "jest": "25.5.4",
+    "jest": "26.3.0",
+    "jest-circus": "26.3.0",
     "metro-react-native-babel-preset": "0.59.0",
     "prettier": "1.19.1",
+    "react-native-testing-library": "6.0.0",
     "react-test-renderer": "16.13.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ]
+  },
+  "detox": {
+    "testRunner": "jest",
+    "runnerConfig": "tests/e2e/config.json",
+    "configurations": {
+      "android": {
+        "type": "android.emulator",
+        "build": "cd android && ./gradlew assembleUiRelease assembleUiReleaseAndroidTest -DtestBuildType=release && cd ..",
+        "binaryPath": "android/app/build/outputs/apk/ui/release/app-ui-release.apk",
+        "device": {
+          "avdName": "Nexus_5_X_API_29"
+        }
+      },
+      "ios": {
+        "type": "ios.simulator",
+        "build": "cd ios && xcodebuild -workspace Divoc.xcworkspace -configuration UiRelease -scheme Divoc.ui.release -sdk iphonesimulator -derivedDataPath build && cd ..",
+        "binaryPath": "ios/build/Build/Products/UiRelease-iphonesimulator/STAYAWAY UI.app",
+        "device": {
+          "avdName": "iPhone 8"
+        }
+      }
+    }
   }
 }

@@ -101,6 +101,7 @@ export default function Onboarding (props) {
         <SafeAreaConsumer>
           {insets => (
             <Swiper
+              testID="onboarding"
               loop={false}
               style={styles(colors).container}
               paginationStyle={{
