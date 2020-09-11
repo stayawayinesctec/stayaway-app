@@ -1,3 +1,13 @@
+/**
+ * Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+ *
+ * This Source Code Form is subject to the terms of the European Union
+ * Public License, v. 1.2. If a copy of the EUPL was not distributed with
+ * this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+ *
+ * SPDX-License-Identifier: EUPL-1.2
+ */
+
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
@@ -65,7 +75,7 @@ describe('Recommendations Screen', () => {
         />,
       );
 
-      const linkButton = queryByA11yLabel(i18n.translate('screens.recommendations.more_info.accessibility.label'));
+      const linkButton = queryByA11yLabel(i18n.translate('screens.recommendations.source.accessibility.label'));
 
       expect(linkButton).toBeTruthy();
       fireEvent.press(linkButton);

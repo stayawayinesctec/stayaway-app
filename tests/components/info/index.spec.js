@@ -1,3 +1,13 @@
+/**
+ * Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+ *
+ * This Source Code Form is subject to the terms of the European Union
+ * Public License, v. 1.2. If a copy of the EUPL was not distributed with
+ * this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+ *
+ * SPDX-License-Identifier: EUPL-1.2
+ */
+
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
@@ -82,20 +92,20 @@ describe('Info Screen', () => {
       fireEvent.press(trackingButton);
       expect(onPressTracking).toHaveBeenCalled();
     });
-    it('When press instructions button.', () => {
-      const onPressInstructions = jest.fn();
+    it('When press how to use button.', () => {
+      const onPressHowToUse = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
           trackingEnabled
-          onPressInstructions={onPressInstructions}
+          onPressHowToUse={onPressHowToUse}
         />,
       );
 
-      const instructionsButton = queryByA11yLabel(i18n.translate('screens.settings.instructions.accessibility.label'));
+      const howToUseButton = queryByA11yLabel(i18n.translate('screens.settings.how_to_use.accessibility.label'));
 
-      expect(instructionsButton).toBeTruthy();
-      fireEvent.press(instructionsButton);
-      expect(onPressInstructions).toHaveBeenCalled();
+      expect(howToUseButton).toBeTruthy();
+      fireEvent.press(howToUseButton);
+      expect(onPressHowToUse).toHaveBeenCalled();
     });
     it('When press faqs button.', () => {
       const onPressFaqs = jest.fn();

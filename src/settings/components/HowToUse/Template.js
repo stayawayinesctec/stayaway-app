@@ -87,8 +87,8 @@ export default function Template (props) {
               title={i18n.translate('common.actions.ok')}
               containerStyle={styles.button}
               onPress={onPress}
-              accessibilityLabel={i18n.translate('screens.operation.actions.ok.accessibility.hint.label')}
-              accessibilityHint={i18n.translate('screens.operation.actions.ok.accessibility.hint.hint')}
+              accessibilityLabel={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.label')}
+              accessibilityHint={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.hint')}
             />
           }
         </Layout>
@@ -104,8 +104,8 @@ export default function Template (props) {
             title={i18n.translate('common.actions.ok')}
             containerStyle={styles.button}
             onPress={onPress}
-            accessibilityLabel={i18n.translate('screens.operation.actions.ok.accessibility.hint.label')}
-            accessibilityHint={i18n.translate('screens.operation.actions.ok.accessibility.hint.hint')}
+            accessibilityLabel={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.label')}
+            accessibilityHint={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.hint')}
           />
         }
       </Layout>

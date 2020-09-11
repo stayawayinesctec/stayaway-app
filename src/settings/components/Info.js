@@ -143,8 +143,8 @@ export default function Info(props) {
               <ButtonWrapper
                 onPress={onPressHowToUse}
                 style={styles(colors).item}
-                accessibilityLabel={i18n.translate('screens.settings.instructions.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.settings.instructions.accessibility.hint')}
+                accessibilityLabel={i18n.translate('screens.settings.how_to_use.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.settings.how_to_use.accessibility.hint')}
               >
                 <Text weight='bold'>{i18n.translate('screens.settings.how_to_use.label')}</Text>
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />

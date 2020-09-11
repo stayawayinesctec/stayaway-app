@@ -1,12 +1,12 @@
 /**
-  * Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
-  *
-  * This Source Code Form is subject to the terms of the European Union
-  * Public License, v. 1.2. If a copy of the EUPL was not distributed with
-  * this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
-  *
-  * SPDX-License-Identifier: EUPL-1.2
-  */
+ * Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+ *
+ * This Source Code Form is subject to the terms of the European Union
+ * Public License, v. 1.2. If a copy of the EUPL was not distributed with
+ * this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+ *
+ * SPDX-License-Identifier: EUPL-1.2
+ */
 
 import { runSaga, channel as stdChannel } from 'redux-saga';
 import { Platform } from 'react-native';
@@ -16,7 +16,6 @@ import Moment from 'moment';
 import onboardingActions from '@app/redux/onboarding';
 import startupActions from '@app/redux/startup';
 import accountActions, { TRACKING_RESULTS } from '@app/redux/account';
-import servicesActions from '@app/redux/services';
 import { ERRORS } from '@app/services/tracking';
 
 import Storage from '@app/services/storage';
@@ -85,7 +84,6 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
         }, startup);
-      channel.put(servicesActions.listenersRegistered());
       await saga.toPromise();
 
       // Assert
@@ -97,9 +95,8 @@ describe('Startup Sagas', () => {
       expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
       expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
 
-      expect(dispatched).toHaveLength(6);
+      expect(dispatched).toHaveLength(5);
       expect(dispatched).toEqual([
-        servicesActions.registerListeners(),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -139,7 +136,6 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
         }, startup);
-      channel.put(servicesActions.listenersRegistered());
       channel.put(accountActions.startTracking(TRACKING_RESULTS.SUCCESS));
       await saga.toPromise();
 
@@ -152,9 +148,8 @@ describe('Startup Sagas', () => {
       expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
       expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
 
-      expect(dispatched).toHaveLength(7);
+      expect(dispatched).toHaveLength(6);
       expect(dispatched).toEqual([
-        servicesActions.registerListeners(),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -195,7 +190,6 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, startup);
-      channel.put(servicesActions.listenersRegistered());
       channel.put(accountActions.startTracking(TRACKING_RESULTS.GAEN));
       await saga.toPromise();
 
@@ -208,9 +202,8 @@ describe('Startup Sagas', () => {
       expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
       expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
 
-      expect(dispatched).toHaveLength(8);
+      expect(dispatched).toHaveLength(7);
       expect(dispatched).toEqual([
-        servicesActions.registerListeners(),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -252,7 +245,6 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, startup);
-      channel.put(servicesActions.listenersRegistered());
       channel.put(accountActions.startTracking(TRACKING_RESULTS.FAILED));
       await saga.toPromise();
 
@@ -265,9 +257,8 @@ describe('Startup Sagas', () => {
       expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
       expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
 
-      expect(dispatched).toHaveLength(7);
+      expect(dispatched).toHaveLength(6);
       expect(dispatched).toEqual([
-        servicesActions.registerListeners(),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),

@@ -1,9 +1,19 @@
+/**
+ * Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+ *
+ * This Source Code Form is subject to the terms of the European Union
+ * Public License, v. 1.2. If a copy of the EUPL was not distributed with
+ * this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+ *
+ * SPDX-License-Identifier: EUPL-1.2
+ */
+
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
 import i18n from '@app/services/i18n';
 
-import HowToUse from '@settings/components/Operation';
+import HowToUse from '@settings/components/HowToUse';
 
 describe('HowToUse Screen', () => {
   describe('HowToUse Screen renders correctly', () => {
@@ -13,7 +23,7 @@ describe('HowToUse Screen', () => {
       );
 
       const firstScreenTitle = queryByText(i18n.translate('screens.onboarding.first.title'));
-      const closeButton = queryByA11yLabel(i18n.translate('screens.operation.actions.go_back.accessibility.hint.label'));
+      const closeButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.label'));
 
       expect(firstScreenTitle).toBeTruthy();
       expect(closeButton).toBeTruthy();
@@ -50,7 +60,7 @@ describe('HowToUse Screen', () => {
 
       const fourthScreenTitle = queryByText(i18n.translate('screens.onboarding.fourth.title'));
       const fourthScreenDescription = queryByText(i18n.translate('screens.onboarding.fourth.description'));
-      const okButton = queryByA11yLabel(i18n.translate('screens.operation.actions.ok.accessibility.hint.label'));
+      const okButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.label'));
 
       expect(fourthScreenTitle).toBeTruthy();
       expect(fourthScreenDescription).toBeTruthy();
@@ -67,7 +77,7 @@ describe('HowToUse Screen', () => {
         />,
       );
 
-      const closeButton = queryByA11yLabel(i18n.translate('screens.operation.actions.go_back.accessibility.hint.label'));
+      const closeButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.label'));
 
       expect(closeButton).toBeTruthy();
 
@@ -83,7 +93,7 @@ describe('HowToUse Screen', () => {
         />,
       );
 
-      const okButton = queryByA11yLabel(i18n.translate('screens.operation.actions.ok.accessibility.hint.label'));
+      const okButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.label'));
 
       expect(okButton).toBeTruthy();
 
