@@ -116,7 +116,7 @@ Once you're ready, you can run the app tests. The tests structure and adopted te
 ### Unit Tests
 For unit testing we consider all tests made to one or more individual modules to see if they work as expected.
 
-The choosed technology was [JEST](https://github.com/facebook/jest).
+For this we use [JEST](https://github.com/facebook/jest).
 
 To run unit tests use the following command:
 ```sh
@@ -126,7 +126,7 @@ $ yarn test:unit
 ### Integration Tests
 For integration testing we consider all tests made to individual modules combined to see if their cooperation works as expected.
 
-The choosed technology was [JEST](https://github.com/facebook/jest).
+For this we use [JEST](https://github.com/facebook/jest).
 
 To run unit tests use the following command:
 ```sh
@@ -134,9 +134,9 @@ $ yarn test:integration
 ```
 
 ### Component Tests
-For components testing we consider all tests made to the components render to check if they render as expected and respond to every user's interaction.
+For component testing, test will pass if screens render as expected and respond to user interaction.
 
-The choosed technology was [React Native Testing Library](https://github.com/callstack/react-native-testing-library).
+To build these tests we rely on [React Native Testing Library](https://github.com/callstack/react-native-testing-library).
 
 To run unit tests use the following command:
 ```sh
@@ -144,11 +144,11 @@ $ yarn test:components
 ```
 
 ### End-to-End
-For e2e testing we consider tests made to the app as an all. In these tests we usually tests all important app flows, as onboarding, submiting a diagnosis, changing the infection status, etc. These tests are running on an emulator/simulator which do not have access to exposure notifications api, therefore we use the UI app's version.
+The e2e test aim at testing the critical user path within the app. Critical app flows such as onboarding, users marking themselves as infected, and risky contact notification are the main focus here. These tests need to run on an emulator/simulator which does not have access to exposure notifications APIs thus requiring the use of the UI-only app version.
 
-The choosed technology was [Detox](https://github.com/wix/Detox).
+The framework chosen to support these tests was [Detox](https://github.com/wix/Detox).
 
-To run unit tests, you need to step your tests environmnet, and you do so by carefully go through every step on the setup tests environment guide ([iOS](https://github.com/wix/Detox/blob/master/docs/Introduction.IosDevEnv.md)/[Android](https://github.com/wix/Detox/blob/master/docs/Introduction.AndroidDevEnv.md)).
+To run tests, you need to step your tests environmnet, and you do so by carefully go through every step on the setup tests environment guide ([iOS](https://github.com/wix/Detox/blob/master/docs/Introduction.IosDevEnv.md)/[Android](https://github.com/wix/Detox/blob/master/docs/Introduction.AndroidDevEnv.md)).
 
 For android the default emulator is Nexus 5X with API version 29 and for iOS the simulator is the iPhone 8, but this can be changed in `package.json`.
 
