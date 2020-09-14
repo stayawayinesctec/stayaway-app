@@ -39,8 +39,8 @@
       }
     },
     "home": {
-      "last_updated": "Last analysis of your contacts",
-      "never_updated": "No analysis",
+      "last_updated": "Latest risk evaluation",
+      "never_updated": "No evaluations",
       "actions": {
         "settings": {
           "accessibility": {
@@ -103,7 +103,7 @@
       },
       "healthy": {
         "distance": "Keep at least 2 metres away from others",
-        "social_contacts": "Avoid unnecessary social contact",
+        "wear_mask": "Always wear a mask",
         "wash_hands": "Wash or sanitise your hands as frequently as possible",
         "feeling_sick": "If you feel unwell, stay at home"
       },

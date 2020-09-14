@@ -29,8 +29,8 @@ export default function RecommendationsHealty (props) {
       },
       {
         "key": "2",
-        "text": i18n.translate('screens.recommendations.healthy.social_contacts'),
-        "renderIcon": (style) => <Icon name="social_contacts" width={iconSizes.size74} height={iconSizes.size61} style={style} />,
+        "text": i18n.translate('screens.recommendations.healthy.wear_mask'),
+        "renderIcon": (style) => <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} style={style} />,
       },
     ],
     [

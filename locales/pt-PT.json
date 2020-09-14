@@ -39,8 +39,8 @@
       }
     },
     "home": {
-      "last_updated": "Última análise dos seus contactos",
-      "never_updated": "Sem análises",
+      "last_updated": "Última avaliação de risco",
+      "never_updated": "Sem avaliações",
       "actions": {
         "settings": {
           "accessibility": {
@@ -119,7 +119,7 @@
       },
       "healthy": {
         "distance": "Evite contactos a menos de 2 metros",
-        "social_contacts": "Evite contactos sociais desnecessários",
+        "wear_mask": "Use sempre a máscara",
         "wash_hands": "Lave ou desinfete as mãos regularmente",
         "feeling_sick": "Se se sentir doente, fique em casa"
       },
