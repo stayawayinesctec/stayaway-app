@@ -39,8 +39,8 @@
       }
     },
     "home": {
-      "last_updated": "Atualizado a",
-      "never_updated": "Sem atualizações",
+      "last_updated": "Última análise dos seus contactos",
+      "never_updated": "Sem análises",
       "actions": {
         "settings": {
           "accessibility": {

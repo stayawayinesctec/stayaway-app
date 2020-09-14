@@ -39,7 +39,6 @@ const styles = (colors, insets) => StyleSheet.create({
   updateContainer: {
     alignItems: 'flex-end',
     marginRight: sizes.size8,
-    marginTop: sizes.size24,
     marginBottom: sizes.size8,
   },
   settingsButton: {
@@ -267,9 +266,9 @@ export default function Template (props) {
                           { hasUpdated &&
                             <View style={styles(colors, insets).updateContainer}>
                               <Text size='xsmall' textColor={panelTextColor}>
-                                {`${i18n.translate('screens.home.last_updated')}: `}
-                                <Text size='small' weight='bold' textColor={panelTextColor}>{lastSync.format('l').replace(/\//gi,'.')}</Text>
+                                {i18n.translate('screens.home.last_updated')}
                               </Text>
+                              <Text size='small' weight='bold' textColor={panelTextColor}>{lastSync.format('l').replace(/\//gi,'.')}</Text>
                             </View>
                           }
                           { !hasUpdated &&

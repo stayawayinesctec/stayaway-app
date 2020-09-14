@@ -39,8 +39,8 @@
       }
     },
     "home": {
-      "last_updated": "Last updated",
-      "never_updated": "Never updated",
+      "last_updated": "Last analysis of your contacts",
+      "never_updated": "No analysis",
       "actions": {
         "settings": {
           "accessibility": {
@@ -50,7 +50,7 @@
         }
       },
       "healthy": {
-        "title": "No high-risk contacts have been detected.",
+        "title": "No high-risk contacts have been established.",
         "description": {
           "first": "STAYAWAY COVID will be constantly monitoring your risk level ",
           "second": "and will alert you if you have been exposed to risk. Avoid contacts closer than 2 metres from you."
