@@ -19,29 +19,29 @@ import { iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
 
-export default function RecommendationsInfected (props) {
+export default function RecommendationsExposed (props) {
   const recommendations = [
     [
       {
         "key": "1",
-        "text": i18n.translate('screens.recommendations.infected.encloused_spaces'),
+        "text": i18n.translate('screens.recommendations.exposed.encloused_spaces'),
         "renderIcon": (style) => <Icon name="encloused_spaces" width={iconSizes.size68} height={iconSizes.size70} style={style} />,
       },
       {
         "key": "2",
-        "text": i18n.translate('screens.recommendations.infected.stay_home'),
+        "text": i18n.translate('screens.recommendations.exposed.stay_home'),
         "renderIcon": (style) => <Icon name="stay_home" width={iconSizes.size59} height={iconSizes.size60} style={style} />,
       },
     ],
     [
       {
         "key": "3",
-        "text": i18n.translate('screens.recommendations.infected.increase_hygiene'),
+        "text": i18n.translate('screens.recommendations.exposed.increase_hygiene'),
         "renderIcon": (style) => <Icon name="increase_hygiene" width={iconSizes.size70} height={iconSizes.size70} style={style} />,
       },
       {
         "key": "4",
-        "text": i18n.translate('screens.recommendations.infected.wear_mask'),
+        "text": i18n.translate('screens.recommendations.exposed.wear_mask'),
         "renderIcon": (style) => <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} style={style} />,
       },
     ],

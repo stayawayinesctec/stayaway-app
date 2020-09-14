@@ -13,7 +13,7 @@ import { createActions, handleActions } from 'redux-actions';
 
 import Storage from '@app/services/storage';
 
-export const START_TRACKING_RESULTS = {
+export const TRACKING_RESULTS = {
   SUCCESS: 'SUCCESS',
   FAILED: 'FAILED',
   GAEN: 'GAEN',

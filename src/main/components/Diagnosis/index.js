@@ -14,12 +14,12 @@ import PropTypes from 'prop-types';
 import CodeInput from '@main/components/Diagnosis/CodeInput';
 import Completed from '@main/components/Diagnosis/Completed';
 
-import { INFECTED_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracking';
 
 export default function Diagnosis (props) {
   const { infectionStatus } = props;
 
-  if (infectionStatus === INFECTED_STATUS.INFECTED ) {
+  if (infectionStatus === INFECTION_STATUS.INFECTED ) {
     return <Completed {...props} />;
   }
 

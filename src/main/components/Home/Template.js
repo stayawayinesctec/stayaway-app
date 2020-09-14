@@ -243,6 +243,7 @@ export default function Template (props) {
               }
               <View style={styles(colors, insets).homeContainer}>
                 <ImageBackground
+                  testID="home_image_background"
                   source={image}
                   style={styles(colors, insets).imageContainer}
                 />

@@ -8,6 +8,4 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-test('Hello world to Components Testing', () => {
-  expect(true).toBe(true);
-});
+export default from '@react-native-community/async-storage/jest/async-storage-mock';

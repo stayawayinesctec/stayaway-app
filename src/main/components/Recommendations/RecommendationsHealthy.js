@@ -19,7 +19,7 @@ import { iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
 
-export default function RecommendationsHealty (props) {
+export default function RecommendationsHealthy (props) {
   const recommendations = [
     [
       {

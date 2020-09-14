@@ -8,6 +8,4 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-test('Hello world to Integration Testing', () => {
-  expect(true).toBe(true);
-});
+jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');

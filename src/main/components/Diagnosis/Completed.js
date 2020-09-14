@@ -126,6 +126,8 @@ export default function Diagnosis (props) {
             </View>
             <Button
               title={i18n.translate('common.actions.ok')}
+              accessibilityLabel={i18n.translate('screens.diagnosis.completed.accessibility.label')}
+              accessibilityHint={i18n.translate('screens.diagnosis.completed.accessibility.hint')}
               containerStyle={styles(colors).button}
               onPress={onPress}
             />

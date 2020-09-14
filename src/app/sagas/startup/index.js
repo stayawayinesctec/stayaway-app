@@ -18,11 +18,11 @@ import TrackingManager, { ERRORS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
 
 import startupActions, { startupTypes } from '@app/redux/startup';
-import accountActions, { accountTypes, START_TRACKING_RESULTS } from '@app/redux/account';
+import accountActions, { accountTypes, TRACKING_RESULTS } from '@app/redux/account';
 import onboardingActions from '@app/redux/onboarding';
 import { isOnboarding } from '@app/redux/onboarding/selectors';
 
-function* startup() {
+export function* startup() {
   try {
     // Set i18 initial config
     i18n.setI18nConfig();
@@ -61,10 +61,10 @@ function* startup() {
       yield put(accountActions.startTracking());
       const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
 
-      if (payload === START_TRACKING_RESULTS.SUCCESS) {
+      if (payload === TRACKING_RESULTS.SUCCESS) {
         // Set tracking activated
         yield put(accountActions.setTrackingEnabled(true));
-      } else if (payload === START_TRACKING_RESULTS.GAEN) {
+      } else if (payload === TRACKING_RESULTS.GAEN) {
         yield put(accountActions.setTrackingEnabled(false));
 
         // Add tracking error

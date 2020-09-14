@@ -72,17 +72,17 @@ export default function InformedConsent (props) {
               </View>
               <View style={styles.descriptionContainer}>
                 <Text>
-                  {i18n.translate('screens.onboarding.informed_consent.description.first')}
                   <Text>
-                    <Text textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.privacy_policy'))}>
-                      {i18n.translate('screens.onboarding.informed_consent.description.second')}
-                    </Text>
-                    <Text>
-                      {i18n.translate('screens.onboarding.informed_consent.description.third')}
-                    </Text>
-                    <Text textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.terms_of_use'))}>
-                      {i18n.translate('screens.onboarding.informed_consent.description.fourth')}
-                    </Text>
+                    {i18n.translate('screens.onboarding.informed_consent.description.first')}
+                  </Text>
+                  <Text textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.privacy_policy'))}>
+                    {i18n.translate('screens.onboarding.informed_consent.description.second')}
+                  </Text>
+                  <Text>
+                    {i18n.translate('screens.onboarding.informed_consent.description.third')}
+                  </Text>
+                  <Text textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.terms_of_use'))}>
+                    {i18n.translate('screens.onboarding.informed_consent.description.fourth')}
                   </Text>
                 </Text>
                 <View style={styles.concentsContainer}>
@@ -103,12 +103,16 @@ export default function InformedConsent (props) {
                       onValueChange={(value) => setReadAndUnderstood(value)}
                     />
                     <View style={styles.concentDescription}>
-                      <Text size='xsmall'>
-                        {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.first')}
+                      <Text>
+                        <Text size='xsmall'>
+                          {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.first')}
+                        </Text>
                         <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.dgs'))}>
                           {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.second')}
                         </Text>
-                        {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.third')}
+                        <Text size='xsmall'>
+                          {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.third')}
+                        </Text>
                         <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.data_protection'))}>
                           {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.fourth')}
                         </Text>
@@ -142,7 +146,9 @@ export default function InformedConsent (props) {
             </View>
             <View style={styles.actionsContainer}>
               <Button
-                title={i18n.translate('screens.onboarding.informed_consent.actions.accept')}
+                title={i18n.translate('screens.onboarding.informed_consent.actions.accept.label')}
+                accessibilityLabel={i18n.translate('screens.onboarding.informed_consent.actions.accept.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.onboarding.informed_consent.actions.accept.accessibility.hint')}
                 containerStyle={styles.button}
                 onPress={onPress}
                 loading={loading}

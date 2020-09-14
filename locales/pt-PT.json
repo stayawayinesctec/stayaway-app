@@ -34,7 +34,13 @@
           "data_treatment": "Consinto o tratamento dos meus dados pessoais, de acordo com a política de privacidade, incluindo os relativos à minha condição de saúde, necessários ao envio de alertas de exposição a risco de contágio, com a finalidade de ajudar à interrupção das cadeias de transmissão da doença COVID-19."
         },
         "actions": {
-          "accept": "Aceitar e Começar"
+          "accept": {
+            "label": "Aceitar e Começar",
+            "accessibility": {
+              "label": "Aceitar e Começar",
+              "hint": "Aceitar os termos e condições e começar a utilizar a app"
+            }
+          }
         }
       }
     },
@@ -123,7 +129,7 @@
         "wash_hands": "Lave ou desinfete as mãos regularmente",
         "feeling_sick": "Se se sentir doente, fique em casa"
       },
-      "infected": {
+      "exposed": {
         "encloused_spaces": "Não esteja em espaços fechados com quem não resida consigo",
         "stay_home": "Mantenha-se em casa",
         "increase_hygiene": "Reforce a higiene das mãos e das superfícies",
@@ -132,10 +138,18 @@
     },
     "settings": {
       "tracking": {
-        "label": "Rastreio"
+        "label": "Rastreio",
+        "accessibility": {
+          "label": "Rastreio",
+          "hint": "Navega para o rastreio"
+        }
       },
       "how_to_use": {
-        "label": "Instruções de Utilização"
+        "label": "Instruções de Utilização",
+        "accessibility": {
+          "label": "Instruções de Utilização",
+          "hint": "Navega para as instruções de utilização"
+        }
       },
       "faqs": {
         "label": "Perguntas Frequentes",
@@ -162,7 +176,11 @@
         "label": "Debug"
       },
       "technical_sheet": {
-        "label": "Ficha Técnica"
+        "label": "Ficha Técnica",
+        "accessibility": {
+          "label": "Ficha Técnica",
+          "hint": "Navega para a ficha técnica"
+        }
       },
       "actions": {
         "back": {
@@ -186,8 +204,8 @@
       "actions": {
         "go_back": {
           "accessibility": {
-            "hint": "Para trás",
-            "label": "Navega para trás para o ecrã de definições"
+            "label": "Para trás",
+            "hint": "Navega para trás para o ecrã de definições"
           }
         }
       }
@@ -198,11 +216,19 @@
         "description": {
           "first": "Digite o código que recebeu com o seu diagnóstico ",
           "second": "para permitir à aplicação partilhar anonimamente os seus identificadores aleatórios. Este código é válido durante 24h."
+        },
+        "accessibility": {
+          "label": "Submeter",
+          "hint": "Clique para submeter o código de diagnóstico"
         }
       },
       "completed": {
         "title": "Muito obrigado!",
         "description": "A partilha anónima desta informação é valiosa para conter a transmissão da COVID-19."
+      },
+      "accessibility": {
+        "label": "Ok",
+        "hint": "Clique para submeter ir para o ecrã principal"
       }
     },
     "debug": {
@@ -228,10 +254,16 @@
     },
     "operation": {
       "actions": {
+        "ok": {
+          "accessibility": {
+            "label": "Ok",
+            "hint": "Navega para trás para o ecrã de definições"
+          }
+        },
         "go_back": {
           "accessibility": {
-            "hint": "Para atrás",
-            "label": "Navega para trás para o ecrã de definições"
+            "label": "Para atrás",
+            "hint": "Navega para trás para o ecrã de definições"
           }
         }
       }
@@ -267,8 +299,8 @@
       "version": "v{{version}} ({{build}})",
       "go_back": {
         "accessibility": {
-          "hint": "Para atrás",
-          "label": "Navega para trás para o ecrã de definições"
+          "label": "Para atrás",
+          "hint": "Navega para trás para o ecrã de definições"
         }
       }
     }
