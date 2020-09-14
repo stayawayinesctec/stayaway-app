@@ -245,6 +245,7 @@ function* switchTracking() {
   if (trackingEnabled) {
     yield put(accountActions.stopTracking());
     yield put(accountActions.setTrackingEnabled(false));
+    yield put(accountActions.setErrors([]));
     return;
   }
 
