@@ -12,7 +12,7 @@ import Storage from '@app/services/storage';
 import AsyncStorage from '@react-native-community/async-storage';
 
 describe('Storage Service', () => {
-  const prefix = 'divoc-app-pt.inesctec.stayaway.debug:';
+  const prefix = 'divoc-app-(pt.inesctec.stayaway.debug):';
 
   describe('hasItem()', () => {
     afterEach(() => {
