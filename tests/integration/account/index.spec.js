@@ -456,10 +456,11 @@ describe('Account Sagas', () => {
       }, switchTracking).toPromise();
 
       // Assert
-      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
         accountActions.stopTracking(),
         accountActions.setTrackingEnabled(false),
+        accountActions.setErrors([]),
       ]);
     });
     it('should start tracking when all permissions are granted and start tracking returns success', async () => {
