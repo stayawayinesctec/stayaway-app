@@ -128,6 +128,13 @@
           "hint": "Press to navigate to monitoring screen"
         }
       },
+      "language": {
+        "label": "Language",
+        "accessibility": {
+          "label": "Language",
+          "hint": "Press to switch app's language"
+        }
+      },
       "how_to_use": {
         "label": "How to use the app",
         "accessibility": {

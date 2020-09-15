@@ -13,6 +13,8 @@ import { Platform } from 'react-native';
 
 import Moment from 'moment';
 
+import { languages } from '@app/services/i18n';
+
 import onboardingActions from '@app/redux/onboarding';
 import startupActions from '@app/redux/startup';
 import accountActions, { TRACKING_RESULTS } from '@app/redux/account';
@@ -35,6 +37,7 @@ describe('Startup Sagas', () => {
 
     it('should navigate to onboarding when is a new user', async () => {
       // Prepare
+      Storage.getItem.mockImplementation(() => Promise.resolve(languages.PT.languageTag));
       Storage.hasItem.mockImplementation(() => Promise.resolve(false));
 
       // Execute
@@ -44,10 +47,13 @@ describe('Startup Sagas', () => {
       }, startup).toPromise();
 
       // Assert
+      expect(Storage.getItem).toHaveBeenCalled();
       expect(Storage.hasItem).toHaveBeenCalled();
+      expect(Storage.getItem).toHaveBeenCalledWith('language');
       expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
-      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
+        accountActions.setLanguage(languages.PT),
         onboardingActions.setOnboarding(true),
         startupActions.setAppLaunched(true),
       ]);
@@ -64,6 +70,10 @@ describe('Startup Sagas', () => {
 
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
+        if (arg === 'language') {
+          return languages.PT.languageTag;
+        }
+
         if (arg === 'tracking_enabled') {
           return 'false';
         }
@@ -90,13 +100,15 @@ describe('Startup Sagas', () => {
       expect(Storage.hasItem).toHaveBeenCalled();
       expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(3);
-      expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'tracking_enabled', 'false');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenCalledTimes(4);
+      expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'tracking_enabled', 'false');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
 
-      expect(dispatched).toHaveLength(5);
+      expect(dispatched).toHaveLength(6);
       expect(dispatched).toEqual([
+        accountActions.setLanguage(languages.PT),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -116,6 +128,10 @@ describe('Startup Sagas', () => {
 
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
+        if (arg === 'language') {
+          return languages.PT.languageTag;
+        }
+
         if (arg === 'tracking_enabled') {
           return 'true';
         }
@@ -143,13 +159,15 @@ describe('Startup Sagas', () => {
       expect(Storage.hasItem).toHaveBeenCalled();
       expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(3);
-      expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'tracking_enabled', 'false');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenCalledTimes(4);
+      expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'tracking_enabled', 'false');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
 
-      expect(dispatched).toHaveLength(6);
+      expect(dispatched).toHaveLength(7);
       expect(dispatched).toEqual([
+        accountActions.setLanguage(languages.PT),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -170,6 +188,10 @@ describe('Startup Sagas', () => {
 
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
+        if (arg === 'language') {
+          return languages.PT.languageTag;
+        }
+
         if (arg === 'tracking_enabled') {
           return 'true';
         }
@@ -197,13 +219,15 @@ describe('Startup Sagas', () => {
       expect(Storage.hasItem).toHaveBeenCalled();
       expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(3);
-      expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'tracking_enabled', 'false');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenCalledTimes(4);
+      expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'tracking_enabled', 'false');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
 
-      expect(dispatched).toHaveLength(7);
+      expect(dispatched).toHaveLength(8);
       expect(dispatched).toEqual([
+        accountActions.setLanguage(languages.PT),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -225,6 +249,10 @@ describe('Startup Sagas', () => {
 
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
+        if (arg === 'language') {
+          return languages.PT.languageTag;
+        }
+
         if (arg === 'tracking_enabled') {
           return 'true';
         }
@@ -252,13 +280,15 @@ describe('Startup Sagas', () => {
       expect(Storage.hasItem).toHaveBeenCalled();
       expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(3);
-      expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'tracking_enabled', 'false');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenCalledTimes(4);
+      expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'tracking_enabled', 'false');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
 
-      expect(dispatched).toHaveLength(6);
+      expect(dispatched).toHaveLength(7);
       expect(dispatched).toEqual([
+        accountActions.setLanguage(languages.PT),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),

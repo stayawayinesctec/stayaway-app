@@ -111,6 +111,11 @@ export const hasExposureNotificationsDisabledError = createSelector(
   account => account.status?.errors?.includes(ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED),
 );
 
+export const getLanguage = createSelector(
+  state => state.account,
+  account => account.language,
+);
+
 export default {
   getSignUpDate,
   isTrackingEnabled,
@@ -129,4 +134,5 @@ export default {
   hasBatteryOptimizerError,
   hasExposureNotificationsDisabledError,
   getErrors,
+  getLanguage,
 };

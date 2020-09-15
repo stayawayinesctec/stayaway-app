@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -17,6 +18,7 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 import { sizes, iconSizes } from '@app/common/theme';
 
 import Configuration from '@app/services/configuration';
+import i18n, { languages } from '@app/services/i18n';
 
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
@@ -26,9 +28,7 @@ import Icon from '@app/common/components/Icon';
 
 import Images from '@app/common/assets/images';
 
-import i18n from '@app/services/i18n';
-
-const styles = (colors) => StyleSheet.create({
+const styles = (colors, insets) => StyleSheet.create({
   container: {
   },
   closeButton: {
@@ -66,12 +66,25 @@ const styles = (colors) => StyleSheet.create({
     elevation: 20,
     marginBottom: sizes.size30,
   },
-  trackingStatusContainer: {
+  trackingLabelContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  trackingStatus: {
+  trackingLabel: {
     marginRight: sizes.size12,
+  },
+  languageLabelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.grayLight,
+    borderRadius: sizes.size4,
+  },
+  languageLabel: {
+    backgroundColor: colors.blueLightest,
+    margin: sizes.size2,
+    paddingVertical: sizes.size5,
+    paddingHorizontal: sizes.size16,
+    borderRadius: sizes.size4,
   },
   imagesContainer: {
     position: 'absolute',
@@ -82,7 +95,7 @@ const styles = (colors) => StyleSheet.create({
   sponsors: {
     position: 'absolute',
     flexDirection: 'row',
-    bottom: sizes.size24,
+    bottom: sizes.size24 + insets.bottom,
     left: sizes.size24,
     zIndex: 0,
   },
@@ -99,9 +112,11 @@ const styles = (colors) => StyleSheet.create({
 
 export default function Info(props) {
   const {
+    language,
     trackingEnabled,
     isInfected,
     onClose,
+    onPressLanguage,
     onPressTermsOfUse,
     onPressPrivacyPolicy,
     onPressHowToUse,
@@ -111,38 +126,64 @@ export default function Info(props) {
     onPressDebug,
   } = props;
 
+  const insets = useSafeAreaInsets();
+
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <TopComponent style={styles(colors).container}>
-          <Layout style={styles(colors).layoutContainer}>
-            <View style={styles(colors).header}>
+        <TopComponent style={styles(colors, insets).container}>
+          <Layout style={styles(colors, insets).layoutContainer}>
+            <View style={styles(colors, insets).header}>
               <ButtonWrapper
                 onPress={onClose}
-                style={styles(colors).closeButton}
+                style={styles(colors, insets).closeButton}
                 accessibilityLabel={i18n.translate('screens.settings.actions.back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.settings.actions.back.accessibility.hint')}
               >
                 <Icon name='close' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.blueDark} />
               </ButtonWrapper>
             </View>
-            <View style={styles(colors).itemsContainer}>
+            <View style={styles(colors, insets).itemsContainer}>
               <ButtonWrapper
                 onPress={onPressTracking}
-                style={styles(colors).item}
+                style={styles(colors, insets).item}
                 disabled={isInfected}
                 accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.settings.tracking.accessibility.hint')}
               >
                 <Text weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
-                <View style={styles(colors).trackingStatusContainer}>
-                  <Text style={styles(colors).trackingStatus}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
+                <View style={styles(colors, insets).trackingLabelContainer}>
+                  <Text style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </View>
               </ButtonWrapper>
               <ButtonWrapper
+                onPress={onPressLanguage}
+                style={styles(colors, insets).item}
+                accessibilityLabel={i18n.translate('screens.settings.language.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.settings.language.accessibility.hint')}
+                accessibilityRole='switch'
+                accessibilityValue={{text: language.name}}
+              >
+                <Text weight='bold'>{i18n.translate('screens.settings.language.label')}</Text>
+                <View style={styles(colors, insets).languageLabelContainer}>
+                  { Object.values(languages).map(({ languageTag, countryCode }) =>
+                    <Text
+                      textAlign='center'
+                      key={languageTag}
+                      style={{
+                           ...styles(colors, insets).languageLabel,
+                           backgroundColor: languageTag === language.languageTag ? colors.blueLightest : colors.grayLight,
+                         }}
+                    >
+                      { countryCode }
+                    </Text>,
+                     )}
+                </View>
+              </ButtonWrapper>
+              <ButtonWrapper
                 onPress={onPressHowToUse}
-                style={styles(colors).item}
+                style={styles(colors, insets).item}
                 accessibilityLabel={i18n.translate('screens.settings.how_to_use.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.settings.how_to_use.accessibility.hint')}
               >
@@ -150,7 +191,7 @@ export default function Info(props) {
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
               </ButtonWrapper>
               <ButtonWrapper
-                style={styles(colors).item}
+                style={styles(colors, insets).item}
                 onPress={onPressFaqs}
                 accessibilityRole='link'
                 accessibilityLabel={i18n.translate('screens.settings.faqs.accessibility.label')}
@@ -160,7 +201,7 @@ export default function Info(props) {
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
               </ButtonWrapper>
               <ButtonWrapper
-                style={styles(colors).item}
+                style={styles(colors, insets).item}
                 onPress={onPressTermsOfUse}
                 accessibilityRole='link'
                 accessibilityLabel={i18n.translate('screens.settings.terms_of_use.accessibility.label')}
@@ -170,7 +211,7 @@ export default function Info(props) {
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
               </ButtonWrapper>
               <ButtonWrapper
-                style={styles(colors).item}
+                style={styles(colors, insets).item}
                 onPress={onPressPrivacyPolicy}
                 accessibilityRole='link'
                 accessibilityLabel={i18n.translate('screens.settings.privacy_policy.accessibility.label')}
@@ -181,7 +222,7 @@ export default function Info(props) {
               </ButtonWrapper>
               <ButtonWrapper
                 onPress={onPressTechnicalSheet}
-                style={styles(colors).item}
+                style={styles(colors, insets).item}
                 accessibilityLabel={i18n.translate('screens.settings.technical_sheet.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.settings.technical_sheet.accessibility.hint')}
               >
@@ -189,19 +230,19 @@ export default function Info(props) {
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
               </ButtonWrapper>
               { ! Configuration.RELEASE &&
-                <ButtonWrapper style={styles(colors).item} onPress={onPressDebug}>
-                  <Text weight='bold'>{i18n.translate('screens.settings.debug.label')}</Text>
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-                </ButtonWrapper>
-              }
+              <ButtonWrapper style={styles(colors, insets).item} onPress={onPressDebug}>
+                <Text weight='bold'>{i18n.translate('screens.settings.debug.label')}</Text>
+                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+              </ButtonWrapper>
+                 }
             </View>
           </Layout>
-          <View style={styles(colors).imagesContainer}>
-            <View style={styles(colors).sponsors}>
-              <Image source={Images.republica_portuguesa} style={styles(colors).republicaPortuguesaImage} />
-              <Image source={Images.logo_dgs} style={styles(colors).dgsImage} />
+          <View style={styles(colors, insets).imagesContainer}>
+            <View style={styles(colors, insets).sponsors}>
+              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
             </View>
-            <Image source={Images.splash} style={styles(colors).splashImage} />
+            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}
@@ -214,6 +255,7 @@ Info.defaultProps = {
   isInfected: false,
   onClose: () => {},
   onPressTracking: () => {},
+  onPressLanguage: () => {},
   onPressHowToUse: () => {},
   onPressFaqs: () => {},
   onPressTermsOfUse: () => {},
@@ -223,10 +265,16 @@ Info.defaultProps = {
 };
 
 Info.propTypes = {
+  language: PropTypes.shape({
+    name: PropTypes.string,
+    languageTag: PropTypes.string,
+    isRTL: PropTypes.bool,
+  }).isRequired,
   trackingEnabled: PropTypes.bool,
   isInfected: PropTypes.bool,
   onClose: PropTypes.func,
   onPressTracking: PropTypes.func,
+  onPressLanguage: PropTypes.func,
   onPressHowToUse: PropTypes.func,
   onPressFaqs: PropTypes.func,
   onPressTermsOfUse: PropTypes.func,

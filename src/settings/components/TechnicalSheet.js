@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -26,7 +27,7 @@ import { sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors, insets) => StyleSheet.create({
   closeButton: {
     position: 'absolute',
     top: sizes.size8,
@@ -93,7 +94,7 @@ const styles = (colors) => StyleSheet.create({
   sponsors: {
     position: 'absolute',
     width: '100%',
-    bottom: sizes.size24,
+    bottom: sizes.size24 + insets.bottom,
     paddingHorizontal: sizes.size24,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -127,27 +128,29 @@ export default function TechnicalSheet (props) {
     onClose,
   } = props;
 
+  const insets = useSafeAreaInsets();
+
   return (
     <ThemeConsumer>
       {({colors}) => (
         <TopComponent>
-          <Layout style={styles(colors).layoutContainer}>
-            <View style={styles(colors).header}>
+          <Layout style={styles(colors, insets).layoutContainer}>
+            <View style={styles(colors, insets).header}>
               <ButtonWrapper
                 onPress={onClose}
-                style={styles(colors).closeButton}
+                style={styles(colors, insets).closeButton}
                 accessibilityLabel={i18n.translate('screens.technical_sheet.actions.go_back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.technical_sheet.actions.go_back.accessibility.hint')}
               >
                 <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
               </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors).title}>{i18n.translate('screens.technical_sheet.title')}</Text>
+              <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.technical_sheet.title')}</Text>
             </View>
-            <View style={styles(colors).itemsContainer}>
-              <View style={styles(colors).coordinatorContainer}>
-                <Text size='small' textColor={colors.grayDark} style={styles(colors).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
+            <View style={styles(colors, insets).itemsContainer}>
+              <View style={styles(colors, insets).coordinatorContainer}>
+                <Text size='small' textColor={colors.grayDark} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
                 <ButtonWrapper
-                  style={styles(colors).item}
+                  style={styles(colors, insets).item}
                   onPress={onPressCoordinator}
                   accessibilityRole='link'
                   accessibilityLabel={i18n.translate('screens.technical_sheet.inesctec.accessibility.label')}
@@ -157,11 +160,11 @@ export default function TechnicalSheet (props) {
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
               </View>
-              <View style={styles(colors).partnersContainer}>
-                <Text size='small' textColor={colors.grayDark} style={styles(colors).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
+              <View style={styles(colors, insets).partnersContainer}>
+                <Text size='small' textColor={colors.grayDark} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
                 <ButtonWrapper
                   style={{
-                    ...styles(colors).item,
+                    ...styles(colors, insets).item,
                     paddingVertical: sizes.size8,
                   }}
                   onPress={onPressISPUP}
@@ -173,7 +176,7 @@ export default function TechnicalSheet (props) {
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 <ButtonWrapper
-                  style={styles(colors).item}
+                  style={styles(colors, insets).item}
                   onPress={onPressKeyruptive}
                   accessibilityRole='link'
                   accessibilityLabel={i18n.translate('screens.technical_sheet.keyruptive.accessibility.label')}
@@ -183,7 +186,7 @@ export default function TechnicalSheet (props) {
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 <ButtonWrapper
-                  style={styles(colors).item}
+                  style={styles(colors, insets).item}
                   onPress={onPressUbirider}
                   accessibilityRole='link'
                   accessibilityLabel={i18n.translate('screens.technical_sheet.ubirider.accessibility.label')}
@@ -193,7 +196,7 @@ export default function TechnicalSheet (props) {
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 <ButtonWrapper
-                  style={styles(colors).item}
+                  style={styles(colors, insets).item}
                   onPress={onPressSPMS}
                   accessibilityRole='link'
                   accessibilityLabel={i18n.translate('screens.technical_sheet.spms.accessibility.label')}
@@ -205,15 +208,15 @@ export default function TechnicalSheet (props) {
               </View>
             </View>
           </Layout>
-          <View style={styles(colors).imagesContainer}>
-            <View style={styles(colors).sponsors}>
-              <View style={styles(colors).sponsorsImages}>
-                <Image source={Images.republica_portuguesa} style={styles(colors).republicaPortuguesaImage} />
-                <Image source={Images.logo_dgs} style={styles(colors).dgsImage} />
+          <View style={styles(colors, insets).imagesContainer}>
+            <View style={styles(colors, insets).sponsors}>
+              <View style={styles(colors, insets).sponsorsImages}>
+                <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+                <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
               </View>
-              <Text size='small' weight='bold' style={styles(colors).version}>{i18n.translate('screens.technical_sheet.version', { version, build })}</Text>
+              <Text size='small' weight='bold' style={styles(colors, insets).version}>{i18n.translate('screens.technical_sheet.version', { version, build })}</Text>
             </View>
-            <Image source={Images.splash} style={styles(colors).splashImage} />
+            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}

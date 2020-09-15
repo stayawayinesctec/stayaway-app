@@ -9,29 +9,41 @@
  */
 
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Info from '@settings/components/Info';
 
 import Linking from '@app/services/linking';
 import NavigationService from '@app/services/navigation';
-import i18n from '@app/services/i18n';
+import i18n, { languages } from '@app/services/i18n';
 
 import {
   isTrackingEnabled,
   isInfected,
+  getLanguage,
 } from '@app/redux/account/selectors';
+import accountActions from '@app/redux/account';
 
 import AppRoutes from '@app/navigation/routes';
 
 export default function InfoScreen () {
+  const dispatch = useDispatch();
   const trackingEnabled = useSelector(isTrackingEnabled);
+  const language = useSelector(getLanguage);
 
   const props = {
     trackingEnabled,
+    language,
     isInfected: useSelector(isInfected),
     onClose: () => NavigationService.navigate(AppRoutes.HOME),
     onPressTracking: () => NavigationService.navigate(AppRoutes.TRACKING),
+    onPressLanguage: () => {
+      if (languages.EN.languageTag === language.languageTag) {
+        dispatch(accountActions.updateLanguage(languages.PT.languageTag));
+      } else {
+        dispatch(accountActions.updateLanguage(languages.EN.languageTag));
+      }
+    },
     onPressHowToUse: () => {
       NavigationService.navigate(AppRoutes.HOW_TO_USE);
     },

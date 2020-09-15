@@ -24,8 +24,10 @@ import { isOnboarding } from '@app/redux/onboarding/selectors';
 
 export function* startup() {
   try {
-    // Set i18 initial config
-    i18n.setI18nConfig();
+    // Check if has previous language configuration
+    const languageTag = yield call([Storage, 'getItem'], 'language');
+    const language = i18n.setI18nConfig(languageTag);
+    yield put(accountActions.setLanguage(language));
 
     // Check if has previous configuration
     const hasSignUpDate = yield call([Storage, 'hasItem'], 'signup_date');

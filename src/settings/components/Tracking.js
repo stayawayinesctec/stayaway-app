@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -27,7 +28,7 @@ import { sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors, insets) => StyleSheet.create({
   closeButton: {
     position: 'absolute',
     left: -sizes.size8,
@@ -72,7 +73,7 @@ const styles = (colors) => StyleSheet.create({
   sponsors: {
     position: 'absolute',
     flexDirection: 'row',
-    bottom: sizes.size24,
+    bottom: sizes.size24 + insets.bottom,
     left: sizes.size24,
     zIndex: 0,
   },
@@ -93,15 +94,17 @@ export default function Tracking (props) {
     onClose,
   } = props;
 
+  const insets = useSafeAreaInsets();
+
   return (
     <ThemeConsumer>
       {({colors}) => (
         <TopComponent>
-          <Layout style={styles(colors).layoutContainer}>
-            <View style={styles(colors).header}>
+          <Layout style={styles(colors, insets).layoutContainer}>
+            <View style={styles(colors, insets).header}>
               <ButtonWrapper
                 onPress={onClose}
-                style={styles(colors).closeButton}
+                style={styles(colors, insets).closeButton}
                 accessibilityLabel={i18n.translate('screens.tracking.actions.go_back.accessibility.hint.label')}
                 accessibilityHint={i18n.translate('screens.tracking.actions.go_back.accessibility.hint.hint')}
               >
@@ -109,30 +112,30 @@ export default function Tracking (props) {
               </ButtonWrapper>
               <Text size='xlarge' weight='bold'>{i18n.translate('screens.tracking.title')}</Text>
             </View>
-            <View style={styles(colors).content}>
-              <Text size='xlarge' weight='bold' style={styles(colors).description}>{i18n.translate('screens.tracking.description')}</Text>
+            <View style={styles(colors, insets).content}>
+              <Text size='xlarge' weight='bold' style={styles(colors, insets).description}>{i18n.translate('screens.tracking.description')}</Text>
               <ButtonWrapper
-                style={styles(colors).switchContainer}
+                style={styles(colors, insets).switchContainer}
                 onPress={onPress}
                 accessibilityRole='switch'
                 accessibilityState={{checked: trackingEnabled}}
               >
-                <Text size='xlarge' style={styles(colors).switcherTitle}>{i18n.translate('screens.tracking.switch.label')}</Text>
+                <Text size='xlarge' style={styles(colors, insets).switcherTitle}>{i18n.translate('screens.tracking.switch.label')}</Text>
                 <Switch
                   value={trackingEnabled}
                   onValueChange={onPress}
                   accessibilityLabel={i18n.translate('screens.tracking.switch.accessibility.label')}
                 />
               </ButtonWrapper>
-              {trackingEnabled && <Text textColor={colors.grayDark} style={styles(colors).legendContainer}>{i18n.translate('screens.tracking.switch.legend')}</Text>}
+              {trackingEnabled && <Text textColor={colors.grayDark} style={styles(colors, insets).legendContainer}>{i18n.translate('screens.tracking.switch.legend')}</Text>}
             </View>
           </Layout>
-          <View style={styles(colors).imagesContainer}>
-            <View style={styles(colors).sponsors}>
-              <Image source={Images.republica_portuguesa} style={styles(colors).republicaPortuguesaImage} />
-              <Image source={Images.logo_dgs} style={styles(colors).dgsImage} />
+          <View style={styles(colors, insets).imagesContainer}>
+            <View style={styles(colors, insets).sponsors}>
+              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
             </View>
-            <Image source={Images.splash} style={styles(colors).splashImage} />
+            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}
