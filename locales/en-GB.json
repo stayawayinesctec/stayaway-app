@@ -34,13 +34,11 @@
           "data_treatment": "I agree with the processing of my personal data, in compliance with the privacy policy, including data related to my health condition, required to send notifications on the exposure to potential risks of contagion, in order to help interrupting the chains of COVID-19 infection."
         },
         "actions": {
-          "actions": {
-            "accept": {
+          "accept": {
+            "label": "Accept and Start",
+            "accessibility": {
               "label": "Accept and Start",
-              "accessibility": {
-                "label": "Accept and Start",
-                "hint": "Accept terms and conditions and start using the app"
-              }
+              "hint": "Accept terms and conditions and start using the app"
             }
           }
         }
