@@ -102,7 +102,7 @@ function* watchAppStateChange() {
             yield call(TrackingManager.sync);
           }
           catch (error) {
-            // Sync error. Probably exposure check limit reached. 
+            // Sync error. Probably exposure check limit reached.
             console.log(error);
           }
         }

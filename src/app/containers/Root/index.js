@@ -57,6 +57,10 @@ export default function Root () {
     }
   }, [appLaunched]);
 
+  if (! appLaunched) {
+    return null;
+  }
+
   return (
     <ThemeProvider value={theme}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
