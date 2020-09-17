@@ -39,7 +39,7 @@ public class DeviceFeatureHelper {
 
 	public static boolean isBatteryOptimizationDeactivated(Context context) {
 		PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-		return powerManager.isIgnoringBatteryOptimizations(context.getPackageName());
+		return powerManager == null || powerManager.isIgnoringBatteryOptimizations(context.getPackageName());
 	}
 
 	public static void openApplicationSettings(@NonNull Activity activity) {
