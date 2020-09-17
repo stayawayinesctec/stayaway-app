@@ -262,7 +262,7 @@ export default function Template (props) {
                               <Text size='xsmall' textColor={panelTextColor}>
                                 {i18n.translate('screens.home.last_updated')}
                               </Text>
-                              <Text size='small' weight='bold' textColor={panelTextColor}>{lastSync.format('l').replace(/\//gi,'.')}</Text>
+                              <Text size='small' weight='bold' textColor={panelTextColor}>{lastSync.format('L')}</Text>
                             </View>
                           }
                           { !hasUpdated &&
