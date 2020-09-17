@@ -20,13 +20,13 @@ import permissionsActions, {
 
 import TrackingManager from '@app/services/tracking';
 
-function* checkNotificationsPermission() {
+export function* checkNotificationsPermission() {
   const { status } = yield call(checkNotifications);
 
   return status;
 }
 
-function* checkBatteryPermission() {
+export function* checkBatteryPermission() {
   const result = yield call(TrackingManager.isIgnoringBatteryOptimizationsPermission);
 
   if (result) {
@@ -36,7 +36,7 @@ function* checkBatteryPermission() {
   return RESULTS.DENIED;
 }
 
-function* checkPermission({ payload: permission }) {
+export function* checkPermission({ payload: permission }) {
   if (permission === NOTIFICATIONS_PERMISSION) {
     // Request notifications permission
     const notificationsResult = yield call(checkNotificationsPermission);
@@ -62,7 +62,7 @@ function* checkPermission({ payload: permission }) {
   }
 }
 
-function* checkAllPermissions() {
+export function* checkAllPermissions() {
   if (Platform.OS === 'ios') {
     // Request notifications permission
     const notificationsResult = yield call(checkNotificationsPermission);
@@ -90,13 +90,13 @@ function* checkAllPermissions() {
   yield put(permissionsActions.checkAllPermissionsResult(true));
 }
 
-function* requestNotificationsPermission() {
+export function* requestNotificationsPermission() {
   const { status } = yield call(requestNotifications, ['alert', 'badge', 'sound']);
 
   return status;
 }
 
-function* requestBatteryPermission() {
+export function* requestBatteryPermission() {
   try {
     if (! (yield call(TrackingManager.isIgnoringBatteryOptimizationsPermission))) {
         yield call(TrackingManager.requestIgnoreBatteryOptimizationsPermission);
@@ -108,7 +108,7 @@ function* requestBatteryPermission() {
   }
 }
 
-function* requestPermission({ payload: permission }) {
+export function* requestPermission({ payload: permission }) {
   if (permission === NOTIFICATIONS_PERMISSION) {
     // Request notifications permission
     const notificationsResult = yield call(requestNotificationsPermission);
@@ -134,7 +134,7 @@ function* requestPermission({ payload: permission }) {
   }
 }
 
-function* requestAllPermissions() {
+export function* requestAllPermissions() {
   if (Platform.OS === 'ios') {
     // Request notifications permission
     const notificationsResult = yield call(requestNotificationsPermission);
@@ -162,19 +162,19 @@ function* requestAllPermissions() {
   yield put(permissionsActions.requestAllPermissionsResult(true));
 }
 
-function* watchCheckPermission() {
+export function* watchCheckPermission() {
   yield takeLatest(permissionsTypes.CHECK_PERMISSION, checkPermission);
 }
 
-function* watchCheckAllPermissions() {
+export function* watchCheckAllPermissions() {
   yield takeLatest(permissionsTypes.CHECK_ALL_PERMISSIONS, checkAllPermissions);
 }
 
-function* watchRequestPermission() {
+export function* watchRequestPermission() {
   yield takeLatest(permissionsTypes.REQUEST_PERMISSION, requestPermission);
 }
 
-function* watchRequestAllPermissions() {
+export function* watchRequestAllPermissions() {
   yield takeLatest(permissionsTypes.REQUEST_ALL_PERMISSIONS, requestAllPermissions);
 }
 

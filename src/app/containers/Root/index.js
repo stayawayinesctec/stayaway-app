@@ -12,7 +12,7 @@ import React, { useEffect, useRef } from 'react';
 import { useColorScheme, Platform, StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 
 import RootNavigator from '@app/navigation/Root';
@@ -57,9 +57,13 @@ export default function Root () {
     }
   }, [appLaunched]);
 
+  if (! appLaunched) {
+    return null;
+  }
+
   return (
     <ThemeProvider value={theme}>
-      <SafeAreaProvider>
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <NavigationContainer ref={ref}>
           <RootNavigator />
         </NavigationContainer>

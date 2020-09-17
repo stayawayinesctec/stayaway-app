@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
-import { INFECTED_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracking';
 
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
@@ -100,11 +100,11 @@ export default function Debug (props) {
 
   let infectionStatusName = i18n.translate('screens.debug.infection_status.healthy');
 
-  if (status.infectionStatus === INFECTED_STATUS.EXPOSED ) {
+  if (status.infectionStatus === INFECTION_STATUS.EXPOSED ) {
     infectionStatusName = i18n.translate('screens.debug.infection_status.exposed');
   }
 
-  if (status.infectionStatus === INFECTED_STATUS.INFECTED ) {
+  if (status.infectionStatus === INFECTION_STATUS.INFECTED ) {
     infectionStatusName = i18n.translate('screens.debug.infection_status.infected');
   }
 

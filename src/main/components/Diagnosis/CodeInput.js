@@ -180,6 +180,8 @@ export default function Diagnosis (props) {
               <Button
                 loading={loading}
                 title={i18n.translate('common.actions.submit')}
+                accessibilityLabel={i18n.translate('screens.diagnosis.code_input.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.diagnosis.code_input.accessibility.hint')}
                 containerStyle={styles(colors).button}
                 onPress={onNextPressed}
                 disabled={disabled}

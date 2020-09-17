@@ -39,7 +39,6 @@ const styles = (colors, insets) => StyleSheet.create({
   updateContainer: {
     alignItems: 'flex-end',
     marginRight: sizes.size8,
-    marginTop: sizes.size24,
     marginBottom: sizes.size8,
   },
   settingsButton: {
@@ -149,13 +148,6 @@ const styles = (colors, insets) => StyleSheet.create({
     flex: 0,
     backgroundColor: colors.transparent,
   },
-  homeContainer: {
-    top: 0,
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    zIndex: 10,
-  },
 });
 
 export default function Template (props) {
@@ -244,6 +236,7 @@ export default function Template (props) {
               }
               <View style={styles(colors, insets).homeContainer}>
                 <ImageBackground
+                  testID="home_image_background"
                   source={image}
                   style={styles(colors, insets).imageContainer}
                 />
@@ -267,9 +260,9 @@ export default function Template (props) {
                           { hasUpdated &&
                             <View style={styles(colors, insets).updateContainer}>
                               <Text size='xsmall' textColor={panelTextColor}>
-                                {`${i18n.translate('screens.home.last_updated')}: `}
-                                <Text size='small' weight='bold' textColor={panelTextColor}>{lastSync.format('L')}</Text>
+                                {i18n.translate('screens.home.last_updated')}
                               </Text>
+                              <Text size='small' weight='bold' textColor={panelTextColor}>{lastSync.format('L')}</Text>
                             </View>
                           }
                           { !hasUpdated &&

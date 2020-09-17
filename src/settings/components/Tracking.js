@@ -141,12 +141,13 @@ export default function Tracking (props) {
 }
 
 Tracking.defaultProps = {
+  trackingEnabled: false,
   onPress: () => {},
   onClose: () => {},
 };
 
 Tracking.propTypes = {
-  trackingEnabled: PropTypes.bool.isRequired,
+  trackingEnabled: PropTypes.bool,
   onPress: PropTypes.func,
   onClose: PropTypes.func,
 };

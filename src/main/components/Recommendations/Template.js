@@ -120,6 +120,7 @@ export default function Recommendations (props) {
               ...styles(colors).contentContainer,
               backgroundColor: color,
             }}
+            testID="recommendations_layout"
           >
             <View style={styles(colors).recommendationsContainer}>
               <View style={styles(colors).recommendations}>

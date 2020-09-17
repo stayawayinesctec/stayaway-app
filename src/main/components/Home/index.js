@@ -15,16 +15,16 @@ import HomeHealthy from '@main/components/Home/HomeHealthy';
 import HomeInfected from '@main/components/Home/HomeInfected';
 import HomeExposed from '@main/components/Home/HomeExposed';
 
-import { INFECTED_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracking';
 
 export default function Home (props) {
   const { infectionStatus, ...otherProps } = props;
 
-  if (infectionStatus === INFECTED_STATUS.HEALTHY ) {
+  if (infectionStatus === INFECTION_STATUS.HEALTHY ) {
     return <HomeHealthy {...otherProps} />;
   }
 
-  if (infectionStatus === INFECTED_STATUS.INFECTED ) {
+  if (infectionStatus === INFECTION_STATUS.INFECTED ) {
     return <HomeInfected {...otherProps} />;
   }
 

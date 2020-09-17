@@ -16,7 +16,7 @@ class Storage {
     this.storage = AsyncStorage;
     this.instance = undefined;
     this.prefix = `divoc-app-(${Configuration.APP_ID}):`;
-    this.prefixReg = new RegExp(`^(${ this.prefix })(.+)`, 'gi');
+    this.prefixReg = new RegExp(`^(${ Storage.escapeRegex(this.prefix) })(.+)`, 'gi');
   }
 
   /**
@@ -169,6 +169,17 @@ class Storage {
         reject(error);
       }
     });
+  }
+
+  /**
+   * Escape a RegExp string.
+   *
+   * @param regexp The regexp used to escape
+   *
+   * @returns {String} Escaped string
+   */
+  static escapeRegex(regexp) {
+    return regexp.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
   }
 }
 

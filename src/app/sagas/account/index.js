@@ -15,18 +15,18 @@ import { Alert, Platform } from 'react-native';
 
 import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
-import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTED_STATUS } from '@app/services/tracking';
+import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
 
 import AppRoutes from '@app/navigation/routes';
 
 import modalsActions, { modalsTypes } from '@app/redux/modals';
-import accountActions, { accountTypes, START_TRACKING_RESULTS } from '@app/redux/account';
+import accountActions, { accountTypes, TRACKING_RESULTS } from '@app/redux/account';
 import onboardingActions from '@app/redux/onboarding';
 import { isTrackingEnabled, getStatus } from '@app/redux/account/selectors';
 import permissionsActions, { permissionsTypes } from '@app/redux/permissions';
 
-function* setupNewAccount() {
+export function* setupNewAccount() {
   yield put(accountActions.setupNewAccountPending());
 
   // Set default state
@@ -61,10 +61,10 @@ function* setupNewAccount() {
     yield put(accountActions.startTracking());
     const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
 
-    if (payload === START_TRACKING_RESULTS.SUCCESS) {
+    if (payload === TRACKING_RESULTS.SUCCESS) {
       // Set tracking activated
       yield put(accountActions.setTrackingEnabled(true));
-    } else if (payload === START_TRACKING_RESULTS.GAEN) {
+    } else if (payload === TRACKING_RESULTS.GAEN) {
       yield put(accountActions.setTrackingEnabled(false));
 
       // Add tracking error
@@ -86,7 +86,7 @@ function* setupNewAccount() {
   NavigationService.navigate(AppRoutes.APP);
 }
 
-function* watchTrackingStatus() {
+export function* watchTrackingStatus() {
   // Set event listener value
   const channel = eventChannel((emitter) => {
     TrackingManager.addUpdateEventListener(emitter);
@@ -109,7 +109,7 @@ function* watchTrackingStatus() {
   }
 }
 
-function* startTracking() {
+export function* startTracking() {
   let watcher;
 
   try {
@@ -130,7 +130,7 @@ function* startTracking() {
         );
       }
 
-      yield put(accountActions.startTrackingResult(START_TRACKING_RESULTS.GAEN));
+      yield put(accountActions.startTrackingResult(TRACKING_RESULTS.GAEN));
       return;
     }
 
@@ -138,10 +138,10 @@ function* startTracking() {
 
     // Wait for listener to registered
     yield take(accountTypes.TRACKING_STATUS_LISTENER_REGISTERED);
-    yield put(accountActions.startTrackingResult(START_TRACKING_RESULTS.SUCCESS));
+    yield put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
   } catch (error) {
     console.log(error);
-    yield put(accountActions.startTrackingResult(START_TRACKING_RESULTS.FAILED));
+    yield put(accountActions.startTrackingResult(TRACKING_RESULTS.FAILED));
     return;
   }
 
@@ -149,14 +149,14 @@ function* startTracking() {
     yield take(accountTypes.STOP_TRACKING);
     yield cancel(watcher);
     yield call(TrackingManager.stop);
-    yield put(accountActions.stopTrackingResult(START_TRACKING_RESULTS.SUCCESS));
+    yield put(accountActions.stopTrackingResult(TRACKING_RESULTS.SUCCESS));
   } catch (error) {
     console.log(error);
     yield put(accountActions.stopTrackingResult('ERROR'));
   }
 }
 
-function* submitDiagnosis({ payload: code }) {
+export function* submitDiagnosis({ payload: code }) {
   // Open loading modal
   yield put(accountActions.submitDiagnosisPending());
   yield put(modalsActions.openLoadingModal());
@@ -207,7 +207,7 @@ function* submitDiagnosis({ payload: code }) {
     }
 
     // Update status
-    yield put(accountActions.setInfectionStatus(INFECTED_STATUS.INFECTED));
+    yield put(accountActions.setInfectionStatus(INFECTION_STATUS.INFECTED));
     yield put(accountActions.setErrors([]));
 
     // Stop tracing
@@ -240,11 +240,12 @@ function* submitDiagnosis({ payload: code }) {
   }
 }
 
-function* switchTracking() {
+export function* switchTracking() {
   const trackingEnabled = yield select(isTrackingEnabled);
   if (trackingEnabled) {
     yield put(accountActions.stopTracking());
     yield put(accountActions.setTrackingEnabled(false));
+    yield put(accountActions.setErrors([]));
     return;
   }
 
@@ -285,7 +286,7 @@ function* switchTracking() {
     yield put(accountActions.startTracking());
     const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
 
-    if (payload === START_TRACKING_RESULTS.SUCCESS) {
+    if (payload === TRACKING_RESULTS.SUCCESS) {
       // Set tracking activated
       yield put(accountActions.setTrackingEnabled(true));
     } else {
@@ -294,9 +295,9 @@ function* switchTracking() {
   }
 }
 
-function* updateStatus({ payload: status }) {
+export function* updateStatus({ payload: status }) {
   // Check if user has been exposed
-  if (status.infectionStatus === INFECTED_STATUS.EXPOSED) {
+  if (status.infectionStatus === INFECTION_STATUS.EXPOSED) {
     const { exposureDays = [] } = status;
 
     // Get last exposure day
@@ -315,7 +316,7 @@ function* updateStatus({ payload: status }) {
   yield put(accountActions.setStatus(status));
 }
 
-function* setErrors({ payload: errors }) {
+export function* setErrors({ payload: errors }) {
   const status = yield select(getStatus);
 
   yield put(accountActions.setStatus({
@@ -324,7 +325,7 @@ function* setErrors({ payload: errors }) {
   }));
 }
 
-function* setInfectionStatus({ payload: infectionStatus }) {
+export function* setInfectionStatus({ payload: infectionStatus }) {
   const status = yield select(getStatus);
 
   yield put(accountActions.setStatus({
