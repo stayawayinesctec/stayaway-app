@@ -110,7 +110,7 @@ export default function Debug (props) {
 
   const exposedDays =
     status?.exposureDays
-    .map(day => Moment(day.exposedDate).format('l').replace(/\//gi,'.'))
+    .map(day => Moment(day.exposedDate).format('L'))
     .join(',');
 
   const errors = status?.errors.join(',');
@@ -134,11 +134,11 @@ export default function Debug (props) {
             <View style={styles(colors).content}>
               <View style={styles(colors).stat}>
                 <Text weight='bold'>{`${i18n.translate('screens.debug.sign_up')}: `}</Text>
-                <Text>{Moment(signUp).format('l').replace(/\//gi,'.')}</Text>
+                <Text>{Moment(signUp).format('L')}</Text>
               </View>
               <View style={styles(colors).stat}>
                 <Text weight='bold'>{`${i18n.translate('screens.debug.last_sync')}: `}</Text>
-                <Text>{Moment(status.lastSyncDate).format('l').replace(/\//gi,'.')}</Text>
+                <Text>{Moment(status.lastSyncDate).format('L')}</Text>
               </View>
               <View style={styles(colors).stat}>
                 <Text weight='bold'>{`${i18n.translate('screens.debug.infection_status.label')}: `}</Text>
