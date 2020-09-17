@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
+import { SafeAreaConsumer } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -25,7 +26,7 @@ import Text from '@app/common/components/Text';
 import Images from '@app/common/assets/images';
 import { sizes, iconSizes } from '@app/common/theme';
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors, insets) => StyleSheet.create({
   imageContainer: {
     flex: 1,
     resizeMode: 'cover',
@@ -58,6 +59,7 @@ const styles = (colors) => StyleSheet.create({
     paddingHorizontal: sizes.size24,
     paddingTop: '15%',
     borderTopRightRadius: 250,
+    paddingBottom: insets.bottom + sizes.size24 * 2 + sizes.size8,
   },
   centeredContainer: {
     flex: 1,
@@ -77,11 +79,11 @@ const styles = (colors) => StyleSheet.create({
 export default function Template (props) {
   const { header, description, image, pressable, closable, onPress, onClose } = props;
 
-  const renderContent = (colors) => {
+  const renderContent = (colors, insets) => {
     if (description.length === 0) {
       return (
-        <Layout padding='horizontal' style={styles(colors).centeredContainer}>
-          <Text weight='bold' size='xlarge' style={styles(colors).mainHeader}>{header}</Text>
+        <Layout padding='horizontal' style={styles(colors, insets).centeredContainer}>
+          <Text weight='bold' size='xlarge' style={styles(colors, insets).mainHeader}>{header}</Text>
           { pressable &&
             <Button
               title={i18n.translate('common.actions.ok')}
@@ -96,13 +98,13 @@ export default function Template (props) {
     }
 
     return (
-      <Layout padding='horizontal' style={styles(colors).contentContainer}>
-        {header.length > 0 && <Text weight='bold' size='xlarge' style={styles(colors).header}>{header}</Text> }
-        {description.length > 0 && <Text style={styles(colors).description}>{description}</Text>}
+      <Layout padding='horizontal' style={styles(colors, insets).contentContainer}>
+        {header.length > 0 && <Text weight='bold' size='xlarge' style={styles(colors, insets).header}>{header}</Text> }
+        {description.length > 0 && <Text style={styles(colors, insets).description}>{description}</Text>}
         { pressable &&
           <Button
             title={i18n.translate('common.actions.ok')}
-            containerStyle={styles.button}
+            containerStyle={styles(colors, insets).button}
             onPress={onPress}
             accessibilityLabel={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.label')}
             accessibilityHint={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.hint')}
@@ -115,30 +117,34 @@ export default function Template (props) {
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <TopComponent>
-          <ImageBackground
-            source={image}
-            style={styles(colors).imageContainer}
-          >
-            <View style={styles(colors).topContainer}>
-              { closable &&
-                <Layout style={styles(colors).top}>
-                  <ButtonWrapper
-                    onPress={onClose}
-                    style={styles(colors).closeButton}
-                    accessibilityLabel={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.label')}
-                    accessibilityHint={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.hint')}
-                  >
-                    <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.blueDark} />
-                  </ButtonWrapper>
-                </Layout>
-              }
-            </View>
-            <View style={styles(colors).bottomContainer}>
-              {renderContent(colors)}
-            </View>
-          </ImageBackground>
-        </TopComponent>
+        <SafeAreaConsumer>
+          {insets => (
+            <TopComponent>
+              <ImageBackground
+                source={image}
+                style={styles(colors, insets).imageContainer}
+              >
+                <View style={styles(colors, insets).topContainer}>
+                  { closable &&
+                    <Layout style={styles(colors, insets).top}>
+                      <ButtonWrapper
+                        onPress={onClose}
+                        style={styles(colors, insets).closeButton}
+                        accessibilityLabel={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.label')}
+                        accessibilityHint={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.hint')}
+                      >
+                        <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.blueDark} />
+                      </ButtonWrapper>
+                    </Layout>
+                  }
+                </View>
+                <View style={styles(colors, insets).bottomContainer}>
+                  {renderContent(colors, insets)}
+                </View>
+              </ImageBackground>
+            </TopComponent>
+          )}
+        </SafeAreaConsumer>
       )}
     </ThemeConsumer>
   );

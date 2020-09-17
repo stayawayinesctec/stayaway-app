@@ -148,13 +148,6 @@ const styles = (colors, insets) => StyleSheet.create({
     flex: 0,
     backgroundColor: colors.transparent,
   },
-  homeContainer: {
-    top: 0,
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    zIndex: 10,
-  },
 });
 
 export default function Template (props) {

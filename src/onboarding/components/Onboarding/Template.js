@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
+import { SafeAreaConsumer } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -20,7 +21,7 @@ import Text from '@app/common/components/Text';
 import Images from '@app/common/assets/images';
 import { sizes } from '@app/common/theme';
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors, insets) => StyleSheet.create({
   imageContainer: {
     flex: 1,
     resizeMode: 'cover',
@@ -48,7 +49,7 @@ const styles = (colors) => StyleSheet.create({
     paddingHorizontal: sizes.size24,
     paddingTop: '15%',
     borderTopRightRadius: 250,
-    paddingBottom: sizes.size24 + sizes.size8 + sizes.size24,
+    paddingBottom: insets.bottom + sizes.size24 * 2 + sizes.size8,
   },
   centeredContainer: {
     flex: 1,
@@ -63,19 +64,19 @@ const styles = (colors) => StyleSheet.create({
 export default function Template (props) {
   const { header, description, image } = props;
 
-  const renderContent = (colors) => {
+  const renderContent = (colors, insets) => {
     if (description.length === 0) {
       return (
-        <Layout padding='horizontal' style={styles(colors).centeredContainer}>
-          <Text weight='bold' size='xxlarge' style={styles(colors).mainHeader}>{header}</Text>
+        <Layout padding='horizontal' style={styles(colors, insets).centeredContainer}>
+          <Text weight='bold' size='xxlarge' style={styles(colors, insets).mainHeader}>{header}</Text>
         </Layout>
       );
     }
 
     return (
-      <Layout padding='horizontal' style={styles(colors).contentContainer}>
-        {header.length > 0 && <Text weight='bold' size='xxlarge' style={styles(colors).header}>{header}</Text> }
-        {description.length > 0 && <Text style={styles(colors).description}>{description}</Text>}
+      <Layout padding='horizontal' style={styles(colors, insets).contentContainer}>
+        {header.length > 0 && <Text weight='bold' size='xxlarge' style={styles(colors, insets).header}>{header}</Text> }
+        {description.length > 0 && <Text style={styles(colors, insets).description}>{description}</Text>}
       </Layout>
     );
   };
@@ -83,17 +84,21 @@ export default function Template (props) {
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <TopComponent>
-          <ImageBackground
-            source={image}
-            style={styles(colors).imageContainer}
-          >
-            <View style={styles(colors).topContainer} />
-            <View style={styles(colors).bottomContainer}>
-              {renderContent(colors)}
-            </View>
-          </ImageBackground>
-        </TopComponent>
+        <SafeAreaConsumer>
+          {insets => (
+            <TopComponent>
+              <ImageBackground
+                source={image}
+                style={styles(colors, insets).imageContainer}
+              >
+                <View style={styles(colors, insets).topContainer} />
+                <View style={styles(colors, insets).bottomContainer}>
+                  {renderContent(colors, insets)}
+                </View>
+              </ImageBackground>
+            </TopComponent>
+          )}
+        </SafeAreaConsumer>
       )}
     </ThemeConsumer>
   );
