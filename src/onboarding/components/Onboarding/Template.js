@@ -10,7 +10,7 @@
 
 import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
-import { SafeAreaConsumer } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -64,7 +64,9 @@ const styles = (colors, insets) => StyleSheet.create({
 export default function Template (props) {
   const { header, description, image } = props;
 
-  const renderContent = (colors, insets) => {
+  const insets = useSafeAreaInsets();
+
+  const renderContent = (colors) => {
     if (description.length === 0) {
       return (
         <Layout padding='horizontal' style={styles(colors, insets).centeredContainer}>
@@ -84,21 +86,17 @@ export default function Template (props) {
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <SafeAreaConsumer>
-          {insets => (
-            <TopComponent>
-              <ImageBackground
-                source={image}
-                style={styles(colors, insets).imageContainer}
-              >
-                <View style={styles(colors, insets).topContainer} />
-                <View style={styles(colors, insets).bottomContainer}>
-                  {renderContent(colors, insets)}
-                </View>
-              </ImageBackground>
-            </TopComponent>
-          )}
-        </SafeAreaConsumer>
+        <TopComponent>
+          <ImageBackground
+            source={image}
+            style={styles(colors, insets).imageContainer}
+          >
+            <View style={styles(colors, insets).topContainer} />
+            <View style={styles(colors, insets).bottomContainer}>
+              {renderContent(colors)}
+            </View>
+          </ImageBackground>
+        </TopComponent>
       )}
     </ThemeConsumer>
   );

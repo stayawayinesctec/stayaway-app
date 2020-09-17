@@ -47,11 +47,15 @@ const styles = (colors, insets) => StyleSheet.create({
   itemsContainer: {
     marginBottom: sizes.size48,
   },
+  topItems: {
+    marginBottom: sizes.size48,
+  },
   item: {
     backgroundColor: colors.white,
     paddingLeft: sizes.size8,
     paddingRight: sizes.size16,
     paddingVertical: sizes.size18,
+    marginBottom: sizes.size8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -64,7 +68,6 @@ const styles = (colors, insets) => StyleSheet.create({
     shadowOpacity: 0.51,
     shadowRadius: 13.16,
     elevation: 20,
-    marginBottom: sizes.size30,
   },
   trackingLabelContainer: {
     flexDirection: 'row',
@@ -144,97 +147,104 @@ export default function Info(props) {
               </ButtonWrapper>
             </View>
             <View style={styles(colors, insets).itemsContainer}>
-              <ButtonWrapper
-                onPress={onPressTracking}
-                style={styles(colors, insets).item}
-                disabled={isInfected}
-                accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.settings.tracking.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
-                <View style={styles(colors, insets).trackingLabelContainer}>
-                  <Text style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
+              <View style={styles(colors, insets).topItems}>
+                <ButtonWrapper
+                  onPress={onPressTracking}
+                  style={{
+                    ...styles(colors, insets).item,
+                    backgroundColor: trackingEnabled ? colors.blueLightest : colors.white,
+                  }}
+                  disabled={isInfected}
+                  accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.tracking.accessibility.hint')}
+                >
+                  <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
+                  <View style={styles(colors, insets).trackingLabelContainer}>
+                    <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold' style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
+                    <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={trackingEnabled ? colors.white : colors.blueDark} />
+                  </View>
+                </ButtonWrapper>
+                <ButtonWrapper
+                  onPress={onPressLanguage}
+                  style={styles(colors, insets).item}
+                  accessibilityLabel={i18n.translate('screens.settings.language.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.language.accessibility.hint')}
+                  accessibilityRole='switch'
+                  accessibilityValue={{text: language.name}}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.language.label')}</Text>
+                  <View style={styles(colors, insets).languageLabelContainer}>
+                    { Object.values(languages).map(({ languageTag, countryCode }) =>
+                      <Text
+                        textAlign='center'
+                        key={languageTag}
+                        style={{
+                            ...styles(colors, insets).languageLabel,
+                            backgroundColor: languageTag === language.languageTag ? colors.blueLightest : colors.grayLight,
+                          }}
+                      >
+                        { countryCode }
+                      </Text>,
+                      )}
+                  </View>
+                </ButtonWrapper>
+              </View>
+              <View style={styles(colors, insets).bottomItems}>
+                <ButtonWrapper
+                  onPress={onPressHowToUse}
+                  style={styles(colors, insets).item}
+                  accessibilityLabel={i18n.translate('screens.settings.how_to_use.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.how_to_use.accessibility.hint')}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.how_to_use.label')}</Text>
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-                </View>
-              </ButtonWrapper>
-              <ButtonWrapper
-                onPress={onPressLanguage}
-                style={styles(colors, insets).item}
-                accessibilityLabel={i18n.translate('screens.settings.language.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.settings.language.accessibility.hint')}
-                accessibilityRole='switch'
-                accessibilityValue={{text: language.name}}
-              >
-                <Text weight='bold'>{i18n.translate('screens.settings.language.label')}</Text>
-                <View style={styles(colors, insets).languageLabelContainer}>
-                  { Object.values(languages).map(({ languageTag, countryCode }) =>
-                    <Text
-                      textAlign='center'
-                      key={languageTag}
-                      style={{
-                           ...styles(colors, insets).languageLabel,
-                           backgroundColor: languageTag === language.languageTag ? colors.blueLightest : colors.grayLight,
-                         }}
-                    >
-                      { countryCode }
-                    </Text>,
-                     )}
-                </View>
-              </ButtonWrapper>
-              <ButtonWrapper
-                onPress={onPressHowToUse}
-                style={styles(colors, insets).item}
-                accessibilityLabel={i18n.translate('screens.settings.how_to_use.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.settings.how_to_use.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.settings.how_to_use.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-              </ButtonWrapper>
-              <ButtonWrapper
-                style={styles(colors, insets).item}
-                onPress={onPressFaqs}
-                accessibilityRole='link'
-                accessibilityLabel={i18n.translate('screens.settings.faqs.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.settings.faqs.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.settings.faqs.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-              </ButtonWrapper>
-              <ButtonWrapper
-                style={styles(colors, insets).item}
-                onPress={onPressTermsOfUse}
-                accessibilityRole='link'
-                accessibilityLabel={i18n.translate('screens.settings.terms_of_use.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.settings.terms_of_use.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.settings.terms_of_use.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-              </ButtonWrapper>
-              <ButtonWrapper
-                style={styles(colors, insets).item}
-                onPress={onPressPrivacyPolicy}
-                accessibilityRole='link'
-                accessibilityLabel={i18n.translate('screens.settings.privacy_policy.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.settings.privacy_policy.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.settings.privacy_policy.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-              </ButtonWrapper>
-              <ButtonWrapper
-                onPress={onPressTechnicalSheet}
-                style={styles(colors, insets).item}
-                accessibilityLabel={i18n.translate('screens.settings.technical_sheet.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.settings.technical_sheet.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.settings.technical_sheet.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-              </ButtonWrapper>
-              { ! Configuration.RELEASE &&
-              <ButtonWrapper style={styles(colors, insets).item} onPress={onPressDebug}>
-                <Text weight='bold'>{i18n.translate('screens.settings.debug.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-              </ButtonWrapper>
-                 }
+                </ButtonWrapper>
+                <ButtonWrapper
+                  style={styles(colors, insets).item}
+                  onPress={onPressFaqs}
+                  accessibilityRole='link'
+                  accessibilityLabel={i18n.translate('screens.settings.faqs.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.faqs.accessibility.hint')}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.faqs.label')}</Text>
+                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                </ButtonWrapper>
+                <ButtonWrapper
+                  style={styles(colors, insets).item}
+                  onPress={onPressTermsOfUse}
+                  accessibilityRole='link'
+                  accessibilityLabel={i18n.translate('screens.settings.terms_of_use.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.terms_of_use.accessibility.hint')}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.terms_of_use.label')}</Text>
+                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                </ButtonWrapper>
+                <ButtonWrapper
+                  style={styles(colors, insets).item}
+                  onPress={onPressPrivacyPolicy}
+                  accessibilityRole='link'
+                  accessibilityLabel={i18n.translate('screens.settings.privacy_policy.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.privacy_policy.accessibility.hint')}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.privacy_policy.label')}</Text>
+                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                </ButtonWrapper>
+                <ButtonWrapper
+                  onPress={onPressTechnicalSheet}
+                  style={styles(colors, insets).item}
+                  accessibilityLabel={i18n.translate('screens.settings.technical_sheet.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.technical_sheet.accessibility.hint')}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.technical_sheet.label')}</Text>
+                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                </ButtonWrapper>
+                { ! Configuration.RELEASE &&
+                  <ButtonWrapper style={styles(colors, insets).item} onPress={onPressDebug}>
+                    <Text weight='bold'>{i18n.translate('screens.settings.debug.label')}</Text>
+                    <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  </ButtonWrapper>
+                }
+              </View>
             </View>
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>

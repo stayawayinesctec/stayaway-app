@@ -67,6 +67,7 @@ const styles = (colors, insets) => StyleSheet.create({
     paddingLeft: sizes.size16,
     paddingRight: sizes.size16,
     paddingVertical: sizes.size18,
+    marginBottom: sizes.size8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -79,7 +80,6 @@ const styles = (colors, insets) => StyleSheet.create({
     shadowOpacity: 0.51,
     shadowRadius: 13.16,
     elevation: 20,
-    marginBottom: sizes.size16,
   },
   bottomContainer: {
     flex: 1,
@@ -148,7 +148,7 @@ export default function TechnicalSheet (props) {
             </View>
             <View style={styles(colors, insets).itemsContainer}>
               <View style={styles(colors, insets).coordinatorContainer}>
-                <Text size='small' textColor={colors.grayDark} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
+                <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
                 <ButtonWrapper
                   style={styles(colors, insets).item}
                   onPress={onPressCoordinator}
@@ -161,7 +161,7 @@ export default function TechnicalSheet (props) {
                 </ButtonWrapper>
               </View>
               <View style={styles(colors, insets).partnersContainer}>
-                <Text size='small' textColor={colors.grayDark} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
+                <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
                 <ButtonWrapper
                   style={{
                     ...styles(colors, insets).item,
