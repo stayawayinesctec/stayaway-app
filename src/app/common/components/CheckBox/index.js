@@ -32,7 +32,7 @@ export default class CheckBox extends Component {
           return (
             <NativeCheckBox
               tintColors={{true: colors.blueDark, false: colors.blueDark}}
-              boxType='circle'
+              boxType='square'
               lineWidth={sizes.size1}
               tintColor={colors.blueDark}
               onCheckColor={colors.blueDark}

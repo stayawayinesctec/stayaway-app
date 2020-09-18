@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function InformedConsent (props) {
+export default function Consent (props) {
   const [readAndUnderstood, setReadAndUnderstood] = useState(false);
   const [dataTreatment, setDataTreatment] = useState(false);
 
@@ -68,21 +68,21 @@ export default function InformedConsent (props) {
           <Layout>
             <View style={styles.termsContainer}>
               <View style={styles.titleContainer}>
-                <Text weight='bold' size='xlarge' style={styles.header}>{i18n.translate('screens.onboarding.informed_consent.title')}</Text>
+                <Text weight='bold' size='xlarge' style={styles.header}>{i18n.translate('screens.onboarding.consent.title')}</Text>
               </View>
               <View style={styles.descriptionContainer}>
                 <Text>
                   <Text>
-                    {i18n.translate('screens.onboarding.informed_consent.description.first')}
+                    {i18n.translate('screens.onboarding.consent.description.first')}
                   </Text>
                   <Text textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.privacy_policy'))}>
-                    {i18n.translate('screens.onboarding.informed_consent.description.second')}
+                    {i18n.translate('screens.onboarding.consent.description.second')}
                   </Text>
                   <Text>
-                    {i18n.translate('screens.onboarding.informed_consent.description.third')}
+                    {i18n.translate('screens.onboarding.consent.description.third')}
                   </Text>
                   <Text textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.terms_of_use'))}>
-                    {i18n.translate('screens.onboarding.informed_consent.description.fourth')}
+                    {i18n.translate('screens.onboarding.consent.description.fourth')}
                   </Text>
                 </Text>
                 <View style={styles.concentsContainer}>
@@ -90,7 +90,7 @@ export default function InformedConsent (props) {
                     onPress={() => setReadAndUnderstood(!readAndUnderstood)}
                     style={styles.concent}
                     disabled={loading}
-                    accessibilityLabel={i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.fourth')}
+                    accessibilityLabel={i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth')}
                     accessibilityRole='checkbox'
                     accessibilityState={{
                       checked: readAndUnderstood,
@@ -105,16 +105,16 @@ export default function InformedConsent (props) {
                     <View style={styles.concentDescription}>
                       <Text>
                         <Text size='xsmall'>
-                          {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.first')}
+                          {i18n.translate('screens.onboarding.consent.consents.read_and_understood.first')}
                         </Text>
                         <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.dgs'))}>
-                          {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.second')}
+                          {i18n.translate('screens.onboarding.consent.consents.read_and_understood.second')}
                         </Text>
                         <Text size='xsmall'>
-                          {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.third')}
+                          {i18n.translate('screens.onboarding.consent.consents.read_and_understood.third')}
                         </Text>
                         <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.data_protection'))}>
-                          {i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.fourth')}
+                          {i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth')}
                         </Text>
                       </Text>
                     </View>
@@ -123,7 +123,7 @@ export default function InformedConsent (props) {
                     onPress={() => setDataTreatment(!dataTreatment)}
                     style={styles.concent}
                     disabled={loading}
-                    accessibilityLabel={i18n.translate('screens.onboarding.informed_consent.consents.data_treatment')}
+                    accessibilityLabel={i18n.translate('screens.onboarding.consent.consents.data_treatment')}
                     accessibilityRole='checkbox'
                     accessibilityState={{
                       checked: dataTreatment,
@@ -137,7 +137,7 @@ export default function InformedConsent (props) {
                     />
                     <View style={styles.concentDescription}>
                       <Text size='xsmall'>
-                        {i18n.translate('screens.onboarding.informed_consent.consents.data_treatment')}
+                        {i18n.translate('screens.onboarding.consent.consents.data_treatment')}
                       </Text>
                     </View>
                   </ButtonWrapper>
@@ -146,9 +146,9 @@ export default function InformedConsent (props) {
             </View>
             <View style={styles.actionsContainer}>
               <Button
-                title={i18n.translate('screens.onboarding.informed_consent.actions.accept.label')}
-                accessibilityLabel={i18n.translate('screens.onboarding.informed_consent.actions.accept.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.onboarding.informed_consent.actions.accept.accessibility.hint')}
+                title={i18n.translate('screens.onboarding.consent.actions.accept.label')}
+                accessibilityLabel={i18n.translate('screens.onboarding.consent.actions.accept.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.onboarding.consent.actions.accept.accessibility.hint')}
                 containerStyle={styles.button}
                 onPress={onPress}
                 loading={loading}
@@ -162,12 +162,12 @@ export default function InformedConsent (props) {
   );
 }
 
-InformedConsent.defaultProps = {
+Consent.defaultProps = {
   loading: false,
   onPress: () => {},
 };
 
-InformedConsent.propTypes = {
+Consent.propTypes = {
   loading: PropTypes.bool,
   onPress: PropTypes.func,
 };

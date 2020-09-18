@@ -63,55 +63,55 @@ describe('Onboarding Screen', () => {
       expect(fourthScreenTitle).toBeTruthy();
       expect(fourthScreenDescription).toBeTruthy();
     });
-    describe('When on Informed Consent', () => {
+    describe('When on Consent', () => {
       it('When is not loading', () => {
         const { queryByText, queryByA11yLabel } = render(
           <Onboarding />,
         );
 
-        const informedConsentDescriptionTitle = queryByText(i18n.translate('screens.onboarding.informed_consent.title'));
-        const informedConsentDescriptionFirst = queryByText(i18n.translate('screens.onboarding.informed_consent.description.first'));
-        const informedConsentDescriptionSecond = queryByText(i18n.translate('screens.onboarding.informed_consent.description.second'));
-        const informedConsentDescriptionThird = queryByText(i18n.translate('screens.onboarding.informed_consent.description.third'));
-        const informedConsentDescriptionFourth = queryByText(i18n.translate('screens.onboarding.informed_consent.description.fourth'));
-        const informedConsentReadAndUnderstoodFirst = queryByText(i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.first'));
-        const informedConsentReadAndUnderstoodSecond = queryByText(i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.second'));
-        const informedConsentReadAndUnderstoodThird = queryByText(i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.third'));
-        const informedConsentReadAndUnderstoodFourth = queryByText(i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.fourth'));
-        const informedConsentDataTreatment = queryByText(i18n.translate('screens.onboarding.informed_consent.consents.data_treatment'));
+        const consentDescriptionTitle = queryByText(i18n.translate('screens.onboarding.consent.title'));
+        const consentDescriptionFirst = queryByText(i18n.translate('screens.onboarding.consent.description.first'));
+        const consentDescriptionSecond = queryByText(i18n.translate('screens.onboarding.consent.description.second'));
+        const consentDescriptionThird = queryByText(i18n.translate('screens.onboarding.consent.description.third'));
+        const consentDescriptionFourth = queryByText(i18n.translate('screens.onboarding.consent.description.fourth'));
+        const consentReadAndUnderstoodFirst = queryByText(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first'));
+        const consentReadAndUnderstoodSecond = queryByText(i18n.translate('screens.onboarding.consent.consents.read_and_understood.second'));
+        const consentReadAndUnderstoodThird = queryByText(i18n.translate('screens.onboarding.consent.consents.read_and_understood.third'));
+        const consentReadAndUnderstoodFourth = queryByText(i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth'));
+        const consentDataTreatment = queryByText(i18n.translate('screens.onboarding.consent.consents.data_treatment'));
 
-        const informedConsentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.fourth'));
-        const informedConsentDataTreatmentButton = queryByA11yLabel(i18n.translate('screens.onboarding.informed_consent.consents.data_treatment'));
-        const informedConsentAcceptButton = queryByA11yLabel(i18n.translate('screens.onboarding.informed_consent.actions.accept.accessibility.label'));
+        const consentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth'));
+        const consentDataTreatmentButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.data_treatment'));
+        const consentAcceptButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.actions.accept.accessibility.label'));
 
-        expect(informedConsentDescriptionTitle).toBeTruthy();
-        expect(informedConsentDescriptionFirst).toBeTruthy();
-        expect(informedConsentDescriptionSecond).toBeTruthy();
-        expect(informedConsentDescriptionThird).toBeTruthy();
-        expect(informedConsentDescriptionFourth).toBeTruthy();
-        expect(informedConsentReadAndUnderstoodFirst).toBeTruthy();
-        expect(informedConsentReadAndUnderstoodSecond).toBeTruthy();
-        expect(informedConsentReadAndUnderstoodThird).toBeTruthy();
-        expect(informedConsentReadAndUnderstoodFourth).toBeTruthy();
-        expect(informedConsentDataTreatment).toBeTruthy();
-        expect(informedConsentReadAndUnderstoodButton).toBeTruthy();
-        expect(informedConsentDataTreatmentButton).toBeTruthy();
-        expect(informedConsentAcceptButton).toBeTruthy();
+        expect(consentDescriptionTitle).toBeTruthy();
+        expect(consentDescriptionFirst).toBeTruthy();
+        expect(consentDescriptionSecond).toBeTruthy();
+        expect(consentDescriptionThird).toBeTruthy();
+        expect(consentDescriptionFourth).toBeTruthy();
+        expect(consentReadAndUnderstoodFirst).toBeTruthy();
+        expect(consentReadAndUnderstoodSecond).toBeTruthy();
+        expect(consentReadAndUnderstoodThird).toBeTruthy();
+        expect(consentReadAndUnderstoodFourth).toBeTruthy();
+        expect(consentDataTreatment).toBeTruthy();
+        expect(consentReadAndUnderstoodButton).toBeTruthy();
+        expect(consentDataTreatmentButton).toBeTruthy();
+        expect(consentAcceptButton).toBeTruthy();
 
-        expect(informedConsentReadAndUnderstoodButton).toBeEnabled();
-        expect(informedConsentDataTreatmentButton).toBeEnabled();
-        expect(informedConsentAcceptButton).toBeDisabled();
+        expect(consentReadAndUnderstoodButton).toBeEnabled();
+        expect(consentDataTreatmentButton).toBeEnabled();
+        expect(consentAcceptButton).toBeDisabled();
       });
       it('When is loading', () => {
         const { queryByA11yLabel } = render(
           <Onboarding loading />,
         );
 
-        const informedConsentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.fourth'));
-        const informedConsentDataTreatmentButton = queryByA11yLabel(i18n.translate('screens.onboarding.informed_consent.consents.data_treatment'));
+        const consentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth'));
+        const consentDataTreatmentButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.data_treatment'));
 
-        expect(informedConsentReadAndUnderstoodButton).toBeDisabled();
-        expect(informedConsentDataTreatmentButton).toBeDisabled();
+        expect(consentReadAndUnderstoodButton).toBeDisabled();
+        expect(consentDataTreatmentButton).toBeDisabled();
       });
     });
   });
@@ -121,19 +121,19 @@ describe('Onboarding Screen', () => {
         <Onboarding />,
       );
 
-      const informedConsentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.informed_consent.consents.read_and_understood.fourth'));
-      const informedConsentDataTreatmentButton = queryByA11yLabel(i18n.translate('screens.onboarding.informed_consent.consents.data_treatment'));
-      const informedConsentAcceptButton = queryByA11yLabel(i18n.translate('screens.onboarding.informed_consent.actions.accept.accessibility.label'));
+      const consentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth'));
+      const consentDataTreatmentButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.data_treatment'));
+      const consentAcceptButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.actions.accept.accessibility.label'));
 
-      expect(informedConsentReadAndUnderstoodButton).toBeTruthy();
-      expect(informedConsentDataTreatmentButton).toBeTruthy();
+      expect(consentReadAndUnderstoodButton).toBeTruthy();
+      expect(consentDataTreatmentButton).toBeTruthy();
 
-      expect(informedConsentAcceptButton).toBeDisabled();
+      expect(consentAcceptButton).toBeDisabled();
 
-      fireEvent.press(informedConsentReadAndUnderstoodButton);
-      fireEvent.press(informedConsentDataTreatmentButton);
+      fireEvent.press(consentReadAndUnderstoodButton);
+      fireEvent.press(consentDataTreatmentButton);
 
-      expect(informedConsentAcceptButton).toBeEnabled();
+      expect(consentAcceptButton).toBeEnabled();
     });
     it('When press Informed Screen accept button', () => {
       const onPress = jest.fn();
@@ -144,12 +144,12 @@ describe('Onboarding Screen', () => {
         />,
       );
 
-      const informedConsentAcceptButton = queryByA11yLabel(i18n.translate('screens.onboarding.informed_consent.actions.accept.accessibility.label'));
+      const consentAcceptButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.actions.accept.accessibility.label'));
 
-      expect(informedConsentAcceptButton).toBeTruthy();
-      expect(informedConsentAcceptButton).toBeDisabled();
+      expect(consentAcceptButton).toBeTruthy();
+      expect(consentAcceptButton).toBeDisabled();
 
-      fireEvent.press(informedConsentAcceptButton);
+      fireEvent.press(consentAcceptButton);
       expect(onPress).toHaveBeenCalled();
     });
   });

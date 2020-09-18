@@ -19,7 +19,7 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 import Images from '@app/common/assets/images';
 import { sizes } from '@app/common/theme';
 
-import InformedConsent from '@onboarding/components/Onboarding/InformedConsent';
+import Consent from '@onboarding/components/Onboarding/Consent';
 import Template from '@onboarding/components/Onboarding/Template';
 
 import i18n from '@app/services/i18n';
@@ -131,7 +131,7 @@ export default function Onboarding (props) {
             description={i18n.translate('screens.onboarding.fourth.description')}
             image={Images.onboarding4}
           />
-          <InformedConsent loading={loading} onPress={onPress} />
+          <Consent loading={loading} onPress={onPress} />
         </Swiper>
       )}
     </ThemeConsumer>

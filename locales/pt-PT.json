@@ -16,8 +16,8 @@
         "title": "Proteja os outros",
         "description": "Se lhe for diagnosticada COVID-19 obterá, junto com o resultado do teste, um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
       },
-      "informed_consent": {
-        "title": "Consentimento informado",
+      "consent": {
+        "title": "Consentimento",
         "description": {
           "first": "Para mais informações pode ler a nossa política de privacidade e termos de utilização a qualquer momento. ",
           "second": "Política de privacidade ",
@@ -29,7 +29,7 @@
             "first": "Li e compreendi a informação sobre a aplicação STAYAWAY, incluindo:\n• A identidade do Responsável - ",
             "second": "DGS.\n",
             "third": "• Os tipos de dados recolhidos e voluntariamente partilhadas após diagnóstico de infeção, através de chaves de identificadores aleatórias.\n• O objetivo da recolha e do respetivo tratamento, relativo ao envio de alertas.\n• A forma como serão armazenados os dados e durante quanto tempo.\n• Que posso livremente retirar o meu consentimento a qualquer momento, desinstalando a aplicação, sem que tal afete a licitude do tratamento anterior.\n• Que no caso de menores de 13 anos o consentimento só pode ser dado ou autorizado pelos titulares das responsabilidades parentais.\n• O contacto do encarregado de proteção de dados do Responsável: ",
-            "fourth": "secretariado.direcao@dgs.min-saude.pt.\n"
+            "fourth": "eugeniacarvalho@dgs.min-saude.pt.\n"
           },
           "data_treatment": "Consinto o tratamento dos meus dados pessoais, de acordo com a política de privacidade, incluindo os relativos à minha condição de saúde, necessários ao envio de alertas de exposição a risco de contágio, com a finalidade de ajudar à interrupção das cadeias de transmissão da doença COVID-19."
         },
@@ -324,7 +324,7 @@
       "terms_of_use": "https://stayawaycovid.pt/termos-condicoes/",
       "faqs": "https://stayawaycovid.pt/faq/",
       "dgs": "https://www.dgs.pt/",
-      "data_protection": "mailto:secretariado.direcao@dgs.min-saude.pt",
+      "data_protection": "mailto:eugeniacarvalho@dgs.min-saude.pt",
       "inesctec": "https://www.inesctec.pt/pt",
       "ispup": "https://ispup.up.pt/?lang=pt",
       "keyruptive": "https://keyruptive.com/",
