@@ -109,6 +109,10 @@ function* watchAppStateChange() {
         if (nextState === 'active') {
           try{
             yield call(TrackingManager.sync);
+
+            // Get status
+            const status = yield call(TrackingManager.getStatus);
+            yield put(accountActions.updateStatus(status));
           }
           catch (error) {
             // Sync error. Probably exposure check limit reached.

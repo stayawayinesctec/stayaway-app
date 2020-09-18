@@ -90,6 +90,10 @@ export function* setupNewAccount() {
 }
 
 export function* watchTrackingStatus() {
+  // Get first status
+  const firstStatus = yield call(TrackingManager.getStatus);
+  yield put(accountActions.updateStatus(firstStatus));
+
   // Set event listener value
   const channel = eventChannel((emitter) => {
     TrackingManager.addUpdateEventListener(emitter);
