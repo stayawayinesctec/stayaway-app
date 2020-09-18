@@ -190,12 +190,13 @@ describe('Account Sagas', () => {
       jest.resetAllMocks();
     });
 
-    it('should should update status when event is emitted', async () => {
+    it('should update status when event is emitted', async () => {
       // Prepare
       let emitter;
       TrackingManager.addUpdateEventListener.mockImplementation((callback) => {
         emitter = callback;
       });
+      TrackingManager.getStatus.mockImplementation(() => Promise.resolve(defaultStatus));
 
       // Execute
       const channel = stdChannel();
@@ -205,13 +206,18 @@ describe('Account Sagas', () => {
         dispatch: (action) => dispatched.push(action),
        }, watchTrackingStatus);
 
+      // Await for watcher to be registered
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
       // Emit tracking event
       emitter(defaultStatus);
 
       // Assert
       expect(TrackingManager.addUpdateEventListener).toHaveBeenCalled();
-      expect(dispatched).toHaveLength(2);
+      expect(TrackingManager.getStatus).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
+        accountActions.updateStatus(defaultStatus),
         accountActions.trackingStatusListenerRegistered(),
         accountActions.updateStatus(defaultStatus),
       ]);
@@ -225,6 +231,7 @@ describe('Account Sagas', () => {
     it('should register tracking status listener when start returns success', async () => {
       // Prepare
       TrackingManager.start.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_SUCCEEDED));
+      TrackingManager.getStatus.mockImplementation(() => Promise.resolve(defaultStatus));
 
       // Execute
       const channel = stdChannel();
@@ -233,6 +240,9 @@ describe('Account Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, startTracking);
+      // Await for watcher to be registered
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
       channel.put(accountActions.trackingStatusListenerRegistered());
 
       // Await for saga be block by stop tracking watcher
@@ -240,8 +250,9 @@ describe('Account Sagas', () => {
 
       // Assert
       expect(TrackingManager.start).toHaveBeenCalled();
-      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
+        accountActions.updateStatus(defaultStatus),
         accountActions.trackingStatusListenerRegistered(),
         accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS),
       ]);
@@ -298,6 +309,7 @@ describe('Account Sagas', () => {
     it('should stop tracking status listener when stop tracking actions is dispatched', async () => {
       // Prepare
       TrackingManager.start.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_SUCCEEDED));
+      TrackingManager.getStatus.mockImplementation(() => Promise.resolve(defaultStatus));
 
       // Execute
       const channel = stdChannel();
@@ -306,6 +318,9 @@ describe('Account Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, startTracking);
+      // Await for watcher to be registered
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
       channel.put(accountActions.trackingStatusListenerRegistered());
       channel.put(accountActions.stopTracking());
       await saga.toPromise();
@@ -313,8 +328,9 @@ describe('Account Sagas', () => {
       // Assert
       expect(TrackingManager.start).toHaveBeenCalled();
       expect(TrackingManager.stop).toHaveBeenCalled();
-      expect(dispatched).toHaveLength(3);
+      expect(dispatched).toHaveLength(4);
       expect(dispatched).toEqual([
+        accountActions.updateStatus(defaultStatus),
         accountActions.trackingStatusListenerRegistered(),
         accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS),
         accountActions.stopTrackingResult(TRACKING_RESULTS.SUCCESS),
