@@ -17,3 +17,13 @@
 - Add clean errors on monitoring switch off
 - Disable landscape screen orientation on android
 - Fix recommendations copy
+
+## version 1.0.3 (18.9.2020)
+
+- Improve accessibility labels and hints
+- Fix request battery optimization when it's not available
+- Fix scroll behaviour when large fonts are being used
+- Change date format to dd/mm/yyyy
+- Add feature change language
+- Fix minor bugs
+- Fix typos
