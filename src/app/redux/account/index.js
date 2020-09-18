@@ -25,7 +25,9 @@ const types = mirrorCreator([
   'SET_STATUS',
   'SET_ERRORS',
   'SET_INFECTION_STATUS',
+  'SET_LANGUAGE',
   'UPDATE_STATUS',
+  'UPDATE_LANGUAGE',
   'SETUP_NEW_ACCOUNT_REQUEST',
   'SETUP_NEW_ACCOUNT_PENDING',
   'SETUP_NEW_ACCOUNT_ERROR',
@@ -48,7 +50,9 @@ export const creators = createActions(
   types.SET_STATUS,
   types.SET_ERRORS,
   types.SET_INFECTION_STATUS,
+  types.SET_LANGUAGE,
   types.UPDATE_STATUS,
+  types.UPDATE_LANGUAGE,
   types.SETUP_NEW_ACCOUNT_REQUEST,
   types.SETUP_NEW_ACCOUNT_PENDING,
   types.SETUP_NEW_ACCOUNT_DONE,
@@ -75,6 +79,7 @@ export const initialState = {
     loading: false,
     error: '',
   },
+  language: {},
 };
 
 export const reducer = handleActions(
@@ -101,6 +106,14 @@ export const reducer = handleActions(
       return Object.freeze({
         ...state,
         status,
+      });
+    },
+    [types.SET_LANGUAGE]: (state, { payload: language }) => {
+      Storage.setItem('language', language.languageTag);
+
+      return Object.freeze({
+        ...state,
+        language,
       });
     },
     [types.SUBMIT_DIAGNOSIS_PENDING]: (state) => (

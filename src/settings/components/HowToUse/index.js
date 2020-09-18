@@ -11,7 +11,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { SafeAreaConsumer } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -93,50 +93,47 @@ export default function HowToUse (props) {
   const { onPress, onClose } = props;
 
   const [index, setIndex] = useState(0);
+  const insets = useSafeAreaInsets();
 
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <SafeAreaConsumer>
-          {insets => (
-            <Swiper
-              loop={false}
-              style={styles(colors).container}
-              paginationStyle={{
-                ...styles(colors).paginationStyle,
-                top: insets.top + sizes.size24,
-              }}
-              onIndexChanged={(currentIndex) => setIndex(currentIndex)}
-              showsPagination={index < 3}
-              dotStyle={styles(colors).dotStyle}
-              renderPagination={() => renderPagination(index, 4, {colors, insets})}
-            >
-              <Template
-                header={i18n.translate('screens.onboarding.first.title')}
-                image={Images.onboarding1}
-                closable
-                onClose={onClose}
-              />
-              <Template
-                header={i18n.translate('screens.onboarding.second.title')}
-                description={i18n.translate('screens.onboarding.second.description')}
-                image={Images.onboarding2}
-              />
-              <Template
-                header={i18n.translate('screens.onboarding.third.title')}
-                description={i18n.translate('screens.onboarding.third.description')}
-                image={Images.onboarding3}
-              />
-              <Template
-                header={i18n.translate('screens.onboarding.fourth.title')}
-                description={i18n.translate('screens.onboarding.fourth.description')}
-                image={Images.onboarding4}
-                pressable
-                onPress={onPress}
-              />
-            </Swiper>
-          )}
-        </SafeAreaConsumer>
+        <Swiper
+          loop={false}
+          style={styles(colors).container}
+          paginationStyle={{
+            ...styles(colors).paginationStyle,
+            top: insets.top + sizes.size24,
+          }}
+          onIndexChanged={(currentIndex) => setIndex(currentIndex)}
+          showsPagination={index < 3}
+          dotStyle={styles(colors).dotStyle}
+          renderPagination={() => renderPagination(index, 4, {colors, insets})}
+        >
+          <Template
+            header={i18n.translate('screens.onboarding.first.title')}
+            image={Images.onboarding1}
+            closable
+            onClose={onClose}
+          />
+          <Template
+            header={i18n.translate('screens.onboarding.second.title')}
+            description={i18n.translate('screens.onboarding.second.description')}
+            image={Images.onboarding2}
+          />
+          <Template
+            header={i18n.translate('screens.onboarding.third.title')}
+            description={i18n.translate('screens.onboarding.third.description')}
+            image={Images.onboarding3}
+          />
+          <Template
+            header={i18n.translate('screens.onboarding.fourth.title')}
+            description={i18n.translate('screens.onboarding.fourth.description')}
+            image={Images.onboarding4}
+            pressable
+            onPress={onPress}
+          />
+        </Swiper>
       )}
     </ThemeConsumer>
   );

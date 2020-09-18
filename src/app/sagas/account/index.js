@@ -12,9 +12,12 @@ import { takeLatest, put, call, fork, take, cancel, delay, select } from 'redux-
 import { eventChannel } from 'redux-saga';
 import Moment from 'moment';
 import { Alert, Platform } from 'react-native';
+import RNRestart from 'react-native-restart';
+import SplashScreen from 'react-native-splash-screen';
 
 import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
+import Storage from '@app/services/storage';
 import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
 
@@ -334,6 +337,13 @@ export function* setInfectionStatus({ payload: infectionStatus }) {
   }));
 }
 
+export function* updateLanguage({ payload: languageTag }) {
+  const language = i18n.setI18nConfig(languageTag);
+  yield put(accountActions.setLanguage(language));
+  SplashScreen.show();
+  RNRestart.Restart();
+}
+
 function* watchSetupNewAccount() {
   yield takeLatest(accountTypes.SETUP_NEW_ACCOUNT_REQUEST, setupNewAccount);
 }
@@ -362,6 +372,10 @@ function* watchSetInfectionStatus() {
   yield takeLatest(accountTypes.SET_INFECTION_STATUS, setInfectionStatus);
 }
 
+function* watchUpdateLanguage() {
+  yield takeLatest(accountTypes.UPDATE_LANGUAGE, updateLanguage);
+}
+
 export default function* root() {
   yield fork(watchSetupNewAccount);
   yield fork(watchStartTracking);
@@ -370,4 +384,5 @@ export default function* root() {
   yield fork(watchUpdateStatus);
   yield fork(watchSetErrors);
   yield fork(watchSetInfectionStatus);
+  yield fork(watchUpdateLanguage);
 }

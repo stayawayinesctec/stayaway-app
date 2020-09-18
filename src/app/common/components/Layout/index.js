@@ -8,14 +8,14 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React from 'react';
 import {
     View,
     StyleSheet,
     ViewPropTypes,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { SafeAreaConsumer } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
@@ -57,37 +57,33 @@ const styles = (colors, insets) => StyleSheet.create({
   },
 });
 
-export default class Layout extends Component {
-  render() {
-    const { padding, type, style, children, ...otherProps } = this.props;
+export default function Layout(props) {
+  const { padding, type, style, children, ...otherProps } = props;
 
-    return (
-      <ThemeConsumer>
-        {({name}) => {
-          const theme = type || name;
-          const { colors } = commonThemes[theme];
+  const insets = useSafeAreaInsets();
+
+  return (
+    <ThemeConsumer>
+      {({name}) => {
+        const theme = type || name;
+        const { colors } = commonThemes[theme];
 
 
-          return (
-            <SafeAreaConsumer>
-              {insets => (
-                <View
-                  style={{
-                    ...styles(colors, insets).container,
-                    ...styles(colors, insets)[padding],
-                    ...style,
-                  }}
-                  {...otherProps}
-                >
-                  {children}
-                </View>
-              )}
-            </SafeAreaConsumer>
-          );
-        }}
-      </ThemeConsumer>
-    );
-  }
+        return (
+          <View
+            style={{
+              ...styles(colors, insets).container,
+              ...styles(colors, insets)[padding],
+              ...style,
+            }}
+            {...otherProps}
+          >
+            {children}
+          </View>
+        );
+      }}
+    </ThemeConsumer>
+  );
 }
 
 Layout.defaultProps = {

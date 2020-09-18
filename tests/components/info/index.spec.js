@@ -11,7 +11,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
-import i18n from '@app/services/i18n';
+import i18n, { languages } from '@app/services/i18n';
 
 import Info from '@settings/components/Info';
 
@@ -20,6 +20,7 @@ describe('Info Screen', () => {
     it('When infection status is infected.', () => {
       const { queryByA11yLabel } = render(
         <Info
+          language={languages.EN}
           trackingEnabled
           isInfected
         />,
@@ -33,7 +34,10 @@ describe('Info Screen', () => {
     });
     it('When infection status is not infected.', () => {
       const { queryByA11yLabel } = render(
-        <Info trackingEnabled />,
+        <Info
+          language={languages.EN}
+          trackingEnabled
+        />,
       );
 
       const trackingButton = queryByA11yLabel(i18n.translate('screens.settings.tracking.accessibility.label'));
@@ -44,21 +48,54 @@ describe('Info Screen', () => {
     });
     it('When tracking is enabled.', () => {
       const { queryByText } = render(
-        <Info trackingEnabled />,
+        <Info
+          language={languages.EN}
+          trackingEnabled
+        />,
       );
 
       const trackingText = queryByText(i18n.translate('common.words.enabled'));
 
       expect(trackingText).toBeTruthy();
     });
-    it('When tracking is disabeld.', () => {
+    it('When tracking is disabled.', () => {
       const { queryByText } = render(
-        <Info />,
+        <Info
+          language={languages.EN}
+        />,
       );
 
       const trackingText = queryByText(i18n.translate('common.words.disabled'));
 
       expect(trackingText).toBeTruthy();
+    });
+    it('When language is EN.', () => {
+      const { queryByA11yLabel } = render(
+        <Info
+          language={languages.EN}
+          trackingEnabled
+        />,
+      );
+
+      const languageButton = queryByA11yLabel(i18n.translate('screens.settings.language.accessibility.label'));
+
+      expect(languageButton).toBeTruthy();
+
+      expect(languageButton.props.accessibilityValue.text).toBe(languages.EN.name);
+    });
+    it('When language is PT.', () => {
+      const { queryByA11yLabel } = render(
+        <Info
+          language={languages.PT}
+          trackingEnabled
+        />,
+      );
+
+      const languageButton = queryByA11yLabel(i18n.translate('screens.settings.language.accessibility.label'));
+
+      expect(languageButton).toBeTruthy();
+
+      expect(languageButton.props.accessibilityValue.text).toBe(languages.PT.name);
     });
   });
   describe('Info buttons interaction work', () => {
@@ -66,6 +103,7 @@ describe('Info Screen', () => {
       const onClose = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
+          language={languages.EN}
           trackingEnabled
           onClose={onClose}
         />,
@@ -81,6 +119,7 @@ describe('Info Screen', () => {
       const onPressTracking = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
+          language={languages.EN}
           trackingEnabled
           onPressTracking={onPressTracking}
         />,
@@ -92,10 +131,27 @@ describe('Info Screen', () => {
       fireEvent.press(trackingButton);
       expect(onPressTracking).toHaveBeenCalled();
     });
+    it('When press language button.', () => {
+      const onPressLanguage = jest.fn();
+      const { queryByA11yLabel } = render(
+        <Info
+          language={languages.PT}
+          trackingEnabled
+          onPressLanguage={onPressLanguage}
+        />,
+      );
+
+      const languageButton = queryByA11yLabel(i18n.translate('screens.settings.language.accessibility.label'));
+
+      expect(languageButton).toBeTruthy();
+      fireEvent.press(languageButton);
+      expect(onPressLanguage).toHaveBeenCalled();
+    });
     it('When press how to use button.', () => {
       const onPressHowToUse = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
+          language={languages.EN}
           trackingEnabled
           onPressHowToUse={onPressHowToUse}
         />,
@@ -111,6 +167,7 @@ describe('Info Screen', () => {
       const onPressFaqs = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
+          language={languages.EN}
           trackingEnabled
           onPressFaqs={onPressFaqs}
         />,
@@ -126,6 +183,7 @@ describe('Info Screen', () => {
       const onPressTermsOfUse = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
+          language={languages.EN}
           trackingEnabled
           onPressTermsOfUse={onPressTermsOfUse}
         />,
@@ -141,6 +199,7 @@ describe('Info Screen', () => {
       const onPressPrivacyPolicy = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
+          language={languages.EN}
           trackingEnabled
           onPressPrivacyPolicy={onPressPrivacyPolicy}
         />,
@@ -156,6 +215,7 @@ describe('Info Screen', () => {
       const onPressTechnicalSheet = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
+          language={languages.EN}
           trackingEnabled
           onPressTechnicalSheet={onPressTechnicalSheet}
         />,

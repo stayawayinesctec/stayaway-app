@@ -27,13 +27,13 @@ describe('Recommendations Screen', () => {
         <Recommendations infectionStatus={infectionStatus} />,
       );
 
-      const recommendationHealty = queryByText(i18n.translate('screens.recommendations.healthy.distance'));
+      const recommendationHealthy = queryByText(i18n.translate('screens.recommendations.healthy.distance'));
       const recommendationWearMask = queryByText(i18n.translate('screens.recommendations.healthy.wear_mask'));
       const recommendationWashHands = queryByText(i18n.translate('screens.recommendations.healthy.wash_hands'));
       const recommendationFeelingSick = queryByText(i18n.translate('screens.recommendations.healthy.feeling_sick'));
       const layout = queryByTestId('recommendations_layout');
 
-      expect(recommendationHealty).toBeTruthy();
+      expect(recommendationHealthy).toBeTruthy();
       expect(recommendationWearMask).toBeTruthy();
       expect(recommendationWashHands).toBeTruthy();
       expect(recommendationFeelingSick).toBeTruthy();

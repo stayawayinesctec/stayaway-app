@@ -10,7 +10,7 @@
 
 import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
-import { SafeAreaConsumer } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -79,7 +79,9 @@ const styles = (colors, insets) => StyleSheet.create({
 export default function Template (props) {
   const { header, description, image, pressable, closable, onPress, onClose } = props;
 
-  const renderContent = (colors, insets) => {
+  const insets = useSafeAreaInsets();
+
+  const renderContent = (colors) => {
     if (description.length === 0) {
       return (
         <Layout padding='horizontal' style={styles(colors, insets).centeredContainer}>
@@ -117,34 +119,30 @@ export default function Template (props) {
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <SafeAreaConsumer>
-          {insets => (
-            <TopComponent>
-              <ImageBackground
-                source={image}
-                style={styles(colors, insets).imageContainer}
-              >
-                <View style={styles(colors, insets).topContainer}>
-                  { closable &&
-                    <Layout style={styles(colors, insets).top}>
-                      <ButtonWrapper
-                        onPress={onClose}
-                        style={styles(colors, insets).closeButton}
-                        accessibilityLabel={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.label')}
-                        accessibilityHint={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.hint')}
-                      >
-                        <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.blueDark} />
-                      </ButtonWrapper>
-                    </Layout>
-                  }
-                </View>
-                <View style={styles(colors, insets).bottomContainer}>
-                  {renderContent(colors, insets)}
-                </View>
-              </ImageBackground>
-            </TopComponent>
-          )}
-        </SafeAreaConsumer>
+        <TopComponent>
+          <ImageBackground
+            source={image}
+            style={styles(colors, insets).imageContainer}
+          >
+            <View style={styles(colors, insets).topContainer}>
+              { closable &&
+                <Layout style={styles(colors, insets).top}>
+                  <ButtonWrapper
+                    onPress={onClose}
+                    style={styles(colors, insets).closeButton}
+                    accessibilityLabel={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.label')}
+                    accessibilityHint={i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.hint')}
+                  >
+                    <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.blueDark} />
+                  </ButtonWrapper>
+                </Layout>
+              }
+            </View>
+            <View style={styles(colors, insets).bottomContainer}>
+              {renderContent(colors)}
+            </View>
+          </ImageBackground>
+        </TopComponent>
       )}
     </ThemeConsumer>
   );

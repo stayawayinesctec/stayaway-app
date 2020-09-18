@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Moment from 'moment';
 import PropTypes from 'prop-types';
 
@@ -29,7 +30,7 @@ import { sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors, insets) => StyleSheet.create({
   closeButton: {
     position: 'absolute',
     top: sizes.size8,
@@ -77,7 +78,7 @@ const styles = (colors) => StyleSheet.create({
   sponsors: {
     position: 'absolute',
     flexDirection: 'row',
-    bottom: sizes.size24,
+    bottom: sizes.size24 + insets.bottom,
     left: sizes.size24,
     zIndex: 0,
   },
@@ -97,6 +98,8 @@ export default function Debug (props) {
     status,
     onClose,
   } = props;
+
+  const insets = useSafeAreaInsets();
 
   let infectionStatusName = i18n.translate('screens.debug.infection_status.healthy');
 
@@ -119,47 +122,47 @@ export default function Debug (props) {
     <ThemeConsumer>
       {({colors}) => (
         <TopComponent>
-          <Layout style={styles(colors).layoutContainer}>
-            <View style={styles(colors).header}>
+          <Layout style={styles(colors, insets).layoutContainer}>
+            <View style={styles(colors, insets).header}>
               <ButtonWrapper
                 onPress={onClose}
-                style={styles(colors).closeButton}
+                style={styles(colors, insets).closeButton}
                 accessibilityLabel={i18n.translate('screens.debug.actions.back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.debug.actions.back.accessibility.hint')}
               >
                 <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
               </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors).title}>{i18n.translate('screens.debug.title')}</Text>
+              <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.debug.title')}</Text>
             </View>
-            <View style={styles(colors).content}>
-              <View style={styles(colors).stat}>
+            <View style={styles(colors, insets).content}>
+              <View style={styles(colors, insets).stat}>
                 <Text weight='bold'>{`${i18n.translate('screens.debug.sign_up')}: `}</Text>
                 <Text>{Moment(signUp).format('L')}</Text>
               </View>
-              <View style={styles(colors).stat}>
+              <View style={styles(colors, insets).stat}>
                 <Text weight='bold'>{`${i18n.translate('screens.debug.last_sync')}: `}</Text>
                 <Text>{Moment(status.lastSyncDate).format('L')}</Text>
               </View>
-              <View style={styles(colors).stat}>
+              <View style={styles(colors, insets).stat}>
                 <Text weight='bold'>{`${i18n.translate('screens.debug.infection_status.label')}: `}</Text>
                 <Text>{infectionStatusName}</Text>
               </View>
-              <View style={styles(colors).stat}>
+              <View style={styles(colors, insets).stat}>
                 <Text weight='bold'>{`${i18n.translate('screens.debug.exposure_days')}: `}</Text>
                 <Text>{exposedDays}</Text>
               </View>
-              <View style={styles(colors).stat}>
+              <View style={styles(colors, insets).stat}>
                 <Text weight='bold'>{`${i18n.translate('screens.debug.errors')}: `}</Text>
                 <Text>{errors}</Text>
               </View>
             </View>
           </Layout>
-          <View style={styles(colors).imagesContainer}>
-            <View style={styles(colors).sponsors}>
-              <Image source={Images.republica_portuguesa} style={styles(colors).republicaPortuguesaImage} />
-              <Image source={Images.logo_dgs} style={styles(colors).dgsImage} />
+          <View style={styles(colors, insets).imagesContainer}>
+            <View style={styles(colors, insets).sponsors}>
+              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
             </View>
-            <Image source={Images.splash} style={styles(colors).splashImage} />
+            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}

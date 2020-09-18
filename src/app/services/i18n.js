@@ -19,11 +19,23 @@ import 'moment/locale/pt';
 import 'moment/locale/pt-br';
 import 'moment/locale/en-gb';
 
-// Fallback if no available language fits
-const fallback = {
-  languageTag: 'en-GB',
-  isRTL: false,
+export const languages = {
+  PT: {
+    name: 'Português',
+    countryCode: 'PT',
+    languageTag: 'pt-PT',
+    isRTL: false,
+  },
+  EN: {
+    name: 'English',
+    countryCode: 'EN',
+    languageTag: 'en-GB',
+    isRTL: false,
+  },
 };
+
+// Fallback if no available language fits
+const fallback = languages.EN;
 
 const setMomentLocale = (locale) => {
   const mapper = {
@@ -59,11 +71,7 @@ const translate = memoize(
 // Language information
 let currentLocale = {...fallback};
 
-const setI18nConfig = () => {
-  const { languageTag, isRTL } =
-    RNLocalize.findBestAvailableLanguage(Object.keys(translationGetters)) ||
-    fallback;
-
+const setupI18n = ({ languageTag, isRTL }) => {
   // Allow RTL alignment in RTL languages
   I18nManager.forceRTL(isRTL);
 
@@ -76,16 +84,37 @@ const setI18nConfig = () => {
 
   // Set moment js config
   setMomentLocale(languageTag);
+};
+
+const setI18nConfig = (languageTag) => {
+  const language = languages[languageTag.slice(0, 2).toUpperCase()];
+
+  setupI18n(language);
 
   // Set language information
-  currentLocale = {
-    languageTag,
-    isRTL,
-  };
+  currentLocale = language;
+
+  return language;
+};
+
+const setDefaultI18nConfig = () => {
+  const availableLanguage =
+    RNLocalize.findBestAvailableLanguage(Object.keys(translationGetters)) ||
+    fallback;
+
+  const language = languages[availableLanguage.languageTag.slice(0, 2).toUpperCase()];
+
+  setupI18n(language);
+
+  // Set language information
+  currentLocale = language;
+
+  return language;
 };
 
 export default {
   currentLocale,
   translate,
   setI18nConfig,
+  setDefaultI18nConfig,
 };

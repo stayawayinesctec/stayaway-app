@@ -11,10 +11,12 @@
 import { runSaga, channel as stdChannel } from 'redux-saga';
 import { Platform, Alert } from 'react-native';
 import Moment from 'moment';
+import RNRestart from 'react-native-restart';
+import SplashScreen from 'react-native-splash-screen';
 
 import NavigationService from '@app/services/navigation';
 import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
-import i18n from '@app/services/i18n';
+import i18n, { languages } from '@app/services/i18n';
 
 import AppRoutes from '@app/navigation/routes';
 
@@ -32,6 +34,7 @@ import {
   updateStatus,
   setErrors,
   setInfectionStatus,
+  updateLanguage,
 } from '@app/sagas/account';
 
 // Mock storage file
@@ -694,6 +697,23 @@ describe('Account Sagas', () => {
           infectionStatus: INFECTION_STATUS.EXPOSED,
         })),
       ]);
+    });
+  });
+  describe('Update Language', () => {
+    it('should set language and restart device', async () => {
+      // Execute
+      const channel = stdChannel();
+      const dispatched = [];
+      await runSaga({
+        channel,
+        dispatch: (action) => dispatched.push(action),
+      }, updateLanguage, { payload: languages.PT.languageTag }).toPromise();
+
+      // Assert
+      expect(SplashScreen.show).toHaveBeenCalled();
+      expect(RNRestart.Restart).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(1);
+      expect(dispatched).toEqual([accountActions.setLanguage(languages.PT)]);
     });
   });
 });

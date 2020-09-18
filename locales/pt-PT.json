@@ -105,7 +105,7 @@
           }
         },
         "gaen": {
-          "title": "Rastreamento desativado",
+          "title": "Rastreamento desativo",
           "message": "Ative a função notificações de exposição à COVID-19 para que a STAYAWAY COVID possa funcionar adequadamente",
           "accessibility": {
             "label": "Ativar",
@@ -142,6 +142,13 @@
         "accessibility": {
           "label": "Rastreio",
           "hint": "Navega para o rastreio"
+        }
+      },
+      "language": {
+        "label": "Idioma",
+        "accessibility": {
+          "label": "Idioma",
+          "hint": "Altera o idioma da aplicação"
         }
       },
       "how_to_use": {
@@ -327,8 +334,8 @@
     },
     "words": {
       "and": "e",
-      "enabled": "Ativado",
-      "disabled": "Desativado"
+      "enabled": "Ativo",
+      "disabled": "Desativo"
     },
     "tab_bar": {
       "diagnosis": "Diagnóstico",
