@@ -17,6 +17,7 @@ import SplashScreen from 'react-native-splash-screen';
 
 import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
+import Storage from '@app/services/storage';
 import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
 

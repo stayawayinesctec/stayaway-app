@@ -86,11 +86,20 @@ const setupI18n = ({ languageTag, isRTL }) => {
   setMomentLocale(languageTag);
 };
 
-const setI18nConfig = (previousLocale) => {
-  const config = previousLocale ? [previousLocale] : Object.keys(translationGetters);
+const setI18nConfig = (languageTag) => {
+  const language = languages[languageTag.slice(0, 2).toUpperCase()];
 
+  setupI18n(language);
+
+  // Set language information
+  currentLocale = language;
+
+  return language;
+};
+
+const setDefaultI18nConfig = () => {
   const availableLanguage =
-    RNLocalize.findBestAvailableLanguage(config) ||
+    RNLocalize.findBestAvailableLanguage(Object.keys(translationGetters)) ||
     fallback;
 
   const language = languages[availableLanguage.languageTag.slice(0, 2).toUpperCase()];
@@ -107,4 +116,5 @@ export default {
   currentLocale,
   translate,
   setI18nConfig,
+  setDefaultI18nConfig,
 };

@@ -38,7 +38,13 @@ describe('Startup Sagas', () => {
     it('should navigate to onboarding when is a new user', async () => {
       // Prepare
       Storage.getItem.mockImplementation(() => Promise.resolve(languages.PT.languageTag));
-      Storage.hasItem.mockImplementation(() => Promise.resolve(false));
+      Storage.hasItem.mockImplementation((item) => {
+        if (item === "language") {
+          return Promise.resolve(true);
+        }
+
+        return Promise.resolve(false);
+      });
 
       // Execute
       const dispatched = [];
@@ -50,6 +56,7 @@ describe('Startup Sagas', () => {
       expect(Storage.getItem).toHaveBeenCalled();
       expect(Storage.hasItem).toHaveBeenCalled();
       expect(Storage.getItem).toHaveBeenCalledWith('language');
+      expect(Storage.hasItem).toHaveBeenCalledWith('language');
       expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
       expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
@@ -97,8 +104,9 @@ describe('Startup Sagas', () => {
       await saga.toPromise();
 
       // Assert
-      expect(Storage.hasItem).toHaveBeenCalled();
-      expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
+      expect(Storage.hasItem).toHaveBeenCalledTimes(2);
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(2, 'signup_date');
 
       expect(Storage.getItem).toHaveBeenCalledTimes(4);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
@@ -156,8 +164,9 @@ describe('Startup Sagas', () => {
       await saga.toPromise();
 
       // Assert
-      expect(Storage.hasItem).toHaveBeenCalled();
-      expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
+      expect(Storage.hasItem).toHaveBeenCalledTimes(2);
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(1,'language');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(2,'signup_date');
 
       expect(Storage.getItem).toHaveBeenCalledTimes(4);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
@@ -216,8 +225,9 @@ describe('Startup Sagas', () => {
       await saga.toPromise();
 
       // Assert
-      expect(Storage.hasItem).toHaveBeenCalled();
-      expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
+      expect(Storage.hasItem).toHaveBeenCalledTimes(2);
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(1,'language');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(2,'signup_date');
 
       expect(Storage.getItem).toHaveBeenCalledTimes(4);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
@@ -277,8 +287,9 @@ describe('Startup Sagas', () => {
       await saga.toPromise();
 
       // Assert
-      expect(Storage.hasItem).toHaveBeenCalled();
-      expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
+      expect(Storage.hasItem).toHaveBeenCalledTimes(2);
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(1,'language');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(2,'signup_date');
 
       expect(Storage.getItem).toHaveBeenCalledTimes(4);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
