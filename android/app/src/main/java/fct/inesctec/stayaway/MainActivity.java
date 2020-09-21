@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;
@@ -44,12 +43,6 @@ public class MainActivity extends ReactActivity {
               View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
               View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
       );
-    }
-
-    if (BuildConfig.IS_RELEASE.equals("TRUE")) {
-      getWindow().setFlags(
-              WindowManager.LayoutParams.FLAG_SECURE,
-              WindowManager.LayoutParams.FLAG_SECURE);
     }
 
     super.onCreate(savedInstanceState);
