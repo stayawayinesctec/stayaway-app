@@ -36,7 +36,7 @@ export default function InfoScreen () {
     language,
     isInfected: useSelector(isInfected),
     onClose: () => NavigationService.navigate(AppRoutes.HOME),
-    onPressTracking: () => NavigationService.navigate(AppRoutes.TRACKING),
+    onPressTracking: () => dispatch(accountActions.switchTracking()),
     onPressLanguage: () => {
       if (languages.EN.languageTag === language.languageTag) {
         dispatch(accountActions.updateLanguage(languages.PT.languageTag));

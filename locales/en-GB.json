@@ -123,9 +123,16 @@
     "settings": {
       "tracking": {
         "label": "Monitoring",
+        "description": {
+          "enabled": "By turning the \"Monitoring\" feature off, the app will stop sending and receiving random identifiers.",
+          "disabled": "Keep STAYAWAY COVID active and play your part in the fight against the virus."
+        },
         "accessibility": {
           "label": "Monitoring",
-          "hint": "Press to navigate to monitoring screen"
+          "hint": {
+            "activate": "Press to active monitoring",
+            "deactivate": "Press to deactivate monitoring"
+          }
         }
       },
       "language": {
@@ -178,25 +185,6 @@
           "accessibility": {
             "label": "Go back",
             "hint": "Navigates back to the home screen"
-          }
-        }
-      }
-    },
-    "tracking": {
-      "title": "Monitoring",
-      "description": "Keep STAYAWAY COVID active and play your part in the fight against the virus.",
-      "switch": {
-        "label": "Monitoring",
-        "legend": "By turning the \"Monitoring\" feature off, the app will stop sending and receiving random identifiers.",
-        "accessibility": {
-          "label": "Monitoring"
-        }
-      },
-      "actions": {
-        "go_back": {
-          "accessibility": {
-            "label": "Go back",
-            "hint": "Navigates back to the settings screen"
           }
         }
       }

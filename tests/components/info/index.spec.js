@@ -47,27 +47,39 @@ describe('Info Screen', () => {
       expect(trackingButton).toBeEnabled();
     });
     it('When tracking is enabled.', () => {
-      const { queryByText } = render(
+      const { queryByText, queryByA11yLabel } = render(
         <Info
           language={languages.EN}
           trackingEnabled
         />,
       );
 
+      const trackingSwitch = queryByA11yLabel(i18n.translate('screens.settings.tracking.accessibility.label'));
       const trackingText = queryByText(i18n.translate('common.words.enabled'));
+      const descriptionText = queryByText(i18n.translate('screens.settings.tracking.description.enabled'));
 
       expect(trackingText).toBeTruthy();
+      expect(trackingSwitch).toBeTruthy();
+      expect(descriptionText).toBeTruthy();
+
+      expect(trackingSwitch.props.accessibilityValue.text).toBe(true);
     });
     it('When tracking is disabled.', () => {
-      const { queryByText } = render(
+      const { queryByText, queryByA11yLabel } = render(
         <Info
           language={languages.EN}
         />,
       );
 
+      const trackingSwitch = queryByA11yLabel(i18n.translate('screens.settings.tracking.accessibility.label'));
       const trackingText = queryByText(i18n.translate('common.words.disabled'));
+      const descriptionText = queryByText(i18n.translate('screens.settings.tracking.description.disabled'));
 
       expect(trackingText).toBeTruthy();
+      expect(trackingSwitch).toBeTruthy();
+      expect(descriptionText).toBeTruthy();
+
+      expect(trackingSwitch.props.accessibilityValue.text).toBe(false);
     });
     it('When language is EN.', () => {
       const { queryByA11yLabel } = render(

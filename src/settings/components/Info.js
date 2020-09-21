@@ -25,6 +25,7 @@ import Layout from '@app/common/components/Layout';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
 import Icon from '@app/common/components/Icon';
+import Switch from '@app/common/components/Switch';
 
 import Images from '@app/common/assets/images';
 
@@ -50,6 +51,16 @@ const styles = (colors, insets) => StyleSheet.create({
   topItems: {
     marginBottom: sizes.size48,
   },
+  trackingButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: sizes.size16,
+  },
+  topItem: {
+    flexDirection: 'column',
+  },
   item: {
     backgroundColor: colors.white,
     paddingLeft: sizes.size8,
@@ -74,7 +85,7 @@ const styles = (colors, insets) => StyleSheet.create({
     alignItems: 'center',
   },
   trackingLabel: {
-    marginRight: sizes.size12,
+    marginRight: sizes.size8,
   },
   languageLabelContainer: {
     flexDirection: 'row',
@@ -152,17 +163,28 @@ export default function Info(props) {
                   onPress={onPressTracking}
                   style={{
                     ...styles(colors, insets).item,
+                    ...styles(colors, insets).topItem,
                     backgroundColor: trackingEnabled ? colors.blueLightest : colors.white,
                   }}
                   disabled={isInfected}
+                  accessibilityRole='switch'
+                  accessibilityValue={{text: trackingEnabled}}
                   accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.settings.tracking.accessibility.hint')}
+                  accessibilityHint={i18n.translate(`screens.settings.tracking.accessibility.hint.${trackingEnabled ? 'deactivate' : 'activate'}`)}
                 >
-                  <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
-                  <View style={styles(colors, insets).trackingLabelContainer}>
-                    <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold' style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
-                    <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={trackingEnabled ? colors.white : colors.blueDark} />
+                  <View style={styles(colors, insets).trackingButton}>
+                    <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
+                    <View style={styles(colors, insets).trackingLabelContainer}>
+                      <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold' style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
+                      <Switch
+                        value={trackingEnabled}
+                        onValueChange={onPressTracking}
+                        accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
+                        accessibilityHint={i18n.translate(`screens.settings.tracking.accessibility.hint.${trackingEnabled ? 'deactivate' : 'activate'}`)}
+                      />
+                    </View>
                   </View>
+                  <Text size='small' textColor={trackingEnabled ? colors.white : colors.blueDark}>{i18n.translate(`screens.settings.tracking.description.${trackingEnabled ? 'enabled' : 'disabled'}`)}</Text>
                 </ButtonWrapper>
                 <ButtonWrapper
                   onPress={onPressLanguage}

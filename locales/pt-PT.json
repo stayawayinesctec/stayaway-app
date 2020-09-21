@@ -139,9 +139,16 @@
     "settings": {
       "tracking": {
         "label": "Rastreio",
+        "description": {
+          "enabled": "Se desactivar o rastreio impede a app de emitir e receber os código digitais anónimos.",
+          "disabled": "Mantenha a STAYAWAY COVID ativa e junte-se ao combate à COVID-19."
+        },
         "accessibility": {
           "label": "Rastreio",
-          "hint": "Navega para o rastreio"
+          "hint": {
+            "activate": "Ativa o rastreio",
+            "deactivate": "Desativa o rastreio"
+          }
         }
       },
       "language": {
@@ -194,25 +201,6 @@
           "accessibility": {
             "label": "Para trás",
             "hint": "Navega para trás para o ecrã principal"
-          }
-        }
-      }
-    },
-    "tracking": {
-      "title": "Rastreio",
-      "description": "Mantenha a STAYAWAY COVID ativa e junte-se ao combate à COVID-19.",
-      "switch": {
-        "label": "Rastreio",
-        "legend": "Se desativar o rastreio, impede a aplicação STAYAWAY COVID de emitir e receber os identificadores aleatórios.",
-        "accessibility": {
-          "label": "Rastreio"
-        }
-      },
-      "actions": {
-        "go_back": {
-          "accessibility": {
-            "label": "Para trás",
-            "hint": "Navega para trás para o ecrã de definições"
           }
         }
       }

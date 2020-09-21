@@ -24,7 +24,6 @@ const routes = {
   HOW_TO_USE: "HowToUse",
   INFO: "Info",
   TECHNICAL_SHEET: "TechnicalSheet",
-  TRACKING: "Tracking",
   DEBUG: "Debug",
 };
 

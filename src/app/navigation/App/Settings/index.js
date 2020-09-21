@@ -16,7 +16,6 @@ import AppRoutes from '@app/navigation/routes';
 
 import InfoScreen from '@settings/containers/InfoScreen';
 import HowToUseScreen from '@settings/containers/HowToUseScreen';
-import TrackingScreen from '@settings/containers/TrackingScreen';
 import DebugScreen from '@settings/containers/DebugScreen';
 import TechnicalSheetScreen from '@settings/containers/TechnicalSheetScreen';
 
@@ -34,10 +33,6 @@ export default () => (
     <Screen
       name={AppRoutes.HOW_TO_USE}
       component={HowToUseScreen}
-    />
-    <Screen
-      name={AppRoutes.TRACKING}
-      component={TrackingScreen}
     />
     <Screen
       name={AppRoutes.DEBUG}
