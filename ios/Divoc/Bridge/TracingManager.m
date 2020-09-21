@@ -43,6 +43,13 @@ RCT_EXTERN_METHOD(supportedEvents)
   return @[@"fct.inesctec.stayaway.ios.sdk.UPDATE_EVENT"];
 }
 
+RCT_REMAP_METHOD(isTracingEnabled, isTracingEnabledWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+  tm.father = self;
+  [tm isTracingEnabled:resolve rejecter:reject];
+}
+
 RCT_REMAP_METHOD(start, startWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {

@@ -57,7 +57,7 @@ export default function HomeScreen () {
     clickable: false,
   };
 
-  if (hasExposureNotificationsError) {
+  if (hasExposureNotificationsError || ! trackingEnabled) {
     error = {
       status: true,
       title: i18n.translate('screens.home.errors.gaen.title'),
@@ -123,7 +123,6 @@ export default function HomeScreen () {
   };
 
   const props = {
-    trackingEnabled,
     infectionStatus,
     onLongPress,
     lastSync: useSelector(getLastSync),

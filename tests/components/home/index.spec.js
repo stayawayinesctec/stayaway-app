@@ -189,36 +189,6 @@ describe('Home Screen', () => {
       expect(accessibilityLabel).toBeTruthy();
       expect(accessibilityHint).toBeTruthy();
     });
-    it('When tracking is diabled.', () => {
-      const infectionStatus = INFECTION_STATUS.HEALTHY;
-      const lastSync = new Moment();
-      const error = {
-        status: false,
-        title: '',
-        message: '',
-        accessibility: {
-          label: '',
-          hint: '',
-        },
-        icon: '',
-        onPress: () => {},
-        clickable: false,
-      };
-
-      const { queryByText } = render(
-        <Home
-          infectionStatus={infectionStatus}
-          lastSync={lastSync}
-          error={error}
-        />,
-      );
-
-      const descriptionFirst = queryByText(i18n.translate('screens.home.healthy.description.first'));
-      const descriptionSecond = queryByText(i18n.translate('screens.home.healthy.description.second'));
-
-      expect(descriptionFirst).toBeNull();
-      expect(descriptionSecond).toBeNull();
-    });
   });
   describe('Home buttons interaction work', () => {
     it('When press settings button.', () => {

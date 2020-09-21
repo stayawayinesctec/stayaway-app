@@ -576,6 +576,7 @@ describe('Account Sagas', () => {
 
     it('should update status on redux', async () => {
       // Prepare
+      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 2,
@@ -597,13 +598,69 @@ describe('Account Sagas', () => {
       }, updateStatus, { payload: newState }).toPromise();
 
       // Assert
+      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([
         accountActions.setStatus(newState),
       ]);
     });
+    it('should deactivate tracking enabled when GAEN is deactivated', async () => {
+      // Prepare
+      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
+      const newState = {
+        lastSyncDate: Moment().toJSON(),
+        infectionStatus: 2,
+        exposureDays: [],
+        errors: [
+          ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED,
+        ],
+      };
+
+      // Execute
+      const channel = stdChannel();
+      const dispatched = [];
+      await runSaga({
+        channel,
+        dispatch: (action) => dispatched.push(action),
+      }, updateStatus, { payload: newState }).toPromise();
+
+      // Assert
+      expect(TrackingManager.isTracingEnabled).not.toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        accountActions.setTrackingEnabled(false),
+        accountActions.setStatus(newState),
+      ]);
+    });
+    it('should activate tracking enabled when GAEN is activated and tracking is enabled', async () => {
+      // Prepare
+      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
+      const newState = {
+        lastSyncDate: Moment().toJSON(),
+        infectionStatus: 2,
+        exposureDays: [],
+        errors: [],
+      };
+
+      // Execute
+      const channel = stdChannel();
+      const dispatched = [];
+      await runSaga({
+        channel,
+        dispatch: (action) => dispatched.push(action),
+      }, updateStatus, { payload: newState }).toPromise();
+
+      // Assert
+      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toEqual([
+        accountActions.setTrackingEnabled(true),
+        accountActions.setStatus(newState),
+      ]);
+    });
     it('should reset infection status when last exposure was 15 days ago', async () => {
       // Prepare
+      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 1,
@@ -627,6 +684,7 @@ describe('Account Sagas', () => {
       }, updateStatus, { payload: newState }).toPromise();
 
       // Assert
+      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
       expect(TrackingManager.resetInfectionStatus).toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([
@@ -635,6 +693,7 @@ describe('Account Sagas', () => {
     });
     it('should not reset infection status when last exposure was not 15 days ago', async () => {
       // Prepare
+      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 1,
@@ -658,6 +717,7 @@ describe('Account Sagas', () => {
       }, updateStatus, { payload: newState }).toPromise();
 
       // Assert
+      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
       expect(TrackingManager.resetInfectionStatus).not.toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([

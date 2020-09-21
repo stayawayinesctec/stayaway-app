@@ -184,6 +184,14 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     }
 
     /**
+     * Check if tracing is enabled.
+     */
+    @ReactMethod
+    public void isTracingEnabled(Promise promise) {
+        promise.resolve(DP3T.isTracingEnabled(getReactApplicationContext()));
+    }
+
+    /**
      * Pro-actively triggers sync with backend to refresh exposed list.
      */
     @ReactMethod

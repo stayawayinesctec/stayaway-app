@@ -80,6 +80,7 @@ export const EVENTS = {
 
 const start = jest.fn();
 const stop = jest.fn();
+const isTracingEnabled = jest.fn();
 const getStatus = jest.fn();
 const exposed = jest.fn();
 const addUpdateEventListener = jest.fn();
@@ -91,6 +92,7 @@ const requestIgnoreBatteryOptimizationsPermission = jest.fn();
 export default {
   start,
   stop,
+  isTracingEnabled,
   getStatus,
   exposed,
   addUpdateEventListener,

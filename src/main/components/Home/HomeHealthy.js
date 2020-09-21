@@ -9,7 +9,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
@@ -19,11 +18,9 @@ import Images from '@app/common/assets/images';
 import i18n from '@app/services/i18n';
 
 export default function HomeHealthy (props) {
-  const { trackingEnabled } = props;
-
   const header = i18n.translate('screens.home.healthy.title');
   const image = Images.healthy;
-  let description = [
+  const description = [
     {
       "key": "1",
       "text": i18n.translate('screens.home.healthy.description.first'),
@@ -35,10 +32,6 @@ export default function HomeHealthy (props) {
       "type": "normal",
     },
   ];
-
-  if (! trackingEnabled) {
-    description = [];
-  }
 
   return (
     <ThemeConsumer>
@@ -55,11 +48,3 @@ export default function HomeHealthy (props) {
     </ThemeConsumer>
   );
 }
-
-HomeHealthy.defaultProps = {
-  trackingEnabled: false,
-};
-
-HomeHealthy.propTypes = {
-  trackingEnabled: PropTypes.bool,
-};

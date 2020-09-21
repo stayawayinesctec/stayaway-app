@@ -17,7 +17,6 @@ import SplashScreen from 'react-native-splash-screen';
 
 import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
-import Storage from '@app/services/storage';
 import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
 
@@ -316,6 +315,17 @@ export function* updateStatus({ payload: status }) {
       if (Moment(exposedDate).isBefore(fifteenDaysAgo)) {
         yield call(TrackingManager.resetInfectionStatus);
       }
+    }
+  }
+
+  // Check GAEN toggle
+  if (status.errors.includes(ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED)) {
+    yield put(accountActions.setTrackingEnabled(false));
+  } else {
+    const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
+
+    if (isTracingEnabled) {
+      yield put(accountActions.setTrackingEnabled(true));
     }
   }
 

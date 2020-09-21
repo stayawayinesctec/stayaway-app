@@ -85,6 +85,8 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   private let EN_CANCELLED:String = "EN_CANCELLED";
   private let EN_SUCCEEDED:String =  "EN_SUCCEEDED";
   private let EN_FAILED:String = "EN_FAILED";
+  
+  private var isActivated: Bool = false;
 
   // in memory dictionary for codes we already have a token and date,
   // if only the second request (iWasExposed) fails
@@ -152,7 +154,11 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     }
   }
 
-
+  @objc func isTracingEnabled(
+    _ resolve: @escaping RCTPromiseResolveBlock,
+    rejecter reject: @escaping RCTPromiseRejectBlock) {
+    resolve(self.isActivated);
+  }
 
   @objc func start(
     _ resolve: @escaping RCTPromiseResolveBlock,
@@ -163,12 +169,16 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
       try DP3TTracing.startTracing(completionHandler: { error in
         if((error) != nil){
           NSLog("Error starting tracing: "+error!.localizedDescription)
+          
+          self.isActivated = false;
           resolve(self.EN_CANCELLED);
         }
         else{
           DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
               self.sync({_ in }, rejecter: {_,_,_ in })
           }
+
+          self.isActivated = true;
           resolve(self.EN_SUCCEEDED);
           NSLog("DP3T START SUCCESS")
         }
@@ -193,6 +203,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     DP3TTracing.stopTracing()
     TracingLocalPush.shared.removeSyncWarningTriggers()
     NSLog("DP3TGLUE: Tracing stopped.")
+    self.isActivated = false;
     resolve(self.SUCCESS);
   }
 
