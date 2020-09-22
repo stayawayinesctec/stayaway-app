@@ -191,53 +191,5 @@ describe('Info Screen', () => {
       fireEvent.press(faqsButton);
       expect(onPressFaqs).toHaveBeenCalled();
     });
-    it('When press terms of use button.', () => {
-      const onPressTermsOfUse = jest.fn();
-      const { queryByA11yLabel } = render(
-        <Info
-          language={languages.EN}
-          trackingEnabled
-          onPressTermsOfUse={onPressTermsOfUse}
-        />,
-      );
-
-      const termsButton = queryByA11yLabel(i18n.translate('screens.settings.terms_of_use.accessibility.label'));
-
-      expect(termsButton).toBeTruthy();
-      fireEvent.press(termsButton);
-      expect(onPressTermsOfUse).toHaveBeenCalled();
-    });
-    it('When press privacy policy button.', () => {
-      const onPressPrivacyPolicy = jest.fn();
-      const { queryByA11yLabel } = render(
-        <Info
-          language={languages.EN}
-          trackingEnabled
-          onPressPrivacyPolicy={onPressPrivacyPolicy}
-        />,
-      );
-
-      const privacyPolicyButton = queryByA11yLabel(i18n.translate('screens.settings.privacy_policy.accessibility.label'));
-
-      expect(privacyPolicyButton).toBeTruthy();
-      fireEvent.press(privacyPolicyButton);
-      expect(onPressPrivacyPolicy).toHaveBeenCalled();
-    });
-    it('When press technical sheet button.', () => {
-      const onPressTechnicalSheet = jest.fn();
-      const { queryByA11yLabel } = render(
-        <Info
-          language={languages.EN}
-          trackingEnabled
-          onPressTechnicalSheet={onPressTechnicalSheet}
-        />,
-      );
-
-      const technicalSheetButton = queryByA11yLabel(i18n.translate('screens.settings.technical_sheet.accessibility.label'));
-
-      expect(technicalSheetButton).toBeTruthy();
-      fireEvent.press(technicalSheetButton);
-      expect(onPressTechnicalSheet).toHaveBeenCalled();
-    });
   });
 });

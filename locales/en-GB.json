@@ -156,29 +156,15 @@
           "hint": "Links to the FAQs webpage"
         }
       },
-      "terms_of_use": {
-        "label": "Terms of Use",
+      "legal_information": {
+        "label": "Legal Information",
         "accessibility": {
-          "label": "Terms of Use",
-          "hint": "Links to the Terms of Use webpage"
-        }
-      },
-      "privacy_policy": {
-        "label": "Privacy Policy",
-        "accessibility": {
-          "label": "Privacy Policy",
-          "hint": "Links to the Privacy Policy webpage"
+          "label": "Legal Information",
+          "hint": "Press to navigate to legal information"
         }
       },
       "debug": {
         "label": "Debug"
-      },
-      "technical_sheet": {
-        "label": "Technical Sheet",
-        "accessibility": {
-          "label": "Technical Sheet",
-          "hint": "Press to navigate to technical sheet"
-        }
       },
       "actions": {
         "back": {
@@ -239,7 +225,7 @@
             "hint": "Navigates back to the settings screen"
           }
         },
-        "go_back": {
+        "back": {
           "accessibility": {
             "label": "Go back",
             "hint": "Navigates back to the settings screen"
@@ -283,11 +269,35 @@
       },
       "version": "v{{version}} ({{build}})",
       "actions": {
-        "go_back": {
+        "back": {
           "accessibility": {
             "label": "Go back",
             "hint": "Navigates back to the settings screen"
           }
+        }
+      }
+    },
+    "legal_information": {
+      "title": "Legal Information",
+      "terms_of_use": {
+        "label": "Terms of Use",
+        "accessibility": {
+          "label": "Terms of Use",
+          "hint": "Links to the Terms of Use webpage"
+        }
+      },
+      "privacy_policy": {
+        "label": "Privacy Policy",
+        "accessibility": {
+          "label": "Privacy Policy",
+          "hint": "Links to the Privacy Policy webpage"
+        }
+      },
+      "technical_sheet": {
+        "label": "Technical Sheet",
+        "accessibility": {
+          "label": "Technical Sheet",
+          "hint": "Press to navigate to technical sheet"
         }
       }
     }

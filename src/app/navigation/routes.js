@@ -23,8 +23,13 @@ const routes = {
   SETTINGS: "Settings",
   HOW_TO_USE: "HowToUse",
   INFO: "Info",
-  TECHNICAL_SHEET: "TechnicalSheet",
   DEBUG: "Debug",
+
+  // Legal Information
+  LEGAL_INFORMATION: "LegalInformation",
+  PRIVACY_POLICY: "PrivacyPolicy",
+  TERMS_OF_USE: "TermsOfUse",
+  TECHNICAL_SHEET: "TechnicalSheet",
 };
 
 export default routes;

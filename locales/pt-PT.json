@@ -172,29 +172,15 @@
           "hint": "Link para a página web das perguntas frequentes"
         }
       },
-      "terms_of_use": {
-        "label": "Termos de Utilização",
+      "legal_information": {
+        "label": "Informação Legal",
         "accessibility": {
-          "label": "Termos de Utilização",
-          "hint": "Link para a página web dos termos de utilização"
-        }
-      },
-      "privacy_policy": {
-        "label": "Política de Privacidade",
-        "accessibility": {
-          "label": "Política de Privacidade",
-          "hint": "Link para a página web da política de privacidade"
+          "label": "Informação Legal",
+          "hint": "Navega para a informação legal"
         }
       },
       "debug": {
         "label": "Debug"
-      },
-      "technical_sheet": {
-        "label": "Ficha Técnica",
-        "accessibility": {
-          "label": "Ficha Técnica",
-          "hint": "Navega para a ficha técnica"
-        }
       },
       "actions": {
         "back": {
@@ -292,10 +278,44 @@
         }
       },
       "version": "v{{version}} ({{build}})",
-      "go_back": {
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "label": "Para atrás",
+            "hint": "Navega para trás para o ecrã de definições"
+          }
+        }
+      }
+    },
+    "legal_information": {
+      "title": "Informação Legal",
+      "terms_of_use": {
+        "label": "Termos de Utilização",
         "accessibility": {
-          "label": "Para atrás",
-          "hint": "Navega para trás para o ecrã de definições"
+          "label": "Termos de Utilização",
+          "hint": "Link para a página web dos termos de utilização"
+        }
+      },
+      "privacy_policy": {
+        "label": "Política de Privacidade",
+        "accessibility": {
+          "label": "Política de Privacidade",
+          "hint": "Link para a página web da política de privacidade"
+        }
+      },
+      "technical_sheet": {
+        "label": "Ficha Técnica",
+        "accessibility": {
+          "label": "Ficha Técnica",
+          "hint": "Navega para a ficha técnica"
+        }
+      },
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "label": "Para atrás",
+            "hint": "Navega para trás para o ecrã de definições"
+          }
         }
       }
     }

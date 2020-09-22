@@ -51,7 +51,7 @@ describe('Technical Sheet Screen', () => {
         />,
       );
 
-      const closeButton = queryByA11yLabel(i18n.translate('screens.technical_sheet.actions.go_back.accessibility.label'));
+      const closeButton = queryByA11yLabel(i18n.translate('screens.technical_sheet.actions.back.accessibility.label'));
 
       expect(closeButton).toBeTruthy();
 

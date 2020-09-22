@@ -139,8 +139,8 @@ export default function TechnicalSheet (props) {
               <ButtonWrapper
                 onPress={onClose}
                 style={styles(colors, insets).closeButton}
-                accessibilityLabel={i18n.translate('screens.technical_sheet.actions.go_back.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.technical_sheet.actions.go_back.accessibility.hint')}
+                accessibilityLabel={i18n.translate('screens.technical_sheet.actions.back.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.technical_sheet.actions.back.accessibility.hint')}
               >
                 <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
               </ButtonWrapper>

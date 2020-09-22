@@ -17,6 +17,7 @@ import AppRoutes from '@app/navigation/routes';
 import InfoScreen from '@settings/containers/InfoScreen';
 import HowToUseScreen from '@settings/containers/HowToUseScreen';
 import DebugScreen from '@settings/containers/DebugScreen';
+import LegalInformationScreen from '@settings/containers/LegalInformationScreen';
 import TechnicalSheetScreen from '@settings/containers/TechnicalSheetScreen';
 
 const { Navigator, Screen } = createStackNavigator();
@@ -37,6 +38,10 @@ export default () => (
     <Screen
       name={AppRoutes.DEBUG}
       component={DebugScreen}
+    />
+    <Screen
+      name={AppRoutes.LEGAL_INFORMATION}
+      component={LegalInformationScreen}
     />
     <Screen
       name={AppRoutes.TECHNICAL_SHEET}

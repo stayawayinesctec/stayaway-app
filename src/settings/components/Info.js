@@ -131,12 +131,10 @@ export default function Info(props) {
     isInfected,
     onClose,
     onPressLanguage,
-    onPressTermsOfUse,
-    onPressPrivacyPolicy,
+    onPressLegalInformation,
     onPressHowToUse,
     onPressFaqs,
     onPressTracking,
-    onPressTechnicalSheet,
     onPressDebug,
   } = props;
 
@@ -233,31 +231,11 @@ export default function Info(props) {
                 </ButtonWrapper>
                 <ButtonWrapper
                   style={styles(colors, insets).item}
-                  onPress={onPressTermsOfUse}
-                  accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.settings.terms_of_use.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.settings.terms_of_use.accessibility.hint')}
+                  onPress={onPressLegalInformation}
+                  accessibilityLabel={i18n.translate('screens.settings.legal_information.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.legal_information.accessibility.hint')}
                 >
-                  <Text weight='bold'>{i18n.translate('screens.settings.terms_of_use.label')}</Text>
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-                </ButtonWrapper>
-                <ButtonWrapper
-                  style={styles(colors, insets).item}
-                  onPress={onPressPrivacyPolicy}
-                  accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.settings.privacy_policy.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.settings.privacy_policy.accessibility.hint')}
-                >
-                  <Text weight='bold'>{i18n.translate('screens.settings.privacy_policy.label')}</Text>
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-                </ButtonWrapper>
-                <ButtonWrapper
-                  onPress={onPressTechnicalSheet}
-                  style={styles(colors, insets).item}
-                  accessibilityLabel={i18n.translate('screens.settings.technical_sheet.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.settings.technical_sheet.accessibility.hint')}
-                >
-                  <Text weight='bold'>{i18n.translate('screens.settings.technical_sheet.label')}</Text>
+                  <Text weight='bold'>{i18n.translate('screens.settings.legal_information.label')}</Text>
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 { ! Configuration.RELEASE &&
@@ -290,9 +268,7 @@ Info.defaultProps = {
   onPressLanguage: () => {},
   onPressHowToUse: () => {},
   onPressFaqs: () => {},
-  onPressTermsOfUse: () => {},
-  onPressPrivacyPolicy: () => {},
-  onPressTechnicalSheet: () => {},
+  onPressLegalInformation: () => {},
   onPressDebug: () => {},
 };
 
@@ -309,7 +285,7 @@ Info.propTypes = {
   onPressLanguage: PropTypes.func,
   onPressHowToUse: PropTypes.func,
   onPressFaqs: PropTypes.func,
-  onPressTermsOfUse: PropTypes.func,
+  onPressLegalInformation: PropTypes.func,
   onPressPrivacyPolicy: PropTypes.func,
   onPressTechnicalSheet: PropTypes.func,
   onPressDebug: PropTypes.func,
