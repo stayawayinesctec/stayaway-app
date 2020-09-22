@@ -10,21 +10,18 @@
 
 import React from 'react';
 
-import LegalInformation from '@settings/components/LegalInformation';
+import PrivacyPolicy from '@settings/components/PrivacyPolicy';
 
 import NavigationService from '@app/services/navigation';
 
 import AppRoutes from '@app/navigation/routes';
 
-export default function TechnicalSheetScreen () {
+export default function PrivacyPolicyScreen () {
   const props = {
-    onPressTermsOfUse: () => NavigationService.navigate(AppRoutes.TERMS_OF_USE),
-    onPressPrivacyPolicy: () => NavigationService.navigate(AppRoutes.PRIVACY_POLICY),
-    onPressTechnicalSheet: () => NavigationService.navigate(AppRoutes.TECHNICAL_SHEET),
     onClose: () => NavigationService.navigate(AppRoutes.INFO),
   };
 
   return (
-    <LegalInformation {...props} />
+    <PrivacyPolicy {...props} />
   );
 }

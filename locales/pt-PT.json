@@ -293,14 +293,14 @@
         "label": "Termos de Utilização",
         "accessibility": {
           "label": "Termos de Utilização",
-          "hint": "Link para a página web dos termos de utilização"
+          "hint": "Navega para os termos de utilização"
         }
       },
       "privacy_policy": {
         "label": "Política de Privacidade",
         "accessibility": {
           "label": "Política de Privacidade",
-          "hint": "Link para a página web da política de privacidade"
+          "hint": "Navega para a política de privacidade"
         }
       },
       "technical_sheet": {
@@ -310,6 +310,205 @@
           "hint": "Navega para a ficha técnica"
         }
       },
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "label": "Para atrás",
+            "hint": "Navega para trás para o ecrã de definições"
+          }
+        }
+      }
+    },
+    "privacy_policy": {
+      "title": "Política de Privacidade",
+      "description": "A presente Política de Privacidade identifica a informação pessoal recolhida, explica a necessidade na sua recolha e o modo como é utilizada pelo sistema STAYAWAY COVID, que inclui uma aplicação para dispositivos móveis, além de explicitar os direitos dos utilizadores e respetiva forma de exercício.\n\nO sistema STAYAWAY COVID foi criado no âmbito do programa INCoDe.2030 para o desenvolvimento de uma solução de rastreio da propagação da COVID-19 e as entidades responsáveis pelo seu desenvolvimento são o Instituto de Engenharia de Sistemas e Computadores, Tecnologia e Ciência (INESC TEC) e o Instituto de Saúde Pública da Universidade do Porto (ISPUP) com o apoio das empresas Keyruptive e Ubirider.\n\nO sistema foi alvo de uma Avaliação de Impacto sobre a Proteção de Dados (AIPD) e submetido a consulta prévia da Comissão Nacional de Proteção de Dados (CNPD), sendo ainda auditado pelo Centro Nacional de Cibersegurança (CNCS).",
+      "data_treatment": {
+        "name": "Responsabilidade pelo tratamento de dados",
+        "responsible": "Responsável pelo tratamento",
+        "subcontractors": "Subcontratantes",
+        "dgs": {
+          "name": "DGS – Direção-Geral da Saúde",
+          "address": "Alameda D. Afonso Henriques 45, 1049-005 Lisboa, Portugal",
+          "phone": "Tel. +351 218 430 500"
+        },
+        "inesctec": {
+          "name": "INESC TEC – Instituto de Engenharia de Sistemas e Computadores, Tecnologia e Ciência",
+          "address": "Rua Dr. Roberto Frias, 4200-465 Porto, Portugal",
+          "phone": "Tel. +351 222 094 000"
+        },
+        "keyruptive": {
+          "name": "Keyruptive",
+          "address": "Praça Conde de Agrolongo 123, 4700-312 Braga, Portugal"
+        },
+        "ubirider": {
+          "name": "Ubirider",
+          "address": "Rua Alfredo Allen 455/461 – sala 1.03, 4200-135 Porto, Portugal"
+        },
+        "spms": {
+          "name": "SPMS – Serviços Partilhados do Ministério da Saúde, EPE",
+          "address": "Avenida da República n.º 61, 8.º, 1050-189 Lisboa, Portugal",
+          "phone": "Tel. +351 211 545 600"
+        },
+        "incm": {
+          "name": "INCM – Imprensa Nacional-Casa da Moeda",
+          "address": "Av. António José de Almeida, 1000-042 Lisboa, Portugal",
+          "phone": "Tel. +351 217 810 700"
+        }
+      },
+      "purposes_of_personal_data_processing": {
+        "name": "Finalidade do tratamento de dados",
+        "body": "O objetivo do tratamento de dados na aplicação é o de contribuir para um rastreio mais rápido, amplo e eficaz da COVID-19 em Portugal, no contexto do plano global de combate à pandemia definido pelas autoridades de saúde portuguesas e em linha com exemplos congéneres dos outros países europeus. A aplicação é parte de um sistema informático que permitirá ao utilizador ser informado sobre o seu potencial risco de contágio com base na monitorização dos seus contactos de proximidade dos últimos 14 dias. A aplicação é de adesão e participação voluntária permitindo em qualquer momento, autónoma e unilateralmente, deixar de o fazer."
+      },
+      "lawfulness_of_data_processing": {
+        "name": "Licitude do tratamento de dados",
+        "body": "A instalação e utilização é estritamente voluntária. Relativamente aos utilizadores o consentimento constitui uma base legal do tratamento de dados (artigos 6.º, n.º 1, a) e 9.º, n.º 2, a) do RGPD).\n\nPorém, como o funcionamento da aplicação implica operações de tratamento distintas que envolvem diferentes categorias de titulares (utilizadores e profissionais de saúde), o tratamento de dados realizado exige uma dupla condição de licitude deste tratamento, o que só reforça a sua legitimidade e torna o tratamento mais proporcional.\n\nCom efeito, quando as autoridades publicas prestam um serviço com base num mandato conferido por e em consonância com os requisitos previstos na lei, afigura-se que a base jurídica mais pertinente para o tratamento é a necessidade de exercer funções de interesse publico, nos termos do disposto no artigo 6º, n.º 1, alínea e), podendo ainda ser aplicável o  artigo 9º nº2 e), ambos do RGPD.\n\nO Decreto-Lei 52/2020 de 11 de agosto dá enquadramento legal à utilização do STAYAWAY COVID, estabelecendo a DGS como o responsável pelo tratamento de dados e regulando a intervenção do médico no sistema."
+      },
+      "personal_data_and_storage_periods": {
+        "name": "Dados pessoais e prazos de conservação",
+        "body": "Os dados pessoais recolhidos pela aplicação nunca permitem identificar diretamente utilizadores ou os seus dispositivos. De modo a proteger a sua privacidade são essencialmente utilizados identificadores alfanuméricos efémeros, gerados aleatoriamente, legalmente considerados dados pseudonimizados.\n\nDada a possibilidade de poderem reportar a utilizadores diagnosticados com COVID-19 ou a utilizadores alertados do potencial risco de contágio, consideramos que aqueles identificadores se referem a dados relativos à sua saúde.\n\nA aplicação difunde e recebe os identificadores aleatórios de outros dispositivos que estejam próximos. Os identificadores aleatórios difundidos (nunca os recebidos) poderão ser partilhados publicamente pela aplicação num servidor oficial e localizado em território nacional. Nenhum identificador é armazenado no sistema por um período superior a 14 dias.\n\nComo resultado do processamento dos identificadores aleatórios, o utilizador poderá receber um alerta com informação de potencial risco de contágio e a data de ocorrência do mais recente contacto de proximidade que lhe deu origem. Esta informação fica armazenada na aplicação até esta ser desinstalada.\n\nPara além dos dados dos utilizadores, são forçosamente processados dados dos profissionais de saúde envolvidos na validação da informação do contágio. Será usado um sistema de autenticação, a cargo dos SPMS, que funcionará de forma separada de outros sistemas para garantia da privacidade dos médicos e doentes.\n\nSerão tratados os seguintes dados pessoais pelo sistema STAYAWAY:\n\n",
+        "labels": {
+          "definition": "Definição",
+          "purpose": "Finalidade",
+          "storage": "Conservação"
+        },
+        "pseudonymised_data_teks": {
+          "title": "Dados pseudonimizados (Chaves de Identificadores TEK e Identificadores Aleatórios RPI)",
+          "definition": "O dispositivo móvel gera diariamente uma Chave de Identificadores TEK. A partir da Chave de Identificadores TEK diária é gerado, a cada 15 minutos, em média, um Identificador Aleatório RPI a partir da Chave de Identificadores TEK corrente e do intervalo temporal durante o qual o RPI é válido. Os Identificadores Aleatórios RPI são transmitidos em modo de difusão e recebidos pelos dispositivos móveis geograficamente próximos.",
+          "purpose": "Permite sinalizar a proximidade do utilizador com alguém durante pelo menos 15 minutos a 2 metros de distância, sem que a aplicação possa identificar o utilizador ou rastrear o local onde o contacto teve lugar.",
+          "storage": "Apagados automaticamente do dispositivo móvel 14 dias após terem sido armazenados."
+        },
+        "pseudonymised_data_uui": {
+          "title": "Dados pseudonimizados (Identificador único universal)",
+          "definition": "Identificador produzido no Serviço de Legitimação de Diagnóstico (SLD) como parte do Código de Acesso (CA).",
+          "purpose": "É armazenado no Serviço de Publicação de Diagnóstico (SPD) quando o CA é criado e usado depois para garantir que cada CA não é usado mais do que uma vez dentro do seu período de validade.",
+          "storage": "É eliminado pela tarefa diária de manutenção da base de dados após o fim da sua validade, que é no máximo de 24 horas."
+        },
+        "health_data_teks": {
+          "title": "Dados de saúde (Chaves de Identificadores TEK partilhadas após diagnóstico de infeção)",
+          "definition": "São as chaves submetidas pelos utilizadores diagnosticados por COVID-19 ao servidor central do sistema. Estas chaves são descarregadas periodicamente pelos dispositivos com a STAYAWAY. A aplicação guarda a data da última atualização e pede apenas as chaves publicadas após essa data, para cada um dos dias relevantes.",
+          "purpose": "O DMP calcula os Identificadores Aleatórios RPI associados a estas chaves para os comparar com os RPIs recebidos de DMPs próximos durante os últimos 14 dias. Depois, calcula uma função de risco que avalia a existência de contactos a menos de 2 metros e por mais de 15 minutos mediante os RPIs, distâncias estimadas e tempos de exposição.",
+          "storage": "O período de conservação é 14 dias."
+        },
+        "health_data_info": {
+          "title": "Dados de saúde (data, duração e distância estimada do contacto)",
+          "definition": "A partir dos Identificadores Aleatórios RPIs recebidos dos DMPS próximos e das Chaves de Identificação TEK, dos utilizadores infetados, recebidas do SPD, bem como dos metadados temporais associados, o DMP calcula uma função de risco que, seguindo as diretrizes atuais da Organização Mundial de Saúde, avalia a existência de contactos a menos de 2 metros e por mais de 15 minutos.",
+          "purpose": "A aplicação alerta de que o utilizador esteve em contacto com alguém a quem foi diagnosticada COVID-19, durante pelo menos 15 minutos a 2 metros de distância.",
+          "storage": "O período de conservação é 14 dias."
+        },
+        "health_data_symptoms": {
+          "title": "Dados de saúde (Data dos primeiros sintomas ou data do teste no caso de indivíduos assintomáticos)",
+          "definition": "Informação inserida pelo profissional de saúde no sistema no momento de geração do Código de Legitimação. Esta data só pode ser obtida com o conhecimento do CL, que é do conhecimento apenas do doente e do profissional de saúde.",
+          "purpose": "Esta data destina-se a limitar os contactos que desencadeiam avisos aos que ocorreram após a data de 3 dias antes da data dos primeiros sintomas, que corresponde ao consenso atual sobre o período pré-sintomático em que há a possibilidade de contágio. Quando se trata de um caso assintomático, é da responsabilidade do médico usar a data do teste ou determinar a data mais adequada.\n\nÉ relevante conservar a data de início de sintomas e de diagnóstico para que seja possível à aplicação alertar apenas aquelas pessoas que contactaram com alguém diagnosticado com infeção por SARS-CoV-2 nos 3 dias antes do início de sintomas, ou de diagnóstico, quando estes estão assintomáticos. Pretende-se desta forma reduzir o número de falsos positivos, minimizando a procura aos cuidados de saúde, sem comprometer a eficácia do sistema, os custos inerentes com esta procura e com a realização de testes, o número de pessoas em isolamento sem indicação, e, por fim, o stress psicológico inerente à (falsa) suspeita de contacto de alto risco com um doente COVID-19.\n\nA data é enviada para o SLD, aquando da geração do CL pelo médico, e guardada no registo associado ao CL no SLD e no respetivo CA, depois usado pelo SPD para determinar as Chaves de Identificadores TEK que devem ser difundidas pelos DMPs.",
+          "storage": "Logo que o CL tenha esgotado a sua validade, que é de 24 horas, é apagado da base de dados pela tarefa diária de manutenção."
+        },
+        "ip_address": {
+          "title": "Endereço IP",
+          "definition": "O SLD armazena os endereços IP para fins de segurança. No caso do SPD não está previsto o armazenamento de endereços IP ou outro identificador diretamente associado ao dispositivo móvel.",
+          "purpose": "O endereço IP é armazenado durante um curto período pela infraestrutura de perímetro com o único objetivo de garantir a segurança informática, nomeadamente contra ataques DDoS. Os equipamentos da infraestrutura de perímetro são independentes do SLD e não há cruzamento de dados.",
+          "storage": "O período de conservação dos endereços IP nos equipamentos de perímetro é não superior a 1 hora."
+        }
+      },
+      "data_collecting_and_processing": {
+        "name": "Recolha e processamento de dados",
+        "body": "O sistema STAYAWAY COVID é composto por dois sub-sistemas:\n• um sub-sistema de avaliação de contactos de proximidade, que compreende a aplicação e um servidor (SPD).\n• um sub-sistema de gestão de códigos de legitimação de diagnóstico, que compreende um cliente web e um servidor (SLD).\n\nAmbos os servidores estarão em território nacional e sob o controlo das seguintes entidades: INCM (servidor SPD) e SPMS  (Servidor SLD).\n\nA aplicação utiliza a tecnologia Bluetooth de baixo consumo (BLE) para difundir e receber identificadores aleatórios de dispositivos próximos. Quando sob o alcance de um outro dispositivo a executar a aplicação, a aplicação armazena os seguintes dados:\n• os identificadores aleatórios difundidos pelo outro dispositivo.\n• a potência do sinal.\n• a data e a duração estimada do contacto.\n\nNo caso de um utilizador ser diagnosticado com COVID-19 os seguintes dados são armazenados no SLD:\n• o código de legitimação do diagnóstico para obtenção do código de acesso ao SPD.\n• a data dos primeiros sintomas ou a data de teste para indivíduos assintomáticos.\n• a data em que estes dados deverão ser destruídos no SLD.\n• o número de vezes que o código de legitimação do diagnóstico foi utilizado (0 ou 1, já que é de utilização única).\n\nO servidor SPD contém uma lista com os seguintes dados:\n• as Chaves de Identificadores TEK de utilizadores diagnosticados com COVID-19.\n• a data de cada Chave de Identificadores TEK."
+      },
+      "gaen_api": {
+        "name": "Interface de Notificação de Exposição Google-Apple (GAEN API)",
+        "body": "A aplicação utiliza o protocolo implementado pela GAEN API. A Google e a Apple disponibilizam a especificação do protocolo, algoritmos e respetiva API. Contudo o código da GAEN API não é aberto. De acordo com a GAEN, apenas uma aplicação por país endossada oficialmente está autorizada a aceder à API.\n\nCaso a Google e a Apple comuniquem a introdução de alterações na GAEN API, que afetem os utilizadores, serão adicionadas imediatamente nesta política de privacidade as informações relativas às referidas modificações."
+      },
+      "use_of_equipment_resources": {
+        "name": "Utilização de recursos do equipamento",
+        "body": "Após instalada, a aplicação solicita ao utilizador autorização para usar permanentemente a comunicação por Bluetooth. A aplicação não funcionará se não for concedida autorização para utilização da interface Bluetooth."
+      },
+      "rights_of_data_subjects": {
+        "name": "Direitos dos titulares",
+        "body": "O Regulamento Europeu de Proteção de Dados (Regulamento (UE) 2016/679, do Parlamento Europeu e do Conselho, de 27 de abril de 2016 – RGPD) assegura aos utilizadores, enquanto titulares de dados pessoais, além do direito de informação, os direitos de acesso, retificação, modificação ou apagamento e oposição ao tratamento.\n\nNo entanto, atendendo à impossibilidade de o responsável pelo tratamento identificar os utilizadores, neste caso, em princípio, não são serão aplicáveis os artigos 15º a 20º do Regulamento, relativos aos direitos de acesso, retificação, modificação ou apagamento, em conformidade com o disposto no nº 2 do artigo 11º do mesmo regulamento. Já o direito de oposição será facilmente exercido desinstalando a aplicação.\n\nO titular dos dados pessoais poderá exercer os seus direitos bem como solicitar qualquer informação respeitante ao tratamento dos seus dados pessoais mediante solicitação escrita dirigida ao responsável pelo tratamento ou ao respetivo encarregado de proteção de dados, através, dos endereços postal e de email seguintes:\n\nQuestões/Apoio Técnico: stayaway@inesctec.pt\n\nProteção de Dados: eugeniacarvalho@dgs.min-saude.pt\n\nO RGPD garante, ainda, ao titular dos dados, nos termos do seu artigo 77º, o direito de apresentar queixa junto de uma autoridade de controlo na União Europeia. Em Portugal a entidade de controlo competente é a CNPD (https://www.cnpd.pt)."
+      },
+      "uninstalling_and_suspending_the_application": {
+        "name": "Desinstalação e descontinuação da aplicação",
+        "body": "O utilizador pode a qualquer momento desinstalar a aplicação sem que isso lhe traga algum prejuízo. A desinstalação vai resultar no apagamento imediato de todos os dados processados localmente pela aplicação. Os restantes dados armazenados nos servidores do sistema serão automaticamente apagados findo o respetivo prazo regular de conservação.\n\nTodo o sistema será descontinuado quando for declarado em Portugal o fim da epidemia provocada pela COVID-19."
+      },
+      "changes_to_the_privacy_policy": {
+        "name": "Alterações à Política de Privacidade",
+        "body": "As informações sobre quaisquer alterações introduzidas ao longo do texto serão resumidas neste capítulo e associadas à data da sua efetiva implementação.\n\nO utilizador deverá ter sempre disponível, via a aplicação, a versão atualizada da Política de Privacidade."
+      },
+      "last_review": "Última revisão a 22 de Setembro de 2020",
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "label": "Para atrás",
+            "hint": "Navega para trás para o ecrã de definições"
+          }
+        }
+      }
+    },
+    "terms_of_use": {
+      "title": "Termos de Utilização",
+      "scope_and_purpose": {
+        "name": "A - Âmbito e objetivo",
+        "first": "1. Estes Termos e Condições de Utilização regulam a obtenção e utilização da aplicação para dispositivos móveis STAYAWAY COVID (doravante referida como aplicação).\n",
+        "second": "2. A aplicação foi desenvolvida no âmbito de um projeto coordenado pelo Instituto de Engenharia de Sistemas e Computadores, Tecnologia e Ciência (INESC TEC) e pelo Instituto de Saúde Pública da Universidade do Porto (ISPUP), com o apoio das empresas Keyruptive e Ubirider (doravante, os promotores). Faz parte da iniciativa INCoDe.2030, apoiada pela Fundação para a Ciência e Tecnologia (FCT), que irá operar e manter o sistema e assumir o papel de responsável pelo tratamento de dados, para efeitos de legislação relativa a dados pessoais.\n",
+        "third": {
+          "normal": "3. A aplicação é parte de um sistema informático cujo objetivo é ",
+          "bold": "informar o utilizador sobre a sua potencial exposição a alguém diagnosticado com COVID-19."
+        }
+      },
+      "conditions_of_access_and_use": {
+        "name": "B - Condições de acesso e utilização",
+        "first": "1. A aplicação é de acesso público e gratuito. No caso de menores de 13 anos, o consentimento para acesso e utilização só pode ser dado ou autorizado pelos titulares das responsabilidades parentais.\n",
+        "second": "2. A participação e utilização da aplicação são voluntárias, permitindo aos utilizadores deixar de a utilizar em qualquer momento, com base numa decisão autónoma e unilateral.\n",
+        "third": "3. Ao instalar a aplicação, o utilizador declara ter entendido e aceitado as condições seguintes e a informação legal relacionada com a aplicação. Se o utilizador não concordar com estas condições então não deverá utilizar a aplicação."
+      },
+      "features_of_the_app": {
+        "name": "C - Funcionalidades da aplicação",
+        "first": "1. A aplicação informa o utilizador do seu potencial risco de contágio com base na sua exposição a alguém diagnosticado com COVID-19.\n",
+        "second": "2. A ativação da interface Bluetooth é necessária para a operação da aplicação.\n",
+        "third": "3. Diariamente, a aplicação gera aleatoriamente uma chave privada para geração de identificadores aleatórios não associável ao dispositivo móvel, à aplicação ou ao utilizador. A aplicação difunde, continuamente e por Bluetooth, um identificador aleatório gerado a cada 15 minutos pela chave privada diária. A aplicação guarda todos os identificadores aleatórios que recebe de dispositivos móveis próximos a executar a aplicação. Adicionalmente, a aplicação obtém, de um servidor público SPD, a lista de chaves privadas diárias de utilizadores diagnosticados com COVID-19 e utiliza estas chaves para calcular os correspondentes identificadores aleatórios. Comparando estes identificadores aleatórios com os recebidos por Bluetooth e armazenados localmente, a aplicação avalia o eventual risco de contágio. Se o cruzamento dos dados revelar contactos com um utilizador diagnosticado com COVID-19, com uma distância igual ou inferior a 2 metros e cuja duração perfaça 15 minutos, a aplicação alerta o utilizador.\n",
+        "fourth": "4. Na eventualidade de o utilizador da aplicação ser diagnosticado com COVID-19, a entidade responsável pelo diagnóstico gera um Código de Legitimação, único e válido para uma utilização apenas e por um período limitado de tempo que o utilizador poderá, voluntariamente, introduzir na aplicação. Este código permitirá à aplicação submeter ao servidor público SPD as chaves privadas do utilizador. Outros utilizadores que tenham estado com contacto próximo com o diagnosticado com COVID-19, conforme o ponto 3.3, serão alertados da exposição e em que data mais recente ocorreu. Uma vez reportado um diagnostico positivo, a aplicação cessa de operar.\n",
+        "fifth": "5. A aplicação oferece recomendações a seguir pelo utilizador.\n",
+        "sixth": "6. A aplicação não rastreia a localização do utilizador, nem usa serviços de geolocalização.\n",
+        "seventh": "7. A aplicação não executa qualquer avaliação médica nem prescreve quaisquer medidas, como por exemplo, de quarentena."
+      },
+      "users_duties_of_care": {
+        "name": "D - Deveres e responsabilidades do utilizador",
+        "first": "1. O utilizador é responsável pela utilização da aplicação.\n",
+        "second": "2. O utilizador deverá tomar as medidas de segurança necessárias para proteger o seu dispositivo contra acesso não-autorizado de terceiros e contra aplicações danosas. O utilizador é alertado para os riscos de segurança associados à utilização da Internet e tecnologias baseadas na Internet.\n",
+        "third": "3. O utilizador deverá manter a aplicação atualizada. Não é cedido ao utilizador o direito para utilização de uma versão específica da aplicação.\n",
+        "fourth": "4. O utilizador deverá verificar a correção e completude da informação introduzida na aplicação.\n",
+        "fifth": "5. Ao utilizar a aplicação, o utilizador é responsável por respeitar as disposições legais e estes Termos e Condições de Utilização."
+      },
+      "liability_and_warranty": {
+        "name": "E - Responsabilidade e garantia",
+        "first": "1. Apesar de a Direção-Geral de Saúde (DGS) e os programadores desenvolverem todos os esforços para assegurar a correção da informação, conteúdo e comunicações constantes da aplicação, não oferecem qualquer garantia da sua correção, precisão, atualidade ou fiabilidade. A DGS reserva o direito de, em qualquer altura, sem notícia prévia, parcial ou totalmente alterar, eliminar ou temporariamente não publicar informação ou conteúdos na e sobre a aplicação.\n",
+        "second": "2. Na medida em que a lei o permita, a DGS e os promotores expressamente excluem qualquer responsabilidade por danos materiais ou imateriais, incluindo danos emergentes ou lucros cessantes, decorrentes, por exemplo, do acesso, utilização ou não utilização da aplicação e das informações, conteúdos e comunicações associados, do uso indevido da ligação, de falhas técnicas ou da violação dos deveres de cuidado dos utilizadores.\n",
+        "third": "3. O utilizador é responsável e assume os riscos advenientes de qualquer ação ou comportamento assumido em virtude do acesso a informações, conteúdos ou comunicações através da aplicação, por exemplo, a opção pelo isolamento profilático ou quarentena. Em caso algum a DGS ou os promotores serão responsáveis por quaisquer danos daí resultantes.\n",
+        "fourth": "4. A DGS e os promotores não assumem qualquer responsabilidade e não oferecem qualquer garantia de que a funcionalidade e utilização da aplicação estarão permanente e continuamente disponíveis e isentas de defeitos ou falhas, que os defeitos sejam corrigidos, ou que os servidores estejam isentos de vírus ou elementos danosos.\n",
+        "fifth": "5. A DGS reserva-se o direito de interromper ou descontinuar a utilização da aplicação a qualquer altura.\n",
+        "sixth": "6. A DGS não é responsável por referências ou links para sítios web de entidades terceiras. A DGS não assume qualquer responsabilidade pela continuidade, conteúdo ou correção de tal informação. O acesso e utilização de tais sítios é da responsabilidade do utilizador. A DGS declara explicitamente não ter qualquer influência na conceção, conteúdo ou oferta dos sítios web em questão. A informação e serviços fornecidos dos sítios referidos em questão é da inteira responsabilidade das entidades terceiras."
+      },
+      "data_protection": {
+        "name": "F - Proteção de dados",
+        "first": "1. Com base na GDPR, na Carta dos Direitos Fundamentais da União Europeia e nas disposições da legislação nacional portuguesa sobre proteção de dados, todas as pessoas têm direito à privacidade e à proteção contra a utilização indevida dos seus dados pessoais. O tratamento de dados pessoais pela DGS como responsável pelo tratamento de dados é regido pela GDPR, pela Lei Portuguesa de Proteção de Dados e pela Política de Privacidade do STAYAWAY COVID . Por conseguinte, em circunstância alguma esses dados serão partilhados ou vendidos a terceiros. E o seu tratamento será limitado ao estritamente necessário para os fins da aplicação acima descritos."
+      },
+      "termination_of_use": {
+        "name": "G - Cessação do uso da aplicação",
+        "first": "1. O utilizador pode terminar o uso da aplicação em qualquer altura, eliminando ou desinstalando a aplicação do seu dispositivo móvel.\n",
+        "second": "2. Todo o sistema será descontinuado quando for declarado em Portugal o fim da pandemia."
+      },
+      "copyright_property_rights_and_rights_of_use": {
+        "name": "H – Copyright e propriedade intelectual",
+        "first": "1. Os direitos de autor relativos à aplicação e seus conteúdos pertencem aos promotores.\n",
+        "second": "2. A informação e conteúdos na aplicação são tornados acessíveis ao público. Os conteúdos são publicados apenas para uso pessoal. Não é permitida qualquer outra reprodução ou transmissão de conteúdos a terceiros. O descarregamento ou cópia de conteúdos, incluindo as imagens, fotografias ou outros ficheiros não traduz qualquer transferência de direitos relativos a tais conteúdos. Os direitos de autor e quaisquer outros direitos relativos ao conteúdo, imagens, fotografias ou outros ficheiros desta aplicação são detidos exclusivamente pelos seus criadores (os detentores dos direitos de autor) bem como pelos respetivos licenciados, em particular a DGS. Para a reprodução de quaisquer dos referidos elementos, deverá ser obtida previa autorização escrita dos detentores dos direitos de autor."
+      },
+      "final_provisions": {
+        "name": "I - Disposições finais",
+        "first": "1. Estas disposições foram publicadas em Português e Inglês. Em caso de discrepância, prevalece a versão portuguesa.\n",
+        "second": "2. A utilização da aplicação é gratuita para os utilizadores. Quaisquer custos resultantes de acesso à Internet para viabilizar o funcionamento da aplicação são suportados pelo utilizador.\n",
+        "third": "3. A DGS reserva-se o direito de alterar ou estender os Termos e Condições de Utilização em qualquer momento, desde que a lei e os direitos de copyright dos titulares sejam respeitados. As novas condições serão antecipadamente comunicadas aos utilizadores de forma apropriada e serão consideradas como tacitamente aceites se nenhuma objeção for recebida no prazo de um mês.\n",
+        "fourth": "4. No caso de uma das disposições dos Termos e Condições de Utilização ser inválida ou não aplicável, as demais disposições não deverão ser afetadas.\n",
+        "fifth": "5. A Lei portuguesa deverá ser aplicada, salvo quando o direito da União Europeia determine outramente."
+      },
+      "last_review": "Última revisão a 22 de Setembro de 2020",
       "actions": {
         "go_back": {
           "accessibility": {

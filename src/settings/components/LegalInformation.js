@@ -17,15 +17,13 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 
 import { sizes, iconSizes } from '@app/common/theme';
 
-import Configuration from '@app/services/configuration';
-import i18n, { languages } from '@app/services/i18n';
+import i18n from '@app/services/i18n';
 
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
 import Icon from '@app/common/components/Icon';
-import Switch from '@app/common/components/Switch';
 
 import Images from '@app/common/assets/images';
 
@@ -56,19 +54,6 @@ const styles = (colors, insets) => StyleSheet.create({
   itemsContainer: {
     marginBottom: sizes.size48,
   },
-  topItems: {
-    marginBottom: sizes.size48,
-  },
-  trackingButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginBottom: sizes.size16,
-  },
-  topItem: {
-    flexDirection: 'column',
-  },
   item: {
     backgroundColor: colors.white,
     paddingLeft: sizes.size8,
@@ -87,26 +72,6 @@ const styles = (colors, insets) => StyleSheet.create({
     shadowOpacity: 0.51,
     shadowRadius: 13.16,
     elevation: 20,
-  },
-  trackingLabelContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  trackingLabel: {
-    marginRight: sizes.size8,
-  },
-  languageLabelContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.grayLight,
-    borderRadius: sizes.size4,
-  },
-  languageLabel: {
-    backgroundColor: colors.blueLightest,
-    margin: sizes.size2,
-    paddingVertical: sizes.size5,
-    paddingHorizontal: sizes.size16,
-    borderRadius: sizes.size4,
   },
   imagesContainer: {
     position: 'absolute',

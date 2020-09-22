@@ -19,6 +19,8 @@ import HowToUseScreen from '@settings/containers/HowToUseScreen';
 import DebugScreen from '@settings/containers/DebugScreen';
 import LegalInformationScreen from '@settings/containers/LegalInformationScreen';
 import TechnicalSheetScreen from '@settings/containers/TechnicalSheetScreen';
+import TermsOfUseScreen from '@settings/containers/TermsOfUseScreen';
+import PrivacyPolicyScreen from '@settings/containers/PrivacyPolicyScreen';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -42,6 +44,14 @@ export default () => (
     <Screen
       name={AppRoutes.LEGAL_INFORMATION}
       component={LegalInformationScreen}
+    />
+    <Screen
+      name={AppRoutes.TERMS_OF_USE}
+      component={TermsOfUseScreen}
+    />
+    <Screen
+      name={AppRoutes.PRIVACY_POLICY}
+      component={PrivacyPolicyScreen}
     />
     <Screen
       name={AppRoutes.TECHNICAL_SHEET}

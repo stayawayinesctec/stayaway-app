@@ -17,7 +17,7 @@ import LegalInformation from '@settings/components/LegalInformation';
 
 describe('Legal Information Screen', () => {
   describe('Legal Information correctly', () => {
-    it('When infection status is infected.', () => {
+    it('', () => {
       const { queryByA11yLabel } = render(
         <LegalInformation />,
       );
@@ -25,8 +25,6 @@ describe('Legal Information Screen', () => {
       const termsOfUseButton = queryByA11yLabel(i18n.translate('screens.legal_information.terms_of_use.accessibility.label'));
       const privacyPolicyButton = queryByA11yLabel(i18n.translate('screens.legal_information.privacy_policy.accessibility.label'));
       const technicalSheetButton = queryByA11yLabel(i18n.translate('screens.legal_information.technical_sheet.accessibility.label'));
-
-      console.log(i18n.translate('screens.legal_information.terms_of_use.accessibility.label'));
 
       expect(termsOfUseButton).toBeTruthy();
       expect(privacyPolicyButton).toBeTruthy();

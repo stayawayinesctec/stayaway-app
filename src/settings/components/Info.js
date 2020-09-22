@@ -227,7 +227,7 @@ export default function Info(props) {
                   accessibilityHint={i18n.translate('screens.settings.faqs.accessibility.hint')}
                 >
                   <Text weight='bold'>{i18n.translate('screens.settings.faqs.label')}</Text>
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 <ButtonWrapper
                   style={styles(colors, insets).item}

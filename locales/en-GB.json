@@ -283,14 +283,14 @@
         "label": "Terms of Use",
         "accessibility": {
           "label": "Terms of Use",
-          "hint": "Links to the Terms of Use webpage"
+          "hint": "Press to navigate to terms of use"
         }
       },
       "privacy_policy": {
         "label": "Privacy Policy",
         "accessibility": {
           "label": "Privacy Policy",
-          "hint": "Links to the Privacy Policy webpage"
+          "hint": "Press to navigate to privacy policy"
         }
       },
       "technical_sheet": {
@@ -298,6 +298,205 @@
         "accessibility": {
           "label": "Technical Sheet",
           "hint": "Press to navigate to technical sheet"
+        }
+      }
+    },
+    "privacy_policy": {
+      "title": "Privacy Policy",
+      "description": "This Privacy Policy categorises the personal information collected, explains the need for data collection and the way the STAYAWAY COVID system uses said data; in addition, it establishes the rights of users and the respective exercise of said rights. The system includes an application for mobile devices.\n\nThe STAYAWAY COVID system was created within the scope of the INCoDe programme.2030, focusing on the development of a COVID-19 tracing solution, in order to address the spreading of the virus. The Institute for Systems and Computer Engineering, Technology and Science (INESC TEC) and the Institute of Public Health of the University of Porto (ISPUP) are the entities in charge of the developing the app, with the support of Keyruptive and Ubirider.\n\nThe system underwent a Data Protection Impact Assessment (DPIA), as well as prior consultation by the Portuguese Data Protection Authority (CNPD); the Portuguese National Cybersecurity Centre also audited the system.",
+      "data_treatment": {
+        "name": "Responsibility for data processing",
+        "responsible": "Entity responsible for the data processing",
+        "subcontractors": "Subcontractors",
+        "dgs": {
+          "name": "DGS – Directorate-General for Health",
+          "address": "Alameda D. Afonso Henriques, 45, 1049-005 Lisbon – Portugal",
+          "phone": "Phone Number: +351 218 430 500"
+        },
+        "inesctec": {
+          "name": "INESC TEC – Institute for Systems and Computer Engineering, Technology and Science",
+          "address": "Rua Dr. Roberto Frias, 4200-465 Porto, Portugal",
+          "phone": "Phone Number: +351 222 094 000"
+        },
+        "keyruptive": {
+          "name": "Keyruptive",
+          "address": "Praça Conde de Agrolongo 123, 4700-312 Braga, Portugal"
+        },
+        "ubirider": {
+          "name": "Ubirider",
+          "address": "Rua Alfredo Allen 455/461 – room 1.03, 4200-135 Porto, Portugal"
+        },
+        "spms": {
+          "name": "SPMS – Serviços Partilhados do Ministério da Saúde, EPE",
+          "address": "Avenida da República no. 61, 8th floor, 1050-189 Lisbon, Portugal",
+          "phone": "Phone Number: +351 211 545 600"
+        },
+        "incm": {
+          "name": "INCM – Imprensa Nacional-Casa da Moeda",
+          "address": "Av. António José de Almeida, 1000-042 Lisbon, Portugal",
+          "phone": "Phone Number: +351 217 810 700"
+        }
+      },
+      "purposes_of_personal_data_processing": {
+        "name": "Purposes of personal data processing",
+        "body": "The goal of data processing through the application is to contribute to a faster, broader and more effective screening of COVID-19 in Portugal, according to the general plan to fight against the pandemic, defined by the Portuguese healthcare authorities, similarly to examples of other European countries. The application is part of a computer system that will inform the users about potential high-risk exposure, according to the monitoring of close contacts during the previous 14 days. Acceding and participating in this initiative is voluntary, and users are allowed to stop using the application, autonomously and unilaterally, at any time."
+      },
+      "lawfulness_of_data_processing": {
+        "name": "Lawfulness of data processing",
+        "body": "The app’s installation and use is strictly voluntary. Pertaining to users, consent establishes a legal basis for data processing (Articles 6, no. 1, a) and 9, no. 2, a) of the GDPR).\n\nHowever, since the operation of the application implies different processing procedures, involving different categories of data subjects (users and healthcare professionals), the data processing performed requires a double condition of lawfulness, which only reinforces its legitimacy and leads to a more proportional process.\n\nIn fact, when public authorities provide a service based on a mandate given by, and in compliance with the requirements set out in the law, the legal basis for data processing is the need to exercise responsibilities of public interest, under the terms of the provisions of Articles 6, no.1, e), and 9, no. 2), both of the GDPR.\n\nThe Decree-Law 52/2020 of 11th August provides a legal framework for the use of STAYAWAY COVID, establishing DGS as the data controller and regulating the doctor’s intervention in the system."
+      },
+      "personal_data_and_storage_periods": {
+        "name": "Personal data and storage periods",
+        "body": "The personal data collected by the application never allow identifying users or their devices. In order to protect the users’ privacy, the application generates random temporary alphanumeric identifiers, considered pseudonymised data.\n\nGiven the possibility of referring to users diagnosed with COVID-19 or users notified of potential high-risk exposure, we deliberated that said identifiers refer only to data associated with their health.\n\nThe application broadcasts and receives random identifiers from other nearby devices. The application can share the random identifiers broadcast (never the received ones) with an official server, located in the national territory. No identifier is stored in the system for more than 14 days.\n\nBecause of the processing of random identifiers, the users may receive a notification with information about the potential high-risk exposure, and the date of the most recent close contact, leading to said occurrence. This information is stored in the application until the users uninstall it.\n\nIn addition to user data, data from healthcare professionals involved in the validation of contagion information is necessarily processed. The system will use an authentication system, under the responsibility of the SPMS, which will work separately from other systems to ensure the privacy of doctors and patients.\n\nThe STAYAWAY system will process the following personal data:\n\n",
+        "labels": {
+          "definition": "Definition",
+          "purpose": "Purpose",
+          "storage": "Storage"
+        },
+        "pseudonymised_data_teks": {
+          "title": "Pseudonymised data (TEK Identifier Keys and  Random RPI Identifiers)",
+          "definition": "The mobile device generates a TEK Identifier Key on a daily basis. This daily TEK Identifier Key generates a Random RPI Identifier every 15 minutes (on average), during the period that said RPI is valid. Random RPI Identifiers are transmitted in broadcast mode and received by mobile devices that are geographically close.",
+          "purpose": "It allows signalling the users’ proximity to someone for at least 15 minutes, at a two-meter distance, without the application being able to identify the users or track the place where the contact took place.",
+          "storage": "Automatically deleted from the mobile device 14 days after being stored."
+        },
+        "pseudonymised_data_uui": {
+          "title": "Pseudonymised data (Universal Unique Identifier)",
+          "definition": "Identifier generated in the Diagnostic Legitimation Service (SLD), part of the Access Code (CA).",
+          "purpose": "Stored in the Diagnostic Publishing Service (SPD) when the CA is created, and used later to ensure that each CA is not used more than once within its validity period.",
+          "storage": "Eliminated during the daily database maintenance task, after the end of its validity period – maximum of 24 hours."
+        },
+        "health_data_teks": {
+          "title": "Health data (TEK Identifier Keys shared after positive diagnosis)",
+          "definition": "These are the keys submitted by users diagnosed by COVID-19 to the central system server. The devices with the STAYAWAY application download these keys periodically. The application keeps the date of the last update and asks only for the keys published after that date, for each of the relevant days.",
+          "purpose": "The DMP calculates the Random RPI Identifiers associated with these keys, in order to compare them with the RPIs received from nearby DMPs during the previous 14 days. Then, it calculates a risk function that assesses the existence of close contacts (less than the two-meter distance, and for more than 15 minutes) using the RPIs, estimated distances and exposure times.",
+          "storage": "The storage period is 14 days."
+        },
+        "health_data_info": {
+          "title": "Health data (date, duration and estimated distance of contact)",
+          "definition": "The DMP calculates a risk function that, following the current guidelines of the World Health Organization, assesses the existence of the existence of close contacts (less than the two-meter distance, and for more than 15 minutes). This function relies on the Random RPIs Identifiers received from nearby DMPS, the TEK Identification Keys from users diagnosed with COVID-19, received from the SPD, as well as the associated temporal metadata.",
+          "purpose": "The application notifies the users of high-risk exposure to someone diagnosed with COVID-19, less than the two-meter distance, and for more than 15 minutes.",
+          "storage": "The storage period is 14 days."
+        },
+        "health_data_symptoms": {
+          "title": "Health data (Date of first symptoms or test date for asymptomatic individuals)",
+          "definition": "Information entered by the healthcare professional in the system, concurrently with the generation the Legitimation Code (CL). One can only obtain this date after knowing the CL, shared exclusively by the patient and the healthcare professional.",
+          "purpose": "It is crucial to keep the date of symptom onset and diagnosis, so the application can only notify those who have been in contact with someone diagnosed with SARS-CoV-2 infection over the three-day period before the symptom onset, or diagnosis, in case of asymptomatic individuals. The goal is reducing the number of false positives, thus decreasing the demand for health care (without compromising the efficiency of the system), the costs associated with said demand and testing, the number of people in isolation without any instructions, and , finally, the psychological stress related to the (false) suspicion of high-risk exposure/close contact with a COVID-19 patient.\n\nThe date is sent to the SLD as soon as the doctor generates the CL, and is saved in the registry associated with the CL in the SLD and the respective CA. It is later used by the SPD to determine the TEK Identifier Keys that must be disseminated by the DMPs.",
+          "storage": "As soon as the CL has expired (24 hours), it is eliminated during the daily database maintenance task."
+        },
+        "ip_address": {
+          "title": "IP address",
+          "definition": "The SLD stores IP addresses for security purposes. In the case of the SPD, there is no provision for storing IP addresses or another identifier directly associated with the mobile device.",
+          "purpose": "The IP address is stored for a short period by the perimeter infrastructure, for the sole purpose of ensuring security, namely against DDoS attacks. The perimeter infrastructure equipment is independent of the SLD and there is no data crossing.",
+          "storage": "The storage period of IP addresses in the perimeter equipment is no longer than one hour."
+        }
+      },
+      "data_collecting_and_processing": {
+        "name": "Data collecting and processing",
+        "body": "The STAYAWAY COVID system comprehends two subsystems:\n• a subsystem for evaluating close contacts, comprising the application and a server (SPD).\n• a diagnostic legitimation code management subsystem, comprising a web client and a server (SLD).\n\nBoth servers will be in national territory, and under the control of the following entities: INCM (SPD server) and SPMS (SLD server).\n\nThe application uses Bluetooth Low Energy (BLE) technology to broadcast and receive random identifiers from nearby devices. When under the reach of another device running the application, the application stores the following data:\n• the random identifiers broadcast by the other device.\n• signal strength.\n• the date and approximate duration of the contact.\n\nIn case a user is diagnosed with COVID-19, the following data is stored in the SLD:\n• the diagnostic legitimation code, in order to obtain the SPD access code.\n• the date of the symptom onset, or the test date in cases of asymptomatic individuals.\n• the scheduled date for elimination of said data in the SLD.\n• the number of times the diagnostic legitimation code was used (0 or 1, since it is for single use).\n\nThe SPD server contains a list with the following data:\nthe TEK Identifier Keys for users diagnosed with COVID-19.\nthe date of each TEK Identifier Key."
+      },
+      "gaen_api": {
+        "name": "Google Apple Exposure Notification (GAEN API)",
+        "body": "The application uses the protocol implemented by the GAEN API. Google and Apple provide the protocol specification, algorithms and respective API. However, the GAEN API code is not open. According to GAEN, only one officially endorsed application per country is authorised to access the API.\n\nIn the event that Google and Apple report changes to the GAEN API, and said changes affect users, information regarding such changes will be added to this Privacy Policy immediately."
+      },
+      "use_of_equipment_resources": {
+        "name": "Use of equipment resources",
+        "body": "Once installed, the application requests the users’ authorisation to run in the background, use Bluetooth communication and location services. Failure to grant said permission will prevent the application from running correctly. The GPS interface is not used. However, users must enable the GPS functionality on their Android systems, in order to make sure that the application runs correctly. This configuration is part of the Google operating system."
+      },
+      "rights_of_data_subjects": {
+        "name": "Rights of data subjects",
+        "body": "The European Data Protection Regulation (Regulation (EU) 2016/679, of the European Parliament and of the Council, of 27 April 2016 – GDPR) ensures the users’ (data subjects) right to information, the right to request access, rectification, erasure or restriction of processing.\n\nHowever, considering the date controllers’ inability to identify users, the Articles 15 to 20 of the Regulation, relating to the rights to request access, rectification, erasure or restriction of processing, shall not the applied, in accordance with the provisions in Article 11, no. 2 of the same Regulation. The data subjects can exercise their right to object by uninstalling the application.\n\nThe data subject may exercise his/her rights, as well as request any information regarding the processing of personal data, upon written request addressed to the data controller or the respective data protection officer, through the following postal and email addresses:\n\nQuestions/Technical support: stayaway@inesctec.pt\n\nData Protection: eugeniacarvalho@dgs.min-saude.pt\n\nUnder the terms of the Article 77 of the GDPR, the data subject has the right to lodge a complaint with a supervisory authority in the European Union. In Portugal, the supervisory authority is the CNPD (www.cnpd.pt)."
+      },
+      "uninstalling_and_suspending_the_application": {
+        "name": "Uninstalling and suspending the application",
+        "body": "The users can uninstall the application at any time, without causing any damage. The uninstallation will lead to the immediate deletion of all data processed locally by the application. The remaining data stored on the system’s servers will be automatically deleted after the respective regular storage period.\n\nThe entire system will be dropped as soon as the authorities declare the official end of the epidemic caused by COVID-19 in Portugal."
+      },
+      "changes_to_the_privacy_policy": {
+        "name": "Changes to the Privacy Policy",
+        "body": "Information on any changes introduced throughout the text will be summarised in this chapter, and associated with the date of its effective implementation.\n\nThe users must always have access to the updated version of the Privacy Policy, available via the application."
+      },
+      "last_review": "Last reviewed September 22, 2020",
+      "actions": {
+        "go_back": {
+          "accessibility": {
+            "label": "Para atrás",
+            "hint": "Navega para trás para o ecrã de definições"
+          }
+        }
+      }
+    },
+    "terms_of_use": {
+      "title": "Termos de Utilização",
+      "scope_and_purpose": {
+        "name": "A - Scope and purpose",
+        "first": "1. These Terms and Conditions of Use regulate the acquisition and use of the mobile application (app) STAYAWAY COVID.\n",
+        "second": "2. The application was developed as part of a project coordinated by the Institute for Systems and Computer Engineering, Technology and Science (INESC TEC)and the Institute of Public Health of the University of Porto (ISPUP), with the support of the companies Keyruptive and Ubirider (hereinafter, the developers). It is part of the 2030 initiative, supported by the Foundation for Science and Technology (FCT), who will operate and maintain the system and take on the role of data controller, for the purpose of personal data related legislation.\n",
+        "third": {
+          "normal": "3. The purpose of the app is ",
+          "bold": "to notify users who have potentially been exposed to the coronavirus."
+        }
+      },
+      "conditions_of_access_and_use": {
+        "name": "B - Conditions of access and use",
+        "first": "1. The application is publicly accessible and free of charge. In the case of children under 13, consent for access and use may only be given or authorised by the holders of parental responsibility.\n",
+        "second": "2. Participation and use of the app are voluntary, allowing users to stop using it at any given time, based on their autonomous and unilateral decision.\n",
+        "third": "3. By accessing the app, the user declares that he/she has understood and accepted the following conditions and legal information relating to the app (and the elements contained therein). If the user does not agree to these conditions, then he/should not use the app."
+      },
+      "features_of_the_app": {
+        "name": "C - Features of the app",
+        "first": "1. The application informs the user of the potential risk of contagion, based on the exposure to someone diagnosed with COVID-19.\n",
+        "second": "2. The activation of Bluetooth is required for the operation of the app.\n",
+        "third": "3. Each day, the app generates a new private key that cannot be connected to the app or to users. The app broadcasts an identification code, continuously and via Bluetooth, changing every 15 minutes; this code derives from the app’s current private key, but cannot be traced back to this key and likewise cannot be connected to the app or users thereof. The app continuously checks whether compatible signals transmitted by other mobile phones are being received. If the proximity to another mobile phone is two metres or less, the app stores the other device’s current identification code, the signal strength, the date and the estimated duration of contact. The estimation of proximity relies on the strength of the signals received. In addition, the app periodically retrieves a list of the private keys of users known to be diagnosed with the COVID-19, and uses these to determine the associated identification codes. It compares these identification codes with those that it has stored locally. If this matching process indicates proximity of two metres or less, to at least one diagnosed user’s mobile phone, and if the sum of the duration of said proximity events in one day is 15 minutes, then the app issues a notification.\n",
+        "fourth": "4. In the event of a confirmed infection, experts (e.g. attending physicians) generate a unique release code, valid for a limited period, which they disclose to the user diagnosed with COVID-19. This user can voluntarily enter the release code in the app. Notification, or entry of the release code, occurs only with the explicit consent of the diagnosed user. Other app users who have been in close contact (as defined in Section 3.3) with the diagnosed user during the infectious period are then notified. The users notified learn that a proximity event has occurred, i.e. that they have potentially been exposed to the coronavirus, and on which date this was last the case. Once a positive diagnosis is reported, the application ceases to operate.\n",
+        "fifth": "5. The app also communicates behavioural recommendations.\n",
+        "sixth": "6. The app does not track the user’s location or resort to geolocation services.\n",
+        "seventh": "7. The app cannot perform a medical assessment or order any measures (e.g. quarantine)."
+      },
+      "users_duties_of_care": {
+        "name": "D - Users' duties of care",
+        "first": "1. Users are responsible for the technical access to the app.\n",
+        "second": "2. Users are required to take the necessary security measures to protect their own devices against unauthorised access by third parties and against malware. Users’ attention is hereby drawn to the security risks associated with use of the internet and of internet technologies.\n",
+        "third": "3. Users are required to keep the app updated. There is no claim to use a specific version of the software.\n",
+        "fourth": "4. Users are required to check any data they enter for completeness and correctness.\n",
+        "fifth": "5. When using the app, users are responsible for complying with applicable legal provisions and the Terms and Conditions of Use."
+      },
+      "liability_and_warranty": {
+        "name": "E - Liability and warranty",
+        "first": "1. While the Directorate-General of Health (DGS) and the developers have taken every step to ensure the correctness of the information, content and communications published in the app, they do not ensure the correctness, accuracy, topicality or reliability thereof. DGS expressly reserves the right, at any time, and without prior notice, to partially or completely alter, delete or temporarily hold information and content.\n",
+        "second": "2. To the extent permitted by law, any claims for liability against the DGS or the developers due to material or immaterial damage, including consequential damage – arising, for instance, from access to, use or non-use of the app and the associated information, content and communications, from misuse of the connection, from technical faults, or from infringement of the users’ duties of care – are hereby excluded.\n",
+        "third": "3. The user is responsible for and takes on the risks of any action or behaviour undertaken because of information, content or communications in the app, e.g. self-isolation/quarantine. The DGS and/or the developers will not be liable, under any circumstances, for any subsequent damage.\n",
+        "fourth": "4. The DGS or the developers take on no responsibility, and make no warranty that the features and use of the app will be permanently and continuously available and free of errors or faults, that errors will be fixed, or that the servers will be free of viruses or other harmful elements. The DGS is entitled to discontinue the use of the app at any time.\n",
+        "fifth": "5. The DGS is not responsible for references and links to third-party websites. The DGS is not responsible for continuous existence, content or correctness of such information. Access to and use of such websites is at the user’s own risk. The DGS explicitly states that it has no influence on the design, content or offerings of linked-to pages. Responsibility for information and services provided by linked-to websites lies entirely with the third party in question. No responsibility whatsoever is accepted for such websites.",
+        "sixth": ""
+      },
+      "data_protection": {
+        "name": "F - Data protection",
+        "first": "1. According to the GDPR, the Charter of Fundamental Rights of the European Union and the provisions of Portuguese national legislation on data protection, everyone has the right to privacy and the protection against misuse of their personal data. The GDPR, the Portuguese Data Protection Act and the Privacy Policy of STAYAWYAY COVID govern the processing of personal data by the DGS as data controller. Therefore, in no circumstance such data will be shared with or sold to third parties. Moreover, its processing shall be limited to what is strictly necessary for the purposes of the app described above."
+      },
+      "termination_of_use": {
+        "name": "G - Termination of use",
+        "first": "1. The user can stop using the app at any time by deleting/uninstalling it from the mobile phone.\n",
+        "second": "2. The whole system will be discontinued when the end of the pandemic is declared in Portugal."
+      },
+      "copyright_property_rights_and_rights_of_use": {
+        "name": "H – Copyright, property rights and rights of use",
+        "first": "1. Copyrights on the app and associated contents belong to the developers.        \n",
+        "second": "2. The information and content is openly accessible to the public. The content published in the app is for personal use only. Any further reproduction or transfer of content to third parties is not allowed. The downloading or copying of content, images, photos or other files does not result in any transfer of rights as regards to the content. The developers (the copyright owners) or the designated holders of rights benefit exclusively from copyright and any other rights relating to content, images, photos or other files in this app, namely DGS, as their licensee. Written consent from the copyright owners is required for the reproduction of any elements."
+      },
+      "final_provisions": {
+        "name": "I - Final provisions",
+        "first": "1. These provisions are available in Portuguese and English. In the event of inconsistencies, the Portuguese version shall prevail.\n",
+        "second": "2. Users can use the app free of any charge. . Any costs associated with the network access to enable use of the app are borne by the user.\n",
+        "third": "3. The DGS reserves the right to amend or add to the Terms and Conditions of Use at any time, given that the law and the rights of the copyright owners are fully respected. The new conditions will be communicated to users in advance, in an appropriate manner, and will be deemed to have been accepted if no objection is received within one month.\n",
+        "fourth": "4. Should one provision of the Terms and Conditions of Use be invalid or inoperative, the other provisions thereof shall not be affected.\n",
+        "fifth": "5. Portuguese Law shall apply, subject to any divergent mandatory provisions of European Union Law."
+      },
+      "last_review": "Last reviewed September 22, 2020",
+      "actions": {
+        "back": {
+          "accessibility": {
+            "label": "Go back",
+            "hint": "Navigates back to the settings screen"
+          }
         }
       }
     }
