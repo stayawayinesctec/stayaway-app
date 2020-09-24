@@ -26,10 +26,11 @@
         },
         "consents": {
           "read_and_understood": {
-            "first": "I read and understood the information about the STAYAWAY application, namely:\n• Identity of the Controller - ",
-            "second": "DGS.\n",
-            "third": "• The types of data collected and voluntarily shared after any diagnosis confirming infection, through random identifier keys.\n• The purpose of data collection and processing, namely concerning the notifications sent.\n• How data will be stored and for how long.\n• That I can freely revoke my consent at any time, by uninstalling the application, without affecting the legality of the previous processing actions.\n• That in the cases of children under 13, consent can only be given or authorised by the holders of parental responsibilities.\n• Contact of Data Protection Officer: ",
-            "fourth": "eugeniacarvalho@dgs.min-saude.pt.\n"
+            "first": "I read and understood the information about the STAYAWAY application, namely:\n",
+            "second": "• Identity of the Controller - ",
+            "third": "DGS.\n",
+            "fourth": "• The types of data collected and voluntarily shared after any diagnosis confirming infection, through random identifier keys.\n• The purpose of data collection and processing, namely concerning the notifications sent.\n• How data will be stored and for how long.\n• That I can freely revoke my consent at any time, by uninstalling the application, without affecting the legality of the previous processing actions.\n• That in the cases of children under 13, consent can only be given or authorised by the holders of parental responsibilities.\n• Contact of Data Protection Officer: ",
+            "fifth": "eugeniacarvalho@dgs.min-saude.pt.\n"
           },
           "data_treatment": "I agree with the processing of my personal data, in compliance with the privacy policy, including data related to my health condition, required to send notifications on the exposure to potential risks of contagion, in order to help interrupting the chains of COVID-19 infection."
         },
