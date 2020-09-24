@@ -200,29 +200,18 @@ export default function Template (props) {
                     />
                     <View style={styles(colors, insets).panel}>
                       <View style={styles(colors, insets).errorPanel}>
-                        { error.clickable &&
-                          <ButtonWrapper
-                            onPress={error.onPress}
-                            style={styles(colors, insets).errorPanelContainer}
-                            accessibilityLabel={error.accessibility.label}
-                            accessibilityHint={error.accessibility.hint}
-                          >
-                            <View style={styles(colors, insets).titleContainer}>
-                              <Icon name={error.icon} height={iconSizes.size25} tintColor={colors.blueDark} style={styles(colors, insets).iconError} />
-                              <Text size='xlarge' weight='bold' textColor={colors.blueDark} style={styles(colors, insets).iconTitle}>{error.title}</Text>
-                            </View>
-                            <Text size='small' textColor={colors.blueDark} style={styles(colors, insets).description}>{error.message}</Text>
-                          </ButtonWrapper>
-                        }
-                        { ! error.clickable &&
-                          <View style={styles(colors, insets).errorPanelContainer}>
-                            <View style={styles(colors, insets).titleContainer}>
-                              <Icon name='bluetooth_disconnected' height={iconSizes.size25} tintColor={colors.blueDark} style={styles(colors, insets).iconError} />
-                              <Text size='xlarge' weight='bold' textColor={colors.blueDark} style={styles(colors, insets).iconTitle}>{error.title}</Text>
-                            </View>
-                            <Text size='small' textColor={colors.blueDark} style={styles(colors, insets).description}>{error.message}</Text>
+                        <ButtonWrapper
+                          onPress={error.onPress}
+                          style={styles(colors, insets).errorPanelContainer}
+                          accessibilityLabel={error.accessibility.label}
+                          accessibilityHint={error.accessibility.hint}
+                        >
+                          <View style={styles(colors, insets).titleContainer}>
+                            <Icon name={error.icon} height={iconSizes.size25} tintColor={colors.blueDark} style={styles(colors, insets).iconError} />
+                            <Text size='xlarge' weight='bold' textColor={colors.blueDark} style={styles(colors, insets).iconTitle}>{error.title}</Text>
                           </View>
-                        }
+                          <Text size='small' textColor={colors.blueDark} style={styles(colors, insets).description}>{error.message}</Text>
+                        </ButtonWrapper>
                       </View>
                     </View>
                   </View>
@@ -307,7 +296,6 @@ Template.defaultProps = {
     },
     icon: '',
     onPress: () => {},
-    clickable: false,
   },
 };
 
@@ -327,6 +315,5 @@ Template.propTypes = {
     accessibility: PropTypes.object,
     icon: PropTypes.string,
     onPress: PropTypes.func,
-    clickable: PropTypes.bool,
   }),
 };

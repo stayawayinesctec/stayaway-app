@@ -46,8 +46,10 @@ export function* startup() {
       return;
     }
 
+    // Check if tracking was enabled
+    const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
+
     // Get previous stored state
-    const trackingEnabled = yield call([Storage, 'getItem'], 'tracking_enabled', 'false');
     const signUpDate = yield call([Storage, 'getItem'], 'signup_date', '');
     const status = JSON.parse(yield call([Storage, 'getItem'], 'status', '{}'));
 
@@ -58,30 +60,33 @@ export function* startup() {
     // Navigate to home
     yield put(onboardingActions.setOnboarding(false));
 
+    // Check if is UI mode
+    if (Configuration.UI) {
+      const tracking = yield call([Storage, 'getItem'], 'tracking_enabled', 'false');
+      yield put(accountActions.setTrackingEnabled(tracking));
+      return;
+    }
+
     // Check if tracking was enabled
-    if (trackingEnabled !== 'true') {
+    if (! isTracingEnabled) {
       // Set tracking deactivated
       yield put(accountActions.setTrackingEnabled(false));
       return;
     }
 
-    if (Configuration.UI) {
+    yield put(accountActions.startTracking());
+    const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+
+    if (payload === TRACKING_RESULTS.SUCCESS) {
+      // Set tracking activated
       yield put(accountActions.setTrackingEnabled(true));
+    } else if (payload === TRACKING_RESULTS.GAEN) {
+      yield put(accountActions.setTrackingEnabled(false));
+
+      // Add tracking error
+      yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
     } else {
-      yield put(accountActions.startTracking());
-      const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
-
-      if (payload === TRACKING_RESULTS.SUCCESS) {
-        // Set tracking activated
-        yield put(accountActions.setTrackingEnabled(true));
-      } else if (payload === TRACKING_RESULTS.GAEN) {
-        yield put(accountActions.setTrackingEnabled(false));
-
-        // Add tracking error
-        yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
-      } else {
-        yield put(accountActions.setTrackingEnabled(false));
-      }
+      yield put(accountActions.setTrackingEnabled(false));
     }
   } finally {
     // Set app launched

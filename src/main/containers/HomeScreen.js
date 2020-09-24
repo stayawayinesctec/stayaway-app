@@ -67,11 +67,7 @@ export default function HomeScreen () {
         hint: i18n.translate('screens.home.errors.gaen.accessibility.hint'),
       },
       icon: 'gaen_disconnected',
-      onPress: Platform.select({
-        android: () => dispatch(accountActions.startTracking()),
-        ios: () => Linking.openURL('app-settings://'),
-      }),
-      clickable: true,
+      onPress: () => dispatch(accountActions.enableExposureNotifications()),
     };
   } else if (hasBluetoothError) {
     error = {
@@ -83,8 +79,10 @@ export default function HomeScreen () {
         hint: i18n.translate('screens.home.errors.bluetooth.accessibility.hint'),
       },
       icon: 'bluetooth_disconnected',
-      onPress: () => TrackingManager.requestBluetoothService(),
-      clickable: Platform.OS === 'android',
+      onPress: Platform.select({
+        android: () => TrackingManager.requestBluetoothService(),
+        ios: () => Linking.openURL('App-prefs:root=Bluetooth'),
+      }),
     };
   } else if (hasLocationError) {
     error = {
@@ -97,7 +95,6 @@ export default function HomeScreen () {
       },
       icon: 'location_disconnected',
       onPress: () => RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({}),
-      clickable: Platform.OS === 'android',
     };
   } else if (hasBatteryError) {
     error = {
@@ -110,7 +107,6 @@ export default function HomeScreen () {
       },
       icon: 'battery_optimized',
       onPress: () => TrackingManager.requestIgnoreBatteryOptimizationsPermission(),
-      clickable: Platform.OS === 'android',
     };
   }
 

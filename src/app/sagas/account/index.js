@@ -19,6 +19,7 @@ import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
 import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
+import Linking from '@app/services/linking';
 
 import AppRoutes from '@app/navigation/routes';
 
@@ -89,10 +90,6 @@ export function* setupNewAccount() {
 }
 
 export function* watchTrackingStatus() {
-  // Get first status
-  const firstStatus = yield call(TrackingManager.getStatus);
-  yield put(accountActions.updateStatus(firstStatus));
-
   // Set event listener value
   const channel = eventChannel((emitter) => {
     TrackingManager.addUpdateEventListener(emitter);
@@ -116,8 +113,10 @@ export function* watchTrackingStatus() {
 }
 
 export function* startTracking() {
-  let watcher;
+  const watcher = yield fork(watchTrackingStatus);
 
+  // Wait for listener to registered
+  yield take(accountTypes.TRACKING_STATUS_LISTENER_REGISTERED);
   try {
     const result = yield call(TrackingManager.start);
 
@@ -137,17 +136,21 @@ export function* startTracking() {
       }
 
       yield put(accountActions.startTrackingResult(TRACKING_RESULTS.GAEN));
+      yield cancel(watcher);
       return;
     }
 
-    watcher = yield fork(watchTrackingStatus);
+    yield call(TrackingManager.sync);
 
-    // Wait for listener to registered
-    yield take(accountTypes.TRACKING_STATUS_LISTENER_REGISTERED);
+    // Get status
+    const status = yield call(TrackingManager.getStatus);
+    yield put(accountActions.updateStatus(status));
+
     yield put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
   } catch (error) {
     console.log(error);
     yield put(accountActions.startTrackingResult(TRACKING_RESULTS.FAILED));
+    yield cancel(watcher);
     return;
   }
 
@@ -358,6 +361,17 @@ export function* updateLanguage({ payload: languageTag }) {
   RNRestart.Restart();
 }
 
+export function* enableExposureNotifications() {
+  yield put(accountActions.startTracking());
+  const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+
+  if (payload !== TRACKING_RESULTS.SUCCESS) {
+    if (Platform.OS === 'ios') {
+      Linking.openURL('app-settings://');
+    }
+  }
+}
+
 function* watchSetupNewAccount() {
   yield takeLatest(accountTypes.SETUP_NEW_ACCOUNT_REQUEST, setupNewAccount);
 }
@@ -390,6 +404,10 @@ function* watchUpdateLanguage() {
   yield takeLatest(accountTypes.UPDATE_LANGUAGE, updateLanguage);
 }
 
+function* watchenableExposureNotifications() {
+  yield takeLatest(accountTypes.ENABLE_EXPOSURE_NOTIFICATIONS, enableExposureNotifications);
+}
+
 export default function* root() {
   yield fork(watchSetupNewAccount);
   yield fork(watchStartTracking);
@@ -399,4 +417,5 @@ export default function* root() {
   yield fork(watchSetErrors);
   yield fork(watchSetInfectionStatus);
   yield fork(watchUpdateLanguage);
+  yield fork(watchenableExposureNotifications);
 }

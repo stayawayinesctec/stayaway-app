@@ -55,7 +55,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     case .databaseError(error: _):
       values.append([14])
     case .exposureNotificationError(error: _):
-      values.append([3])
+      values.append([4])
     case .permissonError:
       values.append([4])
     case .userAlreadyMarkedAsInfected:
@@ -85,8 +85,9 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   private let EN_CANCELLED:String = "EN_CANCELLED";
   private let EN_SUCCEEDED:String =  "EN_SUCCEEDED";
   private let EN_FAILED:String = "EN_FAILED";
-  
-  private var isActivated: Bool = false;
+
+  @KeychainPersisted(key: "tracingIsActivated", defaultValue: false)
+  private var isActivated: Bool
 
   // in memory dictionary for codes we already have a token and date,
   // if only the second request (iWasExposed) fails
@@ -169,8 +170,6 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
       try DP3TTracing.startTracing(completionHandler: { error in
         if((error) != nil){
           NSLog("Error starting tracing: "+error!.localizedDescription)
-          
-          self.isActivated = false;
           resolve(self.EN_CANCELLED);
         }
         else{
@@ -288,7 +287,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     ReportingManager.shared.report(covidCode: code, isFakeRequest: false) { (problem) in
       if problem != nil {
         NSLog("Exposed submission failed. " + problem.debugDescription);
-        
+
         let error = problem!
         switch(error){
           case .invalidCode:

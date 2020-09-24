@@ -42,7 +42,6 @@ export default function Root () {
     if (appLaunched) {
       setTimeout(() => {
         // Set status bar
-        StatusBar.setBarStyle('light-content');
         if (Platform.OS === 'android') {
           StatusBar.setBackgroundColor(commonColors.transparent);
           StatusBar.setTranslucent(true);

@@ -46,7 +46,6 @@ RCT_EXTERN_METHOD(supportedEvents)
 RCT_REMAP_METHOD(isTracingEnabled, isTracingEnabledWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-  tm.father = self;
   [tm isTracingEnabled:resolve rejecter:reject];
 }
 
