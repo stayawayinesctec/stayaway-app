@@ -14,6 +14,11 @@ export const Platform = {
   select: (specifics) => specifics.android,
 };
 
+export const Linking = {
+  openURL: jest.fn(),
+  canOpenURL: jest.fn(),
+};
+
 export const I18nManager = {
   forceRTL: jest.fn(),
 };
