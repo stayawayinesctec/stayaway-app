@@ -74,7 +74,7 @@ const styles = (colors, insets) => StyleSheet.create({
     elevation: 20,
   },
   clause: {
-    marginBottom: sizes.size16,
+    marginBottom: sizes.size24,
   },
   title: {
     marginBottom: sizes.size8,
@@ -333,7 +333,7 @@ export default function PrivacyPolicy(props) {
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.changes_to_the_privacy_policy.body')}</Text>
                 </View>
               </View>
-              <Text textAlign="right" size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.last_review')}</Text>
+              <Text textColor={colors.gray} size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.last_review')}</Text>
             </View>
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>

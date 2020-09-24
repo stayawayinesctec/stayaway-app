@@ -74,7 +74,7 @@ const styles = (colors, insets) => StyleSheet.create({
     elevation: 20,
   },
   clause: {
-    marginBottom: sizes.size16,
+    marginBottom: sizes.size24,
   },
   title: {
     marginBottom: sizes.size8,
@@ -133,9 +133,16 @@ export default function TermsOfUse(props) {
               <View style={styles(colors, insets).clause}>
                 <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.scope_and_purpose.name')}</Text>
                 <View style={styles(colors, insets).body}>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.scope_and_purpose.first')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.scope_and_purpose.second')}</Text>
                   <Text>
+                    <Text size='xsmall' weight='bold'>1. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.scope_and_purpose.first')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>2. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.scope_and_purpose.second')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>3. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.scope_and_purpose.third.normal')}</Text>
                     <Text size='xsmall' weight='bold'>{i18n.translate('screens.terms_of_use.scope_and_purpose.third.bold')}</Text>
                   </Text>
@@ -144,75 +151,168 @@ export default function TermsOfUse(props) {
               <View style={styles(colors, insets).clause}>
                 <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.name')}</Text>
                 <View style={styles(colors, insets).body}>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.first')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.second')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.third')}</Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>1. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.first')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>2. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.second')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>3. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.third')}</Text>
+                  </Text>
                 </View>
               </View>
               <View style={styles(colors, insets).clause}>
                 <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.features_of_the_app.name')}</Text>
                 <View style={styles(colors, insets).body}>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.first')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.second')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.third')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.fourth')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.fifth')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.sixth')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.seventh')}</Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>1. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.first')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>2. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.second')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>3. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.third')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>4. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.fourth')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>5. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.fifth')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>6. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.sixth')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>7. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.seventh')}</Text>
+                  </Text>
                 </View>
               </View>
               <View style={styles(colors, insets).clause}>
                 <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.users_duties_of_care.name')}</Text>
                 <View style={styles(colors, insets).body}>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.first')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.second')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.third')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.fourth')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.fifth')}</Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>1. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.first')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>2. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.second')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>3. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.third')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>4. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.fourth')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>4. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.fifth')}</Text>
+                  </Text>
                 </View>
               </View>
               <View style={styles(colors, insets).clause}>
                 <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.liability_and_warranty.name')}</Text>
                 <View style={styles(colors, insets).body}>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.first')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.second')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.third')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.fourth')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.fifth')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.sixth')}</Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>1. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.first')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>2. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.second')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>3. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.third')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>4. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.fourth')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>5. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.fifth')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>6. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.sixth')}</Text>
+                  </Text>
                 </View>
               </View>
               <View style={styles(colors, insets).clause}>
                 <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.data_protection.name')}</Text>
                 <View style={styles(colors, insets).body}>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.data_protection.first')}</Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>1. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.data_protection.first')}</Text>
+                  </Text>
                 </View>
               </View>
               <View style={styles(colors, insets).clause}>
                 <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.termination_of_use.name')}</Text>
                 <View style={styles(colors, insets).body}>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.termination_of_use.first')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.termination_of_use.second')}</Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>1. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.termination_of_use.first')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>2. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.termination_of_use.second')}</Text>
+                  </Text>
                 </View>
               </View>
               <View style={styles(colors, insets).clause}>
                 <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.name')}</Text>
                 <View style={styles(colors, insets).body}>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.first')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.second')}</Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>1. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.first')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>2. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.second')}</Text>
+                  </Text>
                 </View>
               </View>
               <View style={styles(colors, insets).clause}>
                 <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.final_provisions.name')}</Text>
                 <View style={styles(colors, insets).body}>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.first')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.second')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.third')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.fourth')}</Text>
-                  <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.fifth')}</Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>1. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.first')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>2. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.second')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>3. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.third')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>4. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.fourth')}</Text>
+                  </Text>
+                  <Text>
+                    <Text size='xsmall' weight='bold'>5. </Text>
+                    <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.fifth')}</Text>
+                  </Text>
                 </View>
               </View>
-              <Text textAlign="right" size='xsmall' weight='bold'>{i18n.translate('screens.terms_of_use.last_review')}</Text>
+              <Text textColor={colors.gray} size='xsmall' weight='bold'>{i18n.translate('screens.terms_of_use.last_review')}</Text>
             </View>
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
