@@ -1,0 +1,39 @@
+opt_out_usage
+default_platform(:ios)
+
+platform :ios do
+  desc "Prepare github actions"
+  lane :prepare_github_actions do
+    setup_ci
+
+    match(
+      type: ENV["MATCH_TYPE"],
+      readonly: true
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: ENV["XCODE_PROJ"],
+      profile_name: "match #{ENV["APP_PROFILE"]} #{ENV["APP_IDENTIFIER"]}",
+      code_sign_identity: "iPhone Distribution",
+      bundle_identifier: ENV["APP_IDENTIFIER"],
+      build_configurations: ENV["APP_CONFIGURATION"]
+    )
+  end
+
+
+  desc "Build and Sign app"
+  lane :build_and_sign do
+    prepare_github_actions if is_ci
+
+    build_app(
+      scheme: ENV["APP_SCHEME"],
+      configuration: ENV["APP_CONFIGURATION"],
+      output_directory: "build/",
+      output_name: "stayaway.ipa",
+      archive_path: "build/stayaway.xcarchive",
+      buildlog_path: "build/build.log",
+      export_method: ENV["FASTLANE_EXPORT_METHOD"]
+    )
+  end
+end

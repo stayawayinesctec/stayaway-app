@@ -84,9 +84,6 @@ const styles = (colors, insets) => StyleSheet.create({
     elevation: 20,
   },
   panelContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingHorizontal: sizes.size24,
     paddingTop: sizes.size24,
     paddingBottom: sizes.size24 + iconSizes.size30,

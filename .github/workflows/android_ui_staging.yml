@@ -8,12 +8,19 @@
 # SPDX-License-Identifier: EUPL-1.2
 #
 
-name: Android Production Release Build
+name: Android UI Staging Build
 
 on:
+  workflow_dispatch:
   push:
-    tags:
-      - "*"
+    branches:
+      - master
+
+    paths-ignore:
+        - "docs/**"
+        - "locales/**"
+        - "**/*.md"
+        - "LICENSE"
 
 env:
   ANDROID_NDK_VERSION: "21.3.6528147"
@@ -113,27 +120,40 @@ jobs:
         run: |
           echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;${{ env.ANDROID_NDK_VERSION }}"
           wget https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
-          echo "${{secrets.ENV_PRODUCTION_RELEASE}}" > android/.env
-          echo "${{secrets.ANDROID_KEYSTORE}}" > divoc.keystore.asc
-          gpg -d --passphrase '${{secrets.ANDROID_KEYSTORE_PASSWORD}}' --batch divoc.keystore.asc > android/app/divoc.keystore
+          echo "${{secrets.ENV_UI_STAGING}}" > android/.env
 
       - name: Build APK
         run: |
           cd android
-          ./gradlew assembleProductionRelease \
-            -PkeystoreFile="$GITHUB_WORKSPACE/android/app/divoc.keystore" \
-            -PkeystorePassword="${{secrets.KEYSTORE_PASSWORD}}" \
-            -PkeyAlias="divoc.release.key" \
-            -PkeyPassword="${{secrets.KEY_PASSWORD}}"
+          ./gradlew assembleUiStaging
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
-          name: app-production-release.apk
-          path: android/app/build/outputs/apk/production/release/app-production-release.apk
+          name: app-ui-staging.apk
+          path: android/app/build/outputs/apk/ui/staging/app-ui-staging.apk
 
       - name: Upload Mapping File
         uses: actions/upload-artifact@v2
         with:
           name: mapping.text
-          path: android/app/build/outputs/mapping/productionRelease/mapping.txt
+          path: android/app/build/outputs/mapping/uiStaging/mapping.txt
+
+  upload:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download APK artifcat
+        uses: actions/download-artifact@v2
+        with:
+          name: app-ui-staging.apk
+
+      - name: Upload artifact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1.1.1
+        with:
+          appName: ${{secrets.APPCENTER_ORG_ANDROID}}/${{secrets.APPCENTER_APP_UI}}
+          token: ${{secrets.APPCENTER_TOKEN_ANDROID_UI}}
+          group: Collaborators
+          file: app-ui-staging.apk
+          notifyTesters: true
+          gitReleaseNotes: true
