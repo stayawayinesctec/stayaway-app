@@ -404,7 +404,7 @@ function* watchUpdateLanguage() {
   yield takeLatest(accountTypes.UPDATE_LANGUAGE, updateLanguage);
 }
 
-function* watchenableExposureNotifications() {
+function* watchEnableExposureNotifications() {
   yield takeLatest(accountTypes.ENABLE_EXPOSURE_NOTIFICATIONS, enableExposureNotifications);
 }
 
@@ -417,5 +417,5 @@ export default function* root() {
   yield fork(watchSetErrors);
   yield fork(watchSetInfectionStatus);
   yield fork(watchUpdateLanguage);
-  yield fork(watchenableExposureNotifications);
+  yield fork(watchEnableExposureNotifications);
 }
