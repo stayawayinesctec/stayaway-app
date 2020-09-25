@@ -9,29 +9,22 @@
  */
 
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
-import Tracking from '@settings/components/Tracking';
+import LegalInformation from '@settings/components/LegalInformation';
 
 import NavigationService from '@app/services/navigation';
 
-import accountActions from '@app/redux/account';
-import { isTrackingEnabled } from '@app/redux/account/selectors';
-
 import AppRoutes from '@app/navigation/routes';
 
-export default function TrackingScreen () {
-  const dispatch = useDispatch();
-
-  const trackingEnabled = useSelector(isTrackingEnabled);
-
+export default function TechnicalSheetScreen () {
   const props = {
-    trackingEnabled,
+    onPressTermsOfUse: () => NavigationService.navigate(AppRoutes.TERMS_OF_USE),
+    onPressPrivacyPolicy: () => NavigationService.navigate(AppRoutes.PRIVACY_POLICY),
+    onPressTechnicalSheet: () => NavigationService.navigate(AppRoutes.TECHNICAL_SHEET),
     onClose: () => NavigationService.navigate(AppRoutes.INFO),
-    onPress: () => dispatch(accountActions.switchTracking()),
   };
 
   return (
-    <Tracking {...props} />
+    <LegalInformation {...props} />
   );
 }

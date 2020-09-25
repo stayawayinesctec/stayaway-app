@@ -23,7 +23,7 @@ describe('HowToUse Screen', () => {
       );
 
       const firstScreenTitle = queryByText(i18n.translate('screens.onboarding.first.title'));
-      const closeButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.label'));
+      const closeButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.back.accessibility.hint.label'));
 
       expect(firstScreenTitle).toBeTruthy();
       expect(closeButton).toBeTruthy();
@@ -77,7 +77,7 @@ describe('HowToUse Screen', () => {
         />,
       );
 
-      const closeButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.go_back.accessibility.hint.label'));
+      const closeButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.back.accessibility.hint.label'));
 
       expect(closeButton).toBeTruthy();
 

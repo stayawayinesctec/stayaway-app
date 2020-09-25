@@ -29,7 +29,7 @@ export default function TechnicalSheetScreen () {
     onPressKeyruptive: () => Linking.openURL(i18n.translate('common.links.keyruptive')),
     onPressUbirider: () => Linking.openURL(i18n.translate('common.links.ubirider')),
     onPressSPMS: () => Linking.openURL(i18n.translate('common.links.spms')),
-    onClose: () => NavigationService.navigate(AppRoutes.INFO),
+    onClose: () => NavigationService.navigate(AppRoutes.LEGAL_INFORMATION),
   };
 
   return (

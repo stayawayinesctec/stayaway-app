@@ -78,9 +78,10 @@ describe('Onboarding Screen', () => {
         const consentReadAndUnderstoodSecond = queryByText(i18n.translate('screens.onboarding.consent.consents.read_and_understood.second'));
         const consentReadAndUnderstoodThird = queryByText(i18n.translate('screens.onboarding.consent.consents.read_and_understood.third'));
         const consentReadAndUnderstoodFourth = queryByText(i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth'));
+        const consentReadAndUnderstoodFifth = queryByText(i18n.translate('screens.onboarding.consent.consents.read_and_understood.fifth'));
         const consentDataTreatment = queryByText(i18n.translate('screens.onboarding.consent.consents.data_treatment'));
 
-        const consentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth'));
+        const consentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fifth'));
         const consentDataTreatmentButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.data_treatment'));
         const consentAcceptButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.actions.accept.accessibility.label'));
 
@@ -93,6 +94,7 @@ describe('Onboarding Screen', () => {
         expect(consentReadAndUnderstoodSecond).toBeTruthy();
         expect(consentReadAndUnderstoodThird).toBeTruthy();
         expect(consentReadAndUnderstoodFourth).toBeTruthy();
+        expect(consentReadAndUnderstoodFifth).toBeTruthy();
         expect(consentDataTreatment).toBeTruthy();
         expect(consentReadAndUnderstoodButton).toBeTruthy();
         expect(consentDataTreatmentButton).toBeTruthy();
@@ -107,7 +109,7 @@ describe('Onboarding Screen', () => {
           <Onboarding loading />,
         );
 
-        const consentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth'));
+        const consentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fifth'));
         const consentDataTreatmentButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.data_treatment'));
 
         expect(consentReadAndUnderstoodButton).toBeDisabled();
@@ -121,7 +123,7 @@ describe('Onboarding Screen', () => {
         <Onboarding />,
       );
 
-      const consentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth'));
+      const consentReadAndUnderstoodButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fifth'));
       const consentDataTreatmentButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.consents.data_treatment'));
       const consentAcceptButton = queryByA11yLabel(i18n.translate('screens.onboarding.consent.actions.accept.accessibility.label'));
 

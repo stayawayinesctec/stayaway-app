@@ -25,6 +25,7 @@ import Layout from '@app/common/components/Layout';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
 import Icon from '@app/common/components/Icon';
+import Switch from '@app/common/components/Switch';
 
 import Images from '@app/common/assets/images';
 
@@ -50,6 +51,16 @@ const styles = (colors, insets) => StyleSheet.create({
   topItems: {
     marginBottom: sizes.size48,
   },
+  trackingButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: sizes.size16,
+  },
+  topItem: {
+    flexDirection: 'column',
+  },
   item: {
     backgroundColor: colors.white,
     paddingLeft: sizes.size8,
@@ -74,7 +85,7 @@ const styles = (colors, insets) => StyleSheet.create({
     alignItems: 'center',
   },
   trackingLabel: {
-    marginRight: sizes.size12,
+    marginRight: sizes.size8,
   },
   languageLabelContainer: {
     flexDirection: 'row',
@@ -120,12 +131,10 @@ export default function Info(props) {
     isInfected,
     onClose,
     onPressLanguage,
-    onPressTermsOfUse,
-    onPressPrivacyPolicy,
+    onPressLegalInformation,
     onPressHowToUse,
     onPressFaqs,
     onPressTracking,
-    onPressTechnicalSheet,
     onPressDebug,
   } = props;
 
@@ -152,17 +161,28 @@ export default function Info(props) {
                   onPress={onPressTracking}
                   style={{
                     ...styles(colors, insets).item,
+                    ...styles(colors, insets).topItem,
                     backgroundColor: trackingEnabled ? colors.blueLightest : colors.white,
                   }}
                   disabled={isInfected}
+                  accessibilityRole='switch'
+                  accessibilityValue={{text: trackingEnabled}}
                   accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.settings.tracking.accessibility.hint')}
+                  accessibilityHint={i18n.translate(`screens.settings.tracking.accessibility.hint.${trackingEnabled ? 'deactivate' : 'activate'}`)}
                 >
-                  <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
-                  <View style={styles(colors, insets).trackingLabelContainer}>
-                    <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold' style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
-                    <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={trackingEnabled ? colors.white : colors.blueDark} />
+                  <View style={styles(colors, insets).trackingButton}>
+                    <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
+                    <View style={styles(colors, insets).trackingLabelContainer}>
+                      <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold' style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
+                      <Switch
+                        value={trackingEnabled}
+                        onValueChange={onPressTracking}
+                        accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
+                        accessibilityHint={i18n.translate(`screens.settings.tracking.accessibility.hint.${trackingEnabled ? 'deactivate' : 'activate'}`)}
+                      />
+                    </View>
                   </View>
+                  <Text size='small' textColor={trackingEnabled ? colors.white : colors.blueDark}>{i18n.translate(`screens.settings.tracking.description.${trackingEnabled ? 'enabled' : 'disabled'}`)}</Text>
                 </ButtonWrapper>
                 <ButtonWrapper
                   onPress={onPressLanguage}
@@ -207,35 +227,15 @@ export default function Info(props) {
                   accessibilityHint={i18n.translate('screens.settings.faqs.accessibility.hint')}
                 >
                   <Text weight='bold'>{i18n.translate('screens.settings.faqs.label')}</Text>
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 <ButtonWrapper
                   style={styles(colors, insets).item}
-                  onPress={onPressTermsOfUse}
-                  accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.settings.terms_of_use.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.settings.terms_of_use.accessibility.hint')}
+                  onPress={onPressLegalInformation}
+                  accessibilityLabel={i18n.translate('screens.settings.legal_information.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.legal_information.accessibility.hint')}
                 >
-                  <Text weight='bold'>{i18n.translate('screens.settings.terms_of_use.label')}</Text>
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-                </ButtonWrapper>
-                <ButtonWrapper
-                  style={styles(colors, insets).item}
-                  onPress={onPressPrivacyPolicy}
-                  accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.settings.privacy_policy.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.settings.privacy_policy.accessibility.hint')}
-                >
-                  <Text weight='bold'>{i18n.translate('screens.settings.privacy_policy.label')}</Text>
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
-                </ButtonWrapper>
-                <ButtonWrapper
-                  onPress={onPressTechnicalSheet}
-                  style={styles(colors, insets).item}
-                  accessibilityLabel={i18n.translate('screens.settings.technical_sheet.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.settings.technical_sheet.accessibility.hint')}
-                >
-                  <Text weight='bold'>{i18n.translate('screens.settings.technical_sheet.label')}</Text>
+                  <Text weight='bold'>{i18n.translate('screens.settings.legal_information.label')}</Text>
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 { ! Configuration.RELEASE &&
@@ -268,9 +268,7 @@ Info.defaultProps = {
   onPressLanguage: () => {},
   onPressHowToUse: () => {},
   onPressFaqs: () => {},
-  onPressTermsOfUse: () => {},
-  onPressPrivacyPolicy: () => {},
-  onPressTechnicalSheet: () => {},
+  onPressLegalInformation: () => {},
   onPressDebug: () => {},
 };
 
@@ -287,7 +285,7 @@ Info.propTypes = {
   onPressLanguage: PropTypes.func,
   onPressHowToUse: PropTypes.func,
   onPressFaqs: PropTypes.func,
-  onPressTermsOfUse: PropTypes.func,
+  onPressLegalInformation: PropTypes.func,
   onPressPrivacyPolicy: PropTypes.func,
   onPressTechnicalSheet: PropTypes.func,
   onPressDebug: PropTypes.func,

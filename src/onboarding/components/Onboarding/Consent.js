@@ -90,7 +90,7 @@ export default function Consent (props) {
                     onPress={() => setReadAndUnderstood(!readAndUnderstood)}
                     style={styles.concent}
                     disabled={loading}
-                    accessibilityLabel={i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth')}
+                    accessibilityLabel={i18n.translate('screens.onboarding.consent.consents.read_and_understood.first') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.second') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.third') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth') + i18n.translate('screens.onboarding.consent.consents.read_and_understood.fifth')}
                     accessibilityRole='checkbox'
                     accessibilityState={{
                       checked: readAndUnderstood,
@@ -104,17 +104,20 @@ export default function Consent (props) {
                     />
                     <View style={styles.concentDescription}>
                       <Text>
-                        <Text size='xsmall'>
+                        <Text size='xsmall' weight='bold'>
                           {i18n.translate('screens.onboarding.consent.consents.read_and_understood.first')}
                         </Text>
-                        <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.dgs'))}>
+                        <Text size='xsmall'>
                           {i18n.translate('screens.onboarding.consent.consents.read_and_understood.second')}
                         </Text>
-                        <Text size='xsmall'>
+                        <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.dgs'))}>
                           {i18n.translate('screens.onboarding.consent.consents.read_and_understood.third')}
                         </Text>
-                        <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.data_protection'))}>
+                        <Text size='xsmall'>
                           {i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth')}
+                        </Text>
+                        <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.data_protection'))}>
+                          {i18n.translate('screens.onboarding.consent.consents.read_and_understood.fifth')}
                         </Text>
                       </Text>
                     </View>
@@ -136,7 +139,7 @@ export default function Consent (props) {
                       onValueChange={(value) => setDataTreatment(value)}
                     />
                     <View style={styles.concentDescription}>
-                      <Text size='xsmall'>
+                      <Text size='xsmall' weight='bold'>
                         {i18n.translate('screens.onboarding.consent.consents.data_treatment')}
                       </Text>
                     </View>

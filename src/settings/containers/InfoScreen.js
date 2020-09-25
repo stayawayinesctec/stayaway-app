@@ -36,7 +36,7 @@ export default function InfoScreen () {
     language,
     isInfected: useSelector(isInfected),
     onClose: () => NavigationService.navigate(AppRoutes.HOME),
-    onPressTracking: () => NavigationService.navigate(AppRoutes.TRACKING),
+    onPressTracking: () => dispatch(accountActions.switchTracking()),
     onPressLanguage: () => {
       if (languages.EN.languageTag === language.languageTag) {
         dispatch(accountActions.updateLanguage(languages.PT.languageTag));
@@ -48,9 +48,7 @@ export default function InfoScreen () {
       NavigationService.navigate(AppRoutes.HOW_TO_USE);
     },
     onPressFaqs: () => Linking.openURL(i18n.translate('common.links.faqs')),
-    onPressTermsOfUse: () => Linking.openURL(i18n.translate('common.links.terms_of_use')),
-    onPressPrivacyPolicy: () => Linking.openURL(i18n.translate('common.links.privacy_policy')),
-    onPressTechnicalSheet: () => NavigationService.navigate(AppRoutes.TECHNICAL_SHEET),
+    onPressLegalInformation: () => NavigationService.navigate(AppRoutes.LEGAL_INFORMATION),
     onPressDebug: () => NavigationService.navigate(AppRoutes.DEBUG),
   };
 
