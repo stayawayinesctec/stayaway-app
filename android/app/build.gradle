@@ -13,7 +13,8 @@ apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
 
-ext.readProperty = { paramName ->
+ext.readProperty = { paramName -> readPropertyWithDefault(paramName, null) }
+ext.readPropertyWithDefault = { paramName, defaultValue ->
 	if (project.hasProperty(paramName)) {
 		return project.getProperties().get(paramName)
 	} else {
@@ -24,7 +25,7 @@ ext.readProperty = { paramName ->
 		if (properties.getProperty(paramName) != null) {
 			return properties.getProperty(paramName)
 		} else {
-			return null
+			return defaultValue
 		}
 	}
 }
@@ -263,7 +264,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
-    def dp3t_sdk_version = '1.0.4'
+    def dp3t_sdk_version = '1.0.5'
 	debugImplementation "org.dpppt:dp3t-sdk-android:$dp3t_sdk_version-calibration"
 	stagingImplementation "org.dpppt:dp3t-sdk-android:$dp3t_sdk_version"
 	releaseImplementation "org.dpppt:dp3t-sdk-android:$dp3t_sdk_version"
