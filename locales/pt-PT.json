@@ -242,7 +242,7 @@
             "hint": "Navega para trás para o ecrã de definições"
           }
         },
-        "go_back": {
+        "back": {
           "accessibility": {
             "label": "Para atrás",
             "hint": "Navega para trás para o ecrã de definições"
@@ -280,7 +280,7 @@
       },
       "version": "v{{version}} ({{build}})",
       "actions": {
-        "go_back": {
+        "back": {
           "accessibility": {
             "label": "Para atrás",
             "hint": "Navega para trás para o ecrã de definições"
@@ -312,7 +312,7 @@
         }
       },
       "actions": {
-        "go_back": {
+        "back": {
           "accessibility": {
             "label": "Para atrás",
             "hint": "Navega para trás para o ecrã de definições"
@@ -433,12 +433,12 @@
         "name": "Alterações à Política de Privacidade",
         "body": "As informações sobre quaisquer alterações introduzidas ao longo do texto serão resumidas neste capítulo e associadas à data da sua efetiva implementação.\n\nO utilizador deverá ter sempre disponível, via a aplicação, a versão atualizada da Política de Privacidade."
       },
-      "last_review": "Última revisão a 22 de Setembro de 2020",
+      "last_review": "Última revisão a 28 de Agosto de 2020",
       "actions": {
-        "go_back": {
+        "back": {
           "accessibility": {
             "label": "Para atrás",
-            "hint": "Navega para trás para o ecrã de definições"
+            "hint": "Navega para trás para o ecrã da informação legal"
           }
         }
       }
@@ -509,12 +509,12 @@
         "fourth": "No caso de uma das disposições dos Termos e Condições de Utilização ser inválida ou não aplicável, as demais disposições não deverão ser afetadas.\n",
         "fifth": "A Lei portuguesa deverá ser aplicada, salvo quando o direito da União Europeia determine outramente."
       },
-      "last_review": "Última revisão a 22 de Setembro de 2020",
+      "last_review": "Última revisão a 28 de Agosto de 2020",
       "actions": {
-        "go_back": {
+        "back": {
           "accessibility": {
             "label": "Para atrás",
-            "hint": "Navega para trás para o ecrã de definições"
+            "hint": "Navega para trás para o ecrã de informação legal"
           }
         }
       }

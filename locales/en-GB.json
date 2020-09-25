@@ -415,18 +415,18 @@
         "name": "Changes to the Privacy Policy",
         "body": "Information on any changes introduced throughout the text will be summarised in this chapter, and associated with the date of its effective implementation.\n\nThe users must always have access to the updated version of the Privacy Policy, available via the application."
       },
-      "last_review": "Last reviewed September 22, 2020",
+      "last_review": "Reviewed on August 28, 2020",
       "actions": {
-        "go_back": {
+        "back": {
           "accessibility": {
-            "label": "Para atrás",
-            "hint": "Navega para trás para o ecrã de definições"
+            "label": "Go back",
+            "hint": "Navigates back to the legal information screen"
           }
         }
       }
     },
     "terms_of_use": {
-      "title": "Termos de Utilização",
+      "title": "Terms of Use",
       "scope_and_purpose": {
         "name": "A - Scope and purpose",
         "first": "These Terms and Conditions of Use regulate the acquisition and use of the mobile application (app) STAYAWAY COVID.\n",
@@ -480,7 +480,7 @@
       },
       "copyright_property_rights_and_rights_of_use": {
         "name": "H – Copyright, property rights and rights of use",
-        "first": "Copyrights on the app and associated contents belong to the developers.        \n",
+        "first": "Copyrights on the app and associated contents belong to the developers.\n",
         "second": "The information and content is openly accessible to the public. The content published in the app is for personal use only. Any further reproduction or transfer of content to third parties is not allowed. The downloading or copying of content, images, photos or other files does not result in any transfer of rights as regards to the content. The developers (the copyright owners) or the designated holders of rights benefit exclusively from copyright and any other rights relating to content, images, photos or other files in this app, namely DGS, as their licensee. Written consent from the copyright owners is required for the reproduction of any elements."
       },
       "final_provisions": {
@@ -491,12 +491,12 @@
         "fourth": "Should one provision of the Terms and Conditions of Use be invalid or inoperative, the other provisions thereof shall not be affected.\n",
         "fifth": "Portuguese Law shall apply, subject to any divergent mandatory provisions of European Union Law."
       },
-      "last_review": "Last reviewed September 22, 2020",
+      "last_review": "Reviewed on August 28, 2020",
       "actions": {
         "back": {
           "accessibility": {
             "label": "Go back",
-            "hint": "Navigates back to the settings screen"
+            "hint": "Navigates back to the legal information screen"
           }
         }
       }

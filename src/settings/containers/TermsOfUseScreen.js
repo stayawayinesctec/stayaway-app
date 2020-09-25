@@ -18,7 +18,7 @@ import AppRoutes from '@app/navigation/routes';
 
 export default function TermsOfUseScreen () {
   const props = {
-    onClose: () => NavigationService.navigate(AppRoutes.INFO),
+    onClose: () => NavigationService.navigate(AppRoutes.LEGAL_INFORMATION),
   };
 
   return (
