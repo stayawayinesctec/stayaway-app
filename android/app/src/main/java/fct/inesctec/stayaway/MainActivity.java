@@ -19,6 +19,7 @@ import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;
 import org.dpppt.android.sdk.DP3T;
 
+import fct.inesctec.stayaway.BuildConfig;
 import fct.inesctec.stayaway.tracing.TracingManagerModule;
 
 public class MainActivity extends ReactActivity {
