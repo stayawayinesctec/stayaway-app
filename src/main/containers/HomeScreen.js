@@ -18,7 +18,7 @@ import Home from '@main/components/Home';
 import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
 import i18n from '@app/services/i18n';
-import TrackingManager from '@app/services/tracking';
+import TrackingManager, { INFECTION_STATUS } from '@app/services/tracking';
 import Linking from '@app/services/linking';
 
 import accountActions from '@app/redux/account';
@@ -57,57 +57,60 @@ export default function HomeScreen () {
     clickable: false,
   };
 
-  if (hasExposureNotificationsError || ! trackingEnabled) {
-    error = {
-      status: true,
-      title: i18n.translate('screens.home.errors.gaen.title'),
-      message: i18n.translate('screens.home.errors.gaen.message'),
-      accessibility: {
-        label: i18n.translate('screens.home.errors.gaen.accessibility.label'),
-        hint: i18n.translate('screens.home.errors.gaen.accessibility.hint'),
-      },
-      icon: 'gaen_disconnected',
-      onPress: () => dispatch(accountActions.enableExposureNotifications()),
-    };
-  } else if (hasBluetoothError) {
-    error = {
-      status: true,
-      title: i18n.translate('screens.home.errors.bluetooth.title'),
-      message: i18n.translate('screens.home.errors.bluetooth.message'),
-      accessibility: {
-        label: i18n.translate('screens.home.errors.bluetooth.accessibility.label'),
-        hint: i18n.translate('screens.home.errors.bluetooth.accessibility.hint'),
-      },
-      icon: 'bluetooth_disconnected',
-      onPress: Platform.select({
-        android: () => TrackingManager.requestBluetoothService(),
-        ios: () => Linking.openURL('App-prefs:root=Bluetooth'),
-      }),
-    };
-  } else if (hasLocationError) {
-    error = {
-      status: true,
-      title: i18n.translate('screens.home.errors.location.title'),
-      message: i18n.translate('screens.home.errors.location.message'),
-      accessibility: {
-        label: i18n.translate('screens.home.errors.location.accessibility.label'),
-        hint: i18n.translate('screens.home.errors.location.accessibility.hint'),
-      },
-      icon: 'location_disconnected',
-      onPress: () => RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({}),
-    };
-  } else if (hasBatteryError) {
-    error = {
-      status: true,
-      title: i18n.translate('screens.home.errors.battery.title'),
-      message: i18n.translate('screens.home.errors.battery.message'),
-      accessibility: {
-        label: i18n.translate('screens.home.errors.battery.accessibility.label'),
-        hint: i18n.translate('screens.home.errors.battery.accessibility.hint'),
-      },
-      icon: 'battery_optimized',
-      onPress: () => TrackingManager.requestIgnoreBatteryOptimizationsPermission(),
-    };
+  if (infectionStatus !== INFECTION_STATUS.INFECTED) {
+    if (hasExposureNotificationsError || ! trackingEnabled) {
+
+      error = {
+        status: true,
+        title: i18n.translate('screens.home.errors.gaen.title'),
+        message: i18n.translate('screens.home.errors.gaen.message'),
+        accessibility: {
+          label: i18n.translate('screens.home.errors.gaen.accessibility.label'),
+          hint: i18n.translate('screens.home.errors.gaen.accessibility.hint'),
+        },
+        icon: 'gaen_disconnected',
+        onPress: () => dispatch(accountActions.enableExposureNotifications()),
+      };
+    } else if (hasBluetoothError) {
+      error = {
+        status: true,
+        title: i18n.translate('screens.home.errors.bluetooth.title'),
+        message: i18n.translate('screens.home.errors.bluetooth.message'),
+        accessibility: {
+          label: i18n.translate('screens.home.errors.bluetooth.accessibility.label'),
+          hint: i18n.translate('screens.home.errors.bluetooth.accessibility.hint'),
+        },
+        icon: 'bluetooth_disconnected',
+        onPress: Platform.select({
+          android: () => TrackingManager.requestBluetoothService(),
+          ios: () => Linking.openURL('App-prefs:root=Bluetooth'),
+        }),
+      };
+    } else if (hasLocationError) {
+      error = {
+        status: true,
+        title: i18n.translate('screens.home.errors.location.title'),
+        message: i18n.translate('screens.home.errors.location.message'),
+        accessibility: {
+          label: i18n.translate('screens.home.errors.location.accessibility.label'),
+          hint: i18n.translate('screens.home.errors.location.accessibility.hint'),
+        },
+        icon: 'location_disconnected',
+        onPress: () => RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({}),
+      };
+    } else if (hasBatteryError) {
+      error = {
+        status: true,
+        title: i18n.translate('screens.home.errors.battery.title'),
+        message: i18n.translate('screens.home.errors.battery.message'),
+        accessibility: {
+          label: i18n.translate('screens.home.errors.battery.accessibility.label'),
+          hint: i18n.translate('screens.home.errors.battery.accessibility.hint'),
+        },
+        icon: 'battery_optimized',
+        onPress: () => TrackingManager.requestIgnoreBatteryOptimizationsPermission(),
+      };
+    }
   }
 
   const onLongPress = () => {
