@@ -41,23 +41,4 @@ public class DeviceFeatureHelper {
 		PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 		return powerManager == null || powerManager.isIgnoringBatteryOptimizations(context.getPackageName());
 	}
-
-	public static void openApplicationSettings(@NonNull Activity activity) {
-		Intent intent = new Intent();
-		intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-		Uri uri = Uri.fromParts("package", activity.getPackageName(), null);
-		intent.setData(uri);
-		activity.startActivity(intent);
-	}
-
-	public static void openPlayServicesInPlayStore(@NonNull Context context) {
-		final String playServicesPackageName = "com.google.android.gms";
-		try {
-			context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + playServicesPackageName)));
-		} catch (android.content.ActivityNotFoundException e) {
-			context.startActivity(new Intent(Intent.ACTION_VIEW,
-					Uri.parse("https://play.google.com/store/apps/details?id=" + playServicesPackageName)));
-		}
-	}
-
 }

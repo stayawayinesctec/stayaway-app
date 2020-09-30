@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -268,10 +269,16 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
         // Store the promise to resolve/reject when permission request returns
         TracingManagerModule.pendingBatteryPromise = promise;
 
-        Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
-                Uri.parse("package:" + context.getPackageName()));
+        boolean batteryOptDeactivated = DeviceFeatureHelper.isBatteryOptimizationDeactivated(context);
+        Intent intent = new Intent();
 
-        if (intent.resolveActivity(context.getPackageManager()) != null) {
+        if (batteryOptDeactivated) {
+            intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+            currentActivity.startActivity(intent);
+            promise.resolve(BATTERY_PERMISSION_GRANTED);
+        } else {
+            intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+            intent.setData(Uri.parse("package:" + context.getPackageName()));
             currentActivity.startActivityForResult(intent, REQUEST_IGNORE_BATTERY_OPTIMIZATIONS_CODE, null);
         }
     }
@@ -325,31 +332,6 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
         Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
         if (intent.resolveActivity(getReactApplicationContext().getPackageManager()) != null) {
             currentActivity.startActivityForResult(intent, REQUEST_BLUETOOTH_SERVICE_CODE, null);
-        }
-    }
-
-    /**
-     * Check GAEN availability.
-     */
-    @ReactMethod
-    public void checkGAENAvailability(Promise promise) {
-        DP3T.checkGaenAvailability(getReactApplicationContext(), gaenAvailability -> promise.resolve(gaenAvailability.ordinal()));
-    }
-
-    /**
-     * Request GAEN.
-     */
-    @ReactMethod
-    public void openPlayServicesInPlayStore(Promise promise) {
-        final String playServicesPackageName = "com.google.android.gms";
-        Activity currentActivity = getCurrentActivity();
-        try {
-            currentActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + playServicesPackageName)));
-            promise.resolve(null);
-        } catch (android.content.ActivityNotFoundException e) {
-            currentActivity.startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=" + playServicesPackageName)));
-            promise.resolve(null);
         }
     }
 
