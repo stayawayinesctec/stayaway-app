@@ -106,7 +106,7 @@
           }
         },
         "gaen": {
-          "title": "Rastreamento desativo",
+          "title": "Rastreio desligado",
           "message": "Ative a função notificações de exposição à COVID-19 para que a STAYAWAY COVID possa funcionar adequadamente",
           "accessibility": {
             "label": "Ativar",
@@ -542,8 +542,8 @@
     },
     "words": {
       "and": "e",
-      "enabled": "Ativo",
-      "disabled": "Desativo"
+      "enabled": "Ligado",
+      "disabled": "Desligado"
     },
     "tab_bar": {
       "diagnosis": "Diagnóstico",
@@ -576,7 +576,7 @@
       },
       "playstore": {
         "title": "Serviços do Google Play",
-        "description": "Para ativar o rastreamento é necessário atualizar a versão dos Serviços do Google Play. Se a atualização não estiver ainda disponível no seu dispositivo, tente mais tarde."
+        "description": "Para ativar o rastreio é necessário atualizar a versão dos Serviços do Google Play. Se a atualização não estiver ainda disponível no seu dispositivo, tente mais tarde."
       },
       "share": {
         "subject": "Partilhe a STAYAWAY COVID!",
