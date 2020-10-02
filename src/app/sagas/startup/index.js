@@ -18,6 +18,7 @@ import TrackingManager, { ERRORS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
 
 import modalsActions, { modalsTypes } from '@app/redux/modals';
+import { isProtectorModalOpen } from '@app/redux/modals/selectors';
 import startupActions, { startupTypes } from '@app/redux/startup';
 import accountActions, { accountTypes, TRACKING_RESULTS } from '@app/redux/account';
 import onboardingActions from '@app/redux/onboarding';
@@ -63,7 +64,7 @@ export function* startup() {
     // Check if is UI mode
     if (Configuration.UI) {
       const tracking = yield call([Storage, 'getItem'], 'tracking_enabled', 'false');
-      yield put(accountActions.setTrackingEnabled(tracking));
+      yield put(accountActions.setTrackingEnabled(tracking === true));
       return;
     }
 
@@ -113,8 +114,11 @@ function* watchAppStateChange() {
 
       if (! onboarding && previousState !== nextState) {
         if (nextState === 'active') {
-          yield put(modalsActions.closeProtectorModal());
-          yield take(modalsTypes.PROTECTOR_MODAL_CLOSED);
+          const isProtectorOpen = yield select(isProtectorModalOpen);
+          if (isProtectorOpen) {
+            yield put(modalsActions.closeProtectorModal());
+            yield take(modalsTypes.PROTECTOR_MODAL_CLOSED);
+          }
 
           try {
             if (! Configuration.UI) {
@@ -129,8 +133,11 @@ function* watchAppStateChange() {
             console.log(error);
           }
         } else if (nextState === 'inactive') {
-          yield put(modalsActions.openProtectorModal());
-          yield take(modalsTypes.PROTECTOR_MODAL_OPEN);
+          const isProtectorOpen = yield select(isProtectorModalOpen);
+          if (! isProtectorOpen) {
+            yield put(modalsActions.openProtectorModal());
+            yield take(modalsTypes.PROTECTOR_MODAL_OPEN);
+          }
         }
       }
 

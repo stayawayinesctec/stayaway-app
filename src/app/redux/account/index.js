@@ -43,6 +43,7 @@ const types = mirrorCreator([
   'SUBMIT_DIAGNOSIS_DONE',
   'SWITCH_TRACKING',
   'TRACKING_STATUS_LISTENER_REGISTERED',
+  'REQUEST_IGNORE_BATTERY_OPTIMIZATIONS',
 ]);
 
 export const creators = createActions(
@@ -68,6 +69,7 @@ export const creators = createActions(
   types.SUBMIT_DIAGNOSIS_DONE,
   types.SWITCH_TRACKING,
   types.TRACKING_STATUS_LISTENER_REGISTERED,
+  types.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
 );
 
 export const initialState = {

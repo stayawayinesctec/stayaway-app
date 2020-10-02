@@ -41,7 +41,9 @@ import org.dpppt.android.sdk.util.SignatureUtil;
 
 import java.net.UnknownHostException;
 import java.security.PublicKey;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.concurrent.CancellationException;
 
 import fct.inesctec.stayaway.BuildConfig;
@@ -57,6 +59,7 @@ import fct.inesctec.stayaway.tracing.internal.networking.models.AuthenticationCo
 import fct.inesctec.stayaway.tracing.internal.storage.SecureStorage;
 import fct.inesctec.stayaway.tracing.internal.util.DeviceFeatureHelper;
 import fct.inesctec.stayaway.tracing.internal.util.JwtUtil;
+import fct.inesctec.stayaway.tracing.internal.util.SpecialBatterySystemHelper;
 import fct.inesctec.stayaway.tracing.internal.util.WritableMapHelper;
 
 public class TracingManagerModule extends ReactContextBaseJavaModule {
@@ -267,6 +270,14 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     }
 
     /**
+     * Check if phone has a non-standard battery optimization system.
+     */
+    @ReactMethod
+    public void hasSpecialBatteryOptimizationSystem(Promise promise) {
+        promise.resolve(SpecialBatterySystemHelper.hasSpecialBatterySystem());
+    }
+
+    /**
      * Request to disable battery optimization.
      */
     @ReactMethod
@@ -289,6 +300,21 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
             intent.setData(Uri.parse("package:" + context.getPackageName()));
             currentActivity.startActivityForResult(intent, REQUEST_IGNORE_BATTERY_OPTIMIZATIONS_CODE, null);
         }
+    }
+
+    /**
+     * Open battery optimization settings
+     */
+    @ReactMethod
+    public void openBatteryOptimizationSettings(Promise promise) {
+        Context context = getReactApplicationContext();
+        Activity currentActivity = getCurrentActivity();
+
+        Intent intent = new Intent();
+
+        intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+        currentActivity.startActivity(intent);
+        promise.resolve(BATTERY_PERMISSION_GRANTED);
     }
 
     /**

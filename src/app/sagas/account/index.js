@@ -372,6 +372,16 @@ export function* enableExposureNotifications() {
   }
 }
 
+export function* requestIgnoreBatteryOptimizations() {
+  const isWhitelisted = yield call(TrackingManager.hasSpecialBatteryOptimizationSystem);
+
+  if (isWhitelisted) {
+    yield call(TrackingManager.openBatteryOptimizationSettings);
+  } else {
+    yield call(TrackingManager.requestIgnoreBatteryOptimizationsPermission);
+  }
+}
+
 function* watchSetupNewAccount() {
   yield takeLatest(accountTypes.SETUP_NEW_ACCOUNT_REQUEST, setupNewAccount);
 }
@@ -408,6 +418,10 @@ function* watchEnableExposureNotifications() {
   yield takeLatest(accountTypes.ENABLE_EXPOSURE_NOTIFICATIONS, enableExposureNotifications);
 }
 
+function* watchRequestIgnoreBatteryOptimizations() {
+  yield takeLatest(accountTypes.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, requestIgnoreBatteryOptimizations);
+}
+
 export default function* root() {
   yield fork(watchSetupNewAccount);
   yield fork(watchStartTracking);
@@ -418,4 +432,5 @@ export default function* root() {
   yield fork(watchSetInfectionStatus);
   yield fork(watchUpdateLanguage);
   yield fork(watchEnableExposureNotifications);
+  yield fork(watchRequestIgnoreBatteryOptimizations);
 }

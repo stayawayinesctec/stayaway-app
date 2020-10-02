@@ -82,20 +82,71 @@
       },
       "errors": {
         "bluetooth": {
-          "title": "Bluetooth disabled",
-          "message": "Turn on Bluetooth to allow STAYAWAY COVID to work properly"
+          "ios": {
+            "title": "Bluetooth disabled",
+            "message": "Turn on bluetooth to allow STAYAWAY COVID to work properly.",
+            "label": "Settings",
+            "accessibility": {
+              "label": "Settings",
+              "hint": "Navigate to bluetooth settings"
+            }
+          },
+          "android": {
+            "title": "Bluetooth disabled",
+            "message": "Turn on bluetooth to allow STAYAWAY COVID to work properly.",
+            "label": "Settings",
+            "accessibility": {
+              "label": "Turn on bluetooth",
+              "hint": "Turn on bluetooth services"
+            }
+          }
         },
         "location": {
-          "title": "Location services disabled",
-          "message": "Enable location services to allow STAYAWAY COVID to work properly"
+          "title": "Location disabled",
+          "message": "Enable location to allow STAYAWAY COVID to work properly.",
+          "label": "Turn on location",
+          "accessibility": {
+            "label": "Turn on location",
+            "hint": "Turn on location services"
+          }
         },
         "battery": {
           "title": "Battery optimization enabled",
-          "message": "Disable battery optimization to allow STAYAWAY COVID to work properly"
+          "message": "Disable battery optimization to allow STAYAWAY COVID to work properly.",
+          "label": "Turn off optimization",
+          "accessibility": {
+            "label": "Turn off optimization",
+            "hint": "Turn off battery optimization for the app"
+          }
         },
         "gaen": {
+          "ios": {
+            "title": "Exposure notifications disabled",
+            "message": "Enable exposure notifications on your iPhone to allow STAYAWAY to work properly. Confirm that Portugal region is set as active.",
+            "label": "Settings",
+            "accessibility": {
+              "label": "Settings",
+              "hint": "Navigate to exposure notifications settings"
+            }
+          },
+          "android": {
+            "title": "Exposure notifications disabled",
+            "message": "Enable exposure notifications on your Android to allow STAYAWAY to work properly.",
+            "label": "Turn on exposure notifications",
+            "accessibility": {
+              "label": "Turn on exposure notifications",
+              "hint": "Turn on exposure notifications for COVID-19"
+            }
+          }
+        },
+        "tracking": {
           "title": "Monitoring disabled",
-          "message": "Please enable Exposure Notifications logging to allow STAYAWAY COVID to work properly"
+          "message": "Enable monitoring to allow STAYAWAY to work properly.",
+          "label": "Enable monitoring",
+          "accessibility": {
+            "label": "Enable monitoring",
+            "hint": "Enable monitoring feature"
+          }
         }
       }
     },

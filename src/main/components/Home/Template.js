@@ -18,6 +18,7 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import Icon from '@app/common/components/Icon';
+import Button from '@app/common/components/Button';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
 import Images from '@app/common/assets/images';
@@ -96,17 +97,18 @@ const styles = (colors, insets) => StyleSheet.create({
   descriptionsContent: {
     marginTop: sizes.size48,
   },
-  iconError: {
-    marginLeft: -sizes.size8,
+  description: {
+    marginBottom: sizes.size24,
   },
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignContent: 'center',
-    marginBottom: sizes.size8,
+    marginBottom: sizes.size16,
   },
   iconTitle: {
     alignSelf: 'center',
+    marginLeft: sizes.size12,
   },
   errorPanel: {
     marginBottom: sizes.size24,
@@ -147,6 +149,11 @@ const styles = (colors, insets) => StyleSheet.create({
   errorsLayout: {
     flex: 0,
     backgroundColor: colors.transparent,
+  },
+  errorButton: {
+    alignSelf: 'center',
+    width: '100%',
+    marginBottom: -sizes.size16,
   },
 });
 
@@ -200,18 +207,20 @@ export default function Template (props) {
                     />
                     <View style={styles(colors, insets).panel}>
                       <View style={styles(colors, insets).errorPanel}>
-                        <ButtonWrapper
-                          onPress={error.onPress}
-                          style={styles(colors, insets).errorPanelContainer}
-                          accessibilityLabel={error.accessibility.label}
-                          accessibilityHint={error.accessibility.hint}
-                        >
+                        <View style={styles(colors, insets).errorPanelContainer}>
                           <View style={styles(colors, insets).titleContainer}>
-                            <Icon name={error.icon} height={iconSizes.size25} tintColor={colors.blueDark} style={styles(colors, insets).iconError} />
-                            <Text size='xlarge' weight='bold' textColor={colors.blueDark} style={styles(colors, insets).iconTitle}>{error.title}</Text>
+                            { error.icon }
+                            <Text size='large' weight='bold' textColor={colors.blueDark} style={styles(colors, insets).iconTitle}>{error.title}</Text>
                           </View>
-                          <Text size='small' textColor={colors.blueDark} style={styles(colors, insets).description}>{error.message}</Text>
-                        </ButtonWrapper>
+                          <Text textColor={colors.blueDark} style={styles(colors, insets).description}>{error.message}</Text>
+                          <Button
+                            title={error.label}
+                            accessibilityLabel={error.accessibility.label}
+                            accessibilityHint={error.accessibility.hint}
+                            containerStyle={styles(colors, insets).errorButton}
+                            onPress={error.onPress}
+                          />
+                        </View>
                       </View>
                     </View>
                   </View>
@@ -294,7 +303,7 @@ Template.defaultProps = {
       label: '',
       hint: '',
     },
-    icon: '',
+    icon: undefined,
     onPress: () => {},
   },
 };
@@ -312,8 +321,9 @@ Template.propTypes = {
     status: PropTypes.bool,
     title: PropTypes.string,
     message: PropTypes.string,
+    label: PropTypes.string,
     accessibility: PropTypes.object,
-    icon: PropTypes.string,
+    icon: PropTypes.object,
     onPress: PropTypes.func,
   }),
 };
