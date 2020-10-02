@@ -141,11 +141,11 @@
         },
         "tracking": {
           "title": "Rastreio desligado",
-          "message": "Ative a função de rastreio para que a STAYAWAY COVID possa funcionar adequadamente.",
-          "label": "Ativar rastreio",
+          "message": "Ligue a função de rastreio para que a STAYAWAY COVID possa funcionar adequadamente.",
+          "label": "Ligar rastreio",
           "accessibility": {
-            "label": "Ativar rastreio",
-            "hint": "Ativar a função rastreio"
+            "label": "Ligar rastreio",
+            "hint": "Ligar a função rastreio"
           }
         }
       }

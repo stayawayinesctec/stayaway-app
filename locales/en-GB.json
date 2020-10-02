@@ -122,7 +122,7 @@
         "gaen": {
           "ios": {
             "title": "Exposure notifications disabled",
-            "message": "Enable exposure notifications on your iPhone to allow STAYAWAY to work properly. Confirm that Portugal region is set as active.",
+            "message": "Enable exposure notifications on your iPhone to allow STAYAWAY COVID to work properly. Please make sure that Portugal is set as the active region.",
             "label": "Settings",
             "accessibility": {
               "label": "Settings",
@@ -131,7 +131,7 @@
           },
           "android": {
             "title": "Exposure notifications disabled",
-            "message": "Enable exposure notifications on your Android to allow STAYAWAY to work properly.",
+            "message": "Enable exposure notifications on your Android to allow STAYAWAY COVID to work properly.",
             "label": "Turn on exposure notifications",
             "accessibility": {
               "label": "Turn on exposure notifications",
@@ -141,7 +141,7 @@
         },
         "tracking": {
           "title": "Monitoring disabled",
-          "message": "Enable monitoring to allow STAYAWAY to work properly.",
+          "message": "Enable monitoring to allow STAYAWAY COVID to work properly.",
           "label": "Enable monitoring",
           "accessibility": {
             "label": "Enable monitoring",
