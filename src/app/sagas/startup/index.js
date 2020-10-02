@@ -18,6 +18,7 @@ import TrackingManager, { ERRORS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
 
 import modalsActions, { modalsTypes } from '@app/redux/modals';
+import { isProtectorModalOpen } from '@app/redux/modals/selectors';
 import startupActions, { startupTypes } from '@app/redux/startup';
 import accountActions, { accountTypes, TRACKING_RESULTS } from '@app/redux/account';
 import onboardingActions from '@app/redux/onboarding';
@@ -46,8 +47,10 @@ export function* startup() {
       return;
     }
 
+    // Check if tracking was enabled
+    const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
+
     // Get previous stored state
-    const trackingEnabled = yield call([Storage, 'getItem'], 'tracking_enabled', 'false');
     const signUpDate = yield call([Storage, 'getItem'], 'signup_date', '');
     const status = JSON.parse(yield call([Storage, 'getItem'], 'status', '{}'));
 
@@ -58,30 +61,33 @@ export function* startup() {
     // Navigate to home
     yield put(onboardingActions.setOnboarding(false));
 
+    // Check if is UI mode
+    if (Configuration.UI) {
+      const tracking = yield call([Storage, 'getItem'], 'tracking_enabled', 'false');
+      yield put(accountActions.setTrackingEnabled(tracking === true));
+      return;
+    }
+
     // Check if tracking was enabled
-    if (trackingEnabled !== 'true') {
+    if (! isTracingEnabled) {
       // Set tracking deactivated
       yield put(accountActions.setTrackingEnabled(false));
       return;
     }
 
-    if (Configuration.UI) {
+    yield put(accountActions.startTracking());
+    const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+
+    if (payload === TRACKING_RESULTS.SUCCESS) {
+      // Set tracking activated
       yield put(accountActions.setTrackingEnabled(true));
+    } else if (payload === TRACKING_RESULTS.GAEN) {
+      yield put(accountActions.setTrackingEnabled(false));
+
+      // Add tracking error
+      yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
     } else {
-      yield put(accountActions.startTracking());
-      const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
-
-      if (payload === TRACKING_RESULTS.SUCCESS) {
-        // Set tracking activated
-        yield put(accountActions.setTrackingEnabled(true));
-      } else if (payload === TRACKING_RESULTS.GAEN) {
-        yield put(accountActions.setTrackingEnabled(false));
-
-        // Add tracking error
-        yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
-      } else {
-        yield put(accountActions.setTrackingEnabled(false));
-      }
+      yield put(accountActions.setTrackingEnabled(false));
     }
   } finally {
     // Set app launched
@@ -108,8 +114,11 @@ function* watchAppStateChange() {
 
       if (! onboarding && previousState !== nextState) {
         if (nextState === 'active') {
-          yield put(modalsActions.closeProtectorModal());
-          yield take(modalsTypes.PROTECTOR_MODAL_CLOSED);
+          const isProtectorOpen = yield select(isProtectorModalOpen);
+          if (isProtectorOpen) {
+            yield put(modalsActions.closeProtectorModal());
+            yield take(modalsTypes.PROTECTOR_MODAL_CLOSED);
+          }
 
           try {
             if (! Configuration.UI) {
@@ -124,8 +133,11 @@ function* watchAppStateChange() {
             console.log(error);
           }
         } else if (nextState === 'inactive') {
-          yield put(modalsActions.openProtectorModal());
-          yield take(modalsTypes.PROTECTOR_MODAL_OPEN);
+          const isProtectorOpen = yield select(isProtectorModalOpen);
+          if (! isProtectorOpen) {
+            yield put(modalsActions.openProtectorModal());
+            yield take(modalsTypes.PROTECTOR_MODAL_OPEN);
+          }
         }
       }
 

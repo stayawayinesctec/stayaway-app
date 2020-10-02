@@ -71,7 +71,7 @@ export default function TabIcon (props) {
             iconColor = colors.yellow;
           }
 
-          if (hasErrors) {
+          if (hasErrors || ! trackingEnabled) {
             pulseColor = colors.redLight;
             iconColor = colors.red;
           }

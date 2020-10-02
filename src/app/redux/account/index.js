@@ -26,6 +26,7 @@ const types = mirrorCreator([
   'SET_ERRORS',
   'SET_INFECTION_STATUS',
   'SET_LANGUAGE',
+  'ENABLE_EXPOSURE_NOTIFICATIONS',
   'UPDATE_STATUS',
   'UPDATE_LANGUAGE',
   'SETUP_NEW_ACCOUNT_REQUEST',
@@ -42,6 +43,7 @@ const types = mirrorCreator([
   'SUBMIT_DIAGNOSIS_DONE',
   'SWITCH_TRACKING',
   'TRACKING_STATUS_LISTENER_REGISTERED',
+  'REQUEST_IGNORE_BATTERY_OPTIMIZATIONS',
 ]);
 
 export const creators = createActions(
@@ -51,6 +53,7 @@ export const creators = createActions(
   types.SET_ERRORS,
   types.SET_INFECTION_STATUS,
   types.SET_LANGUAGE,
+  types.ENABLE_EXPOSURE_NOTIFICATIONS,
   types.UPDATE_STATUS,
   types.UPDATE_LANGUAGE,
   types.SETUP_NEW_ACCOUNT_REQUEST,
@@ -66,6 +69,7 @@ export const creators = createActions(
   types.SUBMIT_DIAGNOSIS_DONE,
   types.SWITCH_TRACKING,
   types.TRACKING_STATUS_LISTENER_REGISTERED,
+  types.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
 );
 
 export const initialState = {

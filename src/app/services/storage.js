@@ -179,7 +179,7 @@ class Storage {
    * @returns {String} Escaped string
    */
   static escapeRegex(regexp) {
-    return regexp.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    return regexp.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
   }
 }
 

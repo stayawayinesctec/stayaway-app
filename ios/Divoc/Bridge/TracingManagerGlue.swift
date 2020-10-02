@@ -55,7 +55,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     case .databaseError(error: _):
       values.append([14])
     case .exposureNotificationError(error: _):
-      values.append([3])
+      values.append([4])
     case .permissonError:
       values.append([4])
     case .userAlreadyMarkedAsInfected:
@@ -85,6 +85,9 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   private let EN_CANCELLED:String = "EN_CANCELLED";
   private let EN_SUCCEEDED:String =  "EN_SUCCEEDED";
   private let EN_FAILED:String = "EN_FAILED";
+
+  @KeychainPersisted(key: "tracingIsActivated", defaultValue: false)
+  private var isActivated: Bool
 
   // in memory dictionary for codes we already have a token and date,
   // if only the second request (iWasExposed) fails
@@ -152,7 +155,11 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     }
   }
 
-
+  @objc func isTracingEnabled(
+    _ resolve: @escaping RCTPromiseResolveBlock,
+    rejecter reject: @escaping RCTPromiseRejectBlock) {
+    resolve(self.isActivated);
+  }
 
   @objc func start(
     _ resolve: @escaping RCTPromiseResolveBlock,
@@ -169,6 +176,8 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
           DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
               self.sync({_ in }, rejecter: {_,_,_ in })
           }
+
+          self.isActivated = true;
           resolve(self.EN_SUCCEEDED);
           NSLog("DP3T START SUCCESS")
         }
@@ -193,6 +202,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     DP3TTracing.stopTracing()
     TracingLocalPush.shared.removeSyncWarningTriggers()
     NSLog("DP3TGLUE: Tracing stopped.")
+    self.isActivated = false;
     resolve(self.SUCCESS);
   }
 
@@ -277,7 +287,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     ReportingManager.shared.report(covidCode: code, isFakeRequest: false) { (problem) in
       if problem != nil {
         NSLog("Exposed submission failed. " + problem.debugDescription);
-        
+
         let error = problem!
         switch(error){
           case .invalidCode:

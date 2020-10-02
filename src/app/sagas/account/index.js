@@ -17,9 +17,9 @@ import SplashScreen from 'react-native-splash-screen';
 
 import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
-import Storage from '@app/services/storage';
 import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
 import i18n from '@app/services/i18n';
+import Linking from '@app/services/linking';
 
 import AppRoutes from '@app/navigation/routes';
 
@@ -90,10 +90,6 @@ export function* setupNewAccount() {
 }
 
 export function* watchTrackingStatus() {
-  // Get first status
-  const firstStatus = yield call(TrackingManager.getStatus);
-  yield put(accountActions.updateStatus(firstStatus));
-
   // Set event listener value
   const channel = eventChannel((emitter) => {
     TrackingManager.addUpdateEventListener(emitter);
@@ -117,8 +113,10 @@ export function* watchTrackingStatus() {
 }
 
 export function* startTracking() {
-  let watcher;
+  const watcher = yield fork(watchTrackingStatus);
 
+  // Wait for listener to registered
+  yield take(accountTypes.TRACKING_STATUS_LISTENER_REGISTERED);
   try {
     const result = yield call(TrackingManager.start);
 
@@ -138,17 +136,21 @@ export function* startTracking() {
       }
 
       yield put(accountActions.startTrackingResult(TRACKING_RESULTS.GAEN));
+      yield cancel(watcher);
       return;
     }
 
-    watcher = yield fork(watchTrackingStatus);
+    yield call(TrackingManager.sync);
 
-    // Wait for listener to registered
-    yield take(accountTypes.TRACKING_STATUS_LISTENER_REGISTERED);
+    // Get status
+    const status = yield call(TrackingManager.getStatus);
+    yield put(accountActions.updateStatus(status));
+
     yield put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
   } catch (error) {
     console.log(error);
     yield put(accountActions.startTrackingResult(TRACKING_RESULTS.FAILED));
+    yield cancel(watcher);
     return;
   }
 
@@ -319,6 +321,17 @@ export function* updateStatus({ payload: status }) {
     }
   }
 
+  // Check GAEN toggle
+  if (status.errors.includes(ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED)) {
+    yield put(accountActions.setTrackingEnabled(false));
+  } else {
+    const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
+
+    if (isTracingEnabled) {
+      yield put(accountActions.setTrackingEnabled(true));
+    }
+  }
+
   // Update redux store
   yield put(accountActions.setStatus(status));
 }
@@ -346,6 +359,27 @@ export function* updateLanguage({ payload: languageTag }) {
   yield put(accountActions.setLanguage(language));
   SplashScreen.show();
   RNRestart.Restart();
+}
+
+export function* enableExposureNotifications() {
+  yield put(accountActions.startTracking());
+  const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+
+  if (payload !== TRACKING_RESULTS.SUCCESS) {
+    if (Platform.OS === 'ios') {
+      Linking.openURL('app-settings://');
+    }
+  }
+}
+
+export function* requestIgnoreBatteryOptimizations() {
+  const isWhitelisted = yield call(TrackingManager.hasSpecialBatteryOptimizationSystem);
+
+  if (isWhitelisted) {
+    yield call(TrackingManager.openBatteryOptimizationSettings);
+  } else {
+    yield call(TrackingManager.requestIgnoreBatteryOptimizationsPermission);
+  }
 }
 
 function* watchSetupNewAccount() {
@@ -380,6 +414,14 @@ function* watchUpdateLanguage() {
   yield takeLatest(accountTypes.UPDATE_LANGUAGE, updateLanguage);
 }
 
+function* watchEnableExposureNotifications() {
+  yield takeLatest(accountTypes.ENABLE_EXPOSURE_NOTIFICATIONS, enableExposureNotifications);
+}
+
+function* watchRequestIgnoreBatteryOptimizations() {
+  yield takeLatest(accountTypes.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, requestIgnoreBatteryOptimizations);
+}
+
 export default function* root() {
   yield fork(watchSetupNewAccount);
   yield fork(watchStartTracking);
@@ -389,4 +431,6 @@ export default function* root() {
   yield fork(watchSetErrors);
   yield fork(watchSetInfectionStatus);
   yield fork(watchUpdateLanguage);
+  yield fork(watchEnableExposureNotifications);
+  yield fork(watchRequestIgnoreBatteryOptimizations);
 }

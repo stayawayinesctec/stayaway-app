@@ -18,7 +18,7 @@ import { languages } from '@app/services/i18n';
 import onboardingActions from '@app/redux/onboarding';
 import startupActions from '@app/redux/startup';
 import accountActions, { TRACKING_RESULTS } from '@app/redux/account';
-import { ERRORS } from '@app/services/tracking';
+import TrackingManager, { ERRORS } from '@app/services/tracking';
 
 import Storage from '@app/services/storage';
 
@@ -28,6 +28,7 @@ import {
 
 // Mock storage file
 jest.mock('@app/services/storage');
+jest.mock('@app/services/tracking');
 
 describe('Startup Sagas', () => {
   describe('Startup', () => {
@@ -75,14 +76,11 @@ describe('Startup Sagas', () => {
         exposureDays: [],
       };
 
+      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'language') {
           return languages.PT.languageTag;
-        }
-
-        if (arg === 'tracking_enabled') {
-          return 'false';
         }
 
         if (arg === 'signup_date') {
@@ -104,15 +102,16 @@ describe('Startup Sagas', () => {
       await saga.toPromise();
 
       // Assert
+      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+
       expect(Storage.hasItem).toHaveBeenCalledTimes(2);
       expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
       expect(Storage.hasItem).toHaveBeenNthCalledWith(2, 'signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(4);
+      expect(Storage.getItem).toHaveBeenCalledTimes(3);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'tracking_enabled', 'false');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
 
       expect(dispatched).toHaveLength(6);
       expect(dispatched).toEqual([
@@ -134,14 +133,11 @@ describe('Startup Sagas', () => {
         exposureDays: [],
       };
 
+      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'language') {
           return languages.PT.languageTag;
-        }
-
-        if (arg === 'tracking_enabled') {
-          return 'true';
         }
 
         if (arg === 'signup_date') {
@@ -160,19 +156,20 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
         }, startup);
-      channel.put(accountActions.startTracking(TRACKING_RESULTS.SUCCESS));
+      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
       await saga.toPromise();
 
       // Assert
+      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+
       expect(Storage.hasItem).toHaveBeenCalledTimes(2);
       expect(Storage.hasItem).toHaveBeenNthCalledWith(1,'language');
       expect(Storage.hasItem).toHaveBeenNthCalledWith(2,'signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(4);
+      expect(Storage.getItem).toHaveBeenCalledTimes(3);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'tracking_enabled', 'false');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
 
       expect(dispatched).toHaveLength(7);
       expect(dispatched).toEqual([
@@ -195,14 +192,11 @@ describe('Startup Sagas', () => {
         exposureDays: [],
       };
 
+      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'language') {
           return languages.PT.languageTag;
-        }
-
-        if (arg === 'tracking_enabled') {
-          return 'true';
         }
 
         if (arg === 'signup_date') {
@@ -221,19 +215,20 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, startup);
-      channel.put(accountActions.startTracking(TRACKING_RESULTS.GAEN));
+      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.GAEN));
       await saga.toPromise();
 
       // Assert
+      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+
       expect(Storage.hasItem).toHaveBeenCalledTimes(2);
       expect(Storage.hasItem).toHaveBeenNthCalledWith(1,'language');
       expect(Storage.hasItem).toHaveBeenNthCalledWith(2,'signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(4);
+      expect(Storage.getItem).toHaveBeenCalledTimes(3);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'tracking_enabled', 'false');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
 
       expect(dispatched).toHaveLength(8);
       expect(dispatched).toEqual([
@@ -257,14 +252,11 @@ describe('Startup Sagas', () => {
         exposureDays: [],
       };
 
+      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'language') {
           return languages.PT.languageTag;
-        }
-
-        if (arg === 'tracking_enabled') {
-          return 'true';
         }
 
         if (arg === 'signup_date') {
@@ -283,19 +275,20 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, startup);
-      channel.put(accountActions.startTracking(TRACKING_RESULTS.FAILED));
+      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.FAILED));
       await saga.toPromise();
 
       // Assert
+      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+
       expect(Storage.hasItem).toHaveBeenCalledTimes(2);
       expect(Storage.hasItem).toHaveBeenNthCalledWith(1,'language');
       expect(Storage.hasItem).toHaveBeenNthCalledWith(2,'signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(4);
+      expect(Storage.getItem).toHaveBeenCalledTimes(3);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'tracking_enabled', 'false');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
 
       expect(dispatched).toHaveLength(7);
       expect(dispatched).toEqual([
