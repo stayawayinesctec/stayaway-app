@@ -27,3 +27,12 @@
 - Add feature change language
 - Fix minor bugs
 - Fix typos
+
+## version 1.0.4 (5.9.2020)
+
+- Add protector screen on iOS
+- Add terms of use and privacy policy
+- Detect GAEN state correctly
+- Add arrows to onboarding swiper
+- Fix minor bugs
+- Fix typos
