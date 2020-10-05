@@ -7,5 +7,10 @@
  *
  * SPDX-License-Identifier: EUPL-1.2
  */
+import i18n from '@app/services/i18n';
+
 
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
+
+// Setup i18n
+i18n.setI18nConfig('en');

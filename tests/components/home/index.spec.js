@@ -157,11 +157,11 @@ describe('Home Screen', () => {
       const lastSync = new Moment();
       const error = {
         status: true,
-        title: i18n.translate('screens.home.errors.gaen.title'),
-        message: i18n.translate('screens.home.errors.gaen.message'),
+        title: i18n.translate('screens.home.errors.gaen.android.title'),
+        message: i18n.translate('screens.home.errors.gaen.android.message'),
         accessibility: {
-          label: i18n.translate('screens.home.errors.gaen.accessibility.label'),
-          hint: i18n.translate('screens.home.errors.gaen.accessibility.hint'),
+          label: i18n.translate('screens.home.errors.gaen.android.accessibility.label'),
+          hint: i18n.translate('screens.home.errors.gaen.android.accessibility.hint'),
         },
         icon: 'gaen_disconnected',
         onPress: jest.fn(),
@@ -178,10 +178,10 @@ describe('Home Screen', () => {
       );
 
       const header = queryByText(i18n.translate('screens.home.healthy.title'));
-      const errorTitle = queryByText(i18n.translate('screens.home.errors.gaen.title'));
-      const headerMessage = queryByText(i18n.translate('screens.home.errors.gaen.message'));
-      const accessibilityLabel = queryByA11yLabel(i18n.translate('screens.home.errors.gaen.accessibility.label'));
-      const accessibilityHint = queryByA11yHint(i18n.translate('screens.home.errors.gaen.accessibility.hint'));
+      const errorTitle = queryByText(i18n.translate('screens.home.errors.gaen.android.title'));
+      const headerMessage = queryByText(i18n.translate('screens.home.errors.gaen.android.message'));
+      const accessibilityLabel = queryByA11yLabel(i18n.translate('screens.home.errors.gaen.android.accessibility.label'));
+      const accessibilityHint = queryByA11yHint(i18n.translate('screens.home.errors.gaen.android.accessibility.hint'));
 
       expect(header).toBeNull();
       expect(errorTitle).toBeTruthy();
@@ -234,11 +234,11 @@ describe('Home Screen', () => {
       const onPressError = jest.fn();
       const error = {
         status: true,
-        title: i18n.translate('screens.home.errors.gaen.title'),
-        message: i18n.translate('screens.home.errors.gaen.message'),
+        title: i18n.translate('screens.home.errors.gaen.android.title'),
+        message: i18n.translate('screens.home.errors.gaen.android.message'),
         accessibility: {
-          label: i18n.translate('screens.home.errors.gaen.accessibility.label'),
-          hint: i18n.translate('screens.home.errors.gaen.accessibility.hint'),
+          label: i18n.translate('screens.home.errors.gaen.android.accessibility.label'),
+          hint: i18n.translate('screens.home.errors.gaen.android.accessibility.hint'),
         },
         icon: 'gaen_disconnected',
         onPress: onPressError,
@@ -254,7 +254,7 @@ describe('Home Screen', () => {
         />,
       );
 
-      const errorButton = queryByA11yLabel(i18n.translate('screens.home.errors.gaen.accessibility.label'));
+      const errorButton = queryByA11yLabel(i18n.translate('screens.home.errors.gaen.android.accessibility.label'));
 
       expect(errorButton).toBeTruthy();
       fireEvent.press(errorButton);

@@ -15,6 +15,7 @@ export default {
   size12: moderateScale(12, 1),
   size14: moderateScale(14, 1),
   size17: moderateScale(17, 1),
+  size22: moderateScale(22, 1),
   size23: moderateScale(23, 1),
   size24: moderateScale(24, 1),
   size25: moderateScale(25, 1),
