@@ -52,7 +52,8 @@ export default function RecommendationsExposed (props) {
       {({colors}) => (
         <Template
           recommendations={recommendations}
-          color={colors.yellowLight}
+          color={colors.yellow}
+          backgroundColor={colors.yellowLight}
           {...props}
         />
       )}

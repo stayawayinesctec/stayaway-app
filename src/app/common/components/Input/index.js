@@ -9,13 +9,15 @@
  */
 
 import React, { PureComponent as Component } from 'react';
-import { ViewPropTypes, StyleSheet } from 'react-native';
+import { View, ViewPropTypes, StyleSheet } from 'react-native';
 import { Input as NativeInput } from 'react-native-elements';
 import PropTypes from 'prop-types';
 
+import SupportIcon from '@app/common/components/SupportIcon';
+
 import { ThemeConsumer } from '@app/contexts/Theme';
 
-import { themes as commonThemes, colors as commonColors, sizes, fontSizes } from '@app/common/theme';
+import { themes as commonThemes, colors as commonColors, sizes, fontSizes, iconSizes } from '@app/common/theme';
 
 const LIGHT = commonThemes.names.light;
 const DARK = commonThemes.names.dark;
@@ -23,14 +25,28 @@ const DARK = commonThemes.names.dark;
 const styles = (colors) => StyleSheet.create({
   container: {
     paddingHorizontal: 0,
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: colors.white,
+    borderRadius: sizes.size8,
+    marginLeft: -sizes.size10 - (iconSizes.size30 / 2),
+    shadowColor: colors.grayLight,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.51,
+    shadowRadius: 13.16,
+    elevation: 25,
   },
   input: {
-    paddingHorizontal: sizes.size10,
-    paddingVertical: sizes.size14,
+    paddingLeft: sizes.size10 + (iconSizes.size30 / 2) + sizes.size16,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
   },
   inputContainer: {
     borderRadius: sizes.size10,
-    borderWidth: sizes.size1,
+    borderBottomWidth: 0,
     borderColor: colors.grayDark,
   },
   label: {
@@ -44,24 +60,21 @@ const styles = (colors) => StyleSheet.create({
     fontSize: fontSizes.small,
     color: colors.red,
   },
+  wrapper: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  iconContainer: {
+    zIndex: 5,
+  },
 });
 
 export default class Input extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      inputWidth: '99%',
-    };
-  }
-
   onFocus = () => {
     const { onFocus } = this.props;
 
-    this.setState({ inputWidth: 'auto' });
     onFocus();
   }
-
 
   focus() {
     return this.input?.focus();
@@ -85,7 +98,6 @@ export default class Input extends Component {
 
   render() {
     const { style, type, styleInputContainer, textColor, placeholderTextColor, ...otherProps } = this.props;
-    const { inputWidth } = this.state;
 
     return (
       <ThemeConsumer>
@@ -93,20 +105,25 @@ export default class Input extends Component {
           const { colors } = commonThemes[type || name];
 
           return (
-            <NativeInput
-              containerStyle={[{...styles(colors).container, ...style}, {width: inputWidth}]}
-              inputContainerStyle={{...styles(colors).inputContainer, ...styleInputContainer}}
-              inputStyle={{...styles(colors).input, color: textColor || colors.blueDark}}
-              labelStyle={styles(colors).label}
-              errorStyle={styles(colors).error}
-              enablesReturnKeyAutomatically
-              placeholderTextColor={placeholderTextColor || colors.blueLight}
-              ref={element => {this.input = element}}
-              fontSize={fontSizes.normal}
-              selectable
-              {...otherProps}
-              onFocus={this.onFocus}
-            />
+            <View style={styles(colors).wrapper}>
+              <View style={styles(colors).iconContainer}>
+                <SupportIcon />
+              </View>
+              <NativeInput
+                containerStyle={{...styles(colors).container, ...style}}
+                inputContainerStyle={{...styles(colors).inputContainer, ...styleInputContainer}}
+                inputStyle={{...styles(colors).input, color: textColor || colors.blueDark}}
+                labelStyle={styles(colors).label}
+                errorStyle={styles(colors).error}
+                enablesReturnKeyAutomatically
+                placeholderTextColor={placeholderTextColor || colors.blueLight}
+                ref={element => {this.input = element}}
+                fontSize={fontSizes.normal}
+                selectable
+                {...otherProps}
+                onFocus={this.onFocus}
+              />
+            </View>
           );
         }}
       </ThemeConsumer>

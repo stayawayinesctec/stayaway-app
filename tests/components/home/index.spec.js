@@ -12,10 +12,12 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import Moment from 'moment';
 
+import Icon from '@app/common/components/Icon';
+
 import i18n from '@app/services/i18n';
 import { INFECTION_STATUS } from '@app/services/tracking';
 
-import { fontWeights } from '@app/common/theme';
+import { iconSizes, fontWeights } from '@app/common/theme';
 import Images from '@app/common/assets/images';
 
 import Home from '@main/components/Home';
@@ -35,7 +37,7 @@ describe('Home Screen', () => {
           label: '',
           hint: '',
         },
-        icon: '',
+        icon: undefined,
         onPress: () => {},
         clickable: false,
       };
@@ -76,7 +78,7 @@ describe('Home Screen', () => {
           label: '',
           hint: '',
         },
-        icon: '',
+        icon: undefined,
         onPress: () => {},
         clickable: false,
       };
@@ -124,7 +126,7 @@ describe('Home Screen', () => {
           label: '',
           hint: '',
         },
-        icon: '',
+        icon: undefined,
         onPress: () => {},
         clickable: false,
       };
@@ -163,7 +165,7 @@ describe('Home Screen', () => {
           label: i18n.translate('screens.home.errors.gaen.android.accessibility.label'),
           hint: i18n.translate('screens.home.errors.gaen.android.accessibility.hint'),
         },
-        icon: 'gaen_disconnected',
+        icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} />,
         onPress: jest.fn(),
         clickable: true,
       };
@@ -204,7 +206,7 @@ describe('Home Screen', () => {
           label: '',
           hint: '',
         },
-        icon: '',
+        icon: undefined,
         onPress: () => {},
         clickable: false,
       };
@@ -240,7 +242,7 @@ describe('Home Screen', () => {
           label: i18n.translate('screens.home.errors.gaen.android.accessibility.label'),
           hint: i18n.translate('screens.home.errors.gaen.android.accessibility.hint'),
         },
-        icon: 'gaen_disconnected',
+        icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} />,
         onPress: onPressError,
         clickable: true,
       };

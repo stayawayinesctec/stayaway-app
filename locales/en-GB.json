@@ -46,7 +46,7 @@
       }
     },
     "home": {
-      "last_updated": "Latest risk evaluation",
+      "last_updated": "Latest risk evaluation:",
       "never_updated": "No evaluations",
       "actions": {
         "settings": {
@@ -152,8 +152,8 @@
     },
     "recommendations": {
       "title": "Protect others and yourself.",
-      "source": {
-        "label": "Source",
+      "support": {
+        "label": "Informations at:",
         "accessibility": {
           "label": "Recommendations source",
           "hint": "Links to webpage with recommendations source"
@@ -556,22 +556,18 @@
   "common": {
     "app_name": "STAYAWAY COVID",
     "links": {
-      "app_page": {
-        "google_play": "https://play.google.com/store/apps/details?id=fct.inesctec.stayaway",
-        "app_store": "https://apps.apple.com/pt"
-      },
-      "home_page": "https://stayawaycovid.pt/en/",
-      "privacy_policy": "https://stayawaycovid.pt/privacy-policy/",
-      "terms_of_use": "https://stayawaycovid.pt/terms-conditions/",
-      "faqs": "https://stayawaycovid.pt/frequently-asked-questions/",
+      "home_page": "https://www.stayawaycovid.pt/en/",
+      "privacy_policy": "https://www.stayawaycovid.pt/privacy-policy/",
+      "terms_of_use": "https://www.stayawaycovid.pt/terms-conditions/",
+      "faqs": "https://www.stayawaycovid.pt/frequently-asked-questions/",
       "dgs": "https://www.dgs.pt/",
       "data_protection": "mailto:eugeniacarvalho@dgs.min-saude.pt",
       "inesctec": "https://www.inesctec.pt/en",
-      "ispup": "https://ispup.up.pt/",
-      "keyruptive": "https://keyruptive.com/",
+      "ispup": "https://www.ispup.up.pt/",
+      "keyruptive": "https://www.keyruptive.com/",
       "ubirider": "https://www.pick.ubirider.com/?lang=en",
       "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude/",
-      "min_saude_covid": "https://covid19.min-saude.pt"
+      "min_saude_covid": "https://www.covid19.min-saude.pt"
     },
     "words": {
       "and": "and",

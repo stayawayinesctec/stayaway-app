@@ -68,7 +68,6 @@ export default function Layout(props) {
         const theme = type || name;
         const { colors } = commonThemes[theme];
 
-
         return (
           <View
             style={{
