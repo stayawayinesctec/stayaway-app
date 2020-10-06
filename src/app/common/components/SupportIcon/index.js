@@ -8,8 +8,8 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Platform, UIManager, View, StyleSheet, LayoutAnimation } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -38,8 +38,10 @@ const styles = (colors) => StyleSheet.create({
     elevation: 30,
   },
   contentContainer: {
+    width: sizes.size30 + sizes.size10,
+    height: sizes.size30 + sizes.size10 * 2,
     backgroundColor: colors.white,
-    flex: 1,
+    alignSelf: 'center',
     justifyContent: 'center',
     borderRadius: sizes.size8,
     marginLeft: -sizes.size10 - (iconSizes.size30 / 2),
@@ -54,17 +56,43 @@ const styles = (colors) => StyleSheet.create({
     elevation: 25,
   },
   contentWrapper: {
+    height: sizes.size30,
     borderRightWidth: sizes.size8,
     borderColor: colors.green,
-    alignItems: 'center',
+  },
+  wrapper: {
+    paddingLeft: (sizes.size10 + iconSizes.size30 / 2) + sizes.size16,
   },
 });
-
 
 export default function SupportIcon(props) {
   const { label, content, color } = props;
   const hasLabel = label.length > 0;
   const hasContent = content.length > 0;
+
+  const [isMounted, setIsMounted] = useState(false);
+  const [contentStyle, setContentStyle] = useState({});
+  useEffect(() => {
+    setTimeout(() => {
+      if (
+        Platform.OS === "android" &&
+        UIManager.setLayoutAnimationEnabledExperimental
+      ) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+      }
+
+      LayoutAnimation.configureNext(
+        LayoutAnimation.create(
+          300,
+          LayoutAnimation.Types.linear,
+          LayoutAnimation.Properties.opacity,
+        ));
+      setContentStyle({
+        flex: 1,
+      });
+      setIsMounted(true);
+    }, 500);
+  }, [isMounted]);
 
   return (
     <ThemeConsumer>
@@ -73,22 +101,30 @@ export default function SupportIcon(props) {
           <View style={styles(colors).iconContainer}>
             <Icon name='support' width={iconSizes.size30} height={iconSizes.size30} />
           </View>
-          { (hasLabel || hasContent) &&
-            <View style={styles(colors).contentContainer}>
+          { ((hasLabel || hasContent)) &&
+            <View
+              style={{
+                ...styles(colors).contentContainer,
+                ...contentStyle,
+              }}
+            >
               <View
                 style={{
-                  ...styles(colors).contentWrapper,
-                  borderColor: color,
-                }}
+                    ...styles(colors).contentWrapper,
+                    width: isMounted ? '100%' : sizes.size30 + sizes.size10,
+                    borderColor: color,
+                  }}
               >
-                <View>
-                  { hasLabel &&
+                { isMounted &&
+                  <View style={styles(colors).wrapper}>
+                    { hasLabel &&
                     <Text size='xsmall'>{label}</Text>
-                  }
-                  { hasContent &&
+                      }
+                    { hasContent &&
                     <Text size='small' weight='bold'>{content}</Text>
-                  }
-                </View>
+                      }
+                  </View>
+                }
               </View>
             </View>
           }

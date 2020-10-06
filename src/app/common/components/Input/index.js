@@ -66,6 +66,7 @@ const styles = (colors) => StyleSheet.create({
   },
   iconContainer: {
     zIndex: 5,
+    elevation: 30,
   },
 });
 

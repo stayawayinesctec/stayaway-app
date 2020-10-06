@@ -9,10 +9,13 @@
  */
 
 import 'react-native-gesture-handler';
+import { enableScreens } from "react-native-screens";
 
 import {AppRegistry, LogBox } from 'react-native';
 import App from './src/app/containers/App';
 import {name as appName} from './app.json';
+
+enableScreens();
 
 AppRegistry.registerComponent(appName, () => App);
 
