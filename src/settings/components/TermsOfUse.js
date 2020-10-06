@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -26,7 +27,7 @@ import Icon from '@app/common/components/Icon';
 
 import Images from '@app/common/assets/images';
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors, insets) => StyleSheet.create({
   container: {
   },
   closeButton: {
@@ -45,12 +46,14 @@ const styles = (colors) => StyleSheet.create({
     flex: 1,
     backgroundColor: colors.transparent,
     zIndex: 10,
+    marginHorizontal: sizes.size24,
   },
   headerTitle: {
     paddingVertical: sizes.size16,
-    marginBottom: sizes.size24,
   },
   bodyContainer: {
+    paddingTop: sizes.size24,
+    paddingBottom: sizes.size24 + insets.bottom,
   },
   item: {
     backgroundColor: colors.white,
@@ -106,29 +109,31 @@ export default function TermsOfUse(props) {
     onClose,
   } = props;
 
+  const insets = useSafeAreaInsets();
+
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <TopComponent scrollable={false} style={styles(colors).container}>
-          <Layout style={styles(colors).layoutContainer}>
-            <View style={styles(colors).header}>
+        <TopComponent scrollable={false} style={styles(colors, insets).container}>
+          <Layout style={styles(colors, insets).layoutContainer} padding='top'>
+            <View style={styles(colors, insets).header}>
               <ButtonWrapper
                 onPress={onClose}
-                style={styles(colors).closeButton}
+                style={styles(colors, insets).closeButton}
                 accessibilityLabel={i18n.translate('screens.terms_of_use.actions.back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.terms_of_use.actions.back.accessibility.hint')}
               >
                 <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
               </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors).headerTitle}>{i18n.translate('screens.terms_of_use.title')}</Text>
+              <Text size='xlarge' weight='bold' style={styles(colors, insets).headerTitle}>{i18n.translate('screens.terms_of_use.title')}</Text>
             </View>
             <ScrollView
               showsVerticalScrollIndicator={false}
-              style={styles(colors).bodyContainer}
+              contentContainerStyle={styles(colors, insets).bodyContainer}
             >
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.terms_of_use.scope_and_purpose.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.scope_and_purpose.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text>
                     <Text size='xsmall' weight='bold'>1. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.scope_and_purpose.first')}</Text>
@@ -144,9 +149,9 @@ export default function TermsOfUse(props) {
                   </Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text>
                     <Text size='xsmall' weight='bold'>1. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.first')}</Text>
@@ -161,9 +166,9 @@ export default function TermsOfUse(props) {
                   </Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.terms_of_use.features_of_the_app.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.features_of_the_app.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text>
                     <Text size='xsmall' weight='bold'>1. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.first')}</Text>
@@ -194,9 +199,9 @@ export default function TermsOfUse(props) {
                   </Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.terms_of_use.users_duties_of_care.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.users_duties_of_care.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text>
                     <Text size='xsmall' weight='bold'>1. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.first')}</Text>
@@ -219,9 +224,9 @@ export default function TermsOfUse(props) {
                   </Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.terms_of_use.liability_and_warranty.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.liability_and_warranty.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text>
                     <Text size='xsmall' weight='bold'>1. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.first')}</Text>
@@ -248,18 +253,18 @@ export default function TermsOfUse(props) {
                   </Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.terms_of_use.data_protection.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.data_protection.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text>
                     <Text size='xsmall' weight='bold'>1. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.data_protection.first')}</Text>
                   </Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.terms_of_use.termination_of_use.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.termination_of_use.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text>
                     <Text size='xsmall' weight='bold'>1. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.termination_of_use.first')}</Text>
@@ -270,9 +275,9 @@ export default function TermsOfUse(props) {
                   </Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text>
                     <Text size='xsmall' weight='bold'>1. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.first')}</Text>
@@ -283,9 +288,9 @@ export default function TermsOfUse(props) {
                   </Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.terms_of_use.final_provisions.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.final_provisions.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text>
                     <Text size='xsmall' weight='bold'>1. </Text>
                     <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.first')}</Text>
@@ -309,14 +314,14 @@ export default function TermsOfUse(props) {
                 </View>
               </View>
               <Text textColor={colors.gray} size='xsmall' weight='bold'>{i18n.translate('screens.terms_of_use.last_review')}</Text>
-              <View style={styles(colors).sponsors}>
-                <Image source={Images.republica_portuguesa} style={styles(colors).republicaPortuguesaImage} />
-                <Image source={Images.logo_dgs} style={styles(colors).dgsImage} />
+              <View style={styles(colors, insets).sponsors}>
+                <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+                <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
               </View>
             </ScrollView>
           </Layout>
-          <View style={styles(colors).imagesContainer}>
-            <Image source={Images.splash} style={styles(colors).splashImage} />
+          <View style={styles(colors, insets).imagesContainer}>
+            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}

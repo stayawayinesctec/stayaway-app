@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -26,7 +27,7 @@ import Icon from '@app/common/components/Icon';
 
 import Images from '@app/common/assets/images';
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors, insets) => StyleSheet.create({
   container: {
   },
   closeButton: {
@@ -45,12 +46,14 @@ const styles = (colors) => StyleSheet.create({
     flex: 1,
     backgroundColor: colors.transparent,
     zIndex: 10,
+    marginHorizontal: sizes.size24,
   },
   headerTitle: {
     paddingVertical: sizes.size16,
-    marginBottom: sizes.size24,
   },
   bodyContainer: {
+    paddingTop: sizes.size24,
+    paddingBottom: sizes.size24 + insets.bottom,
   },
   item: {
     backgroundColor: colors.white,
@@ -126,57 +129,59 @@ export default function PrivacyPolicy(props) {
     onClose,
   } = props;
 
+  const insets = useSafeAreaInsets();
+
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <TopComponent scrollable={false} style={styles(colors).container}>
-          <Layout style={styles(colors).layoutContainer}>
-            <View style={styles(colors).header}>
+        <TopComponent scrollable={false} style={styles(colors, insets).container}>
+          <Layout style={styles(colors, insets).layoutContainer} padding='top'>
+            <View style={styles(colors, insets).header}>
               <ButtonWrapper
                 onPress={onClose}
-                style={styles(colors).closeButton}
+                style={styles(colors, insets).closeButton}
                 accessibilityLabel={i18n.translate('screens.privacy_policy.actions.back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.privacy_policy.actions.back.accessibility.hint')}
               >
                 <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
               </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors).headerTitle}>{i18n.translate('screens.privacy_policy.title')}</Text>
+              <Text size='xlarge' weight='bold' style={styles(colors, insets).headerTitle}>{i18n.translate('screens.privacy_policy.title')}</Text>
             </View>
             <ScrollView
               showsVerticalScrollIndicator={false}
-              style={styles(colors).bodyContainer}
+              contentContainerStyle={styles(colors, insets).bodyContainer}
             >
-              <Text size='xsmall' style={styles(colors).description}>{i18n.translate('screens.privacy_policy.description')}</Text>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.data_treatment.name')}</Text>
-                <View style={styles(colors).body}>
-                  <View style={styles(colors).responsible}>
-                    <Text size='small' weight='bold' style={styles(colors).subtitle}>{i18n.translate('screens.privacy_policy.data_treatment.responsible')}</Text>
+              <Text size='xsmall' style={styles(colors, insets).description}>{i18n.translate('screens.privacy_policy.description')}</Text>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.data_treatment.name')}</Text>
+                <View style={styles(colors, insets).body}>
+                  <View style={styles(colors, insets).responsible}>
+                    <Text size='small' weight='bold' style={styles(colors, insets).subtitle}>{i18n.translate('screens.privacy_policy.data_treatment.responsible')}</Text>
                     <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.dgs.name')}</Text>
                     <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.dgs.address')}</Text>
                     <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.dgs.phone')}</Text>
                   </View>
-                  <View style={styles(colors).subcontractors}>
-                    <Text size='small' weight='bold' style={styles(colors).subtitle}>{i18n.translate('screens.privacy_policy.data_treatment.subcontractors')}</Text>
-                    <View style={styles(colors).subcontractor}>
+                  <View style={styles(colors, insets).subcontractors}>
+                    <Text size='small' weight='bold' style={styles(colors, insets).subtitle}>{i18n.translate('screens.privacy_policy.data_treatment.subcontractors')}</Text>
+                    <View style={styles(colors, insets).subcontractor}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.inesctec.name')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.inesctec.address')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.inesctec.phone')}</Text>
                     </View>
-                    <View style={styles(colors).subcontractor}>
+                    <View style={styles(colors, insets).subcontractor}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.keyruptive.name')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.keyruptive.address')}</Text>
                     </View>
-                    <View style={styles(colors).subcontractor}>
+                    <View style={styles(colors, insets).subcontractor}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.ubirider.name')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.ubirider.address')}</Text>
                     </View>
-                    <View style={styles(colors).subcontractor}>
+                    <View style={styles(colors, insets).subcontractor}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.spms.name')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.spms.address')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.spms.phone')}</Text>
                     </View>
-                    <View style={styles(colors).subcontractor}>
+                    <View style={styles(colors, insets).subcontractor}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.incm.name')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.incm.address')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.incm.phone')}</Text>
@@ -184,159 +189,159 @@ export default function PrivacyPolicy(props) {
                   </View>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.purposes_of_personal_data_processing.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.purposes_of_personal_data_processing.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.purposes_of_personal_data_processing.body')}</Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.lawfulness_of_data_processing.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.lawfulness_of_data_processing.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.lawfulness_of_data_processing.body')}</Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.body')}</Text>
-                  <View style={styles(colors).data}>
-                    <Text size='xsmall' weight='bold' style={styles(colors).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.title')}</Text>
-                    <View style={styles(colors).label}>
+                  <View style={styles(colors, insets).data}>
+                    <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.title')}</Text>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.definition')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.purpose')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.storage')}</Text>
                     </View>
                   </View>
-                  <View style={styles(colors).data}>
-                    <Text size='xsmall' weight='bold' style={styles(colors).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.title')}</Text>
-                    <View style={styles(colors).label}>
+                  <View style={styles(colors, insets).data}>
+                    <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.title')}</Text>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.definition')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.purpose')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.storage')}</Text>
                     </View>
                   </View>
-                  <View style={styles(colors).data}>
-                    <Text size='xsmall' weight='bold' style={styles(colors).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.title')}</Text>
-                    <View style={styles(colors).label}>
+                  <View style={styles(colors, insets).data}>
+                    <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.title')}</Text>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.definition')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.purpose')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.storage')}</Text>
                     </View>
                   </View>
-                  <View style={styles(colors).data}>
-                    <Text size='xsmall' weight='bold' style={styles(colors).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.title')}</Text>
-                    <View style={styles(colors).label}>
+                  <View style={styles(colors, insets).data}>
+                    <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.title')}</Text>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.definition')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.purpose')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.storage')}</Text>
                     </View>
                   </View>
-                  <View style={styles(colors).data}>
-                    <Text size='xsmall' weight='bold' style={styles(colors).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.title')}</Text>
-                    <View style={styles(colors).label}>
+                  <View style={styles(colors, insets).data}>
+                    <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.title')}</Text>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.definition')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.purpose')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.storage')}</Text>
                     </View>
                   </View>
-                  <View style={styles(colors).data}>
-                    <Text size='xsmall' weight='bold' style={styles(colors).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.title')}</Text>
-                    <View style={styles(colors).label}>
+                  <View style={styles(colors, insets).data}>
+                    <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.title')}</Text>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.definition')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.purpose')}</Text>
                     </View>
-                    <View style={styles(colors).label}>
+                    <View style={styles(colors, insets).label}>
                       <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                       <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.storage')}</Text>
                     </View>
                   </View>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.data_collecting_and_processing.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.data_collecting_and_processing.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_collecting_and_processing.body')}</Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.gaen_api.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.gaen_api.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.gaen_api.body')}</Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.use_of_equipment_resources.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.use_of_equipment_resources.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.use_of_equipment_resources.body')}</Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.rights_of_data_subjects.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.rights_of_data_subjects.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.rights_of_data_subjects.body')}</Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.uninstalling_and_suspending_the_application.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.uninstalling_and_suspending_the_application.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.uninstalling_and_suspending_the_application.body')}</Text>
                 </View>
               </View>
-              <View style={styles(colors).clause}>
-                <Text size='small' weight='bold' style={styles(colors).title}>{i18n.translate('screens.privacy_policy.changes_to_the_privacy_policy.name')}</Text>
-                <View style={styles(colors).body}>
+              <View style={styles(colors, insets).clause}>
+                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.changes_to_the_privacy_policy.name')}</Text>
+                <View style={styles(colors, insets).body}>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.changes_to_the_privacy_policy.body')}</Text>
                 </View>
               </View>
               <Text textColor={colors.gray} size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.last_review')}</Text>
-              <View style={styles(colors).sponsors}>
-                <Image source={Images.republica_portuguesa} style={styles(colors).republicaPortuguesaImage} />
-                <Image source={Images.logo_dgs} style={styles(colors).dgsImage} />
+              <View style={styles(colors, insets).sponsors}>
+                <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+                <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
               </View>
             </ScrollView>
           </Layout>
-          <View style={styles(colors).imagesContainer}>
-            <Image source={Images.splash} style={styles(colors).splashImage} />
+          <View style={styles(colors, insets).imagesContainer}>
+            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}
