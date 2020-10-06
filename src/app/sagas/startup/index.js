@@ -64,7 +64,7 @@ export function* startup() {
     // Check if is UI mode
     if (Configuration.UI) {
       const tracking = yield call([Storage, 'getItem'], 'tracking_enabled', 'false');
-      yield put(accountActions.setTrackingEnabled(tracking === true));
+      yield put(accountActions.setTrackingEnabled(tracking === 'true'));
       return;
     }
 

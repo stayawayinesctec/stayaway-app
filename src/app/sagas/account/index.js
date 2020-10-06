@@ -113,6 +113,11 @@ export function* watchTrackingStatus() {
 }
 
 export function* startTracking() {
+  if (Configuration.UI) {
+    yield put(accountActions.setTrackingEnabled(true));
+    return;
+  }
+
   const watcher = yield fork(watchTrackingStatus);
 
   // Wait for listener to registered
