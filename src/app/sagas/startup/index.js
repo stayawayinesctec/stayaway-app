@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import { take, select, takeLatest, put, call, fork } from 'redux-saga/effects';
+import { take, select, takeLatest, put, call, fork, delay } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { AppState, Platform } from 'react-native';
 
@@ -116,6 +116,7 @@ function* watchAppStateChange() {
         if (nextState === 'active') {
           const isProtectorOpen = yield select(isProtectorModalOpen);
           if (isProtectorOpen) {
+            yield delay(200);
             yield put(modalsActions.closeProtectorModal());
             yield take(modalsTypes.PROTECTOR_MODAL_CLOSED);
           }
