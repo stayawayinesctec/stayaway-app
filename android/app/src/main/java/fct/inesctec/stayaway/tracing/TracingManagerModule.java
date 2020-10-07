@@ -260,6 +260,16 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     }
 
     /**
+     * Reset exposure days.
+     */
+    @ReactMethod
+    public void resetExposureDays(Promise promise) {
+        Context context = getReactApplicationContext();
+        DP3T.resetExposureDays(context);
+        promise.resolve(null);
+    }
+
+    /**
      * Check if battery optimization is disabled.
      */
     @ReactMethod

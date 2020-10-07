@@ -87,7 +87,8 @@ class TracingLocalPush: NSObject {
     let content = UNMutableNotificationContent()
     content.title = "exposed_notification_title".ub_localized;
     content.body = "exposed_notification_body".ub_localized;
-    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false))
+
+    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
     center.add(request, withCompletionHandler: nil)
   }
 

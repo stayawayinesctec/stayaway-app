@@ -87,4 +87,10 @@ RCT_REMAP_METHOD(resetInfectionStatus, resetInfectionStatusWithResolver:(RCTProm
   [tm resetInfectionStatus:resolve rejecter:reject];
 }
 
+RCT_REMAP_METHOD(resetExposureDays, resetExposureDaysWithResolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+  [tm resetExposureDays:resolve rejecter:reject];
+}
+
 @end

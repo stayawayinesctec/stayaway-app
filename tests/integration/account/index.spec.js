@@ -706,7 +706,7 @@ describe('Account Sagas', () => {
 
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
-      expect(TrackingManager.resetInfectionStatus).toHaveBeenCalled();
+      expect(TrackingManager.resetExposureDays).toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([
         accountActions.setStatus(newState),
@@ -739,7 +739,7 @@ describe('Account Sagas', () => {
 
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
-      expect(TrackingManager.resetInfectionStatus).not.toHaveBeenCalled();
+      expect(TrackingManager.resetExposureDays).not.toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([
         accountActions.setStatus(newState),

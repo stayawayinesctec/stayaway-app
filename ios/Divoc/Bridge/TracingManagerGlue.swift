@@ -313,6 +313,16 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
       resolve(self.FAILED)
     }
   }
+
+  @objc func resetExposureDays(_ resolve:@escaping RCTPromiseResolveBlock,
+                               rejecter reject:@escaping RCTPromiseRejectBlock) {
+    do {
+      try DP3TTracing.resetExposureDays()
+      resolve(self.SUCCESS);
+    } catch {
+      resolve(self.FAILED)
+    }
+  }
 }
 
 extension TracingManagerGlue: DP3TBackgroundHandler {

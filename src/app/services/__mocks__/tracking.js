@@ -87,6 +87,7 @@ const exposed = jest.fn();
 const addUpdateEventListener = jest.fn();
 const removeUpdateEventListener = jest.fn();
 const resetInfectionStatus = jest.fn();
+const resetExposureDays = jest.fn();
 const isIgnoringBatteryOptimizationsPermission = jest.fn();
 const requestIgnoreBatteryOptimizationsPermission = jest.fn();
 
@@ -100,6 +101,7 @@ export default {
   addUpdateEventListener,
   removeUpdateEventListener,
   resetInfectionStatus,
+  resetExposureDays,
   isIgnoringBatteryOptimizationsPermission,
   requestIgnoreBatteryOptimizationsPermission,
 };
