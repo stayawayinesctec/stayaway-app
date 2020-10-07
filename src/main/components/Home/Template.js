@@ -172,7 +172,7 @@ export default function Template (props) {
     infectionStatus,
   } = props;
 
-  const showUpdatedAt = infectionStatus !== INFECTION_STATUS.INFECTED
+  const showUpdatedAt = infectionStatus !== INFECTION_STATUS.INFECTED;
   const hasUpdated = lastSync !== 0;
   const insets = useSafeAreaInsets();
 
