@@ -229,10 +229,10 @@
     },
     "diagnosis": {
       "code_input": {
-        "title": "Teve resultado positivo no teste de diagnóstico da COVID-19?",
+        "title": "Testou positivo à COVID-19?",
         "description": {
-          "first": "Digite o código que recebeu com o seu diagnóstico ",
-          "second": "para permitir à aplicação partilhar anonimamente os seus identificadores aleatórios. Este código é válido durante 24h."
+          "first": "Digite o código que recebeu do seu médico após ter testado positivo ",
+          "second": "para partilhar anonimamente os seus identificadores aleatórios. Este código é válido durante 24h."
         },
         "accessibility": {
           "label": "Submeter",

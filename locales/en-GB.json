@@ -231,7 +231,7 @@
       "code_input": {
         "title": "Have you tested positive for COVID-19?",
         "description": {
-          "first": "Along with your diagnosis, you were given a code by your doctor. ",
+          "first": "Along with your positive diagnosis, you were given a code by your doctor. ",
           "second": "Enter the code to give the app permission to anonymously share your random identifiers. This code is valid for 24 hours only."
         },
         "accessibility": {
