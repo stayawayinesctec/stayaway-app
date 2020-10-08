@@ -48,10 +48,11 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import fct.inesctec.stayaway.BuildConfig;
+import fct.inesctec.stayaway.MainActivity;
 import fct.inesctec.stayaway.R;
 import fct.inesctec.stayaway.tracing.internal.networking.errors.ResponseError;
-import fct.inesctec.stayaway.tracing.internal.networking.models.AppVersionModel;
 import fct.inesctec.stayaway.tracing.internal.networking.models.ConfigResponseModel;
+import fct.inesctec.stayaway.tracing.internal.networking.models.InfoBoxModel;
 import fct.inesctec.stayaway.tracing.internal.networking.models.VersionModel;
 import fct.inesctec.stayaway.tracing.internal.storage.SecureStorage;
 import fct.inesctec.stayaway.tracing.internal.util.NotificationUtil;
@@ -109,7 +110,7 @@ public class ConfigWorker extends Worker {
         ConfigRepository configRepository = new ConfigRepository(context);
         ConfigResponseModel config = configRepository.getConfig();
 
-        if (this.shouldBroadcastNotification(config.getAndroidVersion())) {
+        if (this.shouldBroadcastUpdateNotification(config.getVersion())) {
             createUpdateNotification(context);
         } else {
             cancelUpdateNotification(context);
@@ -120,6 +121,21 @@ public class ConfigWorker extends Worker {
                 config.getParameters().getLowerThreshold(), config.getParameters().getHigherThreshold(),
                 config.getParameters().getFactorLow(), config.getParameters().getFactorHigh(),
                 config.getParameters().getTriggerThreshold());
+
+        // Check InfoBox
+        SecureStorage secureStorage = SecureStorage.getInstance(context);
+        InfoBoxModel info = config.getInfoBox(context.getString(R.string.language_key));
+        if (info != null) {
+            if (info.getId() == null || !info.getId().equals(secureStorage.getInfoboxId())) {
+                // Only update the InfoBox if it has a new ID.
+                secureStorage.setInfoboxTitle(info.getTitle());
+                secureStorage.setInfoboxText(info.getText());
+                secureStorage.setInfoboxLink(info.getUrl());
+                secureStorage.setInfoboxId(info.getId());
+
+                createInfoBoxNotification(context);
+            }
+        }
     }
 
     private void createUpdateNotification(Context context) {
@@ -150,13 +166,49 @@ public class ConfigWorker extends Worker {
         notificationManager.notify(NotificationUtil.NOTIFICATION_ID_UPDATE, notification);
     }
 
+    private void createInfoBoxNotification(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationUtil.createNotificationChannel(context);
+        }
+
+        SecureStorage secureStorage = SecureStorage.getInstance(context);
+        Intent resultIntent;
+
+        if (secureStorage.getInfoboxLink() != null) {
+            resultIntent = new Intent(Intent.ACTION_VIEW);
+            resultIntent.setData(Uri.parse(secureStorage.getInfoboxLink()));
+        } else {
+            resultIntent = new Intent(context, MainActivity.class);
+            resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification notification =
+                new NotificationCompat.Builder(context, NotificationUtil.NOTIFICATION_CHANNEL_ID)
+                        .setContentTitle(secureStorage.getInfoboxTitle())
+                        .setContentText(secureStorage.getInfoboxText())
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(secureStorage.getInfoboxText()))
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setSmallIcon(R.drawable.ic_stayaway_logo)
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+                        .build();
+
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(NotificationUtil.NOTIFICATION_ID_INFOBOX, notification);
+    }
+
     private void cancelUpdateNotification(Context context) {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(NotificationUtil.NOTIFICATION_ID_UPDATE);
     }
 
-    private boolean shouldBroadcastNotification(VersionModel config) {
+    private boolean shouldBroadcastUpdateNotification(VersionModel config) {
         Version lastVersion = new Version(config.getName());
         int lastBuild = Integer.parseInt(config.getBuild());
         Version currentVersion = new Version(BuildConfig.VERSION_NAME);

@@ -36,6 +36,7 @@ public class NotificationUtil {
     public static final int NOTIFICATION_ID_CONTACT = 42;
     public static final int NOTIFICATION_ID_SYNC_ERROR = 43;
     public static final int NOTIFICATION_ID_UPDATE = 44;
+    public static final int NOTIFICATION_ID_INFOBOX = 44;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void createNotificationChannel(Context context) {
