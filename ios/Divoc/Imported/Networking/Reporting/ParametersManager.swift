@@ -23,6 +23,9 @@ class ParametersManager {
     return queue
   }()
 
+  @KeychainPersisted(key: "lastInfoBoxId", defaultValue: 0)
+  public var lastInfoBoxId: Int
+
   @KeychainPersisted(key: "nextScheduledParametersFetch", defaultValue: nil)
   private var nextScheduledParametersFetch: Date?
 
@@ -79,7 +82,6 @@ private class ParametersFetchOperation: Operation {
 
       let config = ReactNativeConfig.env();
       let configUrl:String = (config!["BACKEND_CONFIG_URL"] as! String) + "config/defaults.json";
-      NSLog("BACKEND_CONFIG_URL " + configUrl)
 
       var res: Any?
       if let url = URL(string: configUrl) {
@@ -119,12 +121,32 @@ private class ParametersFetchOperation: Operation {
 
           DP3TTracing.parameters = dp3tParameters
         }
+
         if let appversion = dictionary["versions"] as? Dictionary<String,Dictionary<String,String>> {
           let iosversion = appversion["ios"] ?? [:]
           let version = iosversion["name"] ?? "0"
           let build = iosversion["build"] ?? "0"
           AppVersionManager.shared.checkAppVersion(version: version,buildno: build)
         }
+
+        if let infobox = dictionary["infoBox"] as? Dictionary<String, Dictionary<String, Any>> {
+          let info = infobox[.languageKey] ?? nil
+
+          if ((info) != nil) {
+            let id = info!["id"] as? Int ?? 0
+            let title = info!["title"] as? String ?? ""
+            let text = info!["text"] as? String ?? ""
+            let url = info!["url"] as? String ?? ""
+
+            if (id == 0 || id != self?.manager.lastInfoBoxId) {
+              self?.manager.lastInfoBoxId = id
+
+              // Send infobox notification
+              TracingLocalPush.shared.scheduleInfoBoxNotification(title: title, body: text, url: url, completionHandler: nil)
+            }
+          }
+        }
+
         self?.manager.updateParametersFetchData()
       }
     }

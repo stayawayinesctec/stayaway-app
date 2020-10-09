@@ -102,6 +102,16 @@ class TracingLocalPush: NSObject {
     center.add(request, withCompletionHandler: completionHandler)
   }
 
+  private let notificationIdentifierInfoBox = "stayaway.notification.infobox"
+  func scheduleInfoBoxNotification(title: String, body: String, url: String, completionHandler: ((Error?) -> Void)?) {
+    let content = UNMutableNotificationContent()
+    content.title = title
+    content.body = body
+    content.userInfo = [ "url": url ]
+    let request = UNNotificationRequest(identifier: notificationIdentifierInfoBox, content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false))
+    center.add(request, withCompletionHandler: completionHandler)
+  }
+
   // MARK: - Sync warnings
 
   // If sync doesnt work for 2 days, we show a notification
@@ -153,11 +163,19 @@ extension TracingLocalPush: UNUserNotificationCenterDelegate {
 
   func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
     guard exposureIdentifiers.contains(response.notification.request.identifier) else {
-      if(response.notification.request.identifier == notificationIdentifierCustom){
-        if let url = URL(string: "https://apps.apple.com/pt/"),
+      if (response.notification.request.identifier == notificationIdentifierCustom) {
+        if let url = URL(string: "https://apps.apple.com/pt/app/stayaway-covid/id1519479652"),
             UIApplication.shared.canOpenURL(url)
         {
           UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+      } else if (response.notification.request.identifier == notificationIdentifierInfoBox) {
+        let url = response.notification.request.content.userInfo["url"] as? String ?? nil
+        if (url != nil) {
+          if let urlValue = URL(string: String(url!)), UIApplication.shared.canOpenURL(urlValue)
+          {
+            UIApplication.shared.open(urlValue, options: [:], completionHandler: nil)
+          }
         }
       }
       completionHandler()
