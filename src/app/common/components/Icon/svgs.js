@@ -1587,7 +1587,7 @@ export default (colors, tintColor) => ({
   chevron_left: {
     svg: (
       <Svg width='14' height='22' fill='none'>
-        <Path d='M12 20L3 11L12 2' stroke={tintColor || colors.blueDark} strokeWidth='3' strokeLinecap='round' />
+        <Path d='M12 20L3 11L12 2' fill={colors.transparent} stroke={tintColor || colors.blueDark} strokeWidth='3' strokeLinecap='round' />
       </Svg>
     ),
     viewBox: '0 0 14 22',
@@ -1595,7 +1595,7 @@ export default (colors, tintColor) => ({
   chevron_right: {
     svg: (
       <Svg width='14' height='22' fill='none'>
-        <Path d='M2 2L11 11L2 20' stroke={tintColor || colors.blueDark} strokeWidth='3' strokeLinecap='round' />
+        <Path d='M2 2L11 11L2 20' fill={colors.transparent} stroke={tintColor || colors.blueDark} strokeWidth='3' strokeLinecap='round' />
       </Svg>
     ),
     viewBox: '0 0 14 22',
