@@ -86,7 +86,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   private let EN_SUCCEEDED:String =  "EN_SUCCEEDED";
   private let EN_FAILED:String = "EN_FAILED";
 
-  @KeychainPersisted(key: "tracingIsActivated", defaultValue: false)
+  @KeychainPersisted(key: "tracingIsActivated", defaultValue: true)
   private var isActivated: Bool
 
   // in memory dictionary for codes we already have a token and date,
