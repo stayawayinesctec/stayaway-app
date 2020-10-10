@@ -286,7 +286,5 @@ Info.propTypes = {
   onPressHowToUse: PropTypes.func,
   onPressFaqs: PropTypes.func,
   onPressLegalInformation: PropTypes.func,
-  onPressPrivacyPolicy: PropTypes.func,
-  onPressTechnicalSheet: PropTypes.func,
   onPressDebug: PropTypes.func,
 };

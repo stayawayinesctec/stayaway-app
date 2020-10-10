@@ -69,9 +69,6 @@ export function* setupNewAccount() {
       yield put(accountActions.setTrackingEnabled(true));
     } else if (payload === TRACKING_RESULTS.GAEN) {
       yield put(accountActions.setTrackingEnabled(false));
-
-      // Add tracking error
-      yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
     } else {
       yield put(accountActions.setTrackingEnabled(false));
     }
@@ -145,11 +142,16 @@ export function* startTracking() {
       return;
     }
 
-    yield call(TrackingManager.sync);
+    try {
+      yield call(TrackingManager.sync);
 
-    // Get status
-    const status = yield call(TrackingManager.getStatus);
-    yield put(accountActions.updateStatus(status));
+      // Get status
+      const status = yield call(TrackingManager.getStatus);
+      yield put(accountActions.updateStatus(status));
+    } catch (error) {
+      // Sync error. Probably exposure check limit reached.
+      console.log(error);
+    }
 
     yield put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
   } catch (error) {
