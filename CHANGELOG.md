@@ -36,3 +36,12 @@
 - Add arrows to onboarding swiper
 - Fix minor bugs
 - Fix typos
+
+## version 1.0.5 (5.9.2020)
+
+- Fix onboarding arrows
+- Fix start tracking when sync throws error
+- Fix iOS GAEN default disabeld
+- Fix protector screen flickering
+- Fix minor bugs
+- Fix typos
