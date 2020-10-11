@@ -9,7 +9,7 @@
  */
 
 import { runSaga, channel as stdChannel } from 'redux-saga';
-
+import { Platform } from 'react-native';
 import Moment from 'moment';
 
 import { languages } from '@app/services/i18n';
@@ -17,7 +17,7 @@ import { languages } from '@app/services/i18n';
 import onboardingActions from '@app/redux/onboarding';
 import startupActions from '@app/redux/startup';
 import accountActions, { TRACKING_RESULTS } from '@app/redux/account';
-import TrackingManager from '@app/services/tracking';
+import TrackingManager, { ERRORS } from '@app/services/tracking';
 
 import Storage from '@app/services/storage';
 
@@ -229,7 +229,7 @@ describe('Startup Sagas', () => {
       expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
       expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
 
-      expect(dispatched).toHaveLength(7);
+      expect(dispatched).toHaveLength(8);
       expect(dispatched).toEqual([
         accountActions.setLanguage(languages.PT),
         accountActions.setSignUpDate(signUpDate),
@@ -237,6 +237,7 @@ describe('Startup Sagas', () => {
         onboardingActions.setOnboarding(false),
         accountActions.startTracking(),
         accountActions.setTrackingEnabled(false),
+        accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]),
         startupActions.setAppLaunched(true),
       ]);
     });

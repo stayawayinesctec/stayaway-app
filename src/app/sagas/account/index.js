@@ -69,6 +69,9 @@ export function* setupNewAccount() {
       yield put(accountActions.setTrackingEnabled(true));
     } else if (payload === TRACKING_RESULTS.GAEN) {
       yield put(accountActions.setTrackingEnabled(false));
+
+      // Add tracking error
+      yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
     } else {
       yield put(accountActions.setTrackingEnabled(false));
     }

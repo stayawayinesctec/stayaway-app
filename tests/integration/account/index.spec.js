@@ -173,13 +173,14 @@ describe('Account Sagas', () => {
       // Assert
       expect(NavigationService.navigate).toHaveBeenCalled();
       expect(NavigationService.navigate).toHaveBeenCalledWith(AppRoutes.APP);
-      expect(dispatched).toHaveLength(8);
+      expect(dispatched).toHaveLength(9);
       expect(dispatched).toEqual(expect.arrayContaining([
         accountActions.setupNewAccountPending(),
         accountActions.updateStatus(defaultStatus),
         permissionsActions.checkAllPermissions(),
         accountActions.startTracking(),
         accountActions.setTrackingEnabled(false),
+        accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]),
         onboardingActions.setOnboarding(false),
         accountActions.setupNewAccountDone(),
       ]));

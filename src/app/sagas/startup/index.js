@@ -10,12 +10,12 @@
 
 import { take, select, takeLatest, put, call, fork, delay } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
-import { AppState } from 'react-native';
+import { Platform, AppState } from 'react-native';
 
 import Storage from '@app/services/storage';
 import Configuration from '@app/services/configuration';
-import TrackingManager from '@app/services/tracking';
 import i18n from '@app/services/i18n';
+import TrackingManager, { ERRORS } from '@app/services/tracking';
 
 import modalsActions, { modalsTypes } from '@app/redux/modals';
 import { isProtectorModalOpen } from '@app/redux/modals/selectors';
@@ -83,6 +83,9 @@ export function* startup() {
       yield put(accountActions.setTrackingEnabled(true));
     } else if (payload === TRACKING_RESULTS.GAEN) {
       yield put(accountActions.setTrackingEnabled(false));
+
+      // Add tracking error
+      yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
     } else {
       yield put(accountActions.setTrackingEnabled(false));
     }
