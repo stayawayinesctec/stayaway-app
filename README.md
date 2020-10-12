@@ -8,11 +8,15 @@
   <div>
     <!-- App Store -->
     <a href="https://apps.apple.com/pt/app/id1519479652">
-      <img height="40" src="https://stayawaycovid.pt/wp-content/uploads/2020/07/apple2-07.png" alt="Download on the App Store" />
+      <img height="40" src="docs/stores/apple.png" alt="Download on the App Store" />
     </a>
     <!-- Google Play -->
     <a href="https://play.google.com/store/apps/details?id=fct.inesctec.stayaway">
-      <img height="40" src="https://stayawaycovid.pt/wp-content/uploads/2020/07/google2-08.png" alt="Get it on Google Play">
+      <img height="40" src="docs/stores/google.png" alt="Get it on Google Play">
+    </a>
+    <!-- Huawei -->
+    <a href="https://appgallery.huawei.com/#/app/C102893577">
+      <img height="40" src="docs/stores/huawei.png" alt="Explore it on Huawei">
     </a>
   </div>
 </div>
@@ -47,10 +51,10 @@ Thanks to STAYAWAY COVID, we are able to find out if we are at risk of being inf
 The project was led by [INESC TEC](https://www.inesctec.pt) with the collaboration of [Keyruptive](https://www.keyruptive.com) and [Ubirider](https://www.ubirider.com).
 
 <p align="center">
-<img src="docs/screenshot_1.png" width="20%">
-<img src="docs/screenshot_2.png" width="20%">
-<img src="docs/screenshot_3.png" width="20%">
-<img src="docs/screenshot_4.png" width="20%">
+<img src="docs/screenshots/screenshot_1.png" width="20%">
+<img src="docs/screenshots/screenshot_2.png" width="20%">
+<img src="docs/screenshots/screenshot_3.png" width="20%">
+<img src="docs/screenshots/screenshot_4.png" width="20%">
 </p>
 
 ## Requirements
