@@ -60,7 +60,12 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
       values.append([4])
     case .userAlreadyMarkedAsInfected:
       values.append([16])
+    case .authorizationUnknown:
+      values.append([17])
+    case .infectionStatusNotResettable:
+      values.append([18])
     }
+    
   case .initialization:
     NSLog("case .initialization")
   }
@@ -266,6 +271,10 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
           NSLog("Sync. Cancelled.")
         case .exposureNotificationError(error: let error):
           NSLog("Sync. EN error."+error.localizedDescription)
+        case .authorizationUnknown:
+          NSLog("Sync. Authorization unkown.")
+        case .infectionStatusNotResettable:
+          NSLog("Sync. Infection status not resettable.")
         }
         reject(self.UNKNOWN_EXCEPTION, e.localizedDescription, e);
 
