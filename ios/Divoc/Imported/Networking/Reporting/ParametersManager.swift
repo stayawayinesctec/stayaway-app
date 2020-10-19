@@ -68,12 +68,12 @@ private class ParametersFetchOperation: Operation {
     if manager.nextScheduledFakeRequestDate == nil {
       manager.updateParametersFetchData()
     } else {
-     guard let lastDate = manager.nextScheduledFakeRequestDate,
-       Date() >= lastDate.addingTimeInterval(60*60*24) else {
-         //waiting for 24h to pass
-         NSLog("Too early for new parameters check.")
-         return
-     }
+      guard let lastDate = manager.nextScheduledFakeRequestDate,
+            Date() >= lastDate.addingTimeInterval(60*60*24) else {
+        //waiting for 24h to pass
+        NSLog("Too early for new parameters check.")
+        return
+      }
     }
 
     DispatchQueue.global(qos: .background).asyncAfter(deadline: .now()) { [weak self] in
@@ -129,26 +129,22 @@ private class ParametersFetchOperation: Operation {
           AppVersionManager.shared.checkAppVersion(version: version,buildno: build)
         }
 
-        if let infobox = dictionary["infoBox"] as? Dictionary<String, Dictionary<String, Any>> {
-          let info = infobox[.languageKey] ?? nil
+        if let infobox = dictionary["infoBox"] as? Dictionary<String, Dictionary<String, Any>>,
+           let info = infobox[.languageKey] {
+          let id = info["id"] as? Int ?? 0
+          let title = info["title"] as? String ?? ""
+          let text = info["text"] as? String ?? ""
+          let url = info["url"] as? String ?? ""
 
-          if ((info) != nil) {
-            let id = info!["id"] as? Int ?? 0
-            let title = info!["title"] as? String ?? ""
-            let text = info!["text"] as? String ?? ""
-            let url = info!["url"] as? String ?? ""
+          if (id == 0 || id != self?.manager.lastInfoBoxId) {
+            self?.manager.lastInfoBoxId = id
 
-            if (id == 0 || id != self?.manager.lastInfoBoxId) {
-              self?.manager.lastInfoBoxId = id
-
-              // Send infobox notification
-              TracingLocalPush.shared.scheduleInfoBoxNotification(title: title, body: text, url: url, completionHandler: nil)
-            }
+            // Send infobox notification
+            TracingLocalPush.shared.scheduleInfoBoxNotification(title: title, body: text, url: url)
           }
         }
-
-        self?.manager.updateParametersFetchData()
       }
+      self?.manager.updateParametersFetchData()
     }
   }
 }
