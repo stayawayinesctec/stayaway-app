@@ -28,7 +28,7 @@
 - Fix minor bugs
 - Fix typos
 
-## version 1.0.4 (5.9.2020)
+## version 1.0.4 (5.10.2020)
 
 - Add protector screen on iOS
 - Add terms of use and privacy policy
@@ -37,7 +37,7 @@
 - Fix minor bugs
 - Fix typos
 
-## version 1.0.5 (5.9.2020)
+## version 1.0.5 (11.10.2020)
 
 - Fix onboarding arrows
 - Fix start tracking when sync throws error
