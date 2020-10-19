@@ -51,19 +51,23 @@ import fct.inesctec.stayaway.tracing.internal.util.ExponentialDistribution;
 
 public class FakeWorker extends Worker {
 
-    private static final String TAG = "FakeWorker";
-    private static final String WORK_TAG = "fct.inesctec.stayaway.FakeWorker";
-    private static final String FAKE_AUTH_CODE = "000000000000";
+	private static final String TAG = "FakeWorker";
+	private static final String WORK_TAG = "fct.inesctec.stayaway.FakeWorker";
+	private static final String FAKE_AUTH_CODE = "000000000000";
 
-    private static final long FACTOR_HOUR_MILLIS = 60 * 60 * 1000L;
+	private static final long FACTOR_HOUR_MILLIS = 60 * 60 * 1000L;
 	private static final long FACTOR_DAY_MILLIS = 24 * FACTOR_HOUR_MILLIS;
 	private static final long MAX_DELAY_HOURS = 48;
-    private static final float SAMPLING_RATE = BuildConfig.IS_RELEASE.equals("FALSE") ? 0.2f : 1.0f;
+	private static final float SAMPLING_RATE = BuildConfig.IS_RELEASE.equals("TRUE") ? 0.2f : 1.0f;
 	private static final String KEY_T_DUMMY = "KEY_T_DUMMY";
 
 	public static Clock clock = new ClockImpl();
 
-    public static void safeStartFakeWorker(Context context) {
+	public FakeWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+		super(context, workerParams);
+	}
+
+	public static void safeStartFakeWorker(Context context) {
 		long t_dummy = SecureStorage.getInstance(context).getTDummy();
 		if (t_dummy == -1) {
 			t_dummy = clock.currentTimeMillis() + clock.syncInterval();
@@ -72,8 +76,8 @@ public class FakeWorker extends Worker {
 		startFakeWorker(context, ExistingWorkPolicy.KEEP, t_dummy);
 	}
 
-    private static void startFakeWorker(Context context, ExistingWorkPolicy policy, long t_dummy) {
-        long now = clock.currentTimeMillis();
+	private static void startFakeWorker(Context context, ExistingWorkPolicy policy, long t_dummy) {
+		long now = clock.currentTimeMillis();
 		long executionDelay = Math.max(0L, t_dummy - now);
 		double executionDelayDays = (double) executionDelay / FACTOR_DAY_MILLIS;
 
@@ -91,13 +95,9 @@ public class FakeWorker extends Worker {
 				.build();
 
 		WorkManager.getInstance(context).enqueueUniqueWork(WORK_TAG, policy, fakeWorker);
-    }
+	}
 
-    public FakeWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
-        super(context, workerParams);
-    }
-
-    @NonNull
+	@NonNull
 	@Override
 	public ListenableWorker.Result doWork() {
 		long now = clock.currentTimeMillis();
@@ -151,11 +151,11 @@ public class FakeWorker extends Worker {
 		}
 	}
 
-    private String getAuthorizationHeader(String accessToken) {
-        return "Bearer " + accessToken;
-    }
+	private String getAuthorizationHeader(String accessToken) {
+		return "Bearer " + accessToken;
+	}
 
-    public interface Clock {
+	public interface Clock {
 		long syncInterval();
 
 		long currentTimeMillis();
