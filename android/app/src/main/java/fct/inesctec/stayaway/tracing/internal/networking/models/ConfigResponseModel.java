@@ -13,26 +13,25 @@ package fct.inesctec.stayaway.tracing.internal.networking.models;
 public class ConfigResponseModel {
     private AppVersionModel versions;
     private ParametersModel parameters;
-    private String message;
+    private InfoBoxModelCollection infoBox;
 
-    public ConfigResponseModel(AppVersionModel versions, ParametersModel parameters, String message) {
+    public ConfigResponseModel(AppVersionModel versions, ParametersModel parameters, InfoBoxModelCollection infoBox) {
         this.versions = versions;
         this.parameters = parameters;
-        this.message = message;
+        this.infoBox = infoBox;
     }
 
-    public AppVersionModel getVersions() {
-        return versions;
-    }
-    public VersionModel getAndroidVersion() {
+    public VersionModel getVersion() {
         return versions.getAndroidVersion();
     }
-    public VersionModel getIOSVersion() {
-        return versions.getIOSVersion();
+
+    public InfoBoxModelCollection getInfoBox() {
+        return infoBox;
     }
 
-    public String getMessage() {
-        return message;
+    public InfoBoxModel getInfoBox(String languageKey) {
+        if (infoBox == null) return null;
+        return infoBox.getInfoBox(languageKey);
     }
 
     public ParametersModel getParameters() {

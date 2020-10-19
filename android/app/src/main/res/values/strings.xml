@@ -14,6 +14,8 @@
 	<!-- Divoc App -->
     <string name="app_name">STAYAWAY</string>
 
+	<string name="language_key">"en"</string>
+
 	<!-- Tracing Manager -->
 	<string name="dp3t_sdk_service_notification_channel">STAYAWAY COVID</string>
 	<string name="dp3t_sdk_service_notification_title">STAYAWAY COVID</string>
