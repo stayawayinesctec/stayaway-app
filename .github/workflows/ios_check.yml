@@ -11,16 +11,6 @@
 name: iOS Check Build
 
 on:
-  push:
-    branches:
-      - master
-
-    paths-ignore:
-      - "docs/**"
-      - "locales/**"
-      - "**/*.md"
-      - "LICENSE"
-
   pull_request:
     branches:
       - master
