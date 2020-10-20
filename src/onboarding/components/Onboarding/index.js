@@ -133,7 +133,7 @@ export default function Onboarding (props) {
           showsPagination={index < 4}
           dotStyle={styles(insets).dotStyle}
           ref={swiper}
-          renderPagination={() => renderPagination(index, 4, {colors, insets}, swiper)}
+          renderPagination={() => renderPagination(index, 5, {colors, insets}, swiper)}
         >
           <Template
             header={i18n.translate('screens.onboarding.first.title')}
