@@ -78,8 +78,8 @@ jobs:
 
       - name: Install pods dependencies
         run: |
-          gem update cocoapods xcodeproj
           cd ios
+          gem update cocoapods xcodeproj
           pod install
 
       - name: Setup environment

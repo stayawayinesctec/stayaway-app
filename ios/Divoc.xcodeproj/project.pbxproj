@@ -144,6 +144,7 @@
 		C935027624B37EE3007887E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		C981BFE424B384490005AB5D /* String+NS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NS.swift"; sourceTree = "<group>"; };
 		C99EEABF24C5D3A800A0599F /* ParametersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersManager.swift; sourceTree = "<group>"; };
+		C9E82C352522396F004D1373 /* Entitlements.debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.debug.entitlements; sourceTree = "<group>"; };
 		C9EC533324E1AA0200BBFFF0 /* String+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Version.swift"; sourceTree = "<group>"; };
 		D51AC7281E0C3B50AFA82582 /* Pods-Divoc-DivocTests.debug.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.debug.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.debug.ui.xcconfig"; sourceTree = "<group>"; };
 		D699EBE23BD4B6E38BA14505 /* libPods-Divoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				8085C61824AB55E500B02F6F /* Entitlements.entitlements */,
+				C9E82C352522396F004D1373 /* Entitlements.debug.entitlements */,
 				8085C61924AB55E500B02F6F /* fonts */,
 				8085C62624AB55E500B02F6F /* Info.plist */,
 			);
@@ -777,15 +779,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E0F7827CA2898441284C50EB /* Pods-Divoc.productiondebug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.debug;
-				BUNDLE_ID_SUFFIX = .debug;
+				APPICON_SUFFIX = .debug;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.debug.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10051;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = H4F6Z9HC74;
+				DEVELOPMENT_TEAM = VB258YUFG3;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -804,7 +806,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = STAYAWAY;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development fct.inesctec.stayaway";
 				SWIFT_MODULE_NAME = STAYAWAY_COVID;
 				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
@@ -819,11 +821,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2D031E2E76DF5E3B1A3F9F52 /* Pods-Divoc.productionrelease.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BUNDLE_ID_SUFFIX = "";
+				APPICON_SUFFIX = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10051;
 				DEFINES_MODULE = YES;
@@ -841,7 +843,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = STAYAWAY;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development fct.inesctec.stayaway";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore fct.inesctec.stayaway";
 				SWIFT_MODULE_NAME = STAYAWAY_COVID;
 				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
@@ -1020,15 +1022,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F5A81386B14093725BA679DE /* Pods-Divoc.productionstaging.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.staging;
-				BUNDLE_ID_SUFFIX = .debug;
+				APPICON_SUFFIX = .staging;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10051;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = H4F6Z9HC74;
+				DEVELOPMENT_TEAM = VB258YUFG3;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1042,12 +1044,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = STAYAWAY;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc fct.inesctec.stayaway";
 				SWIFT_MODULE_NAME = STAYAWAY_COVID;
 				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_SUFFIX = Staging;
 			};
 			name = ProductionStaging;
 		};
@@ -1132,15 +1135,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF391B651C6E06417CC63C0A /* Pods-Divoc.uistaging.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = UiAppIcon.staging;
-				BUNDLE_ID_SUFFIX = .ui.debug;
+				APPICON_SUFFIX = .ui.staging;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
+				BUNDLE_ID_SUFFIX = .ui.staging;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10051;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = H4F6Z9HC74;
+				DEVELOPMENT_TEAM = VB258YUFG3;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1154,13 +1157,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "STAYAWAY UI";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc fct.inesctec.stayaway.ui.staging";
 				SWIFT_MODULE_NAME = STAYAWAY_COVID;
 				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_SUFFIX = Ui;
+				VERSION_INFO_SUFFIX = Ui_Staging;
 			};
 			name = UiStaging;
 		};
@@ -1252,15 +1255,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A99905D20A9D5D128731C28B /* Pods-Divoc.uidebug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = UiAppIcon.debug;
+				APPICON_SUFFIX = .ui.debug;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
 				BUNDLE_ID_SUFFIX = .ui.debug;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10051;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = H4F6Z9HC74;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1286,7 +1289,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_SUFFIX = UiDebug;
+				VERSION_INFO_SUFFIX = Ui_Debug;
 			};
 			name = UiDebug;
 		};
@@ -1373,15 +1376,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8ACDBA43CD6239366A3498E /* Pods-Divoc.uirelease.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = UiAppIcon;
+				APPICON_SUFFIX = .ui;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
 				BUNDLE_ID_SUFFIX = .ui;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10051;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = H4F6Z9HC74;
+				DEVELOPMENT_TEAM = VB258YUFG3;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1395,7 +1398,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "STAYAWAY UI";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc fct.inesctec.stayaway.ui";
 				SWIFT_MODULE_NAME = STAYAWAY_COVID;
 				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";

@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: EUPL-1.2
 #
 
-name: Android Production Staging Build
+name: iOS Production Staging Build
 
 on:
   workflow_dispatch:
@@ -23,12 +23,18 @@ on:
         - "LICENSE"
 
 env:
-  ANDROID_NDK_VERSION: "21.3.6528147"
+  DEVELOPER_DIR: /Applications/Xcode_12.app
+  RCT_NO_LAUNCH_PACKAGER: true
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+
     steps:
+      - name: Switch to Xcode 12
+        run: sudo xcode-select --switch /Applications/Xcode_12.app
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
@@ -36,12 +42,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "10"
-
-      - uses: actions/setup-java@v1
-        with:
-          java-version: "8"
-          java-package: "jdk"
-          architecture: "x64"
 
       - name: Get node cache directory path
         id: node-cache-dir
@@ -56,15 +56,21 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
 
       - uses: actions/cache@v2
-        id: gradle-cache
-        name: Cache gradle
+        id: pods-cache
+        name: Cache pods dependencies
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-pods-
 
       - name: Install node dependencies
         run: yarn --ignore-scripts --no-audit --prefer-offline --frozen-lockfileyarn --ignore-scripts --frozen-lockfile
+
+      - name: Install pods dependencies
+        run: |
+          cd ios
+          gem update cocoapods xcodeproj
+          pod install
 
       - name: Run unit tests
         run: yarn test:unit
@@ -76,22 +82,24 @@ jobs:
         run: yarn test:components
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     needs: test
     steps:
+      - name: Switch to Xcode 12
+        run: sudo xcode-select --switch /Applications/Xcode_12.app
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
 
+      - name: Setup bundler
+        run: |
+          cd ios
+          bundle update --bundler
+
       - uses: actions/setup-node@v1
         with:
           node-version: "10"
-
-      - uses: actions/setup-java@v1
-        with:
-          java-version: "8"
-          java-package: "jdk"
-          architecture: "x64"
 
       - name: Get node cache directory path
         id: node-cache-dir
@@ -106,65 +114,79 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
 
       - uses: actions/cache@v2
-        id: gradle-cache
-        name: Cache gradle
+        id: pods-cache
+        name: Cache pods dependencies
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-pods-
 
       - name: Install node dependencies
         run: yarn --ignore-scripts --no-audit --prefer-offline --frozen-lockfileyarn --ignore-scripts --frozen-lockfile
 
+      - name: Install pods dependencies
+        run: |
+          cd ios
+          gem update cocoapods xcodeproj
+          pod install
+
       - name: Setup environment
         run: |
-          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;${{ env.ANDROID_NDK_VERSION }}"
-          wget https://github.com/google/exposure-notifications-android/raw/7dc2979051703443895123f83c370f64a81baa38/app/libs/play-services-nearby-18.0.3-eap.aar -P android/app/libs
-          echo "${{secrets.ENV_PRODUCTION_STAGING}}" > android/.env
+          echo "${{secrets.ENV_PRODUCTION_STAGING}}" > .env.production.staging
 
-      - name: Build ABB
+      - name: Build IPA
+        env:
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_GIT_BRANCH: "master"
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_TYPE: "adhoc"
+          APP_PROFILE: "AdHoc"
+          APP_IDENTIFIER: "fct.inesctec.stayaway"
+          APP_SCHEME: "Divoc.production.staging"
+          APP_CONFIGURATION: "ProductionStaging"
+          FASTLANE_TEAM_ID: ${{ secrets.TEAM_ID }}
+          FASTLANE_EXPORT_METHOD: "ad-hoc"
         run: |
-          cd android
-          ./gradlew bundleProductionStaging
+          cd ios
+          bundle exec fastlane build_and_sign
 
-      - name: Build APK
-        run: |
-          cd android
-          ./gradlew assembleProductionStaging
+      - name: SHA256
+        run: shasum -a 256 ios/build/stayaway.ipa
 
-      - name: Upload AAB
+      - name: Upload IPA file
         uses: actions/upload-artifact@v2
         with:
-          name: app-production-staging.aab
-          path: android/app/build/outputs/bundle/productionStaging/app-production-staging.aab
+          name: app-production-staging.ipa
+          path: ios/build/stayaway.ipa
 
-      - name: Upload APK
+      - name: Upload Archive xcarchive (incl symbols) files
         uses: actions/upload-artifact@v2
         with:
-          name: app-production-staging.apk
-          path: android/app/build/outputs/apk/production/staging/app-production-staging.apk
+          name: app-production-staging.xcarchive
+          path: ios/build/stayaway.xcarchive
 
-      - name: Upload Mapping File
+      - name: Upload log file
         uses: actions/upload-artifact@v2
         with:
-          name: mapping.text
-          path: android/app/build/outputs/mapping/productionStaging/mapping.txt
+          name: app-production-staging.log
+          path: ios/build/build.log
 
   upload:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Download APK artifcat
+      - name: Download IPA artifcat
         uses: actions/download-artifact@v2
         with:
-          name: app-production-staging.apk
+          name: app-production-staging.ipa
 
       - name: Upload artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1.1.1
         with:
-          appName: ${{secrets.APPCENTER_ORG_ANDROID}}/${{secrets.APPCENTER_APP_PRODUCTION}}
-          token: ${{secrets.APPCENTER_TOKEN_ANDROID_PRODUCTION}}
+          appName: ${{secrets.APPCENTER_ORG_IOS}}/${{secrets.APPCENTER_APP_PRODUCTION}}
+          token: ${{secrets.APPCENTER_TOKEN_IOS_PRODUCTION}}
           group: Collaborators
-          file: app-production-staging.apk
+          file: stayaway.ipa
           notifyTesters: true
           gitReleaseNotes: true

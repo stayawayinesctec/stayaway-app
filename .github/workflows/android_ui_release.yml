@@ -11,7 +11,6 @@
 name: Android UI Release Build
 
 on:
-  workflow_dispatch:
   push:
     tags:
       - "*"
@@ -118,15 +117,6 @@ jobs:
           echo "${{secrets.ANDROID_KEYSTORE}}" > divoc.keystore.asc
           gpg -d --passphrase '${{secrets.ANDROID_KEYSTORE_PASSWORD}}' --batch divoc.keystore.asc > android/app/divoc.keystore
 
-      - name: Build ABB
-        run: |
-          cd android
-          ./gradlew bundleUiRelease \
-            -PkeystoreFile="$GITHUB_WORKSPACE/android/app/divoc.keystore" \
-            -PkeystorePassword="${{secrets.KEYSTORE_PASSWORD}}" \
-            -PkeyAlias="divoc.release.key" \
-            -PkeyPassword="${{secrets.KEY_PASSWORD}}"
-
       - name: Build APK
         run: |
           cd android
@@ -135,12 +125,6 @@ jobs:
             -PkeystorePassword="${{secrets.KEYSTORE_PASSWORD}}" \
             -PkeyAlias="divoc.release.key" \
             -PkeyPassword="${{secrets.KEY_PASSWORD}}"
-
-      - name: Upload AAB
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-ui-release.aab
-          path: android/app/build/outputs/bundle/uiRelease/app-ui-release.aab
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
@@ -153,20 +137,3 @@ jobs:
         with:
           name: mapping.text
           path: android/app/build/outputs/mapping/uiRelease/mapping.txt
-
-  upload:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download APK artifcat
-        uses: actions/download-artifact@v2
-        with:
-          name: app-ui-release.apk
-
-      - name: Upload artifact to App Center
-        uses: wzieba/AppCenter-Github-Action@v1.1.1
-        with:
-          appName: ${{secrets.APPCENTER_ORG}}/${{secrets.APPCENTER_APP_UI_RELEASE}}
-          token: ${{secrets.APPCENTER_TOKEN_UI_RELEASE}}
-          group: Internal
-          file: app-ui-release.apk

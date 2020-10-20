@@ -1,0 +1,166 @@
+#
+# Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+#
+# This Source Code Form is subject to the terms of the European Union
+# Public License, v. 1.2. If a copy of the EUPL was not distributed with
+# this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+#
+# SPDX-License-Identifier: EUPL-1.2
+#
+
+name: iOS UI Release Build
+
+on:
+  push:
+    tags:
+      - "*"
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_12.app
+  RCT_NO_LAUNCH_PACKAGER: true
+
+jobs:
+  test:
+    runs-on: macos-latest
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+
+    steps:
+      - name: Switch to Xcode 12
+        run: sudo xcode-select --switch /Applications/Xcode_12.app
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "10"
+
+      - name: Get node cache directory path
+        id: node-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        id: node-cache
+        name: Cache node dependencies
+        with:
+          path: ${{ steps.node-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - uses: actions/cache@v2
+        id: pods-cache
+        name: Cache pods dependencies
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-pods-
+
+      - name: Install node dependencies
+        run: yarn --ignore-scripts --no-audit --prefer-offline --frozen-lockfileyarn --ignore-scripts --frozen-lockfile
+
+      - name: Install pods dependencies
+        run: |
+          cd ios
+          gem update cocoapods xcodeproj
+          pod install
+
+      - name: Run unit tests
+        run: yarn test:unit
+
+      - name: Run integration tests
+        run: yarn test:integration
+
+      - name: Run components tests
+        run: yarn test:components
+
+  build:
+    runs-on: macos-latest
+    needs: test
+    steps:
+      - name: Switch to Xcode 12
+        run: sudo xcode-select --switch /Applications/Xcode_12.app
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Setup bundler
+        run: |
+          cd ios
+          bundle update --bundler
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "10"
+
+      - name: Get node cache directory path
+        id: node-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        id: node-cache
+        name: Cache node dependencies
+        with:
+          path: ${{ steps.node-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - uses: actions/cache@v2
+        id: pods-cache
+        name: Cache pods dependencies
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-pods-
+
+      - name: Install node dependencies
+        run: yarn --ignore-scripts --no-audit --prefer-offline --frozen-lockfileyarn --ignore-scripts --frozen-lockfile
+
+      - name: Install pods dependencies
+        run: |
+          cd ios
+          gem update cocoapods xcodeproj
+          pod install
+
+      - name: Setup environment
+        run: |
+          echo "${{secrets.ENV_UI_RELEASE}}" > .env.ui.release
+
+      - name: Build IPA
+        env:
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_GIT_BRANCH: "master"
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_TYPE: "adhoc"
+          APP_PROFILE: "AdHoc"
+          APP_IDENTIFIER: "fct.inesctec.stayaway.ui"
+          APP_SCHEME: "Divoc.ui.release"
+          APP_CONFIGURATION: "UiRelease"
+          FASTLANE_TEAM_ID: ${{ secrets.TEAM_ID }}
+          FASTLANE_EXPORT_METHOD: "ad-hoc"
+        run: |
+          cd ios
+          bundle exec fastlane build_and_sign
+
+      - name: SHA256
+        run: shasum -a 256 ios/build/stayaway.ipa
+
+      - name: Upload IPA file
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-ui-release.ipa
+          path: ios/build/stayaway.ipa
+
+      - name: Upload Archive xcarchive (incl symbols) files
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-ui-release.xcarchive
+          path: ios/build/stayaway.xcarchive
+
+      - name: Upload log file
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-ui-release.log
+          path: ios/build/build.log
