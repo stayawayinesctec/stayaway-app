@@ -124,7 +124,6 @@ export function* startTracking() {
   yield take(accountTypes.TRACKING_STATUS_LISTENER_REGISTERED);
   try {
     const result = yield call(TrackingManager.start);
-    yield put(accountActions.setErrors([]));
 
     if (result === GAEN_RESULTS.EN_CANCELLED) {
       if (Platform.OS === 'android') {
@@ -154,6 +153,8 @@ export function* startTracking() {
       yield put(accountActions.updateStatus(status));
     } catch (error) {
       // Sync error. Probably exposure check limit reached.
+      // Clear errors
+      yield put(accountActions.setErrors([]));
       console.log(error);
     }
 
