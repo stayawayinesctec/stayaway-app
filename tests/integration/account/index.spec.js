@@ -252,9 +252,10 @@ describe('Account Sagas', () => {
       expect(TrackingManager.start).toHaveBeenCalled();
       expect(TrackingManager.sync).toHaveBeenCalled();
       expect(TrackingManager.getStatus).toHaveBeenCalled();
-      expect(dispatched).toHaveLength(3);
+      expect(dispatched).toHaveLength(4);
       expect(dispatched).toEqual([
         accountActions.trackingStatusListenerRegistered(),
+        accountActions.setErrors([]),
         accountActions.updateStatus(defaultStatus),
         accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS),
       ]);
@@ -291,9 +292,10 @@ describe('Account Sagas', () => {
           },
         ],
       );
-      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
         accountActions.trackingStatusListenerRegistered(),
+        accountActions.setErrors([]),
         accountActions.startTrackingResult(TRACKING_RESULTS.GAEN),
       ]);
     });
@@ -349,9 +351,10 @@ describe('Account Sagas', () => {
       expect(TrackingManager.getStatus).toHaveBeenCalled();
       expect(TrackingManager.stop).toHaveBeenCalled();
       expect(TrackingManager.sync).toHaveBeenCalled();
-      expect(dispatched).toHaveLength(4);
+      expect(dispatched).toHaveLength(5);
       expect(dispatched).toEqual([
         accountActions.trackingStatusListenerRegistered(),
+        accountActions.setErrors([]),
         accountActions.updateStatus(defaultStatus),
         accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS),
         accountActions.stopTrackingResult(TRACKING_RESULTS.SUCCESS),
