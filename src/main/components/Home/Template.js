@@ -27,6 +27,7 @@ import SupportIcon from '@app/common/components/SupportIcon';
 import { colors as commonColors, sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
+import { INFECTION_STATUS } from '@app/services/tracking';
 
 const styles = (colors, insets) => StyleSheet.create({
   imageContainer: {
@@ -87,15 +88,15 @@ const styles = (colors, insets) => StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: sizes.size24,
-    paddingVertical: sizes.size24,
+    paddingTop: sizes.size24,
+    paddingBottom: sizes.size24 + iconSizes.size30,
   },
   supportContainer: {
-    position: 'absolute',
-    bottom: -iconSizes.size30,
-    left: sizes.size24,
+    marginTop: -sizes.size10 - (iconSizes.size30 / 2),
+    marginHorizontal: sizes.size24,
   },
   descriptionsContent: {
-    marginTop: sizes.size48,
+    marginTop: sizes.size24,
   },
   description: {
     marginBottom: sizes.size24,
@@ -168,8 +169,10 @@ export default function Template (props) {
     onPress,
     onLongPress,
     error,
+    infectionStatus,
   } = props;
 
+  const showUpdatedAt = infectionStatus !== INFECTION_STATUS.INFECTED;
   const hasUpdated = lastSync !== 0;
   const insets = useSafeAreaInsets();
 
@@ -254,25 +257,25 @@ export default function Template (props) {
                       <View style={styles(colors, insets).panelContainer}>
                         <Text size='xlarge' weight='bold' textColor={panelTextColor}>{header}</Text>
                       </View>
-                      { hasUpdated &&
-                        <View style={styles(colors, insets).updateContainer}>
-                          <Text size='xsmall' textColor={panelTextColor}>
-                            {i18n.translate('screens.home.last_updated')}
-                          </Text>
-                          <Text size='small' weight='bold' textColor={panelTextColor}>{lastSync.format('L')}</Text>
-                        </View>
-                      }
-                      { !hasUpdated &&
-                        <View style={styles(colors, insets).updateContainer}>
-                          <Text size='xsmall' textColor={panelTextColor}>
-                            {i18n.translate('screens.home.never_updated')}
-                          </Text>
-                        </View>
-                      }
                     </View>
                   </View>
                   <View style={styles(colors, insets).supportContainer}>
-                    <SupportIcon />
+                    { showUpdatedAt && hasUpdated &&
+                      <SupportIcon
+                        label={i18n.translate('screens.home.last_updated')}
+                        content={lastSync.format('L')}
+                        color={panelBackgroundColor}
+                      />
+                    }
+                    { showUpdatedAt && !hasUpdated &&
+                      <SupportIcon
+                        content={i18n.translate('screens.home.never_updated')}
+                        color={panelBackgroundColor}
+                      />
+                    }
+                    { ! showUpdatedAt &&
+                      <SupportIcon />
+                    }
                   </View>
                 </View>
               }
@@ -306,6 +309,7 @@ Template.defaultProps = {
     icon: undefined,
     onPress: () => {},
   },
+  infectionStatus: 0,
 };
 
 Template.propTypes = {
@@ -326,4 +330,5 @@ Template.propTypes = {
     icon: PropTypes.object,
     onPress: PropTypes.func,
   }),
+  infectionStatus: PropTypes.number,
 };

@@ -18,17 +18,17 @@ import HomeExposed from '@main/components/Home/HomeExposed';
 import { INFECTION_STATUS } from '@app/services/tracking';
 
 export default function Home (props) {
-  const { infectionStatus, ...otherProps } = props;
+  const { infectionStatus } = props;
 
   if (infectionStatus === INFECTION_STATUS.HEALTHY ) {
-    return <HomeHealthy {...otherProps} />;
+    return <HomeHealthy {...props} />;
   }
 
   if (infectionStatus === INFECTION_STATUS.INFECTED ) {
-    return <HomeInfected {...otherProps} />;
+    return <HomeInfected {...props} />;
   }
 
-  return <HomeExposed {...otherProps} />;
+  return <HomeExposed {...props} />;
 }
 
 Home.defaultProps = {

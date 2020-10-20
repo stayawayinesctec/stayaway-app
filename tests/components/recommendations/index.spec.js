@@ -64,7 +64,7 @@ describe('Recommendations Screen', () => {
     });
   });
   describe('Recommendations buttons interaction work', () => {
-    it('When press source button.', () => {
+    it('When press support button.', () => {
       const infectionStatus = INFECTION_STATUS.HEALTHY;
       const onPress = jest.fn();
 
@@ -75,7 +75,7 @@ describe('Recommendations Screen', () => {
         />,
       );
 
-      const linkButton = queryByA11yLabel(i18n.translate('screens.recommendations.source.accessibility.label'));
+      const linkButton = queryByA11yLabel(i18n.translate('screens.recommendations.support.accessibility.label'));
 
       expect(linkButton).toBeTruthy();
       fireEvent.press(linkButton);

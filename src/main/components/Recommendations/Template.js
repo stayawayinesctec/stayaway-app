@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -17,7 +17,6 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
-import Icon from '@app/common/components/Icon';
 import SupportIcon from '@app/common/components/SupportIcon';
 import Text from '@app/common/components/Text';
 
@@ -33,7 +32,6 @@ const styles = (colors) => StyleSheet.create({
   recommendationsContainer: {
     backgroundColor: colors.white,
     borderRadius: sizes.size8,
-    paddingBottom: sizes.size32,
     shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
@@ -44,7 +42,7 @@ const styles = (colors) => StyleSheet.create({
     elevation: 20,
   },
   recommendationsTitle: {
-    marginLeft: sizes.size16,
+    marginLeft: sizes.size24,
     marginBottom: sizes.size24,
   },
   recommendationsRow: {
@@ -60,12 +58,14 @@ const styles = (colors) => StyleSheet.create({
   },
   recommendations: {
     paddingTop: sizes.size24,
+    paddingBottom: sizes.size24 + iconSizes.size30 - sizes.size8,
     paddingHorizontal: sizes.size8,
   },
   supportContainer: {
-    position: 'absolute',
-    bottom: -iconSizes.size30,
-    left: sizes.size24,
+    marginTop: -sizes.size10 - (iconSizes.size30 / 2),
+    marginHorizontal: sizes.size24,
+    elevation: 30,
+    flexDirection: 'column',
   },
   iconContainer: {
     width: iconSizes.size70,
@@ -109,7 +109,7 @@ const renderRecommendation = ([recommendationA, recommendationB], colors) => (
 );
 
 export default function Recommendations (props) {
-  const { color, recommendations, onPress } = props;
+  const { color, backgroundColor, recommendations, onPress } = props;
 
   return (
     <ThemeConsumer>
@@ -118,7 +118,7 @@ export default function Recommendations (props) {
           <Layout
             style={{
               ...styles(colors).contentContainer,
-              backgroundColor: color,
+              backgroundColor,
             }}
             testID="recommendations_layout"
           >
@@ -127,18 +127,18 @@ export default function Recommendations (props) {
                 <Text weight='bold' style={styles(colors).recommendationsTitle}>{i18n.translate('screens.recommendations.title')}</Text>
                 { recommendations.map(item => renderRecommendation(item, colors)) }
               </View>
-              <View style={styles(colors).supportContainer}>
-                <SupportIcon />
-              </View>
             </View>
             <ButtonWrapper
               onPress={onPress}
-              style={styles(colors).linkContainer}
-              accessibilityLabel={i18n.translate('screens.recommendations.source.accessibility.label')}
-              accessibilityHint={i18n.translate('screens.recommendations.source.accessibility.hint')}
+              accessibilityLabel={i18n.translate('screens.recommendations.support.accessibility.label')}
+              accessibilityHint={i18n.translate('screens.recommendations.support.accessibility.hint')}
+              style={styles(colors).supportContainer}
             >
-              <Icon name="source" width={iconSizes.size37} height={iconSizes.size37} style={styles(colors).linkIcon} />
-              <Text size="xxsmall">{ i18n.translate('screens.recommendations.source.label') }</Text>
+              <SupportIcon
+                label={i18n.translate('screens.recommendations.support.label')}
+                content={i18n.translate('common.links.min_saude_covid').substring(8)}
+                color={color}
+              />
             </ButtonWrapper>
           </Layout>
         </TopComponent>
@@ -148,6 +148,7 @@ export default function Recommendations (props) {
 }
 
 Recommendations.defaultProps = {
+  backgroundColor: commonColors.green,
   color: commonColors.green,
   recommendations: [],
   onPress: () => {},
@@ -155,6 +156,7 @@ Recommendations.defaultProps = {
 
 Recommendations.propTypes = {
   recommendations: PropTypes.arrayOf(PropTypes.array),
+  backgroundColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
   color: PropTypes.oneOf(['', ...Object.values(commonColors)]),
   onPress: PropTypes.func,
 };

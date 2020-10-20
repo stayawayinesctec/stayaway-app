@@ -48,7 +48,6 @@ const styles = (colors) => StyleSheet.create({
   },
   header: {
     marginTop: -100,
-    marginBottom: sizes.size48,
   },
   backgroundPanel: {
     backgroundColor: colors.white,
@@ -85,12 +84,10 @@ const styles = (colors) => StyleSheet.create({
     paddingVertical: sizes.size24,
     marginBottom: sizes.size20,
   },
-  supportContainer: {
-    position: 'absolute',
-    left: sizes.size24,
-    bottom: -iconSizes.size30,
-  },
   inputContainer: {
+    marginTop: -sizes.size10 - (iconSizes.size30 / 2),
+    marginBottom: sizes.size16,
+    marginHorizontal: sizes.size24,
   },
   title: {
     marginBottom: sizes.size24,
@@ -158,9 +155,6 @@ export default function Diagnosis (props) {
                     <Text>{i18n.translate('screens.diagnosis.code_input.description.second')}</Text>
                   </Text>
                 </View>
-                <View style={styles(colors).supportContainer}>
-                  <SupportIcon />
-                </View>
               </View>
             </View>
             <View style={styles(colors).inputContainer}>
@@ -177,16 +171,16 @@ export default function Diagnosis (props) {
                 errorMessage={error}
                 maxLength={maxLength}
               />
-              <Button
-                loading={loading}
-                title={i18n.translate('common.actions.submit')}
-                accessibilityLabel={i18n.translate('screens.diagnosis.code_input.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.diagnosis.code_input.accessibility.hint')}
-                containerStyle={styles(colors).button}
-                onPress={onNextPressed}
-                disabled={disabled}
-              />
             </View>
+            <Button
+              loading={loading}
+              title={i18n.translate('common.actions.submit')}
+              accessibilityLabel={i18n.translate('screens.diagnosis.code_input.accessibility.label')}
+              accessibilityHint={i18n.translate('screens.diagnosis.code_input.accessibility.hint')}
+              containerStyle={styles(colors).button}
+              onPress={onNextPressed}
+              disabled={disabled}
+            />
           </Layout>
         </TopComponent>
       )}
