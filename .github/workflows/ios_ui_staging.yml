@@ -192,5 +192,4 @@ jobs:
           token: ${{secrets.APPCENTER_TOKEN_IOS_UI}}
           group: Collaborators
           file: stayaway.ipa
-          notifyTesters: true
           gitReleaseNotes: true
