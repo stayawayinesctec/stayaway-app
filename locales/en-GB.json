@@ -94,7 +94,7 @@
           "android": {
             "title": "Bluetooth disabled",
             "message": "Turn on bluetooth to allow STAYAWAY COVID to work properly.",
-            "label": "Settings",
+            "label": "Turn on bluetooth",
             "accessibility": {
               "label": "Turn on bluetooth",
               "hint": "Turn on bluetooth services"
