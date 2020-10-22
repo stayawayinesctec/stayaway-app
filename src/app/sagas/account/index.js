@@ -351,7 +351,7 @@ export function* updateStatus({ payload: status }) {
 export function* setErrors({ payload: errors }) {
   const status = yield select(getStatus);
 
-  yield put(accountActions.setStatus({
+  yield put(accountActions.updateStatus({
     ...status,
     errors,
   }));
@@ -360,7 +360,7 @@ export function* setErrors({ payload: errors }) {
 export function* setInfectionStatus({ payload: infectionStatus }) {
   const status = yield select(getStatus);
 
-  yield put(accountActions.setStatus({
+  yield put(accountActions.updateStatus({
     ...status,
     infectionStatus,
   }));

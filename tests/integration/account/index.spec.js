@@ -764,7 +764,7 @@ describe('Account Sagas', () => {
       // Assert
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([
-        accountActions.setStatus(({
+        accountActions.updateStatus(({
           ...defaultStatus,
           errors: [],
         })),
@@ -789,7 +789,7 @@ describe('Account Sagas', () => {
       // Assert
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([
-        accountActions.setStatus(({
+        accountActions.updateStatus(({
           ...defaultStatus,
           infectionStatus: INFECTION_STATUS.EXPOSED,
         })),
