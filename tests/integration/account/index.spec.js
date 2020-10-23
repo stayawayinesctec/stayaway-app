@@ -485,7 +485,7 @@ describe('Account Sagas', () => {
       // Execute
       const channel = stdChannel();
       const dispatched = [];
-      await runSaga({
+      const saga = runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
         getState: () => ({
@@ -493,7 +493,9 @@ describe('Account Sagas', () => {
             trackingEnabled: true,
           },
         }),
-      }, switchTracking).toPromise();
+      }, switchTracking);
+      channel.put(accountActions.stopTrackingResult(TRACKING_RESULTS.SUCCESS));
+      await saga.toPromise();
 
       // Assert
       expect(dispatched).toHaveLength(3);

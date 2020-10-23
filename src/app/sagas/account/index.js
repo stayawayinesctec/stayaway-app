@@ -115,6 +115,9 @@ export function* watchTrackingStatus() {
 export function* startTracking() {
   if (Configuration.UI) {
     yield put(accountActions.setTrackingEnabled(true));
+    yield put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
+    yield take(accountTypes.STOP_TRACKING);
+    yield put(accountActions.stopTrackingResult(TRACKING_RESULTS.SUCCESS));
     return;
   }
 
@@ -265,6 +268,7 @@ export function* switchTracking() {
   const trackingEnabled = yield select(isTrackingEnabled);
   if (trackingEnabled) {
     yield put(accountActions.stopTracking());
+    yield take(accountTypes.STOP_TRACKING_RESULT);
     yield put(accountActions.setTrackingEnabled(false));
     yield put(accountActions.setErrors([]));
     return;
