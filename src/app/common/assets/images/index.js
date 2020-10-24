@@ -18,7 +18,9 @@ import Infected from './sources/infected.png';
 import Diagnosis from './sources/diagnosis.png';
 import Splash from './sources/splash.png';
 import RepublicaPortuguesa from './sources/republica_portuguesa.png';
+import RepublicaPortuguesaDark from './sources/republica_portuguesa_dark.png';
 import LogoDGS from './sources/logo_dgs.png';
+import LogoDGSDark from './sources/logo_dgs_dark.png';
 import LogoInesctec from './sources/logo_inesctec.png';
 import LogoISPUP from './sources/logo_ispup.png';
 import LogoKeyruptive from './sources/logo_keyruptive.png';
@@ -36,7 +38,9 @@ export default {
   diagnosis: Diagnosis,
   splash: Splash,
   republica_portuguesa: RepublicaPortuguesa,
+  republica_portuguesa_dark: RepublicaPortuguesaDark,
   logo_dgs: LogoDGS,
+  logo_dgs_dark: LogoDGSDark,
   logo_inesctec: LogoInesctec,
   logo_ispup: LogoISPUP,
   logo_keyruptive: LogoKeyruptive,

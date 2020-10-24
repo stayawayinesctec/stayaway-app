@@ -56,7 +56,7 @@ export default function NetworkModal (props) {
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <Modal backdropColor={colors.blueDark} backdropOpacity={0.6} isVisible={visible} statusBarTranslucent {...otherProps}>
+        <Modal backdropColor={colors.backdrop} backdropOpacity={0.6} isVisible={visible} statusBarTranslucent {...otherProps}>
           <Layout style={styles.content}>
             <View style={styles.titleContainer}>
               <Icon name='network_disconnected' width={iconSizes.size70} height={iconSizes.size70} tintColor={colors.blueDark} />

@@ -28,7 +28,7 @@ import startupActions from '@app/redux/startup';
 import { isAppLaunched } from '@app/redux/startup/selectors';
 
 export default function Root () {
-  const theme = THEMES[LIGHT || useColorScheme()];
+  const theme = THEMES[useColorScheme() || LIGHT];
 
   const dispatch = useDispatch();
 
