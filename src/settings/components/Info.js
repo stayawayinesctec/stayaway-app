@@ -109,10 +109,15 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   sponsors: {
     position: 'absolute',
-    flexDirection: 'row',
+    width: '100%',
     bottom: sizes.size24 + insets.bottom,
-    left: sizes.size24,
+    paddingHorizontal: sizes.size24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     zIndex: 0,
+  },
+  sponsorsImages: {
+    flexDirection: 'row',
   },
   republicaPortuguesaImage: {
     marginRight: sizes.size24,
@@ -122,11 +127,16 @@ const styles = (colors, insets) => StyleSheet.create({
   splashImage: {
     alignSelf: 'flex-end',
   },
+  version: {
+    alignSelf: 'flex-end',
+  },
 });
 
 
 export default function Info(props) {
   const {
+    version,
+    build,
     language,
     trackingEnabled,
     isInfected,
@@ -250,8 +260,11 @@ export default function Info(props) {
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
+              <View style={styles(colors, insets).sponsorsImages}>
+                <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+                <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
+              </View>
+              <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).version}>{i18n.translate('screens.settings.version', { version, build })}</Text>
             </View>
             <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>
@@ -262,6 +275,8 @@ export default function Info(props) {
 }
 
 Info.defaultProps = {
+  version: '1.0.0',
+  build: '0',
   trackingEnabled: false,
   isInfected: false,
   onClose: () => {},
@@ -274,6 +289,8 @@ Info.defaultProps = {
 };
 
 Info.propTypes = {
+  version: PropTypes.string,
+  build: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   language: PropTypes.shape({
     name: PropTypes.string,
     languageTag: PropTypes.string,

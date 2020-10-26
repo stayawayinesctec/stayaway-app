@@ -93,15 +93,10 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   sponsors: {
     position: 'absolute',
-    width: '100%',
+    flexDirection: 'row',
     bottom: sizes.size24 + insets.bottom,
-    paddingHorizontal: sizes.size24,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    left: sizes.size24,
     zIndex: 0,
-  },
-  sponsorsImages: {
-    flexDirection: 'row',
   },
   republicaPortuguesaImage: {
     marginRight: sizes.size24,
@@ -111,15 +106,10 @@ const styles = (colors, insets) => StyleSheet.create({
   splashImage: {
     alignSelf: 'flex-end',
   },
-  version: {
-    alignSelf: 'flex-end',
-  },
 });
 
 export default function TechnicalSheet (props) {
   const {
-    version,
-    build,
     onPressCoordinator,
     onPressISPUP,
     onPressKeyruptive,
@@ -210,11 +200,8 @@ export default function TechnicalSheet (props) {
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <View style={styles(colors, insets).sponsorsImages}>
-                <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-                <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
-              </View>
-              <Text size='small' weight='bold' style={styles(colors, insets).version}>{i18n.translate('screens.technical_sheet.version', { version, build })}</Text>
+              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
             </View>
             <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>
@@ -225,8 +212,6 @@ export default function TechnicalSheet (props) {
 }
 
 TechnicalSheet.defaultProps = {
-  version: '1.0.0',
-  build: '0',
   onPressCoordinator: () => {},
   onPressISPUP: () => {},
   onPressKeyruptive: () => {},
@@ -236,8 +221,6 @@ TechnicalSheet.defaultProps = {
 };
 
 TechnicalSheet.propTypes = {
-  version: PropTypes.string,
-  build: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onPressCoordinator: PropTypes.func,
   onPressISPUP: PropTypes.func,
   onPressKeyruptive: PropTypes.func,

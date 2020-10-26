@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import VersionNumber from 'react-native-version-number';
 
 import Info from '@settings/components/Info';
 
@@ -34,6 +35,8 @@ export default function InfoScreen () {
   const props = {
     trackingEnabled,
     language,
+    version: VersionNumber.appVersion,
+    build: VersionNumber.buildVersion,
     isInfected: useSelector(isInfected),
     onClose: () => NavigationService.navigate(AppRoutes.HOME),
     onPressTracking: () => dispatch(accountActions.switchTracking()),

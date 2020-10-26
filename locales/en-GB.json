@@ -218,6 +218,7 @@
       "debug": {
         "label": "Debug"
       },
+      "version": "v{{version}} ({{build}})",
       "actions": {
         "back": {
           "accessibility": {
@@ -319,7 +320,6 @@
           "hint": "Links to the SPMS webpage"
         }
       },
-      "version": "v{{version}} ({{build}})",
       "actions": {
         "back": {
           "accessibility": {

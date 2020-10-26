@@ -218,6 +218,7 @@
       "debug": {
         "label": "Debug"
       },
+      "version": "v{{version}} ({{build}})",
       "actions": {
         "back": {
           "accessibility": {
@@ -313,7 +314,6 @@
           "hint": "Link para a página web do Ubirider"
         }
       },
-      "version": "v{{version}} ({{build}})",
       "actions": {
         "back": {
           "accessibility": {

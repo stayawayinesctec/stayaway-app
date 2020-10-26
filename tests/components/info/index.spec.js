@@ -33,15 +33,22 @@ describe('Info Screen', () => {
       expect(trackingButton).toBeDisabled();
     });
     it('When infection status is not infected.', () => {
-      const { queryByA11yLabel } = render(
+      const version = '1.1.1';
+      const build = '0';
+
+      const { queryByA11yLabel, queryByText } = render(
         <Info
           language={languages.EN}
+          version={version}
+          build={build}
           trackingEnabled
         />,
       );
 
+      const versionLabel = queryByText(i18n.translate('screens.settings.version', { version, build }));
       const trackingButton = queryByA11yLabel(i18n.translate('screens.settings.tracking.accessibility.label'));
 
+      expect(versionLabel).toBeTruthy();
       expect(trackingButton).toBeTruthy();
 
       expect(trackingButton).toBeEnabled();
