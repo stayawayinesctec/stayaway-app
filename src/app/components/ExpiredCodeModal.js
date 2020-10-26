@@ -56,7 +56,7 @@ export default function ExpiredCodeModal (props) {
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <Modal backdropColor={colors.blueDark} backdropOpacity={0.6} isVisible={visible} statusBarTranslucent {...otherProps}>
+        <Modal backdropColor={colors.blueDark} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
           <Layout style={styles.content}>
             <View style={styles.titleContainer}>
               <Icon name='expired_code' width={iconSizes.size57} height={iconSizes.size67} tintColor={colors.blueDark} />
