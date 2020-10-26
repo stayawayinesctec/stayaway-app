@@ -14,7 +14,7 @@
       },
       "fourth": {
         "title": "Proteja os outros",
-        "description": "Se lhe for diagnosticada COVID-19 obterá, junto com o resultado do teste, um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
+        "description": "Se lhe for diagnosticada COVID-19 obterá, do Serviço Nacional de Saúde um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
       },
       "consent": {
         "title": "Consentimento",
@@ -231,7 +231,7 @@
       "code_input": {
         "title": "Testou positivo à COVID-19?",
         "description": {
-          "first": "Digite o código que recebeu do seu médico após ter testado positivo ",
+          "first": "Digite o código que recebeu do Serviço Nacional de Saúde após ter testado positivo ",
           "second": "para partilhar anonimamente os seus identificadores aleatórios. Este código é válido durante 24h."
         },
         "accessibility": {
