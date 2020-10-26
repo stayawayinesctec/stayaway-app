@@ -60,10 +60,11 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   topItem: {
     flexDirection: 'column',
+    alignItems: 'flex-start',
   },
   item: {
     backgroundColor: colors.white,
-    paddingLeft: sizes.size8,
+    paddingLeft: sizes.size16,
     paddingRight: sizes.size16,
     paddingVertical: sizes.size18,
     marginBottom: sizes.size8,

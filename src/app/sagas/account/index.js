@@ -305,46 +305,44 @@ export function* switchTracking() {
   }
 
   // Start tracking manager
-  if (Configuration.UI) {
+  yield put(accountActions.startTracking());
+  const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+
+  if (payload === TRACKING_RESULTS.SUCCESS) {
+    // Set tracking activated
     yield put(accountActions.setTrackingEnabled(true));
   } else {
-    yield put(accountActions.startTracking());
-    const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
-
-    if (payload === TRACKING_RESULTS.SUCCESS) {
-      // Set tracking activated
-      yield put(accountActions.setTrackingEnabled(true));
-    } else {
-      yield put(accountActions.setTrackingEnabled(false));
-    }
+    yield put(accountActions.setTrackingEnabled(false));
   }
 }
 
 export function* updateStatus({ payload: status }) {
-  // Check if user has been exposed
-  if (status.infectionStatus === INFECTION_STATUS.EXPOSED) {
-    const { exposureDays = [] } = status;
+  if (! Configuration.UI) {
+    // Check if user has been exposed
+    if (status.infectionStatus === INFECTION_STATUS.EXPOSED) {
+      const { exposureDays = [] } = status;
 
-    // Get last exposure day
-    if (exposureDays.length > 0) {
-      const { exposedDate } = exposureDays[exposureDays.length - 1];
+      // Get last exposure day
+      if (exposureDays.length > 0) {
+        const { exposedDate } = exposureDays[exposureDays.length - 1];
 
-      // Check if has passed 15 days after last exposure
-      const fifteenDaysAgo = Moment().startOf('day').subtract(15, 'days');
-      if (Moment(exposedDate).isBefore(fifteenDaysAgo)) {
-        yield call(TrackingManager.resetExposureDays);
+        // Check if has passed 15 days after last exposure
+        const fifteenDaysAgo = Moment().startOf('day').subtract(15, 'days');
+        if (Moment(exposedDate).isBefore(fifteenDaysAgo)) {
+          yield call(TrackingManager.resetExposureDays);
+        }
       }
     }
-  }
 
-  // Check GAEN toggle
-  if (status.errors.includes(ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED)) {
-    yield put(accountActions.setTrackingEnabled(false));
-  } else {
-    const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
+    // Check GAEN toggle
+    if (status.errors.includes(ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED)) {
+      yield put(accountActions.setTrackingEnabled(false));
+    } else {
+      const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
 
-    if (isTracingEnabled) {
-      yield put(accountActions.setTrackingEnabled(true));
+      if (isTracingEnabled) {
+        yield put(accountActions.setTrackingEnabled(true));
+      }
     }
   }
 

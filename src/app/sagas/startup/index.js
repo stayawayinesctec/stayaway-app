@@ -65,6 +65,7 @@ export function* startup() {
     if (Configuration.UI) {
       const tracking = yield call([Storage, 'getItem'], 'tracking_enabled', 'false');
       yield put(accountActions.setTrackingEnabled(tracking === 'true'));
+      yield put(accountActions.startTracking());
       return;
     }
 
