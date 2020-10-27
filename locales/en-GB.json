@@ -582,6 +582,9 @@
     "placeholders": {
       "code": "xxx xxx xxx xxx"
     },
+    "popover": {
+      "home_long_press": "Press and hold to turn off/on tracing"
+    },
     "dialogs": {
       "network": {
         "title": "No Internet connection",
