@@ -49,7 +49,7 @@ const styles = (colors, insets) => StyleSheet.create({
     paddingHorizontal: sizes.size24,
     paddingTop: '15%',
     borderTopRightRadius: 250,
-    paddingBottom: insets.bottom + sizes.size24 * 2 + sizes.size8,
+    paddingBottom: insets.bottom + sizes.size24 * 2 + sizes.size16,
   },
   centeredContainer: {
     flex: 1,

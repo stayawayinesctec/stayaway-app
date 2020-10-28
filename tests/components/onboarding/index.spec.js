@@ -9,6 +9,7 @@
  */
 
 import React from 'react';
+import { Platform } from 'react-native';
 import { render, fireEvent } from '@testing-library/react-native';
 
 import i18n from '@app/services/i18n';
@@ -62,6 +63,30 @@ describe('Onboarding Screen', () => {
 
       expect(fourthScreenTitle).toBeTruthy();
       expect(fourthScreenDescription).toBeTruthy();
+    });
+    describe('When on Fifth Screen', () => {
+      it('When not on a device that supports location less scanning', () => {
+        const { queryByText } = render(
+          <Onboarding />,
+        );
+
+        const fifthScreenTitle = queryByText(i18n.translate('screens.onboarding.fifth.title'));
+        const fifthScreenDescription = queryByText(i18n.translate('screens.onboarding.fifth.description'));
+
+        expect(fifthScreenTitle).toBeNull();
+        expect(fifthScreenDescription).toBeNull();
+      });
+      it('When on a device that supports location less scanning', () => {
+        const { queryByText } = render(
+          <Onboarding shouldShowLocationScreen />,
+        );
+
+        const fifthScreenTitle = queryByText(i18n.translate('screens.onboarding.fifth.title'));
+        const fifthScreenDescription = queryByText(i18n.translate('screens.onboarding.fifth.description'));
+
+        expect(fifthScreenTitle).toBeTruthy();
+        expect(fifthScreenDescription).toBeTruthy();
+      });
     });
     describe('When on Consent', () => {
       it('When is not loading', () => {
