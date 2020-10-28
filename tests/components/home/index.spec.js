@@ -33,13 +33,15 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        accessibility: {
-          label: '',
-          hint: '',
-        },
         icon: undefined,
-        onPress: () => {},
-        clickable: false,
+        main: {
+          label: '',
+          accessibility: {
+            label: '',
+            hint: '',
+          },
+          onPress: () => {},
+        },
       };
 
       const { queryByText, queryByTestId } = render(
@@ -74,13 +76,15 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        accessibility: {
-          label: '',
-          hint: '',
-        },
         icon: undefined,
-        onPress: () => {},
-        clickable: false,
+        main: {
+          label: '',
+          accessibility: {
+            label: '',
+            hint: '',
+          },
+          onPress: () => {},
+        },
       };
 
       const { queryByText, queryByTestId } = render(
@@ -122,13 +126,15 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        accessibility: {
-          label: '',
-          hint: '',
-        },
         icon: undefined,
-        onPress: () => {},
-        clickable: false,
+        main: {
+          label: '',
+          accessibility: {
+            label: '',
+            hint: '',
+          },
+          onPress: () => {},
+        },
       };
 
       const { queryByText, queryByTestId } = render(
@@ -159,15 +165,26 @@ describe('Home Screen', () => {
       const lastSync = new Moment();
       const error = {
         status: true,
-        title: i18n.translate('screens.home.errors.gaen.android.title'),
-        message: i18n.translate('screens.home.errors.gaen.android.message'),
-        accessibility: {
-          label: i18n.translate('screens.home.errors.gaen.android.accessibility.label'),
-          hint: i18n.translate('screens.home.errors.gaen.android.accessibility.hint'),
+        title: i18n.translate('screens.home.errors.battery.title'),
+        message: i18n.translate('screens.home.errors.battery.message'),
+        submessage: i18n.translate('screens.home.errors.battery.submessage'),
+        icon: <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
+        main: {
+          label: i18n.translate('screens.home.errors.battery.actions.main.label'),
+          accessibility: {
+            label: i18n.translate('screens.home.errors.battery.actions.main.accessibility.label'),
+            hint: i18n.translate('screens.home.errors.battery.actions.main.accessibility.hint'),
+          },
+          onPress: () => jest.fn(),
         },
-        icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} />,
-        onPress: jest.fn(),
-        clickable: true,
+        alternative: {
+          label: i18n.translate('screens.home.errors.battery.actions.alternative.label'),
+          accessibility: {
+            label: i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.label'),
+            hint: i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.hint'),
+          },
+          onPress: () => jest.fn(),
+        },
       };
 
       const { queryByText, queryByA11yLabel, queryByA11yHint } = render(
@@ -180,16 +197,22 @@ describe('Home Screen', () => {
       );
 
       const header = queryByText(i18n.translate('screens.home.healthy.title'));
-      const errorTitle = queryByText(i18n.translate('screens.home.errors.gaen.android.title'));
-      const headerMessage = queryByText(i18n.translate('screens.home.errors.gaen.android.message'));
-      const accessibilityLabel = queryByA11yLabel(i18n.translate('screens.home.errors.gaen.android.accessibility.label'));
-      const accessibilityHint = queryByA11yHint(i18n.translate('screens.home.errors.gaen.android.accessibility.hint'));
+      const errorTitle = queryByText(i18n.translate('screens.home.errors.battery.title'));
+      const errorMessage = queryByText(i18n.translate('screens.home.errors.battery.message'));
+      const errorSubMessage = queryByText(i18n.translate('screens.home.errors.battery.submessage'));
+      const mainAccessibilityLabel = queryByA11yLabel(i18n.translate('screens.home.errors.battery.actions.main.accessibility.label'));
+      const mainAccessibilityHint = queryByA11yHint(i18n.translate('screens.home.errors.battery.actions.main.accessibility.hint'));
+      const alternativeAccessibilityLabel = queryByA11yLabel(i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.label'));
+      const alternativeAccessibilityHint = queryByA11yHint(i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.hint'));
 
       expect(header).toBeNull();
       expect(errorTitle).toBeTruthy();
-      expect(headerMessage).toBeTruthy();
-      expect(accessibilityLabel).toBeTruthy();
-      expect(accessibilityHint).toBeTruthy();
+      expect(errorMessage).toBeTruthy();
+      expect(errorSubMessage).toBeTruthy();
+      expect(mainAccessibilityLabel).toBeTruthy();
+      expect(mainAccessibilityHint).toBeTruthy();
+      expect(alternativeAccessibilityLabel).toBeTruthy();
+      expect(alternativeAccessibilityHint).toBeTruthy();
     });
   });
   describe('Home buttons interaction work', () => {
@@ -202,13 +225,15 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        accessibility: {
-          label: '',
-          hint: '',
-        },
         icon: undefined,
-        onPress: () => {},
-        clickable: false,
+        main: {
+          label: '',
+          accessibility: {
+            label: '',
+            hint: '',
+          },
+          onPress: () => {},
+        },
       };
 
       const { queryByA11yLabel } = render(
@@ -233,18 +258,30 @@ describe('Home Screen', () => {
     it('When press error button.', () => {
       const infectionStatus = INFECTION_STATUS.HEALTHY;
       const lastSync = new Moment();
-      const onPressError = jest.fn();
+      const onPressMainButtonError = jest.fn();
+      const onPressAlternativeButtonError = jest.fn();
       const error = {
         status: true,
-        title: i18n.translate('screens.home.errors.gaen.android.title'),
-        message: i18n.translate('screens.home.errors.gaen.android.message'),
-        accessibility: {
-          label: i18n.translate('screens.home.errors.gaen.android.accessibility.label'),
-          hint: i18n.translate('screens.home.errors.gaen.android.accessibility.hint'),
+        title: i18n.translate('screens.home.errors.battery.title'),
+        message: i18n.translate('screens.home.errors.battery.message'),
+        submessage: i18n.translate('screens.home.errors.battery.submessage'),
+        icon: <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
+        main: {
+          label: i18n.translate('screens.home.errors.battery.actions.main.label'),
+          accessibility: {
+            label: i18n.translate('screens.home.errors.battery.actions.main.accessibility.label'),
+            hint: i18n.translate('screens.home.errors.battery.actions.main.accessibility.hint'),
+          },
+          onPress: onPressMainButtonError,
         },
-        icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} />,
-        onPress: onPressError,
-        clickable: true,
+        alternative: {
+          label: i18n.translate('screens.home.errors.battery.actions.alternative.label'),
+          accessibility: {
+            label: i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.label'),
+            hint: i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.hint'),
+          },
+          onPress: onPressAlternativeButtonError,
+        },
       };
 
       const { queryByA11yLabel } = render(
@@ -256,11 +293,15 @@ describe('Home Screen', () => {
         />,
       );
 
-      const errorButton = queryByA11yLabel(i18n.translate('screens.home.errors.gaen.android.accessibility.label'));
+      const mainButton = queryByA11yLabel(i18n.translate('screens.home.errors.battery.actions.main.accessibility.label'));
+      const alternativeButton = queryByA11yLabel(i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.label'));
 
-      expect(errorButton).toBeTruthy();
-      fireEvent.press(errorButton);
-      expect(onPressError).toHaveBeenCalled();
+      expect(mainButton).toBeTruthy();
+      expect(alternativeButton).toBeTruthy();
+      fireEvent.press(mainButton);
+      fireEvent.press(alternativeButton);
+      expect(onPressMainButtonError).toHaveBeenCalled();
+      expect(onPressAlternativeButtonError).toHaveBeenCalled();
     });
   });
 });

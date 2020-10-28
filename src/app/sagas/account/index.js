@@ -387,13 +387,7 @@ export function* enableExposureNotifications() {
 }
 
 export function* requestIgnoreBatteryOptimizations() {
-  const isWhitelisted = yield call(TrackingManager.hasSpecialBatteryOptimizationSystem);
-
-  if (isWhitelisted) {
-    yield call(TrackingManager.openBatteryOptimizationSettings);
-  } else {
-    yield call(TrackingManager.requestIgnoreBatteryOptimizationsPermission);
-  }
+  yield call(TrackingManager.requestIgnoreBatteryOptimizationsPermission);
 }
 
 function* watchSetupNewAccount() {
