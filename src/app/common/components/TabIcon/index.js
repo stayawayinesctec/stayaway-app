@@ -8,16 +8,25 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
 import { PulseIndicator } from 'react-native-indicators';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
+import accountActions from '@app/redux/account';
 import { isExposed, isTrackingEnabled, hasServicesErrors } from '@app/redux/account/selectors';
 
+import AppRoutes from '@app/navigation/routes';
+
+import NavigationService from '@app/services/navigation';
+import Tooltip from '@app/services/tooltip';
+import Storage from '@app/services/storage';
+import i18n from '@app/services/i18n';
+
+import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Icon from '@app/common/components/Icon';
 import Text from '@app/common/components/Text';
 import { iconSizes, sizes } from '@app/common/theme';
@@ -44,16 +53,36 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function TabIcon (props) {
+export default function TabIcon(props) {
   const { name, active, title } = props;
+
+  const dispatch = useDispatch();
 
   const exposed = useSelector(isExposed);
   const hasErrors = useSelector(hasServicesErrors);
   const trackingEnabled = useSelector(isTrackingEnabled);
 
+  const target = useRef(null);
+  const parent = useRef(null);
+
+  const onPress = () => NavigationService.navigate(AppRoutes.HOME);
+  const onLongPress = () => dispatch(accountActions.switchTracking());
+
+  useEffect(() => {
+    if (name === 'home') {
+      Storage.getItem('tooltip_home_long_press', 'false')
+        .then(hasShownHomeTooltip => {
+          if (hasShownHomeTooltip === 'false') {
+            setTimeout(() => Tooltip.show(i18n.translate('common.popover.home_long_press'), target.current, parent.current), 2000);
+            Storage.setItem('tooltip_home_long_press', 'true');
+          }
+        });
+    }
+  }, []);
+
   return (
     <ThemeConsumer>
-      {({colors}) => {
+      {({ colors }) => {
         let iconName = `${name}_inactive`;
         let textColor = colors.blueLightest;
 
@@ -71,13 +100,16 @@ export default function TabIcon (props) {
             iconColor = colors.yellow;
           }
 
-          if (hasErrors || ! trackingEnabled) {
+          if (hasErrors || !trackingEnabled) {
             pulseColor = colors.redLight;
             iconColor = colors.red;
           }
 
           return (
-            <View style={[styles.container, styles.logo]}>
+            <View
+              ref={parent}
+              style={[styles.container, styles.logo]}
+            >
               <PulseIndicator
                 useNativeDriver
                 animating={trackingEnabled && !hasErrors}
@@ -86,7 +118,14 @@ export default function TabIcon (props) {
                 size={iconSizes.size96 * 2}
                 style={styles.pulse}
               />
-              <Icon name={iconName} width={iconSizes.size96} height={iconSizes.size96} tintColor={iconColor} />
+              <ButtonWrapper ref={target} onPress={onPress} onLongPress={onLongPress}>
+                <Icon
+                  name={iconName}
+                  width={iconSizes.size96}
+                  height={iconSizes.size96}
+                  tintColor={iconColor}
+                />
+              </ButtonWrapper>
             </View>
           );
         }

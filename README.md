@@ -228,6 +228,7 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 | [react-native-vector-icons](https://www.npmjs.com/package/react-native-vector-icons)                              | MIT          |
 | [react-native-version-number](https://www.npmjs.com/package/react-native-version-number)                          | MIT          |
 | [react-native-testing-library](https://github.com/callstack/react-native-testing-library)                         | MIT          |
+| [react-native-tooltips](https://github.com/prscX/react-native-tooltips)                                           | Apache 2.0   |
 | [react-navigation-redux-debouncer](https://www.npmjs.com/package/react-navigation-redux-debouncer)                | MIT          |
 | [react-redux](https://www.npmjs.com/package/react-redux)                                                          | MIT          |
 | [redux-actions](https://www.npmjs.com/package/redux-actions)                                                      | MIT          |

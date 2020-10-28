@@ -596,6 +596,9 @@
     "placeholders": {
       "code": "xxx xxx xxx xxx"
     },
+    "popover": {
+      "home_long_press": "Pressione continuamente para desligar/ligar o rastreio"
+    },
     "dialogs": {
       "network": {
         "title": "Sem ligação à internet",
