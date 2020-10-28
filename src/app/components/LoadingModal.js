@@ -78,7 +78,7 @@ export default function LoadingModal (props) {
       {({colors}) => (
         <Modal
           backdropColor={colors.blueDark}
-          backdropOpacity={0.9}
+          backdropOpacity={0.8}
           isVisible={visible}
           statusBarTranslucent
           onModalWillHide={modalHide}
