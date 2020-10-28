@@ -168,7 +168,7 @@
         "label": "Informações em:",
         "accessibility": {
           "label": "Fonte das recomendações",
-          "hint": "Link para a página web com a fonte das recomendações"
+          "hint": "Ligação para a página web com a fonte das recomendações"
         }
       },
       "healthy": {
@@ -210,7 +210,7 @@
         "label": "Contacte-nos",
         "accessibility": {
           "label": "Contacte-nos",
-          "hint": "Link para enviar um email à equipa de suporte"
+          "hint": "Ligação para enviar um email à equipa de suporte"
         }
       },
       "how_to_use": {
@@ -224,7 +224,7 @@
         "label": "Perguntas Frequentes",
         "accessibility": {
           "label": "Perguntas Frequentes",
-          "hint": "Link para a página web das perguntas frequentes"
+          "hint": "Ligação para a página web das perguntas frequentes"
         }
       },
       "legal_information": {
@@ -312,25 +312,25 @@
       "inesctec": {
         "accessibility": {
           "label": "INESCTEC",
-          "hint": "Link para a página web do INESCTEC"
+          "hint": "Ligação para a página web do INESCTEC"
         }
       },
       "ispup": {
         "accessibility": {
           "label": "ISPUP",
-          "hint": "Link para a página web do ISPUP"
+          "hint": "Ligação para a página web do ISPUP"
         }
       },
       "keyruptive": {
         "accessibility": {
           "label": "Keyruptive",
-          "hint": "Link para a página web do Keyruptive"
+          "hint": "Ligação para a página web do Keyruptive"
         }
       },
       "ubirider": {
         "accessibility": {
           "label": "Ubirider",
-          "hint": "Link para a página web do Ubirider"
+          "hint": "Ligação para a página web do Ubirider"
         }
       },
       "actions": {
