@@ -47,6 +47,7 @@ export default function InfoScreen () {
         dispatch(accountActions.updateLanguage(languages.EN.languageTag));
       }
     },
+    onPressSupport: () => Linking.openURL(i18n.translate('common.links.support')),
     onPressHowToUse: () => {
       NavigationService.navigate(AppRoutes.HOW_TO_USE);
     },

@@ -166,6 +166,22 @@ describe('Info Screen', () => {
       fireEvent.press(languageButton);
       expect(onPressLanguage).toHaveBeenCalled();
     });
+    it('When press support button.', () => {
+      const onPressSupport = jest.fn();
+      const { queryByA11yLabel } = render(
+        <Info
+          language={languages.EN}
+          trackingEnabled
+          onPressSupport={onPressSupport}
+        />,
+      );
+
+      const supportButton = queryByA11yLabel(i18n.translate('screens.settings.support.accessibility.label'));
+
+      expect(supportButton).toBeTruthy();
+      fireEvent.press(supportButton);
+      expect(onPressSupport).toHaveBeenCalled();
+    });
     it('When press how to use button.', () => {
       const onPressHowToUse = jest.fn();
       const { queryByA11yLabel } = render(

@@ -206,6 +206,13 @@
           "hint": "Press to switch app's language"
         }
       },
+      "support": {
+        "label": "Contact Us",
+        "accessibility": {
+          "label": "Contact Us",
+          "hint": "Send email to support team"
+        }
+      },
       "how_to_use": {
         "label": "How to use the app",
         "accessibility": {
