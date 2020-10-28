@@ -16,6 +16,10 @@
         "title": "Proteja os outros",
         "description": "Se lhe for diagnosticada COVID-19 obterá, do Serviço Nacional de Saúde um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
       },
+      "fifth": {
+        "title": "Dispositivo Android",
+        "description": "A STAYAWAY COVID não acede a informação de localização nem pedirá permissão para tal.\n\nNo entanto por limitação do sistema operativo Android será necessário ter os serviços de localização ligados para que a STAYAWAY COVID funcione corretamente."
+      },
       "consent": {
         "title": "Consentimento",
         "description": {

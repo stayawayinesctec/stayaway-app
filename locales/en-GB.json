@@ -16,6 +16,10 @@
         "title": "Protect others around you",
         "description": "If you have been diagnosed with COVID-19, with the result of your test you will be given a code that will allow STAYAWAY COVID to alert all of those you have come in close contact with in the past 14 days but preserving your anonimity.\n\nThis a fundamental step to break chains of infection and protect your and others’ health."
       },
+      "fifth": {
+        "title": "Android device",
+        "description": "STAYAWAY COVID does not access any kind of location information nor it asks permission to access the location services.\n\nHowever, due to a limitation of the Android operating system, location services will need to be turned on for STAYAWAY COVID to work properly."
+      },
       "consent": {
         "title": "Consent",
         "description": {

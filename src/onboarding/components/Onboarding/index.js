@@ -9,7 +9,7 @@
  */
 
 import React, { useState, useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { Platform, View, StyleSheet } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
@@ -130,10 +130,10 @@ export default function Onboarding (props) {
           loop={false}
           style={styles(insets).container}
           onIndexChanged={(currentIndex) => setIndex(currentIndex)}
-          showsPagination={index < 4}
+          showsPagination={index < (Platform.OS === 'android' ? 5 : 4)}
           dotStyle={styles(insets).dotStyle}
           ref={swiper}
-          renderPagination={() => renderPagination(index, 4, {colors, insets}, swiper)}
+          renderPagination={() => renderPagination(index, Platform.OS === 'android' ? 5 : 4, {colors, insets}, swiper)}
         >
           <Template
             header={i18n.translate('screens.onboarding.first.title')}
@@ -154,6 +154,13 @@ export default function Onboarding (props) {
             description={i18n.translate('screens.onboarding.fourth.description')}
             image={Images.onboarding4}
           />
+          {Platform.OS === 'android' &&
+            <Template
+              header={i18n.translate('screens.onboarding.fifth.title')}
+              description={i18n.translate('screens.onboarding.fifth.description')}
+              image={Images.onboarding5}
+            />
+          }
           <Consent loading={loading} onPress={onPress} />
         </Swiper>
       )}
