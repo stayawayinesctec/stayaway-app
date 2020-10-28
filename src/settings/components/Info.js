@@ -142,6 +142,7 @@ export default function Info(props) {
     isInfected,
     onClose,
     onPressLanguage,
+    onPressSupport,
     onPressLegalInformation,
     onPressHowToUse,
     onPressFaqs,
@@ -219,6 +220,15 @@ export default function Info(props) {
                       )}
                   </View>
                 </ButtonWrapper>
+                <ButtonWrapper
+                  onPress={onPressSupport}
+                  style={styles(colors, insets).item}
+                  accessibilityLabel={i18n.translate('screens.settings.support.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.support.accessibility.hint')}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.support.label')}</Text>
+                  <Icon name='mail' width={iconSizes.size14} height={iconSizes.size12} tintColor={colors.blueDark} />
+                </ButtonWrapper>
               </View>
               <View style={styles(colors, insets).bottomItems}>
                 <ButtonWrapper
@@ -282,6 +292,7 @@ Info.defaultProps = {
   onClose: () => {},
   onPressTracking: () => {},
   onPressLanguage: () => {},
+  onPressSupport: () => {},
   onPressHowToUse: () => {},
   onPressFaqs: () => {},
   onPressLegalInformation: () => {},
@@ -301,6 +312,7 @@ Info.propTypes = {
   onClose: PropTypes.func,
   onPressTracking: PropTypes.func,
   onPressLanguage: PropTypes.func,
+  onPressSupport: PropTypes.func,
   onPressHowToUse: PropTypes.func,
   onPressFaqs: PropTypes.func,
   onPressLegalInformation: PropTypes.func,

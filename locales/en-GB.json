@@ -206,6 +206,13 @@
           "hint": "Press to switch app's language"
         }
       },
+      "support": {
+        "label": "Contact Us",
+        "accessibility": {
+          "label": "Contact Us",
+          "hint": "Send email to support team"
+        }
+      },
       "how_to_use": {
         "label": "How to use the app",
         "accessibility": {
@@ -579,7 +586,8 @@
       "keyruptive": "https://www.keyruptive.com",
       "ubirider": "https://www.pick.ubirider.com/?lang=en",
       "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude",
-      "min_saude_covid": "https://www.covid19.min-saude.pt"
+      "min_saude_covid": "https://www.covid19.min-saude.pt",
+      "support": "mailto:stayaway@inesctec.pt"
     },
     "words": {
       "and": "and",
