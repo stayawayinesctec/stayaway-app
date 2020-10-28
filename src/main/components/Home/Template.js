@@ -95,8 +95,13 @@ const styles = (colors, insets) => StyleSheet.create({
   descriptionsContent: {
     marginTop: sizes.size24,
   },
-  description: {
+  messageContainer: {
     marginBottom: sizes.size24,
+  },
+  message: {
+  },
+  submessage: {
+    marginTop: sizes.size8,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -152,6 +157,12 @@ const styles = (colors, insets) => StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
     marginBottom: -sizes.size16,
+  },
+  errorAlternativeButton: {
+    marginTop: sizes.size16 + sizes.size8,
+    marginBottom: -sizes.size16 * 2,
+    alignSelf: 'center',
+    width: '100%',
   },
 });
 
@@ -212,14 +223,29 @@ export default function Template (props) {
                             { error.icon }
                             <Text size='large' weight='bold' textColor={colors.blueDark} style={styles(colors, insets).iconTitle}>{error.title}</Text>
                           </View>
-                          <Text textColor={colors.blueDark} style={styles(colors, insets).description}>{error.message}</Text>
+                          <View style={styles(colors, insets).messageContainer}>
+                            <Text textColor={colors.blueDark} style={styles(colors, insets).message}>{error.message}</Text>
+                            { error.submessage &&
+                              <Text size='small' textColor={colors.blueDark} style={styles(colors, insets).submessage}>{error.submessage}</Text>
+                            }
+                          </View>
                           <Button
-                            title={error.label}
-                            accessibilityLabel={error.accessibility.label}
-                            accessibilityHint={error.accessibility.hint}
+                            title={error.main.label}
+                            accessibilityLabel={error.main.accessibility.label}
+                            accessibilityHint={error.main.accessibility.hint}
                             containerStyle={styles(colors, insets).errorButton}
-                            onPress={error.onPress}
+                            onPress={error.main.onPress}
                           />
+                          { error.alternative &&
+                            <Button
+                              alternative
+                              title={error.alternative.label}
+                              accessibilityLabel={error.alternative.accessibility.label}
+                              accessibilityHint={error.alternative.accessibility.hint}
+                              containerStyle={styles(colors, insets).errorAlternativeButton}
+                              onPress={error.alternative.onPress}
+                            />
+                          }
                         </View>
                       </View>
                     </View>
@@ -299,12 +325,21 @@ Template.defaultProps = {
     status: false,
     title: '',
     message: '',
-    accessibility: {
-      label: '',
-      hint: '',
-    },
     icon: undefined,
-    onPress: () => {},
+    main: {
+      accessibility: {
+        label: '',
+        hint: '',
+      },
+      onPress: () => {},
+    },
+    alternative: {
+      accessibility: {
+        label: '',
+        hint: '',
+      },
+      onPress: () => {},
+    },
   },
   infectionStatus: 0,
 };
@@ -322,10 +357,18 @@ Template.propTypes = {
     status: PropTypes.bool,
     title: PropTypes.string,
     message: PropTypes.string,
-    label: PropTypes.string,
-    accessibility: PropTypes.object,
+    submessage: PropTypes.string,
     icon: PropTypes.object,
-    onPress: PropTypes.func,
+    main: PropTypes.shape({
+      label: PropTypes.string,
+      accessibility: PropTypes.object,
+      onPress: PropTypes.func,
+    }),
+    alternative: PropTypes.shape({
+      label: PropTypes.string,
+      accessibility: PropTypes.object,
+      onPress: PropTypes.func,
+    }),
   }),
   infectionStatus: PropTypes.number,
 };
