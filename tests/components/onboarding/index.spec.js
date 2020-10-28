@@ -65,9 +65,7 @@ describe('Onboarding Screen', () => {
       expect(fourthScreenDescription).toBeTruthy();
     });
     describe('When on Fifth Screen', () => {
-      it('When on iOS', () => {
-        Platform.OS = 'iOS';
-
+      it('When not on a device that supports location less scanning', () => {
         const { queryByText } = render(
           <Onboarding />,
         );
@@ -78,11 +76,9 @@ describe('Onboarding Screen', () => {
         expect(fifthScreenTitle).toBeNull();
         expect(fifthScreenDescription).toBeNull();
       });
-      it('When on Android', () => {
-        Platform.OS = 'android';
-
+      it('When on a device that supports location less scanning', () => {
         const { queryByText } = render(
-          <Onboarding />,
+          <Onboarding shouldShowLocationScreen />,
         );
 
         const fifthScreenTitle = queryByText(i18n.translate('screens.onboarding.fifth.title'));

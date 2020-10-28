@@ -204,6 +204,14 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     }
 
     /**
+     * Check if the device supports location less scanning.
+     */
+    @ReactMethod
+    public void deviceSupportsLocationlessScanning(Promise promise) {
+        promise.resolve(DeviceFeatureHelper.supportsLocationlessScanning(getReactApplicationContext()));
+    }
+
+    /**
      * Returns a TracingStatus-Object describing the current state.
      *
      * @example

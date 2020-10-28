@@ -116,7 +116,7 @@ const renderPagination = (index, total, {colors, insets}, swiper) => {
 };
 
 export default function Onboarding (props) {
-  const { loading, onPress } = props;
+  const { loading, shouldShowLocationScreen, onPress } = props;
 
   const [index, setIndex] = useState(0);
   const insets = useSafeAreaInsets();
@@ -130,10 +130,10 @@ export default function Onboarding (props) {
           loop={false}
           style={styles(insets).container}
           onIndexChanged={(currentIndex) => setIndex(currentIndex)}
-          showsPagination={index < (Platform.OS === 'android' ? 5 : 4)}
+          showsPagination={index < (shouldShowLocationScreen ? 5 : 4)}
           dotStyle={styles(insets).dotStyle}
           ref={swiper}
-          renderPagination={() => renderPagination(index, Platform.OS === 'android' ? 5 : 4, {colors, insets}, swiper)}
+          renderPagination={() => renderPagination(index, shouldShowLocationScreen ? 5 : 4, {colors, insets}, swiper)}
         >
           <Template
             header={i18n.translate('screens.onboarding.first.title')}
@@ -154,7 +154,7 @@ export default function Onboarding (props) {
             description={i18n.translate('screens.onboarding.fourth.description')}
             image={Images.onboarding4}
           />
-          {Platform.OS === 'android' &&
+          {shouldShowLocationScreen &&
             <Template
               header={i18n.translate('screens.onboarding.fifth.title')}
               description={i18n.translate('screens.onboarding.fifth.description')}
@@ -170,10 +170,12 @@ export default function Onboarding (props) {
 
 Onboarding.defaultProps = {
   loading: false,
+  shouldShowLocationScreen: false,
   onPress: () => {},
 };
 
 Onboarding.propTypes = {
   loading: PropTypes.bool,
+  shouldShowLocationScreen: PropTypes.bool,
   onPress: PropTypes.func,
 };
