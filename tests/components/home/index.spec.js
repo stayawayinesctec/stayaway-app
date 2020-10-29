@@ -44,7 +44,7 @@ describe('Home Screen', () => {
         },
       };
 
-      const { queryByText, queryByTestId } = render(
+      const { queryByText, queryByTestId, queryByA11yLabel } = render(
         <Home
           trackingEnabled
           infectionStatus={infectionStatus}
@@ -56,11 +56,13 @@ describe('Home Screen', () => {
       );
 
       const header = queryByText(i18n.translate('screens.home.healthy.title'));
+      const shareButton = queryByA11yLabel(i18n.translate('screens.home.actions.share.accessibility.label'));
       const descriptionFirst = queryByText(i18n.translate('screens.home.healthy.description.first'));
       const descriptionSecond = queryByText(i18n.translate('screens.home.healthy.description.second'));
       const image = queryByTestId('home_image_background');
 
       expect(header).toBeTruthy();
+      expect(shareButton).toBeTruthy();
       expect(descriptionFirst).toBeTruthy();
       expect(descriptionSecond).toBeTruthy();
       expect(image).toBeTruthy();
@@ -87,7 +89,7 @@ describe('Home Screen', () => {
         },
       };
 
-      const { queryByText, queryByTestId } = render(
+      const { queryByText, queryByTestId, queryByA11yLabel } = render(
         <Home
           trackingEnabled
           infectionStatus={infectionStatus}
@@ -97,6 +99,7 @@ describe('Home Screen', () => {
       );
 
       const header = queryByText(i18n.translate('screens.home.exposed.title'));
+      const shareButton = queryByA11yLabel(i18n.translate('screens.home.actions.share.accessibility.label'));
       const descriptionFirst = queryByText(i18n.translate('screens.home.exposed.description.first'));
       const descriptionSecond = queryByText(i18n.translate('screens.home.exposed.description.second'));
       const descriptionThird = queryByText(i18n.translate('screens.home.exposed.description.third'));
@@ -105,6 +108,7 @@ describe('Home Screen', () => {
       const image = queryByTestId('home_image_background');
 
       expect(header).toBeTruthy();
+      expect(shareButton).toBeTruthy();
       expect(descriptionFirst).toBeTruthy();
       expect(descriptionSecond).toBeTruthy();
       expect(descriptionThird).toBeTruthy();
@@ -137,7 +141,7 @@ describe('Home Screen', () => {
         },
       };
 
-      const { queryByText, queryByTestId } = render(
+      const { queryByText, queryByTestId, queryByA11yLabel } = render(
         <Home
           trackingEnabled
           infectionStatus={infectionStatus}
@@ -147,11 +151,13 @@ describe('Home Screen', () => {
       );
 
       const header = queryByText(i18n.translate('screens.home.infected.title'));
+      const shareButton = queryByA11yLabel(i18n.translate('screens.home.actions.share.accessibility.label'));
       const descriptionFirst = queryByText(i18n.translate('screens.home.infected.description.first'));
       const descriptionSecond = queryByText(i18n.translate('screens.home.infected.description.second'));
       const image = queryByTestId('home_image_background');
 
       expect(header).toBeTruthy();
+      expect(shareButton).toBeNull();
       expect(descriptionFirst).toBeTruthy();
       expect(descriptionSecond).toBeTruthy();
       expect(image).toBeTruthy();
@@ -218,8 +224,8 @@ describe('Home Screen', () => {
   describe('Home buttons interaction work', () => {
     it('When press settings button.', () => {
       const infectionStatus = INFECTION_STATUS.HEALTHY;
-      const onPress = jest.fn();
-      const onLongPress = jest.fn();
+      const onPressSettings = jest.fn();
+      const onLongPressSettings = jest.fn();
       const lastSync = new Moment();
       const error = {
         status: false,
@@ -240,8 +246,8 @@ describe('Home Screen', () => {
         <Home
           trackingEnabled
           infectionStatus={infectionStatus}
-          onPress={onPress}
-          onLongPress={onLongPress}
+          onPressSettings={onPressSettings}
+          onLongPressSettings={onLongPressSettings}
           lastSync={lastSync}
           error={error}
         />,
@@ -252,9 +258,45 @@ describe('Home Screen', () => {
       expect(settingsButton).toBeTruthy();
       fireEvent.press(settingsButton);
       fireEvent(settingsButton, 'onLongPress');
-      expect(onPress).toHaveBeenCalled();
-      expect(onLongPress).toHaveBeenCalled();
+      expect(onPressSettings).toHaveBeenCalled();
+      expect(onLongPressSettings).toHaveBeenCalled();
     });
+    it('When press share button.', () => {
+      const infectionStatus = INFECTION_STATUS.HEALTHY;
+      const onPressShare = jest.fn();
+      const lastSync = new Moment();
+      const error = {
+        status: false,
+        title: '',
+        message: '',
+        icon: undefined,
+        main: {
+          label: '',
+          accessibility: {
+            label: '',
+            hint: '',
+          },
+          onPress: () => {},
+        },
+      };
+
+      const { queryByA11yLabel } = render(
+        <Home
+          trackingEnabled
+          infectionStatus={infectionStatus}
+          onPressShare={onPressShare}
+          lastSync={lastSync}
+          error={error}
+        />,
+      );
+
+      const shareButton = queryByA11yLabel(i18n.translate('screens.home.actions.share.accessibility.label'));
+
+      expect(shareButton).toBeTruthy();
+      fireEvent.press(shareButton);
+      expect(onPressShare).toHaveBeenCalled();
+    });
+
     it('When press error button.', () => {
       const infectionStatus = INFECTION_STATUS.HEALTHY;
       const lastSync = new Moment();

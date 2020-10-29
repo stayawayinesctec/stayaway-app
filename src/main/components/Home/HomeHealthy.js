@@ -42,6 +42,7 @@ export default function HomeHealthy (props) {
           image={image}
           panelBackgroundColor={colors.green}
           panelTextColor={colors.white}
+          shouldShowShareButton
           {...props}
         />
       )}

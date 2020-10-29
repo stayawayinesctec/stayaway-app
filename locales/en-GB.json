@@ -58,6 +58,12 @@
             "label": "Settings",
             "hint": "Navigates to the settings screen"
           }
+        },
+        "share": {
+          "accessibility": {
+            "label": "Share",
+            "hint": "Links to share the app"
+          }
         }
       },
       "healthy": {
@@ -591,7 +597,11 @@
       "ubirider": "https://www.pick.ubirider.com/?lang=en",
       "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude",
       "min_saude_covid": "https://www.covid19.min-saude.pt",
-      "support": "mailto:stayaway@inesctec.pt"
+      "support": "mailto:stayaway@inesctec.pt",
+      "stores": {
+        "play_store": "https://play.google.com/store/apps/details?id=fct.inesctec.stayaway",
+        "app_store": "https://apps.apple.com/pt/app/id1519479652"
+      }
     },
     "words": {
       "and": "and",
@@ -633,6 +643,10 @@
       "playstore": {
         "title": "Google Play Services",
         "description": "To enable the use of the Exposure Notification API an update to Google Play Services is required. If an update is not yet available on your device, try again later."
+      },
+      "share": {
+        "subject": "Share STAYAWAY COVID!",
+        "message": "Help interrupting the chains of COVID-19, install STAYAWAY COVID and join us.\n\nAndroid: {{play_store}}\niOS: {{app_store}}"
       },
       "loading": {
         "description": "Sending data. Please hold."

@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Share } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 
@@ -151,7 +151,7 @@ export default function HomeScreen () {
     }
   }
 
-  const onLongPress = () => {
+  const onLongPressSettings = () => {
     if (Configuration.UI) {
       dispatch(
         accountActions.setInfectionStatus(infectionStatus === 2 ? 0 : infectionStatus + 1),
@@ -159,12 +159,24 @@ export default function HomeScreen () {
     }
   };
 
+  const url = Platform.select({
+    ios: i18n.translate('common.links.stores.app_store'),
+    android: i18n.translate('common.links.stores.play_store'),
+  });
+
   const props = {
     infectionStatus,
-    onLongPress,
     lastSync: useSelector(getLastSync),
     error,
-    onPress: () => NavigationService.navigate(AppRoutes.SETTINGS),
+    onPressSettings: () => NavigationService.navigate(AppRoutes.SETTINGS),
+    onPressShare: () => Share.share({
+      title: i18n.translate('common.dialogs.share.subject'),
+      message: i18n.translate('common.dialogs.share.message', { app_store: i18n.translate('common.links.stores.app_store'), play_store: i18n.translate('common.links.stores.play_store')}),
+    }, {
+      dialogTitle: i18n.translate('common.dialogs.share.subject'),
+      subject: i18n.translate('common.dialogs.share.subject'),
+    }),
+    onLongPressSettings,
   };
 
   return (
