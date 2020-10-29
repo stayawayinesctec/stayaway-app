@@ -39,8 +39,8 @@ describe('Info Screen', () => {
       const { queryByA11yLabel, queryByText } = render(
         <Info
           language={languages.EN}
-          version={version}
-          build={build}
+          appVersion={version}
+          appBuild={build}
           trackingEnabled
         />,
       );
