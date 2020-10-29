@@ -9,7 +9,6 @@
  */
 
 import React from 'react';
-import VersionNumber from 'react-native-version-number';
 
 import TechnicalSheet from '@settings/components/TechnicalSheet';
 
@@ -22,8 +21,6 @@ import AppRoutes from '@app/navigation/routes';
 
 export default function TechnicalSheetScreen () {
   const props = {
-    version: VersionNumber.appVersion,
-    build: VersionNumber.buildVersion,
     onPressCoordinator: () => Linking.openURL(i18n.translate('common.links.inesctec')),
     onPressISPUP: () => Linking.openURL(i18n.translate('common.links.ispup')),
     onPressKeyruptive: () => Linking.openURL(i18n.translate('common.links.keyruptive')),

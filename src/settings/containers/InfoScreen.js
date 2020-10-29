@@ -8,9 +8,9 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import VersionNumber from 'react-native-version-number';
 
 import Info from '@settings/components/Info';
 
@@ -27,16 +27,47 @@ import accountActions from '@app/redux/account';
 
 import AppRoutes from '@app/navigation/routes';
 
+import TrackingManager from '@app/services/tracking';
+
 export default function InfoScreen () {
   const dispatch = useDispatch();
   const trackingEnabled = useSelector(isTrackingEnabled);
   const language = useSelector(getLanguage);
 
+  const [appVersion, setAppVersion] = useState('');
+  const [appBuild, setAppBuild] = useState('');
+  const [model, setModel] = useState('');
+  const [OS, setOS] = useState('');
+  const supportEmail = i18n.translate('common.emails.support');
+  const subject = i18n.translate('common.dialogs.support.subject');
+  const body = i18n.translate('common.dialogs.support.body', {
+    version: i18n.translate('screens.settings.version', { version: appVersion, build: appBuild }),
+    OS: `${Platform.OS} ${OS}`,
+    model,
+  });
+
+  useEffect(() => {
+    TrackingManager.getInfo()
+    .then(({
+      OSVersion,
+      deviceModel,
+      versionName,
+      versionCode,
+    }) => {
+      setAppVersion(versionName);
+      setAppBuild(versionCode);
+      setOS(OSVersion);
+      setModel(deviceModel);
+    });
+  });
+
+  const getSupportEmailFormat = () => `mailto:${supportEmail}?subject=${subject}&body=${body}`;
+
   const props = {
     trackingEnabled,
     language,
-    version: VersionNumber.appVersion,
-    build: VersionNumber.buildVersion,
+    appVersion,
+    appBuild,
     isInfected: useSelector(isInfected),
     onClose: () => NavigationService.navigate(AppRoutes.HOME),
     onPressTracking: () => dispatch(accountActions.switchTracking()),
@@ -47,7 +78,7 @@ export default function InfoScreen () {
         dispatch(accountActions.updateLanguage(languages.EN.languageTag));
       }
     },
-    onPressSupport: () => Linking.openURL(i18n.translate('common.links.support')),
+    onPressSupport: () => Linking.openURL(getSupportEmailFormat()),
     onPressHowToUse: () => {
       NavigationService.navigate(AppRoutes.HOW_TO_USE);
     },
