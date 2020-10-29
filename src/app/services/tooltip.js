@@ -47,7 +47,7 @@ function getConfig(config) {
     ...config,
   };
 
-  props.size = fontSizes[props].size;
+  props.size = fontSizes[props.size];
 
   return props;
 }
