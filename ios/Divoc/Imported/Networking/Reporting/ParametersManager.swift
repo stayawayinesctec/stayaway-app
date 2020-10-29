@@ -81,7 +81,7 @@ private class ParametersFetchOperation: Operation {
       group2.enter()
 
       let config = ReactNativeConfig.env();
-      let configUrl:String = (config!["BACKEND_CONFIG_URL"] as! String) + "config/defaults.json";
+      let configUrl:String = (config!["BACKEND_CONFIG_URL"] as! String) + "config/defaultsv2.json";
 
       var res: Any?
       if let url = URL(string: configUrl) {
