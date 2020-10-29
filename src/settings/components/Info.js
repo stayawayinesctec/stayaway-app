@@ -38,7 +38,7 @@ const styles = (colors, insets) => StyleSheet.create({
     margin: -sizes.size8,
   },
   header: {
-    marginBottom: sizes.size24,
+    marginBottom: sizes.size16,
   },
   layoutContainer: {
     flex: 1,
@@ -58,20 +58,29 @@ const styles = (colors, insets) => StyleSheet.create({
     width: '100%',
     marginBottom: sizes.size16,
   },
-  topItem: {
+  trackingItem: {
     flexDirection: 'column',
     alignItems: 'flex-start',
+  },
+  topItem: {
+    borderTopLeftRadius: sizes.size8,
+    borderTopRightRadius: sizes.size8,
+    borderTopWidth: 0,
+  },
+  bottomItem: {
+    borderBottomLeftRadius: sizes.size8,
+    borderBottomRightRadius: sizes.size8,
   },
   item: {
     backgroundColor: colors.white,
     paddingLeft: sizes.size16,
     paddingRight: sizes.size16,
     paddingVertical: sizes.size18,
-    marginBottom: sizes.size8,
+    borderTopWidth: sizes.size1,
+    borderColor: colors.grayLight,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: sizes.size8,
     shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
@@ -109,15 +118,10 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   sponsors: {
     position: 'absolute',
-    width: '100%',
+    flexDirection: 'row',
     bottom: sizes.size24 + insets.bottom,
-    paddingHorizontal: sizes.size24,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    left: sizes.size24,
     zIndex: 0,
-  },
-  sponsorsImages: {
-    flexDirection: 'row',
   },
   republicaPortuguesaImage: {
     marginRight: sizes.size24,
@@ -129,6 +133,7 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   version: {
     alignSelf: 'flex-end',
+    marginBottom: sizes.size8,
   },
 });
 
@@ -168,12 +173,14 @@ export default function Info(props) {
               </ButtonWrapper>
             </View>
             <View style={styles(colors, insets).itemsContainer}>
+              <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).version}>{i18n.translate('screens.settings.version', { version, build })}</Text>
               <View style={styles(colors, insets).topItems}>
                 <ButtonWrapper
                   onPress={onPressTracking}
                   style={{
                     ...styles(colors, insets).item,
                     ...styles(colors, insets).topItem,
+                    ...styles(colors, insets).trackingItem,
                     backgroundColor: trackingEnabled ? colors.blueLightest : colors.white,
                   }}
                   disabled={isInfected}
@@ -198,7 +205,10 @@ export default function Info(props) {
                 </ButtonWrapper>
                 <ButtonWrapper
                   onPress={onPressLanguage}
-                  style={styles(colors, insets).item}
+                  style={{
+                    ...styles(colors, insets).item,
+                    ...styles(colors, insets).bottomItem,
+                  }}
                   accessibilityLabel={i18n.translate('screens.settings.language.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.settings.language.accessibility.hint')}
                   accessibilityRole='switch'
@@ -220,20 +230,14 @@ export default function Info(props) {
                       )}
                   </View>
                 </ButtonWrapper>
-                <ButtonWrapper
-                  onPress={onPressSupport}
-                  style={styles(colors, insets).item}
-                  accessibilityLabel={i18n.translate('screens.settings.support.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.settings.support.accessibility.hint')}
-                >
-                  <Text weight='bold'>{i18n.translate('screens.settings.support.label')}</Text>
-                  <Icon name='mail' width={iconSizes.size14} height={iconSizes.size12} tintColor={colors.blueDark} />
-                </ButtonWrapper>
               </View>
               <View style={styles(colors, insets).bottomItems}>
                 <ButtonWrapper
                   onPress={onPressHowToUse}
-                  style={styles(colors, insets).item}
+                  style={{
+                    ...styles(colors, insets).item,
+                    ...styles(colors, insets).topItem,
+                  }}
                   accessibilityLabel={i18n.translate('screens.settings.how_to_use.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.settings.how_to_use.accessibility.hint')}
                 >
@@ -251,7 +255,19 @@ export default function Info(props) {
                   <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 <ButtonWrapper
+                  onPress={onPressSupport}
                   style={styles(colors, insets).item}
+                  accessibilityLabel={i18n.translate('screens.settings.support.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.support.accessibility.hint')}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.support.label')}</Text>
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.blueDark} />
+                </ButtonWrapper>
+                <ButtonWrapper
+                  style={{
+                    ...styles(colors, insets).item,
+                    ...(Configuration.RELEASE ? styles(colors, insets).bottomItem : {}),
+                  }}
                   onPress={onPressLegalInformation}
                   accessibilityLabel={i18n.translate('screens.settings.legal_information.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.settings.legal_information.accessibility.hint')}
@@ -260,7 +276,13 @@ export default function Info(props) {
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 { ! Configuration.RELEASE &&
-                  <ButtonWrapper style={styles(colors, insets).item} onPress={onPressDebug}>
+                  <ButtonWrapper
+                    style={{
+                      ...styles(colors, insets).item,
+                      ...styles(colors, insets).bottomItem,
+                    }}
+                    onPress={onPressDebug}
+                  >
                     <Text weight='bold'>{i18n.translate('screens.settings.debug.label')}</Text>
                     <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                   </ButtonWrapper>
@@ -270,11 +292,8 @@ export default function Info(props) {
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <View style={styles(colors, insets).sponsorsImages}>
-                <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-                <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
-              </View>
-              <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).version}>{i18n.translate('screens.settings.version', { version, build })}</Text>
+              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
             </View>
             <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>
