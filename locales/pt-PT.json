@@ -592,18 +592,20 @@
       "terms_of_use": "https://www.stayawaycovid.pt/termos-condicoes",
       "faqs": "https://www.stayawaycovid.pt/faq",
       "dgs": "https://www.dgs.pt",
-      "data_protection": "mailto:eugeniacarvalho@dgs.min-saude.pt",
       "inesctec": "https://www.inesctec.pt/pt",
       "ispup": "https://www.ispup.up.pt/?lang=pt",
       "keyruptive": "https://www.keyruptive.com",
       "ubirider": "https://www.pick.ubirider.com",
       "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude",
       "min_saude_covid": "https://www.covid19.min-saude.pt",
-      "support": "mailto:stayaway@inesctec.pt",
       "stores": {
         "play_store": "https://play.google.com/store/apps/details?id=fct.inesctec.stayaway",
         "app_store": "https://apps.apple.com/pt/app/id1519479652"
       }
+    },
+    "emails": {
+      "data_protection": "eugeniacarvalho@dgs.min-saude.pt",
+      "support": "stayaway@inesctec.pt"
     },
     "words": {
       "and": "e",
@@ -666,6 +668,10 @@
           "title": "Partilha de IDs aleatórios",
           "description": "Para submeter o seu diagnóstico precisa de partilhar os seus IDs aleatórios com a STAYAWAY COVID"
         }
+      },
+      "support": {
+        "subject": "Ajuda - STAYAWAY COVID",
+        "body": "Nome:\nMensagem:\n\nVersão da App: {{version}}\nSistema Operativo: {{OS}}\nModelo do telemóvel: {{model}}"
       }
     },
     "actions": {

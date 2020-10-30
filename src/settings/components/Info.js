@@ -140,8 +140,8 @@ const styles = (colors, insets) => StyleSheet.create({
 
 export default function Info(props) {
   const {
-    version,
-    build,
+    appVersion,
+    appBuild,
     language,
     trackingEnabled,
     isInfected,
@@ -173,7 +173,7 @@ export default function Info(props) {
               </ButtonWrapper>
             </View>
             <View style={styles(colors, insets).itemsContainer}>
-              <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).version}>{i18n.translate('screens.settings.version', { version, build })}</Text>
+              <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).version}>{i18n.translate('screens.settings.version', { version: appVersion, build: appBuild })}</Text>
               <View style={styles(colors, insets).topItems}>
                 <ButtonWrapper
                   onPress={onPressTracking}
@@ -304,8 +304,8 @@ export default function Info(props) {
 }
 
 Info.defaultProps = {
-  version: '1.0.0',
-  build: '0',
+  appVersion: '1.0.0',
+  appBuild: '0',
   trackingEnabled: false,
   isInfected: false,
   onClose: () => {},
@@ -319,8 +319,8 @@ Info.defaultProps = {
 };
 
 Info.propTypes = {
-  version: PropTypes.string,
-  build: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  appVersion: PropTypes.string,
+  appBuild: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   language: PropTypes.shape({
     name: PropTypes.string,
     languageTag: PropTypes.string,
