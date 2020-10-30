@@ -58,6 +58,12 @@
             "label": "Definições",
             "hint": "Navega para o ecrã de definições"
           }
+        },
+        "share": {
+          "accessibility": {
+            "label": "Partilhar",
+            "hint": "Ligação para partilhar a aplicação"
+          }
         }
       },
       "healthy": {
@@ -593,7 +599,11 @@
       "ubirider": "https://www.pick.ubirider.com",
       "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude",
       "min_saude_covid": "https://www.covid19.min-saude.pt",
-      "support": "mailto:stayaway@inesctec.pt"
+      "support": "mailto:stayaway@inesctec.pt",
+      "stores": {
+        "play_store": "https://play.google.com/store/apps/details?id=fct.inesctec.stayaway",
+        "app_store": "https://apps.apple.com/pt/app/id1519479652"
+      }
     },
     "words": {
       "and": "e",
@@ -638,7 +648,7 @@
       },
       "share": {
         "subject": "Partilhe a STAYAWAY COVID!",
-        "message": "Ajude a combater a COVID-19, instale a STAYAWAY COVID e junte-se a nós."
+        "message": "Ajude a combater a COVID-19, instale a STAYAWAY COVID e junte-se a nós.\n\nAndroid: {{play_store}}\niOS: {{app_store}}"
       },
       "loading": {
         "description": "A submeter os dados... Por favor aguarde."

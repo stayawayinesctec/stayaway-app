@@ -51,6 +51,11 @@ const styles = (colors, insets) => StyleSheet.create({
     }),
     marginRight: sizes.size24,
   },
+  shareButton: {
+    alignSelf: 'flex-end',
+    marginTop: sizes.size16,
+    marginRight: sizes.size24 + sizes.size6,
+  },
   header: {
     marginTop: -100,
   },
@@ -174,10 +179,12 @@ export default function Template (props) {
     panelBackgroundColor,
     panelTextColor,
     lastSync,
-    onPress,
-    onLongPress,
+    onPressSettings,
+    onLongPressSettings,
+    onPressShare,
     error,
     infectionStatus,
+    shouldShowShareButton,
   } = props;
 
   const showUpdatedAt = infectionStatus !== INFECTION_STATUS.INFECTED;
@@ -190,14 +197,24 @@ export default function Template (props) {
         <TopComponent>
           <View style={styles(colors, insets).settingsButtonContainer}>
             <ButtonWrapper
-              onPress={onPress}
-              onLongPress={onLongPress}
+              onPress={onPressSettings}
+              onLongPress={onLongPressSettings}
               style={styles(colors, insets).settingsButton}
               accessibilityLabel={i18n.translate('screens.home.actions.settings.accessibility.label')}
               accessibilityHint={i18n.translate('screens.home.actions.settings.accessibility.hint')}
             >
               <Icon name='settings' width={iconSizes.size48} height={iconSizes.size48} />
             </ButtonWrapper>
+            { shouldShowShareButton &&
+              <ButtonWrapper
+                onPress={onPressShare}
+                style={styles(colors, insets).shareButton}
+                accessibilityLabel={i18n.translate('screens.home.actions.share.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.home.actions.share.accessibility.hint')}
+              >
+                <Icon name='share' width={iconSizes.size36} height={iconSizes.size36} />
+              </ButtonWrapper>
+            }
           </View>
           { error.status &&
             <View style={styles(colors, insets).backdropContainer} />
@@ -317,8 +334,9 @@ Template.defaultProps = {
   header: '',
   description: [],
   lastSync: 0,
-  onPress: () => {},
-  onLongPress: () => {},
+  onPressSettings: () => {},
+  onPressShare: () => {},
+  onLongPressSettings: () => {},
   panelBackgroundColor: commonColors.green,
   panelTextColor: commonColors.white,
   error: {
@@ -342,13 +360,15 @@ Template.defaultProps = {
     },
   },
   infectionStatus: 0,
+  shouldShowShareButton: false,
 };
 
 Template.propTypes = {
   header: PropTypes.string,
   description: PropTypes.arrayOf(PropTypes.object),
-  onPress: PropTypes.func,
-  onLongPress: PropTypes.func,
+  onPressSettings: PropTypes.func,
+  onPressShare: PropTypes.func,
+  onLongPressSettings: PropTypes.func,
   panelBackgroundColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
   panelTextColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
   lastSync: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
@@ -371,4 +391,5 @@ Template.propTypes = {
     }),
   }),
   infectionStatus: PropTypes.number,
+  shouldShowShareButton: PropTypes.bool,
 };

@@ -1580,4 +1580,17 @@ export default (colors, tintColor) => ({
     ),
     viewBox: '0 0 14 22',
   },
+  share: {
+    svg: (
+      <Svg width='36' height='36' fill='none'>
+        <Circle cx='18' cy='18' r='18' fill={colors.blueLightest} />
+        <Path fill={colors.transparent} d='M10.7807 20.4363C12.1783 20.4363 13.3113 19.3033 13.3113 17.9056C13.3113 16.508 12.1783 15.3749 10.7807 15.3749C9.38302 15.3749 8.25 16.508 8.25 17.9056C8.25 19.3033 9.38302 20.4363 10.7807 20.4363Z' stroke='white' strokeWidth='2' strokeMterlimit='10' strokeLinecap='round' />
+        <Path fill={colors.transparent} d='M22.2604 14.7515C23.658 14.7515 24.7911 13.6184 24.7911 12.2208C24.7911 10.8231 23.658 9.69012 22.2604 9.69012C20.8628 9.69012 19.7297 10.8231 19.7297 12.2208C19.7297 13.6184 20.8628 14.7515 22.2604 14.7515Z' stroke='white' strokeWidth='2' strokeMterlimit='10' strokeLinecap='round' />
+        <Path fill={colors.transparent} d='M22.2604 25.791C23.658 25.791 24.7911 24.658 24.7911 23.2603C24.7911 21.8627 23.658 20.7297 22.2604 20.7297C20.8628 20.7297 19.7297 21.8627 19.7297 23.2603C19.7297 24.658 20.8628 25.791 22.2604 25.791Z' stroke='white' strokeWidth='2' strokeMterlimit='10' strokeLinecap='round' />
+        <Path d='M13.3113 16.6586L19.9864 13.3577' stroke={colors.white} strokeWidth='2' strokeMiterlimit='10' strokeLinecap='round' />
+        <Path d='M13.0913 19.0059L19.9498 22.1968' stroke={colors.white} strokeWidth='2' strokeMiterlimit='10' strokeLinecap='round' />
+      </Svg>
+    ),
+    viewBox: '0 0 36 36',
+  }
 });
