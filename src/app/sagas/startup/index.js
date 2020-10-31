@@ -38,6 +38,14 @@ export function* startup() {
       yield put(accountActions.setLanguage(language));
     }
 
+    // Check if has previous theme configuration
+    const hasTheme = yield call([Storage, 'hasItem'], 'theme');
+
+    if (hasTheme) {
+      const theme = yield call([Storage, 'getItem'], 'theme');
+      yield put(accountActions.setTheme(theme));
+    }
+
     // Check if has previous configuration
     const hasSignUpDate = yield call([Storage, 'hasItem'], 'signup_date');
 

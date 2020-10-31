@@ -216,6 +216,16 @@
           "hint": "Press to switch app's language"
         }
       },
+      "theme": {
+        "label": "Theme",
+        "light": "Light",
+        "dark": "Dark",
+        "auto": "Auto",
+        "accessibility": {
+          "label": "Theme",
+          "hint": "Press to switch app's theme"
+        }
+      },
       "support": {
         "label": "Contact Us",
         "accessibility": {

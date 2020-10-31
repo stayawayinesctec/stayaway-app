@@ -145,10 +145,12 @@ export default function Info(props) {
     appVersion,
     appBuild,
     language,
+    themeName,
     trackingEnabled,
     isInfected,
     onClose,
     onPressLanguage,
+    onPressTheme,
     onPressSupport,
     onPressLegalInformation,
     onPressHowToUse,
@@ -207,10 +209,7 @@ export default function Info(props) {
                 </ButtonWrapper>
                 <ButtonWrapper
                   onPress={onPressLanguage}
-                  style={{
-                    ...styles(colors, insets).item,
-                    ...styles(colors, insets).bottomItem,
-                  }}
+                  style={styles(colors, insets).item}
                   accessibilityLabel={i18n.translate('screens.settings.language.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.settings.language.accessibility.hint')}
                   accessibilityRole='switch'
@@ -228,6 +227,33 @@ export default function Info(props) {
                           }}
                       >
                         { countryCode }
+                      </Text>,
+                      )}
+                  </View>
+                </ButtonWrapper>
+                <ButtonWrapper
+                  style={{
+                    ...styles(colors, insets).item,
+                    ...styles(colors, insets).bottomItem,
+                  }}
+                  accessibilityLabel={i18n.translate('screens.settings.theme.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.theme.accessibility.hint')}
+                  accessibilityRole='switch'
+                  accessibilityValue={{text: i18n.translate(`screens.settings.theme.${themeName}`)}}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.theme.label')}</Text>
+                  <View style={styles(colors, insets).languageLabelContainer}>
+                    { Object.values(commonThemes.names).map((settingThemeName) =>
+                      <Text
+                        onPress={onPressTheme(settingThemeName)}
+                        textAlign='center'
+                        key={settingThemeName}
+                        style={{
+                            ...styles(colors, insets).languageLabel,
+                            backgroundColor: settingThemeName === themeName ? colors.blueLightest : colors.grayLight,
+                          }}
+                      >
+                        { i18n.translate(`screens.settings.theme.${settingThemeName}`) }
                       </Text>,
                       )}
                   </View>

@@ -26,9 +26,13 @@ import Modals from '@app/containers/Modals';
 
 import startupActions from '@app/redux/startup';
 import { isAppLaunched } from '@app/redux/startup/selectors';
+import { getTheme } from '@app/redux/account/selectors';
 
 export default function Root () {
-  const theme = THEMES[useColorScheme() || LIGHT];
+  const storedTheme = useSelector(getTheme);
+  const systemTheme = useColorScheme();
+  // Uses 'storedTheme' if it's light or dark, otherwise, uses system preferences, falling back to light theme
+  const theme = THEMES[storedTheme] || THEMES[systemTheme || LIGHT];
 
   const dispatch = useDispatch();
 
@@ -55,6 +59,12 @@ export default function Root () {
       dispatch(startupActions.startup());
     }
   }, [appLaunched]);
+
+  useEffect(() => {
+    if(appLaunched) {
+      SplashScreen.hide();
+    }
+  }, [storedTheme]);
 
   if (! appLaunched) {
     return null;

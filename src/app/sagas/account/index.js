@@ -373,6 +373,11 @@ export function* updateLanguage({ payload: languageTag }) {
   RNRestart.Restart();
 }
 
+export function* updateTheme({ payload: theme }) {
+  yield put(accountActions.setTheme(theme));
+  SplashScreen.show();
+}
+
 export function* enableExposureNotifications() {
   yield put(accountActions.startTracking());
   const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
@@ -420,6 +425,10 @@ function* watchUpdateLanguage() {
   yield takeLatest(accountTypes.UPDATE_LANGUAGE, updateLanguage);
 }
 
+function* watchUpdateTheme() {
+  yield takeLatest(accountTypes.UPDATE_THEME, updateTheme);
+}
+
 function* watchEnableExposureNotifications() {
   yield takeLatest(accountTypes.ENABLE_EXPOSURE_NOTIFICATIONS, enableExposureNotifications);
 }
@@ -437,6 +446,7 @@ export default function* root() {
   yield fork(watchSetErrors);
   yield fork(watchSetInfectionStatus);
   yield fork(watchUpdateLanguage);
+  yield fork(watchUpdateTheme);
   yield fork(watchEnableExposureNotifications);
   yield fork(watchRequestIgnoreBatteryOptimizations);
 }
