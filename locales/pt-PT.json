@@ -14,7 +14,11 @@
       },
       "fourth": {
         "title": "Proteja os outros",
-        "description": "Se lhe for diagnosticada COVID-19 obterá, junto com o resultado do teste, um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
+        "description": "Se lhe for diagnosticada COVID-19 obterá, do Serviço Nacional de Saúde um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
+      },
+      "fifth": {
+        "title": "Dispositivo Android",
+        "description": "A STAYAWAY COVID não acede a informação de localização nem pedirá permissão para tal.\n\nNo entanto por limitação do sistema operativo Android será necessário ter os serviços de localização ligados para que a STAYAWAY COVID funcione corretamente."
       },
       "consent": {
         "title": "Consentimento",
@@ -53,6 +57,12 @@
           "accessibility": {
             "label": "Definições",
             "hint": "Navega para o ecrã de definições"
+          }
+        },
+        "share": {
+          "accessibility": {
+            "label": "Partilhar",
+            "hint": "Ligação para partilhar a aplicação"
           }
         }
       },
@@ -112,11 +122,23 @@
         },
         "battery": {
           "title": "Optimização de bateria ligada",
-          "message": "Desative a otimização da bateria para que a STAYAWAY COVID possa funcionar adequadamente.\nTerá de desativar todos os níveis de otimização de bateria de que o seu dispositivo dispõe.",
-          "label": "Desativar otimizações",
-          "accessibility": {
-            "label": "Desativar otimizações",
-            "hint": "Desativar as otimizações de bateria para a aplicação"
+          "message": "Desligue as otimizações de bateria para que a STAYAWAY COVID possa funcionar adequadamente.",
+          "submessage": "Se não for possível desligar com o botão abaixo ou esta mensagem persistir por favor aceda a mais informações na ligação abaixo.",
+          "actions": {
+            "main": {
+              "label": "Desativar otimizações",
+              "accessibility": {
+                "label": "Desativar otimizações",
+                "hint": "Desativar as otimizações de bateria para a aplicação"
+              }
+            },
+            "alternative": {
+              "label": "Mais informações",
+              "accessibility": {
+                "label": "Perguntas Frequentes",
+                "hint": "Link para a página web das perguntas frequentes"
+              }
+            }
           }
         },
         "gaen": {
@@ -156,7 +178,7 @@
         "label": "Informações em:",
         "accessibility": {
           "label": "Fonte das recomendações",
-          "hint": "Link para a página web com a fonte das recomendações"
+          "hint": "Ligação para a página web com a fonte das recomendações"
         }
       },
       "healthy": {
@@ -194,6 +216,13 @@
           "hint": "Altera o idioma da aplicação"
         }
       },
+      "support": {
+        "label": "Contacte-nos",
+        "accessibility": {
+          "label": "Contacte-nos",
+          "hint": "Ligação para enviar um email à equipa de suporte"
+        }
+      },
       "how_to_use": {
         "label": "Instruções de Utilização",
         "accessibility": {
@@ -205,7 +234,7 @@
         "label": "Perguntas Frequentes",
         "accessibility": {
           "label": "Perguntas Frequentes",
-          "hint": "Link para a página web das perguntas frequentes"
+          "hint": "Ligação para a página web das perguntas frequentes"
         }
       },
       "legal_information": {
@@ -218,6 +247,7 @@
       "debug": {
         "label": "Debug"
       },
+      "version": "v{{version}} ({{build}})",
       "actions": {
         "back": {
           "accessibility": {
@@ -231,7 +261,7 @@
       "code_input": {
         "title": "Testou positivo à COVID-19?",
         "description": {
-          "first": "Digite o código que recebeu do seu médico após ter testado positivo ",
+          "first": "Digite o código que recebeu do Serviço Nacional de Saúde após ter testado positivo ",
           "second": "para partilhar anonimamente os seus identificadores aleatórios. Este código é válido durante 24h."
         },
         "accessibility": {
@@ -292,28 +322,27 @@
       "inesctec": {
         "accessibility": {
           "label": "INESCTEC",
-          "hint": "Link para a página web do INESCTEC"
+          "hint": "Ligação para a página web do INESCTEC"
         }
       },
       "ispup": {
         "accessibility": {
           "label": "ISPUP",
-          "hint": "Link para a página web do ISPUP"
+          "hint": "Ligação para a página web do ISPUP"
         }
       },
       "keyruptive": {
         "accessibility": {
           "label": "Keyruptive",
-          "hint": "Link para a página web do Keyruptive"
+          "hint": "Ligação para a página web do Keyruptive"
         }
       },
       "ubirider": {
         "accessibility": {
           "label": "Ubirider",
-          "hint": "Link para a página web do Ubirider"
+          "hint": "Ligação para a página web do Ubirider"
         }
       },
-      "version": "v{{version}} ({{build}})",
       "actions": {
         "back": {
           "accessibility": {
@@ -558,18 +587,25 @@
   "common": {
     "app_name": "STAYAWAY COVID",
     "links": {
-      "home_page": "https://www.stayawaycovid.pt/",
-      "privacy_policy": "https://www.stayawaycovid.pt/politica-de-privacidade/",
-      "terms_of_use": "https://www.stayawaycovid.pt/termos-condicoes/",
-      "faqs": "https://www.stayawaycovid.pt/faq/",
-      "dgs": "https://www.dgs.pt/",
-      "data_protection": "mailto:eugeniacarvalho@dgs.min-saude.pt",
+      "home_page": "https://www.stayawaycovid.pt",
+      "privacy_policy": "https://www.stayawaycovid.pt/politica-de-privacidade",
+      "terms_of_use": "https://www.stayawaycovid.pt/termos-condicoes",
+      "faqs": "https://www.stayawaycovid.pt/faq",
+      "dgs": "https://www.dgs.pt",
       "inesctec": "https://www.inesctec.pt/pt",
       "ispup": "https://www.ispup.up.pt/?lang=pt",
-      "keyruptive": "https://www.keyruptive.com/",
-      "ubirider": "https://www.pick.ubirider.com/",
-      "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude/",
-      "min_saude_covid": "https://www.covid19.min-saude.pt"
+      "keyruptive": "https://www.keyruptive.com",
+      "ubirider": "https://www.pick.ubirider.com",
+      "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude",
+      "min_saude_covid": "https://www.covid19.min-saude.pt",
+      "stores": {
+        "play_store": "https://play.google.com/store/apps/details?id=fct.inesctec.stayaway",
+        "app_store": "https://apps.apple.com/pt/app/id1519479652"
+      }
+    },
+    "emails": {
+      "data_protection": "eugeniacarvalho@dgs.min-saude.pt",
+      "support": "stayaway@inesctec.pt"
     },
     "words": {
       "and": "e",
@@ -583,6 +619,9 @@
     },
     "placeholders": {
       "code": "xxx xxx xxx xxx"
+    },
+    "popover": {
+      "home_long_press": "Pressione continuamente para desligar/ligar o rastreio"
     },
     "dialogs": {
       "network": {
@@ -611,7 +650,7 @@
       },
       "share": {
         "subject": "Partilhe a STAYAWAY COVID!",
-        "message": "Ajude a combater a COVID-19, instale a STAYAWAY COVID e junte-se a nós."
+        "message": "Ajude a combater a COVID-19, instale a STAYAWAY COVID e junte-se a nós.\n\nAndroid: {{play_store}}\niOS: {{app_store}}"
       },
       "loading": {
         "description": "A submeter os dados... Por favor aguarde."
@@ -629,6 +668,10 @@
           "title": "Partilha de IDs aleatórios",
           "description": "Para submeter o seu diagnóstico precisa de partilhar os seus IDs aleatórios com a STAYAWAY COVID"
         }
+      },
+      "support": {
+        "subject": "Ajuda - STAYAWAY COVID",
+        "body": "Nome:\nMensagem:\n\nVersão da App: {{version}}\nSistema Operativo: {{OS}}\nModelo do telemóvel: {{model}}"
       }
     },
     "actions": {

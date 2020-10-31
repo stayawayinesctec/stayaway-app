@@ -51,6 +51,11 @@ const styles = (colors, insets) => StyleSheet.create({
     }),
     marginRight: sizes.size24,
   },
+  shareButton: {
+    alignSelf: 'flex-end',
+    marginTop: sizes.size16,
+    marginRight: sizes.size24 + sizes.size6,
+  },
   header: {
     marginTop: -100,
   },
@@ -95,8 +100,13 @@ const styles = (colors, insets) => StyleSheet.create({
   descriptionsContent: {
     marginTop: sizes.size24,
   },
-  description: {
+  messageContainer: {
     marginBottom: sizes.size24,
+  },
+  message: {
+  },
+  submessage: {
+    marginTop: sizes.size8,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -153,6 +163,12 @@ const styles = (colors, insets) => StyleSheet.create({
     width: '100%',
     marginBottom: -sizes.size16,
   },
+  errorAlternativeButton: {
+    marginTop: sizes.size16 + sizes.size8,
+    marginBottom: -sizes.size16 * 2,
+    alignSelf: 'center',
+    width: '100%',
+  },
 });
 
 export default function Template (props) {
@@ -163,10 +179,12 @@ export default function Template (props) {
     panelBackgroundColor,
     panelTextColor,
     lastSync,
-    onPress,
-    onLongPress,
+    onPressSettings,
+    onLongPressSettings,
+    onPressShare,
     error,
     infectionStatus,
+    shouldShowShareButton,
   } = props;
 
   const showUpdatedAt = infectionStatus !== INFECTION_STATUS.INFECTED;
@@ -179,14 +197,24 @@ export default function Template (props) {
         <TopComponent>
           <View style={styles(colors, insets).settingsButtonContainer}>
             <ButtonWrapper
-              onPress={onPress}
-              onLongPress={onLongPress}
+              onPress={onPressSettings}
+              onLongPress={onLongPressSettings}
               style={styles(colors, insets).settingsButton}
               accessibilityLabel={i18n.translate('screens.home.actions.settings.accessibility.label')}
               accessibilityHint={i18n.translate('screens.home.actions.settings.accessibility.hint')}
             >
               <Icon name='settings' width={iconSizes.size48} height={iconSizes.size48} />
             </ButtonWrapper>
+            { shouldShowShareButton &&
+              <ButtonWrapper
+                onPress={onPressShare}
+                style={styles(colors, insets).shareButton}
+                accessibilityLabel={i18n.translate('screens.home.actions.share.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.home.actions.share.accessibility.hint')}
+              >
+                <Icon name='share' width={iconSizes.size36} height={iconSizes.size36} />
+              </ButtonWrapper>
+            }
           </View>
           { error.status &&
             <View style={styles(colors, insets).backdropContainer} />
@@ -212,14 +240,29 @@ export default function Template (props) {
                             { error.icon }
                             <Text size='large' weight='bold' textColor={colors.blueDark} style={styles(colors, insets).iconTitle}>{error.title}</Text>
                           </View>
-                          <Text textColor={colors.blueDark} style={styles(colors, insets).description}>{error.message}</Text>
+                          <View style={styles(colors, insets).messageContainer}>
+                            <Text textColor={colors.blueDark} style={styles(colors, insets).message}>{error.message}</Text>
+                            { error.submessage &&
+                              <Text size='small' textColor={colors.blueDark} style={styles(colors, insets).submessage}>{error.submessage}</Text>
+                            }
+                          </View>
                           <Button
-                            title={error.label}
-                            accessibilityLabel={error.accessibility.label}
-                            accessibilityHint={error.accessibility.hint}
+                            title={error.main.label}
+                            accessibilityLabel={error.main.accessibility.label}
+                            accessibilityHint={error.main.accessibility.hint}
                             containerStyle={styles(colors, insets).errorButton}
-                            onPress={error.onPress}
+                            onPress={error.main.onPress}
                           />
+                          { error.alternative &&
+                            <Button
+                              alternative
+                              title={error.alternative.label}
+                              accessibilityLabel={error.alternative.accessibility.label}
+                              accessibilityHint={error.alternative.accessibility.hint}
+                              containerStyle={styles(colors, insets).errorAlternativeButton}
+                              onPress={error.alternative.onPress}
+                            />
+                          }
                         </View>
                       </View>
                     </View>
@@ -291,29 +334,41 @@ Template.defaultProps = {
   header: '',
   description: [],
   lastSync: 0,
-  onPress: () => {},
-  onLongPress: () => {},
+  onPressSettings: () => {},
+  onPressShare: () => {},
+  onLongPressSettings: () => {},
   panelBackgroundColor: commonColors.green,
   panelTextColor: commonColors.white,
   error: {
     status: false,
     title: '',
     message: '',
-    accessibility: {
-      label: '',
-      hint: '',
-    },
     icon: undefined,
-    onPress: () => {},
+    main: {
+      accessibility: {
+        label: '',
+        hint: '',
+      },
+      onPress: () => {},
+    },
+    alternative: {
+      accessibility: {
+        label: '',
+        hint: '',
+      },
+      onPress: () => {},
+    },
   },
   infectionStatus: 0,
+  shouldShowShareButton: false,
 };
 
 Template.propTypes = {
   header: PropTypes.string,
   description: PropTypes.arrayOf(PropTypes.object),
-  onPress: PropTypes.func,
-  onLongPress: PropTypes.func,
+  onPressSettings: PropTypes.func,
+  onPressShare: PropTypes.func,
+  onLongPressSettings: PropTypes.func,
   panelBackgroundColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
   panelTextColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
   lastSync: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
@@ -322,10 +377,19 @@ Template.propTypes = {
     status: PropTypes.bool,
     title: PropTypes.string,
     message: PropTypes.string,
-    label: PropTypes.string,
-    accessibility: PropTypes.object,
+    submessage: PropTypes.string,
     icon: PropTypes.object,
-    onPress: PropTypes.func,
+    main: PropTypes.shape({
+      label: PropTypes.string,
+      accessibility: PropTypes.object,
+      onPress: PropTypes.func,
+    }),
+    alternative: PropTypes.shape({
+      label: PropTypes.string,
+      accessibility: PropTypes.object,
+      onPress: PropTypes.func,
+    }),
   }),
   infectionStatus: PropTypes.number,
+  shouldShowShareButton: PropTypes.bool,
 };

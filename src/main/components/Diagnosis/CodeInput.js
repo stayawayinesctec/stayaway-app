@@ -19,7 +19,6 @@ import { getSubmitImageSize } from '@app/common/utils/scalling';
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import Button from '@app/common/components/Button';
-import SupportIcon from '@app/common/components/SupportIcon';
 import CodeInput from '@app/common/components/CodeInput';
 import Text from '@app/common/components/Text';
 import Images from '@app/common/assets/images';

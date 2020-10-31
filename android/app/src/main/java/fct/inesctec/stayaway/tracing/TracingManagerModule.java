@@ -58,6 +58,7 @@ import fct.inesctec.stayaway.tracing.internal.networking.models.AuthenticationCo
 import fct.inesctec.stayaway.tracing.internal.networking.models.AuthenticationCodeResponseModel;
 import fct.inesctec.stayaway.tracing.internal.storage.SecureStorage;
 import fct.inesctec.stayaway.tracing.internal.util.DeviceFeatureHelper;
+import fct.inesctec.stayaway.tracing.internal.util.DeviceInfo;
 import fct.inesctec.stayaway.tracing.internal.util.JwtUtil;
 import fct.inesctec.stayaway.tracing.internal.util.SpecialBatterySystemHelper;
 import fct.inesctec.stayaway.tracing.internal.util.WritableMapHelper;
@@ -201,6 +202,26 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     public void sync(Promise promise) {
         DP3T.sync(getReactApplicationContext());
         promise.resolve(null);
+    }
+
+    /**
+     * Get device info.
+     */
+    @ReactMethod
+    public void getInfo(Promise promise) {
+        DeviceInfo deviceInfo = DeviceInfo.getInstance();
+
+        WritableMap writableMap = WritableMapHelper.wrapDeviceInfo(deviceInfo);
+
+        promise.resolve(writableMap);
+    }
+
+    /**
+     * Check if the device supports location less scanning.
+     */
+    @ReactMethod
+    public void deviceSupportsLocationlessScanning(Promise promise) {
+        promise.resolve(DeviceFeatureHelper.supportsLocationlessScanning(getReactApplicationContext()));
     }
 
     /**

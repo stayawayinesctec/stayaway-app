@@ -21,6 +21,7 @@ PODS:
   - glog (0.3.5)
   - Permission-Notifications (2.1.5):
     - RNPermissions
+  - pop (1.0.12)
   - RCTRequired (0.63.2)
   - RCTTypeSafety (0.63.2):
     - FBLazyVector (= 0.63.2)
@@ -197,8 +198,6 @@ PODS:
     - React
   - react-native-splash-screen (3.2.0):
     - React
-  - react-native-version-number (0.3.6):
-    - React
   - React-RCTActionSheet (0.63.2):
     - React-Core/RCTActionSheetHeaders (= 0.63.2)
   - React-RCTAnimation (0.63.2):
@@ -277,8 +276,14 @@ PODS:
     - React
   - RNSVG (12.1.0):
     - React
+  - RNTooltips (1.0.2):
+    - pop (~> 1.0)
+    - React
+    - SexyTooltip
   - RNVectorIcons (6.6.0):
     - React
+  - SexyTooltip (1.2.7):
+    - pop (~> 1.0)
   - TrustKit (1.6.5)
   - Yoga (1.14.0)
 
@@ -305,7 +310,6 @@ DEPENDENCIES:
   - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
-  - react-native-version-number (from `../node_modules/react-native-version-number`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -325,6 +329,7 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RNTooltips (from `../node_modules/react-native-tooltips/ios`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - TrustKit (~> 1.6)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -332,6 +337,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
+    - pop
+    - SexyTooltip
     - TrustKit
 
 EXTERNAL SOURCES:
@@ -375,8 +382,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
     :path: "../node_modules/react-native-splash-screen"
-  react-native-version-number:
-    :path: "../node_modules/react-native-version-number"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -415,6 +420,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  RNTooltips:
+    :path: "../node_modules/react-native-tooltips/ios"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -428,6 +435,7 @@ SPEC CHECKSUMS:
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   Permission-Notifications: 231d0e1db2300b686548587d384ba414e6a93332
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
   React: e1c65dd41cb9db13b99f24608e47dd595f28ca9a
@@ -442,7 +450,6 @@ SPEC CHECKSUMS:
   react-native-restart: d19a0f8d053d065fe64cd2baebb6487111c77149
   react-native-safe-area-context: ef6f16c66b0797ecae1bf86c103dfb3dc16fc33d
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
-  react-native-version-number: b415bbec6a13f2df62bf978e85bc0d699462f37f
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
   React-RCTBlob: 39cf0ece1927996c4466510e25d2105f67010e13
@@ -462,10 +469,12 @@ SPEC CHECKSUMS:
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
+  RNTooltips: e13180e4339e2a85daabd09507f62a5a32d3dc8a
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  SexyTooltip: e243da5a858c7160141cf35786a4033669d1efca
   TrustKit: 073855e3adecd317417bda4ac9e9ac54a2e3b9f2
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 836b3d9d33b63bb0bbcd28963ffd298ed32f920d
+PODFILE CHECKSUM: 984e6892836b6bd256a638a3ed617d56916aaba8
 
 COCOAPODS: 1.8.4

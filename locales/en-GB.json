@@ -16,6 +16,10 @@
         "title": "Protect others around you",
         "description": "If you have been diagnosed with COVID-19, with the result of your test you will be given a code that will allow STAYAWAY COVID to alert all of those you have come in close contact with in the past 14 days but preserving your anonimity.\n\nThis a fundamental step to break chains of infection and protect your and others’ health."
       },
+      "fifth": {
+        "title": "Android device",
+        "description": "STAYAWAY COVID does not access any kind of location information nor it asks permission to access the location services.\n\nHowever, due to a limitation of the Android operating system, location services will need to be turned on for STAYAWAY COVID to work properly."
+      },
       "consent": {
         "title": "Consent",
         "description": {
@@ -53,6 +57,12 @@
           "accessibility": {
             "label": "Settings",
             "hint": "Navigates to the settings screen"
+          }
+        },
+        "share": {
+          "accessibility": {
+            "label": "Share",
+            "hint": "Links to share the app"
           }
         }
       },
@@ -112,11 +122,23 @@
         },
         "battery": {
           "title": "Battery optimization enabled",
-          "message": "Disable battery optimization to allow STAYAWAY COVID to work properly.",
-          "label": "Turn off optimization",
-          "accessibility": {
-            "label": "Turn off optimization",
-            "hint": "Turn off battery optimization for the app"
+          "message": "Disable battery optimizations to allow STAYAWAY COVID to work properly.",
+          "submessage": "If the button below does not do the trick or this message persists please follow the link for more information.",
+          "actions": {
+            "main": {
+              "label": "Turn off optimization",
+              "accessibility": {
+                "label": "Turn off optimization",
+                "hint": "Turn off battery optimization for the app"
+              }
+            },
+            "alternative": {
+              "label": "More information",
+              "accessibility": {
+                "label": "FAQs",
+                "hint": "Links to the FAQs webpage"
+              }
+            }
           }
         },
         "gaen": {
@@ -194,6 +216,13 @@
           "hint": "Press to switch app's language"
         }
       },
+      "support": {
+        "label": "Contact Us",
+        "accessibility": {
+          "label": "Contact Us",
+          "hint": "Send email to support team"
+        }
+      },
       "how_to_use": {
         "label": "How to use the app",
         "accessibility": {
@@ -218,6 +247,7 @@
       "debug": {
         "label": "Debug"
       },
+      "version": "v{{version}} ({{build}})",
       "actions": {
         "back": {
           "accessibility": {
@@ -231,7 +261,7 @@
       "code_input": {
         "title": "Have you tested positive for COVID-19?",
         "description": {
-          "first": "Along with your positive diagnosis, you were given a code by your doctor. ",
+          "first": "After your positive diagnosis, you were given a code by the National Health Service. ",
           "second": "Enter the code to give the app permission to anonymously share your random identifiers. This code is valid for 24 hours only."
         },
         "accessibility": {
@@ -319,7 +349,6 @@
           "hint": "Links to the SPMS webpage"
         }
       },
-      "version": "v{{version}} ({{build}})",
       "actions": {
         "back": {
           "accessibility": {
@@ -556,18 +585,25 @@
   "common": {
     "app_name": "STAYAWAY COVID",
     "links": {
-      "home_page": "https://www.stayawaycovid.pt/en/",
-      "privacy_policy": "https://www.stayawaycovid.pt/privacy-policy/",
-      "terms_of_use": "https://www.stayawaycovid.pt/terms-conditions/",
-      "faqs": "https://www.stayawaycovid.pt/frequently-asked-questions/",
-      "dgs": "https://www.dgs.pt/",
-      "data_protection": "mailto:eugeniacarvalho@dgs.min-saude.pt",
+      "home_page": "https://www.stayawaycovid.pt/en",
+      "privacy_policy": "https://www.stayawaycovid.pt/privacy-policy",
+      "terms_of_use": "https://www.stayawaycovid.pt/terms-conditions",
+      "faqs": "https://www.stayawaycovid.pt/frequently-asked-questions",
+      "dgs": "https://www.dgs.pt",
       "inesctec": "https://www.inesctec.pt/en",
-      "ispup": "https://www.ispup.up.pt/",
-      "keyruptive": "https://www.keyruptive.com/",
+      "ispup": "https://www.ispup.up.pt",
+      "keyruptive": "https://www.keyruptive.com",
       "ubirider": "https://www.pick.ubirider.com/?lang=en",
-      "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude/",
-      "min_saude_covid": "https://www.covid19.min-saude.pt"
+      "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude",
+      "min_saude_covid": "https://www.covid19.min-saude.pt",
+      "stores": {
+        "play_store": "https://play.google.com/store/apps/details?id=fct.inesctec.stayaway",
+        "app_store": "https://apps.apple.com/pt/app/id1519479652"
+      }
+    },
+    "emails": {
+      "data_protection": "eugeniacarvalho@dgs.min-saude.pt",
+      "support": "stayaway@inesctec.pt"
     },
     "words": {
       "and": "and",
@@ -581,6 +617,9 @@
     },
     "placeholders": {
       "code": "xxx xxx xxx xxx"
+    },
+    "popover": {
+      "home_long_press": "Press and hold to turn off/on monitoring"
     },
     "dialogs": {
       "network": {
@@ -607,6 +646,10 @@
         "title": "Google Play Services",
         "description": "To enable the use of the Exposure Notification API an update to Google Play Services is required. If an update is not yet available on your device, try again later."
       },
+      "share": {
+        "subject": "Share STAYAWAY COVID!",
+        "message": "Help interrupting the chains of COVID-19, install STAYAWAY COVID and join us.\n\nAndroid: {{play_store}}\niOS: {{app_store}}"
+      },
       "loading": {
         "description": "Sending data. Please hold."
       },
@@ -623,6 +666,10 @@
           "title": "Sharing your random IDs",
           "description": "In order to submit your positive diagnosis you need to share your random IDs"
         }
+      },
+      "support": {
+        "subject": "Help - STAYAWAY COVID",
+        "body": "Name:\nMessage:\n\nApp Version: {{version}}\nOperating System: {{OS}}\nSmartphone model: {{model}}"
       }
     },
     "actions": {

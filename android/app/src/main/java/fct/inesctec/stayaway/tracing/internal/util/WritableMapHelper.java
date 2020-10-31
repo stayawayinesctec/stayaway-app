@@ -58,4 +58,22 @@ public class WritableMapHelper {
 
         return writableMap;
     }
+
+    /**
+     * Convert device info to WritableMap.
+     *
+     * @param info
+     *
+     * @return WritableMap
+     */
+    public static WritableMap wrapDeviceInfo(DeviceInfo info) {
+        WritableMap writableMap = new WritableNativeMap();
+
+        writableMap.putString("OSVersion", info.getOSVersion());
+        writableMap.putString("deviceModel", info.getDeviceModel());
+        writableMap.putString("versionName", info.getVersionName());
+        writableMap.putString("versionCode", info.getVersionCode());
+
+        return writableMap;
+    }
 }

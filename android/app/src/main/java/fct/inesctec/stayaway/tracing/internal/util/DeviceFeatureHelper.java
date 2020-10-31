@@ -41,4 +41,9 @@ public class DeviceFeatureHelper {
 		PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 		return powerManager == null || powerManager.isIgnoringBatteryOptimizations(context.getPackageName());
 	}
+
+	public static boolean supportsLocationlessScanning(Context context) {
+		return Settings.Global.getInt(context.getApplicationContext().getContentResolver(),
+				"bluetooth_sanitized_exposure_notification_supported", 0) == 1;
+	}
 }

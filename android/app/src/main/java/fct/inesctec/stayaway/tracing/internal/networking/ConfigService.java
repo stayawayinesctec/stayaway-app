@@ -30,6 +30,6 @@ import retrofit2.http.Query;
 public interface ConfigService {
 
     @Headers("Accept: application/json")
-    @GET("config/defaults.json")
+    @GET("config/defaultsv2.json")
     Call<ConfigResponseModel> getConfig();
 }

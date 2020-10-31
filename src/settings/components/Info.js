@@ -40,7 +40,7 @@ const styles = (colors, insets) => StyleSheet.create({
     margin: -sizes.size8,
   },
   header: {
-    marginBottom: sizes.size24,
+    marginBottom: sizes.size16,
   },
   layoutContainer: {
     flex: 1,
@@ -60,19 +60,29 @@ const styles = (colors, insets) => StyleSheet.create({
     width: '100%',
     marginBottom: sizes.size16,
   },
-  topItem: {
+  trackingItem: {
     flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  topItem: {
+    borderTopLeftRadius: sizes.size8,
+    borderTopRightRadius: sizes.size8,
+    borderTopWidth: 0,
+  },
+  bottomItem: {
+    borderBottomLeftRadius: sizes.size8,
+    borderBottomRightRadius: sizes.size8,
   },
   item: {
     backgroundColor: colors.white,
-    paddingLeft: sizes.size8,
+    paddingLeft: sizes.size16,
     paddingRight: sizes.size16,
     paddingVertical: sizes.size18,
-    marginBottom: sizes.size8,
+    borderTopWidth: sizes.size1,
+    borderColor: colors.grayLight,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: sizes.size8,
     shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
@@ -123,16 +133,23 @@ const styles = (colors, insets) => StyleSheet.create({
   splashImage: {
     alignSelf: 'flex-end',
   },
+  version: {
+    alignSelf: 'flex-end',
+    marginBottom: sizes.size8,
+  },
 });
 
 
 export default function Info(props) {
   const {
+    appVersion,
+    appBuild,
     language,
     trackingEnabled,
     isInfected,
     onClose,
     onPressLanguage,
+    onPressSupport,
     onPressLegalInformation,
     onPressHowToUse,
     onPressFaqs,
@@ -158,12 +175,14 @@ export default function Info(props) {
               </ButtonWrapper>
             </View>
             <View style={styles(colors, insets).itemsContainer}>
+              <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).version}>{i18n.translate('screens.settings.version', { version: appVersion, build: appBuild })}</Text>
               <View style={styles(colors, insets).topItems}>
                 <ButtonWrapper
                   onPress={onPressTracking}
                   style={{
                     ...styles(colors, insets).item,
                     ...styles(colors, insets).topItem,
+                    ...styles(colors, insets).trackingItem,
                     backgroundColor: trackingEnabled ? colors.blueLightest : colors.white,
                   }}
                   disabled={isInfected}
@@ -188,7 +207,10 @@ export default function Info(props) {
                 </ButtonWrapper>
                 <ButtonWrapper
                   onPress={onPressLanguage}
-                  style={styles(colors, insets).item}
+                  style={{
+                    ...styles(colors, insets).item,
+                    ...styles(colors, insets).bottomItem,
+                  }}
                   accessibilityLabel={i18n.translate('screens.settings.language.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.settings.language.accessibility.hint')}
                   accessibilityRole='switch'
@@ -214,7 +236,10 @@ export default function Info(props) {
               <View style={styles(colors, insets).bottomItems}>
                 <ButtonWrapper
                   onPress={onPressHowToUse}
-                  style={styles(colors, insets).item}
+                  style={{
+                    ...styles(colors, insets).item,
+                    ...styles(colors, insets).topItem,
+                  }}
                   accessibilityLabel={i18n.translate('screens.settings.how_to_use.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.settings.how_to_use.accessibility.hint')}
                 >
@@ -232,7 +257,19 @@ export default function Info(props) {
                   <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 <ButtonWrapper
+                  onPress={onPressSupport}
                   style={styles(colors, insets).item}
+                  accessibilityLabel={i18n.translate('screens.settings.support.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.support.accessibility.hint')}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.support.label')}</Text>
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.blueDark} />
+                </ButtonWrapper>
+                <ButtonWrapper
+                  style={{
+                    ...styles(colors, insets).item,
+                    ...(Configuration.RELEASE ? styles(colors, insets).bottomItem : {}),
+                  }}
                   onPress={onPressLegalInformation}
                   accessibilityLabel={i18n.translate('screens.settings.legal_information.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.settings.legal_information.accessibility.hint')}
@@ -241,7 +278,13 @@ export default function Info(props) {
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 { ! Configuration.RELEASE &&
-                  <ButtonWrapper style={styles(colors, insets).item} onPress={onPressDebug}>
+                  <ButtonWrapper
+                    style={{
+                      ...styles(colors, insets).item,
+                      ...styles(colors, insets).bottomItem,
+                    }}
+                    onPress={onPressDebug}
+                  >
                     <Text weight='bold'>{i18n.translate('screens.settings.debug.label')}</Text>
                     <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                   </ButtonWrapper>
@@ -263,11 +306,14 @@ export default function Info(props) {
 }
 
 Info.defaultProps = {
+  appVersion: '1.0.0',
+  appBuild: '0',
   trackingEnabled: false,
   isInfected: false,
   onClose: () => {},
   onPressTracking: () => {},
   onPressLanguage: () => {},
+  onPressSupport: () => {},
   onPressHowToUse: () => {},
   onPressFaqs: () => {},
   onPressLegalInformation: () => {},
@@ -275,6 +321,8 @@ Info.defaultProps = {
 };
 
 Info.propTypes = {
+  appVersion: PropTypes.string,
+  appBuild: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   language: PropTypes.shape({
     name: PropTypes.string,
     languageTag: PropTypes.string,
@@ -285,6 +333,7 @@ Info.propTypes = {
   onClose: PropTypes.func,
   onPressTracking: PropTypes.func,
   onPressLanguage: PropTypes.func,
+  onPressSupport: PropTypes.func,
   onPressHowToUse: PropTypes.func,
   onPressFaqs: PropTypes.func,
   onPressLegalInformation: PropTypes.func,

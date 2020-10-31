@@ -13,6 +13,7 @@ import { View, ViewPropTypes, StyleSheet } from 'react-native';
 import { Input as NativeInput } from 'react-native-elements';
 import PropTypes from 'prop-types';
 
+import Text from '@app/common/components/Text';
 import SupportIcon from '@app/common/components/SupportIcon';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -57,8 +58,7 @@ const styles = (colors) => StyleSheet.create({
   error: {
     margin: 0,
     marginTop: sizes.size16,
-    fontSize: fontSizes.small,
-    color: colors.red,
+    marginLeft: sizes.size10 + (iconSizes.size30 / 2) + sizes.size16,
   },
   wrapper: {
     flexDirection: 'row',
@@ -98,7 +98,7 @@ export default class Input extends Component {
   }
 
   render() {
-    const { style, type, styleInputContainer, textColor, placeholderTextColor, ...otherProps } = this.props;
+    const { style, type, styleInputContainer, textColor, placeholderTextColor, errorMessage, ...otherProps } = this.props;
 
     return (
       <ThemeConsumer>
@@ -106,24 +106,32 @@ export default class Input extends Component {
           const { colors } = commonThemes[type || name];
 
           return (
-            <View style={styles(colors).wrapper}>
-              <View style={styles(colors).iconContainer}>
-                <SupportIcon />
+            <View>
+              <View style={styles(colors).wrapper}>
+                <View style={styles(colors).iconContainer}>
+                  <SupportIcon />
+                </View>
+                <NativeInput
+                  containerStyle={{...styles(colors).container, ...style}}
+                  inputContainerStyle={{...styles(colors).inputContainer, ...styleInputContainer}}
+                  inputStyle={{...styles(colors).input, color: textColor || colors.blueDark}}
+                  labelStyle={styles(colors).label}
+                  enablesReturnKeyAutomatically
+                  placeholderTextColor={placeholderTextColor || colors.blueLight}
+                  ref={element => {this.input = element}}
+                  fontSize={fontSizes.normal}
+                  selectable
+                  {...otherProps}
+                  onFocus={this.onFocus}
+                />
               </View>
-              <NativeInput
-                containerStyle={{...styles(colors).container, ...style}}
-                inputContainerStyle={{...styles(colors).inputContainer, ...styleInputContainer}}
-                inputStyle={{...styles(colors).input, color: textColor || colors.blueDark}}
-                labelStyle={styles(colors).label}
-                errorStyle={styles(colors).error}
-                enablesReturnKeyAutomatically
-                placeholderTextColor={placeholderTextColor || colors.blueLight}
-                ref={element => {this.input = element}}
-                fontSize={fontSizes.normal}
-                selectable
-                {...otherProps}
-                onFocus={this.onFocus}
-              />
+              <Text
+                size='small'
+                textColor={colors.red}
+                style={styles(colors).error}
+              >
+                {errorMessage}
+              </Text>
             </View>
           );
         }}
@@ -143,6 +151,7 @@ Input.defaultProps = {
   style: {},
   styleInputContainer: {},
   onFocus: () => {},
+  errorMessage: '',
 };
 
 Input.propTypes = {
@@ -156,4 +165,5 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   style: ViewPropTypes.style,
   styleInputContainer: ViewPropTypes.style,
+  errorMessage: PropTypes.string,
 };

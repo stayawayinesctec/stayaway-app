@@ -58,23 +58,21 @@ export function* setupNewAccount() {
       exposureDays: [],
       errors: [],
     }));
+  }
 
+  yield put(accountActions.startTracking());
+  const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+
+  if (payload === TRACKING_RESULTS.SUCCESS) {
+    // Set tracking activated
     yield put(accountActions.setTrackingEnabled(true));
+  } else if (payload === TRACKING_RESULTS.GAEN) {
+    yield put(accountActions.setTrackingEnabled(false));
+
+    // Add tracking error
+    yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
   } else {
-    yield put(accountActions.startTracking());
-    const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
-
-    if (payload === TRACKING_RESULTS.SUCCESS) {
-      // Set tracking activated
-      yield put(accountActions.setTrackingEnabled(true));
-    } else if (payload === TRACKING_RESULTS.GAEN) {
-      yield put(accountActions.setTrackingEnabled(false));
-
-      // Add tracking error
-      yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
-    } else {
-      yield put(accountActions.setTrackingEnabled(false));
-    }
+    yield put(accountActions.setTrackingEnabled(false));
   }
 
   // Update new account redux
@@ -305,46 +303,44 @@ export function* switchTracking() {
   }
 
   // Start tracking manager
-  if (Configuration.UI) {
+  yield put(accountActions.startTracking());
+  const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+
+  if (payload === TRACKING_RESULTS.SUCCESS) {
+    // Set tracking activated
     yield put(accountActions.setTrackingEnabled(true));
   } else {
-    yield put(accountActions.startTracking());
-    const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
-
-    if (payload === TRACKING_RESULTS.SUCCESS) {
-      // Set tracking activated
-      yield put(accountActions.setTrackingEnabled(true));
-    } else {
-      yield put(accountActions.setTrackingEnabled(false));
-    }
+    yield put(accountActions.setTrackingEnabled(false));
   }
 }
 
 export function* updateStatus({ payload: status }) {
-  // Check if user has been exposed
-  if (status.infectionStatus === INFECTION_STATUS.EXPOSED) {
-    const { exposureDays = [] } = status;
+  if (! Configuration.UI) {
+    // Check if user has been exposed
+    if (status.infectionStatus === INFECTION_STATUS.EXPOSED) {
+      const { exposureDays = [] } = status;
 
-    // Get last exposure day
-    if (exposureDays.length > 0) {
-      const { exposedDate } = exposureDays[exposureDays.length - 1];
+      // Get last exposure day
+      if (exposureDays.length > 0) {
+        const { exposedDate } = exposureDays[exposureDays.length - 1];
 
-      // Check if has passed 15 days after last exposure
-      const fifteenDaysAgo = Moment().startOf('day').subtract(15, 'days');
-      if (Moment(exposedDate).isBefore(fifteenDaysAgo)) {
-        yield call(TrackingManager.resetExposureDays);
+        // Check if has passed 15 days after last exposure
+        const fifteenDaysAgo = Moment().startOf('day').subtract(15, 'days');
+        if (Moment(exposedDate).isBefore(fifteenDaysAgo)) {
+          yield call(TrackingManager.resetExposureDays);
+        }
       }
     }
-  }
 
-  // Check GAEN toggle
-  if (status.errors.includes(ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED)) {
-    yield put(accountActions.setTrackingEnabled(false));
-  } else {
-    const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
+    // Check GAEN toggle
+    if (status.errors.includes(ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED)) {
+      yield put(accountActions.setTrackingEnabled(false));
+    } else {
+      const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
 
-    if (isTracingEnabled) {
-      yield put(accountActions.setTrackingEnabled(true));
+      if (isTracingEnabled) {
+        yield put(accountActions.setTrackingEnabled(true));
+      }
     }
   }
 
@@ -389,13 +385,7 @@ export function* enableExposureNotifications() {
 }
 
 export function* requestIgnoreBatteryOptimizations() {
-  const isWhitelisted = yield call(TrackingManager.hasSpecialBatteryOptimizationSystem);
-
-  if (isWhitelisted) {
-    yield call(TrackingManager.openBatteryOptimizationSettings);
-  } else {
-    yield call(TrackingManager.requestIgnoreBatteryOptimizationsPermission);
-  }
+  yield call(TrackingManager.requestIgnoreBatteryOptimizationsPermission);
 }
 
 function* watchSetupNewAccount() {

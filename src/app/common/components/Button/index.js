@@ -58,8 +58,8 @@ const themes = {
     [ALTERNATIVE]: {
       ...common,
       type: 'clear',
-      titleStyle: { color: commonColors.blueDark, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, fontWeight: fontWeights.normal, paddingTop: 0, paddingBottom: 0},
-      disabledTitleStyle: { color: commonColors.blueDark, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, paddingTop: 0, paddingBottom: 0},
+      titleStyle: { color: commonColors.blueDark, fontSize: fontSizes.small, lineHeight: lineHeights.small, fontWeight: fontWeights.normal, paddingTop: 0, paddingBottom: 0},
+      disabledTitleStyle: { color: commonColors.blueDark, fontSize: fontSizes.small, lineHeight: lineHeights.small, paddingTop: 0, paddingBottom: 0},
       loadingProps: { color: commonColors.blueDark, size: 'large' },
     },
   },
@@ -81,8 +81,8 @@ const themes = {
     [ALTERNATIVE]: {
       ...common,
       type: 'clear',
-      titleStyle: { color: commonColors.white, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, fontWeight: fontWeights.bold, paddingTop: 0, paddingBottom: 0},
-      disabledTitleStyle: { color: commonColors.white, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, paddingTop: 0, paddingBottom: 0},
+      titleStyle: { color: commonColors.white, fontSize: fontSizes.small, lineHeight: lineHeights.small, fontWeight: fontWeights.bold, paddingTop: 0, paddingBottom: 0},
+      disabledTitleStyle: { color: commonColors.white, fontSize: fontSizes.small, lineHeight: lineHeights.small, paddingTop: 0, paddingBottom: 0},
       loadingProps: { color: commonColors.white, size: 'large' },
     },
   },

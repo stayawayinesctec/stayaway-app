@@ -24,7 +24,6 @@ target 'Divoc' do
   config = use_native_modules!
   use_react_native!(:path => config["reactNativePath"])
 
-  # TrustKit
   pod 'TrustKit', '~> 1.6'
 
   # Permissions

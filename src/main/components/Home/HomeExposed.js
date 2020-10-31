@@ -57,6 +57,7 @@ export default function HomeExposed (props) {
           image={image}
           panelBackgroundColor={colors.yellow}
           panelTextColor={colors.white}
+          shouldShowShareButton
           {...props}
         />
       )}

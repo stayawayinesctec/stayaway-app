@@ -12,6 +12,7 @@ import Onboarding1 from './sources/onboarding_1.png';
 import Onboarding2 from './sources/onboarding_2.png';
 import Onboarding3 from './sources/onboarding_3.png';
 import Onboarding4 from './sources/onboarding_4.png';
+import Onboarding5 from './sources/onboarding_5.png';
 import Exposed from './sources/exposed.png';
 import Healthy from './sources/healthy.png';
 import Infected from './sources/infected.png';
@@ -32,6 +33,7 @@ export default {
   onboarding2: Onboarding2,
   onboarding3: Onboarding3,
   onboarding4: Onboarding4,
+  onboarding5: Onboarding5,
   exposed: Exposed,
   healthy: Healthy,
   infected: Infected,

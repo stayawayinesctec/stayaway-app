@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Share } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 
@@ -58,7 +58,6 @@ export default function HomeScreen () {
     },
     icon: undefined,
     onPress: () => {},
-    clickable: false,
   };
 
   if (infectionStatus !== INFECTION_STATUS.INFECTED) {
@@ -67,73 +66,92 @@ export default function HomeScreen () {
         status: true,
         title: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.title`),
         message: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.message`),
-        label: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.label`),
-        accessibility: {
-          label: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.accessibility.label`),
-          hint: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.accessibility.hint`),
-        },
         icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} />,
-        onPress: () => dispatch(accountActions.enableExposureNotifications()),
+        main: {
+          label: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.label`),
+          accessibility: {
+            label: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.accessibility.label`),
+            hint: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.accessibility.hint`),
+          },
+          onPress: () => dispatch(accountActions.enableExposureNotifications()),
+        },
       };
     } else if (! trackingEnabled) {
       error = {
         status: true,
         title: i18n.translate('screens.home.errors.tracking.title'),
         message: i18n.translate('screens.home.errors.tracking.message'),
-        label: i18n.translate('screens.home.errors.tracking.label'),
-        accessibility: {
-          label: i18n.translate('screens.home.errors.tracking.accessibility.label'),
-          hint: i18n.translate('screens.home.errors.tracking.accessibility.hint'),
-        },
         icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} />,
-        onPress: () => dispatch(accountActions.startTracking()),
+        main: {
+          label: i18n.translate('screens.home.errors.tracking.label'),
+          accessibility: {
+            label: i18n.translate('screens.home.errors.tracking.accessibility.label'),
+            hint: i18n.translate('screens.home.errors.tracking.accessibility.hint'),
+          },
+          onPress: () => dispatch(accountActions.startTracking()),
+        },
       };
     } else if (hasBluetoothError) {
       error = {
         status: true,
         title: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.title`),
         message: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.message`),
-        label: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.label`),
-        accessibility: {
-          label: i18n.translate(`screens.home.errors.${Platform.OS}.bluetooth.accessibility.label`),
-          hint: i18n.translate(`screens.home.errors.${Platform.OS}.bluetooth.accessibility.hint`),
-        },
         icon: <Icon name='bluetooth_disconnected' width={iconSizes.size17} height={iconSizes.size28} />,
-        onPress: Platform.select({
-          android: () => TrackingManager.requestBluetoothService(),
-          ios: () => Linking.openURL('App-prefs:root=Bluetooth'),
-        }),
+        main: {
+          label: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.label`),
+          accessibility: {
+            label: i18n.translate(`screens.home.errors.${Platform.OS}.bluetooth.accessibility.label`),
+            hint: i18n.translate(`screens.home.errors.${Platform.OS}.bluetooth.accessibility.hint`),
+          },
+          onPress: Platform.select({
+            android: () => TrackingManager.requestBluetoothService(),
+            ios: () => Linking.openURL('App-prefs:root=Bluetooth'),
+          }),
+        },
       };
     } else if (hasLocationError) {
       error = {
         status: true,
         title: i18n.translate('screens.home.errors.location.title'),
         message: i18n.translate('screens.home.errors.location.message'),
-        label: i18n.translate('screens.home.errors.location.label'),
-        accessibility: {
-          label: i18n.translate('screens.home.errors.location.accessibility.label'),
-          hint: i18n.translate('screens.home.errors.location.accessibility.hint'),
-        },
         icon: <Icon name='location_disconnected' width={iconSizes.size23} height={iconSizes.size26} />,
-        onPress: () => RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({}),
+        main: {
+          label: i18n.translate('screens.home.errors.location.label'),
+          accessibility: {
+            label: i18n.translate('screens.home.errors.location.accessibility.label'),
+            hint: i18n.translate('screens.home.errors.location.accessibility.hint'),
+          },
+          onPress: () => RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({}),
+        },
       };
     } else if (hasBatteryError) {
       error = {
         status: true,
         title: i18n.translate('screens.home.errors.battery.title'),
         message: i18n.translate('screens.home.errors.battery.message'),
-        label: i18n.translate('screens.home.errors.battery.label'),
-        accessibility: {
-          label: i18n.translate('screens.home.errors.battery.accessibility.label'),
-          hint: i18n.translate('screens.home.errors.battery.accessibility.hint'),
-        },
+        submessage: i18n.translate('screens.home.errors.battery.submessage'),
         icon: <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
-        onPress: () => dispatch(accountActions.requestIgnoreBatteryOptimizations()),
+        main: {
+          label: i18n.translate('screens.home.errors.battery.actions.main.label'),
+          accessibility: {
+            label: i18n.translate('screens.home.errors.battery.actions.main.accessibility.label'),
+            hint: i18n.translate('screens.home.errors.battery.actions.main.accessibility.hint'),
+          },
+          onPress: () => dispatch(accountActions.requestIgnoreBatteryOptimizations()),
+        },
+        alternative: {
+          label: i18n.translate('screens.home.errors.battery.actions.alternative.label'),
+          accessibility: {
+            label: i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.label'),
+            hint: i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.hint'),
+          },
+          onPress: () => Linking.openURL(i18n.translate('common.links.faqs')),
+        },
       };
     }
   }
 
-  const onLongPress = () => {
+  const onLongPressSettings = () => {
     if (Configuration.UI) {
       dispatch(
         accountActions.setInfectionStatus(infectionStatus === 2 ? 0 : infectionStatus + 1),
@@ -141,12 +159,24 @@ export default function HomeScreen () {
     }
   };
 
+  const url = Platform.select({
+    ios: i18n.translate('common.links.stores.app_store'),
+    android: i18n.translate('common.links.stores.play_store'),
+  });
+
   const props = {
     infectionStatus,
-    onLongPress,
     lastSync: useSelector(getLastSync),
     error,
-    onPress: () => NavigationService.navigate(AppRoutes.SETTINGS),
+    onPressSettings: () => NavigationService.navigate(AppRoutes.SETTINGS),
+    onPressShare: () => Share.share({
+      title: i18n.translate('common.dialogs.share.subject'),
+      message: i18n.translate('common.dialogs.share.message', { app_store: i18n.translate('common.links.stores.app_store'), play_store: i18n.translate('common.links.stores.play_store')}),
+    }, {
+      dialogTitle: i18n.translate('common.dialogs.share.subject'),
+      subject: i18n.translate('common.dialogs.share.subject'),
+    }),
+    onLongPressSettings,
   };
 
   return (

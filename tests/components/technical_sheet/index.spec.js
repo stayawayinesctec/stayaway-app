@@ -17,24 +17,16 @@ import TechnicalSheet from '@settings/components/TechnicalSheet';
 
 describe('Technical Sheet Screen', () => {
   it('Technical Sheet renders correctly', () => {
-    const version = '1.1.1';
-    const build = '0';
-
-    const { queryByA11yLabel, queryByText } = render(
-      <TechnicalSheet
-        version={version}
-        build={build}
-      />,
+    const { queryByA11yLabel } = render(
+      <TechnicalSheet />,
     );
 
-    const versionLabel = queryByText(i18n.translate('screens.technical_sheet.version', { version, build }));
     const inesctecButton = queryByA11yLabel(i18n.translate('screens.technical_sheet.inesctec.accessibility.label'));
     const ISPUPButton = queryByA11yLabel(i18n.translate('screens.technical_sheet.ispup.accessibility.label'));
     const keyruptiveButton = queryByA11yLabel(i18n.translate('screens.technical_sheet.keyruptive.accessibility.label'));
     const ubiriderButton = queryByA11yLabel(i18n.translate('screens.technical_sheet.ubirider.accessibility.label'));
     const spmsButton = queryByA11yLabel(i18n.translate('screens.technical_sheet.spms.accessibility.label'));
 
-    expect(versionLabel).toBeTruthy();
     expect(inesctecButton).toBeTruthy();
     expect(ISPUPButton).toBeTruthy();
     expect(keyruptiveButton).toBeTruthy();

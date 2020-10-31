@@ -65,7 +65,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     case .infectionStatusNotResettable:
       values.append([18])
     }
-    
+
   case .initialization:
     NSLog("case .initialization")
   }
@@ -227,6 +227,24 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
         resolve(wrapState(st));
       }
     }
+  }
+
+  @objc func getInfo(
+    _ resolve: RCTPromiseResolveBlock,
+    rejecter reject: RCTPromiseRejectBlock) {
+    let OSVersion = UIDevice.current.systemVersion;
+    let deviceModel = UIDevice.modelName;
+    let versionName = Bundle.appVersion;
+    let versionCode = Bundle.buildNumber;
+
+    let dict = [
+      "OSVersion": OSVersion,
+      "deviceModel": deviceModel,
+      "versionName": versionName,
+      "versionCode": versionCode
+    ];
+
+    resolve(dict);
   }
 
   @objc func sync(
