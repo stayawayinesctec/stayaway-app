@@ -57,6 +57,7 @@ describe('Startup Sagas', () => {
       expect(Storage.hasItem).toHaveBeenCalled();
       expect(Storage.getItem).toHaveBeenCalledWith('language');
       expect(Storage.hasItem).toHaveBeenCalledWith('language');
+      expect(Storage.hasItem).toHaveBeenCalledWith('theme');
       expect(Storage.hasItem).toHaveBeenCalledWith('signup_date');
       expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
@@ -82,6 +83,10 @@ describe('Startup Sagas', () => {
           return languages.PT.languageTag;
         }
 
+        if (arg === 'theme') {
+          return 'auto';
+        }
+
         if (arg === 'signup_date') {
           return signUpDate;
         }
@@ -103,18 +108,21 @@ describe('Startup Sagas', () => {
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
 
-      expect(Storage.hasItem).toHaveBeenCalledTimes(2);
+      expect(Storage.hasItem).toHaveBeenCalledTimes(3);
       expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
-      expect(Storage.hasItem).toHaveBeenNthCalledWith(2, 'signup_date');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(2, 'theme');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(3, 'signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(3);
+      expect(Storage.getItem).toHaveBeenCalledTimes(4);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'theme');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
 
-      expect(dispatched).toHaveLength(6);
+      expect(dispatched).toHaveLength(7);
       expect(dispatched).toEqual([
         accountActions.setLanguage(languages.PT),
+        accountActions.setTheme('auto'),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -139,6 +147,10 @@ describe('Startup Sagas', () => {
           return languages.PT.languageTag;
         }
 
+        if (arg === 'theme') {
+          return 'auto';
+        }
+
         if (arg === 'signup_date') {
           return signUpDate;
         }
@@ -161,18 +173,21 @@ describe('Startup Sagas', () => {
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
 
-      expect(Storage.hasItem).toHaveBeenCalledTimes(2);
-      expect(Storage.hasItem).toHaveBeenNthCalledWith(1,'language');
-      expect(Storage.hasItem).toHaveBeenNthCalledWith(2,'signup_date');
+      expect(Storage.hasItem).toHaveBeenCalledTimes(3);
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(2, 'theme');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(3, 'signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(3);
+      expect(Storage.getItem).toHaveBeenCalledTimes(4);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'theme');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
 
-      expect(dispatched).toHaveLength(7);
+      expect(dispatched).toHaveLength(8);
       expect(dispatched).toEqual([
         accountActions.setLanguage(languages.PT),
+        accountActions.setTheme('auto'),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -198,6 +213,10 @@ describe('Startup Sagas', () => {
           return languages.PT.languageTag;
         }
 
+        if (arg === 'theme') {
+          return 'auto';
+        }
+
         if (arg === 'signup_date') {
           return signUpDate;
         }
@@ -220,18 +239,21 @@ describe('Startup Sagas', () => {
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
 
-      expect(Storage.hasItem).toHaveBeenCalledTimes(2);
-      expect(Storage.hasItem).toHaveBeenNthCalledWith(1,'language');
-      expect(Storage.hasItem).toHaveBeenNthCalledWith(2,'signup_date');
+      expect(Storage.hasItem).toHaveBeenCalledTimes(3);
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(2, 'theme');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(3, 'signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(3);
+      expect(Storage.getItem).toHaveBeenCalledTimes(4);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'theme');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
 
-      expect(dispatched).toHaveLength(8);
+      expect(dispatched).toHaveLength(9);
       expect(dispatched).toEqual([
         accountActions.setLanguage(languages.PT),
+        accountActions.setTheme('auto'),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -258,6 +280,10 @@ describe('Startup Sagas', () => {
           return languages.PT.languageTag;
         }
 
+        if (arg === 'theme') {
+          return 'auto';
+        }
+
         if (arg === 'signup_date') {
           return signUpDate;
         }
@@ -280,18 +306,21 @@ describe('Startup Sagas', () => {
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
 
-      expect(Storage.hasItem).toHaveBeenCalledTimes(2);
-      expect(Storage.hasItem).toHaveBeenNthCalledWith(1,'language');
-      expect(Storage.hasItem).toHaveBeenNthCalledWith(2,'signup_date');
+      expect(Storage.hasItem).toHaveBeenCalledTimes(3);
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(2, 'theme');
+      expect(Storage.hasItem).toHaveBeenNthCalledWith(3, 'signup_date');
 
-      expect(Storage.getItem).toHaveBeenCalledTimes(3);
+      expect(Storage.getItem).toHaveBeenCalledTimes(4);
       expect(Storage.getItem).toHaveBeenNthCalledWith(1, 'language');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'signup_date', '');
-      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'status', '{}');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(2, 'theme');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(3, 'signup_date', '');
+      expect(Storage.getItem).toHaveBeenNthCalledWith(4, 'status', '{}');
 
-      expect(dispatched).toHaveLength(7);
+      expect(dispatched).toHaveLength(8);
       expect(dispatched).toEqual([
         accountActions.setLanguage(languages.PT),
+        accountActions.setTheme('auto'),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
