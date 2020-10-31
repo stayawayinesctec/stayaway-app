@@ -116,6 +116,21 @@ describe('Info Screen', () => {
 
       expect(languageButton.props.accessibilityValue.text).toBe(languages.PT.name);
     });
+    it.each(['light', 'dark', 'auto'])('When theme is %s.', (themeName) => {
+      const { queryByA11yLabel } = render(
+        <Info
+          language={languages.EN}
+          themeName={themeName}
+          trackingEnabled
+        />,
+      );
+
+      const themeButton = queryByA11yLabel(i18n.translate('screens.settings.theme.accessibility.label'));
+
+      expect(themeButton).toBeTruthy();
+
+      expect(themeButton.props.accessibilityValue.text).toBe(i18n.translate(`screens.settings.theme.${themeName}`));
+    });
   });
   describe('Info buttons interaction work', () => {
     it('When press close button.', () => {
@@ -165,6 +180,24 @@ describe('Info Screen', () => {
       expect(languageButton).toBeTruthy();
       fireEvent.press(languageButton);
       expect(onPressLanguage).toHaveBeenCalled();
+    });
+    it.each(['light', 'dark', 'auto'])('When press \'%s\' theme button.', (themeName) => {
+      const onThemeChange = jest.fn();
+      const onPressTheme = jest.fn((newTheme) => () => onThemeChange(newTheme));
+      const { queryByA11yLabel } = render(
+        <Info
+          language={languages.EN}
+          trackingEnabled
+          themeName={themeName}
+          onPressTheme={onPressTheme}
+        />,
+      );
+
+      const themeButton = queryByA11yLabel(i18n.translate(`screens.settings.theme.${themeName}`));
+
+      expect(themeButton).toBeTruthy();
+      fireEvent.press(themeButton);
+      expect(onPressTheme).toHaveBeenCalledWith(themeName);
     });
     it('When press support button.', () => {
       const onPressSupport = jest.fn();

@@ -245,9 +245,10 @@ export default function Info(props) {
                   <View style={styles(colors, insets).languageLabelContainer}>
                     { Object.values(commonThemes.names).map((settingThemeName) =>
                       <Text
-                        onPress={onPressTheme(settingThemeName)}
+                        onPress={onPressTheme?.(settingThemeName)}
                         textAlign='center'
                         key={settingThemeName}
+                        accessibilityLabel={i18n.translate(`screens.settings.theme.${settingThemeName}`)}
                         style={{
                             ...styles(colors, insets).languageLabel,
                             backgroundColor: settingThemeName === themeName ? colors.blueLightest : colors.grayLight,
