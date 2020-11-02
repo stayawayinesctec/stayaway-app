@@ -198,8 +198,8 @@
       "tracking": {
         "label": "Rastreio",
         "description": {
-          "enabled": "Se desactivar o rastreio impede a app de emitir e receber os código digitais anónimos.",
-          "disabled": "Mantenha a STAYAWAY COVID ativa e junte-se ao combate à COVID-19."
+          "enabled": "Desligar o rastreio desativa a aplicação e a deteção de novos contactos de proximidade.",
+          "disabled": "Mantenha a STAYAWAY COVID ligada e junte-se ao combate à COVID-19."
         },
         "accessibility": {
           "label": "Rastreio",
