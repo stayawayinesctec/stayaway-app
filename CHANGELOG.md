@@ -45,3 +45,16 @@
 - Fix protector screen flickering
 - Fix minor bugs
 - Fix typos
+
+## version 1.0.6 (2.11.2020)
+
+- Fix background taks
+- Fix submitting code always hanging
+- Add support team email button
+- Add share button
+- Refactor settings screen
+- Add location screen to onboarding
+- Add home long press
+- Fix android 8 navigation bar
+- Fix minor bugs
+- Fix typos

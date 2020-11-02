@@ -789,7 +789,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.debug.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10051;
+				CURRENT_PROJECT_VERSION = 10067;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VB258YUFG3;
 				ENABLE_BITCODE = NO;
@@ -802,7 +802,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -831,7 +831,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10051;
+				CURRENT_PROJECT_VERSION = 10067;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VB258YUFG3;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -839,7 +839,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1032,7 +1032,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.debug.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10051;
+				CURRENT_PROJECT_VERSION = 10067;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VB258YUFG3;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -1040,7 +1040,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1145,7 +1145,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10051;
+				CURRENT_PROJECT_VERSION = 10067;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VB258YUFG3;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -1153,7 +1153,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1265,7 +1265,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10051;
+				CURRENT_PROJECT_VERSION = 10067;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -1278,7 +1278,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1386,7 +1386,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10051;
+				CURRENT_PROJECT_VERSION = 10067;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VB258YUFG3;
 				INFOPLIST_FILE = "Divoc/Supporting Files/Info.plist";
@@ -1394,7 +1394,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
