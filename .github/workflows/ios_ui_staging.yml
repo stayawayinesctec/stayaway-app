@@ -145,6 +145,7 @@ jobs:
           APP_IDENTIFIER: "fct.inesctec.stayaway.ui.staging"
           APP_SCHEME: "Divoc.ui.staging"
           APP_CONFIGURATION: "UiStaging"
+          CODE_SIGN_IDENTITY: "iPhone Distribution"
           FASTLANE_TEAM_ID: ${{ secrets.TEAM_ID }}
           FASTLANE_EXPORT_METHOD: "ad-hoc"
         run: |

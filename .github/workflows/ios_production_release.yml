@@ -138,6 +138,7 @@ jobs:
           APP_IDENTIFIER: "fct.inesctec.stayaway"
           APP_SCHEME: "Divoc.production.release"
           APP_CONFIGURATION: "ProductionRelease"
+          CODE_SIGN_IDENTITY: "iPhone Distribution"
           FASTLANE_TEAM_ID: ${{ secrets.TEAM_ID }}
           FASTLANE_EXPORT_METHOD: "app-store"
         run: |
