@@ -388,12 +388,11 @@ describe('Account Sagas', () => {
       expect(TrackingManager.removeUpdateEventListener).toHaveBeenCalled();
       expect(TrackingManager.exposed).toHaveBeenCalled();
       expect(TrackingManager.exposed).toHaveBeenCalledWith(code);
-      expect(dispatched).toHaveLength(7);
+      expect(dispatched).toHaveLength(6);
       expect(dispatched).toEqual([
         accountActions.submitDiagnosisPending(),
         modalsActions.openLoadingModal(),
         accountActions.setInfectionStatus(INFECTION_STATUS.INFECTED),
-        accountActions.setErrors([]),
         accountActions.setTrackingEnabled(false),
         accountActions.submitDiagnosisDone(),
         modalsActions.closeLoadingModal(),
@@ -793,6 +792,7 @@ describe('Account Sagas', () => {
       expect(dispatched).toEqual([
         accountActions.updateStatus(({
           ...defaultStatus,
+          errors: [],
           infectionStatus: INFECTION_STATUS.EXPOSED,
         })),
       ]);

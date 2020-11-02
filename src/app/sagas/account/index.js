@@ -196,7 +196,7 @@ export function* submitDiagnosis({ payload: code }) {
       // Mark as infected
       yield put(accountActions.updateStatus({
         lastSyncDate: Moment().toJSON(),
-        infectionStatus: 2,
+        infectionStatus: INFECTION_STATUS.INFECTED,
         exposureDays: [],
         errors: [],
       }));
@@ -230,7 +230,6 @@ export function* submitDiagnosis({ payload: code }) {
 
     // Update status
     yield put(accountActions.setInfectionStatus(INFECTION_STATUS.INFECTED));
-    yield put(accountActions.setErrors([]));
 
     // Stop tracing
     yield call(TrackingManager.removeUpdateEventListener);
@@ -360,9 +359,15 @@ export function* setErrors({ payload: errors }) {
 export function* setInfectionStatus({ payload: infectionStatus }) {
   const status = yield select(getStatus);
 
+  let { errors } = status;
+  if (infectionStatus === INFECTION_STATUS.INFECTED) {
+    errors = [];
+  };
+
   yield put(accountActions.updateStatus({
     ...status,
     infectionStatus,
+    errors,
   }));
 }
 
