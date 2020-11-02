@@ -140,13 +140,13 @@ jobs:
           MATCH_GIT_BRANCH: "master"
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          MATCH_TYPE: "adhoc"
-          APP_PROFILE: "AdHoc"
+          MATCH_TYPE: "development"
+          APP_PROFILE: "Development"
           APP_IDENTIFIER: "fct.inesctec.stayaway"
           APP_SCHEME: "Divoc.production.staging"
           APP_CONFIGURATION: "ProductionStaging"
           FASTLANE_TEAM_ID: ${{ secrets.TEAM_ID }}
-          FASTLANE_EXPORT_METHOD: "ad-hoc"
+          FASTLANE_EXPORT_METHOD: "development"
         run: |
           cd ios
           bundle exec fastlane build_and_sign
