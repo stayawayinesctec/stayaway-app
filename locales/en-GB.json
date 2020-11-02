@@ -198,8 +198,8 @@
       "tracking": {
         "label": "Monitoring",
         "description": {
-          "enabled": "By turning the \"Monitoring\" feature off, the app will stop sending and receiving random identifiers.",
-          "disabled": "Keep STAYAWAY COVID active and play your part in the fight against the virus."
+          "enabled": "Turning monitoring off will stop the app and the contact detection mechanism.",
+          "disabled": "Keep STAYAWAY COVID on and play your part in the fight against the virus."
         },
         "accessibility": {
           "label": "Monitoring",
