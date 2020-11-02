@@ -145,7 +145,7 @@ jobs:
           APP_IDENTIFIER: "fct.inesctec.stayaway"
           APP_SCHEME: "Divoc.production.staging"
           APP_CONFIGURATION: "ProductionStaging"
-          FASTLANE_TEAM_ID: ${{ secrets.TEAM_ID }}
+          FASTLANE_TEAM_ID: ${{ secrets.TEAM_ID_DEVELOPMENT }}
           FASTLANE_EXPORT_METHOD: "development"
         run: |
           cd ios
