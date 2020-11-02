@@ -76,7 +76,7 @@ private class ParametersFetchOperation: Operation {
       }
     }
 
-    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now()) { [weak self] in
+    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now()) {
       let group2 = DispatchGroup()
       group2.enter()
 
@@ -136,15 +136,15 @@ private class ParametersFetchOperation: Operation {
           let text = info["text"] as? String ?? ""
           let url = info["url"] as? String ?? ""
 
-          if (id == 0 || id != self?.manager.lastInfoBoxId) {
-            self?.manager.lastInfoBoxId = id
+          if (id == 0 || id != ParametersManager.shared.lastInfoBoxId) {
+            ParametersManager.shared.lastInfoBoxId = id
 
             // Send infobox notification
             TracingLocalPush.shared.scheduleInfoBoxNotification(title: title, body: text, url: url)
           }
         }
       }
-      self?.manager.updateParametersFetchData()
+      ParametersManager.shared.updateParametersFetchData()
     }
   }
 }
