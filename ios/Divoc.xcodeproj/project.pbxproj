@@ -1029,8 +1029,8 @@
 				APPICON_SUFFIX = .staging;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${APPICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = "Divoc/Supporting Files/Entitlements.debug.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10051;
 				DEFINES_MODULE = YES;
@@ -1048,7 +1048,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fct.inesctec.stayaway${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = STAYAWAY;
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc fct.inesctec.stayaway";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development fct.inesctec.stayaway";
 				SWIFT_MODULE_NAME = STAYAWAY_COVID;
 				SWIFT_OBJC_BRIDGING_HEADER = "Divoc/Bridge/Divoc-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
