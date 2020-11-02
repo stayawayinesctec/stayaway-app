@@ -15,8 +15,8 @@ platform :ios do
       use_automatic_signing: false,
       path: ENV["XCODE_PROJ"],
       profile_name: "match #{ENV["APP_PROFILE"]} #{ENV["APP_IDENTIFIER"]}",
-      code_sign_identity: ENV["APP_IDENTIFIER"],
-      bundle_identifier: ENV["CODE_SIGN_IDENTITY"],
+      code_sign_identity: ENV["CODE_SIGN_IDENTITY"],
+      bundle_identifier: ENV["APP_IDENTIFIER"],
       build_configurations: ENV["APP_CONFIGURATION"]
     )
   end
