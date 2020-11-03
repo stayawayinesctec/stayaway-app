@@ -142,12 +142,13 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
     public static void initDP3T(Context context) {
         PublicKey publicKey = SignatureUtil.getPublicKeyFromBase64OrThrow(BuildConfig.BACKEND_PUBLIC_KEY);
 
-        ApplicationInfo applicationInfo = new ApplicationInfo(context.getPackageName(), BuildConfig.BACKEND_REPORT_URL, BuildConfig.BACKEND_BUCKET_URL);
+        ApplicationInfo applicationInfo = new ApplicationInfo(BuildConfig.BACKEND_REPORT_URL, BuildConfig.BACKEND_BUCKET_URL);
         DP3T.init(context, applicationInfo, publicKey, BuildConfig.DEV_HISTORY.equals("TRUE"));
 
         DP3T.setCertificatePinner(CertificatePinning.getCertificatePinner());
-        DP3T.setUserAgent(context.getPackageName() + ";" + BuildConfig.VERSION_NAME + ";" + BuildConfig.BUILD_TIME + ";Android;" +
-                Build.VERSION.SDK_INT);
+        DP3T.setUserAgent(() ->
+            context.getPackageName() + ";" + BuildConfig.VERSION_NAME + ";" + BuildConfig.BUILD_TIME +
+            ";Android;" + Build.VERSION.SDK_INT + ";" + DP3T.getENModuleVersion(context));
     }
 
     /**
@@ -454,8 +455,6 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
                             promise.resolve(EN_CANCELLED);
                         } else if (throwable instanceof ResponseError) {
                             promise.reject(UNKNOWN_EXCEPTION.toString(), UNKNOWN_EXCEPTION.toString());
-                        } else if (throwable instanceof CancellationException) {
-                            promise.reject(EN_CANCELLED, EN_CANCELLED);
                         } else if (throwable instanceof ApiException) {
                             promise.reject(UNKNOWN_EXCEPTION.toString(), UNKNOWN_EXCEPTION.toString());
                         } else {
