@@ -62,6 +62,10 @@ struct KeychainKey<Object: Codable> {
 }
 
 protocol KeychainProtocol {
+    /// A Identifer which can be used to compare multiple Keychain Instances
+    /// This is useful for creating a mock keychain
+    var identifier: String { get }
+
     /// Get a object from the keychain
     /// - Parameter key: a key object with the type
     /// - Returns: a result which either contain the error or the object
@@ -92,13 +96,15 @@ class Keychain: KeychainProtocol {
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
 
+    var identifier: String = "iOS Keychain"
+
     /// Get a object from the keychain
     /// - Parameter key: a key object with the type
     /// - Returns: a result which either contain the error or the object
     public func get<T: Codable>(for key: KeychainKey<T>) -> Result<T, KeychainError> {
         var query = self.query(for: key)
-        query[kSecReturnData] = kCFBooleanTrue
-        query[kSecMatchLimit] = kSecMatchLimitOne
+        query[kSecReturnData as String] = kCFBooleanTrue
+        query[kSecMatchLimit as String] = kSecMatchLimitOne
 
         var item: CFTypeRef?
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &item)
@@ -135,7 +141,7 @@ class Keychain: KeychainProtocol {
             return .failure(.encodingError(error))
         }
         var query = self.query(for: key)
-        query[kSecValueData] = data
+        query[kSecValueData as String] = data
 
         var status: OSStatus = SecItemCopyMatching(query as CFDictionary, nil)
 
@@ -182,8 +188,8 @@ class Keychain: KeychainProtocol {
     /// - Returns: a result which either is successful or contains the error
     @discardableResult
     public func deleteAll() -> Result<Void, KeychainError> {
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword as String,
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword as String,
         ]
 
         let status: OSStatus = SecItemDelete(query as CFDictionary)
@@ -198,11 +204,11 @@ class Keychain: KeychainProtocol {
     /// helpermethod to construct the keychain query
     /// - Parameter key: key to use
     /// - Returns: the keychain query
-    private func query<T>(for key: KeychainKey<T>) -> [CFString: Any] {
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword as String,
-            kSecAttrAccount: key.key,
-            kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
+    private func query<T>(for key: KeychainKey<T>) -> [String: Any] {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword as String,
+            kSecAttrAccount as String: key.key,
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock,
         ]
         return query
     }

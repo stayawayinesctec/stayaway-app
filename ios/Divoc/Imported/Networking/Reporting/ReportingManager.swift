@@ -79,7 +79,9 @@ class ReportingManager {
   // MARK: - Second part: I was exposed
 
   private func sendIWasExposed(token: String, date: Date, isFakeRequest fake: Bool, covidCode: String, completion: @escaping (ReportingProblem?) -> Void) {
-    DP3TTracing.iWasExposed(onset: date, authentication: .HTTPAuthorizationBearer(token: token), isFakeRequest: fake) { [weak self] result in
+    DP3TTracing.iWasExposed(onset: date,
+                            authentication: .HTTPAuthorizationHeader(header: "Authorization", value: "Bearer \(token)"),
+                            isFakeRequest: fake) { [weak self] result in
       DispatchQueue.main.async { [weak self] in
         guard let self = self else { return }
         self.codeDictionary.removeValue(forKey: covidCode)

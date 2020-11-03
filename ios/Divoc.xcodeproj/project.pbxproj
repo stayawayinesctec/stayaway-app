@@ -53,6 +53,7 @@
 		C981BFE524B384490005AB5D /* String+NS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981BFE424B384490005AB5D /* String+NS.swift */; };
 		C99EEAC024C5D3A800A0599F /* ParametersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99EEABF24C5D3A800A0599F /* ParametersManager.swift */; };
 		C9EC533424E1AA0200BBFFF0 /* String+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EC533324E1AA0200BBFFF0 /* String+Version.swift */; };
+		C9F1714D2551A2EA00762856 /* LocalPushProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F1714C2551A2EA00762856 /* LocalPushProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		C99EEABF24C5D3A800A0599F /* ParametersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersManager.swift; sourceTree = "<group>"; };
 		C9E82C352522396F004D1373 /* Entitlements.debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.debug.entitlements; sourceTree = "<group>"; };
 		C9EC533324E1AA0200BBFFF0 /* String+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Version.swift"; sourceTree = "<group>"; };
+		C9F1714C2551A2EA00762856 /* LocalPushProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPushProtocol.swift; sourceTree = "<group>"; };
 		D51AC7281E0C3B50AFA82582 /* Pods-Divoc-DivocTests.debug.ui.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc-DivocTests.debug.ui.xcconfig"; path = "Target Support Files/Pods-Divoc-DivocTests/Pods-Divoc-DivocTests.debug.ui.xcconfig"; sourceTree = "<group>"; };
 		D699EBE23BD4B6E38BA14505 /* libPods-Divoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Divoc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF474FE17F02EB1FD2F2F6C /* Pods-Divoc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Divoc.release.xcconfig"; path = "Target Support Files/Pods-Divoc/Pods-Divoc.release.xcconfig"; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 		8085C65724AB915200B02F6F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				C9F1714C2551A2EA00762856 /* LocalPushProtocol.swift */,
 				80377DB924B0F41C005452C6 /* TracingLocalPush.swift */,
 				8085C65824AB915200B02F6F /* Reporting */,
 				8085C65B24AB915200B02F6F /* Environment+Endpoints.swift */,
@@ -668,6 +671,7 @@
 				8085C67024AB915200B02F6F /* Bundle+BuildInfo.swift in Sources */,
 				80E7D2C724ACDEF000E8D586 /* FakePublishManager.swift in Sources */,
 				8085C66D24AB915200B02F6F /* NetworkError.swift in Sources */,
+				C9F1714D2551A2EA00762856 /* LocalPushProtocol.swift in Sources */,
 				8085C61124AB55BE00B02F6F /* TracingManagerGlue.swift in Sources */,
 				8085C66A24AB915200B02F6F /* URLSession+pinning.swift in Sources */,
 				C9EC533424E1AA0200BBFFF0 /* String+Version.swift in Sources */,
@@ -905,7 +909,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -958,7 +962,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -1011,7 +1015,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -1124,7 +1128,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -1244,7 +1248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -1365,7 +1369,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -1485,7 +1489,7 @@
 			repositoryURL = "https://github.com/DP-3T/dp3t-sdk-ios";
 			requirement = {
 				kind = revision;
-				revision = b6c0f04e1b1a3fa4170f49d1e85e1c7e18da4590;
+				revision = 522938daf30dfc93b47aba4d3956a01b5561905e;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

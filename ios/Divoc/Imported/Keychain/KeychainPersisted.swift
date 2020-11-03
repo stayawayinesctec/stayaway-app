@@ -33,12 +33,25 @@ class KeychainPersisted<Value: Codable> {
         }
     }
 
-    var keychain: KeychainProtocol
+    var keychain: KeychainProtocol {
+        didSet {
+            // in order for unit testing to work we have to relad the value in case of setting the keychain again
+            guard keychain.identifier != oldValue.identifier else { return }
+            reloadValue()
+        }
+    }
+
     let key: KeychainKey<Value>
 
     var wrappedValue: Value {
         didSet {
             keychain.set(wrappedValue, for: key)
+        }
+    }
+
+    func reloadValue() {
+        if case let Result.success(value) = keychain.get(for: key) {
+            wrappedValue = value
         }
     }
 }

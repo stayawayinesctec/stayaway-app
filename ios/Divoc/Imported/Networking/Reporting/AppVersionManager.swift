@@ -26,7 +26,7 @@ class AppVersionManager {
   func shouldBroadcastNotification(lastVersion: String, lastBuild: String) -> Bool {
     let currentVersion = Bundle.appVersion
     let currentBuild = Bundle.buildNumber
-    
+
     if (lastVersion.isVersion(greaterThan: currentVersion)) {
       return true;
     }

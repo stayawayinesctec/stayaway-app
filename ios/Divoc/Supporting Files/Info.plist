@@ -28,7 +28,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>ENAPIVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>ENDeveloperRegion</key>
 	<string>PT</string>
 	<key>LSApplicationCategoryType</key>

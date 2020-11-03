@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/DP-3T/dp3t-sdk-ios",
         "state": {
           "branch": null,
-          "revision": "b6c0f04e1b1a3fa4170f49d1e85e1c7e18da4590",
+          "revision": "522938daf30dfc93b47aba4d3956a01b5561905e",
           "version": null
         }
       },
@@ -71,15 +71,6 @@
           "branch": null,
           "revision": "173f567a2dfec11d74588eea82cecea555bdc0bc",
           "version": "1.4.0"
-        }
-      },
-      {
-        "package": "SwiftProtobuf",
-        "repositoryURL": "https://github.com/apple/swift-protobuf.git",
-        "state": {
-          "branch": null,
-          "revision": "cc10a0a3149579d36bc546d97064884cb818f324",
-          "version": "1.11.0"
         }
       },
       {

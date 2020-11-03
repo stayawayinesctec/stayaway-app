@@ -21,10 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  NSError *err = [TracingManagerGlue.shared initialize];
-  if(err!=nil){
-    NSLog(@"Could not initialize tracing SDK.");
-  }
+  [TracingManagerGlue.shared initialize];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
