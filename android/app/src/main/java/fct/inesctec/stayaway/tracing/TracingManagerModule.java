@@ -131,7 +131,7 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
 
         initDP3T(context);
 
-        if (BuildConfig.IS_RELEASE.equals("TRUE") && BuildConfig.IS_UI.equals("FALSE")) {
+        if (BuildConfig.IS_UI.equals("FALSE")) {
             FakeWorker.safeStartFakeWorker(context);
             ConfigWorker.scheduleConfigWorkerIfOutdated(context);
         }

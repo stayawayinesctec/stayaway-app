@@ -159,11 +159,6 @@ export default function HomeScreen () {
     }
   };
 
-  const url = Platform.select({
-    ios: i18n.translate('common.links.stores.app_store'),
-    android: i18n.translate('common.links.stores.play_store'),
-  });
-
   const props = {
     infectionStatus,
     lastSync: useSelector(getLastSync),
