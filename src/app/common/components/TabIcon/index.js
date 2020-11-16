@@ -74,14 +74,12 @@ export default function TabIcon(props) {
     async function toogleTooltips() {
       if (name === 'home') {
         const hasShownHomeTooltip = await Storage.getItem('tooltip_home_long_press', 'false');
-        console.log('hasShownHomeTooltip', hasShownHomeTooltip);
         if (hasShownHomeTooltip === 'false') {
           setTimeout(showTooltip, 2000);
           Storage.setItem('tooltip_home_long_press', 'true');
           await Storage.setItem('tooltip_home_long_press_again', 'true');
         }
         const hasShownHomeTooltipAgain = await Storage.getItem('tooltip_home_long_press_again', 'false');
-        console.log('hasShownHomeTooltipAgain', hasShownHomeTooltipAgain);
         if (hasShownHomeTooltipAgain === 'false') {
           setTimeout(showTooltip, 2000);
           Storage.setItem('tooltip_home_long_press_again', 'true');
