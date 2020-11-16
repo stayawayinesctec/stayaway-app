@@ -184,7 +184,6 @@ export default function Template (props) {
     onPressShare,
     error,
     infectionStatus,
-    shouldShowShareButton,
   } = props;
 
   const showUpdatedAt = infectionStatus !== INFECTION_STATUS.INFECTED;
@@ -205,16 +204,14 @@ export default function Template (props) {
             >
               <Icon name='settings' width={iconSizes.size48} height={iconSizes.size48} />
             </ButtonWrapper>
-            { shouldShowShareButton &&
-              <ButtonWrapper
-                onPress={onPressShare}
-                style={styles(colors, insets).shareButton}
-                accessibilityLabel={i18n.translate('screens.home.actions.share.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.home.actions.share.accessibility.hint')}
-              >
-                <Icon name='share' width={iconSizes.size36} height={iconSizes.size36} />
-              </ButtonWrapper>
-            }
+            <ButtonWrapper
+              onPress={onPressShare}
+              style={styles(colors, insets).shareButton}
+              accessibilityLabel={i18n.translate('screens.home.actions.share.accessibility.label')}
+              accessibilityHint={i18n.translate('screens.home.actions.share.accessibility.hint')}
+            >
+              <Icon name='share' width={iconSizes.size36} height={iconSizes.size36} />
+            </ButtonWrapper>
           </View>
           { error.status &&
             <View style={styles(colors, insets).backdropContainer} />
@@ -360,7 +357,6 @@ Template.defaultProps = {
     },
   },
   infectionStatus: 0,
-  shouldShowShareButton: false,
 };
 
 Template.propTypes = {
@@ -391,5 +387,4 @@ Template.propTypes = {
     }),
   }),
   infectionStatus: PropTypes.number,
-  shouldShowShareButton: PropTypes.bool,
 };

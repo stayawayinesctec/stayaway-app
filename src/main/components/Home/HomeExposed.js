@@ -46,6 +46,21 @@ export default function HomeExposed (props) {
       "text": i18n.translate('screens.home.exposed.description.fifth'),
       "type": "normal",
     },
+    {
+      "key": "6",
+      "text": i18n.translate('screens.home.exposed.description.sixth'),
+      "type": "normal",
+    },
+    {
+      "key": "7",
+      "text": i18n.translate('screens.home.exposed.description.seventh'),
+      "type": "bold",
+    },
+    {
+      "key": "8",
+      "text": i18n.translate('screens.home.exposed.description.eighth'),
+      "type": "normal",
+    },
   ];
 
   return (
@@ -57,7 +72,6 @@ export default function HomeExposed (props) {
           image={image}
           panelBackgroundColor={colors.yellow}
           panelTextColor={colors.white}
-          shouldShowShareButton
           {...props}
         />
       )}

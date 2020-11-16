@@ -105,6 +105,9 @@ describe('Home Screen', () => {
       const descriptionThird = queryByText(i18n.translate('screens.home.exposed.description.third'));
       const descriptionFourth = queryByText(i18n.translate('screens.home.exposed.description.fourth'));
       const descriptionFifth = queryByText(i18n.translate('screens.home.exposed.description.fifth'));
+      const descriptionSixth = queryByText(i18n.translate('screens.home.exposed.description.sixth'));
+      const descriptionSeventh = queryByText(i18n.translate('screens.home.exposed.description.seventh'));
+      const descriptionEighth = queryByText(i18n.translate('screens.home.exposed.description.eighth'));
       const image = queryByTestId('home_image_background');
 
       expect(header).toBeTruthy();
@@ -114,6 +117,9 @@ describe('Home Screen', () => {
       expect(descriptionThird).toBeTruthy();
       expect(descriptionFourth).toBeTruthy();
       expect(descriptionFifth).toBeTruthy();
+      expect(descriptionSixth).toBeTruthy();
+      expect(descriptionSeventh).toBeTruthy();
+      expect(descriptionEighth).toBeTruthy();
       expect(image).toBeTruthy();
 
       expect(descriptionFirst.props.style.fontWeight).toBe(fontWeights.bold);
@@ -121,6 +127,9 @@ describe('Home Screen', () => {
       expect(descriptionThird.props.style.fontWeight).toBe(fontWeights.normal);
       expect(descriptionFourth.props.style.fontWeight).toBe(fontWeights.bold);
       expect(descriptionFifth.props.style.fontWeight).toBe(fontWeights.normal);
+      expect(descriptionSixth.props.style.fontWeight).toBe(fontWeights.normal);
+      expect(descriptionSeventh.props.style.fontWeight).toBe(fontWeights.bold);
+      expect(descriptionEighth.props.style.fontWeight).toBe(fontWeights.normal);
       expect(image.props.source).toBe(Images.exposed);
     });
     it('When infection status is infected.', () => {
@@ -157,7 +166,7 @@ describe('Home Screen', () => {
       const image = queryByTestId('home_image_background');
 
       expect(header).toBeTruthy();
-      expect(shareButton).toBeNull();
+      expect(shareButton).toBeTruthy();
       expect(descriptionFirst).toBeTruthy();
       expect(descriptionSecond).toBeTruthy();
       expect(image).toBeTruthy();
