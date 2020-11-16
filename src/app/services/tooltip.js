@@ -32,8 +32,8 @@ const DEFAULTS = (colors) => ({
   gravity: 2,
   onHide: () => {},
   duration: Platform.select({
-    ios: 4,
-    android: 4000,
+    ios: 8,
+    android: 8000,
   }),
   corner: Platform.select({
     ios: 8,
