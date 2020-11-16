@@ -56,11 +56,6 @@ export default function HomeExposed (props) {
       "text": i18n.translate('screens.home.exposed.description.seventh'),
       "type": "bold",
     },
-    {
-      "key": "8",
-      "text": i18n.translate('screens.home.exposed.description.eighth'),
-      "type": "normal",
-    },
   ];
 
   return (
