@@ -34,7 +34,7 @@
             "second": "• A identidade do Responsável - ",
             "third": "DGS.\n",
             "fourth": "• Os tipos de dados recolhidos e voluntariamente partilhadas após diagnóstico de infeção, através de chaves de identificadores aleatórias.\n• O objetivo da recolha e do respetivo tratamento, relativo ao envio de alertas.\n• A forma como serão armazenados os dados e durante quanto tempo.\n• Que posso livremente retirar o meu consentimento a qualquer momento, desinstalando a aplicação, sem que tal afete a licitude do tratamento anterior.\n• Que no caso de menores de 13 anos o consentimento só pode ser dado ou autorizado pelos titulares das responsabilidades parentais.\n• O contacto do encarregado de proteção de dados do Responsável: ",
-            "fifth": "eugeniacarvalho@dgs.min-saude.pt.\n"
+            "fifth": "dpo@dgs.min-saude.pt.\n"
           },
           "data_treatment": "Consinto o tratamento dos meus dados pessoais, de acordo com a política de privacidade, incluindo os relativos à minha condição de saúde, necessários ao envio de alertas de exposição a risco de contágio, com a finalidade de ajudar à interrupção das cadeias de transmissão da doença COVID-19."
         },
@@ -487,7 +487,7 @@
       },
       "rights_of_data_subjects": {
         "name": "Direitos dos titulares",
-        "body": "O Regulamento Europeu de Proteção de Dados (Regulamento (UE) 2016/679, do Parlamento Europeu e do Conselho, de 27 de abril de 2016 – RGPD) assegura aos utilizadores, enquanto titulares de dados pessoais, além do direito de informação, os direitos de acesso, retificação, modificação ou apagamento e oposição ao tratamento.\n\nNo entanto, atendendo à impossibilidade de o responsável pelo tratamento identificar os utilizadores, neste caso, em princípio, não são serão aplicáveis os artigos 15º a 20º do Regulamento, relativos aos direitos de acesso, retificação, modificação ou apagamento, em conformidade com o disposto no nº 2 do artigo 11º do mesmo regulamento. Já o direito de oposição será facilmente exercido desinstalando a aplicação.\n\nO titular dos dados pessoais poderá exercer os seus direitos bem como solicitar qualquer informação respeitante ao tratamento dos seus dados pessoais mediante solicitação escrita dirigida ao responsável pelo tratamento ou ao respetivo encarregado de proteção de dados, através, dos endereços postal e de email seguintes:\n\nQuestões/Apoio Técnico: stayaway@inesctec.pt\n\nProteção de Dados: eugeniacarvalho@dgs.min-saude.pt\n\nO RGPD garante, ainda, ao titular dos dados, nos termos do seu artigo 77º, o direito de apresentar queixa junto de uma autoridade de controlo na União Europeia. Em Portugal a entidade de controlo competente é a CNPD (https://www.cnpd.pt)."
+        "body": "O Regulamento Europeu de Proteção de Dados (Regulamento (UE) 2016/679, do Parlamento Europeu e do Conselho, de 27 de abril de 2016 – RGPD) assegura aos utilizadores, enquanto titulares de dados pessoais, além do direito de informação, os direitos de acesso, retificação, modificação ou apagamento e oposição ao tratamento.\n\nNo entanto, atendendo à impossibilidade de o responsável pelo tratamento identificar os utilizadores, neste caso, em princípio, não são serão aplicáveis os artigos 15º a 20º do Regulamento, relativos aos direitos de acesso, retificação, modificação ou apagamento, em conformidade com o disposto no nº 2 do artigo 11º do mesmo regulamento. Já o direito de oposição será facilmente exercido desinstalando a aplicação.\n\nO titular dos dados pessoais poderá exercer os seus direitos bem como solicitar qualquer informação respeitante ao tratamento dos seus dados pessoais mediante solicitação escrita dirigida ao responsável pelo tratamento ou ao respetivo encarregado de proteção de dados, através, dos endereços postal e de email seguintes:\n\nQuestões/Apoio Técnico: stayaway@inesctec.pt\n\nProteção de Dados: dpo@dgs.min-saude.pt\n\nO RGPD garante, ainda, ao titular dos dados, nos termos do seu artigo 77º, o direito de apresentar queixa junto de uma autoridade de controlo na União Europeia. Em Portugal a entidade de controlo competente é a CNPD (https://www.cnpd.pt)."
       },
       "uninstalling_and_suspending_the_application": {
         "name": "Desinstalação e descontinuação da aplicação",
@@ -604,7 +604,7 @@
       }
     },
     "emails": {
-      "data_protection": "eugeniacarvalho@dgs.min-saude.pt",
+      "data_protection": "dpo@dgs.min-saude.pt",
       "support": "stayaway@inesctec.pt"
     },
     "words": {

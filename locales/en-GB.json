@@ -34,7 +34,7 @@
             "second": "• Identity of the Controller - ",
             "third": "DGS.\n",
             "fourth": "• The types of data collected and voluntarily shared after any diagnosis confirming infection, through random identifier keys.\n• The purpose of data collection and processing, namely concerning the notifications sent.\n• How data will be stored and for how long.\n• That I can freely revoke my consent at any time, by uninstalling the application, without affecting the legality of the previous processing actions.\n• That in the cases of children under 13, consent can only be given or authorised by the holders of parental responsibilities.\n• Contact of Data Protection Officer: ",
-            "fifth": "eugeniacarvalho@dgs.min-saude.pt.\n"
+            "fifth": "dpo@dgs.min-saude.pt.\n"
           },
           "data_treatment": "I agree with the processing of my personal data, in compliance with the privacy policy, including data related to my health condition, required to send notifications on the exposure to potential risks of contagion, in order to help interrupting the chains of COVID-19 infection."
         },
@@ -485,7 +485,7 @@
       },
       "rights_of_data_subjects": {
         "name": "Rights of data subjects",
-        "body": "The European Data Protection Regulation (Regulation (EU) 2016/679, of the European Parliament and of the Council, of 27 April 2016 – GDPR) ensures the users’ (data subjects) right to information, the right to request access, rectification, erasure or restriction of processing.\n\nHowever, considering the date controllers’ inability to identify users, the Articles 15 to 20 of the Regulation, relating to the rights to request access, rectification, erasure or restriction of processing, shall not the applied, in accordance with the provisions in Article 11, no. 2 of the same Regulation. The data subjects can exercise their right to object by uninstalling the application.\n\nThe data subject may exercise his/her rights, as well as request any information regarding the processing of personal data, upon written request addressed to the data controller or the respective data protection officer, through the following postal and email addresses:\n\nQuestions/Technical support: stayaway@inesctec.pt\n\nData Protection: eugeniacarvalho@dgs.min-saude.pt\n\nUnder the terms of the Article 77 of the GDPR, the data subject has the right to lodge a complaint with a supervisory authority in the European Union. In Portugal, the supervisory authority is the CNPD (www.cnpd.pt)."
+        "body": "The European Data Protection Regulation (Regulation (EU) 2016/679, of the European Parliament and of the Council, of 27 April 2016 – GDPR) ensures the users’ (data subjects) right to information, the right to request access, rectification, erasure or restriction of processing.\n\nHowever, considering the date controllers’ inability to identify users, the Articles 15 to 20 of the Regulation, relating to the rights to request access, rectification, erasure or restriction of processing, shall not the applied, in accordance with the provisions in Article 11, no. 2 of the same Regulation. The data subjects can exercise their right to object by uninstalling the application.\n\nThe data subject may exercise his/her rights, as well as request any information regarding the processing of personal data, upon written request addressed to the data controller or the respective data protection officer, through the following postal and email addresses:\n\nQuestions/Technical support: stayaway@inesctec.pt\n\nData Protection: dpo@dgs.min-saude.pt\n\nUnder the terms of the Article 77 of the GDPR, the data subject has the right to lodge a complaint with a supervisory authority in the European Union. In Portugal, the supervisory authority is the CNPD (www.cnpd.pt)."
       },
       "uninstalling_and_suspending_the_application": {
         "name": "Uninstalling and suspending the application",
@@ -602,7 +602,7 @@
       }
     },
     "emails": {
-      "data_protection": "eugeniacarvalho@dgs.min-saude.pt",
+      "data_protection": "dpo@dgs.min-saude.pt",
       "support": "stayaway@inesctec.pt"
     },
     "words": {
