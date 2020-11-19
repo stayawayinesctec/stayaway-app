@@ -321,8 +321,8 @@ export default function Info(props) {
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <Image source={name == DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-              <Image source={name == DARK ? Images.logo_dgs_dark : Images.logo_dgs} style={styles(colors, insets).dgsImage} />
+              <Image source={name === DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
             </View>
             <Image source={Images.splash} style={styles(colors, insets).splashImage} />
           </View>

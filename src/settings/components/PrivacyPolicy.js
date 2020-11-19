@@ -337,8 +337,8 @@ export default function PrivacyPolicy(props) {
               </View>
               <Text textColor={colors.gray} size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.last_review')}</Text>
               <View style={styles(colors, insets).sponsors}>
-                <Image source={name == DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-                <Image source={name == DARK ? Images.logo_dgs_dark : Images.logo_dgs} style={styles(colors, insets).dgsImage} />
+                <Image source={name === DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+                <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
               </View>
             </ScrollView>
           </Layout>
