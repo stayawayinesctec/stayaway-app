@@ -80,9 +80,9 @@
           "second": "but you should self-isolate and contact health services.\n\n",
           "third": "Even if you show no symptoms, you should call ",
           "fourth": "SNS 24 (808 24 24 24) ",
-          "fifth": "or your family doctor.",
-          "sixth": "STAYAWAY COVID will continue to function normally.",
-          "seventh": "This warning will disappear after 14 days if you do not receive new risk alerts."
+          "fifth": "or your family doctor.\n\n",
+          "sixth": "STAYAWAY COVID keeps running as usual. In the meantime, if you don’t get new exposure notifications, ",
+          "seventh": "this warning will disappear after 14 days."
         }
       },
       "infected": {

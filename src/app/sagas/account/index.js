@@ -323,9 +323,9 @@ export function* updateStatus({ payload: status }) {
       if (exposureDays.length > 0) {
         const { exposedDate } = exposureDays[exposureDays.length - 1];
 
-        // Check if has passed 15 days after last exposure
-        const fifteenDaysAgo = Moment().startOf('day').subtract(15, 'days');
-        if (Moment(exposedDate).isBefore(fifteenDaysAgo)) {
+        // Check if has passed 14 days after last exposure
+        const fourteenDaysAgo = Moment().startOf('day').subtract(14, 'days');
+        if (Moment(exposedDate).isBefore(fourteenDaysAgo)) {
           yield call(TrackingManager.resetExposureDays);
         }
       }

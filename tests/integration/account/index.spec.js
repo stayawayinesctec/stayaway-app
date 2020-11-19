@@ -680,14 +680,14 @@ describe('Account Sagas', () => {
         accountActions.setStatus(newState),
       ]);
     });
-    it('should reset infection status when last exposure was 15 days ago', async () => {
+    it('should reset infection status when last exposure was 14 days ago', async () => {
       // Prepare
       TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 1,
         exposureDays: [{
-          exposedDate: Moment().startOf('day').subtract(16, 'days'),
+          exposedDate: Moment().startOf('day').subtract(15, 'days'),
         }],
         errors: [],
       };
@@ -713,14 +713,14 @@ describe('Account Sagas', () => {
         accountActions.setStatus(newState),
       ]);
     });
-    it('should not reset infection status when last exposure was not 15 days ago', async () => {
+    it('should not reset infection status when last exposure was not 14 days ago', async () => {
       // Prepare
       TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 1,
         exposureDays: [{
-          exposedDate: Moment().startOf('day').subtract(14, 'days'),
+          exposedDate: Moment().startOf('day').subtract(13, 'days'),
         }],
         errors: [],
       };
