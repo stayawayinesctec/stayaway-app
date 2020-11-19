@@ -43,7 +43,7 @@ export default function LoadingModal (props) {
     <ThemeConsumer>
       {({colors}) => (
         <Modal
-          backdropColor={colors.blueDark}
+          backdropColor={colors.backdrop}
           isVisible={visible}
           backdropOpacity={1}
           statusBarTranslucent

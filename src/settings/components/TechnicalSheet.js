@@ -23,9 +23,11 @@ import Text from '@app/common/components/Text';
 
 import Images from '@app/common/assets/images';
 
-import { sizes, iconSizes } from '@app/common/theme';
+import { themes as commonThemes, sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
+
+const DARK = commonThemes.names.dark;
 
 const styles = (colors, insets) => StyleSheet.create({
   closeButton: {
@@ -122,7 +124,7 @@ export default function TechnicalSheet (props) {
 
   return (
     <ThemeConsumer>
-      {({colors}) => (
+      {({colors, name}) => (
         <TopComponent>
           <Layout style={styles(colors, insets).layoutContainer}>
             <View style={styles(colors, insets).header}>
@@ -146,7 +148,7 @@ export default function TechnicalSheet (props) {
                   accessibilityLabel={i18n.translate('screens.technical_sheet.inesctec.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.technical_sheet.inesctec.accessibility.hint')}
                 >
-                  <Image source={Images.logo_inesctec} />
+                  <Image source={name === DARK ? Images.logo_inesctec_dark : Images.logo_inesctec} />
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
               </View>
@@ -182,7 +184,7 @@ export default function TechnicalSheet (props) {
                   accessibilityLabel={i18n.translate('screens.technical_sheet.ubirider.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.technical_sheet.ubirider.accessibility.hint')}
                 >
-                  <Image source={Images.logo_ubirider} />
+                  <Image source={name === DARK ? Images.logo_ubirider_dark : Images.logo_ubirider} />
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 <ButtonWrapper
@@ -200,7 +202,7 @@ export default function TechnicalSheet (props) {
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={name === DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
               <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
             </View>
             <Image source={Images.splash} style={styles(colors, insets).splashImage} />

@@ -144,7 +144,7 @@ const styles = (colors, insets) => StyleSheet.create({
     zIndex: 50,
     width: '100%',
     height: '100%',
-    backgroundColor: colors.blueDark,
+    backgroundColor: colors.backdrop,
     opacity: 0.4,
   },
   errorsContainer: {

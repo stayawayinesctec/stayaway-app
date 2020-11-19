@@ -56,7 +56,7 @@ export default function TooMuchRequestsModal (props) {
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <Modal backdropColor={colors.blueDark} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
+        <Modal backdropColor={colors.backdrop} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
           <Layout style={styles.content}>
             <View style={styles.titleContainer}>
               <Icon name='too_much_requests' width={iconSizes.size73} height={iconSizes.size73} tintColor={colors.blueDark} />

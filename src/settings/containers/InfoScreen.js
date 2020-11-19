@@ -22,6 +22,7 @@ import {
   isTrackingEnabled,
   isInfected,
   getLanguage,
+  getTheme,
 } from '@app/redux/account/selectors';
 import accountActions from '@app/redux/account';
 
@@ -33,6 +34,7 @@ export default function InfoScreen () {
   const dispatch = useDispatch();
   const trackingEnabled = useSelector(isTrackingEnabled);
   const language = useSelector(getLanguage);
+  const themeName = useSelector(getTheme);
 
   const [appVersion, setAppVersion] = useState('');
   const [appBuild, setAppBuild] = useState('');
@@ -66,6 +68,7 @@ export default function InfoScreen () {
   const props = {
     trackingEnabled,
     language,
+    themeName,
     appVersion,
     appBuild,
     isInfected: useSelector(isInfected),
@@ -77,6 +80,9 @@ export default function InfoScreen () {
       } else {
         dispatch(accountActions.updateLanguage(languages.EN.languageTag));
       }
+    },
+    onPressTheme: (themeName) => () => {
+      dispatch(accountActions.updateTheme(themeName));
     },
     onPressSupport: () => Linking.openURL(getSupportEmailFormat()),
     onPressHowToUse: () => {

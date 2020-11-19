@@ -45,9 +45,9 @@ const themes = (value) => ({
   },
   [DARK]: {
     backgroundColorOn: commonColors.white,
-    backgroundColorOff: commonColors.grayDark,
+    backgroundColorOff: commonColors.gray,
     circleColorOn: commonColors.blueDark,
-    circleColorOff: commonColors.blueDark,
+    circleColorOff: commonColors.blueDarker,
     containerStyle: { borderColor: value ? commonColors.grayDark : commonColors.white },
   },
 });

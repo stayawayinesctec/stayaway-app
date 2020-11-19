@@ -12,10 +12,11 @@ export default {
   transparent: 'transparent',
   white: '#FFFFFF',
   black: '#191847',
+  darkModeBlack: '#121212',
 
-  grayLightest: "#EDEDED",
-  grayLight: "#E5E5E5",
-  gray: "#979797",
+  grayLightest: '#EDEDED',
+  grayLight: '#E5E5E5',
+  gray: '#979797',
   grayDark: '#C4C4C4',
 
   blueLightest: '#87A4E3',

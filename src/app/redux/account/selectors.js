@@ -116,6 +116,11 @@ export const getLanguage = createSelector(
   account => account.language,
 );
 
+export const getTheme = createSelector(
+  state => state.account,
+  account => account.theme,
+);
+
 export default {
   getSignUpDate,
   isTrackingEnabled,
@@ -135,4 +140,5 @@ export default {
   hasExposureNotificationsDisabledError,
   getErrors,
   getLanguage,
+  getTheme,
 };

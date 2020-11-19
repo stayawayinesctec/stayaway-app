@@ -74,6 +74,7 @@ const themes = {
         },
       },
       titleStyle: { color: commonColors.blueDark, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, fontWeight: fontWeights.bold, paddingTop: 0, paddingBottom: 0},
+      disabledStyle: { opacity: 0.7 },
       disabledTitleStyle: { color: commonColors.blueDark, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, paddingTop: 0, paddingBottom: 0},
       loadingProps: { color: commonColors.blueDark, size: 'small' },
     },

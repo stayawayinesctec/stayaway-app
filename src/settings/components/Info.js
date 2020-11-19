@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
-import { sizes, iconSizes } from '@app/common/theme';
+import { themes as commonThemes, sizes, iconSizes } from '@app/common/theme';
 
 import Configuration from '@app/services/configuration';
 import i18n, { languages } from '@app/services/i18n';
@@ -28,6 +28,8 @@ import Icon from '@app/common/components/Icon';
 import Switch from '@app/common/components/Switch';
 
 import Images from '@app/common/assets/images';
+
+const DARK = commonThemes.names.dark;
 
 const styles = (colors, insets) => StyleSheet.create({
   container: {
@@ -143,10 +145,12 @@ export default function Info(props) {
     appVersion,
     appBuild,
     language,
+    themeName,
     trackingEnabled,
     isInfected,
     onClose,
     onPressLanguage,
+    onPressTheme,
     onPressSupport,
     onPressLegalInformation,
     onPressHowToUse,
@@ -159,7 +163,7 @@ export default function Info(props) {
 
   return (
     <ThemeConsumer>
-      {({colors}) => (
+      {({colors, name}) => (
         <TopComponent style={styles(colors, insets).container}>
           <Layout style={styles(colors, insets).layoutContainer}>
             <View style={styles(colors, insets).header}>
@@ -205,10 +209,7 @@ export default function Info(props) {
                 </ButtonWrapper>
                 <ButtonWrapper
                   onPress={onPressLanguage}
-                  style={{
-                    ...styles(colors, insets).item,
-                    ...styles(colors, insets).bottomItem,
-                  }}
+                  style={styles(colors, insets).item}
                   accessibilityLabel={i18n.translate('screens.settings.language.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.settings.language.accessibility.hint')}
                   accessibilityRole='switch'
@@ -226,6 +227,34 @@ export default function Info(props) {
                           }}
                       >
                         { countryCode }
+                      </Text>,
+                      )}
+                  </View>
+                </ButtonWrapper>
+                <ButtonWrapper
+                  style={{
+                    ...styles(colors, insets).item,
+                    ...styles(colors, insets).bottomItem,
+                  }}
+                  accessibilityLabel={i18n.translate('screens.settings.theme.accessibility.label')}
+                  accessibilityHint={i18n.translate('screens.settings.theme.accessibility.hint')}
+                  accessibilityRole='switch'
+                  accessibilityValue={{text: i18n.translate(`screens.settings.theme.${themeName}`)}}
+                >
+                  <Text weight='bold'>{i18n.translate('screens.settings.theme.label')}</Text>
+                  <View style={styles(colors, insets).languageLabelContainer}>
+                    { Object.values(commonThemes.names).map((settingThemeName) =>
+                      <Text
+                        onPress={onPressTheme?.(settingThemeName)}
+                        textAlign='center'
+                        key={settingThemeName}
+                        accessibilityLabel={i18n.translate(`screens.settings.theme.${settingThemeName}`)}
+                        style={{
+                            ...styles(colors, insets).languageLabel,
+                            backgroundColor: settingThemeName === themeName ? colors.blueLightest : colors.grayLight,
+                          }}
+                      >
+                        { i18n.translate(`screens.settings.theme.${settingThemeName}`) }
                       </Text>,
                       )}
                   </View>
@@ -292,7 +321,7 @@ export default function Info(props) {
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={name === DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
               <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
             </View>
             <Image source={Images.splash} style={styles(colors, insets).splashImage} />

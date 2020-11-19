@@ -218,6 +218,16 @@
           "hint": "Altera o idioma da aplicação"
         }
       },
+      "theme": {
+        "label": "Tema",
+        "light": "Claro",
+        "dark": "Escuro",
+        "auto": "Auto",
+        "accessibility": {
+          "label": "Tema",
+          "hint": "Altera o tema da aplicação"
+        }
+      },
       "support": {
         "label": "Contacte-nos",
         "accessibility": {

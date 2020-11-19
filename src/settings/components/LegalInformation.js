@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
-import { sizes, iconSizes } from '@app/common/theme';
+import { themes as commonThemes, sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
 
@@ -26,6 +26,8 @@ import Text from '@app/common/components/Text';
 import Icon from '@app/common/components/Icon';
 
 import Images from '@app/common/assets/images';
+
+const DARK = commonThemes.names.dark;
 
 const styles = (colors, insets) => StyleSheet.create({
   container: {
@@ -109,7 +111,7 @@ export default function LegalInformation(props) {
 
   return (
     <ThemeConsumer>
-      {({colors}) => (
+      {({colors, name}) => (
         <TopComponent style={styles(colors, insets).container}>
           <Layout style={styles(colors, insets).layoutContainer}>
             <View style={styles(colors, insets).header}>
@@ -155,7 +157,7 @@ export default function LegalInformation(props) {
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={name === DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
               <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
             </View>
             <Image source={Images.splash} style={styles(colors, insets).splashImage} />

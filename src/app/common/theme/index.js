@@ -26,15 +26,25 @@ const themes = {
     auto: AUTO,
   },
   [LIGHT]: {
-    colors,
+    colors: {
+      ...colors,
+      backdrop: colors.blueDark,
+      backdropText: colors.white,
+    },
   },
   [DARK]: {
     colors: {
       ...colors,
-      white: colors.blueDark,
+      white: colors.darkModeBlack,
       blueDark: colors.white,
 
+      backdrop: colors.darkModeBlack,
+      backdropText: colors.white,
+
       grayLight: colors.blueDarker,
+
+      blueLightest: colors.blueLight,
+      blueLight: colors.blueLightest,
     },
   },
 };
@@ -45,4 +55,4 @@ export default {
   ...fontSizes,
 };
 
-export { themes, colors, sizes, fontSizes, iconSizes, lineHeights, fontWeights };
+export {themes, colors, sizes, fontSizes, iconSizes, lineHeights, fontWeights};
