@@ -22,9 +22,11 @@ import RepublicaPortuguesa from './sources/republica_portuguesa.png';
 import RepublicaPortuguesaDark from './sources/republica_portuguesa_dark.png';
 import LogoDGS from './sources/logo_dgs.png';
 import LogoInesctec from './sources/logo_inesctec.png';
+import LogoInesctecDark from './sources/logo_inesctec_dark.png';
 import LogoISPUP from './sources/logo_ispup.png';
 import LogoKeyruptive from './sources/logo_keyruptive.png';
 import LogoUbirider from './sources/logo_ubirider.png';
+import LogoUbiriderDark from './sources/logo_ubirider_dark.png';
 import LogoSPMS from './sources/logo_spms.png';
 
 export default {
@@ -42,8 +44,10 @@ export default {
   republica_portuguesa_dark: RepublicaPortuguesaDark,
   logo_dgs: LogoDGS,
   logo_inesctec: LogoInesctec,
+  logo_inesctec_dark: LogoInesctecDark,
   logo_ispup: LogoISPUP,
   logo_keyruptive: LogoKeyruptive,
   logo_ubirider: LogoUbirider,
+  logo_ubirider_dark: LogoUbiriderDark,
   logo_spms: LogoSPMS,
 };

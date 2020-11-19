@@ -148,7 +148,7 @@ export default function TechnicalSheet (props) {
                   accessibilityLabel={i18n.translate('screens.technical_sheet.inesctec.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.technical_sheet.inesctec.accessibility.hint')}
                 >
-                  <Image source={Images.logo_inesctec} />
+                  <Image source={name === DARK ? Images.logo_inesctec_dark : Images.logo_inesctec} />
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
               </View>
@@ -184,7 +184,7 @@ export default function TechnicalSheet (props) {
                   accessibilityLabel={i18n.translate('screens.technical_sheet.ubirider.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.technical_sheet.ubirider.accessibility.hint')}
                 >
-                  <Image source={Images.logo_ubirider} />
+                  <Image source={name === DARK ? Images.logo_ubirider_dark : Images.logo_ubirider} />
                   <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
                 </ButtonWrapper>
                 <ButtonWrapper
