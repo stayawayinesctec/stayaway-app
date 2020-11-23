@@ -230,6 +230,7 @@ export function* submitDiagnosis({ payload: code }) {
 
     // Update status
     yield put(accountActions.setInfectionStatus(INFECTION_STATUS.INFECTED));
+    yield take(accountTypes.UPDATE_STATUS_RESULT);
 
     // Stop tracing
     yield call(TrackingManager.removeUpdateEventListener);
@@ -345,6 +346,8 @@ export function* updateStatus({ payload: status }) {
 
   // Update redux store
   yield put(accountActions.setStatus(status));
+
+  yield put(accountActions.updateStatusResult(status));
 }
 
 export function* setErrors({ payload: errors }) {

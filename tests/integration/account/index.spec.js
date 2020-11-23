@@ -380,6 +380,7 @@ describe('Account Sagas', () => {
           },
         }),
       }, submitDiagnosis, { payload: code });
+      channel.put(accountActions.updateStatusResult());
       channel.put(modalsActions.networkModalOpen());
       channel.put(modalsActions.loadingModalClosed());
       await saga.toPromise();
@@ -621,9 +622,10 @@ describe('Account Sagas', () => {
 
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
-      expect(dispatched).toHaveLength(1);
+      expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         accountActions.setStatus(newState),
+        accountActions.updateStatusResult(newState),
       ]);
     });
     it('should deactivate tracking enabled when GAEN is deactivated', async () => {
@@ -648,10 +650,11 @@ describe('Account Sagas', () => {
 
       // Assert
       expect(TrackingManager.isTracingEnabled).not.toHaveBeenCalled();
-      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
         accountActions.setTrackingEnabled(false),
         accountActions.setStatus(newState),
+        accountActions.updateStatusResult(newState),
       ]);
     });
     it('should activate tracking enabled when GAEN is activated and tracking is enabled', async () => {
@@ -674,10 +677,11 @@ describe('Account Sagas', () => {
 
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
-      expect(dispatched).toHaveLength(2);
+      expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
         accountActions.setTrackingEnabled(true),
         accountActions.setStatus(newState),
+        accountActions.updateStatusResult(newState),
       ]);
     });
     it('should reset infection status when last exposure was 14 days ago', async () => {
@@ -708,9 +712,10 @@ describe('Account Sagas', () => {
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
       expect(TrackingManager.resetExposureDays).toHaveBeenCalled();
-      expect(dispatched).toHaveLength(1);
+      expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         accountActions.setStatus(newState),
+        accountActions.updateStatusResult(newState),
       ]);
     });
     it('should not reset infection status when last exposure was not 14 days ago', async () => {
@@ -741,9 +746,10 @@ describe('Account Sagas', () => {
       // Assert
       expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
       expect(TrackingManager.resetExposureDays).not.toHaveBeenCalled();
-      expect(dispatched).toHaveLength(1);
+      expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         accountActions.setStatus(newState),
+        accountActions.updateStatusResult(newState),
       ]);
     });
   });
