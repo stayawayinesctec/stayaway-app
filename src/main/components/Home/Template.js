@@ -21,7 +21,7 @@ import Icon from '@app/common/components/Icon';
 import Button from '@app/common/components/Button';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
-import Images from '@app/common/assets/images';
+import { images } from '@app/common/assets/images';
 import SupportIcon from '@app/common/components/SupportIcon';
 
 import { colors as commonColors, sizes, iconSizes } from '@app/common/theme';
@@ -50,11 +50,17 @@ const styles = (colors, insets) => StyleSheet.create({
       ios: insets.top + sizes.size24,
     }),
     marginRight: sizes.size24,
+    borderRadius: sizes.size48,
+    padding: sizes.size8,
+    backgroundColor: colors.iconMainBackgroundColor,
   },
   shareButton: {
     alignSelf: 'flex-end',
     marginTop: sizes.size16,
     marginRight: sizes.size24 + sizes.size6,
+    borderRadius: sizes.size48,
+    padding: sizes.size8,
+    backgroundColor: colors.iconAltBackgroundColor,
   },
   header: {
     marginTop: -100,
@@ -65,28 +71,26 @@ const styles = (colors, insets) => StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: sizes.size8,
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
     paddingHorizontal: sizes.size24,
     paddingVertical: sizes.size24,
   },
   panel: {
     backgroundColor: colors.transparent,
     borderRadius: sizes.size8,
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   panelContainer: {
     paddingHorizontal: sizes.size24,
@@ -119,7 +123,7 @@ const styles = (colors, insets) => StyleSheet.create({
     marginLeft: sizes.size12,
   },
   errorPanel: {
-    marginBottom: sizes.size24,
+    marginBottom: sizes.size24 + sizes.size24,
   },
   errorPanelContainer: {
     flexDirection: 'column',
@@ -144,13 +148,13 @@ const styles = (colors, insets) => StyleSheet.create({
     zIndex: 50,
     width: '100%',
     height: '100%',
-    backgroundColor: colors.backdrop,
-    opacity: 0.4,
+    backgroundColor: colors.backdropColor,
+    opacity: 0.8,
   },
   errorsContainer: {
     position: 'absolute',
     zIndex: 100,
-    marginTop: -sizes.size24 + 200,
+    marginTop: insets.top + sizes.size24 + iconSizes.size32 + sizes.size8 * 2 + sizes.size16 + iconSizes.size20 + sizes.size8 * 2 + sizes.size16,
     width: '100%',
     height: '100%',
   },
@@ -202,7 +206,7 @@ export default function Template (props) {
               accessibilityLabel={i18n.translate('screens.home.actions.settings.accessibility.label')}
               accessibilityHint={i18n.translate('screens.home.actions.settings.accessibility.hint')}
             >
-              <Icon name='settings' width={iconSizes.size48} height={iconSizes.size48} />
+              <Icon name='settings' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />
             </ButtonWrapper>
             <ButtonWrapper
               onPress={onPressShare}
@@ -210,7 +214,7 @@ export default function Template (props) {
               accessibilityLabel={i18n.translate('screens.home.actions.share.accessibility.label')}
               accessibilityHint={i18n.translate('screens.home.actions.share.accessibility.hint')}
             >
-              <Icon name='share' width={iconSizes.size36} height={iconSizes.size36} />
+              <Icon name='share' width={iconSizes.size20} height={iconSizes.size20} tintColor={colors.iconAltTintColor} />
             </ButtonWrapper>
           </View>
           { error.status &&
@@ -227,20 +231,20 @@ export default function Template (props) {
                     <View
                       style={{
                         ...styles(colors, insets).backgroundPanel,
-                        backgroundColor: colors.white,
+                        backgroundColor: colors.panelWhiteBackgroundColor,
                       }}
                     />
                     <View style={styles(colors, insets).panel}>
                       <View style={styles(colors, insets).errorPanel}>
                         <View style={styles(colors, insets).errorPanelContainer}>
                           <View style={styles(colors, insets).titleContainer}>
-                            { error.icon }
-                            <Text size='large' weight='bold' textColor={colors.blueDark} style={styles(colors, insets).iconTitle}>{error.title}</Text>
+                            { error.icon(colors) }
+                            <Text size='large' weight='bold' textColor={colors.panelWhiteTextColor} style={styles(colors, insets).iconTitle}>{error.title}</Text>
                           </View>
                           <View style={styles(colors, insets).messageContainer}>
-                            <Text textColor={colors.blueDark} style={styles(colors, insets).message}>{error.message}</Text>
+                            <Text textColor={colors.panelWhiteTextColor} style={styles(colors, insets).message}>{error.message}</Text>
                             { error.submessage &&
-                              <Text size='small' textColor={colors.blueDark} style={styles(colors, insets).submessage}>{error.submessage}</Text>
+                              <Text size='small' textColor={colors.panelWhiteTextColor} style={styles(colors, insets).submessage}>{error.submessage}</Text>
                             }
                           </View>
                           <Button
@@ -281,41 +285,39 @@ export default function Template (props) {
               padding='horizontal'
               style={styles(colors, insets).contentContainer}
             >
-              { ! error.status &&
-                <View style={styles(colors, insets).header}>
-                  <View>
-                    <View
-                      style={{
-                        ...styles(colors, insets).backgroundPanel,
-                        backgroundColor: panelBackgroundColor,
-                      }}
-                    />
-                    <View style={styles(colors, insets).panel}>
-                      <View style={styles(colors, insets).panelContainer}>
-                        <Text size='xlarge' weight='bold' textColor={panelTextColor}>{header}</Text>
-                      </View>
+              <View style={styles(colors, insets).header}>
+                <View>
+                  <View
+                    style={{
+                      ...styles(colors, insets).backgroundPanel,
+                      backgroundColor: panelBackgroundColor,
+                    }}
+                  />
+                  <View style={styles(colors, insets).panel}>
+                    <View style={styles(colors, insets).panelContainer}>
+                      <Text size='xlarge' weight='bold' textColor={panelTextColor}>{header}</Text>
                     </View>
                   </View>
-                  <View style={styles(colors, insets).supportContainer}>
-                    { showUpdatedAt && hasUpdated &&
-                      <SupportIcon
-                        label={i18n.translate('screens.home.last_updated')}
-                        content={lastSync.format('L')}
-                        color={panelBackgroundColor}
-                      />
-                    }
-                    { showUpdatedAt && !hasUpdated &&
-                      <SupportIcon
-                        content={i18n.translate('screens.home.never_updated')}
-                        color={panelBackgroundColor}
-                      />
-                    }
-                    { ! showUpdatedAt &&
-                      <SupportIcon />
-                    }
-                  </View>
                 </View>
-              }
+                <View style={styles(colors, insets).supportContainer}>
+                  { showUpdatedAt && hasUpdated &&
+                    <SupportIcon
+                      label={i18n.translate('screens.home.last_updated')}
+                      content={lastSync.format('L')}
+                      borderColor={panelBackgroundColor}
+                    />
+                  }
+                  { showUpdatedAt && !hasUpdated &&
+                    <SupportIcon
+                      content={i18n.translate('screens.home.never_updated')}
+                      borderColor={panelBackgroundColor}
+                    />
+                  }
+                  { ! showUpdatedAt &&
+                    <SupportIcon />
+                  }
+                </View>
+              </View>
               <Text style={styles(colors, insets).descriptionsContent}>
                 { description.map(item => <Text key={item.key} weight={item.type}>{item.text}</Text>) }
               </Text>
@@ -334,13 +336,13 @@ Template.defaultProps = {
   onPressSettings: () => {},
   onPressShare: () => {},
   onLongPressSettings: () => {},
-  panelBackgroundColor: commonColors.green,
-  panelTextColor: commonColors.white,
+  panelBackgroundColor: '',
+  panelTextColor: '',
   error: {
     status: false,
     title: '',
     message: '',
-    icon: undefined,
+    icon: () => {},
     main: {
       accessibility: {
         label: '',
@@ -365,16 +367,16 @@ Template.propTypes = {
   onPressSettings: PropTypes.func,
   onPressShare: PropTypes.func,
   onLongPressSettings: PropTypes.func,
-  panelBackgroundColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
-  panelTextColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
+  panelBackgroundColor: PropTypes.oneOf(['', ...commonColors]),
+  panelTextColor: PropTypes.oneOf(['', ...commonColors]),
   lastSync: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
-  image: PropTypes.oneOf(Object.values(Images)).isRequired,
+  image: PropTypes.oneOf(Object.values(images)).isRequired,
   error: PropTypes.shape({
     status: PropTypes.bool,
     title: PropTypes.string,
     message: PropTypes.string,
     submessage: PropTypes.string,
-    icon: PropTypes.object,
+    icon: PropTypes.func,
     main: PropTypes.shape({
       label: PropTypes.string,
       accessibility: PropTypes.object,

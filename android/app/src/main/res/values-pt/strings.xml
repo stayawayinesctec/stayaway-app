@@ -12,7 +12,7 @@
 
 <resources>
 	<!-- Divoc App -->
-    <string name="app_name">STAYAWAY</string>
+	<string name="app_name">STAYAWAY</string>
 
 	<string name="language_key">"pt"</string>
 

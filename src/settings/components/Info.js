@@ -26,10 +26,9 @@ import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
 import Icon from '@app/common/components/Icon';
 import Switch from '@app/common/components/Switch';
+import Toggle from '@app/common/components/Toggle';
 
-import Images from '@app/common/assets/images';
-
-const DARK = commonThemes.names.dark;
+import { getThemedImage } from '@app/common/assets/images';
 
 const styles = (colors, insets) => StyleSheet.create({
   container: {
@@ -74,23 +73,22 @@ const styles = (colors, insets) => StyleSheet.create({
     borderBottomRightRadius: sizes.size8,
   },
   item: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.settingsAltButtonBackgroundColor,
     paddingLeft: sizes.size16,
     paddingRight: sizes.size16,
     paddingVertical: sizes.size18,
     borderTopWidth: sizes.size1,
-    borderColor: colors.grayLight,
+    borderColor: colors.settingsBorderColor,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   trackingLabelContainer: {
     flexDirection: 'row',
@@ -98,19 +96,6 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   trackingLabel: {
     marginRight: sizes.size8,
-  },
-  languageLabelContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.grayLight,
-    borderRadius: sizes.size4,
-  },
-  languageLabel: {
-    backgroundColor: colors.blueLightest,
-    margin: sizes.size2,
-    paddingVertical: sizes.size5,
-    paddingHorizontal: sizes.size16,
-    borderRadius: sizes.size4,
   },
   imagesContainer: {
     position: 'absolute',
@@ -145,7 +130,7 @@ export default function Info(props) {
     appVersion,
     appBuild,
     language,
-    themeName,
+    theme,
     trackingEnabled,
     isInfected,
     onClose,
@@ -173,11 +158,11 @@ export default function Info(props) {
                 accessibilityLabel={i18n.translate('screens.settings.actions.back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.settings.actions.back.accessibility.hint')}
               >
-                <Icon name='close' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.blueDark} />
+                <Icon name='close' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
               </ButtonWrapper>
             </View>
             <View style={styles(colors, insets).itemsContainer}>
-              <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).version}>{i18n.translate('screens.settings.version', { version: appVersion, build: appBuild })}</Text>
+              <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).version}>{i18n.translate('screens.settings.version', { version: appVersion, build: appBuild })}</Text>
               <View style={styles(colors, insets).topItems}>
                 <ButtonWrapper
                   onPress={onPressTracking}
@@ -185,7 +170,7 @@ export default function Info(props) {
                     ...styles(colors, insets).item,
                     ...styles(colors, insets).topItem,
                     ...styles(colors, insets).trackingItem,
-                    backgroundColor: trackingEnabled ? colors.blueLightest : colors.white,
+                    backgroundColor: trackingEnabled ? colors.settingsMainButtonBackgroundColor : colors.settingsAltButtonBackgroundColor,
                   }}
                   disabled={isInfected}
                   accessibilityRole='switch'
@@ -194,9 +179,9 @@ export default function Info(props) {
                   accessibilityHint={i18n.translate(`screens.settings.tracking.accessibility.hint.${trackingEnabled ? 'deactivate' : 'activate'}`)}
                 >
                   <View style={styles(colors, insets).trackingButton}>
-                    <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
+                    <Text textColor={trackingEnabled ? colors.settingsMainButtonTextColor : colors.settingsAltButtonTextColor} weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
                     <View style={styles(colors, insets).trackingLabelContainer}>
-                      <Text textColor={trackingEnabled ? colors.white : colors.blueDark} weight='bold' style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
+                      <Text textColor={trackingEnabled ? colors.settingsMainButtonTextColor : colors.settingsAltButtonTextColor} weight='bold' style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
                       <Switch
                         value={trackingEnabled}
                         onValueChange={onPressTracking}
@@ -205,7 +190,7 @@ export default function Info(props) {
                       />
                     </View>
                   </View>
-                  <Text size='small' textColor={trackingEnabled ? colors.white : colors.blueDark}>{i18n.translate(`screens.settings.tracking.description.${trackingEnabled ? 'enabled' : 'disabled'}`)}</Text>
+                  <Text size='small' textColor={trackingEnabled ? colors.settingsMainButtonTextColor : colors.settingsAltButtonTextColor}>{i18n.translate(`screens.settings.tracking.description.${trackingEnabled ? 'enabled' : 'disabled'}`)}</Text>
                 </ButtonWrapper>
                 <ButtonWrapper
                   onPress={onPressLanguage}
@@ -216,22 +201,14 @@ export default function Info(props) {
                   accessibilityValue={{text: language.name}}
                 >
                   <Text weight='bold'>{i18n.translate('screens.settings.language.label')}</Text>
-                  <View style={styles(colors, insets).languageLabelContainer}>
-                    { Object.values(languages).map(({ languageTag, countryCode }) =>
-                      <Text
-                        textAlign='center'
-                        key={languageTag}
-                        style={{
-                            ...styles(colors, insets).languageLabel,
-                            backgroundColor: languageTag === language.languageTag ? colors.blueLightest : colors.grayLight,
-                          }}
-                      >
-                        { countryCode }
-                      </Text>,
-                      )}
-                  </View>
+                  <Toggle
+                    value={language.languageTag}
+                    options={Object.values(languages).map(({ languageTag, countryCode }) => ({id: languageTag, label: countryCode}))}
+                    onPress={onPressLanguage}
+                  />
                 </ButtonWrapper>
                 <ButtonWrapper
+                  onPress={onPressTheme}
                   style={{
                     ...styles(colors, insets).item,
                     ...styles(colors, insets).bottomItem,
@@ -239,25 +216,14 @@ export default function Info(props) {
                   accessibilityLabel={i18n.translate('screens.settings.theme.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.settings.theme.accessibility.hint')}
                   accessibilityRole='switch'
-                  accessibilityValue={{text: i18n.translate(`screens.settings.theme.${themeName}`)}}
+                  accessibilityValue={{text: i18n.translate(`screens.settings.theme.${theme}`)}}
                 >
                   <Text weight='bold'>{i18n.translate('screens.settings.theme.label')}</Text>
-                  <View style={styles(colors, insets).languageLabelContainer}>
-                    { Object.values(commonThemes.names).map((settingThemeName) =>
-                      <Text
-                        onPress={onPressTheme?.(settingThemeName)}
-                        textAlign='center'
-                        key={settingThemeName}
-                        accessibilityLabel={i18n.translate(`screens.settings.theme.${settingThemeName}`)}
-                        style={{
-                            ...styles(colors, insets).languageLabel,
-                            backgroundColor: settingThemeName === themeName ? colors.blueLightest : colors.grayLight,
-                          }}
-                      >
-                        { i18n.translate(`screens.settings.theme.${settingThemeName}`) }
-                      </Text>,
-                      )}
-                  </View>
+                  <Toggle
+                    value={theme}
+                    options={Object.values(commonThemes.names).map(id => ({id, label: i18n.translate(`screens.settings.theme.${id}`)}))}
+                    onPress={onPressTheme}
+                  />
                 </ButtonWrapper>
               </View>
               <View style={styles(colors, insets).bottomItems}>
@@ -271,7 +237,7 @@ export default function Info(props) {
                   accessibilityHint={i18n.translate('screens.settings.how_to_use.accessibility.hint')}
                 >
                   <Text weight='bold'>{i18n.translate('screens.settings.how_to_use.label')}</Text>
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
                 <ButtonWrapper
                   style={styles(colors, insets).item}
@@ -281,7 +247,7 @@ export default function Info(props) {
                   accessibilityHint={i18n.translate('screens.settings.faqs.accessibility.hint')}
                 >
                   <Text weight='bold'>{i18n.translate('screens.settings.faqs.label')}</Text>
-                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
                 <ButtonWrapper
                   onPress={onPressSupport}
@@ -290,7 +256,7 @@ export default function Info(props) {
                   accessibilityHint={i18n.translate('screens.settings.support.accessibility.hint')}
                 >
                   <Text weight='bold'>{i18n.translate('screens.settings.support.label')}</Text>
-                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
                 <ButtonWrapper
                   style={{
@@ -302,7 +268,7 @@ export default function Info(props) {
                   accessibilityHint={i18n.translate('screens.settings.legal_information.accessibility.hint')}
                 >
                   <Text weight='bold'>{i18n.translate('screens.settings.legal_information.label')}</Text>
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
                 { ! Configuration.RELEASE &&
                   <ButtonWrapper
@@ -313,7 +279,7 @@ export default function Info(props) {
                     onPress={onPressDebug}
                   >
                     <Text weight='bold'>{i18n.translate('screens.settings.debug.label')}</Text>
-                    <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                    <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                   </ButtonWrapper>
                 }
               </View>
@@ -321,10 +287,10 @@ export default function Info(props) {
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <Image source={name === DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
+              <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
             </View>
-            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
+            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}
@@ -340,6 +306,7 @@ Info.defaultProps = {
   onClose: () => {},
   onPressTracking: () => {},
   onPressLanguage: () => {},
+  onPressTheme: () => {},
   onPressSupport: () => {},
   onPressHowToUse: () => {},
   onPressFaqs: () => {},
@@ -355,11 +322,13 @@ Info.propTypes = {
     languageTag: PropTypes.string,
     isRTL: PropTypes.bool,
   }).isRequired,
+  theme: PropTypes.oneOf([commonThemes.names.dark, commonThemes.names.light, commonThemes.names.auto]).isRequired,
   trackingEnabled: PropTypes.bool,
   isInfected: PropTypes.bool,
   onClose: PropTypes.func,
   onPressTracking: PropTypes.func,
   onPressLanguage: PropTypes.func,
+  onPressTheme: PropTypes.func,
   onPressSupport: PropTypes.func,
   onPressHowToUse: PropTypes.func,
   onPressFaqs: PropTypes.func,

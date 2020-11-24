@@ -18,6 +18,7 @@ import Healthy from './sources/healthy.png';
 import Infected from './sources/infected.png';
 import Diagnosis from './sources/diagnosis.png';
 import Splash from './sources/splash.png';
+import SplashDark from './sources/splash_dark.png';
 import RepublicaPortuguesa from './sources/republica_portuguesa.png';
 import RepublicaPortuguesaDark from './sources/republica_portuguesa_dark.png';
 import LogoDGS from './sources/logo_dgs.png';
@@ -29,7 +30,7 @@ import LogoUbirider from './sources/logo_ubirider.png';
 import LogoUbiriderDark from './sources/logo_ubirider_dark.png';
 import LogoSPMS from './sources/logo_spms.png';
 
-export default {
+export const images = {
   onboarding1: Onboarding1,
   onboarding2: Onboarding2,
   onboarding3: Onboarding3,
@@ -40,6 +41,7 @@ export default {
   infected: Infected,
   diagnosis: Diagnosis,
   splash: Splash,
+  splash_dark: SplashDark,
   republica_portuguesa: RepublicaPortuguesa,
   republica_portuguesa_dark: RepublicaPortuguesaDark,
   logo_dgs: LogoDGS,
@@ -50,4 +52,13 @@ export default {
   logo_ubirider: LogoUbirider,
   logo_ubirider_dark: LogoUbiriderDark,
   logo_spms: LogoSPMS,
+};
+
+export const getThemedImage = (name, theme = 'light') => {
+  return images[`${name}_${theme}`] || images[name];
+};
+
+export default {
+  images,
+  getThemedImage,
 };

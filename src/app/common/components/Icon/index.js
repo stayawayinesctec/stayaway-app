@@ -61,5 +61,5 @@ Icon.propTypes = {
   type: PropTypes.oneOf([LIGHT, DARK, '']),
   fill: PropTypes.string,
   rotation: PropTypes.number,
-  tintColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
+  tintColor: PropTypes.oneOf(['', ...commonColors]),
 };

@@ -11,6 +11,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
+import { DARK, LIGHT, AUTO } from '@app/common/theme';
+
 import i18n, { languages } from '@app/services/i18n';
 
 import Info from '@settings/components/Info';
@@ -21,6 +23,7 @@ describe('Info Screen', () => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
           trackingEnabled
           isInfected
         />,
@@ -39,6 +42,7 @@ describe('Info Screen', () => {
       const { queryByA11yLabel, queryByText } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
           appVersion={version}
           appBuild={build}
           trackingEnabled
@@ -57,6 +61,7 @@ describe('Info Screen', () => {
       const { queryByText, queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
           trackingEnabled
         />,
       );
@@ -75,6 +80,7 @@ describe('Info Screen', () => {
       const { queryByText, queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
         />,
       );
 
@@ -92,6 +98,7 @@ describe('Info Screen', () => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
           trackingEnabled
         />,
       );
@@ -106,6 +113,7 @@ describe('Info Screen', () => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.PT}
+          theme={AUTO}
           trackingEnabled
         />,
       );
@@ -116,11 +124,11 @@ describe('Info Screen', () => {
 
       expect(languageButton.props.accessibilityValue.text).toBe(languages.PT.name);
     });
-    it.each(['light', 'dark', 'auto'])('When theme is %s.', (themeName) => {
+    it.each([LIGHT, DARK, AUTO])('When theme is %s.', (theme) => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
-          themeName={themeName}
+          theme={theme}
           trackingEnabled
         />,
       );
@@ -129,7 +137,7 @@ describe('Info Screen', () => {
 
       expect(themeButton).toBeTruthy();
 
-      expect(themeButton.props.accessibilityValue.text).toBe(i18n.translate(`screens.settings.theme.${themeName}`));
+      expect(themeButton.props.accessibilityValue.text).toBe(i18n.translate(`screens.settings.theme.${theme}`));
     });
   });
   describe('Info buttons interaction work', () => {
@@ -138,6 +146,7 @@ describe('Info Screen', () => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
           trackingEnabled
           onClose={onClose}
         />,
@@ -154,6 +163,7 @@ describe('Info Screen', () => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
           trackingEnabled
           onPressTracking={onPressTracking}
         />,
@@ -170,6 +180,7 @@ describe('Info Screen', () => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.PT}
+          theme={AUTO}
           trackingEnabled
           onPressLanguage={onPressLanguage}
         />,
@@ -181,29 +192,29 @@ describe('Info Screen', () => {
       fireEvent.press(languageButton);
       expect(onPressLanguage).toHaveBeenCalled();
     });
-    it.each(['light', 'dark', 'auto'])('When press \'%s\' theme button.', (themeName) => {
-      const onThemeChange = jest.fn();
-      const onPressTheme = jest.fn((newTheme) => () => onThemeChange(newTheme));
+    it.each([LIGHT, DARK, AUTO])('When press \'%s\' theme button.', (theme) => {
+      const onPressTheme = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={theme}
           trackingEnabled
-          themeName={themeName}
           onPressTheme={onPressTheme}
         />,
       );
 
-      const themeButton = queryByA11yLabel(i18n.translate(`screens.settings.theme.${themeName}`));
+      const themeButton = queryByA11yLabel(i18n.translate('screens.settings.theme.accessibility.label'));
 
       expect(themeButton).toBeTruthy();
       fireEvent.press(themeButton);
-      expect(onPressTheme).toHaveBeenCalledWith(themeName);
+      expect(onPressTheme).toHaveBeenCalled();
     });
     it('When press support button.', () => {
       const onPressSupport = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
           trackingEnabled
           onPressSupport={onPressSupport}
         />,
@@ -220,6 +231,7 @@ describe('Info Screen', () => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
           trackingEnabled
           onPressHowToUse={onPressHowToUse}
         />,
@@ -236,6 +248,7 @@ describe('Info Screen', () => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
+          theme={AUTO}
           trackingEnabled
           onPressFaqs={onPressFaqs}
         />,

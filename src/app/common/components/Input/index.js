@@ -28,17 +28,16 @@ const styles = (colors) => StyleSheet.create({
     paddingHorizontal: 0,
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: colors.white,
+    backgroundColor: colors.inputBackgroundColor,
     borderRadius: sizes.size8,
     marginLeft: -sizes.size10 - (iconSizes.size30 / 2),
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 25,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   input: {
     paddingLeft: sizes.size10 + (iconSizes.size30 / 2) + sizes.size16,
@@ -48,10 +47,9 @@ const styles = (colors) => StyleSheet.create({
   inputContainer: {
     borderRadius: sizes.size10,
     borderBottomWidth: 0,
-    borderColor: colors.grayDark,
   },
   label: {
-    color: colors.blueDark,
+    color: colors.inputLabelColor,
     fontWeight: 'normal',
     marginBottom: sizes.size10,
   },
@@ -114,10 +112,10 @@ export default class Input extends Component {
                 <NativeInput
                   containerStyle={{...styles(colors).container, ...style}}
                   inputContainerStyle={{...styles(colors).inputContainer, ...styleInputContainer}}
-                  inputStyle={{...styles(colors).input, color: textColor || colors.blueDark}}
+                  inputStyle={{...styles(colors).input, color: textColor || colors.inputTextColor}}
                   labelStyle={styles(colors).label}
                   enablesReturnKeyAutomatically
-                  placeholderTextColor={placeholderTextColor || colors.blueLight}
+                  placeholderTextColor={placeholderTextColor || colors.inputPlaceholderColor}
                   ref={element => {this.input = element}}
                   fontSize={fontSizes.normal}
                   selectable
@@ -127,7 +125,7 @@ export default class Input extends Component {
               </View>
               <Text
                 size='small'
-                textColor={colors.red}
+                textColor={colors.inputErrorColor}
                 style={styles(colors).error}
               >
                 {errorMessage}
@@ -157,8 +155,8 @@ Input.defaultProps = {
 Input.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.oneOf([LIGHT, DARK, '']),
-  textColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
-  placeholderTextColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
+  textColor: PropTypes.oneOf(['', ...commonColors]),
+  placeholderTextColor: PropTypes.oneOf(['', ...commonColors]),
   autoCapitalize: PropTypes.oneOf(['none', 'words', 'sentences', 'characters']),
   autoCorrect: PropTypes.bool,
   secureTextEntry: PropTypes.bool,

@@ -13,6 +13,8 @@ import { createActions, handleActions } from 'redux-actions';
 
 import Storage from '@app/services/storage';
 
+import { AUTO } from '@app/common/theme';
+
 export const TRACKING_RESULTS = {
   SUCCESS: 'SUCCESS',
   FAILED: 'FAILED',
@@ -31,7 +33,6 @@ const types = mirrorCreator([
   'UPDATE_STATUS',
   'UPDATE_STATUS_RESULT',
   'UPDATE_LANGUAGE',
-  'UPDATE_THEME',
   'SETUP_NEW_ACCOUNT_REQUEST',
   'SETUP_NEW_ACCOUNT_PENDING',
   'SETUP_NEW_ACCOUNT_ERROR',
@@ -61,7 +62,6 @@ export const creators = createActions(
   types.UPDATE_STATUS,
   types.UPDATE_STATUS_RESULT,
   types.UPDATE_LANGUAGE,
-  types.UPDATE_THEME,
   types.SETUP_NEW_ACCOUNT_REQUEST,
   types.SETUP_NEW_ACCOUNT_PENDING,
   types.SETUP_NEW_ACCOUNT_DONE,
@@ -90,7 +90,7 @@ export const initialState = {
     error: '',
   },
   language: {},
-  theme: 'auto',
+  theme: AUTO,
 };
 
 export const reducer = handleActions(

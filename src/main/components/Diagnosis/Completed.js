@@ -21,7 +21,7 @@ import Layout from '@app/common/components/Layout';
 import Button from '@app/common/components/Button';
 import SupportIcon from '@app/common/components/SupportIcon';
 import Text from '@app/common/components/Text';
-import Images from '@app/common/assets/images';
+import { getThemedImage } from '@app/common/assets/images';
 
 import { sizes, iconSizes } from '@app/common/theme';
 
@@ -50,34 +50,32 @@ const styles = (colors) => StyleSheet.create({
     marginBottom: sizes.size48,
   },
   backgroundPanel: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.panelWhiteBackgroundColor,
     opacity: 0.93,
     position: 'absolute',
     width: '100%',
     height: '100%',
     borderRadius: sizes.size8,
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
     paddingHorizontal: sizes.size24,
     paddingVertical: sizes.size24,
   },
   panel: {
     backgroundColor: colors.transparent,
     borderRadius: sizes.size8,
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   panelContainer: {
     paddingHorizontal: sizes.size24,
@@ -102,10 +100,10 @@ export default function Diagnosis (props) {
 
   return (
     <ThemeConsumer>
-      {({colors}) => (
+      {({name, colors}) => (
         <TopComponent>
           <ImageBackground
-            source={Images.diagnosis}
+            source={getThemedImage('diagnosis', name)}
             style={styles(colors).imageContainer}
           />
           <Layout

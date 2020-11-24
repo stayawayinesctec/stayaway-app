@@ -21,13 +21,11 @@ import Icon from '@app/common/components/Icon';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
 
-import Images from '@app/common/assets/images';
+import { getThemedImage } from '@app/common/assets/images';
 
-import { themes as commonThemes, sizes, iconSizes } from '@app/common/theme';
+import { sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
-
-const DARK = commonThemes.names.dark;
 
 const styles = (colors, insets) => StyleSheet.create({
   closeButton: {
@@ -65,7 +63,7 @@ const styles = (colors, insets) => StyleSheet.create({
     marginBottom: sizes.size8,
   },
   item: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.settingsAltButtonBackgroundColor,
     paddingLeft: sizes.size16,
     paddingRight: sizes.size16,
     paddingVertical: sizes.size18,
@@ -74,14 +72,13 @@ const styles = (colors, insets) => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRadius: sizes.size8,
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   bottomContainer: {
     flex: 1,
@@ -134,13 +131,13 @@ export default function TechnicalSheet (props) {
                 accessibilityLabel={i18n.translate('screens.technical_sheet.actions.back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.technical_sheet.actions.back.accessibility.hint')}
               >
-                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
+                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
               </ButtonWrapper>
               <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.technical_sheet.title')}</Text>
             </View>
             <View style={styles(colors, insets).itemsContainer}>
               <View style={styles(colors, insets).coordinatorContainer}>
-                <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
+                <Text size='small' weight='bold' textColor={colors.settingsLabelColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
                 <ButtonWrapper
                   style={styles(colors, insets).item}
                   onPress={onPressCoordinator}
@@ -148,12 +145,12 @@ export default function TechnicalSheet (props) {
                   accessibilityLabel={i18n.translate('screens.technical_sheet.inesctec.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.technical_sheet.inesctec.accessibility.hint')}
                 >
-                  <Image source={name === DARK ? Images.logo_inesctec_dark : Images.logo_inesctec} />
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Image source={getThemedImage('logo_inesctec', name)} />
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
               </View>
               <View style={styles(colors, insets).partnersContainer}>
-                <Text size='small' weight='bold' textColor={colors.gray} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
+                <Text size='small' weight='bold' textColor={colors.settingsLabelColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
                 <ButtonWrapper
                   style={{
                     ...styles(colors, insets).item,
@@ -164,8 +161,8 @@ export default function TechnicalSheet (props) {
                   accessibilityLabel={i18n.translate('screens.technical_sheet.ispup.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.technical_sheet.ispup.accessibility.hint')}
                 >
-                  <Image source={Images.logo_ispup} />
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Image source={getThemedImage('logo_ispup', name)} />
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
                 <ButtonWrapper
                   style={styles(colors, insets).item}
@@ -174,8 +171,8 @@ export default function TechnicalSheet (props) {
                   accessibilityLabel={i18n.translate('screens.technical_sheet.keyruptive.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.technical_sheet.keyruptive.accessibility.hint')}
                 >
-                  <Image source={Images.logo_keyruptive} />
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Image source={getThemedImage('logo_keyruptive', name)} />
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
                 <ButtonWrapper
                   style={styles(colors, insets).item}
@@ -184,8 +181,8 @@ export default function TechnicalSheet (props) {
                   accessibilityLabel={i18n.translate('screens.technical_sheet.ubirider.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.technical_sheet.ubirider.accessibility.hint')}
                 >
-                  <Image source={name === DARK ? Images.logo_ubirider_dark : Images.logo_ubirider} />
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Image source={getThemedImage('logo_ubirider', name)} />
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
                 <ButtonWrapper
                   style={styles(colors, insets).item}
@@ -194,18 +191,18 @@ export default function TechnicalSheet (props) {
                   accessibilityLabel={i18n.translate('screens.technical_sheet.spms.accessibility.label')}
                   accessibilityHint={i18n.translate('screens.technical_sheet.spms.accessibility.hint')}
                 >
-                  <Image source={Images.logo_spms} />
-                  <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                  <Image source={getThemedImage('logo_spms', name)} />
+                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
               </View>
             </View>
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <Image source={name === DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
+              <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
             </View>
-            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
+            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}

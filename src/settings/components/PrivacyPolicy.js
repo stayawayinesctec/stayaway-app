@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
-import { themes as commonThemes, sizes, iconSizes } from '@app/common/theme';
+import { sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
 
@@ -25,9 +25,7 @@ import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
 import Icon from '@app/common/components/Icon';
 
-import Images from '@app/common/assets/images';
-
-const DARK = commonThemes.names.dark;
+import { getThemedImage } from '@app/common/assets/images';
 
 const styles = (colors, insets) => StyleSheet.create({
   container: {
@@ -56,25 +54,6 @@ const styles = (colors, insets) => StyleSheet.create({
   bodyContainer: {
     paddingTop: sizes.size24,
     paddingBottom: sizes.size24 + insets.bottom,
-  },
-  item: {
-    backgroundColor: colors.white,
-    paddingLeft: sizes.size8,
-    paddingRight: sizes.size16,
-    paddingVertical: sizes.size18,
-    marginBottom: sizes.size8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderRadius: sizes.size8,
-    shadowColor: colors.grayLight,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
   },
   clause: {
     marginBottom: sizes.size24,
@@ -145,7 +124,7 @@ export default function PrivacyPolicy(props) {
                 accessibilityLabel={i18n.translate('screens.privacy_policy.actions.back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.privacy_policy.actions.back.accessibility.hint')}
               >
-                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
+                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
               </ButtonWrapper>
               <Text size='xlarge' weight='bold' style={styles(colors, insets).headerTitle}>{i18n.translate('screens.privacy_policy.title')}</Text>
             </View>
@@ -335,15 +314,15 @@ export default function PrivacyPolicy(props) {
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.changes_to_the_privacy_policy.body')}</Text>
                 </View>
               </View>
-              <Text textColor={colors.gray} size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.last_review')}</Text>
+              <Text textColor={colors.settingsLabelColor} size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.last_review')}</Text>
               <View style={styles(colors, insets).sponsors}>
-                <Image source={name === DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-                <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
+                <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+                <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
               </View>
             </ScrollView>
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
-            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
+            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}

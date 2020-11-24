@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
-import { themes as commonThemes, colors as commonColors, sizes, fontSizes, fontWeights, lineHeights } from '@app/common/theme';
+import { themes as commonThemes, sizes, fontSizes, fontWeights, lineHeights } from '@app/common/theme';
 
 const MAIN = 'main';
 const ALTERNATIVE = 'alternative';
@@ -40,52 +40,30 @@ const common = {
   disabledStyle: styles.disabledStyle,
 };
 
-const themes = {
-  [LIGHT]: {
-    [MAIN]: {
+const themes = (colors, theme) => {
+  if (theme === MAIN) {
+    return {
       ...common,
       type: 'solid',
       theme: {
         colors: {
-          primary: commonColors.blueDark,
-          disabled: commonColors.blueDark,
+          primary: colors.buttonMainBackgroundColor,
+          disabled: colors.buttonMainBackgroundColor,
         },
       },
-      titleStyle: { color: commonColors.white, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, fontWeight: fontWeights.bold, paddingTop: 0, paddingBottom: 0},
-      disabledTitleStyle: { color: commonColors.white, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, paddingTop: 0, paddingBottom: 0},
-      loadingProps: { color: commonColors.white, size: 'small' },
-    },
-    [ALTERNATIVE]: {
-      ...common,
-      type: 'clear',
-      titleStyle: { color: commonColors.blueDark, fontSize: fontSizes.small, lineHeight: lineHeights.small, fontWeight: fontWeights.normal, paddingTop: 0, paddingBottom: 0},
-      disabledTitleStyle: { color: commonColors.blueDark, fontSize: fontSizes.small, lineHeight: lineHeights.small, paddingTop: 0, paddingBottom: 0},
-      loadingProps: { color: commonColors.blueDark, size: 'large' },
-    },
-  },
-  [DARK]: {
-    [MAIN]: {
-      ...common,
-      type: 'solid',
-      theme: {
-        colors: {
-          primary: commonColors.white,
-          disabled: commonColors.white,
-        },
-      },
-      titleStyle: { color: commonColors.blueDark, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, fontWeight: fontWeights.bold, paddingTop: 0, paddingBottom: 0},
-      disabledStyle: { opacity: 0.7 },
-      disabledTitleStyle: { color: commonColors.blueDark, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, paddingTop: 0, paddingBottom: 0},
-      loadingProps: { color: commonColors.blueDark, size: 'small' },
-    },
-    [ALTERNATIVE]: {
-      ...common,
-      type: 'clear',
-      titleStyle: { color: commonColors.white, fontSize: fontSizes.small, lineHeight: lineHeights.small, fontWeight: fontWeights.bold, paddingTop: 0, paddingBottom: 0},
-      disabledTitleStyle: { color: commonColors.white, fontSize: fontSizes.small, lineHeight: lineHeights.small, paddingTop: 0, paddingBottom: 0},
-      loadingProps: { color: commonColors.white, size: 'large' },
-    },
-  },
+      titleStyle: { color: colors.buttonMainTextColor, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, fontWeight: fontWeights.bold, paddingTop: 0, paddingBottom: 0},
+      disabledTitleStyle: { color: colors.buttonMainTextColor, fontSize: fontSizes.normal, lineHeight: lineHeights.normal, paddingTop: 0, paddingBottom: 0},
+      loadingProps: { color: colors.buttonMainTextColor, size: 'small' },
+    };
+  }
+
+  return {
+    ...common,
+    type: 'clear',
+    titleStyle: { color: colors.buttonAltTextColor, fontSize: fontSizes.small, lineHeight: lineHeights.small, fontWeight: fontWeights.normal, paddingTop: 0, paddingBottom: 0},
+    disabledTitleStyle: { color: colors.buttonAltTextColor, fontSize: fontSizes.small, lineHeight: lineHeights.small, paddingTop: 0, paddingBottom: 0},
+    loadingProps: { color: colors.buttonAltTextColor, size: 'large' },
+  };
 };
 
 
@@ -103,8 +81,8 @@ export default class Button extends Component {
 
     return (
       <ThemeConsumer>
-        {({name}) => {
-          const theme = themes[type || name][alternative ? ALTERNATIVE : MAIN];
+        {({colors}) => {
+          const theme = themes(colors, alternative ? ALTERNATIVE : MAIN);
 
           return (
             <NativeButton

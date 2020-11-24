@@ -30,16 +30,16 @@ const styles = (colors) => StyleSheet.create({
     justifyContent: 'center',
   },
   recommendationsContainer: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.recommendationsPanelBackgroundColor,
     borderRadius: sizes.size8,
-    shadowColor: colors.grayLight,
+    borderWidth: sizes.size8,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   recommendationsTitle: {
     marginLeft: sizes.size24,
@@ -71,45 +71,28 @@ const styles = (colors) => StyleSheet.create({
     width: iconSizes.size70,
     height: iconSizes.size70,
     marginBottom: sizes.size20,
-  },
-  linkContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: sizes.size16,
-    padding: sizes.size4,
-    alignSelf: 'flex-end',
-    backgroundColor: colors.white,
-    borderRadius: sizes.size8,
-    shadowColor: colors.grayLight,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
-  },
+  }
 });
 
 const renderRecommendation = ([recommendationA, recommendationB], colors) => (
   <View key={recommendationA.key} style={styles(colors).recommendationsRow}>
     <View style={{...styles(colors).recommendation, marginRight: sizes.size8}}>
       <View style={styles(colors).iconContainer}>
-        {recommendationA.renderIcon()}
+        {recommendationA.renderIcon(colors.recommendationsPanelIconTintColor)}
       </View>
-      <Text size='small' textAlign='center'>{recommendationA.text}</Text>
+      <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationA.text}</Text>
     </View>
     <View style={styles(colors).recommendation}>
       <View style={styles(colors).iconContainer}>
-        {recommendationB.renderIcon()}
+        {recommendationB.renderIcon(colors.recommendationsPanelIconTintColor)}
       </View>
-      <Text size='small' textAlign='center'>{recommendationB.text}</Text>
+      <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationB.text}</Text>
     </View>
   </View>
 );
 
 export default function Recommendations (props) {
-  const { color, backgroundColor, recommendations, onPress } = props;
+  const { borderColor, panelBorderColor, backgroundColor, recommendations, onPress } = props;
 
   return (
     <ThemeConsumer>
@@ -120,11 +103,15 @@ export default function Recommendations (props) {
               ...styles(colors).contentContainer,
               backgroundColor,
             }}
-            testID="recommendations_layout"
           >
-            <View style={styles(colors).recommendationsContainer}>
+            <View
+              style={{
+                ...styles(colors).recommendationsContainer,
+                borderColor: panelBorderColor,
+              }}
+            >
               <View style={styles(colors).recommendations}>
-                <Text weight='bold' style={styles(colors).recommendationsTitle}>{i18n.translate('screens.recommendations.title')}</Text>
+                <Text textColor={colors.recommendationsPanelTextColor} weight='bold' style={styles(colors).recommendationsTitle}>{i18n.translate('screens.recommendations.title')}</Text>
                 { recommendations.map(item => renderRecommendation(item, colors)) }
               </View>
             </View>
@@ -137,7 +124,7 @@ export default function Recommendations (props) {
               <SupportIcon
                 label={i18n.translate('screens.recommendations.support.label')}
                 content={i18n.translate('common.links.min_saude_covid').substring(8)}
-                color={color}
+                borderColor={borderColor}
               />
             </ButtonWrapper>
           </Layout>
@@ -148,15 +135,17 @@ export default function Recommendations (props) {
 }
 
 Recommendations.defaultProps = {
-  backgroundColor: commonColors.green,
-  color: commonColors.green,
+  panelBorderColor: '',
+  backgroundColor: '',
+  borderColor: '',
   recommendations: [],
   onPress: () => {},
 };
 
 Recommendations.propTypes = {
   recommendations: PropTypes.arrayOf(PropTypes.array),
-  backgroundColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
-  color: PropTypes.oneOf(['', ...Object.values(commonColors)]),
+  panelBorderColor: PropTypes.oneOf(['', ...commonColors]),
+  backgroundColor: PropTypes.oneOf(['', ...commonColors]),
+  borderColor: PropTypes.oneOf(['', ...commonColors]),
   onPress: PropTypes.func,
 };

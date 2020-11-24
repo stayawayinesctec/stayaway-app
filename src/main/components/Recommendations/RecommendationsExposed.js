@@ -25,24 +25,24 @@ export default function RecommendationsExposed (props) {
       {
         "key": "1",
         "text": i18n.translate('screens.recommendations.exposed.encloused_spaces'),
-        "renderIcon": (style) => <Icon name="encloused_spaces" width={iconSizes.size68} height={iconSizes.size70} style={style} />,
+        "renderIcon": (color) => <Icon name="encloused_spaces" width={iconSizes.size68} height={iconSizes.size70} tintColor={color} />,
       },
       {
         "key": "2",
         "text": i18n.translate('screens.recommendations.exposed.stay_home'),
-        "renderIcon": (style) => <Icon name="stay_home" width={iconSizes.size59} height={iconSizes.size60} style={style} />,
+        "renderIcon": (color) => <Icon name="stay_home" width={iconSizes.size59} height={iconSizes.size60} tintColor={color} />,
       },
     ],
     [
       {
         "key": "3",
         "text": i18n.translate('screens.recommendations.exposed.increase_hygiene'),
-        "renderIcon": (style) => <Icon name="increase_hygiene" width={iconSizes.size70} height={iconSizes.size70} style={style} />,
+        "renderIcon": (color) => <Icon name="increase_hygiene" width={iconSizes.size70} height={iconSizes.size70} tintColor={color} />,
       },
       {
         "key": "4",
         "text": i18n.translate('screens.recommendations.exposed.wear_mask'),
-        "renderIcon": (style) => <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} style={style} />,
+        "renderIcon": (color) => <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} tintColor={color} />,
       },
     ],
   ];
@@ -52,8 +52,9 @@ export default function RecommendationsExposed (props) {
       {({colors}) => (
         <Template
           recommendations={recommendations}
-          color={colors.yellow}
-          backgroundColor={colors.yellowLight}
+          borderColor={colors.exposedYellow}
+          panelBorderColor={colors.recommendationsYellowPanelBorderColor}
+          backgroundColor={colors.recommendationsYellowPanelBackgroundColor}
           {...props}
         />
       )}

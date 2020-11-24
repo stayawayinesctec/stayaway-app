@@ -17,7 +17,7 @@ import SplashScreen from 'react-native-splash-screen';
 
 import RootNavigator from '@app/navigation/Root';
 
-import { colors as commonColors, LIGHT } from '@app/common/theme';
+import { LIGHT } from '@app/common/theme';
 import { ThemeProvider, THEMES } from '@app/contexts/Theme';
 
 import NavigationService from '@app/services/navigation';
@@ -29,25 +29,25 @@ import { isAppLaunched } from '@app/redux/startup/selectors';
 import { getTheme } from '@app/redux/account/selectors';
 
 export default function Root () {
-  const storedTheme = useSelector(getTheme);
-  const systemTheme = useColorScheme();
-  // Uses 'storedTheme' if it's light or dark, otherwise, uses system preferences, falling back to light theme
-  const theme = THEMES[storedTheme] || THEMES[systemTheme || LIGHT];
-
   const dispatch = useDispatch();
 
   const appLaunched = useSelector(isAppLaunched);
+  const storedTheme = useSelector(getTheme);
+  const systemLanguage = useColorScheme();
+
+  const theme = THEMES[storedTheme] || THEMES[systemLanguage || LIGHT];
 
   // Set navigationr reference
   const ref = useRef(null);
   NavigationService.setNavigationRef(ref);
 
+  // Startup app
   useEffect(() => {
     if (appLaunched) {
       setTimeout(() => {
         // Set status bar
         if (Platform.OS === 'android') {
-          StatusBar.setBackgroundColor(commonColors.transparent);
+          StatusBar.setBackgroundColor('transparent');
           StatusBar.setTranslucent(true);
         }
 
@@ -60,11 +60,8 @@ export default function Root () {
     }
   }, [appLaunched]);
 
-  useEffect(() => {
-    if(appLaunched) {
-      SplashScreen.hide();
-    }
-  }, [storedTheme]);
+  // Re-render when theme changes
+  useEffect(() => {}, [storedTheme]);
 
   if (! appLaunched) {
     return null;

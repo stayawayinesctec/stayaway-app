@@ -24,38 +24,35 @@ const styles = (colors) => StyleSheet.create({
     flexDirection: 'row',
   },
   iconContainer: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.supportIconBackgroundColor,
     padding: sizes.size10,
     borderRadius: sizes.size48,
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 6,
     zIndex: 10,
-    elevation: 30,
   },
   contentContainer: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.supportIconBackgroundColor,
     flex: 1,
     justifyContent: 'center',
     borderRadius: sizes.size8,
     marginLeft: -sizes.size10 - (iconSizes.size30 / 2),
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
     zIndex: 5,
-    elevation: 25,
   },
   contentWrapper: {
     borderRightWidth: sizes.size8,
-    borderColor: colors.green,
   },
   wrapper: {
     paddingLeft: (sizes.size10 + iconSizes.size30 / 2) + sizes.size16,
@@ -63,7 +60,7 @@ const styles = (colors) => StyleSheet.create({
 });
 
 export default function SupportIcon(props) {
-  const { label, content, color } = props;
+  const { label, content, borderColor } = props;
   const hasLabel = label.length > 0;
   const hasContent = content.length > 0;
 
@@ -72,22 +69,22 @@ export default function SupportIcon(props) {
       {({ colors }) => (
         <View style={styles(colors).container}>
           <View style={styles(colors).iconContainer}>
-            <Icon name='support' width={iconSizes.size30} height={iconSizes.size30} />
+            <Icon name='support' width={iconSizes.size30} height={iconSizes.size30} tintColor={colors.supportIconColor} />
           </View>
           { ((hasLabel || hasContent)) &&
             <View style={styles(colors).contentContainer}>
               <View
                 style={{
                     ...styles(colors).contentWrapper,
-                    borderColor: color,
+                    borderColor,
                   }}
               >
                 <View style={styles(colors).wrapper}>
                   { hasLabel &&
-                    <Text size='xsmall'>{label}</Text>
+                    <Text textColor={colors.supportTextColor} size='xsmall'>{label}</Text>
                   }
                   { hasContent &&
-                    <Text size='small' weight='bold'>{content}</Text>
+                    <Text textColor={colors.supportTextColor} size='small' weight='bold'>{content}</Text>
                   }
                 </View>
               </View>
@@ -102,11 +99,11 @@ export default function SupportIcon(props) {
 SupportIcon.defaultProps = {
   label: '',
   content: '',
-  color: commonColors.green,
+  borderColor: '',
 };
 
 SupportIcon.propTypes = {
   label: PropTypes.string,
   content: PropTypes.string,
-  color: PropTypes.oneOf(['', ...Object.values(commonColors)]),
+  borderColor: PropTypes.oneOf(['', ...commonColors]),
 };

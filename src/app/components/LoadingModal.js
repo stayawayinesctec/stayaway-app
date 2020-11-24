@@ -77,7 +77,7 @@ export default function LoadingModal (props) {
     <ThemeConsumer>
       {({colors}) => (
         <Modal
-          backdropColor={colors.backdrop}
+          backdropColor={colors.backdropColor}
           backdropOpacity={0.8}
           isVisible={visible}
           statusBarTranslucent
@@ -88,11 +88,11 @@ export default function LoadingModal (props) {
           <Layout style={styles.content}>
             <View style={styles.logoContainer}>
               <Animated.View style={animationStyle}>
-                <Icon name='loading' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.blueDark} />
+                <Icon name='loading' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.loadingIconTintColor} />
               </Animated.View>
             </View>
             <View style={styles.descriptionContainer}>
-              <Text textAlign='center' textColor={colors.backdropText}>{i18n.translate('common.dialogs.loading.description')}</Text>
+              <Text textAlign='center' textColor={colors.loadingTextColor}>{i18n.translate('common.dialogs.loading.description')}</Text>
             </View>
           </Layout>
         </Modal>

@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
-import { themes as commonThemes, sizes, iconSizes } from '@app/common/theme';
+import { sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
 
@@ -25,9 +25,7 @@ import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
 import Icon from '@app/common/components/Icon';
 
-import Images from '@app/common/assets/images';
-
-const DARK = commonThemes.names.dark;
+import { getThemedImage } from '@app/common/assets/images';
 
 const styles = (colors, insets) => StyleSheet.create({
   container: {
@@ -57,7 +55,7 @@ const styles = (colors, insets) => StyleSheet.create({
     marginBottom: sizes.size48,
   },
   item: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.settingsAltButtonBackgroundColor,
     paddingLeft: sizes.size8,
     paddingRight: sizes.size16,
     paddingVertical: sizes.size18,
@@ -66,14 +64,13 @@ const styles = (colors, insets) => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRadius: sizes.size8,
-    shadowColor: colors.grayLight,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-    elevation: 20,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   imagesContainer: {
     position: 'absolute',
@@ -121,7 +118,7 @@ export default function LegalInformation(props) {
                 accessibilityLabel={i18n.translate('screens.legal_information.actions.back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.legal_information.actions.back.accessibility.hint')}
               >
-                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
+                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
               </ButtonWrapper>
               <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.legal_information.title')}</Text>
             </View>
@@ -133,7 +130,7 @@ export default function LegalInformation(props) {
                 accessibilityHint={i18n.translate('screens.legal_information.terms_of_use.accessibility.hint')}
               >
                 <Text weight='bold'>{i18n.translate('screens.legal_information.terms_of_use.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
               </ButtonWrapper>
               <ButtonWrapper
                 onPress={onPressPrivacyPolicy}
@@ -142,7 +139,7 @@ export default function LegalInformation(props) {
                 accessibilityHint={i18n.translate('screens.legal_information.privacy_policy.accessibility.hint')}
               >
                 <Text weight='bold'>{i18n.translate('screens.legal_information.privacy_policy.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
               </ButtonWrapper>
               <ButtonWrapper
                 onPress={onPressTechnicalSheet}
@@ -151,16 +148,16 @@ export default function LegalInformation(props) {
                 accessibilityHint={i18n.translate('screens.legal_information.technical_sheet.accessibility.hint')}
               >
                 <Text weight='bold'>{i18n.translate('screens.legal_information.technical_sheet.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.blueDark} />
+                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
               </ButtonWrapper>
             </View>
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <Image source={name === DARK ? Images.republica_portuguesa_dark : Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
+              <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
             </View>
-            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
+            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}

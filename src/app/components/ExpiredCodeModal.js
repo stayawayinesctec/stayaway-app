@@ -23,13 +23,14 @@ import Icon from '@app/common/components/Icon';
 import Button from '@app/common/components/Button';
 import { sizes, iconSizes } from '@app/common/theme';
 
-const styles = StyleSheet.create({
+const styles = (colors) => StyleSheet.create({
   content: {
     flex: 0,
     borderRadius: sizes.size10,
     marginHorizontal: sizes.size24,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: colors.modalBackgroundColor,
   },
   titleContainer: {
     paddingBottom: sizes.size44,
@@ -56,19 +57,19 @@ export default function ExpiredCodeModal (props) {
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <Modal backdropColor={colors.backdrop} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
-          <Layout style={styles.content}>
-            <View style={styles.titleContainer}>
-              <Icon name='expired_code' width={iconSizes.size57} height={iconSizes.size67} tintColor={colors.blueDark} />
+        <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
+          <Layout style={styles(colors).content}>
+            <View style={styles(colors).titleContainer}>
+              <Icon name='expired_code' width={iconSizes.size57} height={iconSizes.size67} tintColor={colors.modalIconTintColor} />
             </View>
-            <View style={styles.descriptionsContainer}>
-              <Text size='large' weight='bold' textAlign='center' style={styles.contentTitle}>{i18n.translate('common.dialogs.expired_code.title')}</Text>
-              <Text textAlign='center' style={styles.contentDescription}>{i18n.translate('common.dialogs.expired_code.description')}</Text>
+            <View style={styles(colors).descriptionsContainer}>
+              <Text size='large' weight='bold' textAlign='center' style={styles(colors).contentTitle}>{i18n.translate('common.dialogs.expired_code.title')}</Text>
+              <Text textAlign='center' style={styles(colors).contentDescription}>{i18n.translate('common.dialogs.expired_code.description')}</Text>
             </View>
-            <View style={styles.actionsContainer}>
+            <View style={styles(colors).actionsContainer}>
               <Button
                 title={i18n.translate('common.actions.ok')}
-                containerStyle={styles.button}
+                containerStyle={styles(colors).button}
                 onPress={onClose}
               />
             </View>

@@ -14,8 +14,6 @@ import { render, fireEvent } from '@testing-library/react-native';
 import i18n from '@app/services/i18n';
 import { INFECTION_STATUS } from '@app/services/tracking';
 
-import { colors } from '@app/common/theme';
-
 import Recommendations from '@main/components/Recommendations';
 
 describe('Recommendations Screen', () => {
@@ -23,7 +21,7 @@ describe('Recommendations Screen', () => {
     it('When infection status is healthy.', () => {
       const infectionStatus = INFECTION_STATUS.HEALTHY;
 
-      const { queryByText, queryByTestId } = render(
+      const { queryByText } = render(
         <Recommendations infectionStatus={infectionStatus} />,
       );
 
@@ -31,20 +29,16 @@ describe('Recommendations Screen', () => {
       const recommendationWearMask = queryByText(i18n.translate('screens.recommendations.healthy.wear_mask'));
       const recommendationWashHands = queryByText(i18n.translate('screens.recommendations.healthy.wash_hands'));
       const recommendationFeelingSick = queryByText(i18n.translate('screens.recommendations.healthy.feeling_sick'));
-      const layout = queryByTestId('recommendations_layout');
 
       expect(recommendationHealthy).toBeTruthy();
       expect(recommendationWearMask).toBeTruthy();
       expect(recommendationWashHands).toBeTruthy();
       expect(recommendationFeelingSick).toBeTruthy();
-      expect(layout).toBeTruthy();
-
-      expect(layout.props.style.backgroundColor).toBe(colors.greenLight);
     });
     it('When infection status is exposed.', () => {
       const infectionStatus = INFECTION_STATUS.EXPOSED;
 
-      const { queryByText, queryByTestId } = render(
+      const { queryByText } = render(
         <Recommendations infectionStatus={infectionStatus} />,
       );
 
@@ -52,15 +46,11 @@ describe('Recommendations Screen', () => {
       const recommendationStayHome = queryByText(i18n.translate('screens.recommendations.exposed.stay_home'));
       const recommendationIncreaseHygiene = queryByText(i18n.translate('screens.recommendations.exposed.increase_hygiene'));
       const recommendationWearMask = queryByText(i18n.translate('screens.recommendations.exposed.wear_mask'));
-      const layout = queryByTestId('recommendations_layout');
 
       expect(recommendationEnclousedSpaces).toBeTruthy();
       expect(recommendationStayHome).toBeTruthy();
       expect(recommendationIncreaseHygiene).toBeTruthy();
       expect(recommendationWearMask).toBeTruthy();
-      expect(layout).toBeTruthy();
-
-      expect(layout.props.style.backgroundColor).toBe(colors.yellowLight);
     });
   });
   describe('Recommendations buttons interaction work', () => {

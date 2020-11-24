@@ -30,7 +30,7 @@ const DARK = commonThemes.names.dark;
 const styles = (colors) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.backgroundColor,
   },
   topContainer: {
     flexGrow: 1,
@@ -41,7 +41,7 @@ const styles = (colors) => StyleSheet.create({
   },
   zeroPadding: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.backgroundColor,
     margin: 0,
     padding: 0,
     marginHorizontal: 0,

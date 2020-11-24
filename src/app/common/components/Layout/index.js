@@ -27,7 +27,7 @@ const DARK = commonThemes.names.dark;
 const styles = (colors, insets) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.backgroundColor,
   },
   normal: {
     paddingTop: sizes.size24 + insets.top,

@@ -56,7 +56,7 @@ export default function HomeScreen () {
       label: '',
       hint: '',
     },
-    icon: undefined,
+    icon: () => {},
     onPress: () => {},
   };
 
@@ -66,7 +66,7 @@ export default function HomeScreen () {
         status: true,
         title: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.title`),
         message: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.message`),
-        icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} />,
+        icon: (colors) => <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.label`),
           accessibility: {
@@ -81,7 +81,7 @@ export default function HomeScreen () {
         status: true,
         title: i18n.translate('screens.home.errors.tracking.title'),
         message: i18n.translate('screens.home.errors.tracking.message'),
-        icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} />,
+        icon: (colors) => <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate('screens.home.errors.tracking.label'),
           accessibility: {
@@ -96,7 +96,7 @@ export default function HomeScreen () {
         status: true,
         title: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.title`),
         message: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.message`),
-        icon: <Icon name='bluetooth_disconnected' width={iconSizes.size17} height={iconSizes.size28} />,
+        icon: (colors) => <Icon name='bluetooth_disconnected' width={iconSizes.size17} height={iconSizes.size28} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.label`),
           accessibility: {
@@ -114,7 +114,7 @@ export default function HomeScreen () {
         status: true,
         title: i18n.translate('screens.home.errors.location.title'),
         message: i18n.translate('screens.home.errors.location.message'),
-        icon: <Icon name='location_disconnected' width={iconSizes.size23} height={iconSizes.size26} />,
+        icon: (colors) => <Icon name='location_disconnected' width={iconSizes.size23} height={iconSizes.size26} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate('screens.home.errors.location.label'),
           accessibility: {
@@ -130,7 +130,7 @@ export default function HomeScreen () {
         title: i18n.translate('screens.home.errors.battery.title'),
         message: i18n.translate('screens.home.errors.battery.message'),
         submessage: i18n.translate('screens.home.errors.battery.submessage'),
-        icon: <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
+        icon: (colors) => <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate('screens.home.errors.battery.actions.main.label'),
           accessibility: {
@@ -158,11 +158,6 @@ export default function HomeScreen () {
       );
     }
   };
-
-  const url = Platform.select({
-    ios: i18n.translate('common.links.stores.app_store'),
-    android: i18n.translate('common.links.stores.play_store'),
-  });
 
   const props = {
     infectionStatus,

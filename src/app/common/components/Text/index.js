@@ -42,7 +42,7 @@ export default class Text extends Component {
             style={{
               ...style,
               textAlign,
-              color: textColor || colors.blueDark,
+              color: textColor || colors.textColor,
               fontSize,
               fontWeight,
               lineHeight,
@@ -70,7 +70,7 @@ Text.defaultProps = {
 
 Text.propTypes = {
   textAlign: PropTypes.string,
-  textColor: PropTypes.oneOf(['', ...Object.values(commonColors)]),
+  textColor: PropTypes.oneOf(['', ...commonColors]),
   size: PropTypes.oneOf(Object.keys(fontSizes)),
   weight: PropTypes.oneOf(Object.keys(fontWeights)),
   children: PropTypes.oneOfType([

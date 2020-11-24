@@ -11,7 +11,7 @@
 import { Platform } from 'react-native';
 import RNTooltips from 'react-native-tooltips';
 
-import { colors as commonColors, fontSizes } from '@app/common/theme';
+import { fontSizes } from '@app/common/theme';
 
 const POSITION = {
   LEFT: 1,
@@ -20,10 +20,10 @@ const POSITION = {
   BOTTOM: 4,
 };
 
-const DEFAULTS = {
+const DEFAULTS = (colors) => ({
   position: POSITION.TOP,
-  tintColor: commonColors.grayLightest,
-  textColor: commonColors.blueLightest,
+  tintColor: colors.tooltipBackgroundColor,
+  textColor: colors.tooltipTextColor,
   size: 'small',
   autoHide: true,
   clickToHide: true,
@@ -36,14 +36,14 @@ const DEFAULTS = {
     android: 4000,
   }),
   corner: Platform.select({
-    ios: 0,
+    ios: 8,
     android: 30,
   }),
-};
+});
 
-function getConfig(config) {
+function getConfig(config, colors) {
   const props = {
-    ...DEFAULTS,
+    ...DEFAULTS(colors),
     ...config,
   };
 
@@ -56,9 +56,10 @@ function show(
   text = '',
   target,
   parent,
+  colors,
   config = {},
 ) {
-  const props = getConfig(config);
+  const props = getConfig(config, colors);
 
   return RNTooltips.Show(
     target,

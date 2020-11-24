@@ -14,10 +14,7 @@ import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
 
-import { themes as commonThemes, colors as commonColors, sizes } from '@app/common/theme';
-
-const LIGHT = commonThemes.names.light;
-const DARK = commonThemes.names.dark;
+import { sizes } from '@app/common/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,21 +32,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const themes = (value) => ({
-  [LIGHT]: {
-    backgroundColorOn: commonColors.blueDark,
-    backgroundColorOff: commonColors.grayLight,
-    circleColorOn: commonColors.white,
-    circleColorOff: commonColors.white,
-    containerStyle: { borderColor: value ? commonColors.grayLight : commonColors.blueDark },
-  },
-  [DARK]: {
-    backgroundColorOn: commonColors.white,
-    backgroundColorOff: commonColors.gray,
-    circleColorOn: commonColors.blueDark,
-    circleColorOff: commonColors.blueDarker,
-    containerStyle: { borderColor: value ? commonColors.grayDark : commonColors.white },
-  },
+const themes = (value, colors) => ({
+  backgroundColorOn: colors.switchBackgroundColorOn,
+  backgroundColorOff: colors.switchBackgroundColorOff,
+  circleColorOn: colors.switchCircleColorOn,
+  circleColorOff: colors.switchCircleColorOff,
+  containerStyle: { borderColor: value ? colors.switchBackgroundColorOff : colors.switchBackgroundColorOn },
 });
 
 export default class Switch extends Component {
@@ -106,12 +94,12 @@ export default class Switch extends Component {
   }
 
   render() {
-    const { type, disabled, style, ...otherProps } = this.props;
+    const { disabled, style, ...otherProps } = this.props;
     const { value, animXValue, circlePosXStart, circlePosXEnd } = this.state;
 
     return (
       <ThemeConsumer>
-        {({name, colors}) => {
+        {({colors}) => {
           const {
             backgroundColorOn,
             backgroundColorOff,
@@ -119,7 +107,7 @@ export default class Switch extends Component {
             circleColorOff,
             containerStyle,
             circleStyle,
-          } = themes(colors)[type || name];
+          } = themes(value, colors);
 
           return (
             <TouchableOpacity
@@ -183,7 +171,6 @@ Switch.defaultProps = {
   duration: 100,
   disabled: false,
   style: {},
-  type: '',
 };
 
 Switch.propTypes = {
@@ -192,5 +179,4 @@ Switch.propTypes = {
   duration: PropTypes.number,
   disabled: PropTypes.bool,
   style: ViewPropTypes.style,
-  type: PropTypes.oneOf([LIGHT, DARK, '']),
 };

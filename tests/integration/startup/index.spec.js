@@ -12,13 +12,14 @@ import { runSaga, channel as stdChannel } from 'redux-saga';
 import { Platform } from 'react-native';
 import Moment from 'moment';
 
-import { languages } from '@app/services/i18n';
-
 import onboardingActions from '@app/redux/onboarding';
 import startupActions from '@app/redux/startup';
 import accountActions, { TRACKING_RESULTS } from '@app/redux/account';
 import TrackingManager, { ERRORS } from '@app/services/tracking';
 
+import { AUTO } from '@app/common/theme';
+
+import { languages } from '@app/services/i18n';
 import Storage from '@app/services/storage';
 
 import {
@@ -84,7 +85,7 @@ describe('Startup Sagas', () => {
         }
 
         if (arg === 'theme') {
-          return 'auto';
+          return AUTO;
         }
 
         if (arg === 'signup_date') {
@@ -122,7 +123,7 @@ describe('Startup Sagas', () => {
       expect(dispatched).toHaveLength(7);
       expect(dispatched).toEqual([
         accountActions.setLanguage(languages.PT),
-        accountActions.setTheme('auto'),
+        accountActions.setTheme(AUTO),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -148,7 +149,7 @@ describe('Startup Sagas', () => {
         }
 
         if (arg === 'theme') {
-          return 'auto';
+          return AUTO;
         }
 
         if (arg === 'signup_date') {
@@ -187,7 +188,7 @@ describe('Startup Sagas', () => {
       expect(dispatched).toHaveLength(8);
       expect(dispatched).toEqual([
         accountActions.setLanguage(languages.PT),
-        accountActions.setTheme('auto'),
+        accountActions.setTheme(AUTO),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -214,7 +215,7 @@ describe('Startup Sagas', () => {
         }
 
         if (arg === 'theme') {
-          return 'auto';
+          return AUTO;
         }
 
         if (arg === 'signup_date') {
@@ -253,7 +254,7 @@ describe('Startup Sagas', () => {
       expect(dispatched).toHaveLength(9);
       expect(dispatched).toEqual([
         accountActions.setLanguage(languages.PT),
-        accountActions.setTheme('auto'),
+        accountActions.setTheme(AUTO),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
@@ -281,7 +282,7 @@ describe('Startup Sagas', () => {
         }
 
         if (arg === 'theme') {
-          return 'auto';
+          return AUTO;
         }
 
         if (arg === 'signup_date') {
@@ -320,7 +321,7 @@ describe('Startup Sagas', () => {
       expect(dispatched).toHaveLength(8);
       expect(dispatched).toEqual([
         accountActions.setLanguage(languages.PT),
-        accountActions.setTheme('auto'),
+        accountActions.setTheme(AUTO),
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),

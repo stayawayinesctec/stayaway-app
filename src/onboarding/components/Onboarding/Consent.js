@@ -75,13 +75,13 @@ export default function Consent (props) {
                   <Text>
                     {i18n.translate('screens.onboarding.consent.description.first')}
                   </Text>
-                  <Text textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.privacy_policy'))}>
+                  <Text textColor={colors.textLinkColor} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.privacy_policy'))}>
                     {i18n.translate('screens.onboarding.consent.description.second')}
                   </Text>
                   <Text>
                     {i18n.translate('screens.onboarding.consent.description.third')}
                   </Text>
-                  <Text textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.terms_of_use'))}>
+                  <Text textColor={colors.textLinkColor} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.terms_of_use'))}>
                     {i18n.translate('screens.onboarding.consent.description.fourth')}
                   </Text>
                 </Text>
@@ -110,13 +110,13 @@ export default function Consent (props) {
                         <Text size='xsmall'>
                           {i18n.translate('screens.onboarding.consent.consents.read_and_understood.second')}
                         </Text>
-                        <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.dgs'))}>
+                        <Text size='xsmall' textColor={colors.textLinkColor} style={styles.link} onPress={() => Linking.openURL(i18n.translate('common.links.dgs'))}>
                           {i18n.translate('screens.onboarding.consent.consents.read_and_understood.third')}
                         </Text>
                         <Text size='xsmall'>
                           {i18n.translate('screens.onboarding.consent.consents.read_and_understood.fourth')}
                         </Text>
-                        <Text size='xsmall' textColor={colors.blue} style={styles.link} onPress={() => Linking.openURL(`mailto:${i18n.translate('common.emails.data_protection')}`)}>
+                        <Text size='xsmall' textColor={colors.textLinkColor} style={styles.link} onPress={() => Linking.openURL(`mailto:${i18n.translate('common.emails.data_protection')}`)}>
                           {i18n.translate('screens.onboarding.consent.consents.read_and_understood.fifth')}
                         </Text>
                       </Text>

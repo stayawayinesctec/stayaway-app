@@ -24,7 +24,7 @@ import Icon from '@app/common/components/Icon';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/Text';
 
-import Images from '@app/common/assets/images';
+import { getThemedImage } from '@app/common/assets/images';
 
 import { sizes, iconSizes } from '@app/common/theme';
 
@@ -120,7 +120,7 @@ export default function Debug (props) {
 
   return (
     <ThemeConsumer>
-      {({colors}) => (
+      {({name, colors}) => (
         <TopComponent>
           <Layout style={styles(colors, insets).layoutContainer}>
             <View style={styles(colors, insets).header}>
@@ -130,7 +130,7 @@ export default function Debug (props) {
                 accessibilityLabel={i18n.translate('screens.debug.actions.back.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.debug.actions.back.accessibility.hint')}
               >
-                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
+                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
               </ButtonWrapper>
               <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.debug.title')}</Text>
             </View>
@@ -159,10 +159,10 @@ export default function Debug (props) {
           </Layout>
           <View style={styles(colors, insets).imagesContainer}>
             <View style={styles(colors, insets).sponsors}>
-              <Image source={Images.republica_portuguesa} style={styles(colors, insets).republicaPortuguesaImage} />
-              <Image source={Images.logo_dgs} style={styles(colors, insets).dgsImage} />
+              <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+              <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
             </View>
-            <Image source={Images.splash} style={styles(colors, insets).splashImage} />
+            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
           </View>
         </TopComponent>
       )}

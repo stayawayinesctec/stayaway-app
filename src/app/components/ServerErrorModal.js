@@ -56,10 +56,10 @@ export default function ServerErrorModal (props) {
   return (
     <ThemeConsumer>
       {({colors}) => (
-        <Modal backdropColor={colors.backdrop} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
+        <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
           <Layout style={styles.content}>
             <View style={styles.titleContainer}>
-              <Icon name='server_error' width={iconSizes.size73} height={iconSizes.size73} tintColor={colors.blueDark} />
+              <Icon name='server_error' width={iconSizes.size73} height={iconSizes.size73} tintColor={colors.modalIconTintColor} />
             </View>
             <View style={styles.descriptionsContainer}>
               <Text weight='bold' size='large' textAlign='center' style={styles.contentTitle}>{i18n.translate('common.dialogs.server_error.title')}</Text>

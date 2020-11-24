@@ -18,7 +18,7 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import Text from '@app/common/components/Text';
-import Images from '@app/common/assets/images';
+import { images } from '@app/common/assets/images';
 import { sizes } from '@app/common/theme';
 
 const styles = (colors, insets) => StyleSheet.create({
@@ -45,7 +45,7 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.backgroundColor,
     paddingHorizontal: sizes.size24,
     paddingTop: '15%',
     borderTopRightRadius: 250,
@@ -54,7 +54,7 @@ const styles = (colors, insets) => StyleSheet.create({
   centeredContainer: {
     flex: 1,
     paddingTop: '15%',
-    backgroundColor: colors.white,
+    backgroundColor: colors.backgroundColor,
     paddingHorizontal: sizes.size24,
     justifyContent: 'center',
     borderTopRightRadius: 250,
@@ -110,5 +110,5 @@ Template.defaultProps = {
 Template.propTypes = {
   header: PropTypes.string,
   description: PropTypes.string,
-  image: PropTypes.oneOf(Object.values(Images)).isRequired,
+  image: PropTypes.oneOf(Object.values(images)).isRequired,
 };

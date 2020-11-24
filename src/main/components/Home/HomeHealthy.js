@@ -13,13 +13,12 @@ import React from 'react';
 import { ThemeConsumer } from '@app/contexts/Theme';
 
 import Template from '@main/components/Home/Template';
-import Images from '@app/common/assets/images';
+import { getThemedImage } from '@app/common/assets/images';
 
 import i18n from '@app/services/i18n';
 
 export default function HomeHealthy (props) {
   const header = i18n.translate('screens.home.healthy.title');
-  const image = Images.healthy;
   const description = [
     {
       "key": "1",
@@ -35,13 +34,13 @@ export default function HomeHealthy (props) {
 
   return (
     <ThemeConsumer>
-      {({colors}) => (
+      {({name, colors}) => (
         <Template
           header={header}
           description={description}
-          image={image}
-          panelBackgroundColor={colors.green}
-          panelTextColor={colors.white}
+          image={getThemedImage('healthy', name)}
+          panelBackgroundColor={colors.panelGreenBackgroundColor}
+          panelTextColor={colors.panelGreenTextColor}
           {...props}
         />
       )}

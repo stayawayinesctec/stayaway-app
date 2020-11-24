@@ -43,7 +43,7 @@ export default function LoadingModal (props) {
     <ThemeConsumer>
       {({colors}) => (
         <Modal
-          backdropColor={colors.backdrop}
+          backdropColor={colors.backdropColor}
           isVisible={visible}
           backdropOpacity={1}
           statusBarTranslucent
@@ -51,7 +51,7 @@ export default function LoadingModal (props) {
         >
           <Layout style={styles.content}>
             <View style={styles.logoContainer}>
-              <Icon name='logo' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.blueDark} />
+              <Icon name='logo' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.protectorIconTintColor} />
             </View>
           </Layout>
         </Modal>

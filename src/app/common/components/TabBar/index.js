@@ -41,7 +41,7 @@ export default function TabBar (props) {
           style={{
             ...styles.container,
             height: 56 + insets.bottom,
-            backgroundColor: colors.white,
+            backgroundColor: colors.tabBarBackgroundColor,
           }}
         />
       )}

@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import colors from './colors';
+import colors, { lightColors, darkColors } from './colors';
 import sizes from './sizes';
 import fontSizes from './fontSizes';
 import iconSizes from './iconSizes';
@@ -26,26 +26,10 @@ const themes = {
     auto: AUTO,
   },
   [LIGHT]: {
-    colors: {
-      ...colors,
-      backdrop: colors.blueDark,
-      backdropText: colors.white,
-    },
+    colors: lightColors,
   },
   [DARK]: {
-    colors: {
-      ...colors,
-      white: colors.darkModeBlack,
-      blueDark: colors.white,
-
-      backdrop: colors.darkModeBlack,
-      backdropText: colors.white,
-
-      grayLight: colors.blueDarker,
-
-      blueLightest: colors.blueLight,
-      blueLight: colors.blueLightest,
-    },
+    colors: darkColors,
   },
 };
 

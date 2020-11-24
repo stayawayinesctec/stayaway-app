@@ -18,7 +18,7 @@ import i18n from '@app/services/i18n';
 import { INFECTION_STATUS } from '@app/services/tracking';
 
 import { iconSizes, fontWeights } from '@app/common/theme';
-import Images from '@app/common/assets/images';
+import { images } from '@app/common/assets/images';
 
 import Home from '@main/components/Home';
 
@@ -33,7 +33,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: undefined,
+        icon: () => {},
         main: {
           label: '',
           accessibility: {
@@ -69,7 +69,7 @@ describe('Home Screen', () => {
 
       expect(descriptionFirst.props.style.fontWeight).toBe(fontWeights.bold);
       expect(descriptionSecond.props.style.fontWeight).toBe(fontWeights.normal);
-      expect(image.props.source).toBe(Images.healthy);
+      expect(image.props.source).toBe(images.healthy);
     });
     it('When infection status is exposed.', () => {
       const infectionStatus = INFECTION_STATUS.EXPOSED;
@@ -78,7 +78,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: undefined,
+        icon: () => {},
         main: {
           label: '',
           accessibility: {
@@ -127,7 +127,7 @@ describe('Home Screen', () => {
       expect(descriptionFifth.props.style.fontWeight).toBe(fontWeights.normal);
       expect(descriptionSixth.props.style.fontWeight).toBe(fontWeights.normal);
       expect(descriptionSeventh.props.style.fontWeight).toBe(fontWeights.bold);
-      expect(image.props.source).toBe(Images.exposed);
+      expect(image.props.source).toBe(images.exposed);
     });
     it('When infection status is infected.', () => {
       const infectionStatus = INFECTION_STATUS.INFECTED;
@@ -136,7 +136,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: undefined,
+        icon: () => {},
         main: {
           label: '',
           accessibility: {
@@ -170,7 +170,7 @@ describe('Home Screen', () => {
 
       expect(descriptionFirst.props.style.fontWeight).toBe(fontWeights.bold);
       expect(descriptionSecond.props.style.fontWeight).toBe(fontWeights.normal);
-      expect(image.props.source).toBe(Images.infected);
+      expect(image.props.source).toBe(images.infected);
     });
     it('When an error occurs.', () => {
       const infectionStatus = INFECTION_STATUS.HEALTHY;
@@ -180,7 +180,7 @@ describe('Home Screen', () => {
         title: i18n.translate('screens.home.errors.battery.title'),
         message: i18n.translate('screens.home.errors.battery.message'),
         submessage: i18n.translate('screens.home.errors.battery.submessage'),
-        icon: <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
+        icon: () => <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
         main: {
           label: i18n.translate('screens.home.errors.battery.actions.main.label'),
           accessibility: {
@@ -208,7 +208,6 @@ describe('Home Screen', () => {
         />,
       );
 
-      const header = queryByText(i18n.translate('screens.home.healthy.title'));
       const errorTitle = queryByText(i18n.translate('screens.home.errors.battery.title'));
       const errorMessage = queryByText(i18n.translate('screens.home.errors.battery.message'));
       const errorSubMessage = queryByText(i18n.translate('screens.home.errors.battery.submessage'));
@@ -217,7 +216,6 @@ describe('Home Screen', () => {
       const alternativeAccessibilityLabel = queryByA11yLabel(i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.label'));
       const alternativeAccessibilityHint = queryByA11yHint(i18n.translate('screens.home.errors.battery.actions.alternative.accessibility.hint'));
 
-      expect(header).toBeNull();
       expect(errorTitle).toBeTruthy();
       expect(errorMessage).toBeTruthy();
       expect(errorSubMessage).toBeTruthy();
@@ -237,7 +235,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: undefined,
+        icon: () => {},
         main: {
           label: '',
           accessibility: {
@@ -275,7 +273,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: undefined,
+        icon: () => {},
         main: {
           label: '',
           accessibility: {
@@ -313,7 +311,7 @@ describe('Home Screen', () => {
         title: i18n.translate('screens.home.errors.battery.title'),
         message: i18n.translate('screens.home.errors.battery.message'),
         submessage: i18n.translate('screens.home.errors.battery.submessage'),
-        icon: <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
+        icon: () => <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
         main: {
           label: i18n.translate('screens.home.errors.battery.actions.main.label'),
           accessibility: {

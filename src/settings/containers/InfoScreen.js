@@ -18,6 +18,8 @@ import Linking from '@app/services/linking';
 import NavigationService from '@app/services/navigation';
 import i18n, { languages } from '@app/services/i18n';
 
+import { themes as commonThemes } from '@app/common/theme';
+
 import {
   isTrackingEnabled,
   isInfected,
@@ -34,7 +36,7 @@ export default function InfoScreen () {
   const dispatch = useDispatch();
   const trackingEnabled = useSelector(isTrackingEnabled);
   const language = useSelector(getLanguage);
-  const themeName = useSelector(getTheme);
+  const theme = useSelector(getTheme);
 
   const [appVersion, setAppVersion] = useState('');
   const [appBuild, setAppBuild] = useState('');
@@ -68,21 +70,43 @@ export default function InfoScreen () {
   const props = {
     trackingEnabled,
     language,
-    themeName,
+    theme,
     appVersion,
     appBuild,
     isInfected: useSelector(isInfected),
     onClose: () => NavigationService.navigate(AppRoutes.HOME),
     onPressTracking: () => dispatch(accountActions.switchTracking()),
-    onPressLanguage: () => {
+    onPressLanguage: ({id: choosedLanguage, label}) => {
+      if (choosedLanguage) {
+        if (choosedLanguage !== language.languageTag) {
+          dispatch(accountActions.updateLanguage(languages[label].languageTag));
+        }
+
+        return;
+      }
+
       if (languages.EN.languageTag === language.languageTag) {
         dispatch(accountActions.updateLanguage(languages.PT.languageTag));
-      } else {
-        dispatch(accountActions.updateLanguage(languages.EN.languageTag));
+        return;
       }
+
+      dispatch(accountActions.updateLanguage(languages.EN.languageTag));
     },
-    onPressTheme: (themeName) => () => {
-      dispatch(accountActions.updateTheme(themeName));
+    onPressTheme: ({id: choosedTheme}) => {
+      if (choosedTheme) {
+        if (choosedTheme !== theme) {
+          dispatch(accountActions.setTheme(choosedTheme));
+        }
+
+        return;
+      }
+
+      if (theme === commonThemes.names.light) {
+        dispatch(accountActions.setTheme(commonThemes.names.dark));
+        return;
+      }
+
+      dispatch(accountActions.setTheme(commonThemes.names.light));
     },
     onPressSupport: () => Linking.openURL(getSupportEmailFormat()),
     onPressHowToUse: () => {

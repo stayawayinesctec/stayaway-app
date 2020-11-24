@@ -31,13 +31,13 @@ export default class CheckBox extends Component {
 
           return (
             <NativeCheckBox
-              tintColors={{true: colors.blueDark, false: colors.blueDark}}
-              boxType='square'
+              tintColors={{true: colors.checkBoxTintTrueColor, false: colors.checkBoxTintFalseColor}}
+              boxType='circle'
               lineWidth={sizes.size1}
-              tintColor={colors.blueDark}
-              onCheckColor={colors.blueDark}
-              onFillColor={colors.white}
-              onTintColor={colors.blueDark}
+              tintColor={colors.checkBoxTintTrueColor}
+              onCheckColor={colors.checkBoxOnCheckColor}
+              onFillColor={colors.checkBoxOnFillColor}
+              onTintColor={colors.checkBoxOnTintColor}
               {...otherProps}
             />
           );

@@ -120,14 +120,16 @@ public class TracingManagerModule extends ReactContextBaseJavaModule {
             CertificatePinning.initDebug(context);
         }
 
-        // Create listeners
-        updateEventBroadcasterReceiver = new UpdateEventBroadcastReceiver();
+        if (BuildConfig.IS_UI.equals("FALSE")) {
+            // Create listeners
+            updateEventBroadcasterReceiver = new UpdateEventBroadcastReceiver();
 
-        // Register listeners
-        context.registerReceiver(
-                updateEventBroadcasterReceiver,
-                DP3T.getUpdateIntentFilter()
-        );
+            // Register listeners
+            context.registerReceiver(
+                    updateEventBroadcasterReceiver,
+                    DP3T.getUpdateIntentFilter()
+            );
+        }
 
         initDP3T(context);
 

@@ -68,12 +68,14 @@ export default function TabIcon(props) {
   const onPress = () => NavigationService.navigate(AppRoutes.HOME);
   const onLongPress = () => dispatch(accountActions.switchTracking());
 
+  let showTooltip = () => {};
+
   useEffect(() => {
     if (name === 'home') {
       Storage.getItem('tooltip_home_long_press', 'false')
         .then(hasShownHomeTooltip => {
           if (hasShownHomeTooltip === 'false') {
-            setTimeout(() => Tooltip.show(i18n.translate('common.popover.home_long_press'), target.current, parent.current), 2000);
+            setTimeout(showTooltip, 2000);
             Storage.setItem('tooltip_home_long_press', 'true');
           }
         });
@@ -83,26 +85,30 @@ export default function TabIcon(props) {
   return (
     <ThemeConsumer>
       {({ colors }) => {
+        showTooltip = () => Tooltip.show(i18n.translate('common.popover.home_long_press'), target.current, parent.current, colors);
+
         let iconName = `${name}_inactive`;
-        let textColor = colors.blueLightest;
+        let textColor = colors.tabBarInactiveTextColor;
+        let iconColor = colors.tabBarInactiveIconColor;
 
         if (active) {
           iconName = `${name}_active`;
-          textColor = colors.blueDark;
+          textColor = colors.tabBarActiveTextColor;
+          iconColor = colors.tabBarActiveIconColor;
         }
 
         if (name === 'home') {
-          let pulseColor = colors.greenLight;
-          let iconColor = colors.green;
+          let pulseColor = colors.tabBarHomeHealtyPulseColor;
+          iconColor = colors.tabBarHomeHealtyCircleColor;
 
           if (exposed) {
-            pulseColor = colors.yellowLight;
-            iconColor = colors.yellow;
+            pulseColor = colors.tabBarHomeExposedPulseColor;
+            iconColor = colors.tabBarHomeExposedCircleColor;
           }
 
           if (hasErrors || !trackingEnabled) {
-            pulseColor = colors.redLight;
-            iconColor = colors.red;
+            pulseColor = colors.tabBarHomeErrorPulseColor;
+            iconColor = colors.tabBarHomeErrorCircleColor;
           }
 
           return (
@@ -118,7 +124,11 @@ export default function TabIcon(props) {
                 size={iconSizes.size96 * 2}
                 style={styles.pulse}
               />
-              <ButtonWrapper ref={target} onPress={onPress} onLongPress={onLongPress}>
+              <ButtonWrapper
+                ref={target}
+                onPress={onPress}
+                onLongPress={onLongPress}
+              >
                 <Icon
                   name={iconName}
                   width={iconSizes.size96}
@@ -132,7 +142,12 @@ export default function TabIcon(props) {
 
         return (
           <View style={styles.container}>
-            <Icon name={iconName} width={iconSizes.size25} height={iconSizes.size25} />
+            <Icon
+              name={iconName}
+              width={iconSizes.size25}
+              height={iconSizes.size25}
+              tintColor={iconColor}
+            />
             <Text
               textColor={textColor}
               size='xxsmall'

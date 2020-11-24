@@ -1,0 +1,93 @@
+/**
+ * Copyright (c) 2020 INESC TEC <https://www.inesctec.pt>
+ *
+ * This Source Code Form is subject to the terms of the European Union
+ * Public License, v. 1.2. If a copy of the EUPL was not distributed with
+ * this file, You can obtain one at https://opensource.org/licenses/EUPL-1.2.
+ *
+ * SPDX-License-Identifier: EUPL-1.2
+ */
+
+import React from 'react';
+import { View, StyleSheet, ViewPropTypes } from 'react-native';
+import PropTypes from 'prop-types';
+
+import { ThemeConsumer } from '@app/contexts/Theme';
+
+import { sizes } from '@app/common/theme';
+
+import Text from '@app/common/components/Text';
+import ButtonWrapper from '@app/common/components/ButtonWrapper';
+
+const styles = (colors) => StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.toogleBackgroundColor,
+    borderRadius: sizes.size4,
+  },
+  label: {
+    backgroundColor: colors.toogleSelectedBackgroundColor,
+    margin: sizes.size2,
+    paddingVertical: sizes.size5,
+    paddingHorizontal: sizes.size16,
+    borderRadius: sizes.size4,
+  },
+});
+
+export default function Toggle(props) {
+  const { value, options, style, onPress,...otherProps } = props;
+
+  return (
+    <ThemeConsumer>
+      {({colors}) => {
+        return (
+          <View
+            style={styles(colors).container}
+            {...otherProps}
+          >
+            { Object.values(options).map(({id, label}) =>
+              <ButtonWrapper
+                key={id}
+                onPress={() => onPress({id, label})}
+                style={styles(colors).labelcontainer}
+                accessibilityRole='switch'
+                accessibilityState={{checked: value}}
+              >
+                <Text
+                  textAlign='center'
+                  textColor={id === value ? colors.toogleSelectedTextColor : colors.toogleTextColor}
+                  style={
+                    {
+                      ...styles(colors).label,
+                      backgroundColor: id === value ? colors.toogleSelectedBackgroundColor : colors.toogleBackgroundColor,
+                    }
+                  }
+                >
+                  { label }
+                </Text>
+              </ButtonWrapper>,
+            )}
+          </View>
+        );
+      }}
+    </ThemeConsumer>
+  );
+}
+
+Toggle.defaultProps = {
+  value: '',
+  options: [],
+  onPress: () => {},
+  style: {},
+};
+
+Toggle.propTypes = {
+  value: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    label: PropTypes.string,
+  })),
+  onPress: PropTypes.func,
+  style: ViewPropTypes.style,
+};

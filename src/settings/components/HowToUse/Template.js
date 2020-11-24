@@ -23,7 +23,7 @@ import Button from '@app/common/components/Button';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Icon from '@app/common/components/Icon';
 import Text from '@app/common/components/Text';
-import Images from '@app/common/assets/images';
+import { images } from '@app/common/assets/images';
 import { sizes, iconSizes } from '@app/common/theme';
 
 const styles = (colors, insets) => StyleSheet.create({
@@ -55,7 +55,7 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.backgroundColor,
     paddingHorizontal: sizes.size24,
     paddingTop: '15%',
     borderTopRightRadius: 250,
@@ -64,13 +64,13 @@ const styles = (colors, insets) => StyleSheet.create({
   centeredContainer: {
     flex: 1,
     paddingTop: '15%',
-    backgroundColor: colors.white,
+    backgroundColor: colors.backgroundColor,
     paddingHorizontal: sizes.size24,
     justifyContent: 'center',
     borderTopRightRadius: 250,
   },
   closeButton: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.iconMainBackgroundColor,
     borderRadius: sizes.size30,
     padding: sizes.size8,
   },
@@ -133,7 +133,7 @@ export default function Template (props) {
                     accessibilityLabel={i18n.translate('screens.how_to_use.actions.back.accessibility.hint.label')}
                     accessibilityHint={i18n.translate('screens.how_to_use.actions.back.accessibility.hint.hint')}
                   >
-                    <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.blueDark} />
+                    <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
                   </ButtonWrapper>
                 </Layout>
               }
@@ -164,5 +164,5 @@ Template.propTypes = {
   onClose: PropTypes.func,
   header: PropTypes.string,
   description: PropTypes.string,
-  image: PropTypes.oneOf(Object.values(Images)).isRequired,
+  image: PropTypes.oneOf(Object.values(images)).isRequired,
 };

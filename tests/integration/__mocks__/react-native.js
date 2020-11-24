@@ -35,3 +35,16 @@ export const NativeModules = {
     };
   },
 };
+
+export const StatusBar = {
+  currentHeight: 20,
+};
+
+export const Dimensions = {
+  get() {
+    return {
+      width: 375,
+      height: 667,
+    };
+  },
+};
