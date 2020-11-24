@@ -25,21 +25,40 @@ import UserNotifications
 protocol UserNotificationCenter {
   var delegate: UNUserNotificationCenterDelegate? { get set }
   func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?)
+  func removeDeliveredNotifications(withIdentifiers identifiers: [String])
   func removeAllDeliveredNotifications()
   func removePendingNotificationRequests(withIdentifiers identifiers: [String])
 }
 
 extension UNUserNotificationCenter: UserNotificationCenter {}
 
-protocol ExposureIdentifierProvider {
-  var exposureIdentifiers: [String]? { get }
+struct Exposure: Comparable {
+  let identifier: String
+  let date: Date
+
+  init(exposureDay: ExposureDay) {
+    self.init(identifier: exposureDay.identifier.uuidString, date: exposureDay.exposedDate)
+  }
+
+  init(identifier: String, date: Date) {
+    self.identifier = identifier
+    self.date = date
+  }
+
+  static func < (lhs: Exposure, rhs: Exposure) -> Bool {
+    lhs.date < rhs.date
+  }
 }
 
-extension TracingState: ExposureIdentifierProvider {
-  var exposureIdentifiers: [String]? {
+protocol ExposureProvider {
+  var exposures: [Exposure]? { get }
+}
+
+extension TracingState: ExposureProvider {
+  var exposures: [Exposure]? {
     switch infectionStatus {
     case let .exposed(matches):
-      return matches.map { $0.identifier.uuidString }
+      return matches.map(Exposure.init(exposureDay:))
     case .healthy:
       return []
     case .infected:
@@ -49,7 +68,7 @@ extension TracingState: ExposureIdentifierProvider {
 }
 
 /// Helper to show a local push notification when the state of the user changes from not-exposed to exposed
-class TracingLocalPush: NSObject {
+class TracingLocalPush: NSObject, LocalPushProtocol {
   static let shared = TracingLocalPush()
 
   private var center: UserNotificationCenter
@@ -57,13 +76,28 @@ class TracingLocalPush: NSObject {
   init(notificationCenter: UserNotificationCenter = UNUserNotificationCenter.current(), keychain: KeychainProtocol = Keychain()) {
     center = notificationCenter
     _exposureIdentifiers.keychain = keychain
+    _lastestExposureDate.keychain = keychain
     super.init()
     center.delegate = self
   }
 
-  func update(provider: ExposureIdentifierProvider) {
-    if let identifers = provider.exposureIdentifiers {
-      exposureIdentifiers = identifers
+  func scheduleExposureNotificationsIfNeeded(provider: ExposureProvider) {
+    // sort the exposures from newset to oldest
+    if let exposures = provider.exposures?.sorted(by: >) {
+      for exposure in exposures {
+        // check if the exposure is new and if the lastestExposureDate is prior to the new Exposure
+        // we only schedule the notification in these cases
+        if !exposureIdentifiers.contains(exposure.identifier), (lastestExposureDate ?? .distantPast) < exposure.date {
+          // we schedule the notification
+          scheduleNotification(identifier: exposure.identifier)
+          // and update the latestExpsoureDate
+          lastestExposureDate = exposure.date
+
+          break
+        }
+      }
+      // store all new identifiers
+      exposureIdentifiers = exposures.map(\.identifier)
     }
   }
 
@@ -71,22 +105,17 @@ class TracingLocalPush: NSObject {
     center.removeAllDeliveredNotifications()
   }
 
+  @KeychainPersisted(key: "lastestExposureDate", defaultValue: nil)
+  private var lastestExposureDate: Date?
+
   @KeychainPersisted(key: "exposureIdentifiers", defaultValue: [])
-  private var exposureIdentifiers: [String] {
-    didSet {
-      for identifier in exposureIdentifiers {
-        if !oldValue.contains(identifier) {
-          scheduleNotification(identifier: identifier)
-          return
-        }
-      }
-    }
-  }
+  private var exposureIdentifiers: [String]
 
   private func scheduleNotification(identifier: String) {
     let content = UNMutableNotificationContent()
     content.title = "exposed_notification_title".ub_localized;
     content.body = "exposed_notification_body".ub_localized;
+    content.sound = .default
 
     let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
     center.add(request, withCompletionHandler: nil)

@@ -13,7 +13,7 @@ import DP3TSDK
 import UIKit
 
 func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
-  TracingLocalPush.shared.update(provider: state)
+  TracingLocalPush.shared.scheduleExposureNotificationsIfNeeded(provider: state)
   TracingLocalPush.shared.resetSyncWarningTriggers(tracingState: state)
 
   let keys = ["infectionStatus", "lastSyncDate", "errors", "exposureDays"]
@@ -52,8 +52,6 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
       values.append([7])
     case .cancelled:
       values.append([14])
-    case .databaseError(error: _):
-      values.append([14])
     case .exposureNotificationError(error: _):
       values.append([4])
     case .permissonError:
@@ -62,8 +60,6 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
       values.append([16])
     case .authorizationUnknown:
       values.append([17])
-    case .infectionStatusNotResettable:
-      values.append([18])
     }
 
   case .initialization:
@@ -98,16 +94,6 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   // if only the second request (iWasExposed) fails
   private var codeDictionary: [String: (String, Date)] = [:]
 
-  let runningInBackground: () -> Bool = {
-    if Thread.isMainThread {
-      return UIApplication.shared.applicationState == .background
-    } else {
-      return DispatchQueue.main.sync {
-        UIApplication.shared.applicationState == .background
-      }
-    }
-  }
-
   override init(){
     super.init()
     NSLog("Glue initialized")
@@ -123,7 +109,7 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
 
     func DP3TTracingStateChanged(_ state: TracingState) {
       NSLog("SDK woke up with state change.")
-      TracingLocalPush.shared.update(provider: state)
+      TracingLocalPush.shared.scheduleExposureNotificationsIfNeeded(provider: state)
       TracingLocalPush.shared.resetSyncWarningTriggers(tracingState: state)
       let dict = wrapState(state);
 
@@ -136,28 +122,29 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     return ["fct.inesctec.stayaway.ios.sdk.UPDATE_EVENT"]
   }
 
-  @objc func initialize() -> Error? {
-    do {
+  @objc func initialize() {
+    // Read env variables
+    let config = ReactNativeConfig.env();
+    let envAppId:String = config!["APP_ID"] as! String;
+    let envBucketUrl:String = config!["BACKEND_BUCKET_URL"] as! String;
+    let envReportUrl:String = config!["BACKEND_REPORT_URL"] as! String;
+    let envPublicKey:String = config!["BACKEND_PUBLIC_KEY"] as! String;
 
-      // Read env variables
-      let config = ReactNativeConfig.env();
-      let envAppId:String = config!["APP_ID"] as! String;
-      let envBucketUrl:String = config!["BACKEND_BUCKET_URL"] as! String;
-      let envReportUrl:String = config!["BACKEND_REPORT_URL"] as! String;
-      let envPublicKey:String = config!["BACKEND_PUBLIC_KEY"] as! String;
+    let bucketUrl:URL = URL(string: envBucketUrl)!;
+    let reportUrl:URL = URL(string: envReportUrl)!;
+    let publicKey = Data(base64Encoded: envPublicKey);
 
-      let bucketUrl:URL = URL(string: envBucketUrl)!;
-      let reportUrl:URL = URL(string: envReportUrl)!;
-      let publicKey = Data(base64Encoded: envPublicKey);
+    let descriptor = ApplicationDescriptor(appId: envAppId,
+                                            bucketBaseUrl: bucketUrl,
+                                            reportBaseUrl: reportUrl,
+                                            jwtPublicKey: publicKey,
+                                            mode: .production)
 
-      try DP3TTracing.initialize(with: .init(appId: envAppId, bucketBaseUrl: bucketUrl, reportBaseUrl: reportUrl, jwtPublicKey: publicKey, mode: .production),urlSession: URLSession.certificatePinned,backgroundHandler: self)
+    DP3TTracing.initialize(with: descriptor,
+                                urlSession: URLSession.certificatePinned,
+                                backgroundHandler: self)
 
-      NSLog("DP3TGLUE: Tracing initialized.")
-      return nil;
-    } catch {
-      NSLog("Error initializing tracing protocol: "+error.localizedDescription)
-      return error;
-    }
+    NSLog("DP3TGLUE: Tracing initialized.")
   }
 
   @objc func isTracingEnabled(
@@ -169,35 +156,27 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   @objc func start(
     _ resolve: @escaping RCTPromiseResolveBlock,
     rejecter reject: @escaping RCTPromiseRejectBlock) {
-    do {
       self.delegate = TracingDelegate(glue: self)
       DP3TTracing.delegate = self.delegate
-      try DP3TTracing.startTracing(completionHandler: { error in
-        if((error) != nil){
-          NSLog("Error starting tracing: "+error!.localizedDescription)
-          resolve(self.EN_CANCELLED);
-        }
-        else{
+      DP3TTracing.startTracing(completionHandler: { result in
+      switch result {
+        case .success:
           DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
               self.sync({_ in }, rejecter: {_,_,_ in })
           }
-
           self.isActivated = true;
           resolve(self.EN_SUCCEEDED);
           NSLog("DP3T START SUCCESS")
-        }
-      })
-    }
-    catch {
-      if let e = error as? DP3TTracingError {
-        NSLog("Error starting tracing: "+e.localizedDescription)
-        reject(self.EN_FAILED, e.localizedDescription, e);
-      } else {
-        NSLog("Error starting tracing: "+error.localizedDescription)
-        reject(self.EN_FAILED, error.localizedDescription, error);
-      }
-    }
 
+        case let .failure(error):
+          NSLog("Error starting tracing: "+error.localizedDescription)
+          if case DP3TTracingError.userAlreadyMarkedAsInfected = error {
+            resolve(self.EN_FAILED);
+          } else {
+            resolve(self.EN_CANCELLED);
+          }
+      }
+    })
   }
 
   @objc func stop(
@@ -218,15 +197,8 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   @objc func getStatus(
     _ resolve: RCTPromiseResolveBlock,
     rejecter reject: RCTPromiseRejectBlock) {
-    DP3TTracing.status { result in
-      switch result {
-      case let .failure(e):
-        NSLog("Error fetching tracing status. "+e.localizedDescription)
-        reject(self.UNKNOWN_EXCEPTION, e.localizedDescription, e);
-      case let .success(st):
-        resolve(wrapState(st));
-      }
-    }
+      let state = DP3TTracing.status;
+      resolve(wrapState(state));
   }
 
   @objc func getInfo(
@@ -250,14 +222,12 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   @objc func sync(
     _ resolve:@escaping RCTPromiseResolveBlock,
     rejecter reject:@escaping RCTPromiseRejectBlock) {
-    DP3TTracing.sync(runningInBackground: runningInBackground()) { result in
+    DP3TTracing.sync { result in
       switch result {
       case let .failure(e):
         switch(e) {
         case .networkingError(error: let error):
           switch(error){
-          case .batchReleaseTimeMissmatch:
-            NSLog("Sync. Networking batchReleaseTimeMissmatch error ")
           case .networkSessionError(error: let error2):
             NSLog("Sync. Networking networkSessionError error "+error2.localizedDescription)
           case .notHTTPResponse:
@@ -277,8 +247,6 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
           }
         case .caseSynchronizationError(errors: let errors):
           NSLog("Sync. caseSynchronization error "+errors.description)
-        case .databaseError(error: let error):
-          NSLog("Sync. databaseError error "+error.debugDescription)
         case .bluetoothTurnedOff:
           NSLog("Sync. Bluetooth error ")
         case .permissonError:
@@ -291,8 +259,6 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
           NSLog("Sync. EN error."+error.localizedDescription)
         case .authorizationUnknown:
           NSLog("Sync. Authorization unkown.")
-        case .infectionStatusNotResettable:
-          NSLog("Sync. Infection status not resettable.")
         }
         reject(self.UNKNOWN_EXCEPTION, e.localizedDescription, e);
 
@@ -333,22 +299,14 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
 
   @objc func resetInfectionStatus(_ resolve:@escaping RCTPromiseResolveBlock,
                                   rejecter reject:@escaping RCTPromiseRejectBlock) {
-    do {
-      try DP3TTracing.resetInfectionStatus()
-      resolve(self.SUCCESS);
-    } catch {
-      resolve(self.FAILED)
-    }
+    DP3TTracing.resetInfectionStatus()
+    resolve(self.SUCCESS);
   }
 
   @objc func resetExposureDays(_ resolve:@escaping RCTPromiseResolveBlock,
                                rejecter reject:@escaping RCTPromiseRejectBlock) {
-    do {
-      try DP3TTracing.resetExposureDays()
-      resolve(self.SUCCESS);
-    } catch {
-      resolve(self.FAILED)
-    }
+    try DP3TTracing.resetExposureDays()
+    resolve(self.SUCCESS);
   }
 }
 
