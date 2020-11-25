@@ -51,10 +51,22 @@
 - Add support team email button
 - Add share button to allow users to share the app with others
 - Add location screen to onboarding to provide additional information for Android users
-- Add home long press to allow switching monitoring on and off 
+- Add home long press to allow switching monitoring on and off
 - Refactor settings screen
 - Fix background taks issue when in iOS
 - Fix submitting code always hanging
 - Fix android 8 navigation bar
+- Fix minor bugs
+- Fix typos
+
+
+## version 1.1.0 (25.11.2020)
+- Add dark mode support
+- Update DP3T SDK version to 2.0.0
+- Update DPO e-mail address
+- Fix time to reset exposed state to 14 days
+- Fix home tooltip time
+- Fix tracking not disabled after submit diagnosis
+- Fix home exposed copy
 - Fix minor bugs
 - Fix typos
