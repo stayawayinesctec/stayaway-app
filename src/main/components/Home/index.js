@@ -15,7 +15,7 @@ import HomeHealthy from '@main/components/Home/HomeHealthy';
 import HomeInfected from '@main/components/Home/HomeInfected';
 import HomeExposed from '@main/components/Home/HomeExposed';
 
-import { INFECTION_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracing';
 
 export default function Home (props) {
   const { infectionStatus } = props;

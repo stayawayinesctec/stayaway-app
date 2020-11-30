@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import RecommendationsHealthy from '@main/components/Recommendations/RecommendationsHealthy';
 import RecommendationsExposed from '@main/components/Recommendations/RecommendationsExposed';
 
-import { INFECTION_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracing';
 
 export default function Recommendations (props) {
   const { infectionStatus, ...otherProps } = props;

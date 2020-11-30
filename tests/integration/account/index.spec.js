@@ -15,22 +15,22 @@ import RNRestart from 'react-native-restart';
 import SplashScreen from 'react-native-splash-screen';
 
 import NavigationService from '@app/services/navigation';
-import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
+import TracingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracing';
 import i18n, { languages } from '@app/services/i18n';
 
 import AppRoutes from '@app/navigation/routes';
 
-import accountActions, { TRACKING_RESULTS } from '@app/redux/account';
+import accountActions, { TRACING_RESULTS } from '@app/redux/account';
 import permissionsActions from '@app/redux/permissions';
 import onboardingActions from '@app/redux/onboarding';
 import modalsActions from '@app/redux/modals';
 
 import {
   setupNewAccount,
-  watchTrackingStatus,
-  startTracking,
+  watchTracingStatus,
+  startTracing,
   submitDiagnosis,
-  switchTracking,
+  switchTracing,
   updateStatus,
   setErrors,
   setInfectionStatus,
@@ -40,7 +40,7 @@ import {
 
 // Mock storage file
 jest.mock('@app/services/navigation');
-jest.mock('@app/services/tracking');
+jest.mock('@app/services/tracing');
 
 describe('Account Sagas', () => {
   const defaultStatus = {
@@ -73,7 +73,7 @@ describe('Account Sagas', () => {
         accountActions.updateStatus(defaultStatus),
         permissionsActions.checkAllPermissions(),
         permissionsActions.requestAllPermissions(),
-        accountActions.startTracking(),
+        accountActions.startTracing(),
       ]);
     });
 
@@ -93,11 +93,11 @@ describe('Account Sagas', () => {
         accountActions.setupNewAccountPending(),
         accountActions.updateStatus(defaultStatus),
         permissionsActions.checkAllPermissions(),
-        accountActions.startTracking(),
+        accountActions.startTracing(),
       ]);
     });
 
-    it('should start tracking when startTracking returns success', async () => {
+    it('should start tracing when startTracing returns success', async () => {
       // Prepare
       NavigationService.navigate.mockImplementation(() => {});
 
@@ -109,7 +109,7 @@ describe('Account Sagas', () => {
         dispatch: (action) => dispatched.push(action),
        }, setupNewAccount);
       channel.put(permissionsActions.checkAllPermissionsResult(true));
-      channel.put(accountActions.startTracking(TRACKING_RESULTS.SUCCESS));
+      channel.put(accountActions.startTracing(TRACING_RESULTS.SUCCESS));
       await saga.toPromise();
 
       // Assert
@@ -120,13 +120,13 @@ describe('Account Sagas', () => {
         accountActions.setupNewAccountPending(),
         accountActions.updateStatus(defaultStatus),
         permissionsActions.checkAllPermissions(),
-        accountActions.startTracking(),
-        accountActions.setTrackingEnabled(true),
+        accountActions.startTracing(),
+        accountActions.setTracingEnabled(true),
         onboardingActions.setOnboarding(false),
         accountActions.setupNewAccountDone(),
       ]));
     });
-    it('should not start tracking when startTracking returns failed', async () => {
+    it('should not start tracing when startTracing returns failed', async () => {
       // Prepare
       NavigationService.navigate.mockImplementation(() => {});
 
@@ -138,7 +138,7 @@ describe('Account Sagas', () => {
         dispatch: (action) => dispatched.push(action),
        }, setupNewAccount);
       channel.put(permissionsActions.checkAllPermissionsResult(true));
-      channel.put(accountActions.startTracking(TRACKING_RESULTS.FAILED));
+      channel.put(accountActions.startTracing(TRACING_RESULTS.FAILED));
       await saga.toPromise();
 
       // Assert
@@ -149,13 +149,13 @@ describe('Account Sagas', () => {
         accountActions.setupNewAccountPending(),
         accountActions.updateStatus(defaultStatus),
         permissionsActions.checkAllPermissions(),
-        accountActions.startTracking(),
-        accountActions.setTrackingEnabled(false),
+        accountActions.startTracing(),
+        accountActions.setTracingEnabled(false),
         onboardingActions.setOnboarding(false),
         accountActions.setupNewAccountDone(),
       ]));
     });
-    it('should not start tracking and report error when startTracking returns gaen', async () => {
+    it('should not start tracing and report error when startTracing returns gaen', async () => {
       // Prepare
       NavigationService.navigate.mockImplementation(() => {});
 
@@ -167,7 +167,7 @@ describe('Account Sagas', () => {
         dispatch: (action) => dispatched.push(action),
        }, setupNewAccount);
       channel.put(permissionsActions.checkAllPermissionsResult(true));
-      channel.put(accountActions.startTracking(TRACKING_RESULTS.GAEN));
+      channel.put(accountActions.startTracing(TRACING_RESULTS.GAEN));
       await saga.toPromise();
 
       // Assert
@@ -178,15 +178,15 @@ describe('Account Sagas', () => {
         accountActions.setupNewAccountPending(),
         accountActions.updateStatus(defaultStatus),
         permissionsActions.checkAllPermissions(),
-        accountActions.startTracking(),
-        accountActions.setTrackingEnabled(false),
+        accountActions.startTracing(),
+        accountActions.setTracingEnabled(false),
         accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]),
         onboardingActions.setOnboarding(false),
         accountActions.setupNewAccountDone(),
       ]));
     });
   });
-  describe('Watch Tracking Status', () => {
+  describe('Watch Tracing Status', () => {
     afterEach(() => {
       jest.resetAllMocks();
     });
@@ -194,7 +194,7 @@ describe('Account Sagas', () => {
     it('should update status when event is emitted', async () => {
       // Prepare
       let emitter;
-      TrackingManager.addUpdateEventListener.mockImplementation((callback) => {
+      TracingManager.addUpdateEventListener.mockImplementation((callback) => {
         emitter = callback;
       });
 
@@ -204,33 +204,33 @@ describe('Account Sagas', () => {
       runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
-       }, watchTrackingStatus);
+       }, watchTracingStatus);
 
       // Await for watcher to be registered
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      // Emit tracking event
+      // Emit tracing event
       emitter(defaultStatus);
 
       // Assert
-      expect(TrackingManager.addUpdateEventListener).toHaveBeenCalled();
+      expect(TracingManager.addUpdateEventListener).toHaveBeenCalled();
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
-        accountActions.trackingStatusListenerRegistered(),
+        accountActions.tracingStatusListenerRegistered(),
         accountActions.updateStatus(defaultStatus),
       ]);
     });
   });
-  describe('Start Tracking', () => {
+  describe('Start Tracing', () => {
     afterEach(() => {
       jest.resetAllMocks();
     });
 
-    it('should register tracking status listener when start returns success', async () => {
+    it('should register tracing status listener when start returns success', async () => {
       // Prepare
-      TrackingManager.start.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_SUCCEEDED));
-      TrackingManager.sync.mockImplementation(() => Promise.resolve());
-      TrackingManager.getStatus.mockImplementation(() => Promise.resolve(defaultStatus));
+      TracingManager.start.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_SUCCEEDED));
+      TracingManager.sync.mockImplementation(() => Promise.resolve());
+      TracingManager.getStatus.mockImplementation(() => Promise.resolve(defaultStatus));
 
       // Execute
       const channel = stdChannel();
@@ -238,30 +238,30 @@ describe('Account Sagas', () => {
       runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
-      }, startTracking);
+      }, startTracing);
       // Await for watcher to be registered
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      channel.put(accountActions.trackingStatusListenerRegistered());
+      channel.put(accountActions.tracingStatusListenerRegistered());
 
       // Await for start
       await new Promise((resolve) => setTimeout(resolve, 10));
 
 
       // Assert
-      expect(TrackingManager.start).toHaveBeenCalled();
-      expect(TrackingManager.sync).toHaveBeenCalled();
-      expect(TrackingManager.getStatus).toHaveBeenCalled();
+      expect(TracingManager.start).toHaveBeenCalled();
+      expect(TracingManager.sync).toHaveBeenCalled();
+      expect(TracingManager.getStatus).toHaveBeenCalled();
       expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
-        accountActions.trackingStatusListenerRegistered(),
+        accountActions.tracingStatusListenerRegistered(),
         accountActions.updateStatus(defaultStatus),
-        accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS),
+        accountActions.startTracingResult(TRACING_RESULTS.SUCCESS),
       ]);
     });
-    it('should not register tracking status listener when start returns cancelled', async () => {
+    it('should not register tracing status listener when start returns cancelled', async () => {
       // Prepare
-      TrackingManager.start.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_CANCELLED));
+      TracingManager.start.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_CANCELLED));
 
       // Execute
       const channel = stdChannel();
@@ -269,17 +269,17 @@ describe('Account Sagas', () => {
       runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
-      }, startTracking).toPromise();
+      }, startTracing).toPromise();
       // Await for watcher to be registered
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      channel.put(accountActions.trackingStatusListenerRegistered());
+      channel.put(accountActions.tracingStatusListenerRegistered());
 
       // Await for start
       await new Promise((resolve) => setTimeout(resolve, 10));
 
       // Assert
-      expect(TrackingManager.start).toHaveBeenCalled();
+      expect(TracingManager.start).toHaveBeenCalled();
       expect(Alert.alert).toHaveBeenCalled();
       expect(Alert.alert).toHaveBeenCalledWith(
         i18n.translate('common.dialogs.gaen.enable.title'),
@@ -293,13 +293,13 @@ describe('Account Sagas', () => {
       );
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
-        accountActions.trackingStatusListenerRegistered(),
-        accountActions.startTrackingResult(TRACKING_RESULTS.GAEN),
+        accountActions.tracingStatusListenerRegistered(),
+        accountActions.startTracingResult(TRACING_RESULTS.GAEN),
       ]);
     });
-    it('should not register tracking status listener when start throws an error', async () => {
+    it('should not register tracing status listener when start throws an error', async () => {
       // Prepare
-      TrackingManager.start.mockImplementation(() => Promise.reject(GAEN_RESULTS.EN_FAILED));
+      TracingManager.start.mockImplementation(() => Promise.reject(GAEN_RESULTS.EN_FAILED));
 
       // Execute
       const channel = stdChannel();
@@ -307,28 +307,28 @@ describe('Account Sagas', () => {
       runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
-      }, startTracking).toPromise();
+      }, startTracing).toPromise();
       // Await for watcher to be registered
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      channel.put(accountActions.trackingStatusListenerRegistered());
+      channel.put(accountActions.tracingStatusListenerRegistered());
 
       // Await for start
       await new Promise((resolve) => setTimeout(resolve, 10));
 
       // Assert
-      expect(TrackingManager.start).toHaveBeenCalled();
+      expect(TracingManager.start).toHaveBeenCalled();
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
-        accountActions.trackingStatusListenerRegistered(),
-        accountActions.startTrackingResult(TRACKING_RESULTS.FAILED),
+        accountActions.tracingStatusListenerRegistered(),
+        accountActions.startTracingResult(TRACING_RESULTS.FAILED),
       ]);
     });
-    it('should stop tracking status listener when stop tracking actions is dispatched', async () => {
+    it('should stop tracing status listener when stop tracing actions is dispatched', async () => {
       // Prepare
-      TrackingManager.start.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_SUCCEEDED));
-      TrackingManager.getStatus.mockImplementation(() => Promise.resolve(defaultStatus));
-      TrackingManager.sync.mockImplementation(() => Promise.resolve());
+      TracingManager.start.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_SUCCEEDED));
+      TracingManager.getStatus.mockImplementation(() => Promise.resolve(defaultStatus));
+      TracingManager.sync.mockImplementation(() => Promise.resolve());
 
       // Execute
       const channel = stdChannel();
@@ -336,25 +336,25 @@ describe('Account Sagas', () => {
       const saga = runSaga({
         channel,
         dispatch: (action) => dispatched.push(action),
-      }, startTracking);
+      }, startTracing);
       // Await for watcher to be registered
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      channel.put(accountActions.trackingStatusListenerRegistered());
-      channel.put(accountActions.stopTracking());
+      channel.put(accountActions.tracingStatusListenerRegistered());
+      channel.put(accountActions.stopTracing());
       await saga.toPromise();
 
       // Assert
-      expect(TrackingManager.start).toHaveBeenCalled();
-      expect(TrackingManager.getStatus).toHaveBeenCalled();
-      expect(TrackingManager.stop).toHaveBeenCalled();
-      expect(TrackingManager.sync).toHaveBeenCalled();
+      expect(TracingManager.start).toHaveBeenCalled();
+      expect(TracingManager.getStatus).toHaveBeenCalled();
+      expect(TracingManager.stop).toHaveBeenCalled();
+      expect(TracingManager.sync).toHaveBeenCalled();
       expect(dispatched).toHaveLength(4);
       expect(dispatched).toEqual([
-        accountActions.trackingStatusListenerRegistered(),
+        accountActions.tracingStatusListenerRegistered(),
         accountActions.updateStatus(defaultStatus),
-        accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS),
-        accountActions.stopTrackingResult(TRACKING_RESULTS.SUCCESS),
+        accountActions.startTracingResult(TRACING_RESULTS.SUCCESS),
+        accountActions.stopTracingResult(TRACING_RESULTS.SUCCESS),
       ]);
     });
   });
@@ -366,7 +366,7 @@ describe('Account Sagas', () => {
     const code = '123123123123';
     it('should report code when exposed returns success', async () => {
       // Prepare
-      TrackingManager.exposed.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_SUCCEEDED));
+      TracingManager.exposed.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_SUCCEEDED));
 
       // Execute
       const channel = stdChannel();
@@ -386,22 +386,22 @@ describe('Account Sagas', () => {
       await saga.toPromise();
 
       // Assert
-      expect(TrackingManager.removeUpdateEventListener).toHaveBeenCalled();
-      expect(TrackingManager.exposed).toHaveBeenCalled();
-      expect(TrackingManager.exposed).toHaveBeenCalledWith(code);
+      expect(TracingManager.removeUpdateEventListener).toHaveBeenCalled();
+      expect(TracingManager.exposed).toHaveBeenCalled();
+      expect(TracingManager.exposed).toHaveBeenCalledWith(code);
       expect(dispatched).toHaveLength(6);
       expect(dispatched).toEqual([
         accountActions.submitDiagnosisPending(),
         modalsActions.openLoadingModal(),
         accountActions.setInfectionStatus(INFECTION_STATUS.INFECTED),
-        accountActions.setTrackingEnabled(false),
+        accountActions.setTracingEnabled(false),
         accountActions.submitDiagnosisDone(),
         modalsActions.closeLoadingModal(),
       ]);
     });
     it('should not report code when exposed returns cancelled', async () => {
       // Prepare
-      TrackingManager.exposed.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_CANCELLED));
+      TracingManager.exposed.mockImplementation(() => Promise.resolve(GAEN_RESULTS.EN_CANCELLED));
 
       // Execute
       const channel = stdChannel();
@@ -431,8 +431,8 @@ describe('Account Sagas', () => {
           },
         ],
       );
-      expect(TrackingManager.exposed).toHaveBeenCalled();
-      expect(TrackingManager.exposed).toHaveBeenCalledWith(code);
+      expect(TracingManager.exposed).toHaveBeenCalled();
+      expect(TracingManager.exposed).toHaveBeenCalledWith(code);
       expect(dispatched).toHaveLength(4);
       expect(dispatched).toEqual([
         accountActions.submitDiagnosisPending(),
@@ -443,7 +443,7 @@ describe('Account Sagas', () => {
     });
     it('should not report code when exposed throws an error', async () => {
       // Prepare
-      TrackingManager.exposed.mockImplementation(() => Promise.reject(GAEN_RESULTS.EN_FAILED));
+      TracingManager.exposed.mockImplementation(() => Promise.reject(GAEN_RESULTS.EN_FAILED));
 
       // Execute
       const channel = stdChannel();
@@ -463,8 +463,8 @@ describe('Account Sagas', () => {
       await saga.toPromise();
 
       // Assert
-      expect(TrackingManager.exposed).toHaveBeenCalled();
-      expect(TrackingManager.exposed).toHaveBeenCalledWith(code);
+      expect(TracingManager.exposed).toHaveBeenCalled();
+      expect(TracingManager.exposed).toHaveBeenCalledWith(code);
       expect(dispatched).toHaveLength(6);
       expect(dispatched).toEqual([
         accountActions.submitDiagnosisPending(),
@@ -476,12 +476,12 @@ describe('Account Sagas', () => {
       ]);
     });
   });
-  describe('Switch Tracking', () => {
+  describe('Switch Tracing', () => {
     afterEach(() => {
       jest.resetAllMocks();
     });
 
-    it('should stop tracking when tracking is enabled', async () => {
+    it('should stop tracing when tracing is enabled', async () => {
       // Execute
       const channel = stdChannel();
       const dispatched = [];
@@ -490,22 +490,22 @@ describe('Account Sagas', () => {
         dispatch: (action) => dispatched.push(action),
         getState: () => ({
           account: {
-            trackingEnabled: true,
+            tracingEnabled: true,
           },
         }),
-      }, switchTracking);
-      channel.put(accountActions.stopTrackingResult(TRACKING_RESULTS.SUCCESS));
+      }, switchTracing);
+      channel.put(accountActions.stopTracingResult(TRACING_RESULTS.SUCCESS));
       await saga.toPromise();
 
       // Assert
       expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
-        accountActions.stopTracking(),
-        accountActions.setTrackingEnabled(false),
+        accountActions.stopTracing(),
+        accountActions.setTracingEnabled(false),
         accountActions.setErrors([]),
       ]);
     });
-    it('should start tracking when all permissions are granted and start tracking returns success', async () => {
+    it('should start tracing when all permissions are granted and start tracing returns success', async () => {
       // Execute
       const channel = stdChannel();
       const dispatched = [];
@@ -514,23 +514,23 @@ describe('Account Sagas', () => {
         dispatch: (action) => dispatched.push(action),
         getState: () => ({
           account: {
-            trackingEnabled: false,
+            tracingEnabled: false,
           },
         }),
-      }, switchTracking);
+      }, switchTracing);
       channel.put(permissionsActions.checkAllPermissionsResult(true));
-      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
+      channel.put(accountActions.startTracingResult(TRACING_RESULTS.SUCCESS));
       await saga.toPromise();
 
       // Assert
       expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
         permissionsActions.checkAllPermissions(),
-        accountActions.startTracking(),
-        accountActions.setTrackingEnabled(true),
+        accountActions.startTracing(),
+        accountActions.setTracingEnabled(true),
       ]);
     });
-    it('should not start tracking when permissions are denied', async () => {
+    it('should not start tracing when permissions are denied', async () => {
       // Execute
       const channel = stdChannel();
       const dispatched = [];
@@ -539,10 +539,10 @@ describe('Account Sagas', () => {
         dispatch: (action) => dispatched.push(action),
         getState: () => ({
           account: {
-            trackingEnabled: false,
+            tracingEnabled: false,
           },
         }),
-      }, switchTracking);
+      }, switchTracing);
       channel.put(permissionsActions.checkAllPermissionsResult(false));
       channel.put(permissionsActions.requestAllPermissionsResult(false));
       await saga.toPromise();
@@ -563,10 +563,10 @@ describe('Account Sagas', () => {
       expect(dispatched).toEqual([
         permissionsActions.checkAllPermissions(),
         permissionsActions.requestAllPermissions(),
-        accountActions.setTrackingEnabled(false),
+        accountActions.setTracingEnabled(false),
       ]);
     });
-    it('should not start tracking when start tracking not returns success', async () => {
+    it('should not start tracing when start tracing not returns success', async () => {
       // Execute
       const channel = stdChannel();
       const dispatched = [];
@@ -575,20 +575,20 @@ describe('Account Sagas', () => {
         dispatch: (action) => dispatched.push(action),
         getState: () => ({
           account: {
-            trackingEnabled: false,
+            tracingEnabled: false,
           },
         }),
-      }, switchTracking);
+      }, switchTracing);
       channel.put(permissionsActions.checkAllPermissionsResult(true));
-      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.FAILED));
+      channel.put(accountActions.startTracingResult(TRACING_RESULTS.FAILED));
       await saga.toPromise();
 
       // Assert
       expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
         permissionsActions.checkAllPermissions(),
-        accountActions.startTracking(),
-        accountActions.setTrackingEnabled(false),
+        accountActions.startTracing(),
+        accountActions.setTracingEnabled(false),
       ]);
     });
   });
@@ -599,7 +599,7 @@ describe('Account Sagas', () => {
 
     it('should update status on redux', async () => {
       // Prepare
-      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
+      TracingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 2,
@@ -621,16 +621,16 @@ describe('Account Sagas', () => {
       }, updateStatus, { payload: newState }).toPromise();
 
       // Assert
-      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+      expect(TracingManager.isTracingEnabled).toHaveBeenCalled();
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         accountActions.setStatus(newState),
         accountActions.updateStatusResult(newState),
       ]);
     });
-    it('should deactivate tracking enabled when GAEN is deactivated', async () => {
+    it('should deactivate tracing enabled when GAEN is deactivated', async () => {
       // Prepare
-      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
+      TracingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 2,
@@ -649,17 +649,17 @@ describe('Account Sagas', () => {
       }, updateStatus, { payload: newState }).toPromise();
 
       // Assert
-      expect(TrackingManager.isTracingEnabled).not.toHaveBeenCalled();
+      expect(TracingManager.isTracingEnabled).not.toHaveBeenCalled();
       expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
-        accountActions.setTrackingEnabled(false),
+        accountActions.setTracingEnabled(false),
         accountActions.setStatus(newState),
         accountActions.updateStatusResult(newState),
       ]);
     });
-    it('should activate tracking enabled when GAEN is activated and tracking is enabled', async () => {
+    it('should activate tracing enabled when GAEN is activated and tracing is enabled', async () => {
       // Prepare
-      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
+      TracingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 2,
@@ -676,17 +676,17 @@ describe('Account Sagas', () => {
       }, updateStatus, { payload: newState }).toPromise();
 
       // Assert
-      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+      expect(TracingManager.isTracingEnabled).toHaveBeenCalled();
       expect(dispatched).toHaveLength(3);
       expect(dispatched).toEqual([
-        accountActions.setTrackingEnabled(true),
+        accountActions.setTracingEnabled(true),
         accountActions.setStatus(newState),
         accountActions.updateStatusResult(newState),
       ]);
     });
     it('should reset infection status when last exposure was 14 days ago', async () => {
       // Prepare
-      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
+      TracingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 1,
@@ -710,8 +710,8 @@ describe('Account Sagas', () => {
       }, updateStatus, { payload: newState }).toPromise();
 
       // Assert
-      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
-      expect(TrackingManager.resetExposureDays).toHaveBeenCalled();
+      expect(TracingManager.isTracingEnabled).toHaveBeenCalled();
+      expect(TracingManager.resetExposureDays).toHaveBeenCalled();
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         accountActions.setStatus(newState),
@@ -720,7 +720,7 @@ describe('Account Sagas', () => {
     });
     it('should not reset infection status when last exposure was not 14 days ago', async () => {
       // Prepare
-      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
+      TracingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       const newState = {
         lastSyncDate: Moment().toJSON(),
         infectionStatus: 1,
@@ -744,8 +744,8 @@ describe('Account Sagas', () => {
       }, updateStatus, { payload: newState }).toPromise();
 
       // Assert
-      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
-      expect(TrackingManager.resetExposureDays).not.toHaveBeenCalled();
+      expect(TracingManager.isTracingEnabled).toHaveBeenCalled();
+      expect(TracingManager.resetExposureDays).not.toHaveBeenCalled();
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         accountActions.setStatus(newState),
@@ -823,7 +823,7 @@ describe('Account Sagas', () => {
   });
 
   describe('Enable Exposure Notifications', () => {
-    it('should start tracking on Android', async () => {
+    it('should start tracing on Android', async () => {
       // Prepare
       Platform.OS = 'android';
 
@@ -834,16 +834,16 @@ describe('Account Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, enableExposureNotifications);
-      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
+      channel.put(accountActions.startTracingResult(TRACING_RESULTS.SUCCESS));
       await saga.toPromise();
 
       // Assert
       expect(Linking.openURL).not.toHaveBeenCalled();
       expect(Linking.canOpenURL).not.toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
-      expect(dispatched).toEqual([accountActions.startTracking()]);
+      expect(dispatched).toEqual([accountActions.startTracing()]);
     });
-    it('should start tracking on iOS and start returns success', async () => {
+    it('should start tracing on iOS and start returns success', async () => {
       // Prepare
       Platform.OS = 'ios';
 
@@ -854,16 +854,16 @@ describe('Account Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, enableExposureNotifications);
-      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
+      channel.put(accountActions.startTracingResult(TRACING_RESULTS.SUCCESS));
       await saga.toPromise();
 
       // Assert
       expect(Linking.openURL).not.toHaveBeenCalled();
       expect(Linking.canOpenURL).not.toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
-      expect(dispatched).toEqual([accountActions.startTracking()]);
+      expect(dispatched).toEqual([accountActions.startTracing()]);
     });
-    it('should start tracking on iOS and start returns fails', async () => {
+    it('should start tracing on iOS and start returns fails', async () => {
       // Prepare
       Platform.OS = 'ios';
       Linking.canOpenURL.mockImplementation(() => Promise.resolve(true));
@@ -876,7 +876,7 @@ describe('Account Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, enableExposureNotifications);
-      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.FAILED));
+      channel.put(accountActions.startTracingResult(TRACING_RESULTS.FAILED));
       await saga.toPromise();
 
       // Assert
@@ -884,7 +884,7 @@ describe('Account Sagas', () => {
       expect(Linking.canOpenURL).toHaveBeenCalled();
       expect(Linking.openURL).toHaveBeenCalledWith('app-settings://');
       expect(dispatched).toHaveLength(1);
-      expect(dispatched).toEqual([accountActions.startTracking()]);
+      expect(dispatched).toEqual([accountActions.startTracing()]);
     });
   });
 });

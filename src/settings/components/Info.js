@@ -52,14 +52,14 @@ const styles = (colors, insets) => StyleSheet.create({
   topItems: {
     marginBottom: sizes.size48,
   },
-  trackingButton: {
+  tracingButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
     marginBottom: sizes.size16,
   },
-  trackingItem: {
+  tracingItem: {
     flexDirection: 'column',
     alignItems: 'flex-start',
   },
@@ -90,11 +90,11 @@ const styles = (colors, insets) => StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  trackingLabelContainer: {
+  tracingLabelContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  trackingLabel: {
+  tracingLabel: {
     marginRight: sizes.size8,
   },
   imagesContainer: {
@@ -131,7 +131,7 @@ export default function Info(props) {
     appBuild,
     language,
     theme,
-    trackingEnabled,
+    tracingEnabled,
     isInfected,
     onClose,
     onPressLanguage,
@@ -140,7 +140,7 @@ export default function Info(props) {
     onPressLegalInformation,
     onPressHowToUse,
     onPressFaqs,
-    onPressTracking,
+    onPressTracing,
     onPressDebug,
   } = props;
 
@@ -165,32 +165,32 @@ export default function Info(props) {
               <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).version}>{i18n.translate('screens.settings.version', { version: appVersion, build: appBuild })}</Text>
               <View style={styles(colors, insets).topItems}>
                 <ButtonWrapper
-                  onPress={onPressTracking}
+                  onPress={onPressTracing}
                   style={{
                     ...styles(colors, insets).item,
                     ...styles(colors, insets).topItem,
-                    ...styles(colors, insets).trackingItem,
-                    backgroundColor: trackingEnabled ? colors.settingsMainButtonBackgroundColor : colors.settingsAltButtonBackgroundColor,
+                    ...styles(colors, insets).tracingItem,
+                    backgroundColor: tracingEnabled ? colors.settingsMainButtonBackgroundColor : colors.settingsAltButtonBackgroundColor,
                   }}
                   disabled={isInfected}
                   accessibilityRole='switch'
-                  accessibilityValue={{text: trackingEnabled}}
-                  accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
-                  accessibilityHint={i18n.translate(`screens.settings.tracking.accessibility.hint.${trackingEnabled ? 'deactivate' : 'activate'}`)}
+                  accessibilityValue={{text: tracingEnabled}}
+                  accessibilityLabel={i18n.translate('screens.settings.tracing.accessibility.label')}
+                  accessibilityHint={i18n.translate(`screens.settings.tracing.accessibility.hint.${tracingEnabled ? 'deactivate' : 'activate'}`)}
                 >
-                  <View style={styles(colors, insets).trackingButton}>
-                    <Text textColor={trackingEnabled ? colors.settingsMainButtonTextColor : colors.settingsAltButtonTextColor} weight='bold'>{i18n.translate('screens.settings.tracking.label')}</Text>
-                    <View style={styles(colors, insets).trackingLabelContainer}>
-                      <Text textColor={trackingEnabled ? colors.settingsMainButtonTextColor : colors.settingsAltButtonTextColor} weight='bold' style={styles(colors, insets).trackingLabel}>{trackingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
+                  <View style={styles(colors, insets).tracingButton}>
+                    <Text textColor={tracingEnabled ? colors.settingsMainButtonTextColor : colors.settingsAltButtonTextColor} weight='bold'>{i18n.translate('screens.settings.tracing.label')}</Text>
+                    <View style={styles(colors, insets).tracingLabelContainer}>
+                      <Text textColor={tracingEnabled ? colors.settingsMainButtonTextColor : colors.settingsAltButtonTextColor} weight='bold' style={styles(colors, insets).tracingLabel}>{tracingEnabled ? i18n.translate('common.words.enabled') : i18n.translate('common.words.disabled')}</Text>
                       <Switch
-                        value={trackingEnabled}
-                        onValueChange={onPressTracking}
-                        accessibilityLabel={i18n.translate('screens.settings.tracking.accessibility.label')}
-                        accessibilityHint={i18n.translate(`screens.settings.tracking.accessibility.hint.${trackingEnabled ? 'deactivate' : 'activate'}`)}
+                        value={tracingEnabled}
+                        onValueChange={onPressTracing}
+                        accessibilityLabel={i18n.translate('screens.settings.tracing.accessibility.label')}
+                        accessibilityHint={i18n.translate(`screens.settings.tracing.accessibility.hint.${tracingEnabled ? 'deactivate' : 'activate'}`)}
                       />
                     </View>
                   </View>
-                  <Text size='small' textColor={trackingEnabled ? colors.settingsMainButtonTextColor : colors.settingsAltButtonTextColor}>{i18n.translate(`screens.settings.tracking.description.${trackingEnabled ? 'enabled' : 'disabled'}`)}</Text>
+                  <Text size='small' textColor={tracingEnabled ? colors.settingsMainButtonTextColor : colors.settingsAltButtonTextColor}>{i18n.translate(`screens.settings.tracing.description.${tracingEnabled ? 'enabled' : 'disabled'}`)}</Text>
                 </ButtonWrapper>
                 <ButtonWrapper
                   onPress={onPressLanguage}
@@ -301,10 +301,10 @@ export default function Info(props) {
 Info.defaultProps = {
   appVersion: '1.0.0',
   appBuild: '0',
-  trackingEnabled: false,
+  tracingEnabled: false,
   isInfected: false,
   onClose: () => {},
-  onPressTracking: () => {},
+  onPressTracing: () => {},
   onPressLanguage: () => {},
   onPressTheme: () => {},
   onPressSupport: () => {},
@@ -323,10 +323,10 @@ Info.propTypes = {
     isRTL: PropTypes.bool,
   }).isRequired,
   theme: PropTypes.oneOf([commonThemes.names.dark, commonThemes.names.light, commonThemes.names.auto]).isRequired,
-  trackingEnabled: PropTypes.bool,
+  tracingEnabled: PropTypes.bool,
   isInfected: PropTypes.bool,
   onClose: PropTypes.func,
-  onPressTracking: PropTypes.func,
+  onPressTracing: PropTypes.func,
   onPressLanguage: PropTypes.func,
   onPressTheme: PropTypes.func,
   onPressSupport: PropTypes.func,

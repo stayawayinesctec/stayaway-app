@@ -9,9 +9,9 @@
  */
 
 import * as storage from './storage';
-import * as tracking from './tracking';
+import * as tracing from './tracing';
 import * as navigation from './navigation';
 import * as linking from './linking';
 
-export { storage, tracking, navigation, linking };
-export default { storage, tracking, navigation, linking };
+export { storage, tracing, navigation, linking };
+export default { storage, tracing, navigation, linking };

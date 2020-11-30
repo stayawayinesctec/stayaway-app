@@ -12,7 +12,7 @@ import { Platform } from 'react-native';
 import { runSaga } from 'redux-saga';
 import { RESULTS, requestNotifications, checkNotifications } from 'react-native-permissions';
 
-import TrackingManager from '@app/services/tracking';
+import TracingManager from '@app/services/tracing';
 
 import {
   checkNotificationsPermission,
@@ -31,7 +31,7 @@ import permissionsActions, {
 } from '@app/redux/permissions';
 
 // Mock storage file
-jest.mock('@app/services/tracking');
+jest.mock('@app/services/tracing');
 
 describe('Permissions Sagas', () => {
   describe('Check Notifications Permission', () => {
@@ -75,7 +75,7 @@ describe('Permissions Sagas', () => {
 
     it('should return granted', async () => {
       // Prepare
-      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
+      TracingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
 
       // Execute
       const dispatched = [];
@@ -85,12 +85,12 @@ describe('Permissions Sagas', () => {
 
       // Assert
       expect(result).toBe(RESULTS.GRANTED);
-      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
     });
 
     it('should return denied', async () => {
       // Prepare
-      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TracingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
 
       // Execute
       const dispatched = [];
@@ -100,7 +100,7 @@ describe('Permissions Sagas', () => {
 
       // Assert
       expect(result).toBe(RESULTS.DENIED);
-      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
     });
   });
   describe('Check Permission', () => {
@@ -190,7 +190,7 @@ describe('Permissions Sagas', () => {
     it('should return check battery permission on Android and return granted', async () => {
       // Prepare
       Platform.OS = 'android';
-      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
+      TracingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
 
       // Execute
       const dispatched = [];
@@ -199,7 +199,7 @@ describe('Permissions Sagas', () => {
       }, checkAllPermissions).toPromise();
 
       // Assert
-      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         permissionsActions.permissionGranted(BATTERY_PERMISSION),
@@ -209,7 +209,7 @@ describe('Permissions Sagas', () => {
     it('should return check battery permission on Android and return denied', async () => {
       // Prepare
       Platform.OS = 'android';
-      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TracingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
 
       // Execute
       const dispatched = [];
@@ -218,7 +218,7 @@ describe('Permissions Sagas', () => {
       }, checkAllPermissions).toPromise();
 
       // Assert
-      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         permissionsActions.permissionDenied(BATTERY_PERMISSION),
@@ -267,8 +267,8 @@ describe('Permissions Sagas', () => {
 
     it('should return granted', async () => {
       // Prepare
-      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
-      TrackingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
+      TracingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TracingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
 
       // Execute
       const dispatched = [];
@@ -278,14 +278,14 @@ describe('Permissions Sagas', () => {
 
       // Assert
       expect(result).toBe(RESULTS.GRANTED);
-      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
-      expect(TrackingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
     });
 
     it('should return denied', async () => {
       // Prepare
-      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
-      TrackingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.reject(false));
+      TracingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TracingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.reject(false));
 
       // Execute
       const dispatched = [];
@@ -295,8 +295,8 @@ describe('Permissions Sagas', () => {
 
       // Assert
       expect(result).toBe(RESULTS.DENIED);
-      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
-      expect(TrackingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
     });
   });
   describe('Request Permission', () => {
@@ -386,8 +386,8 @@ describe('Permissions Sagas', () => {
     it('should return request battery permission on Android and return granted', async () => {
       // Prepare
       Platform.OS = 'android';
-      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
-      TrackingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
+      TracingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TracingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(true));
 
       // Execute
       const dispatched = [];
@@ -396,8 +396,8 @@ describe('Permissions Sagas', () => {
       }, requestAllPermissions).toPromise();
 
       // Assert
-      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
-      expect(TrackingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         permissionsActions.permissionGranted(BATTERY_PERMISSION),
@@ -407,8 +407,8 @@ describe('Permissions Sagas', () => {
     it('should return request battery permission on Android and return denied', async () => {
       // Prepare
       Platform.OS = 'android';
-      TrackingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
-      TrackingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.reject(false));
+      TracingManager.isIgnoringBatteryOptimizationsPermission.mockImplementation(() => Promise.resolve(false));
+      TracingManager.requestIgnoreBatteryOptimizationsPermission.mockImplementation(() => Promise.reject(false));
 
       // Execute
       const dispatched = [];
@@ -417,8 +417,8 @@ describe('Permissions Sagas', () => {
       }, requestAllPermissions).toPromise();
 
       // Assert
-      expect(TrackingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
-      expect(TrackingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.isIgnoringBatteryOptimizationsPermission).toHaveBeenCalled();
+      expect(TracingManager.requestIgnoreBatteryOptimizationsPermission).toHaveBeenCalled();
       expect(dispatched).toHaveLength(2);
       expect(dispatched).toEqual([
         permissionsActions.permissionDenied(BATTERY_PERMISSION),

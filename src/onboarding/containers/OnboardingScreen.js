@@ -17,7 +17,7 @@ import Onboarding from '@onboarding/components/Onboarding';
 import accountActions from '@app/redux/account';
 import { isSettingUpNewAccount } from '@app/redux/account/selectors';
 
-import TrackingManager from '@app/services/tracking';
+import TracingManager from '@app/services/tracing';
 
 export default function OnboardingScreen () {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export default function OnboardingScreen () {
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      TrackingManager.deviceSupportsLocationlessScanning()
+      TracingManager.deviceSupportsLocationlessScanning()
       .then(result => setShouldShowLocationScreen(! result));
     }
   }, []);

@@ -24,16 +24,16 @@ describe('Info Screen', () => {
         <Info
           language={languages.EN}
           theme={AUTO}
-          trackingEnabled
+          tracingEnabled
           isInfected
         />,
       );
 
-      const trackingButton = queryByA11yLabel(i18n.translate('screens.settings.tracking.accessibility.label'));
+      const tracingButton = queryByA11yLabel(i18n.translate('screens.settings.tracing.accessibility.label'));
 
-      expect(trackingButton).toBeTruthy();
+      expect(tracingButton).toBeTruthy();
 
-      expect(trackingButton).toBeDisabled();
+      expect(tracingButton).toBeDisabled();
     });
     it('When infection status is not infected.', () => {
       const version = '1.1.1';
@@ -45,38 +45,38 @@ describe('Info Screen', () => {
           theme={AUTO}
           appVersion={version}
           appBuild={build}
-          trackingEnabled
+          tracingEnabled
         />,
       );
 
       const versionLabel = queryByText(i18n.translate('screens.settings.version', { version, build }));
-      const trackingButton = queryByA11yLabel(i18n.translate('screens.settings.tracking.accessibility.label'));
+      const tracingButton = queryByA11yLabel(i18n.translate('screens.settings.tracing.accessibility.label'));
 
       expect(versionLabel).toBeTruthy();
-      expect(trackingButton).toBeTruthy();
+      expect(tracingButton).toBeTruthy();
 
-      expect(trackingButton).toBeEnabled();
+      expect(tracingButton).toBeEnabled();
     });
-    it('When tracking is enabled.', () => {
+    it('When tracing is enabled.', () => {
       const { queryByText, queryByA11yLabel } = render(
         <Info
           language={languages.EN}
           theme={AUTO}
-          trackingEnabled
+          tracingEnabled
         />,
       );
 
-      const trackingSwitch = queryByA11yLabel(i18n.translate('screens.settings.tracking.accessibility.label'));
-      const trackingText = queryByText(i18n.translate('common.words.enabled'));
-      const descriptionText = queryByText(i18n.translate('screens.settings.tracking.description.enabled'));
+      const tracingSwitch = queryByA11yLabel(i18n.translate('screens.settings.tracing.accessibility.label'));
+      const tracingText = queryByText(i18n.translate('common.words.enabled'));
+      const descriptionText = queryByText(i18n.translate('screens.settings.tracing.description.enabled'));
 
-      expect(trackingText).toBeTruthy();
-      expect(trackingSwitch).toBeTruthy();
+      expect(tracingText).toBeTruthy();
+      expect(tracingSwitch).toBeTruthy();
       expect(descriptionText).toBeTruthy();
 
-      expect(trackingSwitch.props.accessibilityValue.text).toBe(true);
+      expect(tracingSwitch.props.accessibilityValue.text).toBe(true);
     });
-    it('When tracking is disabled.', () => {
+    it('When tracing is disabled.', () => {
       const { queryByText, queryByA11yLabel } = render(
         <Info
           language={languages.EN}
@@ -84,22 +84,22 @@ describe('Info Screen', () => {
         />,
       );
 
-      const trackingSwitch = queryByA11yLabel(i18n.translate('screens.settings.tracking.accessibility.label'));
-      const trackingText = queryByText(i18n.translate('common.words.disabled'));
-      const descriptionText = queryByText(i18n.translate('screens.settings.tracking.description.disabled'));
+      const tracingSwitch = queryByA11yLabel(i18n.translate('screens.settings.tracing.accessibility.label'));
+      const tracingText = queryByText(i18n.translate('common.words.disabled'));
+      const descriptionText = queryByText(i18n.translate('screens.settings.tracing.description.disabled'));
 
-      expect(trackingText).toBeTruthy();
-      expect(trackingSwitch).toBeTruthy();
+      expect(tracingText).toBeTruthy();
+      expect(tracingSwitch).toBeTruthy();
       expect(descriptionText).toBeTruthy();
 
-      expect(trackingSwitch.props.accessibilityValue.text).toBe(false);
+      expect(tracingSwitch.props.accessibilityValue.text).toBe(false);
     });
     it('When language is EN.', () => {
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
           theme={AUTO}
-          trackingEnabled
+          tracingEnabled
         />,
       );
 
@@ -114,7 +114,7 @@ describe('Info Screen', () => {
         <Info
           language={languages.PT}
           theme={AUTO}
-          trackingEnabled
+          tracingEnabled
         />,
       );
 
@@ -129,7 +129,7 @@ describe('Info Screen', () => {
         <Info
           language={languages.EN}
           theme={theme}
-          trackingEnabled
+          tracingEnabled
         />,
       );
 
@@ -147,7 +147,7 @@ describe('Info Screen', () => {
         <Info
           language={languages.EN}
           theme={AUTO}
-          trackingEnabled
+          tracingEnabled
           onClose={onClose}
         />,
       );
@@ -158,22 +158,22 @@ describe('Info Screen', () => {
       fireEvent.press(closeButton);
       expect(onClose).toHaveBeenCalled();
     });
-    it('When press tracking button.', () => {
-      const onPressTracking = jest.fn();
+    it('When press tracing button.', () => {
+      const onPressTracing = jest.fn();
       const { queryByA11yLabel } = render(
         <Info
           language={languages.EN}
           theme={AUTO}
-          trackingEnabled
-          onPressTracking={onPressTracking}
+          tracingEnabled
+          onPressTracing={onPressTracing}
         />,
       );
 
-      const trackingButton = queryByA11yLabel(i18n.translate('screens.settings.tracking.accessibility.label'));
+      const tracingButton = queryByA11yLabel(i18n.translate('screens.settings.tracing.accessibility.label'));
 
-      expect(trackingButton).toBeTruthy();
-      fireEvent.press(trackingButton);
-      expect(onPressTracking).toHaveBeenCalled();
+      expect(tracingButton).toBeTruthy();
+      fireEvent.press(tracingButton);
+      expect(onPressTracing).toHaveBeenCalled();
     });
     it('When press language button.', () => {
       const onPressLanguage = jest.fn();
@@ -181,7 +181,7 @@ describe('Info Screen', () => {
         <Info
           language={languages.PT}
           theme={AUTO}
-          trackingEnabled
+          tracingEnabled
           onPressLanguage={onPressLanguage}
         />,
       );
@@ -198,7 +198,7 @@ describe('Info Screen', () => {
         <Info
           language={languages.EN}
           theme={theme}
-          trackingEnabled
+          tracingEnabled
           onPressTheme={onPressTheme}
         />,
       );
@@ -215,7 +215,7 @@ describe('Info Screen', () => {
         <Info
           language={languages.EN}
           theme={AUTO}
-          trackingEnabled
+          tracingEnabled
           onPressSupport={onPressSupport}
         />,
       );
@@ -232,7 +232,7 @@ describe('Info Screen', () => {
         <Info
           language={languages.EN}
           theme={AUTO}
-          trackingEnabled
+          tracingEnabled
           onPressHowToUse={onPressHowToUse}
         />,
       );
@@ -249,7 +249,7 @@ describe('Info Screen', () => {
         <Info
           language={languages.EN}
           theme={AUTO}
-          trackingEnabled
+          tracingEnabled
           onPressFaqs={onPressFaqs}
         />,
       );

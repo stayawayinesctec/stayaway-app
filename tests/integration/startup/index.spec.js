@@ -14,8 +14,8 @@ import Moment from 'moment';
 
 import onboardingActions from '@app/redux/onboarding';
 import startupActions from '@app/redux/startup';
-import accountActions, { TRACKING_RESULTS } from '@app/redux/account';
-import TrackingManager, { ERRORS } from '@app/services/tracking';
+import accountActions, { TRACING_RESULTS } from '@app/redux/account';
+import TracingManager, { ERRORS } from '@app/services/tracing';
 
 import { AUTO } from '@app/common/theme';
 
@@ -28,7 +28,7 @@ import {
 
 // Mock storage file
 jest.mock('@app/services/storage');
-jest.mock('@app/services/tracking');
+jest.mock('@app/services/tracing');
 
 describe('Startup Sagas', () => {
   describe('Startup', () => {
@@ -67,7 +67,7 @@ describe('Startup Sagas', () => {
         startupActions.setAppLaunched(true),
       ]);
     });
-    it('should restore last saved configurations when with tracking disabled', async () => {
+    it('should restore last saved configurations when with tracing disabled', async () => {
       // Prepare
       const signUpDate = new Moment().toJSON();
       const status = {
@@ -77,7 +77,7 @@ describe('Startup Sagas', () => {
         exposureDays: [],
       };
 
-      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
+      TracingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(false));
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'language') {
@@ -107,7 +107,7 @@ describe('Startup Sagas', () => {
       await saga.toPromise();
 
       // Assert
-      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+      expect(TracingManager.isTracingEnabled).toHaveBeenCalled();
 
       expect(Storage.hasItem).toHaveBeenCalledTimes(3);
       expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
@@ -127,11 +127,11 @@ describe('Startup Sagas', () => {
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
-        accountActions.setTrackingEnabled(false),
+        accountActions.setTracingEnabled(false),
         startupActions.setAppLaunched(true),
       ]);
     });
-    it('should restore last saved configurations when with tracking enabled and start tracking returns success', async () => {
+    it('should restore last saved configurations when with tracing enabled and start tracing returns success', async () => {
       // Prepare
       const signUpDate = new Moment().toJSON();
       const status = {
@@ -141,7 +141,7 @@ describe('Startup Sagas', () => {
         exposureDays: [],
       };
 
-      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
+      TracingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'language') {
@@ -168,11 +168,11 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
         }, startup);
-      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
+      channel.put(accountActions.startTracingResult(TRACING_RESULTS.SUCCESS));
       await saga.toPromise();
 
       // Assert
-      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+      expect(TracingManager.isTracingEnabled).toHaveBeenCalled();
 
       expect(Storage.hasItem).toHaveBeenCalledTimes(3);
       expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
@@ -192,12 +192,12 @@ describe('Startup Sagas', () => {
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
-        accountActions.startTracking(),
-        accountActions.setTrackingEnabled(true),
+        accountActions.startTracing(),
+        accountActions.setTracingEnabled(true),
         startupActions.setAppLaunched(true),
       ]);
     });
-    it('should restore last saved configurations when with tracking enabled and start tracking returns GAEN error', async () => {
+    it('should restore last saved configurations when with tracing enabled and start tracing returns GAEN error', async () => {
       // Prepare
       const signUpDate = new Moment().toJSON();
       const status = {
@@ -207,7 +207,7 @@ describe('Startup Sagas', () => {
         exposureDays: [],
       };
 
-      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
+      TracingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'language') {
@@ -234,11 +234,11 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, startup);
-      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.GAEN));
+      channel.put(accountActions.startTracingResult(TRACING_RESULTS.GAEN));
       await saga.toPromise();
 
       // Assert
-      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+      expect(TracingManager.isTracingEnabled).toHaveBeenCalled();
 
       expect(Storage.hasItem).toHaveBeenCalledTimes(3);
       expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
@@ -258,13 +258,13 @@ describe('Startup Sagas', () => {
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
-        accountActions.startTracking(),
-        accountActions.setTrackingEnabled(false),
+        accountActions.startTracing(),
+        accountActions.setTracingEnabled(false),
         accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]),
         startupActions.setAppLaunched(true),
       ]);
     });
-    it('should restore last saved configurations when with tracking enabled and start tracking returns failed', async () => {
+    it('should restore last saved configurations when with tracing enabled and start tracing returns failed', async () => {
       // Prepare
       const signUpDate = new Moment().toJSON();
       const status = {
@@ -274,7 +274,7 @@ describe('Startup Sagas', () => {
         exposureDays: [],
       };
 
-      TrackingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
+      TracingManager.isTracingEnabled.mockImplementation(() => Promise.resolve(true));
       Storage.hasItem.mockImplementation(() => Promise.resolve(true));
       Storage.getItem.mockImplementation((arg) => {
         if (arg === 'language') {
@@ -301,11 +301,11 @@ describe('Startup Sagas', () => {
         channel,
         dispatch: (action) => dispatched.push(action),
       }, startup);
-      channel.put(accountActions.startTrackingResult(TRACKING_RESULTS.FAILED));
+      channel.put(accountActions.startTracingResult(TRACING_RESULTS.FAILED));
       await saga.toPromise();
 
       // Assert
-      expect(TrackingManager.isTracingEnabled).toHaveBeenCalled();
+      expect(TracingManager.isTracingEnabled).toHaveBeenCalled();
 
       expect(Storage.hasItem).toHaveBeenCalledTimes(3);
       expect(Storage.hasItem).toHaveBeenNthCalledWith(1, 'language');
@@ -325,8 +325,8 @@ describe('Startup Sagas', () => {
         accountActions.setSignUpDate(signUpDate),
         accountActions.updateStatus(status),
         onboardingActions.setOnboarding(false),
-        accountActions.startTracking(),
-        accountActions.setTrackingEnabled(false),
+        accountActions.startTracing(),
+        accountActions.setTracingEnabled(false),
         startupActions.setAppLaunched(true),
       ]);
     });

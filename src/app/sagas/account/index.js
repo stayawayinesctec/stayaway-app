@@ -17,16 +17,16 @@ import SplashScreen from 'react-native-splash-screen';
 
 import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
-import TrackingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracking';
+import TracingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracing';
 import i18n from '@app/services/i18n';
 import Linking from '@app/services/linking';
 
 import AppRoutes from '@app/navigation/routes';
 
 import modalsActions, { modalsTypes } from '@app/redux/modals';
-import accountActions, { accountTypes, TRACKING_RESULTS } from '@app/redux/account';
+import accountActions, { accountTypes, TRACING_RESULTS } from '@app/redux/account';
 import onboardingActions from '@app/redux/onboarding';
-import { isTrackingEnabled, getStatus } from '@app/redux/account/selectors';
+import { isTracingEnabled, getStatus } from '@app/redux/account/selectors';
 import permissionsActions, { permissionsTypes } from '@app/redux/permissions';
 
 export function* setupNewAccount() {
@@ -50,7 +50,7 @@ export function* setupNewAccount() {
     yield take(permissionsTypes.REQUEST_ALL_PERMISSIONS_RESULT);
   }
 
-  // Start tracking manager
+  // Start tracing manager
   if (Configuration.UI) {
     yield put(accountActions.updateStatus({
       lastSyncDate: Moment().toJSON(),
@@ -60,19 +60,19 @@ export function* setupNewAccount() {
     }));
   }
 
-  yield put(accountActions.startTracking());
-  const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+  yield put(accountActions.startTracing());
+  const { payload } = yield take(accountTypes.START_TRACING_RESULT);
 
-  if (payload === TRACKING_RESULTS.SUCCESS) {
-    // Set tracking activated
-    yield put(accountActions.setTrackingEnabled(true));
-  } else if (payload === TRACKING_RESULTS.GAEN) {
-    yield put(accountActions.setTrackingEnabled(false));
+  if (payload === TRACING_RESULTS.SUCCESS) {
+    // Set tracing activated
+    yield put(accountActions.setTracingEnabled(true));
+  } else if (payload === TRACING_RESULTS.GAEN) {
+    yield put(accountActions.setTracingEnabled(false));
 
-    // Add tracking error
+    // Add tracing error
     yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
   } else {
-    yield put(accountActions.setTrackingEnabled(false));
+    yield put(accountActions.setTracingEnabled(false));
   }
 
   // Update new account redux
@@ -87,15 +87,15 @@ export function* setupNewAccount() {
   NavigationService.navigate(AppRoutes.APP);
 }
 
-export function* watchTrackingStatus() {
+export function* watchTracingStatus() {
   // Set event listener value
   const channel = eventChannel((emitter) => {
-    TrackingManager.addUpdateEventListener(emitter);
-    return () => TrackingManager.removeUpdateEventListener();
+    TracingManager.addUpdateEventListener(emitter);
+    return () => TracingManager.removeUpdateEventListener();
   });
 
   try {
-    yield put(accountActions.trackingStatusListenerRegistered());
+    yield put(accountActions.tracingStatusListenerRegistered());
 
     while (true) {
       const status = yield take(channel);
@@ -110,21 +110,21 @@ export function* watchTrackingStatus() {
   }
 }
 
-export function* startTracking() {
+export function* startTracing() {
   if (Configuration.UI) {
-    yield put(accountActions.setTrackingEnabled(true));
-    yield put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
-    yield take(accountTypes.STOP_TRACKING);
-    yield put(accountActions.stopTrackingResult(TRACKING_RESULTS.SUCCESS));
+    yield put(accountActions.setTracingEnabled(true));
+    yield put(accountActions.startTracingResult(TRACING_RESULTS.SUCCESS));
+    yield take(accountTypes.STOP_TRACING);
+    yield put(accountActions.stopTracingResult(TRACING_RESULTS.SUCCESS));
     return;
   }
 
-  const watcher = yield fork(watchTrackingStatus);
+  const watcher = yield fork(watchTracingStatus);
 
   // Wait for listener to registered
-  yield take(accountTypes.TRACKING_STATUS_LISTENER_REGISTERED);
+  yield take(accountTypes.TRACING_STATUS_LISTENER_REGISTERED);
   try {
-    const result = yield call(TrackingManager.start);
+    const result = yield call(TracingManager.start);
 
     if (result === GAEN_RESULTS.EN_CANCELLED) {
       if (Platform.OS === 'android') {
@@ -141,16 +141,16 @@ export function* startTracking() {
         );
       }
 
-      yield put(accountActions.startTrackingResult(TRACKING_RESULTS.GAEN));
+      yield put(accountActions.startTracingResult(TRACING_RESULTS.GAEN));
       yield cancel(watcher);
       return;
     }
 
     try {
-      yield call(TrackingManager.sync);
+      yield call(TracingManager.sync);
 
       // Get status
-      const status = yield call(TrackingManager.getStatus);
+      const status = yield call(TracingManager.getStatus);
       yield put(accountActions.updateStatus(status));
     } catch (error) {
       // Sync error. Probably exposure check limit reached.
@@ -159,22 +159,22 @@ export function* startTracking() {
       console.log(error);
     }
 
-    yield put(accountActions.startTrackingResult(TRACKING_RESULTS.SUCCESS));
+    yield put(accountActions.startTracingResult(TRACING_RESULTS.SUCCESS));
   } catch (error) {
     console.log(error);
-    yield put(accountActions.startTrackingResult(TRACKING_RESULTS.FAILED));
+    yield put(accountActions.startTracingResult(TRACING_RESULTS.FAILED));
     yield cancel(watcher);
     return;
   }
 
   try {
-    yield take(accountTypes.STOP_TRACKING);
+    yield take(accountTypes.STOP_TRACING);
     yield cancel(watcher);
-    yield call(TrackingManager.stop);
-    yield put(accountActions.stopTrackingResult(TRACKING_RESULTS.SUCCESS));
+    yield call(TracingManager.stop);
+    yield put(accountActions.stopTracingResult(TRACING_RESULTS.SUCCESS));
   } catch (error) {
     console.log(error);
-    yield put(accountActions.stopTrackingResult('ERROR'));
+    yield put(accountActions.stopTracingResult('ERROR'));
   }
 }
 
@@ -193,7 +193,7 @@ export function* submitDiagnosis({ payload: code }) {
       yield put(accountActions.setInfectionStatus(INFECTION_STATUS.INFECTED));
 
       // Stop tracing
-      yield put(accountActions.setTrackingEnabled(false));
+      yield put(accountActions.setTracingEnabled(false));
 
       yield put(accountActions.submitDiagnosisDone());
       yield put(modalsActions.closeLoadingModal());
@@ -203,7 +203,7 @@ export function* submitDiagnosis({ payload: code }) {
     }
 
     // Submit exposed code
-    const result = yield call(TrackingManager.exposed, code);
+    const result = yield call(TracingManager.exposed, code);
 
     if (result === GAEN_RESULTS.EN_CANCELLED) {
       if (Platform.OS === 'android') {
@@ -231,8 +231,8 @@ export function* submitDiagnosis({ payload: code }) {
     yield take(accountTypes.UPDATE_STATUS_RESULT);
 
     // Stop tracing
-    yield call(TrackingManager.removeUpdateEventListener);
-    yield put(accountActions.setTrackingEnabled(false));
+    yield call(TracingManager.removeUpdateEventListener);
+    yield put(accountActions.setTracingEnabled(false));
 
     yield put(accountActions.submitDiagnosisDone());
     yield put(modalsActions.closeLoadingModal());
@@ -260,12 +260,12 @@ export function* submitDiagnosis({ payload: code }) {
   }
 }
 
-export function* switchTracking() {
-  const trackingEnabled = yield select(isTrackingEnabled);
-  if (trackingEnabled) {
-    yield put(accountActions.stopTracking());
-    yield take(accountTypes.STOP_TRACKING_RESULT);
-    yield put(accountActions.setTrackingEnabled(false));
+export function* switchTracing() {
+  const tracingEnabled = yield select(isTracingEnabled);
+  if (tracingEnabled) {
+    yield put(accountActions.stopTracing());
+    yield take(accountTypes.STOP_TRACING_RESULT);
+    yield put(accountActions.setTracingEnabled(false));
     yield put(accountActions.setErrors([]));
     return;
   }
@@ -294,21 +294,21 @@ export function* switchTracking() {
         );
       }
 
-      // Set tracking deactivated
-      yield put(accountActions.setTrackingEnabled(false));
+      // Set tracing deactivated
+      yield put(accountActions.setTracingEnabled(false));
       return;
     }
   }
 
-  // Start tracking manager
-  yield put(accountActions.startTracking());
-  const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+  // Start tracing manager
+  yield put(accountActions.startTracing());
+  const { payload } = yield take(accountTypes.START_TRACING_RESULT);
 
-  if (payload === TRACKING_RESULTS.SUCCESS) {
-    // Set tracking activated
-    yield put(accountActions.setTrackingEnabled(true));
+  if (payload === TRACING_RESULTS.SUCCESS) {
+    // Set tracing activated
+    yield put(accountActions.setTracingEnabled(true));
   } else {
-    yield put(accountActions.setTrackingEnabled(false));
+    yield put(accountActions.setTracingEnabled(false));
   }
 }
 
@@ -325,19 +325,19 @@ export function* updateStatus({ payload: status }) {
         // Check if has passed 14 days after last exposure
         const fourteenDaysAgo = Moment().startOf('day').subtract(14, 'days');
         if (Moment(exposedDate).isBefore(fourteenDaysAgo)) {
-          yield call(TrackingManager.resetExposureDays);
+          yield call(TracingManager.resetExposureDays);
         }
       }
     }
 
     // Check GAEN toggle
     if (status.errors.includes(ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED)) {
-      yield put(accountActions.setTrackingEnabled(false));
+      yield put(accountActions.setTracingEnabled(false));
     } else {
-      const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
+      const isTracingEnabled = yield call(TracingManager.isTracingEnabled);
 
       if (isTracingEnabled) {
-        yield put(accountActions.setTrackingEnabled(true));
+        yield put(accountActions.setTracingEnabled(true));
       }
     }
   }
@@ -380,10 +380,10 @@ export function* updateLanguage({ payload: languageTag }) {
 }
 
 export function* enableExposureNotifications() {
-  yield put(accountActions.startTracking());
-  const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+  yield put(accountActions.startTracing());
+  const { payload } = yield take(accountTypes.START_TRACING_RESULT);
 
-  if (payload !== TRACKING_RESULTS.SUCCESS) {
+  if (payload !== TRACING_RESULTS.SUCCESS) {
     if (Platform.OS === 'ios') {
       Linking.openURL('app-settings://');
     }
@@ -391,23 +391,23 @@ export function* enableExposureNotifications() {
 }
 
 export function* requestIgnoreBatteryOptimizations() {
-  yield call(TrackingManager.requestIgnoreBatteryOptimizationsPermission);
+  yield call(TracingManager.requestIgnoreBatteryOptimizationsPermission);
 }
 
 function* watchSetupNewAccount() {
   yield takeLatest(accountTypes.SETUP_NEW_ACCOUNT_REQUEST, setupNewAccount);
 }
 
-function* watchStartTracking() {
-  yield takeLatest(accountTypes.START_TRACKING, startTracking);
+function* watchStartTracing() {
+  yield takeLatest(accountTypes.START_TRACING, startTracing);
 }
 
 function* watchSubmitDiagnosisRequests() {
   yield takeLatest(accountTypes.SUBMIT_DIAGNOSIS_REQUEST, submitDiagnosis);
 }
 
-function* watchSwitchTracking() {
-  yield takeLatest(accountTypes.SWITCH_TRACKING, switchTracking);
+function* watchSwitchTracing() {
+  yield takeLatest(accountTypes.SWITCH_TRACING, switchTracing);
 }
 
 function* watchUpdateStatus() {
@@ -436,9 +436,9 @@ function* watchRequestIgnoreBatteryOptimizations() {
 
 export default function* root() {
   yield fork(watchSetupNewAccount);
-  yield fork(watchStartTracking);
+  yield fork(watchStartTracing);
   yield fork(watchSubmitDiagnosisRequests);
-  yield fork(watchSwitchTracking);
+  yield fork(watchSwitchTracing);
   yield fork(watchUpdateStatus);
   yield fork(watchSetErrors);
   yield fork(watchSetInfectionStatus);

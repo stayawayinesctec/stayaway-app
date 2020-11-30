@@ -18,7 +18,7 @@ import permissionsActions, {
   permissionsTypes,
 } from '@app/redux/permissions';
 
-import TrackingManager from '@app/services/tracking';
+import TracingManager from '@app/services/tracing';
 
 export function* checkNotificationsPermission() {
   const { status } = yield call(checkNotifications);
@@ -27,7 +27,7 @@ export function* checkNotificationsPermission() {
 }
 
 export function* checkBatteryPermission() {
-  const result = yield call(TrackingManager.isIgnoringBatteryOptimizationsPermission);
+  const result = yield call(TracingManager.isIgnoringBatteryOptimizationsPermission);
 
   if (result) {
     return RESULTS.GRANTED;
@@ -98,8 +98,8 @@ export function* requestNotificationsPermission() {
 
 export function* requestBatteryPermission() {
   try {
-    if (! (yield call(TrackingManager.isIgnoringBatteryOptimizationsPermission))) {
-        yield call(TrackingManager.requestIgnoreBatteryOptimizationsPermission);
+    if (! (yield call(TracingManager.isIgnoringBatteryOptimizationsPermission))) {
+        yield call(TracingManager.requestIgnoreBatteryOptimizationsPermission);
     }
 
     return RESULTS.GRANTED;

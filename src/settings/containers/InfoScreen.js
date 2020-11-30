@@ -21,7 +21,7 @@ import i18n, { languages } from '@app/services/i18n';
 import { themes as commonThemes } from '@app/common/theme';
 
 import {
-  isTrackingEnabled,
+  isTracingEnabled,
   isInfected,
   getLanguage,
   getTheme,
@@ -30,11 +30,11 @@ import accountActions from '@app/redux/account';
 
 import AppRoutes from '@app/navigation/routes';
 
-import TrackingManager from '@app/services/tracking';
+import TracingManager from '@app/services/tracing';
 
 export default function InfoScreen () {
   const dispatch = useDispatch();
-  const trackingEnabled = useSelector(isTrackingEnabled);
+  const tracingEnabled = useSelector(isTracingEnabled);
   const language = useSelector(getLanguage);
   const theme = useSelector(getTheme);
 
@@ -51,7 +51,7 @@ export default function InfoScreen () {
   });
 
   useEffect(() => {
-    TrackingManager.getInfo()
+    TracingManager.getInfo()
     .then(({
       OSVersion,
       deviceModel,
@@ -68,14 +68,14 @@ export default function InfoScreen () {
   const getSupportEmailFormat = () => `mailto:${supportEmail}?subject=${subject}&body=${body}`;
 
   const props = {
-    trackingEnabled,
+    tracingEnabled,
     language,
     theme,
     appVersion,
     appBuild,
     isInfected: useSelector(isInfected),
     onClose: () => NavigationService.navigate(AppRoutes.HOME),
-    onPressTracking: () => dispatch(accountActions.switchTracking()),
+    onPressTracing: () => dispatch(accountActions.switchTracing()),
     onPressLanguage: ({id: choosedLanguage, label}) => {
       if (choosedLanguage) {
         if (choosedLanguage !== language.languageTag) {

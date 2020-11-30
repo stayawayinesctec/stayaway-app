@@ -15,7 +15,7 @@ import Storage from '@app/services/storage';
 
 import { AUTO } from '@app/common/theme';
 
-export const TRACKING_RESULTS = {
+export const TRACING_RESULTS = {
   SUCCESS: 'SUCCESS',
   FAILED: 'FAILED',
   GAEN: 'GAEN',
@@ -23,7 +23,7 @@ export const TRACKING_RESULTS = {
 
 const types = mirrorCreator([
   'SET_SIGN_UP_DATE',
-  'SET_TRACKING_ENABLED',
+  'SET_TRACING_ENABLED',
   'SET_STATUS',
   'SET_ERRORS',
   'SET_INFECTION_STATUS',
@@ -37,22 +37,22 @@ const types = mirrorCreator([
   'SETUP_NEW_ACCOUNT_PENDING',
   'SETUP_NEW_ACCOUNT_ERROR',
   'SETUP_NEW_ACCOUNT_DONE',
-  'START_TRACKING',
-  'START_TRACKING_RESULT',
-  'STOP_TRACKING',
-  'STOP_TRACKING_RESULT',
+  'START_TRACING',
+  'START_TRACING_RESULT',
+  'STOP_TRACING',
+  'STOP_TRACING_RESULT',
   'SUBMIT_DIAGNOSIS_REQUEST',
   'SUBMIT_DIAGNOSIS_PENDING',
   'SUBMIT_DIAGNOSIS_ERROR',
   'SUBMIT_DIAGNOSIS_DONE',
-  'SWITCH_TRACKING',
-  'TRACKING_STATUS_LISTENER_REGISTERED',
+  'SWITCH_TRACING',
+  'TRACING_STATUS_LISTENER_REGISTERED',
   'REQUEST_IGNORE_BATTERY_OPTIMIZATIONS',
 ]);
 
 export const creators = createActions(
   types.SET_SIGN_UP_DATE,
-  types.SET_TRACKING_ENABLED,
+  types.SET_TRACING_ENABLED,
   types.SET_STATUS,
   types.SET_ERRORS,
   types.SET_INFECTION_STATUS,
@@ -65,22 +65,22 @@ export const creators = createActions(
   types.SETUP_NEW_ACCOUNT_REQUEST,
   types.SETUP_NEW_ACCOUNT_PENDING,
   types.SETUP_NEW_ACCOUNT_DONE,
-  types.START_TRACKING,
-  types.START_TRACKING_RESULT,
-  types.STOP_TRACKING,
-  types.STOP_TRACKING_RESULT,
+  types.START_TRACING,
+  types.START_TRACING_RESULT,
+  types.STOP_TRACING,
+  types.STOP_TRACING_RESULT,
   types.SUBMIT_DIAGNOSIS_REQUEST,
   types.SUBMIT_DIAGNOSIS_PENDING,
   types.SUBMIT_DIAGNOSIS_ERROR,
   types.SUBMIT_DIAGNOSIS_DONE,
-  types.SWITCH_TRACKING,
-  types.TRACKING_STATUS_LISTENER_REGISTERED,
+  types.SWITCH_TRACING,
+  types.TRACING_STATUS_LISTENER_REGISTERED,
   types.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
 );
 
 export const initialState = {
   signUpDate: '',
-  trackingEnabled: false,
+  tracingEnabled: false,
   status: {},
   settingUpNewAccount: {
     loading: false,
@@ -103,12 +103,12 @@ export const reducer = handleActions(
         signUpDate,
       });
     },
-    [types.SET_TRACKING_ENABLED]: (state, { payload: trackingEnabled }) => {
-      Storage.setItem('tracking_enabled', trackingEnabled.toString());
+    [types.SET_TRACING_ENABLED]: (state, { payload: tracingEnabled }) => {
+      Storage.setItem('tracing_enabled', tracingEnabled.toString());
 
       return Object.freeze({
         ...state,
-        trackingEnabled,
+        tracingEnabled,
       });
     },
     [types.SET_STATUS]: (state, { payload: status }) => {

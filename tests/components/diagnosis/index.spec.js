@@ -12,7 +12,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
 import i18n from '@app/services/i18n';
-import { INFECTION_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracing';
 
 import Diagnosis from '@main/components/Diagnosis';
 

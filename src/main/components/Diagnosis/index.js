@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import CodeInput from '@main/components/Diagnosis/CodeInput';
 import Completed from '@main/components/Diagnosis/Completed';
 
-import { INFECTION_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracing';
 
 export default function Diagnosis (props) {
   const { infectionStatus } = props;

@@ -12,7 +12,7 @@ import { Platform } from 'react-native';
 import { createSelector } from 'reselect';
 import Moment from 'moment';
 
-import { INFECTION_STATUS, ERRORS } from '@app/services/tracking';
+import { INFECTION_STATUS, ERRORS } from '@app/services/tracing';
 
 const SERVICE_ERRORS = [
   ERRORS[Platform.OS].BLE_DISABLED,
@@ -26,9 +26,9 @@ export const getSignUpDate = createSelector(
   account => Moment(account.signUpDate),
 );
 
-export const isTrackingEnabled = createSelector(
+export const isTracingEnabled = createSelector(
   state => state.account,
-  account => account.trackingEnabled,
+  account => account.tracingEnabled,
 );
 
 export const getStatus = createSelector(
@@ -123,7 +123,7 @@ export const getTheme = createSelector(
 
 export default {
   getSignUpDate,
-  isTrackingEnabled,
+  isTracingEnabled,
   getStatus,
   getLastSync,
   getInfectionStatus,

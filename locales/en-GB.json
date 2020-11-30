@@ -163,7 +163,7 @@
             }
           }
         },
-        "tracking": {
+        "tracing": {
           "title": "Monitoring disabled",
           "message": "Enable monitoring to allow STAYAWAY COVID to work properly.",
           "label": "Enable monitoring",
@@ -197,7 +197,7 @@
       }
     },
     "settings": {
-      "tracking": {
+      "tracing": {
         "label": "Monitoring",
         "description": {
           "enabled": "Turning monitoring off will stop the app and the contact detection mechanism.",

@@ -27,7 +27,7 @@ import SupportIcon from '@app/common/components/SupportIcon';
 import { colors as commonColors, sizes, iconSizes } from '@app/common/theme';
 
 import i18n from '@app/services/i18n';
-import { INFECTION_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracing';
 
 const styles = (colors, insets) => StyleSheet.create({
   imageContainer: {

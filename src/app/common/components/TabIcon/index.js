@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 import { ThemeConsumer } from '@app/contexts/Theme';
 
 import accountActions from '@app/redux/account';
-import { isExposed, isTrackingEnabled, hasServicesErrors } from '@app/redux/account/selectors';
+import { isExposed, isTracingEnabled, hasServicesErrors } from '@app/redux/account/selectors';
 
 import AppRoutes from '@app/navigation/routes';
 
@@ -60,13 +60,13 @@ export default function TabIcon(props) {
 
   const exposed = useSelector(isExposed);
   const hasErrors = useSelector(hasServicesErrors);
-  const trackingEnabled = useSelector(isTrackingEnabled);
+  const tracingEnabled = useSelector(isTracingEnabled);
 
   const target = useRef(null);
   const parent = useRef(null);
 
   const onPress = () => NavigationService.navigate(AppRoutes.HOME);
-  const onLongPress = () => dispatch(accountActions.switchTracking());
+  const onLongPress = () => dispatch(accountActions.switchTracing());
 
   let showTooltip = () => {};
 
@@ -114,7 +114,7 @@ export default function TabIcon(props) {
             iconColor = colors.tabBarHomeExposedCircleColor;
           }
 
-          if (hasErrors || !trackingEnabled) {
+          if (hasErrors || !tracingEnabled) {
             pulseColor = colors.tabBarHomeErrorPulseColor;
             iconColor = colors.tabBarHomeErrorCircleColor;
           }
@@ -126,7 +126,7 @@ export default function TabIcon(props) {
             >
               <PulseIndicator
                 useNativeDriver
-                animating={trackingEnabled && !hasErrors}
+                animating={tracingEnabled && !hasErrors}
                 color={pulseColor}
                 animationDuration={2000}
                 size={iconSizes.size96 * 2}

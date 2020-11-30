@@ -20,7 +20,7 @@ import Icon from '@app/common/components/Icon';
 import NavigationService from '@app/services/navigation';
 import Configuration from '@app/services/configuration';
 import i18n from '@app/services/i18n';
-import TrackingManager, { INFECTION_STATUS } from '@app/services/tracking';
+import TracingManager, { INFECTION_STATUS } from '@app/services/tracing';
 import Linking from '@app/services/linking';
 
 import { iconSizes } from '@app/common/theme';
@@ -29,7 +29,7 @@ import accountActions from '@app/redux/account';
 import {
   getInfectionStatus,
   getLastSync,
-  isTrackingEnabled,
+  isTracingEnabled,
   hasBluetoothDisabledError,
   hasLocationDisabledError,
   hasBatteryOptimizerError,
@@ -41,7 +41,7 @@ import AppRoutes from '@app/navigation/routes';
 export default function HomeScreen () {
   const dispatch = useDispatch();
 
-  const trackingEnabled = useSelector(isTrackingEnabled);
+  const tracingEnabled = useSelector(isTracingEnabled);
   const infectionStatus = useSelector(getInfectionStatus);
   const hasBluetoothError = useSelector(hasBluetoothDisabledError);
   const hasLocationError = useSelector(hasLocationDisabledError);
@@ -76,19 +76,19 @@ export default function HomeScreen () {
           onPress: () => dispatch(accountActions.enableExposureNotifications()),
         },
       };
-    } else if (! trackingEnabled) {
+    } else if (! tracingEnabled) {
       error = {
         status: true,
-        title: i18n.translate('screens.home.errors.tracking.title'),
-        message: i18n.translate('screens.home.errors.tracking.message'),
+        title: i18n.translate('screens.home.errors.tracing.title'),
+        message: i18n.translate('screens.home.errors.tracing.message'),
         icon: (colors) => <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />,
         main: {
-          label: i18n.translate('screens.home.errors.tracking.label'),
+          label: i18n.translate('screens.home.errors.tracing.label'),
           accessibility: {
-            label: i18n.translate('screens.home.errors.tracking.accessibility.label'),
-            hint: i18n.translate('screens.home.errors.tracking.accessibility.hint'),
+            label: i18n.translate('screens.home.errors.tracing.accessibility.label'),
+            hint: i18n.translate('screens.home.errors.tracing.accessibility.hint'),
           },
-          onPress: () => dispatch(accountActions.startTracking()),
+          onPress: () => dispatch(accountActions.startTracing()),
         },
       };
     } else if (hasBluetoothError) {
@@ -104,7 +104,7 @@ export default function HomeScreen () {
             hint: i18n.translate(`screens.home.errors.${Platform.OS}.bluetooth.accessibility.hint`),
           },
           onPress: Platform.select({
-            android: () => TrackingManager.requestBluetoothService(),
+            android: () => TracingManager.requestBluetoothService(),
             ios: () => Linking.openURL('App-prefs:root=Bluetooth'),
           }),
         },

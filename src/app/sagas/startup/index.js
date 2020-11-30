@@ -15,12 +15,12 @@ import { Platform, AppState } from 'react-native';
 import Storage from '@app/services/storage';
 import Configuration from '@app/services/configuration';
 import i18n from '@app/services/i18n';
-import TrackingManager, { ERRORS } from '@app/services/tracking';
+import TracingManager, { ERRORS } from '@app/services/tracing';
 
 import modalsActions, { modalsTypes } from '@app/redux/modals';
 import { isProtectorModalOpen } from '@app/redux/modals/selectors';
 import startupActions, { startupTypes } from '@app/redux/startup';
-import accountActions, { accountTypes, TRACKING_RESULTS } from '@app/redux/account';
+import accountActions, { accountTypes, TRACING_RESULTS } from '@app/redux/account';
 import onboardingActions from '@app/redux/onboarding';
 import { isOnboarding } from '@app/redux/onboarding/selectors';
 
@@ -55,8 +55,8 @@ export function* startup() {
       return;
     }
 
-    // Check if tracking was enabled
-    const isTracingEnabled = yield call(TrackingManager.isTracingEnabled);
+    // Check if tracing was enabled
+    const isTracingEnabled = yield call(TracingManager.isTracingEnabled);
 
     // Get previous stored state
     const signUpDate = yield call([Storage, 'getItem'], 'signup_date', '');
@@ -71,32 +71,32 @@ export function* startup() {
 
     // Check if is UI mode
     if (Configuration.UI) {
-      const tracking = yield call([Storage, 'getItem'], 'tracking_enabled', 'false');
-      yield put(accountActions.setTrackingEnabled(tracking === 'true'));
-      yield put(accountActions.startTracking());
+      const tracing = yield call([Storage, 'getItem'], 'tracing_enabled', 'false');
+      yield put(accountActions.setTracingEnabled(tracing === 'true'));
+      yield put(accountActions.startTracing());
       return;
     }
 
-    // Check if tracking was enabled
+    // Check if tracing was enabled
     if (! isTracingEnabled) {
-      // Set tracking deactivated
-      yield put(accountActions.setTrackingEnabled(false));
+      // Set tracing deactivated
+      yield put(accountActions.setTracingEnabled(false));
       return;
     }
 
-    yield put(accountActions.startTracking());
-    const { payload } = yield take(accountTypes.START_TRACKING_RESULT);
+    yield put(accountActions.startTracing());
+    const { payload } = yield take(accountTypes.START_TRACING_RESULT);
 
-    if (payload === TRACKING_RESULTS.SUCCESS) {
-      // Set tracking activated
-      yield put(accountActions.setTrackingEnabled(true));
-    } else if (payload === TRACKING_RESULTS.GAEN) {
-      yield put(accountActions.setTrackingEnabled(false));
+    if (payload === TRACING_RESULTS.SUCCESS) {
+      // Set tracing activated
+      yield put(accountActions.setTracingEnabled(true));
+    } else if (payload === TRACING_RESULTS.GAEN) {
+      yield put(accountActions.setTracingEnabled(false));
 
-      // Add tracking error
+      // Add tracing error
       yield put(accountActions.setErrors([ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED]));
     } else {
-      yield put(accountActions.setTrackingEnabled(false));
+      yield put(accountActions.setTracingEnabled(false));
     }
   } finally {
     // Set app launched
@@ -132,10 +132,10 @@ function* watchAppStateChange() {
 
           try {
             if (! Configuration.UI) {
-              yield call(TrackingManager.sync);
+              yield call(TracingManager.sync);
 
               // Get status
-              const status = yield call(TrackingManager.getStatus);
+              const status = yield call(TracingManager.getStatus);
               yield put(accountActions.updateStatus(status));
             }
           } catch (error) {

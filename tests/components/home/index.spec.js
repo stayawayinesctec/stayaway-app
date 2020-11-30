@@ -15,7 +15,7 @@ import Moment from 'moment';
 import Icon from '@app/common/components/Icon';
 
 import i18n from '@app/services/i18n';
-import { INFECTION_STATUS } from '@app/services/tracking';
+import { INFECTION_STATUS } from '@app/services/tracing';
 
 import { iconSizes, fontWeights } from '@app/common/theme';
 import { images } from '@app/common/assets/images';
@@ -46,7 +46,7 @@ describe('Home Screen', () => {
 
       const { queryByText, queryByTestId, queryByA11yLabel } = render(
         <Home
-          trackingEnabled
+          tracingEnabled
           infectionStatus={infectionStatus}
           onPress={onPress}
           onLongPress={onLongPress}
@@ -91,7 +91,7 @@ describe('Home Screen', () => {
 
       const { queryByText, queryByTestId, queryByA11yLabel } = render(
         <Home
-          trackingEnabled
+          tracingEnabled
           infectionStatus={infectionStatus}
           lastSync={lastSync}
           error={error}
@@ -149,7 +149,7 @@ describe('Home Screen', () => {
 
       const { queryByText, queryByTestId, queryByA11yLabel } = render(
         <Home
-          trackingEnabled
+          tracingEnabled
           infectionStatus={infectionStatus}
           lastSync={lastSync}
           error={error}
@@ -201,7 +201,7 @@ describe('Home Screen', () => {
 
       const { queryByText, queryByA11yLabel, queryByA11yHint } = render(
         <Home
-          trackingEnabled
+          tracingEnabled
           infectionStatus={infectionStatus}
           lastSync={lastSync}
           error={error}
@@ -248,7 +248,7 @@ describe('Home Screen', () => {
 
       const { queryByA11yLabel } = render(
         <Home
-          trackingEnabled
+          tracingEnabled
           infectionStatus={infectionStatus}
           onPressSettings={onPressSettings}
           onLongPressSettings={onLongPressSettings}
@@ -286,7 +286,7 @@ describe('Home Screen', () => {
 
       const { queryByA11yLabel } = render(
         <Home
-          trackingEnabled
+          tracingEnabled
           infectionStatus={infectionStatus}
           onPressShare={onPressShare}
           lastSync={lastSync}
@@ -332,7 +332,7 @@ describe('Home Screen', () => {
 
       const { queryByA11yLabel } = render(
         <Home
-          trackingEnabled
+          tracingEnabled
           infectionStatus={infectionStatus}
           lastSync={lastSync}
           error={error}
