@@ -615,6 +615,86 @@
           "label": "Technical Sheet",
           "hint": "Press to navigate to technical sheet"
         }
+      },
+      "licenses": {
+        "label": "Licenses",
+        "accessibility": {
+          "label": "Licenses",
+          "hint": "Press to navigate to licenses"
+        }
+      },
+      "actions": {
+        "back": {
+          "accessibility": {
+            "label": "Go back",
+            "hint": "Navigates back to the settings screen"
+          }
+        }
+      }
+    },
+    "licenses": {
+      "title": "Licenses",
+      "project": [
+        {
+          "id": "1",
+          "content": "STAYAWAY COVID",
+          "weight": "bold"
+        },
+        {
+          "id": "2",
+          "content": " is based on "
+        },
+        {
+          "id": "3",
+          "content": "DP3T",
+          "weight": "bold"
+        },
+        {
+          "id": "4",
+          "content": ", a project licensed subject to the conditions of the "
+        },
+        {
+          "id": "5",
+          "content": "MPL-2.0",
+          "weight": "bold"
+        },
+        {
+          "id": "6",
+          "content": " license.\n\n"
+        },
+        {
+          "id": "7",
+          "content": "For more informations and source code:\n\n"
+        },
+        {
+          "id": "8",
+          "content": "Project STAYAWAY COVID on GitHub\n",
+          "link": "https://github.com/stayawayinesctec"
+        },
+        {
+          "id": "9",
+          "content": "Project DP3T on GitHub",
+          "link": "https://github.com/DP-3T"
+        }
+      ],
+      "copyright_and_license": {
+        "title": "Copyright and license",
+        "body": "Copyright © 2020 INESC TEC. Developed with Keyruptive and Ubirider. This project is licensed under the terms of the EUPL-1.2 license.\n\nSome files from the app source code contain code from the DP3T applications, Copyright © 2020 Ubique Innovation AG. These files are are maked as such and licensed also under MPL-2.0."
+      },
+      "third_party": {
+        "title": "Third-party components licenses",
+        "tools": "Tools",
+        "libraries": "Libraries",
+        "react_native_packages": "React Native Packages",
+        "fonts": "Fonts"
+      },
+      "actions": {
+        "back": {
+          "accessibility": {
+            "label": "Go back",
+            "hint": "Navigates back to the legal information screen"
+          }
+        }
       }
     },
     "privacy_policy": {

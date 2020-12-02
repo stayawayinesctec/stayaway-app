@@ -21,6 +21,7 @@ export default function TechnicalSheetScreen () {
     onPressTermsOfUse: () => NavigationService.navigate(AppRoutes.TERMS_OF_USE),
     onPressPrivacyPolicy: () => NavigationService.navigate(AppRoutes.PRIVACY_POLICY),
     onPressTechnicalSheet: () => NavigationService.navigate(AppRoutes.TECHNICAL_SHEET),
+    onPressLicenses: () => NavigationService.navigate(AppRoutes.LICENSES),
     onClose: () => NavigationService.navigate(AppRoutes.INFO),
   };
 
