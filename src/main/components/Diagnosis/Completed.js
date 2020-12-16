@@ -20,7 +20,7 @@ import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import Button from '@app/common/components/Button';
 import SupportIcon from '@app/common/components/SupportIcon';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import { getThemedImage } from '@app/common/assets/images';
 
 import { sizes, iconSizes } from '@app/common/theme';

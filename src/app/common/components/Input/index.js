@@ -13,7 +13,7 @@ import { View, ViewPropTypes, StyleSheet } from 'react-native';
 import { Input as NativeInput } from 'react-native-elements';
 import PropTypes from 'prop-types';
 
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import SupportIcon from '@app/common/components/SupportIcon';
 
 import { ThemeConsumer } from '@app/contexts/Theme';

@@ -22,7 +22,7 @@ import Layout from '@app/common/components/Layout';
 import Button from '@app/common/components/Button';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Icon from '@app/common/components/Icon';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import { images } from '@app/common/assets/images';
 import { sizes, iconSizes } from '@app/common/theme';
 

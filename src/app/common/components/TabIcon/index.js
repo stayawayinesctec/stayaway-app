@@ -28,7 +28,7 @@ import i18n from '@app/services/i18n';
 
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Icon from '@app/common/components/Icon';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import { iconSizes, sizes } from '@app/common/theme';
 
 const styles = StyleSheet.create({

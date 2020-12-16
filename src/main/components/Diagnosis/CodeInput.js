@@ -20,7 +20,7 @@ import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import Button from '@app/common/components/Button';
 import CodeInput from '@app/common/components/CodeInput';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import { getThemedImage } from '@app/common/assets/images';
 
 import { sizes, iconSizes } from '@app/common/theme';
@@ -147,10 +147,7 @@ export default function Diagnosis (props) {
               <View style={styles(colors).panel}>
                 <View style={styles(colors).panelContainer}>
                   <Text size='xlarge' weight='bold' style={styles(colors).title}>{i18n.translate('screens.diagnosis.code_input.title')}</Text>
-                  <Text>
-                    <Text weight='bold'>{i18n.translate('screens.diagnosis.code_input.description.first')}</Text>
-                    <Text>{i18n.translate('screens.diagnosis.code_input.description.second')}</Text>
-                  </Text>
+                  <Text>{i18n.translate('screens.diagnosis.code_input.description')}</Text>
                 </View>
               </View>
             </View>

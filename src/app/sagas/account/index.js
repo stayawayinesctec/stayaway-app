@@ -334,9 +334,9 @@ export function* updateStatus({ payload: status }) {
     if (status.errors.includes(ERRORS[Platform.OS].GAEN_UNEXPECTEDLY_DISABLED)) {
       yield put(accountActions.setTracingEnabled(false));
     } else {
-      const isTracingEnabled = yield call(TracingManager.isTracingEnabled);
+      const tracingEnabled = yield call(TracingManager.isTracingEnabled);
 
-      if (isTracingEnabled) {
+      if (tracingEnabled) {
         yield put(accountActions.setTracingEnabled(true));
       }
     }

@@ -51,7 +51,6 @@ export const lightColors = {
 
   // TextColors
   textColor: '#264B99',
-  textLinkColor: '#2B44FF',
 
   // Checkbox
   checkBoxTintTrueColor: '#264B99',
@@ -166,7 +165,6 @@ export const darkColors = {
 
   // TextColors
   textColor: '#E4F2FC',
-  textLinkColor: '#97CBF6',
 
   // Checkbox
   checkBoxTintTrueColor: '#E4F2FC',

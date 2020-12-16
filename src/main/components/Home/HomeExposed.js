@@ -19,43 +19,7 @@ import i18n from '@app/services/i18n';
 
 export default function HomeExposed (props) {
   const header = i18n.translate('screens.home.exposed.title');
-  const description = [
-    {
-      "key": "1",
-      "text": i18n.translate('screens.home.exposed.description.first'),
-      "type": "bold",
-    },
-    {
-      "key": "2",
-      "text": i18n.translate('screens.home.exposed.description.second'),
-      "type": "normal",
-    },
-    {
-      "key": "3",
-      "text": i18n.translate('screens.home.exposed.description.third'),
-      "type": "normal",
-    },
-    {
-      "key": "4",
-      "text": i18n.translate('screens.home.exposed.description.fourth'),
-      "type": "bold",
-    },
-    {
-      "key": "5",
-      "text": i18n.translate('screens.home.exposed.description.fifth'),
-      "type": "normal",
-    },
-    {
-      "key": "6",
-      "text": i18n.translate('screens.home.exposed.description.sixth'),
-      "type": "normal",
-    },
-    {
-      "key": "7",
-      "text": i18n.translate('screens.home.exposed.description.seventh'),
-      "type": "bold",
-    },
-  ];
+  const description = i18n.translate('screens.home.exposed.description');
 
   return (
     <ThemeConsumer>

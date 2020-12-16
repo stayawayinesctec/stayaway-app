@@ -22,7 +22,7 @@ import i18n from '@app/services/i18n';
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import Icon from '@app/common/components/Icon';
 
 import { getThemedImage } from '@app/common/assets/images';

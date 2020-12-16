@@ -44,7 +44,8 @@ export default {
   size30: Scalling.size === SIZES.small ? 22 : 30,
   size32: Scalling.size === SIZES.small ? 24 : 32,
   size34: Scalling.size === SIZES.small ? 28 : 34,
-  size40: Scalling.size === SIZES.small ? 30 : 40,
-  size44: Scalling.size === SIZES.small ? 32 : 44,
-  size48: Scalling.size === SIZES.small ? 36 : 48,
+  size38: Scalling.size === SIZES.small ? 38 : 34,
+  size40: Scalling.size === SIZES.small ? 36 : 40,
+  size44: Scalling.size === SIZES.small ? 38 : 44,
+  size48: Scalling.size === SIZES.small ? 40 : 48,
 };

@@ -16,7 +16,7 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 
 import { sizes } from '@app/common/theme';
 
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 
 const styles = (colors) => StyleSheet.create({

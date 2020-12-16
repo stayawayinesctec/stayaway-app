@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 import { ThemeConsumer } from '@app/contexts/Theme';
 
 import Icon from '@app/common/components/Icon';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 
 import { colors as commonColors, sizes, iconSizes } from '@app/common/theme';
 

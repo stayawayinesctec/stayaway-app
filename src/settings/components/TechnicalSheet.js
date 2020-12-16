@@ -19,7 +19,7 @@ import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import Icon from '@app/common/components/Icon';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 
 import { getThemedImage } from '@app/common/assets/images';
 
@@ -137,7 +137,7 @@ export default function TechnicalSheet (props) {
             </View>
             <View style={styles(colors, insets).itemsContainer}>
               <View style={styles(colors, insets).coordinatorContainer}>
-                <Text size='small' weight='bold' textColor={colors.settingsLabelColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
+                <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
                 <ButtonWrapper
                   style={styles(colors, insets).item}
                   onPress={onPressCoordinator}
@@ -150,7 +150,7 @@ export default function TechnicalSheet (props) {
                 </ButtonWrapper>
               </View>
               <View style={styles(colors, insets).partnersContainer}>
-                <Text size='small' weight='bold' textColor={colors.settingsLabelColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
+                <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
                 <ButtonWrapper
                   style={{
                     ...styles(colors, insets).item,

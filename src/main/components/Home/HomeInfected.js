@@ -19,18 +19,7 @@ import i18n from '@app/services/i18n';
 
 export default function HomeInfected (props) {
   const header = i18n.translate('screens.home.infected.title');
-  const description = [
-   {
-    "key": "1",
-    "text": i18n.translate('screens.home.infected.description.first'),
-     "type": "bold",
-   },
-   {
-    "key": "2",
-    "text": i18n.translate('screens.home.infected.description.second'),
-     "type": "normal",
-   },
-  ];
+  const description = i18n.translate('screens.home.infected.description');
 
   return (
     <ThemeConsumer>

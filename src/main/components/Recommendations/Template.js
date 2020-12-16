@@ -18,7 +18,7 @@ import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import SupportIcon from '@app/common/components/SupportIcon';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 
 import { colors as commonColors, sizes, iconSizes } from '@app/common/theme';
 
@@ -71,7 +71,7 @@ const styles = (colors) => StyleSheet.create({
     width: iconSizes.size70,
     height: iconSizes.size70,
     marginBottom: sizes.size20,
-  }
+  },
 });
 
 const renderRecommendation = ([recommendationA, recommendationB], colors) => (

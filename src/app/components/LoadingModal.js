@@ -18,7 +18,7 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 import i18n from '@app/services/i18n';
 
 import Layout from '@app/common/components/Layout';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import Icon from '@app/common/components/Icon';
 
 import { sizes, iconSizes } from '@app/common/theme';

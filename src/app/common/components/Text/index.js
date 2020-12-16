@@ -27,6 +27,8 @@ export default class Text extends Component {
       numberOfLines,
       style,
       height,
+      onPress,
+      underline,
       ...otherProps
     } = this.props;
 
@@ -46,8 +48,10 @@ export default class Text extends Component {
               fontSize,
               fontWeight,
               lineHeight,
+              textDecorationLine: underline ? 'underline' : 'none',
             }}
             accessibilityRole='text'
+            onPress={onPress}
             {...otherProps}
           >
             {children}
@@ -66,6 +70,8 @@ Text.defaultProps = {
   numberOfLines: 0,
   height: undefined,
   style: {},
+  onPress: undefined,
+  underline: false,
 };
 
 Text.propTypes = {
@@ -79,6 +85,8 @@ Text.propTypes = {
     PropTypes.array,
     PropTypes.element,
   ]).isRequired,
+  onPress: PropTypes.func,
+  underline: PropTypes.bool,
   style: NativeText.propTypes.style,
   numberOfLines: PropTypes.number,
   height: PropTypes.number,

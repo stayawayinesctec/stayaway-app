@@ -32,14 +32,12 @@ describe('Diagnosis Screen', () => {
       );
 
       const title = queryByText(i18n.translate('screens.diagnosis.code_input.title'));
-      const descriptionFirst = queryByText(i18n.translate('screens.diagnosis.code_input.description.first'));
-      const descriptionSecond = queryByText(i18n.translate('screens.diagnosis.code_input.description.second'));
+      const description = queryByText(i18n.translate('screens.diagnosis.code_input.description', { formatted: false }));
       const input = queryByPlaceholderText(i18n.translate('common.placeholders.code'));
       const submit = queryByA11yLabel(i18n.translate('screens.diagnosis.code_input.accessibility.label'));
 
       expect(title).toBeTruthy();
-      expect(descriptionFirst).toBeTruthy();
-      expect(descriptionSecond).toBeTruthy();
+      expect(description).toBeTruthy();
       expect(input).toBeTruthy();
       expect(submit).toBeTruthy();
 
@@ -59,14 +57,12 @@ describe('Diagnosis Screen', () => {
       );
 
       const title = queryByText(i18n.translate('screens.diagnosis.code_input.title'));
-      const descriptionFirst = queryByText(i18n.translate('screens.diagnosis.code_input.description.first'));
-      const descriptionSecond = queryByText(i18n.translate('screens.diagnosis.code_input.description.second'));
+      const description = queryByText(i18n.translate('screens.diagnosis.code_input.description', { formatted: false }));
       const input = queryByPlaceholderText(i18n.translate('common.placeholders.code'));
       const submit = queryByA11yLabel(i18n.translate('screens.diagnosis.code_input.accessibility.label'));
 
       expect(title).toBeTruthy();
-      expect(descriptionFirst).toBeTruthy();
-      expect(descriptionSecond).toBeTruthy();
+      expect(description).toBeTruthy();
       expect(input).toBeTruthy();
       expect(submit).toBeTruthy();
 

@@ -57,18 +57,14 @@ describe('Home Screen', () => {
 
       const header = queryByText(i18n.translate('screens.home.healthy.title'));
       const shareButton = queryByA11yLabel(i18n.translate('screens.home.actions.share.accessibility.label'));
-      const descriptionFirst = queryByText(i18n.translate('screens.home.healthy.description.first'));
-      const descriptionSecond = queryByText(i18n.translate('screens.home.healthy.description.second'));
+      const description = queryByText(i18n.translate('screens.home.healthy.description', { formatted: false }));
       const image = queryByTestId('home_image_background');
 
       expect(header).toBeTruthy();
       expect(shareButton).toBeTruthy();
-      expect(descriptionFirst).toBeTruthy();
-      expect(descriptionSecond).toBeTruthy();
+      expect(description).toBeTruthy();
       expect(image).toBeTruthy();
 
-      expect(descriptionFirst.props.style.fontWeight).toBe(fontWeights.bold);
-      expect(descriptionSecond.props.style.fontWeight).toBe(fontWeights.normal);
       expect(image.props.source).toBe(images.healthy);
     });
     it('When infection status is exposed.', () => {
@@ -100,33 +96,14 @@ describe('Home Screen', () => {
 
       const header = queryByText(i18n.translate('screens.home.exposed.title'));
       const shareButton = queryByA11yLabel(i18n.translate('screens.home.actions.share.accessibility.label'));
-      const descriptionFirst = queryByText(i18n.translate('screens.home.exposed.description.first'));
-      const descriptionSecond = queryByText(i18n.translate('screens.home.exposed.description.second'));
-      const descriptionThird = queryByText(i18n.translate('screens.home.exposed.description.third'));
-      const descriptionFourth = queryByText(i18n.translate('screens.home.exposed.description.fourth'));
-      const descriptionFifth = queryByText(i18n.translate('screens.home.exposed.description.fifth'));
-      const descriptionSixth = queryByText(i18n.translate('screens.home.exposed.description.sixth'));
-      const descriptionSeventh = queryByText(i18n.translate('screens.home.exposed.description.seventh'));
+      const description = queryByText(i18n.translate('screens.home.exposed.description', { formatted: false }));
       const image = queryByTestId('home_image_background');
 
       expect(header).toBeTruthy();
       expect(shareButton).toBeTruthy();
-      expect(descriptionFirst).toBeTruthy();
-      expect(descriptionSecond).toBeTruthy();
-      expect(descriptionThird).toBeTruthy();
-      expect(descriptionFourth).toBeTruthy();
-      expect(descriptionFifth).toBeTruthy();
-      expect(descriptionSixth).toBeTruthy();
-      expect(descriptionSeventh).toBeTruthy();
+      expect(description).toBeTruthy();
       expect(image).toBeTruthy();
 
-      expect(descriptionFirst.props.style.fontWeight).toBe(fontWeights.bold);
-      expect(descriptionSecond.props.style.fontWeight).toBe(fontWeights.normal);
-      expect(descriptionThird.props.style.fontWeight).toBe(fontWeights.normal);
-      expect(descriptionFourth.props.style.fontWeight).toBe(fontWeights.bold);
-      expect(descriptionFifth.props.style.fontWeight).toBe(fontWeights.normal);
-      expect(descriptionSixth.props.style.fontWeight).toBe(fontWeights.normal);
-      expect(descriptionSeventh.props.style.fontWeight).toBe(fontWeights.bold);
       expect(image.props.source).toBe(images.exposed);
     });
     it('When infection status is infected.', () => {
@@ -158,18 +135,14 @@ describe('Home Screen', () => {
 
       const header = queryByText(i18n.translate('screens.home.infected.title'));
       const shareButton = queryByA11yLabel(i18n.translate('screens.home.actions.share.accessibility.label'));
-      const descriptionFirst = queryByText(i18n.translate('screens.home.infected.description.first'));
-      const descriptionSecond = queryByText(i18n.translate('screens.home.infected.description.second'));
+      const description = queryByText(i18n.translate('screens.home.infected.description', { formatted: false }));
       const image = queryByTestId('home_image_background');
 
       expect(header).toBeTruthy();
       expect(shareButton).toBeTruthy();
-      expect(descriptionFirst).toBeTruthy();
-      expect(descriptionSecond).toBeTruthy();
+      expect(description).toBeTruthy();
       expect(image).toBeTruthy();
 
-      expect(descriptionFirst.props.style.fontWeight).toBe(fontWeights.bold);
-      expect(descriptionSecond.props.style.fontWeight).toBe(fontWeights.normal);
       expect(image.props.source).toBe(images.infected);
     });
     it('When an error occurs.', () => {

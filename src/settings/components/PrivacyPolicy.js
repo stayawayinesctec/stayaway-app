@@ -22,7 +22,7 @@ import i18n from '@app/services/i18n';
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import Icon from '@app/common/components/Icon';
 
 import { getThemedImage } from '@app/common/assets/images';
@@ -91,7 +91,7 @@ const styles = (colors, insets) => StyleSheet.create({
     zIndex: 0,
   },
   sponsors: {
-    marginTop: sizes.size24,
+    marginTop: sizes.size38,
     flexDirection: 'row',
   },
   republicaPortuguesaImage: {
@@ -314,7 +314,7 @@ export default function PrivacyPolicy(props) {
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.changes_to_the_privacy_policy.body')}</Text>
                 </View>
               </View>
-              <Text textColor={colors.settingsLabelColor} size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.last_review')}</Text>
+              <Text textColor={colors.settingsLabelTextColor} size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.last_review')}</Text>
               <View style={styles(colors, insets).sponsors}>
                 <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
                 <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />

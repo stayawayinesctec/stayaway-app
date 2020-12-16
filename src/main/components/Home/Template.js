@@ -20,7 +20,7 @@ import Layout from '@app/common/components/Layout';
 import Icon from '@app/common/components/Icon';
 import Button from '@app/common/components/Button';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import { images } from '@app/common/assets/images';
 import SupportIcon from '@app/common/components/SupportIcon';
 
@@ -319,7 +319,7 @@ export default function Template (props) {
                 </View>
               </View>
               <Text style={styles(colors, insets).descriptionsContent}>
-                { description.map(item => <Text key={item.key} weight={item.type}>{item.text}</Text>) }
+                {description}
               </Text>
             </Layout>
           </View>
@@ -363,7 +363,7 @@ Template.defaultProps = {
 
 Template.propTypes = {
   header: PropTypes.string,
-  description: PropTypes.arrayOf(PropTypes.object),
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   onPressSettings: PropTypes.func,
   onPressShare: PropTypes.func,
   onLongPressSettings: PropTypes.func,

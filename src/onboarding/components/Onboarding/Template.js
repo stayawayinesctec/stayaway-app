@@ -17,7 +17,7 @@ import { ThemeConsumer } from '@app/contexts/Theme';
 
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
-import Text from '@app/common/components/Text';
+import Text from '@app/common/components/FormattedText';
 import { images } from '@app/common/assets/images';
 import { sizes } from '@app/common/theme';
 

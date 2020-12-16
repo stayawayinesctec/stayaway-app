@@ -64,8 +64,19 @@ const translationGetters = {
 
 // Memoized translate method
 const translate = memoize(
-  (key, config) => i18n.t(key, config),
-  (key, config) => (config ? key + JSON.stringify(config) : key),
+  (key, config = { formatted: true }) => {
+    const { formatted, ...otherConfigs } = config;
+    const translation = i18n.t(key, otherConfigs);
+
+    if (! formatted) {
+      if (Array.isArray(translation)) {
+        return translation.reduce((acc, value) => acc + value.content, '');
+      }
+    }
+
+    return translation;
+  },
+  (key, config = {}) => (key + JSON.stringify(config)),
 );
 
 // Language information

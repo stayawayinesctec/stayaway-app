@@ -22,20 +22,84 @@
       },
       "consent": {
         "title": "Consent",
-        "description": {
-          "first": "For more information, you can read our privacy policy and terms of use at any time. ",
-          "second": "Privacy policy ",
-          "third": "and ",
-          "fourth": "terms of use.\n"
-        },
-        "consents": {
-          "read_and_understood": {
-            "first": "I read and understood the information about the STAYAWAY application, namely:\n",
-            "second": "• Identity of the Controller - ",
-            "third": "DGS.\n",
-            "fourth": "• The types of data collected and voluntarily shared after any diagnosis confirming infection, through random identifier keys.\n• The purpose of data collection and processing, namely concerning the notifications sent.\n• How data will be stored and for how long.\n• That I can freely revoke my consent at any time, by uninstalling the application, without affecting the legality of the previous processing actions.\n• That in the cases of children under 13, consent can only be given or authorised by the holders of parental responsibilities.\n• Contact of Data Protection Officer: ",
-            "fifth": "dpo@dgs.min-saude.pt.\n"
+        "description": [
+          {
+            "id": "1",
+            "content": "For more information, you can read our privacy policy and terms of use at any time. "
           },
+          {
+            "id": "2",
+            "content": "Privacy policy",
+            "link": "https://www.stayawaycovid.pt/privacy-policy"
+          },
+          {
+            "id": "3",
+            "content": " and "
+          },
+          {
+            "id": "4",
+            "content": "terms of use",
+            "link": "https://www.stayawaycovid.pt/terms-conditions"
+          },
+          {
+            "id": "5",
+            "content": ".\n"
+          }
+        ],
+        "consents": {
+          "read_and_understood": [
+            {
+              "id": "1",
+              "content": "I read and understood the information about the STAYAWAY application, namely:\n",
+              "weight": "bold"
+            },
+            {
+              "id": "2",
+              "content": "• Identity of the Controller - "
+            },
+            {
+              "id": "3",
+              "content": "DGS",
+              "link": "https://www.dgs.pt"
+            },
+            {
+              "id": "4",
+              "content": ".\n"
+            },
+            {
+              "id": "5",
+              "content": "• The types of data collected and voluntarily shared after any diagnosis confirming infection, through random identifier keys.\n"
+            },
+            {
+              "id": "6",
+              "content": "• The purpose of data collection and processing, namely concerning the notifications sent.\n"
+            },
+            {
+              "id": "7",
+              "content": "• How data will be stored and for how long.\n"
+            },
+            {
+              "id": "8",
+              "content": "• That I can freely revoke my consent at any time, by uninstalling the application, without affecting the legality of the previous processing actions.\n"
+            },
+            {
+              "id": "9",
+              "content": "• That in the cases of children under 13, consent can only be given or authorised by the holders of parental responsibilities.\n"
+            },
+            {
+              "id": "10",
+              "content": "• Contact of Data Protection Officer: "
+            },
+            {
+              "id": "11",
+              "content": "dpo@dgs.min-saude.pt",
+              "link": "mailto:dpo@dgs.min-saude.pt"
+            },
+            {
+              "id": "12",
+              "content": ".\n"
+            }
+          ],
           "data_treatment": "I agree with the processing of my personal data, in compliance with the privacy policy, including data related to my health condition, required to send notifications on the exposure to potential risks of contagion, in order to help interrupting the chains of COVID-19 infection."
         },
         "actions": {
@@ -68,29 +132,76 @@
       },
       "healthy": {
         "title": "No high-risk contacts have been established.",
-        "description": {
-          "first": "STAYAWAY COVID will be constantly monitoring your risk level ",
-          "second": "and will alert you if you have been exposed to risk. Avoid contacts closer than 2 metres from you."
-        }
+        "description": [
+          {
+            "id": "1",
+            "content": "STAYAWAY COVID will be constantly monitoring your risk level "
+          },
+          {
+            "id": "2",
+            "content": "and will alert you if you have been exposed to risk. Avoid contacts closer than 2 metres from you.",
+            "weight": "bold"
+          }
+        ]
       },
       "exposed": {
         "title": "You have been close to someone with COVID-19.",
-        "description": {
-          "first": "It doesn’t mean you are infected, ",
-          "second": "but you should self-isolate and contact health services.\n\n",
-          "third": "Even if you show no symptoms, you should call ",
-          "fourth": "SNS 24 (808 24 24 24) ",
-          "fifth": "or your family doctor.\n\n",
-          "sixth": "STAYAWAY COVID keeps running as usual. In the meantime, if you don’t get new exposure notifications, ",
-          "seventh": "this warning will disappear after 14 days."
-        }
+        "description": [
+          {
+            "id": "1",
+            "content": "It doesn’t mean you are infected, ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "but you should self-isolate and contact health services.\n\n"
+          },
+          {
+            "id": "3",
+            "content": "Even if you show no symptoms, you should call "
+          },
+          {
+            "id": "4",
+            "content": "SNS 24 (808 24 24 24)",
+            "link": "tel:+351808242424"
+          },
+          {
+            "id": "5",
+            "content": " or your family doctor.\n\n"
+          },
+          {
+            "id": "6",
+            "content": "STAYAWAY COVID  "
+          },
+          {
+            "id": "7",
+            "content": "keeps running as usual. ",
+            "weight": "bold"
+          },
+          {
+            "id": "8",
+            "content": "In the meantime, if you don’t get new exposure notifications, "
+          },
+          {
+            "id": "9",
+            "content": "this warning will disappear after 14 days.",
+            "weight": "bold"
+          }
+        ]
       },
       "infected": {
         "title": "Thank you for playing your part protecting others’ lives.",
-        "description": {
-          "first": "We wish you a quick recovery.\n\n",
-          "second": "Since you have tested positive for COVID-19, STAYAWAY COVID will be disabled and stop tracing your contacts.\n\nOnce recovered, make sure you reinstall the app in order to restart contact tracing."
-        }
+        "description": [
+          {
+            "id": "1",
+            "content": "We wish you a quick recovery.\n\n",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "Since you have tested positive for COVID-19, STAYAWAY COVID will be disabled and stop tracing your contacts.\n\nOnce recovered, make sure you reinstall the app in order to restart contact tracing."
+          }
+        ]
       },
       "errors": {
         "bluetooth": {
@@ -272,10 +383,17 @@
     "diagnosis": {
       "code_input": {
         "title": "Have you tested positive for COVID-19?",
-        "description": {
-          "first": "After your positive diagnosis, you were given a code by the National Health Service. ",
-          "second": "Enter the code to give the app permission to anonymously share your random identifiers. This code is valid for 24 hours only."
-        },
+        "description": [
+          {
+            "id": "1",
+            "content": "After your positive diagnosis, you were given a code by the National Health Service. ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "Enter the code to give the app permission to anonymously share your random identifiers. This code is valid for 24 hours only."
+          }
+        ],
         "accessibility": {
           "label": "Submit",
           "hint": "Press to submit diagnosis code"
@@ -521,67 +639,335 @@
       "title": "Terms of Use",
       "scope_and_purpose": {
         "name": "A - Scope and purpose",
-        "first": "These Terms and Conditions of Use regulate the acquisition and use of the mobile application (app) STAYAWAY COVID.\n",
-        "second": "The application was developed as part of a project coordinated by the Institute for Systems and Computer Engineering, Technology and Science (INESC TEC)and the Institute of Public Health of the University of Porto (ISPUP), with the support of the companies Keyruptive and Ubirider (hereinafter, the developers). It is part of the 2030 initiative, supported by the Foundation for Science and Technology (FCT), who will operate and maintain the system and take on the role of data controller, for the purpose of personal data related legislation.\n",
-        "third": {
-          "normal": "The purpose of the app is ",
-          "bold": "to notify users who have potentially been exposed to the coronavirus."
-        }
+        "description": [
+          {
+            "id": "1",
+            "content": "1. ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "These Terms and Conditions of Use regulate the acquisition and use of the mobile application (app) STAYAWAY COVID.\n\n"
+          },
+          {
+            "id": "3",
+            "content": "2. ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "The application was developed as part of a project coordinated by the Institute for Systems and Computer Engineering, Technology and Science (INESC TEC)and the Institute of Public Health of the University of Porto (ISPUP), with the support of the companies Keyruptive and Ubirider (hereinafter, the developers). It is part of the 2030 initiative, supported by the Foundation for Science and Technology (FCT), who will operate and maintain the system and take on the role of data controller, for the purpose of personal data related legislation.\n\n"
+          },
+          {
+            "id": "5",
+            "content": "3. ",
+            "weight": "bold"
+          },
+          {
+            "id": "6",
+            "content": "The purpose of the app is to notify users who have potentially been exposed to the coronavirus."
+          }
+        ]
       },
       "conditions_of_access_and_use": {
         "name": "B - Conditions of access and use",
-        "first": "The application is publicly accessible and free of charge. In the case of children under 13, consent for access and use may only be given or authorised by the holders of parental responsibility.\n",
-        "second": "Participation and use of the app are voluntary, allowing users to stop using it at any given time, based on their autonomous and unilateral decision.\n",
-        "third": "By accessing the app, the user declares that he/she has understood and accepted the following conditions and legal information relating to the app (and the elements contained therein). If the user does not agree to these conditions, then he/should not use the app."
+        "description": [
+          {
+            "id": "1",
+            "content": "1. ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "The application is publicly accessible and free of charge. In the case of children under 13, consent for access and use may only be given or authorised by the holders of parental responsibility.\n\n"
+          },
+          {
+            "id": "3",
+            "content": "2. ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "Participation and use of the app are voluntary, allowing users to stop using it at any given time, based on their autonomous and unilateral decision.\n\n"
+          },
+          {
+            "id": "5",
+            "content": "3. ",
+            "weight": "bold"
+          },
+          {
+            "id": "6",
+            "content": "By accessing the app, the user declares that he/she has understood and accepted the following conditions and legal information relating to the app (and the elements contained therein). If the user does not agree to these conditions, then he/should not use the app."
+          }
+        ]
       },
       "features_of_the_app": {
         "name": "C - Features of the app",
-        "first": "The application informs the user of the potential risk of contagion, based on the exposure to someone diagnosed with COVID-19.\n",
-        "second": "The activation of Bluetooth is required for the operation of the app.\n",
-        "third": "Each day, the app generates a new private key that cannot be connected to the app or to users. The app broadcasts an identification code, continuously and via Bluetooth, changing every 15 minutes; this code derives from the app’s current private key, but cannot be traced back to this key and likewise cannot be connected to the app or users thereof. The app continuously checks whether compatible signals transmitted by other mobile phones are being received. If the proximity to another mobile phone is two metres or less, the app stores the other device’s current identification code, the signal strength, the date and the estimated duration of contact. The estimation of proximity relies on the strength of the signals received. In addition, the app periodically retrieves a list of the private keys of users known to be diagnosed with the COVID-19, and uses these to determine the associated identification codes. It compares these identification codes with those that it has stored locally. If this matching process indicates proximity of two metres or less, to at least one diagnosed user’s mobile phone, and if the sum of the duration of said proximity events in one day is 15 minutes, then the app issues a notification.\n",
-        "fourth": "In the event of a confirmed infection, experts (e.g. attending physicians) generate a unique release code, valid for a limited period, which they disclose to the user diagnosed with COVID-19. This user can voluntarily enter the release code in the app. Notification, or entry of the release code, occurs only with the explicit consent of the diagnosed user. Other app users who have been in close contact (as defined in Section 3.3) with the diagnosed user during the infectious period are then notified. The users notified learn that a proximity event has occurred, i.e. that they have potentially been exposed to the coronavirus, and on which date this was last the case. Once a positive diagnosis is reported, the application ceases to operate.\n",
-        "fifth": "The app also communicates behavioural recommendations.\n",
-        "sixth": "The app does not track the user’s location or resort to geolocation services.\n",
-        "seventh": "The app cannot perform a medical assessment or order any measures (e.g. quarantine)."
+        "description" : [
+          {
+            "id": "1",
+            "content": "1. ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "The application informs the user of the potential risk of contagion, based on the exposure to someone diagnosed with COVID-19.\n\n"
+          },
+          {
+            "id": "3",
+            "content": "2. ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "The activation of Bluetooth is required for the operation of the app.\n\n"
+          },
+          {
+            "id": "5",
+            "content": "3. ",
+            "weight": "bold"
+          },
+          {
+            "id": "6",
+            "content": "Each day, the app generates a new private key that cannot be connected to the app or to users. The app broadcasts an identification code, continuously and via Bluetooth, changing every 15 minutes; this code derives from the app’s current private key, but cannot be traced back to this key and likewise cannot be connected to the app or users thereof. The app continuously checks whether compatible signals transmitted by other mobile phones are being received. If the proximity to another mobile phone is two metres or less, the app stores the other device’s current identification code, the signal strength, the date and the estimated duration of contact. The estimation of proximity relies on the strength of the signals received. In addition, the app periodically retrieves a list of the private keys of users known to be diagnosed with the COVID-19, and uses these to determine the associated identification codes. It compares these identification codes with those that it has stored locally. If this matching process indicates proximity of two metres or less, to at least one diagnosed user’s mobile phone, and if the sum of the duration of said proximity events in one day is 15 minutes, then the app issues a notification.\n\n"
+          },
+          {
+            "id": "7",
+            "content": "4. ",
+            "weight": "bold"
+          },
+          {
+            "id": "8",
+            "content": "In the event of a confirmed infection, experts (e.g. attending physicians) generate a unique release code, valid for a limited period, which they disclose to the user diagnosed with COVID-19. This user can voluntarily enter the release code in the app. Notification, or entry of the release code, occurs only with the explicit consent of the diagnosed user. Other app users who have been in close contact (as defined in Section 3.3) with the diagnosed user during the infectious period are then notified. The users notified learn that a proximity event has occurred, i.e. that they have potentially been exposed to the coronavirus, and on which date this was last the case. Once a positive diagnosis is reported, the application ceases to operate.\n\n"
+          },
+          {
+            "id": "9",
+            "content": "5. ",
+            "weight": "bold"
+          },
+          {
+            "id": "10",
+            "content": "The app also communicates behavioural recommendations.\n\n"
+          },
+          {
+            "id": "11",
+            "content": "6. ",
+            "weight": "bold"
+          },
+          {
+            "id": "12",
+            "content": "The app does not track the user’s location or resort to geolocation services.\n\n"
+          },
+          {
+            "id": "13",
+            "content": "7. ",
+            "weight": "bold"
+          },
+          {
+            "id": "14",
+            "content": "The app cannot perform a medical assessment or order any measures (e.g. quarantine)."
+          }
+        ]
       },
       "users_duties_of_care": {
         "name": "D - Users' duties of care",
-        "first": "Users are responsible for the technical access to the app.\n",
-        "second": "Users are required to take the necessary security measures to protect their own devices against unauthorised access by third parties and against malware. Users’ attention is hereby drawn to the security risks associated with use of the internet and of internet technologies.\n",
-        "third": "Users are required to keep the app updated. There is no claim to use a specific version of the software.\n",
-        "fourth": "Users are required to check any data they enter for completeness and correctness.\n",
-        "fifth": "When using the app, users are responsible for complying with applicable legal provisions and the Terms and Conditions of Use."
+        "description": [
+          {
+            "id": "1",
+            "content": "1. ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "Users are responsible for the technical access to the app.\n\n"
+          },
+          {
+            "id": "3",
+            "content": "2. ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "Users are required to take the necessary security measures to protect their own devices against unauthorised access by third parties and against malware. Users’ attention is hereby drawn to the security risks associated with use of the internet and of internet technologies.\n\n"
+          },
+          {
+            "id": "5",
+            "content": "3. ",
+            "weight": "bold"
+          },
+          {
+            "id": "6",
+            "content": "Users are required to keep the app updated. There is no claim to use a specific version of the software.\n\n"
+          },
+          {
+            "id": "7",
+            "content": "4. ",
+            "weight": "bold"
+          },
+          {
+            "id": "8",
+            "content": "Users are required to check any data they enter for completeness and correctness.\n\n"
+          },
+          {
+            "id": "9",
+            "content": "5. ",
+            "weight": "bold"
+          },
+          {
+            "id": "10",
+            "content": "When using the app, users are responsible for complying with applicable legal provisions and the Terms and Conditions of Use."
+          }
+        ]
       },
       "liability_and_warranty": {
         "name": "E - Liability and warranty",
-        "first": "While the Directorate-General of Health (DGS) and the developers have taken every step to ensure the correctness of the information, content and communications published in the app, they do not ensure the correctness, accuracy, topicality or reliability thereof. DGS expressly reserves the right, at any time, and without prior notice, to partially or completely alter, delete or temporarily hold information and content.\n",
-        "second": "To the extent permitted by law, any claims for liability against the DGS or the developers due to material or immaterial damage, including consequential damage – arising, for instance, from access to, use or non-use of the app and the associated information, content and communications, from misuse of the connection, from technical faults, or from infringement of the users’ duties of care – are hereby excluded.\n",
-        "third": "The user is responsible for and takes on the risks of any action or behaviour undertaken because of information, content or communications in the app, e.g. self-isolation/quarantine. The DGS and/or the developers will not be liable, under any circumstances, for any subsequent damage.\n",
-        "fourth": "The DGS or the developers take on no responsibility, and make no warranty that the features and use of the app will be permanently and continuously available and free of errors or faults, that errors will be fixed, or that the servers will be free of viruses or other harmful elements. The DGS is entitled to discontinue the use of the app at any time.\n",
-        "fifth": "The DGS is not responsible for references and links to third-party websites. The DGS is not responsible for continuous existence, content or correctness of such information. Access to and use of such websites is at the user’s own risk. The DGS explicitly states that it has no influence on the design, content or offerings of linked-to pages. Responsibility for information and services provided by linked-to websites lies entirely with the third party in question. No responsibility whatsoever is accepted for such websites.",
-        "sixth": ""
+        "description": [
+          {
+            "id": "1",
+            "content": "1. ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "While the Directorate-General of Health (DGS) and the developers have taken every step to ensure the correctness of the information, content and communications published in the app, they do not ensure the correctness, accuracy, topicality or reliability thereof. DGS expressly reserves the right, at any time, and without prior notice, to partially or completely alter, delete or temporarily hold information and content.\n\n"
+          },
+          {
+            "id": "3",
+            "content": "2. ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "To the extent permitted by law, any claims for liability against the DGS or the developers due to material or immaterial damage, including consequential damage – arising, for instance, from access to, use or non-use of the app and the associated information, content and communications, from misuse of the connection, from technical faults, or from infringement of the users’ duties of care – are hereby excluded.\n\n"
+          },
+          {
+            "id": "5",
+            "content": "3. ",
+            "weight": "bold"
+          },
+          {
+            "id": "6",
+            "content": "The user is responsible for and takes on the risks of any action or behaviour undertaken because of information, content or communications in the app, e.g. self-isolation/quarantine. The DGS and/or the developers will not be liable, under any circumstances, for any subsequent damage.\n\n"
+          },
+          {
+            "id": "7",
+            "content": "4. ",
+            "weight": "bold"
+          },
+          {
+            "id": "8",
+            "content": "The DGS or the developers take on no responsibility, and make no warranty that the features and use of the app will be permanently and continuously available and free of errors or faults, that errors will be fixed, or that the servers will be free of viruses or other harmful elements. The DGS is entitled to discontinue the use of the app at any time.\n\n"
+          },
+          {
+            "id": "9",
+            "content": "5. ",
+            "weight": "bold"
+          },
+          {
+            "id": "10",
+            "content": "The DGS is not responsible for references and links to third-party websites. The DGS is not responsible for continuous existence, content or correctness of such information. Access to and use of such websites is at the user’s own risk. The DGS explicitly states that it has no influence on the design, content or offerings of linked-to pages. Responsibility for information and services provided by linked-to websites lies entirely with the third party in question. No responsibility whatsoever is accepted for such websites."
+          }
+        ]
       },
       "data_protection": {
         "name": "F - Data protection",
-        "first": "According to the GDPR, the Charter of Fundamental Rights of the European Union and the provisions of Portuguese national legislation on data protection, everyone has the right to privacy and the protection against misuse of their personal data. The GDPR, the Portuguese Data Protection Act and the Privacy Policy of STAYAWYAY COVID govern the processing of personal data by the DGS as data controller. Therefore, in no circumstance such data will be shared with or sold to third parties. Moreover, its processing shall be limited to what is strictly necessary for the purposes of the app described above."
+        "description": "According to the GDPR, the Charter of Fundamental Rights of the European Union and the provisions of Portuguese national legislation on data protection, everyone has the right to privacy and the protection against misuse of their personal data. The GDPR, the Portuguese Data Protection Act and the Privacy Policy of STAYAWYAY COVID govern the processing of personal data by the DGS as data controller. Therefore, in no circumstance such data will be shared with or sold to third parties. Moreover, its processing shall be limited to what is strictly necessary for the purposes of the app described above."
       },
       "termination_of_use": {
         "name": "G - Termination of use",
-        "first": "The user can stop using the app at any time by deleting/uninstalling it from the mobile phone.\n",
-        "second": "The whole system will be discontinued when the end of the pandemic is declared in Portugal."
+        "description": [
+          {
+            "id": "1",
+            "content": "1. ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "The user can stop using the app at any time by deleting/uninstalling it from the mobile phone.\n\n"
+          },
+          {
+            "id": "3",
+            "content": "2. ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "The whole system will be discontinued when the end of the pandemic is declared in Portugal."
+          }
+        ]
       },
       "copyright_property_rights_and_rights_of_use": {
         "name": "H – Copyright, property rights and rights of use",
-        "first": "Copyrights on the app and associated contents belong to the developers.\n",
-        "second": "The information and content is openly accessible to the public. The content published in the app is for personal use only. Any further reproduction or transfer of content to third parties is not allowed. The downloading or copying of content, images, photos or other files does not result in any transfer of rights as regards to the content. The developers (the copyright owners) or the designated holders of rights benefit exclusively from copyright and any other rights relating to content, images, photos or other files in this app, namely DGS, as their licensee. Written consent from the copyright owners is required for the reproduction of any elements."
+        "description": [
+          {
+            "id": "1",
+            "content": "1. ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "Copyrights on the app and associated contents belong to the developers.\n\n"
+          },
+          {
+            "id": "3",
+            "content": "2. ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "The information and content is openly accessible to the public. The content published in the app is for personal use only. Any further reproduction or transfer of content to third parties is not allowed. The downloading or copying of content, images, photos or other files does not result in any transfer of rights as regards to the content. The developers (the copyright owners) or the designated holders of rights benefit exclusively from copyright and any other rights relating to content, images, photos or other files in this app, namely DGS, as their licensee. Written consent from the copyright owners is required for the reproduction of any elements."
+          }
+        ]
       },
       "final_provisions": {
         "name": "I - Final provisions",
-        "first": "These provisions are available in Portuguese and English. In the event of inconsistencies, the Portuguese version shall prevail.\n",
-        "second": "Users can use the app free of any charge. . Any costs associated with the network access to enable use of the app are borne by the user.\n",
-        "third": "The DGS reserves the right to amend or add to the Terms and Conditions of Use at any time, given that the law and the rights of the copyright owners are fully respected. The new conditions will be communicated to users in advance, in an appropriate manner, and will be deemed to have been accepted if no objection is received within one month.\n",
-        "fourth": "Should one provision of the Terms and Conditions of Use be invalid or inoperative, the other provisions thereof shall not be affected.\n",
-        "fifth": "Portuguese Law shall apply, subject to any divergent mandatory provisions of European Union Law."
+        "description" : [
+          {
+            "id": "1",
+            "content": "1. ",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "These provisions are available in Portuguese and English. In the event of inconsistencies, the Portuguese version shall prevail.\n\n"
+          },
+          {
+            "id": "3",
+            "content": "2. ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "Users can use the app free of any charge. . Any costs associated with the network access to enable use of the app are borne by the user.\n\n"
+          },
+          {
+            "id": "5",
+            "content": "3. ",
+            "weight": "bold"
+          },
+          {
+            "id": "6",
+            "content": "The DGS reserves the right to amend or add to the Terms and Conditions of Use at any time, given that the law and the rights of the copyright owners are fully respected. The new conditions will be communicated to users in advance, in an appropriate manner, and will be deemed to have been accepted if no objection is received within one month.\n\n"
+          },
+          {
+            "id": "7",
+            "content": "4. ",
+            "weight": "bold"
+          },
+          {
+            "id": "8",
+            "content": "Should one provision of the Terms and Conditions of Use be invalid or inoperative, the other provisions thereof shall not be affected.\n\n"
+          },
+          {
+            "id": "9",
+            "content": "5. ",
+            "weight": "bold"
+          },
+          {
+            "id": "10",
+            "content": "Portuguese Law shall apply, subject to any divergent mandatory provisions of European Union Law."
+          }
+        ]
       },
       "last_review": "Reviewed on August 28, 2020",
       "actions": {
