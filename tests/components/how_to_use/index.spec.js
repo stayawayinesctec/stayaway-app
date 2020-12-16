@@ -22,7 +22,7 @@ describe('HowToUse Screen', () => {
         <HowToUse />,
       );
 
-      const firstScreenTitle = queryByText(i18n.translate('screens.onboarding.first.title'));
+      const firstScreenTitle = queryByText(i18n.translate('screens.onboarding.first.title', { formatted: false }));
       const closeButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.back.accessibility.hint.label'));
 
       expect(firstScreenTitle).toBeTruthy();
@@ -35,7 +35,7 @@ describe('HowToUse Screen', () => {
       );
 
       const secondScreenTitle = queryByText(i18n.translate('screens.onboarding.second.title'));
-      const secondScreenDescription = queryByText(i18n.translate('screens.onboarding.second.description'));
+      const secondScreenDescription = queryByText(i18n.translate('screens.onboarding.second.description', { formatted: false }));
 
       expect(secondScreenTitle).toBeTruthy();
       expect(secondScreenDescription).toBeTruthy();
@@ -47,7 +47,7 @@ describe('HowToUse Screen', () => {
       );
 
       const thirdScreenTitle = queryByText(i18n.translate('screens.onboarding.third.title'));
-      const thirdScreenDescription = queryByText(i18n.translate('screens.onboarding.third.description'));
+      const thirdScreenDescription = queryByText(i18n.translate('screens.onboarding.third.description', { formatted: false }));
 
       expect(thirdScreenTitle).toBeTruthy();
       expect(thirdScreenDescription).toBeTruthy();
@@ -59,7 +59,7 @@ describe('HowToUse Screen', () => {
       );
 
       const fourthScreenTitle = queryByText(i18n.translate('screens.onboarding.fourth.title'));
-      const fourthScreenDescription = queryByText(i18n.translate('screens.onboarding.fourth.description'));
+      const fourthScreenDescription = queryByText(i18n.translate('screens.onboarding.fourth.description', { formatted: false }));
       const okButton = queryByA11yLabel(i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.label'));
 
       expect(fourthScreenTitle).toBeTruthy();

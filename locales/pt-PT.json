@@ -2,23 +2,79 @@
   "screens": {
     "onboarding": {
       "first": {
-        "title": "Muito obrigado por se juntar a nós no combate à COVID-19.\n\nConsigo ficamos mais fortes!"
+        "title": [
+          {
+            "id": "1",
+            "content": "Muito obrigado por se juntar a nós no combate à COVID-19.\n\n",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "Consigo ficamos mais fortes!",
+            "weight": "bold"
+          }
+        ]
       },
       "second": {
         "title": "Proteja-se",
-        "description": "A STAYAWAY COVID funciona como um radar ao partilhar identificadores aleatórios com os telemóveis próximos do seu. Estes identificadores são guardados durante 14 dias e apenas nos telemóveis.\n\nA STAYAWAY COVID não acede à sua localização ou a quaisquer dados pessoais, nem seus nem de ninguém."
+        "description": [
+          {
+            "id": "1",
+            "content": "A STAYAWAY COVID funciona como um radar ao partilhar identificadores aleatórios com os telemóveis próximos do seu. Estes identificadores são guardados durante 14 dias e apenas nos telemóveis.\n\n"
+          },
+          {
+            "id": "2",
+            "content": "A STAYAWAY COVID não acede à sua localização ou a quaisquer dados pessoais, nem seus nem de ninguém."
+          }
+        ]
       },
       "third": {
         "title": "Alerta atempado",
-        "description": "A STAYAWAY COVID mostra um alerta se recentemente tiver estado muito perto de alguém diagnosticado com COVID-19.\n\nAssim, poderá atempadamente avaliar o seu risco de infeção e tomar decisões em relação à sua saúde e à das pessoas com quem vive e convive."
+        "description": [
+          {
+            "id": "1",
+            "content": "A STAYAWAY COVID mostra um alerta se recentemente tiver estado muito perto de alguém diagnosticado com COVID-19 que tenha informado o sistema STAYAWAY COVID.\n\n"
+          },
+          {
+            "id": "2",
+            "content": "Assim, poderá atempadamente avaliar o seu risco de infeção e tomar decisões em relação à sua saúde e à das pessoas com quem vive e convive."
+          }
+        ]
       },
       "fourth": {
         "title": "Proteja os outros",
-        "description": "Se lhe for diagnosticada COVID-19 obterá, do Serviço Nacional de Saúde um código que permitirá à STAYAWAY COVID, de forma anónima, alertar todos aqueles que estiveram muito perto de si nos últimos 14 dias.\n\nEste é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
+        "description": [
+          {
+            "id": "1",
+            "content": "Se lhe for diagnosticada COVID-19, receberá um código do SNS, verbalmente ou através de SMS, que permitirá à STAYAWAY COVID alertar de forma anónima aqueles que estiveram muito perto de si, durante pelo menos 15 minutos, durante o período de risco. Para mais informações, por favor consulte as "
+          },
+          {
+            "id": "2",
+            "content": "Perguntas Frequentes",
+            "link": "https://www.stayawaycovid.pt/faq"
+          },
+          {
+            "id": "3",
+            "content": ".\n\n"
+          },
+          {
+            "id": "4",
+            "content": "Este é um passo fundamental para quebrar as cadeias de contágio e proteger a saúde de todos."
+          }
+        ]
       },
       "fifth": {
         "title": "Dispositivo Android",
-        "description": "A STAYAWAY COVID não acede a informação de localização nem pedirá permissão para tal.\n\nNo entanto por limitação do sistema operativo Android será necessário ter os serviços de localização ligados para que a STAYAWAY COVID funcione corretamente."
+        "description": [
+          {
+            "id": "1",
+            "content": "A STAYAWAY COVID não acede a informação de localização nem pedirá permissão para tal.\n\n"
+          },
+          {
+            "id": "2",
+            "content": "No entanto por limitação do sistema operativo Android será necessário ter os serviços de localização ligados para que a STAYAWAY COVID funcione corretamente."
+          }
+        ]
       },
       "consent": {
         "title": "Consentimento",
@@ -135,12 +191,16 @@
         "description": [
           {
             "id": "1",
-            "content": "A STAYAWAY COVID está em vigilância permanente "
+            "content": "A STAYAWAY COVID está em vigilância permanente e "
           },
           {
             "id": "2",
-            "content": "e mostrará um alerta caso esta condição se altere. Evite contactos a menos de 2 metros de distância.",
+            "content": "mostrará um alerta caso esta condição se altere",
             "weight": "bold"
+          },
+          {
+            "id": "3",
+            "content": ". Evite contactos a menos de 2 metros de distância."
           }
         ]
       },
@@ -171,21 +231,16 @@
           },
           {
             "id": "6",
-            "content": "A STAYAWAY COVID "
+            "content": "A STAYAWAY COVID continua a funcionar normalmente. Se entretanto não receber novos alertas de risco, "
           },
           {
             "id": "7",
-            "content": "continua a funcionar normalmente. ",
+            "content": "este alerta desaparecerá ao fim de 14 dias",
             "weight": "bold"
           },
           {
             "id": "8",
-            "content": "Se entretanto não receber novos alertas de risco, "
-          },
-          {
-            "id": "9",
-            "content": "este alerta desaparecerá ao fim de 14 dias.",
-            "weight": "bold"
+            "content": "."
           }
         ]
       },
@@ -199,7 +254,47 @@
           },
           {
             "id": "2",
-            "content": "Com o seu diagnóstico positivo à COVID-19, a STAYAWAY COVID é desativada e deixa de monitorizar os contactos de proximidade.\n\nQuando recuperar, deverá reinstalar a STAYAWAY COVID para reiniciar o processo de monitorização."
+            "content": "Graças à inserção do código, "
+          },
+          {
+            "id": "3",
+            "content": "durante as próximas 24 horas deverão ser notificados os utilizadores STAYAWAY COVID ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "que tenham estado em contacto durante o período de risco. Consulte as "
+          },
+          {
+            "id": "5",
+            "content": "Perguntas Frequentes",
+            "link": "https://www.stayawaycovid.pt/faq"
+          },
+          {
+            "id": "6",
+            "content": " no nosso website para saber mais sobre quem deverá ser notificado.\n\n"
+          },
+          {
+            "id": "7",
+            "content": "Com o seu diagnóstico positivo à COVID-19, a "
+          },
+          {
+            "id": "8",
+            "content": "STAYAWAY COVID é desativada ",
+            "weight": "bold"
+          },
+          {
+            "id": "9",
+            "content": "e deixa de monitorizar os contactos de proximidade.\n\n"
+          },
+          {
+            "id": "10",
+            "content": "Quando recuperar, deverá reinstalar a STAYAWAY COVID ",
+            "weight": "bold"
+          },
+          {
+            "id": "11",
+            "content": "para reiniciar o processo de monitorização."
           }
         ]
       },

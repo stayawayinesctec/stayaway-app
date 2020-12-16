@@ -108,7 +108,7 @@ Template.defaultProps = {
 };
 
 Template.propTypes = {
-  header: PropTypes.string,
-  description: PropTypes.string,
+  header: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+  description: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   image: PropTypes.oneOf(Object.values(images)).isRequired,
 };

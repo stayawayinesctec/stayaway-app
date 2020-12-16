@@ -2,23 +2,79 @@
   "screens": {
     "onboarding": {
       "first": {
-        "title": "Thank you for joining us in the fight against COVID-19!\n\nWith your help we grow stronger."
+        "title": [
+          {
+            "id": "1",
+            "content": "Thank you for joining us in the fight against COVID-19!\n\n",
+            "weight": "bold"
+          },
+          {
+            "id": "2",
+            "content": "With your help we grow stronger.",
+            "weight": "bold"
+          }
+        ]
       },
       "second": {
         "title": "Protect yourself",
-        "description": "The STAYAWAY COVID app works as a radar by sharing randomly generated depersonalised identifiers with nearby mobile phones. These identifiers are stored for 14 days on your mobile phone only.\n\nThe app does not require access to an individual's location nor to personal data."
+        "description": [
+          {
+            "id": "1",
+            "content": "The STAYAWAY COVID app works as a radar by sharing randomly generated depersonalised identifiers with nearby mobile phones. These identifiers are stored for 14 days on your mobile phone only.\n\n"
+          },
+          {
+            "id": "2",
+            "content": "The app does not require access to an individual's location nor to personal data."
+          }
+        ]
       },
       "third": {
         "title": "Timely Alert Notifications",
-        "description": "If someone you have been in close contact with very recently later tests positive for COVID-19, STAYAWAY COVID will alert you.\n\nWith this information on your side, you can self-assess your infection risk and make decisions that will affect your health and the health of those you live and interact with."
+        "description": [
+          {
+            "id": "1",
+            "content": "If someone you have been in close contact with very recently later informs the STAYAWAY COVID system, the app will alert you.\n\n"
+          },
+          {
+            "id": "2",
+            "content": "With this information on your side, you can self-assess your infection risk and make decisions that will affect your health and the health of those you live and interact with."
+          }
+        ]
       },
       "fourth": {
         "title": "Protect others around you",
-        "description": "If you have been diagnosed with COVID-19, with the result of your test you will be given a code that will allow STAYAWAY COVID to alert all of those you have come in close contact with in the past 14 days but preserving your anonimity.\n\nThis a fundamental step to break chains of infection and protect your and others’ health."
+        "description": [
+          {
+            "id": "1",
+            "content": "If you have been diagnosed with COVID-19, the SNS will provide a code verbally or via text message, which will allow STAYAWAY COVID to alert all of those you have come in close contact with during the risk period, for at least 15 minutes, but preserving your anonymity. For more information, please consult the "
+          },
+          {
+            "id": "2",
+            "content": "FAQs",
+            "link": "https://www.stayawaycovid.pt/frequently-asked-questions"
+          },
+          {
+            "id": "3",
+            "content": ".\n\n"
+          },
+          {
+            "id": "4",
+            "content": "This a fundamental step to break chains of infection and protect your and others’ health."
+          }
+        ]
       },
       "fifth": {
         "title": "Android device",
-        "description": "STAYAWAY COVID does not access any kind of location information nor it asks permission to access the location services.\n\nHowever, due to a limitation of the Android operating system, location services will need to be turned on for STAYAWAY COVID to work properly."
+        "description": [
+          {
+            "id": "1",
+            "content": "STAYAWAY COVID does not access any kind of location information nor it asks permission to access the location services.\n\n"
+          },
+          {
+            "id": "2",
+            "content": "However, due to a limitation of the Android operating system, location services will need to be turned on for STAYAWAY COVID to work properly."
+          }
+        ]
       },
       "consent": {
         "title": "Consent",
@@ -135,12 +191,16 @@
         "description": [
           {
             "id": "1",
-            "content": "STAYAWAY COVID will be constantly monitoring your risk level "
+            "content": "STAYAWAY COVID will be constantly monitoring your risk level and "
           },
           {
             "id": "2",
-            "content": "and will alert you if you have been exposed to risk. Avoid contacts closer than 2 metres from you.",
+            "content": "will alert you if you have been exposed to risk",
             "weight": "bold"
+          },
+          {
+            "id": "3",
+            "content": ". Avoid contacts closer than 2 metres from you."
           }
         ]
       },
@@ -171,19 +231,15 @@
           },
           {
             "id": "6",
-            "content": "STAYAWAY COVID  "
-          },
-          {
-            "id": "7",
-            "content": "keeps running as usual. ",
+            "content": "STAYAWAY COVID keeps running as usual. ",
             "weight": "bold"
           },
           {
-            "id": "8",
+            "id": "7",
             "content": "In the meantime, if you don’t get new exposure notifications, "
           },
           {
-            "id": "9",
+            "id": "8",
             "content": "this warning will disappear after 14 days.",
             "weight": "bold"
           }
@@ -199,7 +255,56 @@
           },
           {
             "id": "2",
-            "content": "Since you have tested positive for COVID-19, STAYAWAY COVID will be disabled and stop tracing your contacts.\n\nOnce recovered, make sure you reinstall the app in order to restart contact tracing."
+            "content": "Now that you have inserted the code, the "
+          },
+          {
+            "id": "3",
+            "content": "STAYAWAY COVID users ",
+            "weight": "bold"
+          },
+          {
+            "id": "4",
+            "content": "who may have been in contact with you during the exposure period "
+          },
+          {
+            "id": "5",
+            "content": "will be notified over the next 24 hours",
+            "weight": "bold"
+          },
+          {
+            "id": "6",
+            "content": ". Please check the "
+          },
+          {
+            "id": "7",
+            "content": "FAQs",
+            "link": "https://www.stayawaycovid.pt/frequently-asked-questions"
+          },
+          {
+            "id": "8",
+            "content": " on our website, so you can learn more about who will be notified.\n\n"
+          },
+          {
+            "id": "9",
+            "content": "Since you have tested positive to COVID-19, "
+          },
+          {
+            "id": "10",
+            "content": "STAYAWAY COVID will stop working ",
+            "weight": "bold"
+          },
+          {
+            "id": "11",
+            "content": "and tracing close contacts.\n\n"
+          },
+          {
+            "id": "12",
+            "content": "When you recover, please reinstall the STAYAWAY COVID app",
+            "weight": "bold"
+          },
+          {
+            "id": "13",
+            "content": ", in order to restart the tracing process."
           }
         ]
       },
@@ -386,12 +491,12 @@
         "description": [
           {
             "id": "1",
-            "content": "After your positive diagnosis, you were given a code by the National Health Service. ",
+            "content": "Please enter the code the SNS provided after you tested positive for COVID-19, ",
             "weight": "bold"
           },
           {
             "id": "2",
-            "content": "Enter the code to give the app permission to anonymously share your random identifiers. This code is valid for 24 hours only."
+            "content": "to give the app permission to anonymously share your random identifiers. This code is valid for 24 hours only."
           }
         ],
         "accessibility": {

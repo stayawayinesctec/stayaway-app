@@ -24,7 +24,7 @@ describe('Onboarding Screen', () => {
         <Onboarding />,
       );
 
-      const firstScreenTitle = queryByText(i18n.translate('screens.onboarding.first.title'));
+      const firstScreenTitle = queryByText(i18n.translate('screens.onboarding.first.title', { formatted: false }));
 
       expect(firstScreenTitle).toBeTruthy();
     });
@@ -35,7 +35,7 @@ describe('Onboarding Screen', () => {
       );
 
       const secondScreenTitle = queryByText(i18n.translate('screens.onboarding.second.title'));
-      const secondScreenDescription = queryByText(i18n.translate('screens.onboarding.second.description'));
+      const secondScreenDescription = queryByText(i18n.translate('screens.onboarding.second.description', { formatted: false }));
 
       expect(secondScreenTitle).toBeTruthy();
       expect(secondScreenDescription).toBeTruthy();
@@ -47,7 +47,7 @@ describe('Onboarding Screen', () => {
       );
 
       const thirdScreenTitle = queryByText(i18n.translate('screens.onboarding.third.title'));
-      const thirdScreenDescription = queryByText(i18n.translate('screens.onboarding.third.description'));
+      const thirdScreenDescription = queryByText(i18n.translate('screens.onboarding.third.description', { formatted: false }));
 
       expect(thirdScreenTitle).toBeTruthy();
       expect(thirdScreenDescription).toBeTruthy();
@@ -59,7 +59,7 @@ describe('Onboarding Screen', () => {
       );
 
       const fourthScreenTitle = queryByText(i18n.translate('screens.onboarding.fourth.title'));
-      const fourthScreenDescription = queryByText(i18n.translate('screens.onboarding.fourth.description'));
+      const fourthScreenDescription = queryByText(i18n.translate('screens.onboarding.fourth.description', { formatted: false }));
 
       expect(fourthScreenTitle).toBeTruthy();
       expect(fourthScreenDescription).toBeTruthy();
@@ -71,7 +71,7 @@ describe('Onboarding Screen', () => {
         );
 
         const fifthScreenTitle = queryByText(i18n.translate('screens.onboarding.fifth.title'));
-        const fifthScreenDescription = queryByText(i18n.translate('screens.onboarding.fifth.description'));
+        const fifthScreenDescription = queryByText(i18n.translate('screens.onboarding.fifth.description', { formatted: false }));
 
         expect(fifthScreenTitle).toBeNull();
         expect(fifthScreenDescription).toBeNull();
@@ -82,7 +82,7 @@ describe('Onboarding Screen', () => {
         );
 
         const fifthScreenTitle = queryByText(i18n.translate('screens.onboarding.fifth.title'));
-        const fifthScreenDescription = queryByText(i18n.translate('screens.onboarding.fifth.description'));
+        const fifthScreenDescription = queryByText(i18n.translate('screens.onboarding.fifth.description', { formatted: false }));
 
         expect(fifthScreenTitle).toBeTruthy();
         expect(fifthScreenDescription).toBeTruthy();

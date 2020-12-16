@@ -362,8 +362,8 @@ Template.defaultProps = {
 };
 
 Template.propTypes = {
-  header: PropTypes.string,
-  description: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  header: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+  description: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   onPressSettings: PropTypes.func,
   onPressShare: PropTypes.func,
   onLongPressSettings: PropTypes.func,
