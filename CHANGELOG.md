@@ -59,7 +59,6 @@
 - Fix minor bugs
 - Fix typos
 
-
 ## version 1.1.0 (25.11.2020)
 - Add dark mode support
 - Update DP3T SDK version to 2.0.0
@@ -68,5 +67,13 @@
 - Fix home tooltip time
 - Fix tracking not disabled after submit diagnosis
 - Fix home exposed copy
+- Fix minor bugs
+- Fix typos
+
+## version 1.1.1 (18.12.2020)
+- Add licenses screen
+- Fix onboarding and home copy
+- Fix iOS splashscreen
+- Update ubirider website link
 - Fix minor bugs
 - Fix typos
