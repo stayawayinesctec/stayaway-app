@@ -1252,6 +1252,15 @@
       "support": {
         "subject": "Ajuda - STAYAWAY COVID",
         "body": "Nome:\nMensagem:\n\nVersão da App: {{version}}\nSistema Operativo: {{OS}}\nModelo do telemóvel: {{model}}"
+      },
+      "contact": {
+        "title": "Contacte-nos",
+        "description": "Texto explicativo que tipo de contactos podemos ter para enviar email",
+        "label": "Enviar email",
+        "accessibility": {
+          "label": "Contacte-nos",
+          "hint": "Ligação para enviar um email à equipa de suporte"
+        }
       }
     },
     "actions": {

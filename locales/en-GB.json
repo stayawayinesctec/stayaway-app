@@ -1253,6 +1253,15 @@
       "support": {
         "subject": "Help - STAYAWAY COVID",
         "body": "Name:\nMessage:\n\nApp Version: {{version}}\nOperating System: {{OS}}\nSmartphone model: {{model}}"
+      },
+      "contact": {
+        "title": "Contact Us",
+        "description": "Texto explicativo que tipo de contactos podemos ter para enviar email",
+        "label": "Send email",
+        "accessibility": {
+          "label": "Contact Us",
+          "hint": "Send email to support team"
+        }
       }
     },
     "actions": {
