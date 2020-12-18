@@ -119,6 +119,13 @@ export const lightColors = {
   settingsAltButtonTextColor: '#264B99',
   settingsAltButtonBackgroundColor: '#FFFFFF',
   settingsAltButtonIconTintColor: '#264B99',
+
+  // Licenses
+  licensesProjectTextColor: '#FFFFFF',
+  licensesProjectBackgroundColor: '#87A4E3',
+  licensesLineBreakBackgroundColor: '#87A4E3',
+  licensesTitleTextColor: '#264B99',
+  licensesSubtitleTextColor: '#87A4E3',
 };
 
 export const darkColors = {
@@ -233,6 +240,13 @@ export const darkColors = {
   settingsAltButtonTextColor: '#E4F2FC',
   settingsAltButtonBackgroundColor: '#2C2C2C',
   settingsAltButtonIconTintColor: '#E4F2FC',
+
+  // Licenses
+  licensesProjectTextColor: '#121212',
+  licensesProjectBackgroundColor: '#97CBF6',
+  licensesLineBreakBackgroundColor: '#97CBF6',
+  licensesTitleTextColor: '#E4F2FC',
+  licensesSubtitleTextColor: '#97CBF6',
 };
 
 const colors = [

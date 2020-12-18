@@ -25,10 +25,12 @@ describe('Legal Information Screen', () => {
       const termsOfUseButton = queryByA11yLabel(i18n.translate('screens.legal_information.terms_of_use.accessibility.label'));
       const privacyPolicyButton = queryByA11yLabel(i18n.translate('screens.legal_information.privacy_policy.accessibility.label'));
       const technicalSheetButton = queryByA11yLabel(i18n.translate('screens.legal_information.technical_sheet.accessibility.label'));
+      const licensesButton = queryByA11yLabel(i18n.translate('screens.legal_information.licenses.accessibility.label'));
 
       expect(termsOfUseButton).toBeTruthy();
       expect(privacyPolicyButton).toBeTruthy();
       expect(technicalSheetButton).toBeTruthy();
+      expect(licensesButton).toBeTruthy();
     });
   });
   describe('Legal Information buttons interaction work', () => {
@@ -87,6 +89,20 @@ describe('Legal Information Screen', () => {
       expect(technicalSheetButton).toBeTruthy();
       fireEvent.press(technicalSheetButton);
       expect(onPressTechnicalSheet).toHaveBeenCalled();
+    });
+    it('When press licenses button.', () => {
+      const onPressLicenses = jest.fn();
+      const { queryByA11yLabel } = render(
+        <LegalInformation
+          onPressLicenses={onPressLicenses}
+        />,
+      );
+
+      const licensesButton = queryByA11yLabel(i18n.translate('screens.legal_information.licenses.accessibility.label'));
+
+      expect(licensesButton).toBeTruthy();
+      fireEvent.press(licensesButton);
+      expect(onPressLicenses).toHaveBeenCalled();
     });
   });
 });

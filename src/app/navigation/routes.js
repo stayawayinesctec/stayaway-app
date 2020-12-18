@@ -30,6 +30,7 @@ const routes = {
   PRIVACY_POLICY: "PrivacyPolicy",
   TERMS_OF_USE: "TermsOfUse",
   TECHNICAL_SHEET: "TechnicalSheet",
+  LICENSES: "Licenses",
 };
 
 export default routes;

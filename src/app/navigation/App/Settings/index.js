@@ -21,6 +21,7 @@ import LegalInformationScreen from '@settings/containers/LegalInformationScreen'
 import TechnicalSheetScreen from '@settings/containers/TechnicalSheetScreen';
 import TermsOfUseScreen from '@settings/containers/TermsOfUseScreen';
 import PrivacyPolicyScreen from '@settings/containers/PrivacyPolicyScreen';
+import LicensesScreen from '@settings/containers/LicensesScreen';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -56,6 +57,10 @@ export default () => (
     <Screen
       name={AppRoutes.TECHNICAL_SHEET}
       component={TechnicalSheetScreen}
+    />
+    <Screen
+      name={AppRoutes.LICENSES}
+      component={LicensesScreen}
     />
   </Navigator>
 );

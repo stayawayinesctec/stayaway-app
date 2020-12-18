@@ -52,18 +52,27 @@ const styles = (colors, insets) => StyleSheet.create({
     marginBottom: sizes.size24,
   },
   itemsContainer: {
-    marginBottom: sizes.size48,
+    marginBottom: sizes.size20,
+  },
+  topItem: {
+    borderTopLeftRadius: sizes.size8,
+    borderTopRightRadius: sizes.size8,
+    borderTopWidth: 0,
+  },
+  bottomItem: {
+    borderBottomLeftRadius: sizes.size8,
+    borderBottomRightRadius: sizes.size8,
   },
   item: {
     backgroundColor: colors.settingsAltButtonBackgroundColor,
-    paddingLeft: sizes.size8,
+    paddingLeft: sizes.size16,
     paddingRight: sizes.size16,
     paddingVertical: sizes.size18,
-    marginBottom: sizes.size8,
+    borderTopWidth: sizes.size1,
+    borderColor: colors.settingsBorderColor,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: sizes.size8,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -102,6 +111,7 @@ export default function LegalInformation(props) {
     onPressPrivacyPolicy,
     onPressTermsOfUse,
     onPressTechnicalSheet,
+    onPressLicenses,
   } = props;
 
   const insets = useSafeAreaInsets();
@@ -125,7 +135,10 @@ export default function LegalInformation(props) {
             <View style={styles(colors, insets).itemsContainer}>
               <ButtonWrapper
                 onPress={onPressTermsOfUse}
-                style={styles(colors, insets).item}
+                style={{
+                  ...styles(colors, insets).topItem,
+                  ...styles(colors, insets).item,
+                }}
                 accessibilityLabel={i18n.translate('screens.legal_information.terms_of_use.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.legal_information.terms_of_use.accessibility.hint')}
               >
@@ -134,20 +147,40 @@ export default function LegalInformation(props) {
               </ButtonWrapper>
               <ButtonWrapper
                 onPress={onPressPrivacyPolicy}
-                style={styles(colors, insets).item}
+                style={{
+                  ...styles(colors, insets).bottomItem,
+                  ...styles(colors, insets).item,
+                }}
                 accessibilityLabel={i18n.translate('screens.legal_information.privacy_policy.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.legal_information.privacy_policy.accessibility.hint')}
               >
                 <Text weight='bold'>{i18n.translate('screens.legal_information.privacy_policy.label')}</Text>
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
               </ButtonWrapper>
+            </View>
+            <View style={styles(colors, insets).itemsContainer}>
               <ButtonWrapper
                 onPress={onPressTechnicalSheet}
-                style={styles(colors, insets).item}
+                style={{
+                  ...styles(colors, insets).topItem,
+                  ...styles(colors, insets).item,
+                }}
                 accessibilityLabel={i18n.translate('screens.legal_information.technical_sheet.accessibility.label')}
                 accessibilityHint={i18n.translate('screens.legal_information.technical_sheet.accessibility.hint')}
               >
                 <Text weight='bold'>{i18n.translate('screens.legal_information.technical_sheet.label')}</Text>
+                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
+              </ButtonWrapper>
+              <ButtonWrapper
+                onPress={onPressLicenses}
+                style={{
+                  ...styles(colors, insets).bottomItem,
+                  ...styles(colors, insets).item,
+                }}
+                accessibilityLabel={i18n.translate('screens.legal_information.licenses.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.legal_information.licenses.accessibility.hint')}
+              >
+                <Text weight='bold'>{i18n.translate('screens.legal_information.licenses.label')}</Text>
                 <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
               </ButtonWrapper>
             </View>
@@ -170,6 +203,7 @@ LegalInformation.defaultProps = {
   onPressTermsOfUse: () => {},
   onPressTechnicalSheet: () => {},
   onPressPrivacyPolicy: () => {},
+  onPressLicenses: () => {},
 };
 
 LegalInformation.propTypes = {
@@ -177,4 +211,5 @@ LegalInformation.propTypes = {
   onPressTermsOfUse: PropTypes.func,
   onPressTechnicalSheet: PropTypes.func,
   onPressPrivacyPolicy: PropTypes.func,
+  onPressLicenses: PropTypes.func,
 };

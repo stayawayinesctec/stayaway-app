@@ -56,7 +56,8 @@ const styles = (colors, insets) => StyleSheet.create({
     marginTop: sizes.size16,
   },
   coordinatorContainer: {
-    marginBottom: sizes.size8,
+    marginBottom: sizes.size40,
+    width: '50%',
   },
   itemLabel: {
     marginLeft: sizes.size8,
@@ -66,11 +67,11 @@ const styles = (colors, insets) => StyleSheet.create({
     backgroundColor: colors.settingsAltButtonBackgroundColor,
     paddingLeft: sizes.size16,
     paddingRight: sizes.size16,
-    paddingVertical: sizes.size18,
-    marginBottom: sizes.size8,
+    paddingVertical: sizes.size8,
+    height: sizes.size48 + sizes.size8,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     borderRadius: sizes.size8,
     shadowOffset: {
       width: 0,
@@ -79,6 +80,11 @@ const styles = (colors, insets) => StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    flex: 1,
+  },
+  itemsRow: {
+    flexDirection: 'row',
+    marginBottom: sizes.size8,
   },
   bottomContainer: {
     flex: 1,
@@ -146,54 +152,56 @@ export default function TechnicalSheet (props) {
                   accessibilityHint={i18n.translate('screens.technical_sheet.inesctec.accessibility.hint')}
                 >
                   <Image source={getThemedImage('logo_inesctec', name)} />
-                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
                 </ButtonWrapper>
               </View>
               <View style={styles(colors, insets).partnersContainer}>
                 <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
-                <ButtonWrapper
-                  style={{
-                    ...styles(colors, insets).item,
-                    paddingVertical: sizes.size8,
-                  }}
-                  onPress={onPressISPUP}
-                  accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.technical_sheet.ispup.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.technical_sheet.ispup.accessibility.hint')}
-                >
-                  <Image source={getThemedImage('logo_ispup', name)} />
-                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-                </ButtonWrapper>
-                <ButtonWrapper
-                  style={styles(colors, insets).item}
-                  onPress={onPressKeyruptive}
-                  accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.technical_sheet.keyruptive.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.technical_sheet.keyruptive.accessibility.hint')}
-                >
-                  <Image source={getThemedImage('logo_keyruptive', name)} />
-                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-                </ButtonWrapper>
-                <ButtonWrapper
-                  style={styles(colors, insets).item}
-                  onPress={onPressUbirider}
-                  accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.technical_sheet.ubirider.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.technical_sheet.ubirider.accessibility.hint')}
-                >
-                  <Image source={getThemedImage('logo_ubirider', name)} />
-                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-                </ButtonWrapper>
-                <ButtonWrapper
-                  style={styles(colors, insets).item}
-                  onPress={onPressSPMS}
-                  accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.technical_sheet.spms.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.technical_sheet.spms.accessibility.hint')}
-                >
-                  <Image source={getThemedImage('logo_spms', name)} />
-                  <Icon name='external_link' width={iconSizes.size12} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-                </ButtonWrapper>
+                <View style={styles(colors, insets).itemsRow}>
+                  <ButtonWrapper
+                    style={{
+                      ...styles(colors, insets).item,
+                      marginRight: sizes.size8,
+                    }}
+                    onPress={onPressISPUP}
+                    accessibilityRole='link'
+                    accessibilityLabel={i18n.translate('screens.technical_sheet.ispup.accessibility.label')}
+                    accessibilityHint={i18n.translate('screens.technical_sheet.ispup.accessibility.hint')}
+                  >
+                    <Image source={getThemedImage('logo_ispup', name)} />
+                  </ButtonWrapper>
+                  <ButtonWrapper
+                    style={styles(colors, insets).item}
+                    onPress={onPressKeyruptive}
+                    accessibilityRole='link'
+                    accessibilityLabel={i18n.translate('screens.technical_sheet.keyruptive.accessibility.label')}
+                    accessibilityHint={i18n.translate('screens.technical_sheet.keyruptive.accessibility.hint')}
+                  >
+                    <Image source={getThemedImage('logo_keyruptive', name)} />
+                  </ButtonWrapper>
+                </View>
+                <View style={styles(colors, insets).itemsRow}>
+                  <ButtonWrapper
+                    style={{
+                      ...styles(colors, insets).item,
+                      marginRight: sizes.size8,
+                    }}
+                    onPress={onPressUbirider}
+                    accessibilityRole='link'
+                    accessibilityLabel={i18n.translate('screens.technical_sheet.ubirider.accessibility.label')}
+                    accessibilityHint={i18n.translate('screens.technical_sheet.ubirider.accessibility.hint')}
+                  >
+                    <Image source={getThemedImage('logo_ubirider', name)} />
+                  </ButtonWrapper>
+                  <ButtonWrapper
+                    style={styles(colors, insets).item}
+                    onPress={onPressSPMS}
+                    accessibilityRole='link'
+                    accessibilityLabel={i18n.translate('screens.technical_sheet.spms.accessibility.label')}
+                    accessibilityHint={i18n.translate('screens.technical_sheet.spms.accessibility.hint')}
+                  >
+                    <Image source={getThemedImage('logo_spms', name)} />
+                  </ButtonWrapper>
+                </View>
               </View>
             </View>
           </Layout>

@@ -198,7 +198,7 @@ export default function Template (props) {
     <ThemeConsumer>
       {({colors}) => (
         <TopComponent>
-          <View style={styles(colors, insets).settingsButtonContainer}>
+          <View style={styles(colors, insets).settingsButtonContainer} pointerEvents='box-none'>
             <ButtonWrapper
               onPress={onPressSettings}
               onLongPress={onLongPressSettings}

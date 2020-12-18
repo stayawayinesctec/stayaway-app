@@ -600,11 +600,87 @@
           "hint": "Navega para a ficha técnica"
         }
       },
+      "licenses": {
+        "label": "Licenças",
+        "accessibility": {
+          "label": "Licenças",
+          "hint": "Navega para a licenças"
+        }
+      },
       "actions": {
         "back": {
           "accessibility": {
             "label": "Para atrás",
             "hint": "Navega para trás para o ecrã de definições"
+          }
+        }
+      }
+    },
+    "licenses": {
+      "title": "Licenças",
+      "project": [
+        {
+          "id": "1",
+          "content": "A "
+        },
+        {
+          "id": "2",
+          "content": "STAYAWAY COVID",
+          "weight": "bold"
+        },
+        {
+          "id": "3",
+          "content": " baseia-se no "
+        },
+        {
+          "id": "4",
+          "content": "DP3T",
+          "weight": "bold"
+        },
+        {
+          "id": "5",
+          "content": ", um projeto licenciado sob as condições da licença "
+        },
+        {
+          "id": "6",
+          "content": "MPL-2.0",
+          "weight": "bold"
+        },
+        {
+          "id": "7",
+          "content": ".\n\n"
+        },
+        {
+          "id": "8",
+          "content": "Para mais informações e visualização do código fonte ver:\n\n"
+        },
+        {
+          "id": "9",
+          "content": "Projeto STAYAWAY COVID no GitHub\n",
+          "link": "https://github.com/stayawayinesctec"
+        },
+        {
+          "id": "10",
+          "content": "Projeto DP3T no GitHub",
+          "link": "https://github.com/DP-3T"
+        }
+      ],
+      "copyright_and_license": {
+        "title": "Licença e créditos",
+        "body": "Copyright © 2020 INESC TEC. Desenvolvido com a Keyruptive e Ubirider. Este projeto está licenciado sob as condições da licença EUPL-1.2.\n\nAlguns ficheiros do código fonte da aplicação contém código das aplicações do DP3T, Copyright © 2020 Ubique Innovation AG. Estes ficheiros estão marcados como tal e estão licenciado sob as condições da licença MPL-2.0."
+      },
+      "third_party": {
+        "title": "Licenças de componentes de terceiros",
+        "tools": "Ferramentas",
+        "libraries": "Bibliotecas",
+        "react_native_packages": "React Native Packages",
+        "fonts": "Fontes"
+      },
+      "actions": {
+        "back": {
+          "accessibility": {
+            "label": "Para atrás",
+            "hint": "Navega para trás para o ecrã de informação legal"
           }
         }
       }
@@ -1100,6 +1176,8 @@
       "ubirider": "https://www.pick.ubirider.com/sobre",
       "spms": "https://www.sns.gov.pt/entidades-de-saude/servicos-partilhados-do-ministerio-da-saude",
       "min_saude_covid": "https://www.covid19.min-saude.pt",
+      "stayaway_github": "https://github.com/stayawayinesctec",
+      "dp3t_github": "https://github.com/DP-3T",
       "stores": {
         "play_store": "https://play.google.com/store/apps/details?id=fct.inesctec.stayaway",
         "app_store": "https://apps.apple.com/pt/app/id1519479652"
