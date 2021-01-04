@@ -212,6 +212,7 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 | [react-native-android-location-enabler](https://www.npmjs.com/package/react-native-android-location-enabler)      | MIT          |
 | [react-native-config](https://www.npmjs.com/package/react-native-config)                                          | MIT          |
 | [react-native-elements](https://www.npmjs.com/package/react-native-elements)                                      | MIT          |
+| [react-native-react-native-email-link](https://www.npmjs.com/package/react-native-react-native-email-link)        | MIT          |
 | [react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler)                        | MIT          |
 | [react-native-indicators](https://www.npmjs.com/package/react-native-indicators)                                  | BSD-3-Clause |
 | [react-native-keyboard-aware-scroll-view](https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view)  | MIT          |

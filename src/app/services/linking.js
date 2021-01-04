@@ -9,6 +9,8 @@
  */
 
 import { Linking } from 'react-native';
+import { openComposer } from 'react-native-email-link';
+import i18n from '@app/services/i18n';
 
 const openURL = async (url) => {
   const supported = await Linking.canOpenURL(url);
@@ -18,6 +20,17 @@ const openURL = async (url) => {
   }
 };
 
+const openMailComposer = (to, subject, body) => {
+  openComposer({
+    title: i18n.translate('common.dialogs.email.title'),
+    message: i18n.translate('common.dialogs.email.message'),
+    to,
+    subject,
+    body,
+ });
+};
+
 export default {
   openURL,
+  openMailComposer,
 };

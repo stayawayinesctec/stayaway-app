@@ -1255,12 +1255,34 @@
       },
       "contact": {
         "title": "Contacte-nos",
-        "description": "Texto explicativo que tipo de contactos podemos ter para enviar email",
+        "description": [
+          {
+            "id": "1",
+            "content": "Envie-nos um email caso tenha problemas ou questões relacionadas com a STAYAWAY COVID.\n\n"
+          },
+          {
+            "id": "2",
+            "content": "Para outros problemas ou questões, por favor contacte a "
+          },
+          {
+            "id": "3",
+            "content": "linha SNS 24 - 808 24 24 24",
+            "link": "tel:+351808242424"
+          },
+          {
+            "id": "4",
+            "content": "."
+          }
+        ],
         "label": "Enviar email",
         "accessibility": {
           "label": "Contacte-nos",
           "hint": "Ligação para enviar um email à equipa de suporte"
         }
+      },
+      "email": {
+        "title": "Escolher aplicação de email",
+        "message": "Qual é a aplicação que pretende utilizar para enviar o email?"
       }
     },
     "actions": {

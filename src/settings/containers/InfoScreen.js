@@ -9,7 +9,6 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Info from '@settings/components/Info';

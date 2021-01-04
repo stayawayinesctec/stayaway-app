@@ -92,6 +92,10 @@
         "link": "https://www.npmjs.com/package/react-native-elements"
       },
       {
+        "name": "react-native-email-link",
+        "link": "https://www.npmjs.com/package/react-native-email-link"
+      },
+      {
         "name": "react-native-gesture-handler",
         "link": "https://www.npmjs.com/package/react-native-gesture-handler"
       },

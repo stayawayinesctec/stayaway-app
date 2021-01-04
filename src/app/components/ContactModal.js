@@ -11,7 +11,6 @@
 import React, { useEffect, useState } from 'react';
 import { Platform, View, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
-import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { ThemeConsumer } from '@app/contexts/Theme';
@@ -65,7 +64,6 @@ export default function ContactModal (props) {
     OS: `${Platform.OS} ${OS}`,
     model,
   });
-  const getSupportEmailFormat = () => `mailto:${supportEmail}?subject=${subject}&body=${body}`;
 
   useEffect(() => {
     TracingManager.getInfo()
@@ -98,7 +96,7 @@ export default function ContactModal (props) {
               title={i18n.translate('common.dialogs.contact.label')}
               accessibilityLabel={i18n.translate('common.dialogs.contact.accessibility.label')}
               accessibilityHint={i18n.translate('common.dialogs.contact.accessibility.hint')}
-              onPress={() => Linking.openURL(getSupportEmailFormat())}
+              onPress={() => Linking.openMailComposer(supportEmail, subject, body)}
             />
           </View>
           <View style={styles(colors).supportContainer}>

@@ -1256,12 +1256,34 @@
       },
       "contact": {
         "title": "Contact Us",
-        "description": "Texto explicativo que tipo de contactos podemos ter para enviar email",
-        "label": "Send email",
+        "description": [
+          {
+            "id": "1",
+            "content": "Send us an e-mail in case you are experiencing issues or have any questions about the STAYAWAY COVID App.\n\n"
+          },
+          {
+            "id": "2",
+            "content": "For other inquiries, please contact the "
+          },
+          {
+            "id": "3",
+            "content": "SNS24 phone line - 808 24 24 24",
+            "link": "tel:+351808242424"
+          },
+          {
+            "id": "4",
+            "content": "."
+          }
+        ],
+        "label": "Send e-mail",
         "accessibility": {
           "label": "Contact Us",
           "hint": "Send email to support team"
         }
+      },
+      "email": {
+        "title": "Open mail app",
+        "message": "Which app would you like to open?"
       }
     },
     "actions": {
