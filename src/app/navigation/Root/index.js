@@ -15,18 +15,27 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AppNavigator from '@app/navigation/App';
 
 import OnboardingScreen from '@src/onboarding/containers/OnboardingScreen';
+import UnsupportedScreen from '@src/app/containers/UnsupportedScreen';
 
 import { isOnboarding } from '@app/redux/onboarding/selectors';
+import { isUnsupported } from '@app/redux/startup/selectors';
 
 import AppRoutes from '@app/navigation/routes';
 
 const { Navigator, Screen } = createStackNavigator();
 
 export default () => {
+  const unsupported = useSelector(isUnsupported);
   const onboarding = useSelector(isOnboarding);
 
   return (
     <Navigator headerMode='none'>
+      { unsupported &&
+        <Screen
+          name={AppRoutes.UNSUPPORTED}
+          component={UnsupportedScreen}
+        />
+      }
       { onboarding &&
         <Screen
           name={AppRoutes.ONBOARDING}

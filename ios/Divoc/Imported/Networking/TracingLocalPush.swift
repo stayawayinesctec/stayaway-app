@@ -103,6 +103,15 @@ class TracingLocalPush: NSObject, LocalPushProtocol {
 
   func clearNotifications() {
     center.removeAllDeliveredNotifications()
+
+    var allIdentifier = [String]()
+    for identifier in exposureIdentifiers {
+        allIdentifier.append(identifier)
+        for delayIndex in 1 ... 12 {
+            allIdentifier.append(identifier + "\(delayIndex)")
+        }
+    }
+    center.removePendingNotificationRequests(withIdentifiers: allIdentifier)
   }
 
   @KeychainPersisted(key: "lastestExposureDate", defaultValue: nil)
@@ -116,6 +125,7 @@ class TracingLocalPush: NSObject, LocalPushProtocol {
     content.title = "exposed_notification_title".ub_localized;
     content.body = "exposed_notification_body".ub_localized;
     content.sound = .default
+    content.threadIdentifier = identifier
 
     let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
     center.add(request, withCompletionHandler: nil)

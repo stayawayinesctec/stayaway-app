@@ -75,7 +75,7 @@ Required tools for building:
 
 ### iOS
 
-Only approved government public health authorities can access the Exposure Notification APIs. STAYAWAY COVID for iOS will only work correctly if you were granted the `com.apple.developer.exposure-notification` entitlement by [Apple](https://developer.apple.com/contact/request/exposure-notification-entitlement). The `ExposureNotification.framework` is available starting with iOS 13.5.
+Only approved government public health authorities can access the Exposure Notification APIs. STAYAWAY COVID for iOS will only work correctly if you were granted the `com.apple.developer.exposure-notification` entitlement by [Apple](https://developer.apple.com/contact/request/exposure-notification-entitlement). The `ExposureNotification.framework` is available starting with iOS 12.5.
 
 Required tools for building:
 - Watchman

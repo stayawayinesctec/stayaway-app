@@ -36,4 +36,9 @@ platform :ios do
       export_method: ENV["FASTLANE_EXPORT_METHOD"]
     )
   end
+
+  desc "Update devices"
+  lane :update_devices do
+  	sync_code_signing(force_for_new_devices: true, type: ENV["MATCH_TYPE"])
+  end
 end

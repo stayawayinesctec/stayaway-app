@@ -79,6 +79,8 @@ class ReportingManager {
   // MARK: - Second part: I was exposed
 
   private func sendIWasExposed(token: String, date: Date, isFakeRequest fake: Bool, covidCode: String, completion: @escaping (ReportingProblem?) -> Void) {
+    guard #available(iOS 12.5, *) else { return }
+
     DP3TTracing.iWasExposed(onset: date,
                             authentication: .HTTPAuthorizationHeader(header: "Authorization", value: "Bearer \(token)"),
                             isFakeRequest: fake) { [weak self] result in

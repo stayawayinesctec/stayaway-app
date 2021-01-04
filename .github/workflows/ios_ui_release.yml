@@ -16,7 +16,7 @@ on:
       - "*"
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_12.app
+  DEVELOPER_DIR: /Applications/Xcode_12.3.app
   RCT_NO_LAUNCH_PACKAGER: true
 
 jobs:
@@ -25,8 +25,8 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
 
     steps:
-      - name: Switch to Xcode 12
-        run: sudo xcode-select --switch /Applications/Xcode_12.app
+      - name: Switch to Xcode 12.3
+        run: sudo xcode-select --switch /Applications/Xcode_12.3.app
 
       - uses: actions/checkout@v2
         with:
@@ -78,8 +78,8 @@ jobs:
     runs-on: macos-latest
     needs: test
     steps:
-      - name: Switch to Xcode 12
-        run: sudo xcode-select --switch /Applications/Xcode_12.app
+      - name: Switch to Xcode 12.3
+        run: sudo xcode-select --switch /Applications/Xcode_12.3.app
 
       - uses: actions/checkout@v2
         with:

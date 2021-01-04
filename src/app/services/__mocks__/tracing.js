@@ -82,6 +82,7 @@ const start = jest.fn();
 const stop = jest.fn();
 const sync = jest.fn();
 const isTracingEnabled = jest.fn();
+const isENSupported = jest.fn();
 const getStatus = jest.fn();
 const exposed = jest.fn();
 const addUpdateEventListener = jest.fn();
@@ -96,6 +97,7 @@ export default {
   stop,
   sync,
   isTracingEnabled,
+  isENSupported,
   getStatus,
   exposed,
   addUpdateEventListener,

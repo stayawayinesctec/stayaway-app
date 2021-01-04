@@ -10,6 +10,11 @@
 
 import { createSelector } from 'reselect';
 
+export const isUnsupported = createSelector(
+  state => state.startup,
+  startup => startup.unsupported,
+);
+
 export const isAppLaunched = createSelector(
   state => state.startup,
   startup => startup.launched,
@@ -17,4 +22,5 @@ export const isAppLaunched = createSelector(
 
 export default {
   isAppLaunched,
+  isUnsupported,
 };

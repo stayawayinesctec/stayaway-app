@@ -94,6 +94,10 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   // if only the second request (iWasExposed) fails
   private var codeDictionary: [String: (String, Date)] = [:]
 
+  var isSupported: Bool {
+    DP3TTracing.isOSCompatible
+  }
+
   override init(){
     super.init()
     NSLog("Glue initialized")
@@ -123,6 +127,9 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   }
 
   @objc func initialize() {
+    guard isSupported else { return }
+    guard #available(iOS 12.5, *) else { return }
+    
     // Read env variables
     let config = ReactNativeConfig.env();
     let envAppId:String = config!["APP_ID"] as! String;
@@ -156,6 +163,8 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   @objc func start(
     _ resolve: @escaping RCTPromiseResolveBlock,
     rejecter reject: @escaping RCTPromiseRejectBlock) {
+      guard #available(iOS 12.5, *) else { return }
+
       self.delegate = TracingDelegate(glue: self)
       DP3TTracing.delegate = self.delegate
       DP3TTracing.startTracing(completionHandler: { result in
@@ -183,6 +192,8 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     _ resolve: RCTPromiseResolveBlock,
     rejecter reject: RCTPromiseRejectBlock
   ) {
+    guard #available(iOS 12.5, *) else { return }
+
     DP3TTracing.stopTracing()
     TracingLocalPush.shared.removeSyncWarningTriggers()
     NSLog("DP3TGLUE: Tracing stopped.")
@@ -197,6 +208,9 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
   @objc func getStatus(
     _ resolve: RCTPromiseResolveBlock,
     rejecter reject: RCTPromiseRejectBlock) {
+      guard isSupported else { return }
+      guard #available(iOS 12.5, *) else { return }
+
       let state = DP3TTracing.status;
       resolve(wrapState(state));
   }
@@ -219,58 +233,66 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
     resolve(dict);
   }
 
+  @objc func isENSupported(
+    _ resolve:@escaping RCTPromiseResolveBlock,
+    rejecter reject:@escaping RCTPromiseRejectBlock) {
+      resolve(self.isSupported);
+  }
+
   @objc func sync(
     _ resolve:@escaping RCTPromiseResolveBlock,
     rejecter reject:@escaping RCTPromiseRejectBlock) {
-    DP3TTracing.sync { result in
-      switch result {
-      case let .failure(e):
-        switch(e) {
-        case .networkingError(error: let error):
-          switch(error){
-          case .networkSessionError(error: let error2):
-            NSLog("Sync. Networking networkSessionError error "+error2.localizedDescription)
-          case .notHTTPResponse:
-            NSLog("Sync. Networking notHTTPResponse error ")
-          case .HTTPFailureResponse(status: let status):
-            NSLog("Sync. Networking HTTPFailureResponse error \(status)")
-          case .noDataReturned:
-            NSLog("Sync. Networking noDataReturned error ")
-          case .couldNotParseData(error: let error2, origin: let origin):
-            NSLog("Sync. Networking couldNotParseData error "+error2.localizedDescription+" "+origin.description)
-          case .couldNotEncodeBody:
-            NSLog("Sync. Networking couldNotEncodeBody error ")
-          case .timeInconsistency(shift: let shift):
-            NSLog("Sync. Networking timeInconsistency error "+shift.description)
-          case .jwtSignatureError(code: let code, debugDescription: let debugDescription):
-            NSLog("Sync. Networking jwtSignatureError error "+code.description+" "+debugDescription)
-          }
-        case .caseSynchronizationError(errors: let errors):
-          NSLog("Sync. caseSynchronization error "+errors.description)
-        case .bluetoothTurnedOff:
-          NSLog("Sync. Bluetooth error ")
-        case .permissonError:
-          NSLog("Sync. Permission error ")
-        case .userAlreadyMarkedAsInfected:
-          NSLog("Sync. User already marked as infected.")
-        case .cancelled:
-          NSLog("Sync. Cancelled.")
-        case .exposureNotificationError(error: let error):
-          NSLog("Sync. EN error."+error.localizedDescription)
-        case .authorizationUnknown:
-          NSLog("Sync. Authorization unkown.")
-        }
-        reject(self.UNKNOWN_EXCEPTION, e.localizedDescription, e);
+      guard #available(iOS 12.5, *) else { return }
 
-      case .success:
-        TracingLocalPush.shared.resetSyncWarningTriggers(lastSuccess: Date())
-        resolve(self.SUCCESS);
-      case .skipped:
-        NSLog("Sync was skipped.")
-        TracingLocalPush.shared.resetSyncWarningTriggers(lastSuccess: Date())
-        resolve(self.SUCCESS);
+      DP3TTracing.sync { result in
+        switch result {
+        case let .failure(e):
+          switch(e) {
+          case .networkingError(error: let error):
+            switch(error){
+            case .networkSessionError(error: let error2):
+              NSLog("Sync. Networking networkSessionError error "+error2.localizedDescription)
+            case .notHTTPResponse:
+              NSLog("Sync. Networking notHTTPResponse error ")
+            case .HTTPFailureResponse(status: let status):
+              NSLog("Sync. Networking HTTPFailureResponse error \(status)")
+            case .noDataReturned:
+              NSLog("Sync. Networking noDataReturned error ")
+            case .couldNotParseData(error: let error2, origin: let origin):
+              NSLog("Sync. Networking couldNotParseData error "+error2.localizedDescription+" "+origin.description)
+            case .couldNotEncodeBody:
+              NSLog("Sync. Networking couldNotEncodeBody error ")
+            case .timeInconsistency(shift: let shift):
+              NSLog("Sync. Networking timeInconsistency error "+shift.description)
+            case .jwtSignatureError(code: let code, debugDescription: let debugDescription):
+              NSLog("Sync. Networking jwtSignatureError error "+code.description+" "+debugDescription)
+            }
+          case .caseSynchronizationError(errors: let errors):
+            NSLog("Sync. caseSynchronization error "+errors.description)
+          case .bluetoothTurnedOff:
+            NSLog("Sync. Bluetooth error ")
+          case .permissonError:
+            NSLog("Sync. Permission error ")
+          case .userAlreadyMarkedAsInfected:
+            NSLog("Sync. User already marked as infected.")
+          case .cancelled:
+            NSLog("Sync. Cancelled.")
+          case .exposureNotificationError(error: let error):
+            NSLog("Sync. EN error."+error.localizedDescription)
+          case .authorizationUnknown:
+            NSLog("Sync. Authorization unkown.")
+          }
+          reject(self.UNKNOWN_EXCEPTION, e.localizedDescription, e);
+
+        case .success:
+          TracingLocalPush.shared.resetSyncWarningTriggers(lastSuccess: Date())
+          resolve(self.SUCCESS);
+        case .skipped:
+          NSLog("Sync was skipped.")
+          TracingLocalPush.shared.resetSyncWarningTriggers(lastSuccess: Date())
+          resolve(self.SUCCESS);
+        }
       }
-    }
   }
 
   @objc func exposed(code: String,
@@ -299,13 +321,17 @@ func wrapState(_ state: TracingState) -> Dictionary<String, Any> {
 
   @objc func resetInfectionStatus(_ resolve:@escaping RCTPromiseResolveBlock,
                                   rejecter reject:@escaping RCTPromiseRejectBlock) {
+    guard #available(iOS 12.5, *) else { return }
+
     DP3TTracing.resetInfectionStatus()
     resolve(self.SUCCESS);
   }
 
   @objc func resetExposureDays(_ resolve:@escaping RCTPromiseResolveBlock,
                                rejecter reject:@escaping RCTPromiseRejectBlock) {
-    try DP3TTracing.resetExposureDays()
+    guard #available(iOS 12.5, *) else { return }
+
+    DP3TTracing.resetExposureDays()
     resolve(self.SUCCESS);
   }
 }

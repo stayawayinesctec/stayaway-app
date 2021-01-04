@@ -12,6 +12,7 @@ const routes = {
   // Root
   APP: 'App',
   ONBOARDING: 'Onboarding',
+  UNSUPPORTED: 'Unsupported',
 
   // App
   MAIN: "Main",
