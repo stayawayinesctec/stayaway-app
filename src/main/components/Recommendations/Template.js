@@ -31,6 +31,7 @@ const styles = (colors) => StyleSheet.create({
   },
   recommendationsContainer: {
     backgroundColor: colors.recommendationsPanelBackgroundColor,
+    paddingBottom: sizes.size20,
     borderRadius: sizes.size8,
     borderWidth: sizes.size8,
     shadowOffset: {
@@ -42,48 +43,41 @@ const styles = (colors) => StyleSheet.create({
     elevation: 5,
   },
   recommendationsTitle: {
-    marginLeft: sizes.size24,
-    marginBottom: sizes.size24,
-  },
-  recommendationsRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: sizes.size8,
+    marginLeft: sizes.size16,
+    paddingTop: sizes.size24 - sizes.size8,
+    paddingBottom: sizes.size24,
   },
   recommendation: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: sizes.size24,
-    paddingHorizontal: sizes.size8,
   },
-  recommendations: {
-    paddingTop: sizes.size24,
-    paddingBottom: sizes.size24 + iconSizes.size30 - sizes.size8,
-    paddingHorizontal: sizes.size8,
+  recommendationIcon: {
+    width: iconSizes.size70,
+    height: iconSizes.size70,
+    marginBottom: sizes.size16,
+  },
+  recommendationsRow: {
+    flexDirection: 'row',
+    marginBottom: sizes.size20,
   },
   supportContainer: {
     marginTop: -sizes.size10 - (iconSizes.size30 / 2),
-    marginHorizontal: sizes.size24,
+    marginHorizontal: sizes.size18,
     elevation: 30,
     flexDirection: 'column',
-  },
-  iconContainer: {
-    width: iconSizes.size70,
-    height: iconSizes.size70,
-    marginBottom: sizes.size20,
   },
 });
 
 const renderRecommendation = ([recommendationA, recommendationB], colors) => (
   <View key={recommendationA.key} style={styles(colors).recommendationsRow}>
     <View style={{...styles(colors).recommendation, marginRight: sizes.size8}}>
-      <View style={styles(colors).iconContainer}>
+      <View style={styles(colors).recommendationIcon}>
         {recommendationA.renderIcon(colors.recommendationsPanelIconTintColor)}
       </View>
       <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationA.text}</Text>
     </View>
     <View style={styles(colors).recommendation}>
-      <View style={styles(colors).iconContainer}>
+      <View style={styles(colors).recommendationIcon}>
         {recommendationB.renderIcon(colors.recommendationsPanelIconTintColor)}
       </View>
       <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationB.text}</Text>
@@ -110,10 +104,8 @@ export default function Recommendations (props) {
                 borderColor: panelBorderColor,
               }}
             >
-              <View style={styles(colors).recommendations}>
-                <Text textColor={colors.recommendationsPanelTextColor} weight='bold' style={styles(colors).recommendationsTitle}>{i18n.translate('screens.recommendations.title')}</Text>
-                { recommendations.map(item => renderRecommendation(item, colors)) }
-              </View>
+              <Text textColor={colors.recommendationsPanelTextColor} weight='bold' style={styles(colors).recommendationsTitle}>{i18n.translate('screens.recommendations.title')}</Text>
+              { recommendations.map(item => renderRecommendation(item, colors)) }
             </View>
             <ButtonWrapper
               onPress={onPress}
