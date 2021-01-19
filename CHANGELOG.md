@@ -77,3 +77,9 @@
 - Update ubirider website link
 - Fix minor bugs
 - Fix typos
+
+## version 1.1.2 (19.01.2021)
+- Add contact popup
+- Add iOS 12.5 compatibility
+- Fix minor bugs
+- Fix typos
