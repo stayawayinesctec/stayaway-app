@@ -26,6 +26,11 @@ Prepare github actions
 fastlane ios build_and_sign
 ```
 Build and Sign app
+### ios update_devices
+```
+fastlane ios update_devices
+```
+Update devices
 
 ----
 

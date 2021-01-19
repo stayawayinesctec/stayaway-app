@@ -68,6 +68,12 @@ RCT_REMAP_METHOD(getStatus, getStatusWithResolver:(RCTPromiseResolveBlock)resolv
   [tm getStatus:resolve rejecter:reject];
 }
 
+RCT_REMAP_METHOD(isENSupported, isENSupportedWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+  [tm isENSupported:resolve rejecter:reject];
+}
+
 RCT_REMAP_METHOD(getInfo, getInfoWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {

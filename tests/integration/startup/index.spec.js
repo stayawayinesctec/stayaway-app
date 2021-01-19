@@ -33,9 +33,39 @@ jest.mock('@app/services/tracing');
 describe('Startup Sagas', () => {
   describe('Startup', () => {
     afterEach(() => {
+      Platform.OS = 'android';
       jest.resetAllMocks();
     });
+    it('should navigate to unsupported when device does not support EN', async () => {
+      // Prepare
+      Platform.OS = 'ios';
+      TracingManager.isENSupported.mockImplementation(() => false);
+      Storage.getItem.mockImplementation(() => Promise.resolve(languages.PT.languageTag));
+      Storage.hasItem.mockImplementation((item) => {
+        if (item === "language") {
+          return Promise.resolve(true);
+        }
+      });
 
+      // Execute
+      const dispatched = [];
+      await runSaga({
+        dispatch: (action) => dispatched.push(action),
+      }, startup).toPromise();
+
+      // Assert
+      expect(Storage.getItem).toHaveBeenCalled();
+      expect(Storage.hasItem).toHaveBeenCalled();
+      expect(Storage.getItem).toHaveBeenCalledWith('language');
+      expect(Storage.hasItem).toHaveBeenCalledWith('language');
+      expect(Storage.hasItem).toHaveBeenCalledWith('theme');
+      expect(dispatched).toHaveLength(3);
+      expect(dispatched).toEqual([
+        accountActions.setLanguage(languages.PT),
+        startupActions.setUnsupported(true),
+        startupActions.setAppLaunched(true),
+      ]);
+    });
     it('should navigate to onboarding when is a new user', async () => {
       // Prepare
       Storage.getItem.mockImplementation(() => Promise.resolve(languages.PT.languageTag));

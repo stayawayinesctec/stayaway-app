@@ -14,15 +14,18 @@ import { createActions, handleActions } from 'redux-actions';
 const types = mirrorCreator([
   'STARTUP',
   'SET_APP_LAUNCHED',
+  'SET_UNSUPPORTED',
 ]);
 
 const creators = createActions(
   types.STARTUP,
   types.SET_APP_LAUNCHED,
+  types.SET_UNSUPPORTED,
 );
 
 export const initialState = {
   launched: false,
+  unsupported: false,
 };
 
 export const reducer = handleActions(
@@ -31,6 +34,11 @@ export const reducer = handleActions(
       Object.freeze({
         ...state,
         launched,
+      }),
+    [types.SET_UNSUPPORTED]: (state, { payload: unsupported }) =>
+      Object.freeze({
+        ...state,
+        unsupported,
       }),
   },
   initialState,

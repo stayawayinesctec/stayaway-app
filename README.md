@@ -75,7 +75,7 @@ Required tools for building:
 
 ### iOS
 
-Only approved government public health authorities can access the Exposure Notification APIs. STAYAWAY COVID for iOS will only work correctly if you were granted the `com.apple.developer.exposure-notification` entitlement by [Apple](https://developer.apple.com/contact/request/exposure-notification-entitlement). The `ExposureNotification.framework` is available starting with iOS 13.5.
+Only approved government public health authorities can access the Exposure Notification APIs. STAYAWAY COVID for iOS will only work correctly if you were granted the `com.apple.developer.exposure-notification` entitlement by [Apple](https://developer.apple.com/contact/request/exposure-notification-entitlement). The `ExposureNotification.framework` is available starting with iOS 12.5.
 
 Required tools for building:
 - Watchman
@@ -100,9 +100,9 @@ $ cp .env.example .env.production.debug
 $ yarn
 ```
 
-- If you're using **android**, you'll also need to manually download the binary distribution of [`play-services-nearby`](https://github.com/google/exposure-notifications-android/raw/1803372dd30f151a477f031bd8a25bcf857db8c5/app/libs/play-services-nearby-exposurenotification-1.7.1-eap.aar) and attach it to your project on `android/app/libs`. You can do so by running on your project's root:
+- If you're using **android**, you'll also need to manually download the binary distribution of [`play-services-nearby`](https://github.com/google/exposure-notifications-android/raw/2fdb58ceb6399ba1e30436c9cf9f6d08a8e9b53a/app/libs/play-services-nearby-exposurenotification-1.7.2-eap.aar) and attach it to your project on `android/app/libs`. You can do so by running on your project's root:
 ```sh
-$ wget https://github.com/google/exposure-notifications-android/raw/1803372dd30f151a477f031bd8a25bcf857db8c5/app/libs/play-services-nearby-exposurenotification-1.7.1-eap.aar -P android/app/libs
+$ wget https://github.com/google/exposure-notifications-android/raw/2fdb58ceb6399ba1e30436c9cf9f6d08a8e9b53a/app/libs/play-services-nearby-exposurenotification-1.7.2-eap.aar -P android/app/libs
 ```
 
 ## Building

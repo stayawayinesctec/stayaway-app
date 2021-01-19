@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/DP-3T/dp3t-sdk-ios",
         "state": {
           "branch": null,
-          "revision": "522938daf30dfc93b47aba4d3956a01b5561905e",
+          "revision": "470549ee34bbff6df18d8acd3fd88b260d3817db",
           "version": null
         }
       },
@@ -57,7 +57,7 @@
       },
       {
         "package": "SwiftJWT",
-        "repositoryURL": "https://github.com/IBM-Swift/Swift-JWT.git",
+        "repositoryURL": "https://github.com/Kitura/Swift-JWT.git",
         "state": {
           "branch": null,
           "revision": "0d435423d12e61c0d14adb6d04396c08a6a650f1",

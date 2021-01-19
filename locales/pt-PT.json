@@ -1160,6 +1160,53 @@
           }
         }
       }
+    },
+    "unsupported": {
+      "title": "É necessário atualizar o software",
+      "description": [
+        {
+          "id": "1",
+          "content": "A STAYAWAY agora também em iOS {{supported_version}}!\n\n",
+          "weight": "bold"
+        },
+        {
+          "id": "2",
+          "content": "Para poder utilizar a STAYAWAY é necessário que instale uma versão do iOS mais recente e que está disponível para o seu dispositivo.\n\n"
+        },
+        {
+          "id": "3",
+          "content": "Para instalar: \n"
+        },
+        {
+          "id": "4",
+          "content": "• Abra as «Definições» no ecrã principal\n"
+        },
+        {
+          "id": "5",
+          "content": "• Vá a «Configurações gerais»\n"
+        },
+        {
+          "id": "6",
+          "content": "• Selecione «Atualização de software»\n"
+        },
+        {
+          "id": "7",
+          "content": "• Pressione «Descarregar e instalar»\n\n"
+        },
+        {
+          "id": "8",
+          "content": "Para mais informações consulte "
+        },
+        {
+          "id": "9",
+          "content": "a página de suporte da Apple",
+          "link": "https://support.apple.com/pt-pt/HT204204"
+        },
+        {
+          "id": "10",
+          "content": "."
+        }
+      ]
     }
   },
   "common": {

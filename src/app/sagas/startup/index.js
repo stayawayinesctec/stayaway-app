@@ -46,6 +46,17 @@ export function* startup() {
       yield put(accountActions.setTheme(theme));
     }
 
+    // Check if OS version is supported
+    if (Platform.OS === 'ios') {
+      const isSupported = yield call(TracingManager.isENSupported);
+
+      if (! isSupported) {
+        // Navigate to unsupported screen
+        yield put(startupActions.setUnsupported(true));
+        return;
+      }
+    }
+
     // Check if has previous configuration
     const hasSignUpDate = yield call([Storage, 'hasItem'], 'signup_date');
 

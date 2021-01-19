@@ -112,7 +112,7 @@ jobs:
       - name: Setup environment
         run: |
           echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;${{ env.ANDROID_NDK_VERSION }}"
-          wget https://github.com/google/exposure-notifications-android/raw/1803372dd30f151a477f031bd8a25bcf857db8c5/app/libs/play-services-nearby-exposurenotification-1.7.1-eap.aar -P android/app/libs
+          wget https://github.com/google/exposure-notifications-android/raw/2fdb58ceb6399ba1e30436c9cf9f6d08a8e9b53a/app/libs/play-services-nearby-exposurenotification-1.7.2-eap.aar -P android/app/libs
           echo "${{secrets.ENV_UI_RELEASE}}" > android/.env
           echo "${{secrets.ANDROID_KEYSTORE}}" > divoc.keystore.asc
           gpg -d --passphrase '${{secrets.ANDROID_KEYSTORE_PASSWORD}}' --batch divoc.keystore.asc > android/app/divoc.keystore

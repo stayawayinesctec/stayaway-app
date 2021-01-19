@@ -65,13 +65,20 @@ const translationGetters = {
 // Memoized translate method
 const translate = memoize(
   (key, config = { formatted: true }) => {
-    const { formatted, ...otherConfigs } = config;
+    const { formatted = true, ...otherConfigs } = config;
     const translation = i18n.t(key, otherConfigs);
 
-    if (! formatted) {
-      if (Array.isArray(translation)) {
-        return translation.reduce((acc, value) => acc + value.content, '');
+    if (Array.isArray(translation)) {
+      if (formatted) {
+        return translation.map(value => ({
+          ...value,
+          content: i18n.interpolate(value.content, otherConfigs),
+        }));
       }
+
+      return translation.reduce((accumulator, value) =>
+        accumulator + i18n.interpolate(value.content)
+      , '');
     }
 
     return translation;
