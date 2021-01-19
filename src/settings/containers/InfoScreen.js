@@ -9,7 +9,6 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Info from '@settings/components/Info';
@@ -27,6 +26,7 @@ import {
   getTheme,
 } from '@app/redux/account/selectors';
 import accountActions from '@app/redux/account';
+import modalActions from '@app/redux/modals';
 
 import AppRoutes from '@app/navigation/routes';
 
@@ -40,32 +40,17 @@ export default function InfoScreen () {
 
   const [appVersion, setAppVersion] = useState('');
   const [appBuild, setAppBuild] = useState('');
-  const [model, setModel] = useState('');
-  const [OS, setOS] = useState('');
-  const supportEmail = i18n.translate('common.emails.support');
-  const subject = i18n.translate('common.dialogs.support.subject');
-  const body = i18n.translate('common.dialogs.support.body', {
-    version: i18n.translate('screens.settings.version', { version: appVersion, build: appBuild }),
-    OS: `${Platform.OS} ${OS}`,
-    model,
-  });
 
   useEffect(() => {
     TracingManager.getInfo()
     .then(({
-      OSVersion,
-      deviceModel,
       versionName,
       versionCode,
     }) => {
       setAppVersion(versionName);
       setAppBuild(versionCode);
-      setOS(OSVersion);
-      setModel(deviceModel);
     });
   });
-
-  const getSupportEmailFormat = () => `mailto:${supportEmail}?subject=${subject}&body=${body}`;
 
   const props = {
     tracingEnabled,
@@ -108,7 +93,7 @@ export default function InfoScreen () {
 
       dispatch(accountActions.setTheme(commonThemes.names.light));
     },
-    onPressSupport: () => Linking.openURL(getSupportEmailFormat()),
+    onPressSupport: () => dispatch(modalActions.openContactModal()),
     onPressHowToUse: () => {
       NavigationService.navigate(AppRoutes.HOW_TO_USE);
     },

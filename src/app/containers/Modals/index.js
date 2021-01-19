@@ -19,6 +19,7 @@ import InvalidCodeModal from '@app/components/InvalidCodeModal';
 import ExpiredCodeModal from '@app/components/ExpiredCodeModal';
 import LoadingModal from '@app/components/LoadingModal';
 import ProtectorModal from '@app/components/ProtectorModal';
+import ContactModal from '@app/components/ContactModal';
 
 import modalsActions from '@app/redux/modals';
 import {
@@ -29,6 +30,7 @@ import {
   isExpiredCodeModalOpen,
   isLoadingModalOpen,
   isProtectorModalOpen,
+  isContactModalOpen,
 } from '@app/redux/modals/selectors';
 
 export default function Modals () {
@@ -90,6 +92,15 @@ export default function Modals () {
     onModalHide: () => dispatch(modalsActions.protectorModalClosed()),
   };
 
+  const contact = {
+    visible: useSelector(isContactModalOpen),
+    onClose: () => dispatch(modalsActions.closeContactModal()),
+    onBackdropPress: () => dispatch(modalsActions.closeContactModal()),
+    onBackButtonPress: () => dispatch(modalsActions.closeContactModal()),
+    onModalShow: () => dispatch(modalsActions.contactModalOpen()),
+    onModalHide: () => dispatch(modalsActions.contactModalClosed()),
+  };
+
   return (
     <View>
       <NetworkModal {...network} />
@@ -99,6 +110,7 @@ export default function Modals () {
       <ExpiredCodeModal {...expiredCode} />
       <LoadingModal {...loading} />
       <ProtectorModal {...protector} />
+      <ContactModal {...contact} />
     </View>
   );
 }

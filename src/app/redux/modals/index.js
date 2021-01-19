@@ -40,6 +40,10 @@ const types = mirrorCreator([
   'PROTECTOR_MODAL_OPEN',
   'CLOSE_PROTECTOR_MODAL',
   'PROTECTOR_MODAL_CLOSED',
+  'OPEN_CONTACT_MODAL',
+  'CONTACT_MODAL_OPEN',
+  'CLOSE_CONTACT_MODAL',
+  'CONTACT_MODAL_CLOSED',
 ]);
 
 const creators = createActions(
@@ -71,6 +75,10 @@ const creators = createActions(
   types.PROTECTOR_MODAL_OPEN,
   types.CLOSE_PROTECTOR_MODAL,
   types.PROTECTOR_MODAL_CLOSED,
+  types.OPEN_CONTACT_MODAL,
+  types.CONTACT_MODAL_OPEN,
+  types.CLOSE_CONTACT_MODAL,
+  types.CONTACT_MODAL_CLOSED,
 );
 
 export const initialState = {
@@ -81,6 +89,7 @@ export const initialState = {
   expired_code: false,
   loading: false,
   protector: false,
+  contact: false,
 };
 
 export const reducer = handleActions(
@@ -95,6 +104,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.CLOSE_NETWORK_MODAL]: (state) =>
       Object.freeze({
@@ -106,6 +116,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.OPEN_SERVER_ERROR_MODAL]: (state) =>
       Object.freeze({
@@ -117,6 +128,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.CLOSE_SERVER_ERROR_MODAL]: (state) =>
       Object.freeze({
@@ -128,6 +140,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.OPEN_TOO_MUCH_REQUESTS_MODAL]: (state) =>
       Object.freeze({
@@ -139,6 +152,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.CLOSE_TOO_MUCH_REQUESTS_MODAL]: (state) =>
       Object.freeze({
@@ -150,6 +164,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.OPEN_INVALID_CODE_MODAL]: (state) =>
       Object.freeze({
@@ -161,6 +176,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.CLOSE_INVALID_CODE_MODAL]: (state) =>
       Object.freeze({
@@ -172,6 +188,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.OPEN_EXPIRED_CODE_MODAL]: (state) =>
       Object.freeze({
@@ -183,6 +200,7 @@ export const reducer = handleActions(
         expired_code: true,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.CLOSE_EXPIRED_CODE_MODAL]: (state) =>
       Object.freeze({
@@ -194,6 +212,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
     [types.OPEN_LOADING_MODAL]: (state) =>
       Object.freeze({
@@ -205,6 +224,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: true,
         protector: false,
+        contact: false,
       }),
     [types.CLOSE_LOADING_MODAL]: (state) =>
       Object.freeze({
@@ -216,6 +236,7 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+        contact: false,
       }),
       [types.OPEN_PROTECTOR_MODAL]: (state) =>
       Object.freeze({
@@ -238,6 +259,30 @@ export const reducer = handleActions(
         expired_code: false,
         loading: false,
         protector: false,
+      }),
+      [types.OPEN_CONTACT_MODAL]: (state) =>
+      Object.freeze({
+        ...state,
+        network: false,
+        server_error: false,
+        too_much_requests: false,
+        invalid_code: false,
+        expired_code: false,
+        loading: false,
+        protector: false,
+        contact: true,
+      }),
+    [types.CLOSE_CONTACT_MODAL]: (state) =>
+      Object.freeze({
+        ...state,
+        network: false,
+        server_error: false,
+        too_much_requests: false,
+        invalid_code: false,
+        expired_code: false,
+        loading: false,
+        protector: false,
+        contact: false,
       }),
   },
   initialState,

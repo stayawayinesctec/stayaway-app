@@ -9,11 +9,12 @@
  */
 
 import { runSaga, channel as stdChannel } from 'redux-saga';
-import { Platform, Alert, Linking } from 'react-native';
+import { Platform, Alert } from 'react-native';
 import Moment from 'moment';
 import RNRestart from 'react-native-restart';
 import SplashScreen from 'react-native-splash-screen';
 
+import Linking from '@app/services/linking';
 import NavigationService from '@app/services/navigation';
 import TracingManager, { ERRORS, GAEN_RESULTS, INFECTION_STATUS } from '@app/services/tracing';
 import i18n, { languages } from '@app/services/i18n';
@@ -39,6 +40,7 @@ import {
 } from '@app/sagas/account';
 
 // Mock storage file
+jest.mock('@app/services/linking');
 jest.mock('@app/services/navigation');
 jest.mock('@app/services/tracing');
 
@@ -839,7 +841,6 @@ describe('Account Sagas', () => {
 
       // Assert
       expect(Linking.openURL).not.toHaveBeenCalled();
-      expect(Linking.canOpenURL).not.toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([accountActions.startTracing()]);
     });
@@ -859,14 +860,12 @@ describe('Account Sagas', () => {
 
       // Assert
       expect(Linking.openURL).not.toHaveBeenCalled();
-      expect(Linking.canOpenURL).not.toHaveBeenCalled();
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([accountActions.startTracing()]);
     });
     it('should start tracing on iOS and start returns fails', async () => {
       // Prepare
       Platform.OS = 'ios';
-      Linking.canOpenURL.mockImplementation(() => Promise.resolve(true));
       Linking.openURL.mockImplementation(() => Promise.resolve());
 
       // Execute
@@ -881,7 +880,6 @@ describe('Account Sagas', () => {
 
       // Assert
       expect(Linking.openURL).toHaveBeenCalled();
-      expect(Linking.canOpenURL).toHaveBeenCalled();
       expect(Linking.openURL).toHaveBeenCalledWith('app-settings://');
       expect(dispatched).toHaveLength(1);
       expect(dispatched).toEqual([accountActions.startTracing()]);
