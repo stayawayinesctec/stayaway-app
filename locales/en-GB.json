@@ -1178,7 +1178,8 @@
         },
         {
           "id": "3",
-          "content": "How to install it: \n"
+          "content": "How to install it\n",
+          "weight": "bold"
         },
         {
           "id": "4",

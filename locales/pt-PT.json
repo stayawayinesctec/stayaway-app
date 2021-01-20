@@ -1175,7 +1175,8 @@
         },
         {
           "id": "3",
-          "content": "Para instalar: \n"
+          "content": "Para instalar\n",
+          "weight": "bold"
         },
         {
           "id": "4",
@@ -1195,11 +1196,11 @@
         },
         {
           "id": "8",
-          "content": "Para mais informações consulte "
+          "content": "Para mais informações consulte a página de "
         },
         {
           "id": "9",
-          "content": "a página de suporte da Apple",
+          "content": "suporte da Apple",
           "link": "https://support.apple.com/pt-pt/HT204204"
         },
         {
