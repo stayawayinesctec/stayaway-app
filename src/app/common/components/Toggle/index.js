@@ -12,7 +12,7 @@ import React from 'react';
 import { View, StyleSheet, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { sizes } from '@app/common/theme';
 
@@ -38,40 +38,36 @@ const styles = (colors) => StyleSheet.create({
 export default function Toggle(props) {
   const { value, options, style, onPress,...otherProps } = props;
 
+  const { colors } = useTheme();
+
   return (
-    <ThemeConsumer>
-      {({colors}) => {
-        return (
-          <View
-            style={styles(colors).container}
-            {...otherProps}
+    <View
+      style={styles(colors).container}
+      {...otherProps}
+    >
+      { Object.values(options).map(({id, label}) =>
+        <ButtonWrapper
+          key={id}
+          onPress={() => onPress({id, label})}
+          style={styles(colors).labelcontainer}
+          accessibilityRole='switch'
+          accessibilityState={{checked: value}}
+        >
+          <Text
+            textAlign='center'
+            textColor={id === value ? colors.toogleSelectedTextColor : colors.toogleTextColor}
+            style={
+              {
+                ...styles(colors).label,
+                backgroundColor: id === value ? colors.toogleSelectedBackgroundColor : colors.toogleBackgroundColor,
+              }
+            }
           >
-            { Object.values(options).map(({id, label}) =>
-              <ButtonWrapper
-                key={id}
-                onPress={() => onPress({id, label})}
-                style={styles(colors).labelcontainer}
-                accessibilityRole='switch'
-                accessibilityState={{checked: value}}
-              >
-                <Text
-                  textAlign='center'
-                  textColor={id === value ? colors.toogleSelectedTextColor : colors.toogleTextColor}
-                  style={
-                    {
-                      ...styles(colors).label,
-                      backgroundColor: id === value ? colors.toogleSelectedBackgroundColor : colors.toogleBackgroundColor,
-                    }
-                  }
-                >
-                  { label }
-                </Text>
-              </ButtonWrapper>,
-            )}
-          </View>
-        );
-      }}
-    </ThemeConsumer>
+            { label }
+          </Text>
+        </ButtonWrapper>,
+      )}
+    </View>
   );
 }
 

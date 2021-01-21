@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import { themes } from '@app/common/theme';
 
 export const THEMES = {
@@ -25,3 +25,13 @@ export const THEMES = {
 export const ThemeContext = createContext(THEMES.light);
 export const ThemeProvider = ThemeContext.Provider;
 export const ThemeConsumer = ThemeContext.Consumer;
+
+export function useTheme() {
+  const theme = useContext(ThemeContext);
+
+  if (theme == null) {
+    throw new Error('No theme value available. Make sure you are rendering `<ThemeProvider>` at the top of your app.');
+  }
+
+  return theme;
+}

@@ -13,7 +13,7 @@ import { Animated, Easing, View , StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import i18n from '@app/services/i18n';
 
@@ -43,6 +43,8 @@ export default function LoadingModal (props) {
     onModalWillHide,
     ...otherProps
   } = props;
+
+  const { colors } = useTheme();
 
   const [spinAnim] = useState(new Animated.Value(0));
 
@@ -74,30 +76,26 @@ export default function LoadingModal (props) {
   const animationStyle = {transform: [{rotate: spin}]};
 
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <Modal
-          backdropColor={colors.backdropColor}
-          backdropOpacity={0.8}
-          isVisible={visible}
-          statusBarTranslucent
-          onModalWillHide={modalHide}
-          onModalWillShow={modalShow}
-          {...otherProps}
-        >
-          <Layout style={styles.content}>
-            <View style={styles.logoContainer}>
-              <Animated.View style={animationStyle}>
-                <Icon name='loading' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.loadingIconTintColor} />
-              </Animated.View>
-            </View>
-            <View style={styles.descriptionContainer}>
-              <Text textAlign='center' textColor={colors.loadingTextColor}>{i18n.translate('common.dialogs.loading.description')}</Text>
-            </View>
-          </Layout>
-        </Modal>
-      )}
-    </ThemeConsumer>
+    <Modal
+      backdropColor={colors.backdropColor}
+      backdropOpacity={0.8}
+      isVisible={visible}
+      statusBarTranslucent
+      onModalWillHide={modalHide}
+      onModalWillShow={modalShow}
+      {...otherProps}
+    >
+      <Layout style={styles.content}>
+        <View style={styles.logoContainer}>
+          <Animated.View style={animationStyle}>
+            <Icon name='loading' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.loadingIconTintColor} />
+          </Animated.View>
+        </View>
+        <View style={styles.descriptionContainer}>
+          <Text textAlign='center' textColor={colors.loadingTextColor}>{i18n.translate('common.dialogs.loading.description')}</Text>
+        </View>
+      </Layout>
+    </Modal>
   );
 }
 

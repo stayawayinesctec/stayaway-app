@@ -13,7 +13,7 @@ import { View, StyleSheet, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { sizes, iconSizes } from '@app/common/theme';
 
@@ -115,86 +115,83 @@ export default function LegalInformation(props) {
   } = props;
 
   const insets = useSafeAreaInsets();
+  const { name, colors } = useTheme();
 
   return (
-    <ThemeConsumer>
-      {({colors, name}) => (
-        <TopComponent style={styles(colors, insets).container}>
-          <Layout style={styles(colors, insets).layoutContainer}>
-            <View style={styles(colors, insets).header}>
-              <ButtonWrapper
-                onPress={onClose}
-                style={styles(colors, insets).closeButton}
-                accessibilityLabel={i18n.translate('screens.legal_information.actions.back.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.legal_information.actions.back.accessibility.hint')}
-              >
-                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
-              </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.legal_information.title')}</Text>
-            </View>
-            <View style={styles(colors, insets).itemsContainer}>
-              <ButtonWrapper
-                onPress={onPressTermsOfUse}
-                style={{
-                  ...styles(colors, insets).topItem,
-                  ...styles(colors, insets).item,
-                }}
-                accessibilityLabel={i18n.translate('screens.legal_information.terms_of_use.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.legal_information.terms_of_use.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.legal_information.terms_of_use.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-              </ButtonWrapper>
-              <ButtonWrapper
-                onPress={onPressPrivacyPolicy}
-                style={{
-                  ...styles(colors, insets).bottomItem,
-                  ...styles(colors, insets).item,
-                }}
-                accessibilityLabel={i18n.translate('screens.legal_information.privacy_policy.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.legal_information.privacy_policy.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.legal_information.privacy_policy.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-              </ButtonWrapper>
-            </View>
-            <View style={styles(colors, insets).itemsContainer}>
-              <ButtonWrapper
-                onPress={onPressTechnicalSheet}
-                style={{
-                  ...styles(colors, insets).topItem,
-                  ...styles(colors, insets).item,
-                }}
-                accessibilityLabel={i18n.translate('screens.legal_information.technical_sheet.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.legal_information.technical_sheet.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.legal_information.technical_sheet.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-              </ButtonWrapper>
-              <ButtonWrapper
-                onPress={onPressLicenses}
-                style={{
-                  ...styles(colors, insets).bottomItem,
-                  ...styles(colors, insets).item,
-                }}
-                accessibilityLabel={i18n.translate('screens.legal_information.licenses.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.legal_information.licenses.accessibility.hint')}
-              >
-                <Text weight='bold'>{i18n.translate('screens.legal_information.licenses.label')}</Text>
-                <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-              </ButtonWrapper>
-            </View>
-          </Layout>
-          <View style={styles(colors, insets).imagesContainer}>
-            <View style={styles(colors, insets).sponsors}>
-              <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-              <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
-            </View>
-            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
-          </View>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+    <TopComponent style={styles(colors, insets).container}>
+      <Layout style={styles(colors, insets).layoutContainer}>
+        <View style={styles(colors, insets).header}>
+          <ButtonWrapper
+            onPress={onClose}
+            style={styles(colors, insets).closeButton}
+            accessibilityLabel={i18n.translate('screens.legal_information.actions.back.accessibility.label')}
+            accessibilityHint={i18n.translate('screens.legal_information.actions.back.accessibility.hint')}
+          >
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+          </ButtonWrapper>
+          <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.legal_information.title')}</Text>
+        </View>
+        <View style={styles(colors, insets).itemsContainer}>
+          <ButtonWrapper
+            onPress={onPressTermsOfUse}
+            style={{
+              ...styles(colors, insets).topItem,
+              ...styles(colors, insets).item,
+            }}
+            accessibilityLabel={i18n.translate('screens.legal_information.terms_of_use.accessibility.label')}
+            accessibilityHint={i18n.translate('screens.legal_information.terms_of_use.accessibility.hint')}
+          >
+            <Text weight='bold'>{i18n.translate('screens.legal_information.terms_of_use.label')}</Text>
+            <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
+          </ButtonWrapper>
+          <ButtonWrapper
+            onPress={onPressPrivacyPolicy}
+            style={{
+              ...styles(colors, insets).bottomItem,
+              ...styles(colors, insets).item,
+            }}
+            accessibilityLabel={i18n.translate('screens.legal_information.privacy_policy.accessibility.label')}
+            accessibilityHint={i18n.translate('screens.legal_information.privacy_policy.accessibility.hint')}
+          >
+            <Text weight='bold'>{i18n.translate('screens.legal_information.privacy_policy.label')}</Text>
+            <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
+          </ButtonWrapper>
+        </View>
+        <View style={styles(colors, insets).itemsContainer}>
+          <ButtonWrapper
+            onPress={onPressTechnicalSheet}
+            style={{
+              ...styles(colors, insets).topItem,
+              ...styles(colors, insets).item,
+            }}
+            accessibilityLabel={i18n.translate('screens.legal_information.technical_sheet.accessibility.label')}
+            accessibilityHint={i18n.translate('screens.legal_information.technical_sheet.accessibility.hint')}
+          >
+            <Text weight='bold'>{i18n.translate('screens.legal_information.technical_sheet.label')}</Text>
+            <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
+          </ButtonWrapper>
+          <ButtonWrapper
+            onPress={onPressLicenses}
+            style={{
+              ...styles(colors, insets).bottomItem,
+              ...styles(colors, insets).item,
+            }}
+            accessibilityLabel={i18n.translate('screens.legal_information.licenses.accessibility.label')}
+            accessibilityHint={i18n.translate('screens.legal_information.licenses.accessibility.hint')}
+          >
+            <Text weight='bold'>{i18n.translate('screens.legal_information.licenses.label')}</Text>
+            <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
+          </ButtonWrapper>
+        </View>
+      </Layout>
+      <View style={styles(colors, insets).imagesContainer}>
+        <View style={styles(colors, insets).sponsors}>
+          <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+          <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+        </View>
+        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+      </View>
+    </TopComponent>
   );
 }
 

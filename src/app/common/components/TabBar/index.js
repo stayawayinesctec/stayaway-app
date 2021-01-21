@@ -14,7 +14,7 @@ import { StyleSheet } from 'react-native';
 import { BottomTabBar } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { isInfected } from '@app/redux/account/selectors';
 
@@ -26,25 +26,23 @@ const styles = StyleSheet.create({
 
 export default function TabBar (props) {
   const infected = useSelector(isInfected);
+
   const insets = useSafeAreaInsets();
+  const { colors } = useTheme();
 
   if (infected) {
     return null;
   }
 
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <BottomTabBar
-          {...props}
-          showLabel={false}
-          style={{
-            ...styles.container,
-            height: 56 + insets.bottom,
-            backgroundColor: colors.tabBarBackgroundColor,
-          }}
-        />
-      )}
-    </ThemeConsumer>
+    <BottomTabBar
+      {...props}
+      showLabel={false}
+      style={{
+        ...styles.container,
+        height: 56 + insets.bottom,
+        backgroundColor: colors.tabBarBackgroundColor,
+      }}
+    />
   );
 }

@@ -13,7 +13,7 @@ import { View, StyleSheet, ImageBackground } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
@@ -61,44 +61,48 @@ const styles = (colors, insets) => StyleSheet.create({
   },
 });
 
+function renderContent(...args) {
+  const [
+    header,
+    description,
+    colors,
+    insets,
+  ] = args;
+
+  if (description.length === 0) {
+    return (
+      <Layout padding='horizontal' style={styles(colors, insets).centeredContainer}>
+        <Text weight='bold' size='xxlarge' style={styles(colors, insets).mainHeader}>{header}</Text>
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout padding='horizontal' style={styles(colors, insets).contentContainer}>
+      {header.length > 0 && <Text weight='bold' size='xxlarge' style={styles(colors, insets).header}>{header}</Text> }
+      {description.length > 0 && <Text style={styles(colors, insets).description}>{description}</Text>}
+    </Layout>
+  );
+}
+
 export default function Template (props) {
   const { header, description, image } = props;
 
   const insets = useSafeAreaInsets();
-
-  const renderContent = (colors) => {
-    if (description.length === 0) {
-      return (
-        <Layout padding='horizontal' style={styles(colors, insets).centeredContainer}>
-          <Text weight='bold' size='xxlarge' style={styles(colors, insets).mainHeader}>{header}</Text>
-        </Layout>
-      );
-    }
-
-    return (
-      <Layout padding='horizontal' style={styles(colors, insets).contentContainer}>
-        {header.length > 0 && <Text weight='bold' size='xxlarge' style={styles(colors, insets).header}>{header}</Text> }
-        {description.length > 0 && <Text style={styles(colors, insets).description}>{description}</Text>}
-      </Layout>
-    );
-  };
+  const { colors } = useTheme();
 
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <TopComponent>
-          <ImageBackground
-            source={image}
-            style={styles(colors, insets).imageContainer}
-          >
-            <View style={styles(colors, insets).topContainer} />
-            <View style={styles(colors, insets).bottomContainer}>
-              {renderContent(colors)}
-            </View>
-          </ImageBackground>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+    <TopComponent>
+      <ImageBackground
+        source={image}
+        style={styles(colors, insets).imageContainer}
+      >
+        <View style={styles(colors, insets).topContainer} />
+        <View style={styles(colors, insets).bottomContainer}>
+          {renderContent(header, description, colors, insets)}
+        </View>
+      </ImageBackground>
+    </TopComponent>
   );
 }
 

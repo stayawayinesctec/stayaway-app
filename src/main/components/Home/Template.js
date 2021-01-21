@@ -13,7 +13,7 @@ import { View, StyleSheet, Platform, ImageBackground } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
@@ -175,6 +175,70 @@ const styles = (colors, insets) => StyleSheet.create({
   },
 });
 
+function renderError(...args) {
+  const [
+    error,
+    colors,
+    insets,
+  ] = args;
+
+  return (
+    <View style={styles(colors, insets).errorsContainer}>
+      <Layout
+        padding='horizontal'
+        style={styles(colors, insets).errorsLayout}
+      >
+        <View style={styles(colors, insets).content}>
+          <View>
+            <View
+              style={{
+                ...styles(colors, insets).backgroundPanel,
+                backgroundColor: colors.panelWhiteBackgroundColor,
+              }}
+            />
+            <View style={styles(colors, insets).panel}>
+              <View style={styles(colors, insets).errorPanel}>
+                <View style={styles(colors, insets).errorPanelContainer}>
+                  <View style={styles(colors, insets).titleContainer}>
+                    { error.icon }
+                    <Text size='large' weight='bold' textColor={colors.panelWhiteTextColor} style={styles(colors, insets).iconTitle}>{error.title}</Text>
+                  </View>
+                  <View style={styles(colors, insets).messageContainer}>
+                    <Text textColor={colors.panelWhiteTextColor} style={styles(colors, insets).message}>{error.message}</Text>
+                    { error.submessage &&
+                      <Text size='small' textColor={colors.panelWhiteTextColor} style={styles(colors, insets).submessage}>{error.submessage}</Text>
+                    }
+                  </View>
+                  <Button
+                    title={error.main.label}
+                    accessibilityLabel={error.main.accessibility.label}
+                    accessibilityHint={error.main.accessibility.hint}
+                    containerStyle={styles(colors, insets).errorButton}
+                    onPress={error.main.onPress}
+                  />
+                  { error.alternative &&
+                    <Button
+                      alternative
+                      title={error.alternative.label}
+                      accessibilityLabel={error.alternative.accessibility.label}
+                      accessibilityHint={error.alternative.accessibility.hint}
+                      containerStyle={styles(colors, insets).errorAlternativeButton}
+                      onPress={error.alternative.onPress}
+                    />
+                  }
+                </View>
+              </View>
+            </View>
+          </View>
+          <View style={styles(colors, insets).supportContainer}>
+            <SupportIcon />
+          </View>
+        </View>
+      </Layout>
+    </View>
+  );
+}
+
 export default function Template (props) {
   const {
     header,
@@ -192,140 +256,82 @@ export default function Template (props) {
 
   const showUpdatedAt = infectionStatus !== INFECTION_STATUS.INFECTED;
   const hasUpdated = lastSync !== 0;
+
   const insets = useSafeAreaInsets();
+  const { colors } = useTheme();
 
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <TopComponent>
-          <View style={styles(colors, insets).settingsButtonContainer} pointerEvents='box-none'>
-            <ButtonWrapper
-              onPress={onPressSettings}
-              onLongPress={onLongPressSettings}
-              style={styles(colors, insets).settingsButton}
-              accessibilityLabel={i18n.translate('screens.home.actions.settings.accessibility.label')}
-              accessibilityHint={i18n.translate('screens.home.actions.settings.accessibility.hint')}
-            >
-              <Icon name='settings' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />
-            </ButtonWrapper>
-            <ButtonWrapper
-              onPress={onPressShare}
-              style={styles(colors, insets).shareButton}
-              accessibilityLabel={i18n.translate('screens.home.actions.share.accessibility.label')}
-              accessibilityHint={i18n.translate('screens.home.actions.share.accessibility.hint')}
-            >
-              <Icon name='share' width={iconSizes.size20} height={iconSizes.size20} tintColor={colors.iconAltTintColor} />
-            </ButtonWrapper>
-          </View>
-          { error.status &&
-            <View style={styles(colors, insets).backdropContainer} />
-          }
-          { error.status &&
-            <View style={styles(colors, insets).errorsContainer}>
-              <Layout
-                padding='horizontal'
-                style={styles(colors, insets).errorsLayout}
-              >
-                <View style={styles(colors, insets).content}>
-                  <View>
-                    <View
-                      style={{
-                        ...styles(colors, insets).backgroundPanel,
-                        backgroundColor: colors.panelWhiteBackgroundColor,
-                      }}
-                    />
-                    <View style={styles(colors, insets).panel}>
-                      <View style={styles(colors, insets).errorPanel}>
-                        <View style={styles(colors, insets).errorPanelContainer}>
-                          <View style={styles(colors, insets).titleContainer}>
-                            { error.icon(colors) }
-                            <Text size='large' weight='bold' textColor={colors.panelWhiteTextColor} style={styles(colors, insets).iconTitle}>{error.title}</Text>
-                          </View>
-                          <View style={styles(colors, insets).messageContainer}>
-                            <Text textColor={colors.panelWhiteTextColor} style={styles(colors, insets).message}>{error.message}</Text>
-                            { error.submessage &&
-                              <Text size='small' textColor={colors.panelWhiteTextColor} style={styles(colors, insets).submessage}>{error.submessage}</Text>
-                            }
-                          </View>
-                          <Button
-                            title={error.main.label}
-                            accessibilityLabel={error.main.accessibility.label}
-                            accessibilityHint={error.main.accessibility.hint}
-                            containerStyle={styles(colors, insets).errorButton}
-                            onPress={error.main.onPress}
-                          />
-                          { error.alternative &&
-                            <Button
-                              alternative
-                              title={error.alternative.label}
-                              accessibilityLabel={error.alternative.accessibility.label}
-                              accessibilityHint={error.alternative.accessibility.hint}
-                              containerStyle={styles(colors, insets).errorAlternativeButton}
-                              onPress={error.alternative.onPress}
-                            />
-                          }
-                        </View>
-                      </View>
-                    </View>
-                  </View>
-                  <View style={styles(colors, insets).supportContainer}>
-                    <SupportIcon />
-                  </View>
-                </View>
-              </Layout>
-            </View>
-          }
-          <View style={styles(colors, insets).homeContainer}>
-            <ImageBackground
-              testID="home_image_background"
-              source={image}
-              style={styles(colors, insets).imageContainer}
-            />
-            <Layout
-              padding='horizontal'
-              style={styles(colors, insets).contentContainer}
-            >
-              <View style={styles(colors, insets).header}>
-                <View>
-                  <View
-                    style={{
-                      ...styles(colors, insets).backgroundPanel,
-                      backgroundColor: panelBackgroundColor,
-                    }}
-                  />
-                  <View style={styles(colors, insets).panel}>
-                    <View style={styles(colors, insets).panelContainer}>
-                      <Text size='xlarge' weight='bold' textColor={panelTextColor}>{header}</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles(colors, insets).supportContainer}>
-                  { showUpdatedAt && hasUpdated &&
-                    <SupportIcon
-                      label={i18n.translate('screens.home.last_updated')}
-                      content={lastSync.format('L')}
-                      borderColor={panelBackgroundColor}
-                    />
-                  }
-                  { showUpdatedAt && !hasUpdated &&
-                    <SupportIcon
-                      content={i18n.translate('screens.home.never_updated')}
-                      borderColor={panelBackgroundColor}
-                    />
-                  }
-                  { ! showUpdatedAt &&
-                    <SupportIcon />
-                  }
+    <TopComponent>
+      <View style={styles(colors, insets).settingsButtonContainer} pointerEvents='box-none'>
+        <ButtonWrapper
+          onPress={onPressSettings}
+          onLongPress={onLongPressSettings}
+          style={styles(colors, insets).settingsButton}
+          accessibilityLabel={i18n.translate('screens.home.actions.settings.accessibility.label')}
+          accessibilityHint={i18n.translate('screens.home.actions.settings.accessibility.hint')}
+        >
+          <Icon name='settings' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />
+        </ButtonWrapper>
+        <ButtonWrapper
+          onPress={onPressShare}
+          style={styles(colors, insets).shareButton}
+          accessibilityLabel={i18n.translate('screens.home.actions.share.accessibility.label')}
+          accessibilityHint={i18n.translate('screens.home.actions.share.accessibility.hint')}
+        >
+          <Icon name='share' width={iconSizes.size20} height={iconSizes.size20} tintColor={colors.iconAltTintColor} />
+        </ButtonWrapper>
+      </View>
+      { error.status && <View style={styles(colors, insets).backdropContainer} /> }
+      { error.status && renderError(error, colors, insets) }
+      <View style={styles(colors, insets).homeContainer}>
+        <ImageBackground
+          testID="home_image_background"
+          source={image}
+          style={styles(colors, insets).imageContainer}
+        />
+        <Layout
+          padding='horizontal'
+          style={styles(colors, insets).contentContainer}
+        >
+          <View style={styles(colors, insets).header}>
+            <View>
+              <View
+                style={{
+                  ...styles(colors, insets).backgroundPanel,
+                  backgroundColor: panelBackgroundColor,
+                }}
+              />
+              <View style={styles(colors, insets).panel}>
+                <View style={styles(colors, insets).panelContainer}>
+                  <Text size='xlarge' weight='bold' textColor={panelTextColor}>{header}</Text>
                 </View>
               </View>
-              <Text style={styles(colors, insets).descriptionsContent}>
-                {description}
-              </Text>
-            </Layout>
+            </View>
+            <View style={styles(colors, insets).supportContainer}>
+              { showUpdatedAt && hasUpdated &&
+                <SupportIcon
+                  label={i18n.translate('screens.home.last_updated')}
+                  content={lastSync.format('L')}
+                  borderColor={panelBackgroundColor}
+                />
+              }
+              { showUpdatedAt && !hasUpdated &&
+                <SupportIcon
+                  content={i18n.translate('screens.home.never_updated')}
+                  borderColor={panelBackgroundColor}
+                />
+              }
+              { ! showUpdatedAt &&
+                <SupportIcon />
+              }
+            </View>
           </View>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+          <Text style={styles(colors, insets).descriptionsContent}>
+            {description}
+          </Text>
+        </Layout>
+      </View>
+    </TopComponent>
   );
 }
 
@@ -342,7 +348,7 @@ Template.defaultProps = {
     status: false,
     title: '',
     message: '',
-    icon: () => {},
+    icon: undefined,
     main: {
       accessibility: {
         label: '',
@@ -376,7 +382,7 @@ Template.propTypes = {
     title: PropTypes.string,
     message: PropTypes.string,
     submessage: PropTypes.string,
-    icon: PropTypes.func,
+    icon: PropTypes.element,
     main: PropTypes.shape({
       label: PropTypes.string,
       accessibility: PropTypes.object,

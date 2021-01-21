@@ -10,7 +10,7 @@
 
 import React from 'react';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import Template from '@main/components/Home/Template';
 import { getThemedImage } from '@app/common/assets/images';
@@ -21,18 +21,16 @@ export default function HomeInfected (props) {
   const header = i18n.translate('screens.home.infected.title');
   const description = i18n.translate('screens.home.infected.description');
 
+  const { name, colors } = useTheme();
+
   return (
-    <ThemeConsumer>
-      {({name, colors}) => (
-        <Template
-          header={header}
-          description={description}
-          image={getThemedImage('infected', name)}
-          panelBackgroundColor={colors.panelWhiteBackgroundColor}
-          panelTextColor={colors.panelWhiteTextColor}
-          {...props}
-        />
-      )}
-    </ThemeConsumer>
+    <Template
+      header={header}
+      description={description}
+      image={getThemedImage('infected', name)}
+      panelBackgroundColor={colors.panelWhiteBackgroundColor}
+      panelTextColor={colors.panelWhiteTextColor}
+      {...props}
+    />
   );
 }

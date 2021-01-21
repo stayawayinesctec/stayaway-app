@@ -12,7 +12,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
@@ -68,65 +68,66 @@ const styles = (colors) => StyleSheet.create({
   },
 });
 
-const renderRecommendation = ([recommendationA, recommendationB], colors) => (
-  <View key={recommendationA.key} style={styles(colors).recommendationsRow}>
-    <View style={{...styles(colors).recommendation, marginRight: sizes.size8}}>
-      <View style={styles(colors).recommendationIcon}>
-        {recommendationA.renderIcon(colors.recommendationsPanelIconTintColor)}
-      </View>
-      <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationA.text}</Text>
-    </View>
-    <View style={styles(colors).recommendation}>
-      <View style={styles(colors).recommendationIcon}>
-        {recommendationB.renderIcon(colors.recommendationsPanelIconTintColor)}
-      </View>
-      <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationB.text}</Text>
-    </View>
-  </View>
-);
-
-export default function Recommendations (props) {
-  const { borderColor, panelBorderColor, backgroundColor, recommendations, onPress } = props;
+function renderRecommendation(...args) {
+  const [
+    [recommendationA, recommendationB],
+    colors,
+  ] = args;
 
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <TopComponent>
-          <Layout
-            style={{
-              ...styles(colors).contentContainer,
-              backgroundColor,
-            }}
-          >
-            <View
-              style={{
-                ...styles(colors).recommendationsContainer,
-                borderColor: panelBorderColor,
-              }}
-            >
-              <Text textColor={colors.recommendationsPanelTextColor} weight='bold' style={styles(colors).recommendationsTitle}>{i18n.translate('screens.recommendations.title')}</Text>
-              { recommendations.map(item => renderRecommendation(item, colors)) }
-            </View>
-            <ButtonWrapper
-              onPress={onPress}
-              accessibilityLabel={i18n.translate('screens.recommendations.support.accessibility.label')}
-              accessibilityHint={i18n.translate('screens.recommendations.support.accessibility.hint')}
-              style={styles(colors).supportContainer}
-            >
-              <SupportIcon
-                label={i18n.translate('screens.recommendations.support.label')}
-                content={i18n.translate('common.links.min_saude_covid').substring(8)}
-                borderColor={borderColor}
-              />
-            </ButtonWrapper>
-          </Layout>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+    <View key={recommendationA.key} style={styles(colors).recommendationsRow}>
+      <View style={{...styles(colors).recommendation, marginRight: sizes.size8}}>
+        <View style={styles(colors).recommendationIcon}>{recommendationA.icon}</View>
+        <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationA.text}</Text>
+      </View>
+      <View style={styles(colors).recommendation}>
+        <View style={styles(colors).recommendationIcon}>{recommendationB.icon}</View>
+        <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationB.text}</Text>
+      </View>
+    </View>
   );
 }
 
-Recommendations.defaultProps = {
+export default function Template (props) {
+  const { borderColor, panelBorderColor, backgroundColor, recommendations, onPress } = props;
+
+  const { colors } = useTheme();
+
+  return (
+    <TopComponent>
+      <Layout
+        style={{
+          ...styles(colors).contentContainer,
+          backgroundColor,
+        }}
+      >
+        <View
+          style={{
+            ...styles(colors).recommendationsContainer,
+            borderColor: panelBorderColor,
+          }}
+        >
+          <Text textColor={colors.recommendationsPanelTextColor} weight='bold' style={styles(colors).recommendationsTitle}>{i18n.translate('screens.recommendations.title')}</Text>
+          { recommendations.map(item => renderRecommendation(item, colors)) }
+        </View>
+        <ButtonWrapper
+          onPress={onPress}
+          accessibilityLabel={i18n.translate('screens.recommendations.support.accessibility.label')}
+          accessibilityHint={i18n.translate('screens.recommendations.support.accessibility.hint')}
+          style={styles(colors).supportContainer}
+        >
+          <SupportIcon
+            label={i18n.translate('screens.recommendations.support.label')}
+            content={i18n.translate('common.links.min_saude_covid').substring(8)}
+            borderColor={borderColor}
+          />
+        </ButtonWrapper>
+      </Layout>
+    </TopComponent>
+  );
+}
+
+Template.defaultProps = {
   panelBorderColor: '',
   backgroundColor: '',
   borderColor: '',
@@ -134,7 +135,7 @@ Recommendations.defaultProps = {
   onPress: () => {},
 };
 
-Recommendations.propTypes = {
+Template.propTypes = {
   recommendations: PropTypes.arrayOf(PropTypes.array),
   panelBorderColor: PropTypes.oneOf(['', ...commonColors]),
   backgroundColor: PropTypes.oneOf(['', ...commonColors]),

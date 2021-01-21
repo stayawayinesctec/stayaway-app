@@ -13,6 +13,8 @@ import { Platform, Share } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 
+import { useTheme } from '@app/contexts/Theme';
+
 import Home from '@main/components/Home';
 
 import Icon from '@app/common/components/Icon';
@@ -40,6 +42,7 @@ import AppRoutes from '@app/navigation/routes';
 
 export default function HomeScreen () {
   const dispatch = useDispatch();
+  const { colors } = useTheme();
 
   const tracingEnabled = useSelector(isTracingEnabled);
   const infectionStatus = useSelector(getInfectionStatus);
@@ -56,7 +59,7 @@ export default function HomeScreen () {
       label: '',
       hint: '',
     },
-    icon: () => {},
+    icon: undefined,
     onPress: () => {},
   };
 
@@ -66,7 +69,7 @@ export default function HomeScreen () {
         status: true,
         title: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.title`),
         message: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.message`),
-        icon: (colors) => <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />,
+        icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate(`screens.home.errors.gaen.${Platform.OS}.label`),
           accessibility: {
@@ -81,7 +84,7 @@ export default function HomeScreen () {
         status: true,
         title: i18n.translate('screens.home.errors.tracing.title'),
         message: i18n.translate('screens.home.errors.tracing.message'),
-        icon: (colors) => <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />,
+        icon: <Icon name='gaen_disconnected' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate('screens.home.errors.tracing.label'),
           accessibility: {
@@ -96,7 +99,7 @@ export default function HomeScreen () {
         status: true,
         title: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.title`),
         message: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.message`),
-        icon: (colors) => <Icon name='bluetooth_disconnected' width={iconSizes.size17} height={iconSizes.size28} tintColor={colors.iconMainTintColor} />,
+        icon: <Icon name='bluetooth_disconnected' width={iconSizes.size17} height={iconSizes.size28} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate(`screens.home.errors.bluetooth.${Platform.OS}.label`),
           accessibility: {
@@ -114,7 +117,7 @@ export default function HomeScreen () {
         status: true,
         title: i18n.translate('screens.home.errors.location.title'),
         message: i18n.translate('screens.home.errors.location.message'),
-        icon: (colors) => <Icon name='location_disconnected' width={iconSizes.size23} height={iconSizes.size26} tintColor={colors.iconMainTintColor} />,
+        icon: <Icon name='location_disconnected' width={iconSizes.size23} height={iconSizes.size26} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate('screens.home.errors.location.label'),
           accessibility: {
@@ -130,7 +133,7 @@ export default function HomeScreen () {
         title: i18n.translate('screens.home.errors.battery.title'),
         message: i18n.translate('screens.home.errors.battery.message'),
         submessage: i18n.translate('screens.home.errors.battery.submessage'),
-        icon: (colors) => <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} tintColor={colors.iconMainTintColor} />,
+        icon: <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} tintColor={colors.iconMainTintColor} />,
         main: {
           label: i18n.translate('screens.home.errors.battery.actions.main.label'),
           accessibility: {

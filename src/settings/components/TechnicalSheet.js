@@ -13,7 +13,7 @@ import { StyleSheet, View, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
@@ -124,97 +124,94 @@ export default function TechnicalSheet (props) {
   } = props;
 
   const insets = useSafeAreaInsets();
+  const { name, colors } = useTheme();
 
   return (
-    <ThemeConsumer>
-      {({colors, name}) => (
-        <TopComponent>
-          <Layout style={styles(colors, insets).layoutContainer}>
-            <View style={styles(colors, insets).header}>
-              <ButtonWrapper
-                onPress={onClose}
-                style={styles(colors, insets).closeButton}
-                accessibilityLabel={i18n.translate('screens.technical_sheet.actions.back.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.technical_sheet.actions.back.accessibility.hint')}
-              >
-                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
-              </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.technical_sheet.title')}</Text>
-            </View>
-            <View style={styles(colors, insets).itemsContainer}>
-              <View style={styles(colors, insets).coordinatorContainer}>
-                <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
-                <ButtonWrapper
-                  style={styles(colors, insets).item}
-                  onPress={onPressCoordinator}
-                  accessibilityRole='link'
-                  accessibilityLabel={i18n.translate('screens.technical_sheet.inesctec.accessibility.label')}
-                  accessibilityHint={i18n.translate('screens.technical_sheet.inesctec.accessibility.hint')}
-                >
-                  <Image source={getThemedImage('logo_inesctec', name)} />
-                </ButtonWrapper>
-              </View>
-              <View style={styles(colors, insets).partnersContainer}>
-                <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
-                <View style={styles(colors, insets).itemsRow}>
-                  <ButtonWrapper
-                    style={{
-                      ...styles(colors, insets).item,
-                      marginRight: sizes.size8,
-                    }}
-                    onPress={onPressISPUP}
-                    accessibilityRole='link'
-                    accessibilityLabel={i18n.translate('screens.technical_sheet.ispup.accessibility.label')}
-                    accessibilityHint={i18n.translate('screens.technical_sheet.ispup.accessibility.hint')}
-                  >
-                    <Image source={getThemedImage('logo_ispup', name)} />
-                  </ButtonWrapper>
-                  <ButtonWrapper
-                    style={styles(colors, insets).item}
-                    onPress={onPressKeyruptive}
-                    accessibilityRole='link'
-                    accessibilityLabel={i18n.translate('screens.technical_sheet.keyruptive.accessibility.label')}
-                    accessibilityHint={i18n.translate('screens.technical_sheet.keyruptive.accessibility.hint')}
-                  >
-                    <Image source={getThemedImage('logo_keyruptive', name)} />
-                  </ButtonWrapper>
-                </View>
-                <View style={styles(colors, insets).itemsRow}>
-                  <ButtonWrapper
-                    style={{
-                      ...styles(colors, insets).item,
-                      marginRight: sizes.size8,
-                    }}
-                    onPress={onPressUbirider}
-                    accessibilityRole='link'
-                    accessibilityLabel={i18n.translate('screens.technical_sheet.ubirider.accessibility.label')}
-                    accessibilityHint={i18n.translate('screens.technical_sheet.ubirider.accessibility.hint')}
-                  >
-                    <Image source={getThemedImage('logo_ubirider', name)} />
-                  </ButtonWrapper>
-                  <ButtonWrapper
-                    style={styles(colors, insets).item}
-                    onPress={onPressSPMS}
-                    accessibilityRole='link'
-                    accessibilityLabel={i18n.translate('screens.technical_sheet.spms.accessibility.label')}
-                    accessibilityHint={i18n.translate('screens.technical_sheet.spms.accessibility.hint')}
-                  >
-                    <Image source={getThemedImage('logo_spms', name)} />
-                  </ButtonWrapper>
-                </View>
-              </View>
-            </View>
-          </Layout>
-          <View style={styles(colors, insets).imagesContainer}>
-            <View style={styles(colors, insets).sponsors}>
-              <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-              <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
-            </View>
-            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+    <TopComponent>
+      <Layout style={styles(colors, insets).layoutContainer}>
+        <View style={styles(colors, insets).header}>
+          <ButtonWrapper
+            onPress={onClose}
+            style={styles(colors, insets).closeButton}
+            accessibilityLabel={i18n.translate('screens.technical_sheet.actions.back.accessibility.label')}
+            accessibilityHint={i18n.translate('screens.technical_sheet.actions.back.accessibility.hint')}
+          >
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+          </ButtonWrapper>
+          <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.technical_sheet.title')}</Text>
+        </View>
+        <View style={styles(colors, insets).itemsContainer}>
+          <View style={styles(colors, insets).coordinatorContainer}>
+            <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
+            <ButtonWrapper
+              style={styles(colors, insets).item}
+              onPress={onPressCoordinator}
+              accessibilityRole='link'
+              accessibilityLabel={i18n.translate('screens.technical_sheet.inesctec.accessibility.label')}
+              accessibilityHint={i18n.translate('screens.technical_sheet.inesctec.accessibility.hint')}
+            >
+              <Image source={getThemedImage('logo_inesctec', name)} />
+            </ButtonWrapper>
           </View>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+          <View style={styles(colors, insets).partnersContainer}>
+            <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
+            <View style={styles(colors, insets).itemsRow}>
+              <ButtonWrapper
+                style={{
+                  ...styles(colors, insets).item,
+                  marginRight: sizes.size8,
+                }}
+                onPress={onPressISPUP}
+                accessibilityRole='link'
+                accessibilityLabel={i18n.translate('screens.technical_sheet.ispup.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.technical_sheet.ispup.accessibility.hint')}
+              >
+                <Image source={getThemedImage('logo_ispup', name)} />
+              </ButtonWrapper>
+              <ButtonWrapper
+                style={styles(colors, insets).item}
+                onPress={onPressKeyruptive}
+                accessibilityRole='link'
+                accessibilityLabel={i18n.translate('screens.technical_sheet.keyruptive.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.technical_sheet.keyruptive.accessibility.hint')}
+              >
+                <Image source={getThemedImage('logo_keyruptive', name)} />
+              </ButtonWrapper>
+            </View>
+            <View style={styles(colors, insets).itemsRow}>
+              <ButtonWrapper
+                style={{
+                  ...styles(colors, insets).item,
+                  marginRight: sizes.size8,
+                }}
+                onPress={onPressUbirider}
+                accessibilityRole='link'
+                accessibilityLabel={i18n.translate('screens.technical_sheet.ubirider.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.technical_sheet.ubirider.accessibility.hint')}
+              >
+                <Image source={getThemedImage('logo_ubirider', name)} />
+              </ButtonWrapper>
+              <ButtonWrapper
+                style={styles(colors, insets).item}
+                onPress={onPressSPMS}
+                accessibilityRole='link'
+                accessibilityLabel={i18n.translate('screens.technical_sheet.spms.accessibility.label')}
+                accessibilityHint={i18n.translate('screens.technical_sheet.spms.accessibility.hint')}
+              >
+                <Image source={getThemedImage('logo_spms', name)} />
+              </ButtonWrapper>
+            </View>
+          </View>
+        </View>
+      </Layout>
+      <View style={styles(colors, insets).imagesContainer}>
+        <View style={styles(colors, insets).sponsors}>
+          <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+          <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+        </View>
+        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+      </View>
+    </TopComponent>
   );
 }
 

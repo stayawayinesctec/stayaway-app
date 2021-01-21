@@ -13,7 +13,7 @@ import { View , StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import i18n from '@app/services/i18n';
 
@@ -54,29 +54,27 @@ const styles = (colors) => StyleSheet.create({
 export default function ExpiredCodeModal (props) {
   const { visible, onClose, ...otherProps } = props;
 
+  const { colors } = useTheme();
+
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
-          <Layout style={styles(colors).content}>
-            <View style={styles(colors).titleContainer}>
-              <Icon name='expired_code' width={iconSizes.size57} height={iconSizes.size67} tintColor={colors.modalIconTintColor} />
-            </View>
-            <View style={styles(colors).descriptionsContainer}>
-              <Text size='large' weight='bold' textAlign='center' style={styles(colors).contentTitle}>{i18n.translate('common.dialogs.expired_code.title')}</Text>
-              <Text textAlign='center' style={styles(colors).contentDescription}>{i18n.translate('common.dialogs.expired_code.description')}</Text>
-            </View>
-            <View style={styles(colors).actionsContainer}>
-              <Button
-                title={i18n.translate('common.actions.ok')}
-                containerStyle={styles(colors).button}
-                onPress={onClose}
-              />
-            </View>
-          </Layout>
-        </Modal>
-      )}
-    </ThemeConsumer>
+    <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
+      <Layout style={styles(colors).content}>
+        <View style={styles(colors).titleContainer}>
+          <Icon name='expired_code' width={iconSizes.size57} height={iconSizes.size67} tintColor={colors.modalIconTintColor} />
+        </View>
+        <View style={styles(colors).descriptionsContainer}>
+          <Text size='large' weight='bold' textAlign='center' style={styles(colors).contentTitle}>{i18n.translate('common.dialogs.expired_code.title')}</Text>
+          <Text textAlign='center' style={styles(colors).contentDescription}>{i18n.translate('common.dialogs.expired_code.description')}</Text>
+        </View>
+        <View style={styles(colors).actionsContainer}>
+          <Button
+            title={i18n.translate('common.actions.ok')}
+            containerStyle={styles(colors).button}
+            onPress={onClose}
+          />
+        </View>
+      </Layout>
+    </Modal>
   );
 }
 

@@ -10,7 +10,7 @@
 
 import React from 'react';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import Template from '@main/components/Recommendations/Template';
 import Icon from '@app/common/components/Icon';
@@ -20,44 +20,42 @@ import { iconSizes } from '@app/common/theme';
 import i18n from '@app/services/i18n';
 
 export default function RecommendationsHealthy (props) {
+  const { colors } = useTheme();
+
   const recommendations = [
     [
       {
         "key": "1",
         "text": i18n.translate('screens.recommendations.healthy.distance'),
-        "renderIcon": (color) => <Icon name="distance" width={iconSizes.size78} height={iconSizes.size61} tintColor={color} />,
+        "icon": <Icon name="distance" width={iconSizes.size78} height={iconSizes.size61} tintColor={colors.recommendationsPanelIconTintColor} />,
       },
       {
         "key": "2",
         "text": i18n.translate('screens.recommendations.healthy.wear_mask'),
-        "renderIcon": (color) => <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} tintColor={color} />,
+        "icon": <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} tintColor={colors.recommendationsPanelIconTintColor} />,
       },
     ],
     [
       {
         "key": "3",
         "text": i18n.translate('screens.recommendations.healthy.wash_hands'),
-        "renderIcon": (color) => <Icon name="wash_hands" width={iconSizes.size60} height={iconSizes.size61} tintColor={color} />,
+        "icon": <Icon name="wash_hands" width={iconSizes.size60} height={iconSizes.size61} tintColor={colors.recommendationsPanelIconTintColor} />,
       },
       {
         "key": "4",
         "text": i18n.translate('screens.recommendations.healthy.feeling_sick'),
-        "renderIcon": (color) => <Icon name="feeling_sick" width={iconSizes.size60} height={iconSizes.size61} tintColor={color} />,
+        "icon": <Icon name="feeling_sick" width={iconSizes.size60} height={iconSizes.size61} tintColor={colors.recommendationsPanelIconTintColor} />,
       },
     ],
   ];
 
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <Template
-          recommendations={recommendations}
-          borderColor={colors.healthyGreen}
-          panelBorderColor={colors.recommendationsGreenPanelBorderColor}
-          backgroundColor={colors.recommendationsGreenPanelBackgroundColor}
-          {...props}
-        />
-      )}
-    </ThemeConsumer>
+    <Template
+      recommendations={recommendations}
+      borderColor={colors.healthyGreen}
+      panelBorderColor={colors.recommendationsGreenPanelBorderColor}
+      backgroundColor={colors.recommendationsGreenPanelBackgroundColor}
+      {...props}
+    />
   );
 }

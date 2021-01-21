@@ -13,7 +13,7 @@ import { View , StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import Layout from '@app/common/components/Layout';
 import Icon from '@app/common/components/Icon';
@@ -39,24 +39,22 @@ export default function LoadingModal (props) {
     ...otherProps
   } = props;
 
+  const { colors } = useTheme();
+
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <Modal
-          backdropColor={colors.backdropColor}
-          isVisible={visible}
-          backdropOpacity={1}
-          statusBarTranslucent
-          {...otherProps}
-        >
-          <Layout style={styles.content}>
-            <View style={styles.logoContainer}>
-              <Icon name='logo' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.protectorIconTintColor} />
-            </View>
-          </Layout>
-        </Modal>
-      )}
-    </ThemeConsumer>
+    <Modal
+      backdropColor={colors.backdropColor}
+      isVisible={visible}
+      backdropOpacity={1}
+      statusBarTranslucent
+      {...otherProps}
+    >
+      <Layout style={styles.content}>
+        <View style={styles.logoContainer}>
+          <Icon name='logo' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.protectorIconTintColor} />
+        </View>
+      </Layout>
+    </Modal>
   );
 }
 

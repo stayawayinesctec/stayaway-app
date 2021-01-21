@@ -13,7 +13,7 @@ import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { sizes, iconSizes } from '@app/common/theme';
 
@@ -88,76 +88,73 @@ export default function TermsOfUse(props) {
   } = props;
 
   const insets = useSafeAreaInsets();
+  const { name, colors } = useTheme();
 
-  return (
-    <ThemeConsumer>
-      {({colors, name}) => (
-        <TopComponent scrollable={false} style={styles(colors, insets).container}>
-          <Layout style={styles(colors, insets).layoutContainer} padding='top'>
-            <View style={styles(colors, insets).header}>
-              <ButtonWrapper
-                onPress={onClose}
-                style={styles(colors, insets).closeButton}
-                accessibilityLabel={i18n.translate('screens.terms_of_use.actions.back.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.terms_of_use.actions.back.accessibility.hint')}
-              >
-                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
-              </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors, insets).headerTitle}>{i18n.translate('screens.terms_of_use.title')}</Text>
-            </View>
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={styles(colors, insets).bodyContainer}
-            >
-              <View style={styles(colors, insets).clause}>
-                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.scope_and_purpose.name')}</Text>
-                <Text size='xsmall'>{i18n.translate('screens.terms_of_use.scope_and_purpose.description')}</Text>
-              </View>
-              <View style={styles(colors, insets).clause}>
-                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.name')}</Text>
-                <Text size='xsmall'>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.description')}</Text>
-              </View>
-              <View style={styles(colors, insets).clause}>
-                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.features_of_the_app.name')}</Text>
-                <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.description')}</Text>
-              </View>
-              <View style={styles(colors, insets).clause}>
-                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.users_duties_of_care.name')}</Text>
-                <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.description')}</Text>
-              </View>
-              <View style={styles(colors, insets).clause}>
-                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.liability_and_warranty.name')}</Text>
-                <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.description')}</Text>
-              </View>
-              <View style={styles(colors, insets).clause}>
-                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.data_protection.name')}</Text>
-                <Text size='xsmall'>{i18n.translate('screens.terms_of_use.data_protection.description')}</Text>
-              </View>
-              <View style={styles(colors, insets).clause}>
-                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.termination_of_use.name')}</Text>
-                <Text size='xsmall'>{i18n.translate('screens.terms_of_use.termination_of_use.description')}</Text>
-              </View>
-              <View style={styles(colors, insets).clause}>
-                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.name')}</Text>
-                <Text size='xsmall'>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.description')}</Text>
-              </View>
-              <View style={styles(colors, insets).clause}>
-                <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.final_provisions.name')}</Text>
-                <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.description')}</Text>
-              </View>
-              <Text textColor={colors.settingsLabelTextColor} size='xsmall' weight='bold'>{i18n.translate('screens.terms_of_use.last_review')}</Text>
-              <View style={styles(colors, insets).sponsors}>
-                <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-                <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
-              </View>
-            </ScrollView>
-          </Layout>
-          <View style={styles(colors, insets).imagesContainer}>
-            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+  return  (
+    <TopComponent scrollable={false} style={styles(colors, insets).container}>
+      <Layout style={styles(colors, insets).layoutContainer} padding='top'>
+        <View style={styles(colors, insets).header}>
+          <ButtonWrapper
+            onPress={onClose}
+            style={styles(colors, insets).closeButton}
+            accessibilityLabel={i18n.translate('screens.terms_of_use.actions.back.accessibility.label')}
+            accessibilityHint={i18n.translate('screens.terms_of_use.actions.back.accessibility.hint')}
+          >
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+          </ButtonWrapper>
+          <Text size='xlarge' weight='bold' style={styles(colors, insets).headerTitle}>{i18n.translate('screens.terms_of_use.title')}</Text>
+        </View>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles(colors, insets).bodyContainer}
+        >
+          <View style={styles(colors, insets).clause}>
+            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.scope_and_purpose.name')}</Text>
+            <Text size='xsmall'>{i18n.translate('screens.terms_of_use.scope_and_purpose.description')}</Text>
           </View>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+          <View style={styles(colors, insets).clause}>
+            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.name')}</Text>
+            <Text size='xsmall'>{i18n.translate('screens.terms_of_use.conditions_of_access_and_use.description')}</Text>
+          </View>
+          <View style={styles(colors, insets).clause}>
+            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.features_of_the_app.name')}</Text>
+            <Text size='xsmall'>{i18n.translate('screens.terms_of_use.features_of_the_app.description')}</Text>
+          </View>
+          <View style={styles(colors, insets).clause}>
+            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.users_duties_of_care.name')}</Text>
+            <Text size='xsmall'>{i18n.translate('screens.terms_of_use.users_duties_of_care.description')}</Text>
+          </View>
+          <View style={styles(colors, insets).clause}>
+            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.liability_and_warranty.name')}</Text>
+            <Text size='xsmall'>{i18n.translate('screens.terms_of_use.liability_and_warranty.description')}</Text>
+          </View>
+          <View style={styles(colors, insets).clause}>
+            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.data_protection.name')}</Text>
+            <Text size='xsmall'>{i18n.translate('screens.terms_of_use.data_protection.description')}</Text>
+          </View>
+          <View style={styles(colors, insets).clause}>
+            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.termination_of_use.name')}</Text>
+            <Text size='xsmall'>{i18n.translate('screens.terms_of_use.termination_of_use.description')}</Text>
+          </View>
+          <View style={styles(colors, insets).clause}>
+            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.name')}</Text>
+            <Text size='xsmall'>{i18n.translate('screens.terms_of_use.copyright_property_rights_and_rights_of_use.description')}</Text>
+          </View>
+          <View style={styles(colors, insets).clause}>
+            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.terms_of_use.final_provisions.name')}</Text>
+            <Text size='xsmall'>{i18n.translate('screens.terms_of_use.final_provisions.description')}</Text>
+          </View>
+          <Text textColor={colors.settingsLabelTextColor} size='xsmall' weight='bold'>{i18n.translate('screens.terms_of_use.last_review')}</Text>
+          <View style={styles(colors, insets).sponsors}>
+            <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+            <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+          </View>
+        </ScrollView>
+      </Layout>
+      <View style={styles(colors, insets).imagesContainer}>
+        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+      </View>
+    </TopComponent>
   );
 }
 

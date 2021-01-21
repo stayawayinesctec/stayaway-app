@@ -12,14 +12,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { getSubmitImageSize } from '@app/common/utils/scalling';
 
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
 import Button from '@app/common/components/Button';
-import CodeInput from '@app/common/components/CodeInput';
+import Input from '@app/common/components/CodeInput';
 import Text from '@app/common/components/FormattedText';
 import { getThemedImage } from '@app/common/assets/images';
 
@@ -94,12 +94,14 @@ const styles = (colors) => StyleSheet.create({
   },
 });
 
-export default function Diagnosis (props) {
+export default function CodeInput (props) {
   const {
     error: serverError,
     onSubmit,
     loading,
   } = props;
+
+  const { name, colors } = useTheme();
 
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
@@ -129,65 +131,60 @@ export default function Diagnosis (props) {
 
   useEffect(() => setError(serverError), [serverError]);
 
-
   return (
-    <ThemeConsumer>
-      {({name, colors}) => (
-        <TopComponent>
-          <ImageBackground
-            source={getThemedImage('diagnosis', name)}
-            style={styles(colors).imageContainer}
+    <TopComponent>
+      <ImageBackground
+        source={getThemedImage('diagnosis', name)}
+        style={styles(colors).imageContainer}
+      />
+      <Layout
+        padding='horizontal'
+        style={styles(colors).contentContainer}
+      >
+        <View style={styles(colors).header}>
+          <View style={styles(colors).backgroundPanel} />
+          <View style={styles(colors).panel}>
+            <View style={styles(colors).panelContainer}>
+              <Text size='xlarge' weight='bold' style={styles(colors).title}>{i18n.translate('screens.diagnosis.code_input.title')}</Text>
+              <Text>{i18n.translate('screens.diagnosis.code_input.description')}</Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles(colors).inputContainer}>
+          <Input
+            value={code}
+            onChangeText={onChangeText}
+            ref={input}
+            placeholder={i18n.translate('common.placeholders.code')}
+            returnKeyLabel={i18n.translate('common.actions.submit')}
+            returnKeyType='done'
+            autoCompleteType='off'
+            autoCapitalize='none'
+            autoCorrect={false}
+            errorMessage={error}
+            maxLength={maxLength}
           />
-          <Layout
-            padding='horizontal'
-            style={styles(colors).contentContainer}
-          >
-            <View style={styles(colors).header}>
-              <View style={styles(colors).backgroundPanel} />
-              <View style={styles(colors).panel}>
-                <View style={styles(colors).panelContainer}>
-                  <Text size='xlarge' weight='bold' style={styles(colors).title}>{i18n.translate('screens.diagnosis.code_input.title')}</Text>
-                  <Text>{i18n.translate('screens.diagnosis.code_input.description')}</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles(colors).inputContainer}>
-              <CodeInput
-                value={code}
-                onChangeText={onChangeText}
-                ref={input}
-                placeholder={i18n.translate('common.placeholders.code')}
-                returnKeyLabel={i18n.translate('common.actions.submit')}
-                returnKeyType='done'
-                autoCompleteType='off'
-                autoCapitalize='none'
-                autoCorrect={false}
-                errorMessage={error}
-                maxLength={maxLength}
-              />
-            </View>
-            <Button
-              loading={loading}
-              title={i18n.translate('common.actions.submit')}
-              accessibilityLabel={i18n.translate('screens.diagnosis.code_input.accessibility.label')}
-              accessibilityHint={i18n.translate('screens.diagnosis.code_input.accessibility.hint')}
-              containerStyle={styles(colors).button}
-              onPress={onNextPressed}
-              disabled={disabled}
-            />
-          </Layout>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+        </View>
+        <Button
+          loading={loading}
+          title={i18n.translate('common.actions.submit')}
+          accessibilityLabel={i18n.translate('screens.diagnosis.code_input.accessibility.label')}
+          accessibilityHint={i18n.translate('screens.diagnosis.code_input.accessibility.hint')}
+          containerStyle={styles(colors).button}
+          onPress={onNextPressed}
+          disabled={disabled}
+        />
+      </Layout>
+    </TopComponent>
   );
 }
 
-Diagnosis.defaultProps = {
+CodeInput.defaultProps = {
   onSubmit: () => {},
   error: '',
 };
 
-Diagnosis.propTypes = {
+CodeInput.propTypes = {
   onSubmit: PropTypes.func,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,

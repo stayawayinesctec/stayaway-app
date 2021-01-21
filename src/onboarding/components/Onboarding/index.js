@@ -14,7 +14,7 @@ import Swiper from 'react-native-swiper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { getThemedImage } from '@app/common/assets/images';
 import { sizes, iconSizes } from '@app/common/theme';
@@ -56,7 +56,15 @@ const styles = (insets) => StyleSheet.create({
   },
 });
 
-const renderPagination = (index, total, {colors, insets}, swiper) => {
+function renderPagination(...args) {
+  const [
+    index,
+    total,
+    swiper,
+    colors,
+    insets,
+  ] = args;
+
   const dots = [];
 
   const ActiveDot = (
@@ -120,52 +128,50 @@ export default function Onboarding (props) {
   const { loading, shouldShowLocationScreen, onPress } = props;
 
   const [index, setIndex] = useState(0);
-  const insets = useSafeAreaInsets();
   const swiper = useRef(null);
 
+  const insets = useSafeAreaInsets();
+  const { name, colors } = useTheme();
+
   return (
-    <ThemeConsumer>
-      {({name, colors}) => (
-        <Swiper
-          testID="onboarding"
-          loop={false}
-          style={styles(insets).container}
-          onIndexChanged={(currentIndex) => setIndex(currentIndex)}
-          showsPagination={index < (shouldShowLocationScreen ? 5 : 4)}
-          dotStyle={styles(insets).dotStyle}
-          ref={swiper}
-          renderPagination={() => renderPagination(index, shouldShowLocationScreen ? 5 : 4, {colors, insets}, swiper)}
-        >
-          <Template
-            header={i18n.translate('screens.onboarding.first.title')}
-            image={getThemedImage('onboarding1', name)}
-          />
-          <Template
-            header={i18n.translate('screens.onboarding.second.title')}
-            description={i18n.translate('screens.onboarding.second.description')}
-            image={getThemedImage('onboarding2', name)}
-          />
-          <Template
-            header={i18n.translate('screens.onboarding.third.title')}
-            description={i18n.translate('screens.onboarding.third.description')}
-            image={getThemedImage('onboarding3', name)}
-          />
-          <Template
-            header={i18n.translate('screens.onboarding.fourth.title')}
-            description={i18n.translate('screens.onboarding.fourth.description')}
-            image={getThemedImage('onboarding4', name)}
-          />
-          {shouldShowLocationScreen &&
-            <Template
-              header={i18n.translate('screens.onboarding.fifth.title')}
-              description={i18n.translate('screens.onboarding.fifth.description')}
-              image={getThemedImage('onboarding5', name)}
-            />
-          }
-          <Consent loading={loading} onPress={onPress} />
-        </Swiper>
-      )}
-    </ThemeConsumer>
+    <Swiper
+      testID="onboarding"
+      loop={false}
+      style={styles(insets).container}
+      onIndexChanged={(currentIndex) => setIndex(currentIndex)}
+      showsPagination={index < (shouldShowLocationScreen ? 5 : 4)}
+      dotStyle={styles(insets).dotStyle}
+      ref={swiper}
+      renderPagination={() => renderPagination(index, shouldShowLocationScreen ? 5 : 4, swiper, colors, insets)}
+    >
+      <Template
+        header={i18n.translate('screens.onboarding.first.title')}
+        image={getThemedImage('onboarding1', name)}
+      />
+      <Template
+        header={i18n.translate('screens.onboarding.second.title')}
+        description={i18n.translate('screens.onboarding.second.description')}
+        image={getThemedImage('onboarding2', name)}
+      />
+      <Template
+        header={i18n.translate('screens.onboarding.third.title')}
+        description={i18n.translate('screens.onboarding.third.description')}
+        image={getThemedImage('onboarding3', name)}
+      />
+      <Template
+        header={i18n.translate('screens.onboarding.fourth.title')}
+        description={i18n.translate('screens.onboarding.fourth.description')}
+        image={getThemedImage('onboarding4', name)}
+      />
+      {shouldShowLocationScreen &&
+        <Template
+          header={i18n.translate('screens.onboarding.fifth.title')}
+          description={i18n.translate('screens.onboarding.fifth.description')}
+          image={getThemedImage('onboarding5', name)}
+        />
+      }
+      <Consent loading={loading} onPress={onPress} />
+    </Swiper>
   );
 }
 

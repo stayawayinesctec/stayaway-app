@@ -17,7 +17,7 @@ import {
 import PropTypes from 'prop-types';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { sizes, themes as commonThemes } from '@app/common/theme';
 
@@ -61,27 +61,21 @@ export default function Layout(props) {
   const { padding, type, style, children, ...otherProps } = props;
 
   const insets = useSafeAreaInsets();
+  const { name } = useTheme();
+
+  const { colors } = commonThemes[type || name];
 
   return (
-    <ThemeConsumer>
-      {({name}) => {
-        const theme = type || name;
-        const { colors } = commonThemes[theme];
-
-        return (
-          <View
-            style={{
-              ...styles(colors, insets).container,
-              ...styles(colors, insets)[padding],
-              ...style,
-            }}
-            {...otherProps}
-          >
-            {children}
-          </View>
-        );
+    <View
+      style={{
+        ...styles(colors, insets).container,
+        ...styles(colors, insets)[padding],
+        ...style,
       }}
-    </ThemeConsumer>
+      {...otherProps}
+    >
+      {children}
+    </View>
   );
 }
 

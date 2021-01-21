@@ -13,7 +13,7 @@ import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { sizes, iconSizes } from '@app/common/theme';
 
@@ -151,7 +151,13 @@ const styles = (colors, insets) => StyleSheet.create({
   },
 });
 
-const renderThirdPartyLicenses = (licenses, colors, insets) => {
+function renderThirdPartyLicenses (...args) {
+  const [
+    licenses,
+    colors,
+    insets,
+  ] = args;
+
   return (
     <View>
       {
@@ -213,50 +219,47 @@ export default function Licenses(props) {
   } = props;
 
   const insets = useSafeAreaInsets();
+  const { name, colors } = useTheme();
 
   return (
-    <ThemeConsumer>
-      {({colors, name}) => (
-        <TopComponent scrollable={false} style={styles(colors, insets).container}>
-          <Layout style={styles(colors, insets).layoutContainer} padding='top'>
-            <View style={styles(colors, insets).header}>
-              <ButtonWrapper
-                onPress={onClose}
-                style={styles(colors, insets).closeButton}
-                accessibilityLabel={i18n.translate('screens.licenses.actions.back.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.licenses.actions.back.accessibility.hint')}
-              >
-                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
-              </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.licenses.title')}</Text>
-            </View>
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={styles(colors, insets).bodyContainer}
-            >
-              <View style={styles(colors, insets).projectInformation}>
-                <Text textColor={colors.licensesProjectTextColor}>{i18n.translate('screens.licenses.project')}</Text>
-              </View>
-              <View style={styles(colors, insets).copyrightAndLicense}>
-                <Text textColor={colors.licensesTitleTextColor} weight='bold' style={styles(colors, insets).copyrightAndLicenseTitle}>{i18n.translate('screens.licenses.copyright_and_license.title')}</Text>
-                <Text>{i18n.translate('screens.licenses.copyright_and_license.body')}</Text>
-              </View>
-              <View style={styles(colors, insets).thirdPartyLicenses}>
-                <Text textColor={colors.licensesTitleTextColor} weight='bold' style={styles(colors, insets).thirdPartyLicensesTitle}>{i18n.translate('screens.licenses.third_party.title')}</Text>
-                {renderThirdPartyLicenses(licenses, colors, insets)}
-              </View>
-              <View style={styles(colors, insets).sponsors}>
-                <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-                <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
-              </View>
-            </ScrollView>
-          </Layout>
-          <View style={styles(colors, insets).imagesContainer}>
-            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+    <TopComponent scrollable={false} style={styles(colors, insets).container}>
+      <Layout style={styles(colors, insets).layoutContainer} padding='top'>
+        <View style={styles(colors, insets).header}>
+          <ButtonWrapper
+            onPress={onClose}
+            style={styles(colors, insets).closeButton}
+            accessibilityLabel={i18n.translate('screens.licenses.actions.back.accessibility.label')}
+            accessibilityHint={i18n.translate('screens.licenses.actions.back.accessibility.hint')}
+          >
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+          </ButtonWrapper>
+          <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.licenses.title')}</Text>
+        </View>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles(colors, insets).bodyContainer}
+        >
+          <View style={styles(colors, insets).projectInformation}>
+            <Text textColor={colors.licensesProjectTextColor}>{i18n.translate('screens.licenses.project')}</Text>
           </View>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+          <View style={styles(colors, insets).copyrightAndLicense}>
+            <Text textColor={colors.licensesTitleTextColor} weight='bold' style={styles(colors, insets).copyrightAndLicenseTitle}>{i18n.translate('screens.licenses.copyright_and_license.title')}</Text>
+            <Text>{i18n.translate('screens.licenses.copyright_and_license.body')}</Text>
+          </View>
+          <View style={styles(colors, insets).thirdPartyLicenses}>
+            <Text textColor={colors.licensesTitleTextColor} weight='bold' style={styles(colors, insets).thirdPartyLicensesTitle}>{i18n.translate('screens.licenses.third_party.title')}</Text>
+            {renderThirdPartyLicenses(licenses, colors, insets)}
+          </View>
+          <View style={styles(colors, insets).sponsors}>
+            <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+            <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+          </View>
+        </ScrollView>
+      </Layout>
+      <View style={styles(colors, insets).imagesContainer}>
+        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+      </View>
+    </TopComponent>
   );
 }
 

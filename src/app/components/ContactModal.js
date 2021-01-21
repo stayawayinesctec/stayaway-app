@@ -13,7 +13,7 @@ import { Platform, View, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import i18n from '@app/services/i18n';
 import Linking from '@app/services/linking';
@@ -52,6 +52,8 @@ const styles = (colors) => StyleSheet.create({
 export default function ContactModal (props) {
   const { visible, onClose, ...otherProps } = props;
 
+  const { colors } = useTheme();
+
   const [model, setModel] = useState('');
   const [OS, setOS] = useState('');
   const [appVersion, setAppVersion] = useState('');
@@ -81,30 +83,26 @@ export default function ContactModal (props) {
   });
 
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
-          <View style={styles(colors).content}>
-            <View style={styles(colors).titleContainer}>
-              <Icon name='mail' width={iconSizes.size32} height={iconSizes.size21} style={styles(colors).titleIcon} />
-              <Text size='large' weight='bold'>{i18n.translate('common.dialogs.contact.title')}</Text>
-            </View>
-            <View style={styles(colors).descriptionContainer}>
-              <Text>{i18n.translate('common.dialogs.contact.description')}</Text>
-            </View>
-            <Button
-              title={i18n.translate('common.dialogs.contact.label')}
-              accessibilityLabel={i18n.translate('common.dialogs.contact.accessibility.label')}
-              accessibilityHint={i18n.translate('common.dialogs.contact.accessibility.hint')}
-              onPress={() => Linking.openMailComposer(supportEmail, subject, body)}
-            />
-          </View>
-          <View style={styles(colors).supportContainer}>
-            <SupportIcon />
-          </View>
-        </Modal>
-      )}
-    </ThemeConsumer>
+    <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
+      <View style={styles(colors).content}>
+        <View style={styles(colors).titleContainer}>
+          <Icon name='mail' width={iconSizes.size32} height={iconSizes.size21} style={styles(colors).titleIcon} />
+          <Text size='large' weight='bold'>{i18n.translate('common.dialogs.contact.title')}</Text>
+        </View>
+        <View style={styles(colors).descriptionContainer}>
+          <Text>{i18n.translate('common.dialogs.contact.description')}</Text>
+        </View>
+        <Button
+          title={i18n.translate('common.dialogs.contact.label')}
+          accessibilityLabel={i18n.translate('common.dialogs.contact.accessibility.label')}
+          accessibilityHint={i18n.translate('common.dialogs.contact.accessibility.hint')}
+          onPress={() => Linking.openMailComposer(supportEmail, subject, body)}
+        />
+      </View>
+      <View style={styles(colors).supportContainer}>
+        <SupportIcon />
+      </View>
+    </Modal>
   );
 }
 

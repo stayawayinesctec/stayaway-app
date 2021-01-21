@@ -12,7 +12,7 @@ import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { getSubmitImageSize } from '@app/common/utils/scalling';
 
@@ -98,41 +98,39 @@ const styles = (colors) => StyleSheet.create({
 export default function Diagnosis (props) {
   const { onPress } = props;
 
+  const { name, colors } = useTheme();
+
   return (
-    <ThemeConsumer>
-      {({name, colors}) => (
-        <TopComponent>
-          <ImageBackground
-            source={getThemedImage('diagnosis', name)}
-            style={styles(colors).imageContainer}
-          />
-          <Layout
-            padding='horizontal'
-            style={styles(colors).contentContainer}
-          >
-            <View style={styles(colors).header}>
-              <View style={styles(colors).backgroundPanel} />
-              <View style={styles(colors).panel}>
-                <View style={styles(colors).panelContainer}>
-                  <Text size='xlarge' weight='bold' style={styles(colors).title}>{i18n.translate('screens.diagnosis.completed.title')}</Text>
-                  <Text>{i18n.translate('screens.diagnosis.completed.description')}</Text>
-                </View>
-                <View style={styles(colors).supportContainer}>
-                  <SupportIcon />
-                </View>
-              </View>
+    <TopComponent>
+      <ImageBackground
+        source={getThemedImage('diagnosis', name)}
+        style={styles(colors).imageContainer}
+      />
+      <Layout
+        padding='horizontal'
+        style={styles(colors).contentContainer}
+      >
+        <View style={styles(colors).header}>
+          <View style={styles(colors).backgroundPanel} />
+          <View style={styles(colors).panel}>
+            <View style={styles(colors).panelContainer}>
+              <Text size='xlarge' weight='bold' style={styles(colors).title}>{i18n.translate('screens.diagnosis.completed.title')}</Text>
+              <Text>{i18n.translate('screens.diagnosis.completed.description')}</Text>
             </View>
-            <Button
-              title={i18n.translate('common.actions.ok')}
-              accessibilityLabel={i18n.translate('screens.diagnosis.completed.accessibility.label')}
-              accessibilityHint={i18n.translate('screens.diagnosis.completed.accessibility.hint')}
-              containerStyle={styles(colors).button}
-              onPress={onPress}
-            />
-          </Layout>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+            <View style={styles(colors).supportContainer}>
+              <SupportIcon />
+            </View>
+          </View>
+        </View>
+        <Button
+          title={i18n.translate('common.actions.ok')}
+          accessibilityLabel={i18n.translate('screens.diagnosis.completed.accessibility.label')}
+          accessibilityHint={i18n.translate('screens.diagnosis.completed.accessibility.hint')}
+          containerStyle={styles(colors).button}
+          onPress={onPress}
+        />
+      </Layout>
+    </TopComponent>
   );
 }
 

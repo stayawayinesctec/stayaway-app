@@ -13,7 +13,7 @@ import { View , StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import i18n from '@app/services/i18n';
 
@@ -53,29 +53,27 @@ const styles = StyleSheet.create({
 export default function TooMuchRequestsModal (props) {
   const { visible, onClose, ...otherProps } = props;
 
+  const { colors } = useTheme();
+
   return (
-    <ThemeConsumer>
-      {({colors}) => (
-        <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
-          <Layout style={styles.content}>
-            <View style={styles.titleContainer}>
-              <Icon name='too_much_requests' width={iconSizes.size73} height={iconSizes.size73} tintColor={colors.modalIconTintColor} />
-            </View>
-            <View style={styles.descriptionsContainer}>
-              <Text weight='bold' size='large' textAlign='center' style={styles.contentTitle}>{i18n.translate('common.dialogs.too_much_requests.title')}</Text>
-              <Text textAlign='center' style={styles.contentDescription}>{i18n.translate('common.dialogs.too_much_requests.description')}</Text>
-            </View>
-            <View style={styles.actionsContainer}>
-              <Button
-                title={i18n.translate('common.actions.ok')}
-                containerStyle={styles.button}
-                onPress={onClose}
-              />
-            </View>
-          </Layout>
-        </Modal>
-      )}
-    </ThemeConsumer>
+    <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
+      <Layout style={styles.content}>
+        <View style={styles.titleContainer}>
+          <Icon name='too_much_requests' width={iconSizes.size73} height={iconSizes.size73} tintColor={colors.modalIconTintColor} />
+        </View>
+        <View style={styles.descriptionsContainer}>
+          <Text weight='bold' size='large' textAlign='center' style={styles.contentTitle}>{i18n.translate('common.dialogs.too_much_requests.title')}</Text>
+          <Text textAlign='center' style={styles.contentDescription}>{i18n.translate('common.dialogs.too_much_requests.description')}</Text>
+        </View>
+        <View style={styles.actionsContainer}>
+          <Button
+            title={i18n.translate('common.actions.ok')}
+            containerStyle={styles.button}
+            onPress={onClose}
+          />
+        </View>
+      </Layout>
+    </Modal>
   );
 }
 

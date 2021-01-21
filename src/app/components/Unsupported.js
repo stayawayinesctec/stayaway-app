@@ -13,7 +13,7 @@ import { View, Image, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import i18n from '@app/services/i18n';
 
@@ -58,25 +58,22 @@ export default function Unsupported (props) {
   const { supportedVersion } = props;
 
   const insets = useSafeAreaInsets();
+  const { name } = useTheme();
 
   return (
-    <ThemeConsumer>
-      {({name}) => (
-        <TopComponent>
-          <Layout>
-            <Text size='large' weight='bold' textAlign='center' style={styles(insets).title}>{i18n.translate('screens.unsupported.title')}</Text>
-            <Text>{i18n.translate('screens.unsupported.description', { supported_version: supportedVersion })}</Text>
-          </Layout>
-          <View style={styles(insets).imagesContainer}>
-            <View style={styles(insets).sponsors}>
-              <Image source={getThemedImage('republica_portuguesa', name)} style={styles(insets).republicaPortuguesaImage} />
-              <Image source={getThemedImage('logo_dgs', name)} style={styles(insets).dgsImage} />
-            </View>
-            <Image source={getThemedImage('splash', name)} style={styles(insets).splashImage} />
-          </View>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+    <TopComponent>
+      <Layout>
+        <Text size='large' weight='bold' textAlign='center' style={styles(insets).title}>{i18n.translate('screens.unsupported.title')}</Text>
+        <Text>{i18n.translate('screens.unsupported.description', { supported_version: supportedVersion })}</Text>
+      </Layout>
+      <View style={styles(insets).imagesContainer}>
+        <View style={styles(insets).sponsors}>
+          <Image source={getThemedImage('republica_portuguesa', name)} style={styles(insets).republicaPortuguesaImage} />
+          <Image source={getThemedImage('logo_dgs', name)} style={styles(insets).dgsImage} />
+        </View>
+        <Image source={getThemedImage('splash', name)} style={styles(insets).splashImage} />
+      </View>
+    </TopComponent>
   );
 }
 

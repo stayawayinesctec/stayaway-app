@@ -14,7 +14,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Moment from 'moment';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { INFECTION_STATUS } from '@app/services/tracing';
 
@@ -100,6 +100,7 @@ export default function Debug (props) {
   } = props;
 
   const insets = useSafeAreaInsets();
+  const { name, colors } = useTheme();
 
   let infectionStatusName = i18n.translate('screens.debug.infection_status.healthy');
 
@@ -119,54 +120,50 @@ export default function Debug (props) {
   const errors = status?.errors.join(',');
 
   return (
-    <ThemeConsumer>
-      {({name, colors}) => (
-        <TopComponent>
-          <Layout style={styles(colors, insets).layoutContainer}>
-            <View style={styles(colors, insets).header}>
-              <ButtonWrapper
-                onPress={onClose}
-                style={styles(colors, insets).closeButton}
-                accessibilityLabel={i18n.translate('screens.debug.actions.back.accessibility.label')}
-                accessibilityHint={i18n.translate('screens.debug.actions.back.accessibility.hint')}
-              >
-                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
-              </ButtonWrapper>
-              <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.debug.title')}</Text>
-            </View>
-            <View style={styles(colors, insets).content}>
-              <View style={styles(colors, insets).stat}>
-                <Text weight='bold'>{`${i18n.translate('screens.debug.sign_up')}: `}</Text>
-                <Text>{Moment(signUp).format('L')}</Text>
-              </View>
-              <View style={styles(colors, insets).stat}>
-                <Text weight='bold'>{`${i18n.translate('screens.debug.last_sync')}: `}</Text>
-                <Text>{Moment(status.lastSyncDate).format('L')}</Text>
-              </View>
-              <View style={styles(colors, insets).stat}>
-                <Text weight='bold'>{`${i18n.translate('screens.debug.infection_status.label')}: `}</Text>
-                <Text>{infectionStatusName}</Text>
-              </View>
-              <View style={styles(colors, insets).stat}>
-                <Text weight='bold'>{`${i18n.translate('screens.debug.exposure_days')}: `}</Text>
-                <Text>{exposedDays}</Text>
-              </View>
-              <View style={styles(colors, insets).stat}>
-                <Text weight='bold'>{`${i18n.translate('screens.debug.errors')}: `}</Text>
-                <Text>{errors}</Text>
-              </View>
-            </View>
-          </Layout>
-          <View style={styles(colors, insets).imagesContainer}>
-            <View style={styles(colors, insets).sponsors}>
-              <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-              <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
-            </View>
-            <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+    <TopComponent>
+      <Layout style={styles(colors, insets).layoutContainer}>
+        <View style={styles(colors, insets).header}>
+          <ButtonWrapper
+            onPress={onClose}
+            style={styles(colors, insets).closeButton}
+            accessibilityLabel={i18n.translate('screens.debug.actions.back.accessibility.label')}
+            accessibilityHint={i18n.translate('screens.debug.actions.back.accessibility.hint')}
+          >
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+          </ButtonWrapper>
+          <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.debug.title')}</Text>
+        </View>
+        <View style={styles(colors, insets).content}>
+          <View style={styles(colors, insets).stat}>
+            <Text weight='bold'>{`${i18n.translate('screens.debug.sign_up')}: `}</Text>
+            <Text>{Moment(signUp).format('L')}</Text>
           </View>
-        </TopComponent>
-      )}
-    </ThemeConsumer>
+          <View style={styles(colors, insets).stat}>
+            <Text weight='bold'>{`${i18n.translate('screens.debug.last_sync')}: `}</Text>
+            <Text>{Moment(status.lastSyncDate).format('L')}</Text>
+          </View>
+          <View style={styles(colors, insets).stat}>
+            <Text weight='bold'>{`${i18n.translate('screens.debug.infection_status.label')}: `}</Text>
+            <Text>{infectionStatusName}</Text>
+          </View>
+          <View style={styles(colors, insets).stat}>
+            <Text weight='bold'>{`${i18n.translate('screens.debug.exposure_days')}: `}</Text>
+            <Text>{exposedDays}</Text>
+          </View>
+          <View style={styles(colors, insets).stat}>
+            <Text weight='bold'>{`${i18n.translate('screens.debug.errors')}: `}</Text>
+            <Text>{errors}</Text>
+          </View>
+        </View>
+      </Layout>
+      <View style={styles(colors, insets).imagesContainer}>
+        <View style={styles(colors, insets).sponsors}>
+          <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
+          <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+        </View>
+        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+      </View>
+    </TopComponent>
   );
 }
 

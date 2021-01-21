@@ -12,7 +12,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import Icon from '@app/common/components/Icon';
 import Text from '@app/common/components/FormattedText';
@@ -61,38 +61,37 @@ const styles = (colors) => StyleSheet.create({
 
 export default function SupportIcon(props) {
   const { label, content, borderColor } = props;
+
+  const { colors } = useTheme();
+
   const hasLabel = label.length > 0;
   const hasContent = content.length > 0;
 
   return (
-    <ThemeConsumer>
-      {({ colors }) => (
-        <View style={styles(colors).container}>
-          <View style={styles(colors).iconContainer}>
-            <Icon name='support' width={iconSizes.size30} height={iconSizes.size30} tintColor={colors.supportIconColor} />
-          </View>
-          { ((hasLabel || hasContent)) &&
-            <View style={styles(colors).contentContainer}>
-              <View
-                style={{
-                    ...styles(colors).contentWrapper,
-                    borderColor,
-                  }}
-              >
-                <View style={styles(colors).wrapper}>
-                  { hasLabel &&
-                    <Text textColor={colors.supportTextColor} size='xsmall'>{label}</Text>
-                  }
-                  { hasContent &&
-                    <Text textColor={colors.supportTextColor} size='small' weight='bold'>{content}</Text>
-                  }
-                </View>
-              </View>
+    <View style={styles(colors).container}>
+      <View style={styles(colors).iconContainer}>
+        <Icon name='support' width={iconSizes.size30} height={iconSizes.size30} tintColor={colors.supportIconColor} />
+      </View>
+      { ((hasLabel || hasContent)) &&
+        <View style={styles(colors).contentContainer}>
+          <View
+            style={{
+                ...styles(colors).contentWrapper,
+                borderColor,
+              }}
+          >
+            <View style={styles(colors).wrapper}>
+              { hasLabel &&
+                <Text textColor={colors.supportTextColor} size='xsmall'>{label}</Text>
+              }
+              { hasContent &&
+                <Text textColor={colors.supportTextColor} size='small' weight='bold'>{content}</Text>
+              }
             </View>
-          }
+          </View>
         </View>
-      )}
-    </ThemeConsumer>
+      }
+    </View>
   );
 }
 
