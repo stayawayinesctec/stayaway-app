@@ -22,8 +22,8 @@ export default function UnsupportedScreen () {
     .then(({
       OSVersion,
     }) => {
-      const currentVersion = Number(OSVersion);
-      if (currentVersion < 12.5) {
+      const [major] = OSVersion.split('.');
+      if (Number(major) < 13) {
         setSupportedVersion('12.5');
       } else {
         setSupportedVersion('13.5');
