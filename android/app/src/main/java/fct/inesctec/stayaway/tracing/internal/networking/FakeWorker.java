@@ -59,7 +59,6 @@ public class FakeWorker extends Worker {
 	private static final long FACTOR_DAY_MILLIS = 24 * FACTOR_HOUR_MILLIS;
 	private static final long MAX_DELAY_HOURS = 48;
 	private static final float SAMPLING_RATE = BuildConfig.IS_RELEASE.equals("TRUE") ? 0.2f : 1.0f;
-	private static final String KEY_T_DUMMY = "KEY_T_DUMMY";
 
 	public static Clock clock = new ClockImpl();
 
@@ -90,7 +89,6 @@ public class FakeWorker extends Worker {
 		OneTimeWorkRequest fakeWorker = new OneTimeWorkRequest.Builder(FakeWorker.class)
 				.setConstraints(constraints)
 				.setInitialDelay(executionDelay, TimeUnit.MILLISECONDS)
-				.setInputData(new Data.Builder().putLong(KEY_T_DUMMY, t_dummy).build())
 				.addTag(WORK_TAG)
 				.build();
 
@@ -101,7 +99,15 @@ public class FakeWorker extends Worker {
 	@Override
 	public ListenableWorker.Result doWork() {
 		long now = clock.currentTimeMillis();
-		long t_dummy = getInputData().getLong(KEY_T_DUMMY, now);
+		SecureStorage secureStorage = SecureStorage.getInstance(getApplicationContext());
+ 		long t_dummy = secureStorage.getTDummy();
+ 		if (t_dummy < 0) {
+ 			//if t_dummy < 0 because of some weird state, we reset it
+ 			t_dummy = now + clock.syncInterval();
+ 		}
+ 		//to make sure we can still write the EncryptedSharedPreferences, we always write the value back
+ 		secureStorage.setTDummy(t_dummy);
+
 		while (t_dummy < now) {
 			Logger.d(TAG, "start");
 			// only do request if it was planned to do in the last 48h
@@ -118,7 +124,7 @@ public class FakeWorker extends Worker {
 				Logger.d(TAG, "outdated request is dropped.");
 			}
 			t_dummy += clock.syncInterval();
-			SecureStorage.getInstance(getApplicationContext()).setTDummy(t_dummy);
+			secureStorage.setTDummy(t_dummy);
 		}
 
 		startFakeWorker(getApplicationContext(), ExistingWorkPolicy.APPEND, t_dummy);
