@@ -83,3 +83,10 @@
 - Add iOS 12.5 compatibility
 - Fix minor bugs
 - Fix typos
+
+## version 1.1.3 (26.01.2021)
+- Bump React Native to 0.63.4
+- Bump DP3T Android SDK to 2.0.2
+- Fix unsupported screen version check
+- Fix minor bugs
+- Fix typos
