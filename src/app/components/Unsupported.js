@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
@@ -59,19 +59,20 @@ export default function Unsupported (props) {
 
   const insets = useSafeAreaInsets();
   const { name } = useTheme();
+  const memoizedStyle = useMemo(() => styles(insets), [insets]);
 
   return (
     <TopComponent>
       <Layout>
-        <Text size='large' weight='bold' textAlign='center' style={styles(insets).title}>{i18n.translate('screens.unsupported.title')}</Text>
+        <Text size='large' weight='bold' textAlign='center' style={memoizedStyle.title}>{i18n.translate('screens.unsupported.title')}</Text>
         <Text>{i18n.translate('screens.unsupported.description', { supported_version: supportedVersion })}</Text>
       </Layout>
-      <View style={styles(insets).imagesContainer}>
-        <View style={styles(insets).sponsors}>
-          <Image source={getThemedImage('republica_portuguesa', name)} style={styles(insets).republicaPortuguesaImage} />
-          <Image source={getThemedImage('logo_dgs', name)} style={styles(insets).dgsImage} />
+      <View style={memoizedStyle.imagesContainer}>
+        <View style={memoizedStyle.sponsors}>
+          <Image source={getThemedImage('republica_portuguesa', name)} style={memoizedStyle.republicaPortuguesaImage} />
+          <Image source={getThemedImage('logo_dgs', name)} style={memoizedStyle.dgsImage} />
         </View>
-        <Image source={getThemedImage('splash', name)} style={styles(insets).splashImage} />
+        <Image source={getThemedImage('splash', name)} style={memoizedStyle.splashImage} />
       </View>
     </TopComponent>
   );

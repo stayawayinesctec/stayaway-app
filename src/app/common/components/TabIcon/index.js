@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 import { PulseIndicator } from 'react-native-indicators';
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function TabIcon(props) {
+function TabIcon(props) {
   const { name, active, title } = props;
 
   const dispatch = useDispatch();
@@ -70,16 +70,6 @@ export default function TabIcon(props) {
   const onLongPress = () => dispatch(accountActions.switchTracing());
 
   const showTooltip = () => Tooltip.show(i18n.translate('common.popover.home_long_press'), target.current, parent.current, colors);
-
-  let iconName = `${name}_inactive`;
-  let textColor = colors.tabBarInactiveTextColor;
-  let iconColor = colors.tabBarInactiveIconColor;
-
-  if (active) {
-    iconName = `${name}_active`;
-    textColor = colors.tabBarActiveTextColor;
-    iconColor = colors.tabBarActiveIconColor;
-  }
 
   useEffect(() => {
     async function toogleTooltips() {
@@ -102,17 +92,17 @@ export default function TabIcon(props) {
   }, []);
 
   if (name === 'home') {
-    let pulseColor = colors.tabBarHomeHealtyPulseColor;
-    iconColor = colors.tabBarHomeHealtyCircleColor;
+    let pulseColor = colors.tabBarHomeHealthyPulseColor;
+    let iconName = 'home_healthy';
 
     if (exposed) {
+      iconName = 'home_exposed';
       pulseColor = colors.tabBarHomeExposedPulseColor;
-      iconColor = colors.tabBarHomeExposedCircleColor;
     }
 
     if (hasErrors || !tracingEnabled) {
+      iconName = 'home_error';
       pulseColor = colors.tabBarHomeErrorPulseColor;
-      iconColor = colors.tabBarHomeErrorCircleColor;
     }
 
     return (
@@ -129,7 +119,7 @@ export default function TabIcon(props) {
           style={styles.pulse}
         />
         <ButtonWrapper
-          ref={target}
+          forwardRef={target}
           onPress={onPress}
           onLongPress={onLongPress}
         >
@@ -137,11 +127,18 @@ export default function TabIcon(props) {
             name={iconName}
             width={iconSizes.size96}
             height={iconSizes.size96}
-            tintColor={iconColor}
           />
         </ButtonWrapper>
       </View>
     );
+  }
+
+  let iconName = `${name}_inactive`;
+  let textColor = colors.tabBarInactiveTextColor;
+
+  if (active) {
+    iconName = `${name}_active`;
+    textColor = colors.tabBarActiveTextColor;
   }
 
   return (
@@ -150,7 +147,6 @@ export default function TabIcon(props) {
         name={iconName}
         width={iconSizes.size25}
         height={iconSizes.size25}
-        tintColor={iconColor}
       />
       <Text
         textColor={textColor}
@@ -176,3 +172,5 @@ TabIcon.propTypes = {
     'home', 'recommendations', 'diagnosis',
   ]).isRequired,
 };
+
+export default memo(TabIcon);

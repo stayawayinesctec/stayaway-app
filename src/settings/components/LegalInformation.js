@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
@@ -24,6 +24,7 @@ import Layout from '@app/common/components/Layout';
 import ButtonWrapper from '@app/common/components/ButtonWrapper';
 import Text from '@app/common/components/FormattedText';
 import Icon from '@app/common/components/Icon';
+import List from '@app/common/components/List';
 
 import { getThemedImage } from '@app/common/assets/images';
 
@@ -53,33 +54,6 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   itemsContainer: {
     marginBottom: sizes.size20,
-  },
-  topItem: {
-    borderTopLeftRadius: sizes.size8,
-    borderTopRightRadius: sizes.size8,
-    borderTopWidth: 0,
-  },
-  bottomItem: {
-    borderBottomLeftRadius: sizes.size8,
-    borderBottomRightRadius: sizes.size8,
-  },
-  item: {
-    backgroundColor: colors.settingsAltButtonBackgroundColor,
-    paddingLeft: sizes.size16,
-    paddingRight: sizes.size16,
-    paddingVertical: sizes.size18,
-    borderTopWidth: sizes.size1,
-    borderColor: colors.settingsBorderColor,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   imagesContainer: {
     position: 'absolute',
@@ -116,80 +90,65 @@ export default function LegalInformation(props) {
 
   const insets = useSafeAreaInsets();
   const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors, insets), [name, insets]);
+
+  const topItems = [
+    {
+      id: 1,
+      title: i18n.translate('screens.legal_information.terms_of_use.label'),
+      onPress: onPressTermsOfUse,
+      accessibilityLabel: i18n.translate('screens.legal_information.terms_of_use.accessibility.label'),
+      accessibilityHint: i18n.translate('screens.legal_information.terms_of_use.accessibility.hint'),
+    },
+    {
+      id: 2,
+      title: i18n.translate('screens.legal_information.privacy_policy.label'),
+      onPress: onPressPrivacyPolicy,
+      accessibilityLabel: i18n.translate('screens.legal_information.privacy_policy.accessibility.label'),
+      accessibilityHint: i18n.translate('screens.legal_information.privacy_policy.accessibility.hint'),
+    },
+  ];
+
+  const bottomItems = [
+    {
+      id: 1,
+      title: i18n.translate('screens.legal_information.technical_sheet.label'),
+      onPress: onPressTechnicalSheet,
+      accessibilityLabel: i18n.translate('screens.legal_information.technical_sheet.accessibility.label'),
+      accessibilityHint: i18n.translate('screens.legal_information.technical_sheet.accessibility.hint'),
+    },
+    {
+      id: 2,
+      title: i18n.translate('screens.legal_information.licenses.label'),
+      onPress: onPressLicenses,
+      accessibilityLabel: i18n.translate('screens.legal_information.licenses.accessibility.label'),
+      accessibilityHint: i18n.translate('screens.legal_information.licenses.accessibility.hint'),
+    },
+  ];
 
   return (
-    <TopComponent style={styles(colors, insets).container}>
-      <Layout style={styles(colors, insets).layoutContainer}>
-        <View style={styles(colors, insets).header}>
+    <TopComponent style={memoizedStyle.container}>
+      <Layout style={memoizedStyle.layoutContainer}>
+        <View style={memoizedStyle.header}>
           <ButtonWrapper
             onPress={onClose}
-            style={styles(colors, insets).closeButton}
+            style={memoizedStyle.closeButton}
             accessibilityLabel={i18n.translate('screens.legal_information.actions.back.accessibility.label')}
             accessibilityHint={i18n.translate('screens.legal_information.actions.back.accessibility.hint')}
           >
-            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
           </ButtonWrapper>
-          <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.legal_information.title')}</Text>
+          <Text size='xlarge' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.legal_information.title')}</Text>
         </View>
-        <View style={styles(colors, insets).itemsContainer}>
-          <ButtonWrapper
-            onPress={onPressTermsOfUse}
-            style={{
-              ...styles(colors, insets).topItem,
-              ...styles(colors, insets).item,
-            }}
-            accessibilityLabel={i18n.translate('screens.legal_information.terms_of_use.accessibility.label')}
-            accessibilityHint={i18n.translate('screens.legal_information.terms_of_use.accessibility.hint')}
-          >
-            <Text weight='bold'>{i18n.translate('screens.legal_information.terms_of_use.label')}</Text>
-            <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-          </ButtonWrapper>
-          <ButtonWrapper
-            onPress={onPressPrivacyPolicy}
-            style={{
-              ...styles(colors, insets).bottomItem,
-              ...styles(colors, insets).item,
-            }}
-            accessibilityLabel={i18n.translate('screens.legal_information.privacy_policy.accessibility.label')}
-            accessibilityHint={i18n.translate('screens.legal_information.privacy_policy.accessibility.hint')}
-          >
-            <Text weight='bold'>{i18n.translate('screens.legal_information.privacy_policy.label')}</Text>
-            <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-          </ButtonWrapper>
-        </View>
-        <View style={styles(colors, insets).itemsContainer}>
-          <ButtonWrapper
-            onPress={onPressTechnicalSheet}
-            style={{
-              ...styles(colors, insets).topItem,
-              ...styles(colors, insets).item,
-            }}
-            accessibilityLabel={i18n.translate('screens.legal_information.technical_sheet.accessibility.label')}
-            accessibilityHint={i18n.translate('screens.legal_information.technical_sheet.accessibility.hint')}
-          >
-            <Text weight='bold'>{i18n.translate('screens.legal_information.technical_sheet.label')}</Text>
-            <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-          </ButtonWrapper>
-          <ButtonWrapper
-            onPress={onPressLicenses}
-            style={{
-              ...styles(colors, insets).bottomItem,
-              ...styles(colors, insets).item,
-            }}
-            accessibilityLabel={i18n.translate('screens.legal_information.licenses.accessibility.label')}
-            accessibilityHint={i18n.translate('screens.legal_information.licenses.accessibility.hint')}
-          >
-            <Text weight='bold'>{i18n.translate('screens.legal_information.licenses.label')}</Text>
-            <Icon name='chevron' width={iconSizes.size7} height={iconSizes.size12} tintColor={colors.settingsAltButtonIconTintColor} />
-          </ButtonWrapper>
-        </View>
+        <List style={memoizedStyle.itemsContainer} items={topItems} />
+        <List style={memoizedStyle.itemsContainer} items={bottomItems} />
       </Layout>
-      <View style={styles(colors, insets).imagesContainer}>
-        <View style={styles(colors, insets).sponsors}>
-          <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-          <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+      <View style={memoizedStyle.imagesContainer}>
+        <View style={memoizedStyle.sponsors}>
+          <Image source={getThemedImage('republica_portuguesa', name)} style={memoizedStyle.republicaPortuguesaImage} />
+          <Image source={getThemedImage('logo_dgs', name)} style={memoizedStyle.dgsImage} />
         </View>
-        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+        <Image source={getThemedImage('splash', name)} style={memoizedStyle.splashImage} />
       </View>
     </TopComponent>
   );

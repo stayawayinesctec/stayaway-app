@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import {
     View,
     StyleSheet,
@@ -18,14 +18,9 @@ import {
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
-
-import { themes as commonThemes } from '@app/common/theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import Scalling from '@app/common/utils/scalling';
-
-const LIGHT = commonThemes.names.light;
-const DARK = commonThemes.names.dark;
 
 const styles = (colors) => StyleSheet.create({
   container: {
@@ -51,109 +46,109 @@ const styles = (colors) => StyleSheet.create({
   },
 });
 
-export default class TopComponent extends Component {
-  constructor(props) {
-    super(props);
+function renderScrollableContent(...args) {
+  const [
+    containerPadding,
+    children,
+    screenHeight,
+    keyboardHeight,
+    onContentSizeChange,
+    style,
+  ] = args;
 
-    this.state = {
-      screenHeight: Scalling.height,
-    };
+  const scrollEnabled = screenHeight > Scalling.height;
+
+  return (
+    <KeyboardAwareScrollView
+      contentContainerStyle={{
+        ...style.topContainer,
+        paddingBottom: keyboardHeight,
+      }}
+      keyboardShouldPersistTaps='handled'
+      showsVerticalScrollIndicator={false}
+      scrollEnabled={scrollEnabled}
+      onContentSizeChange={onContentSizeChange}
+    >
+      <View style={style[containerPadding]}>
+        {children}
+      </View>
+    </KeyboardAwareScrollView>
+  );
+}
+
+function renderContent(...args) {
+  const [
+    containerPadding,
+    children,
+    style,
+  ] = args;
+
+  return (
+    <View style={style.topContainer}>
+      <View style={style[containerPadding]}>
+        {children}
+      </View>
+    </View>
+  );
+}
+
+export default function TopComponent(props){
+  const { scrollable, containerPadding, children, style, ...otherProps } = props;
+
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors), [name]);
+
+  const [screenHeight, setScreenHeight] = useState(Scalling.height);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+
+  const onContentSizeChange = (contentWidth, contentHeight) => {
+    setScreenHeight(contentHeight);
   };
 
-  componentDidMount () {
-    const keyboardListeners = [
-      Keyboard.addListener('keyboardDidShow', (e) => this.setState({ keyboardHeight: e.endCoordinates.height })),
-      Keyboard.addListener('keyboardDidHide', () => this.setState({ keyboardHeight: 0 })),
-    ];
+  useEffect(() => {
+    function onKeyboardShow(event) {
+      const { endCoordinates: { height }} = event;
 
-    this.setState({ keyboardListeners });
-  }
+      setKeyboardHeight(height);
+    }
 
-  componentWillUnmount () {
-    const { keyboardListeners } = this.state;
+    function onKeyboardHide() {
+      setKeyboardHeight(0);
+    }
 
-    keyboardListeners.map(listener => listener.remove());
-  }
+    Keyboard.addListener('keyboardDidShow', onKeyboardShow);
+    Keyboard.addListener('keyboardDidHide', onKeyboardHide);
 
-  onContentSizeChange = (contentWidth, contentHeight) => {
-    this.setState({ screenHeight: contentHeight });
-  }
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', onKeyboardShow);
+      Keyboard.removeListener('keyboardDidHide', onKeyboardHide);
+    };
+  });
 
-  renderScrollableContent(colors) {
-    const { containerPadding, children } = this.props;
-    const { screenHeight, keyboardHeight } = this.state;
-
-    const scrollEnabled = screenHeight > Scalling.height;
-
-    return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={{
-          ...styles(colors).topContainer,
-          paddingBottom: keyboardHeight,
-        }}
-        keyboardShouldPersistTaps='handled'
-        showsVerticalScrollIndicator={false}
-        scrollEnabled={scrollEnabled}
-        onContentSizeChange={this.onContentSizeChange}
-      >
-        <View style={styles(colors)[containerPadding]}>
-          {children}
-        </View>
-      </KeyboardAwareScrollView>
-    );
-  }
-
-  renderContent(colors) {
-    const { containerPadding, children } = this.props;
-
-    return (
-      <View style={styles(colors).topContainer}>
-        <View style={styles(colors)[containerPadding]}>
-          {children}
-        </View>
-      </View>
-    );
-  }
-
-  render() {
-    const { scrollable, type, style, ...otherProps } = this.props;
-
-    return (
-      <ThemeConsumer>
-        {({name}) => {
-          const theme = type || name;
-          const { colors } = commonThemes[theme];
-
-          return (
-            <View
-              style={{
-                ...styles(colors).container,
-                ...style,
-              }}
-              {...otherProps}
-            >
-              { scrollable && this.renderScrollableContent(colors)}
-              { ! scrollable && this.renderContent(colors)}
-            </View>
-          );
-        }}
-      </ThemeConsumer>
-    );
-  }
+  return (
+    <View
+      style={{
+        ...memoizedStyle.container,
+        ...style,
+      }}
+      {...otherProps}
+    >
+      { scrollable && renderScrollableContent(containerPadding, children, screenHeight, keyboardHeight, onContentSizeChange, memoizedStyle)}
+      { ! scrollable && renderContent(containerPadding, children, memoizedStyle)}
+    </View>
+  );
 }
 
 TopComponent.defaultProps = {
   containerPadding: 'normal',
   children: undefined,
   scrollable: true,
-  type: '',
   style: {},
 };
 
 TopComponent.propTypes = {
   containerPadding: PropTypes.oneOf(['container', 'normal', 'zeroPadding']),
   scrollable: PropTypes.bool,
-  type: PropTypes.oneOf([LIGHT, DARK, '']),
   style: ViewPropTypes.style,
   children: PropTypes.oneOfType([
     PropTypes.string,

@@ -59,7 +59,7 @@ export default function InvalidCodeModal (props) {
     <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
       <Layout style={styles.content}>
         <View style={styles.titleContainer}>
-          <Icon name='invalid_code' width={iconSizes.size59} height={iconSizes.size59} tintColor={colors.modalIconTintColor} />
+          <Icon name='invalid_code' width={iconSizes.size59} height={iconSizes.size59} />
         </View>
         <View style={styles.descriptionsContainer}>
           <Text weight='bold' size='large' textAlign='center' style={styles.contentTitle}>{i18n.translate('common.dialogs.invalid_code.title')}</Text>

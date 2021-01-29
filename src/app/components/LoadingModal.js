@@ -81,6 +81,8 @@ export default function LoadingModal (props) {
       backdropOpacity={0.8}
       isVisible={visible}
       statusBarTranslucent
+      animationIn='zoomIn'
+      animationOut='zoomOut'
       onModalWillHide={modalHide}
       onModalWillShow={modalShow}
       {...otherProps}
@@ -88,7 +90,11 @@ export default function LoadingModal (props) {
       <Layout style={styles.content}>
         <View style={styles.logoContainer}>
           <Animated.View style={animationStyle}>
-            <Icon name='loading' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.loadingIconTintColor} />
+            <Icon
+              name='loading'
+              width={iconSizes.size100}
+              height={iconSizes.size100}
+            />
           </Animated.View>
         </View>
         <View style={styles.descriptionContainer}>

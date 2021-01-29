@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React from 'react';
 import { ViewPropTypes, StyleSheet, TouchableOpacity as Button } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -22,41 +22,44 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class ButtonWrapper extends Component {
-  render() {
-    const { style, loading, disabled, ...otherProps } = this.props;
+export default function ButtonWrapper(props) {
+  const { style, loading, disabled, forwardRef, ...otherProps } = props;
 
-    const buttonStyle = {
-      ...styles.container,
-      ...style,
-      ...(disabled ? styles.disabled : {}),
-    };
+  const buttonStyle = {
+    ...styles.container,
+    ...style,
+    ...(disabled ? styles.disabled : {}),
+  };
 
-    return (
-      <Button
-        useForeground
-        style={buttonStyle}
-        loading={loading}
-        disabled={disabled}
-        accessibilityRole='button'
-        accessibilityState={{
-          disabled,
-          busy: loading,
-        }}
-        {...otherProps}
-      />
-    );
-  }
+  return (
+    <Button
+      useForeground
+      ref={forwardRef}
+      style={buttonStyle}
+      loading={loading}
+      disabled={disabled}
+      accessibilityRole='button'
+      accessibilityState={{
+        disabled,
+        busy: loading,
+      }}
+      {...otherProps}
+    />
+  );
 }
 
 ButtonWrapper.defaultProps = {
   loading: false,
   disabled: false,
   style: {},
+  forwardRef: undefined,
 };
 
 ButtonWrapper.propTypes = {
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
   style: ViewPropTypes.style,
+  forwardRef: PropTypes.shape({
+    current: PropTypes.object,
+  }),
 };

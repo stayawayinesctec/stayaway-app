@@ -23,9 +23,7 @@ function getNavigationRef() {
 
 function navigate(...args) {
   if (navigationRef.current) {
-    requestAnimationFrame(() => {
-      navigationRef.current.navigate(...args);
-    });
+    navigationRef.current.navigate(...args);
   }
 }
 

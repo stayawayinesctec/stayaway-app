@@ -8,58 +8,34 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React, { memo, useMemo } from 'react';
+import isEqual from 'lodash.isequal';
 import SvgIcon from 'react-native-svg-icon';
-import { View } from 'react-native';
-import PropTypes from 'prop-types';
 
-import { colors as commonColors, themes as commonThemes } from '@app/common/theme';
+import { themes as commonThemes } from '@app/common/theme';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
-import svgs from './svgs';
+import darkSvgs from './svgs_dark';
+import lightSvgs from './svgs_light';
 
-const LIGHT = commonThemes.names.light;
-const DARK = commonThemes.names.dark;
+function Icon(props) {
+  const { name } = useTheme();
 
-export default class Icon extends Component {
-  static defaultProps = {
-    fill: '',
-    rotation: 0,
-  };
+  const svgs = useMemo(() => name === commonThemes.names.light ? lightSvgs : darkSvgs, [name]);
 
-  render() {
-    const { type, rotation, tintColor, ...otherProps } = this.props;
-
-    return (
-      <ThemeConsumer>
-        {({name}) => (
-          <View
-            style={
-              !!rotation && {
-                transform: [{ rotateY: `${rotation}deg` }],
-              }
-            }
-          >
-            <SvgIcon {...otherProps} svgs={svgs(commonThemes[type || name].colors, tintColor)} />
-          </View>
-      )}
-      </ThemeConsumer>
-    );
-  }
+  return (
+    <SvgIcon {...props} svgs={svgs} />
+  );
 }
 
-Icon.defaultProps = {
-  type: '',
-  fill: '',
-  rotation: 0,
-  tintColor: undefined,
-};
+function iconPropsAreEqual(prevIcon, nextIcon) {
+  const equal = prevIcon.name === nextIcon.name &&
+        prevIcon.width === nextIcon.width &&
+        prevIcon.height === nextIcon.height &&
+        isEqual(prevIcon.style, nextIcon.style);
 
-Icon.propTypes = {
-  name: PropTypes.oneOf(Object.keys(svgs(commonColors))).isRequired,
-  type: PropTypes.oneOf([LIGHT, DARK, '']),
-  fill: PropTypes.string,
-  rotation: PropTypes.number,
-  tintColor: PropTypes.oneOf(['', ...commonColors]),
-};
+  return equal;
+}
+
+export default memo(Icon, iconPropsAreEqual);

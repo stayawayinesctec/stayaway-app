@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Moment from 'moment';
@@ -101,6 +101,7 @@ export default function Debug (props) {
 
   const insets = useSafeAreaInsets();
   const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors, insets), [name, insets]);
 
   let infectionStatusName = i18n.translate('screens.debug.infection_status.healthy');
 
@@ -121,47 +122,47 @@ export default function Debug (props) {
 
   return (
     <TopComponent>
-      <Layout style={styles(colors, insets).layoutContainer}>
-        <View style={styles(colors, insets).header}>
+      <Layout style={memoizedStyle.layoutContainer}>
+        <View style={memoizedStyle.header}>
           <ButtonWrapper
             onPress={onClose}
-            style={styles(colors, insets).closeButton}
+            style={memoizedStyle.closeButton}
             accessibilityLabel={i18n.translate('screens.debug.actions.back.accessibility.label')}
             accessibilityHint={i18n.translate('screens.debug.actions.back.accessibility.hint')}
           >
-            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
           </ButtonWrapper>
-          <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.debug.title')}</Text>
+          <Text size='xlarge' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.debug.title')}</Text>
         </View>
-        <View style={styles(colors, insets).content}>
-          <View style={styles(colors, insets).stat}>
+        <View style={memoizedStyle.content}>
+          <View style={memoizedStyle.stat}>
             <Text weight='bold'>{`${i18n.translate('screens.debug.sign_up')}: `}</Text>
             <Text>{Moment(signUp).format('L')}</Text>
           </View>
-          <View style={styles(colors, insets).stat}>
+          <View style={memoizedStyle.stat}>
             <Text weight='bold'>{`${i18n.translate('screens.debug.last_sync')}: `}</Text>
             <Text>{Moment(status.lastSyncDate).format('L')}</Text>
           </View>
-          <View style={styles(colors, insets).stat}>
+          <View style={memoizedStyle.stat}>
             <Text weight='bold'>{`${i18n.translate('screens.debug.infection_status.label')}: `}</Text>
             <Text>{infectionStatusName}</Text>
           </View>
-          <View style={styles(colors, insets).stat}>
+          <View style={memoizedStyle.stat}>
             <Text weight='bold'>{`${i18n.translate('screens.debug.exposure_days')}: `}</Text>
             <Text>{exposedDays}</Text>
           </View>
-          <View style={styles(colors, insets).stat}>
+          <View style={memoizedStyle.stat}>
             <Text weight='bold'>{`${i18n.translate('screens.debug.errors')}: `}</Text>
             <Text>{errors}</Text>
           </View>
         </View>
       </Layout>
-      <View style={styles(colors, insets).imagesContainer}>
-        <View style={styles(colors, insets).sponsors}>
-          <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-          <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+      <View style={memoizedStyle.imagesContainer}>
+        <View style={memoizedStyle.sponsors}>
+          <Image source={getThemedImage('republica_portuguesa', name)} style={memoizedStyle.republicaPortuguesaImage} />
+          <Image source={getThemedImage('logo_dgs', name)} style={memoizedStyle.dgsImage} />
         </View>
-        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+        <Image source={getThemedImage('splash', name)} style={memoizedStyle.splashImage} />
       </View>
     </TopComponent>
   );

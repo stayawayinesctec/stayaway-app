@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -102,6 +102,7 @@ export default function CodeInput (props) {
   } = props;
 
   const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors), [name]);
 
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
@@ -135,26 +136,26 @@ export default function CodeInput (props) {
     <TopComponent>
       <ImageBackground
         source={getThemedImage('diagnosis', name)}
-        style={styles(colors).imageContainer}
+        style={memoizedStyle.imageContainer}
       />
       <Layout
         padding='horizontal'
-        style={styles(colors).contentContainer}
+        style={memoizedStyle.contentContainer}
       >
-        <View style={styles(colors).header}>
-          <View style={styles(colors).backgroundPanel} />
-          <View style={styles(colors).panel}>
-            <View style={styles(colors).panelContainer}>
-              <Text size='xlarge' weight='bold' style={styles(colors).title}>{i18n.translate('screens.diagnosis.code_input.title')}</Text>
+        <View style={memoizedStyle.header}>
+          <View style={memoizedStyle.backgroundPanel} />
+          <View style={memoizedStyle.panel}>
+            <View style={memoizedStyle.panelContainer}>
+              <Text size='xlarge' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.diagnosis.code_input.title')}</Text>
               <Text>{i18n.translate('screens.diagnosis.code_input.description')}</Text>
             </View>
           </View>
         </View>
-        <View style={styles(colors).inputContainer}>
+        <View style={memoizedStyle.inputContainer}>
           <Input
             value={code}
             onChangeText={onChangeText}
-            ref={input}
+            forwardRef={input}
             placeholder={i18n.translate('common.placeholders.code')}
             returnKeyLabel={i18n.translate('common.actions.submit')}
             returnKeyType='done'
@@ -170,7 +171,7 @@ export default function CodeInput (props) {
           title={i18n.translate('common.actions.submit')}
           accessibilityLabel={i18n.translate('screens.diagnosis.code_input.accessibility.label')}
           accessibilityHint={i18n.translate('screens.diagnosis.code_input.accessibility.hint')}
-          containerStyle={styles(colors).button}
+          containerStyle={memoizedStyle.button}
           onPress={onNextPressed}
           disabled={disabled}
         />

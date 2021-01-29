@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View , StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
@@ -54,22 +54,23 @@ const styles = (colors) => StyleSheet.create({
 export default function ExpiredCodeModal (props) {
   const { visible, onClose, ...otherProps } = props;
 
-  const { colors } = useTheme();
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors), [name]);
 
   return (
     <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
-      <Layout style={styles(colors).content}>
-        <View style={styles(colors).titleContainer}>
-          <Icon name='expired_code' width={iconSizes.size57} height={iconSizes.size67} tintColor={colors.modalIconTintColor} />
+      <Layout style={memoizedStyle.content}>
+        <View style={memoizedStyle.titleContainer}>
+          <Icon name='expired_code' width={iconSizes.size57} height={iconSizes.size67} />
         </View>
-        <View style={styles(colors).descriptionsContainer}>
-          <Text size='large' weight='bold' textAlign='center' style={styles(colors).contentTitle}>{i18n.translate('common.dialogs.expired_code.title')}</Text>
-          <Text textAlign='center' style={styles(colors).contentDescription}>{i18n.translate('common.dialogs.expired_code.description')}</Text>
+        <View style={memoizedStyle.descriptionsContainer}>
+          <Text size='large' weight='bold' textAlign='center' style={memoizedStyle.contentTitle}>{i18n.translate('common.dialogs.expired_code.title')}</Text>
+          <Text textAlign='center' style={memoizedStyle.contentDescription}>{i18n.translate('common.dialogs.expired_code.description')}</Text>
         </View>
-        <View style={styles(colors).actionsContainer}>
+        <View style={memoizedStyle.actionsContainer}>
           <Button
             title={i18n.translate('common.actions.ok')}
-            containerStyle={styles(colors).button}
+            containerStyle={memoizedStyle.button}
             onPress={onClose}
           />
         </View>

@@ -8,20 +8,17 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button as NativeButton } from 'react-native-elements';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
-import { themes as commonThemes, sizes, fontSizes, fontWeights, lineHeights } from '@app/common/theme';
+import { sizes, fontSizes, fontWeights, lineHeights } from '@app/common/theme';
 
 const MAIN = 'main';
 const ALTERNATIVE = 'alternative';
-
-const LIGHT = commonThemes.names.light;
-const DARK = commonThemes.names.dark;
 
 const styles = StyleSheet.create({
   buttonStyle: {
@@ -67,47 +64,37 @@ const themes = (colors, theme) => {
 };
 
 
-export default class Button extends Component {
-  onPress = () => {
-    const { loading, onPress } = this.props;
+export default function Button(props) {
+  const { alternative, titleStyle, loading, disabled, onPress, ...otherProps } = props;
 
+  const { name, colors } = useTheme();
+  const memoizedTheme = useMemo(() => themes(colors, alternative ? ALTERNATIVE : MAIN), [name, alternative]);
+
+  const onPressButton = () => {
     if (!loading) {
       onPress();
     }
-  }
+  };
 
-  render() {
-    const { alternative, type, titleStyle, loading, disabled, ...otherProps } = this.props;
-
-    return (
-      <ThemeConsumer>
-        {({colors}) => {
-          const theme = themes(colors, alternative ? ALTERNATIVE : MAIN);
-
-          return (
-            <NativeButton
-              {...theme}
-              useForeground
-              titleStyle={{...theme.titleStyle, ...titleStyle}}
-              disabled={disabled}
-              loading={loading}
-              accessibilityRole='button'
-              accessibilityState={{
-                disabled,
-                busy: loading,
-              }}
-              {...otherProps}
-              onPress={this.onPress}
-            />
-          );
-        }}
-      </ThemeConsumer>
-    );
-  }
+  return (
+    <NativeButton
+      {...memoizedTheme}
+      useForeground
+      titleStyle={{...memoizedTheme.titleStyle, ...titleStyle}}
+      disabled={disabled}
+      loading={loading}
+      accessibilityRole='button'
+      accessibilityState={{
+        disabled,
+        busy: loading,
+      }}
+      {...otherProps}
+      onPress={onPressButton}
+    />
+  );
 }
 
 Button.defaultProps = {
-  type: '',
   alternative: false,
   loading: false,
   disabled: false,
@@ -118,7 +105,6 @@ Button.defaultProps = {
 Button.propTypes = {
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
-  type: PropTypes.oneOf([LIGHT, DARK, '']),
   alternative: PropTypes.bool,
   onPress: PropTypes.func,
   titleStyle: PropTypes.shape({

@@ -21,7 +21,6 @@ import { sizes, iconSizes } from '@app/common/theme';
 
 import Icon from '@app/common/components/Icon';
 
-import Consent from '@onboarding/components/Onboarding/Consent';
 import Template from '@onboarding/components/Onboarding/Template';
 
 import i18n from '@app/services/i18n';
@@ -59,11 +58,11 @@ const styles = (insets) => StyleSheet.create({
   },
 });
 
-export default function Onboarding (props) {
+export default function HowToUse (props) {
   const {
-    loading,
     shouldShowLocationScreen,
     onPress,
+    onClose,
   } = props;
 
   const insets = useSafeAreaInsets();
@@ -72,7 +71,6 @@ export default function Onboarding (props) {
 
   return (
     <Swiper
-      testID="onboarding"
       loop={false}
       showsButtons
       buttonWrapperStyle={memoizedStyle.buttonWrapperStyle}
@@ -88,6 +86,8 @@ export default function Onboarding (props) {
       <Template
         header={i18n.translate('screens.onboarding.first.title')}
         image={getThemedImage('onboarding1', name)}
+        closable
+        onClose={onClose}
       />
       <Template
         header={i18n.translate('screens.onboarding.second.title')}
@@ -103,27 +103,30 @@ export default function Onboarding (props) {
         header={i18n.translate('screens.onboarding.fourth.title')}
         description={i18n.translate('screens.onboarding.fourth.description')}
         image={getThemedImage('onboarding4', name)}
+        pressable={!shouldShowLocationScreen}
+        onPress={onPress}
       />
       {shouldShowLocationScreen &&
         <Template
           header={i18n.translate('screens.onboarding.fifth.title')}
           description={i18n.translate('screens.onboarding.fifth.description')}
           image={getThemedImage('onboarding5', name)}
+          pressable
+          onPress={onPress}
         />
       }
-      <Consent loading={loading} onPress={onPress} />
     </Swiper>
   );
 }
 
-Onboarding.defaultProps = {
-  loading: false,
+HowToUse.defaultProps = {
   shouldShowLocationScreen: false,
   onPress: () => {},
+  onClose: () => {},
 };
 
-Onboarding.propTypes = {
-  loading: PropTypes.bool,
+HowToUse.propTypes = {
   shouldShowLocationScreen: PropTypes.bool,
   onPress: PropTypes.func,
+  onClose: PropTypes.func,
 };

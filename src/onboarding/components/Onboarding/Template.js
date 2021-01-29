@@ -8,18 +8,23 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
 import { useTheme } from '@app/contexts/Theme';
 
+import i18n from '@app/services/i18n';
+
 import TopComponent from '@app/common/components/TopComponent';
 import Layout from '@app/common/components/Layout';
+import Button from '@app/common/components/Button';
+import ButtonWrapper from '@app/common/components/ButtonWrapper';
+import Icon from '@app/common/components/Icon';
 import Text from '@app/common/components/FormattedText';
 import { images } from '@app/common/assets/images';
-import { sizes } from '@app/common/theme';
+import { sizes, iconSizes } from '@app/common/theme';
 
 const styles = (colors, insets) => StyleSheet.create({
   imageContainer: {
@@ -29,6 +34,10 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   topContainer: {
     height: 300,
+  },
+  top: {
+    alignItems: 'flex-start',
+    backgroundColor: colors.transparent,
   },
   bottomContainer: {
     flex: 1,
@@ -42,6 +51,7 @@ const styles = (colors, insets) => StyleSheet.create({
   },
   description: {
     width: '90%',
+    paddingBottom: sizes.size24,
   },
   contentContainer: {
     flex: 1,
@@ -59,47 +69,85 @@ const styles = (colors, insets) => StyleSheet.create({
     justifyContent: 'center',
     borderTopRightRadius: 250,
   },
+  closeButton: {
+    backgroundColor: colors.iconMainBackgroundColor,
+    borderRadius: sizes.size30,
+    padding: sizes.size8,
+  },
 });
 
 function renderContent(...args) {
   const [
     header,
     description,
-    colors,
-    insets,
+    pressable,
+    onPress,
+    style,
   ] = args;
 
   if (description.length === 0) {
     return (
-      <Layout padding='horizontal' style={styles(colors, insets).centeredContainer}>
-        <Text weight='bold' size='xxlarge' style={styles(colors, insets).mainHeader}>{header}</Text>
+      <Layout padding='horizontal' style={style.centeredContainer}>
+        <Text weight='bold' size='xxlarge' style={style.mainHeader}>{header}</Text>
+        { pressable &&
+          <Button
+            title={i18n.translate('common.actions.ok')}
+            containerStyle={styles.button}
+            onPress={onPress}
+            accessibilityLabel={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.label')}
+            accessibilityHint={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.hint')}
+          />
+        }
       </Layout>
     );
   }
 
   return (
-    <Layout padding='horizontal' style={styles(colors, insets).contentContainer}>
-      {header.length > 0 && <Text weight='bold' size='xxlarge' style={styles(colors, insets).header}>{header}</Text> }
-      {description.length > 0 && <Text style={styles(colors, insets).description}>{description}</Text>}
+    <Layout padding='horizontal' style={style.contentContainer}>
+      {header.length > 0 && <Text weight='bold' size='xxlarge' style={style.header}>{header}</Text> }
+      {description.length > 0 && <Text style={style.description}>{description}</Text>}
+      { pressable &&
+        <Button
+          title={i18n.translate('common.actions.ok')}
+          containerStyle={style.button}
+          onPress={onPress}
+          accessibilityLabel={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.label')}
+          accessibilityHint={i18n.translate('screens.how_to_use.actions.ok.accessibility.hint.hint')}
+        />
+      }
     </Layout>
   );
 }
 
 export default function Template (props) {
-  const { header, description, image } = props;
+  const { header, description, image, pressable, closable, onPress, onClose } = props;
 
   const insets = useSafeAreaInsets();
-  const { colors } = useTheme();
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors, insets), [name, insets]);
 
   return (
     <TopComponent>
       <ImageBackground
         source={image}
-        style={styles(colors, insets).imageContainer}
+        style={memoizedStyle.imageContainer}
       >
-        <View style={styles(colors, insets).topContainer} />
-        <View style={styles(colors, insets).bottomContainer}>
-          {renderContent(header, description, colors, insets)}
+        <View style={memoizedStyle.topContainer}>
+          { closable &&
+            <Layout style={memoizedStyle.top}>
+              <ButtonWrapper
+                onPress={onClose}
+                style={memoizedStyle.closeButton}
+                accessibilityLabel={i18n.translate('screens.how_to_use.actions.back.accessibility.hint.label')}
+                accessibilityHint={i18n.translate('screens.how_to_use.actions.back.accessibility.hint.hint')}
+              >
+                <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
+              </ButtonWrapper>
+            </Layout>
+          }
+        </View>
+        <View style={memoizedStyle.bottomContainer}>
+          {renderContent(header, description, pressable, onPress, memoizedStyle)}
         </View>
       </ImageBackground>
     </TopComponent>
@@ -107,11 +155,19 @@ export default function Template (props) {
 }
 
 Template.defaultProps = {
+  pressable: false,
+  closable: false,
+  onPress: () => {},
+  onClose: () => {},
   header: '',
   description: '',
 };
 
 Template.propTypes = {
+  pressable: PropTypes.bool,
+  closable: PropTypes.bool,
+  onPress: PropTypes.func,
+  onClose: PropTypes.func,
   header: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   description: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   image: PropTypes.oneOf(Object.values(images)).isRequired,

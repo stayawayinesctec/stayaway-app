@@ -8,58 +8,56 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React, { useMemo } from 'react';
 import { Text as NativeText } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { colors as commonColors, fontSizes, lineHeights, fontWeights } from '@app/common/theme';
 
-export default class Text extends Component {
-  render() {
-    const {
-      textAlign,
-      weight,
-      children,
-      size,
-      textColor,
-      numberOfLines,
-      style,
-      height,
-      onPress,
-      underline,
-      ...otherProps
-    } = this.props;
+export default function Text(props) {
+  const {
+    textAlign,
+    weight,
+    children,
+    size,
+    textColor,
+    numberOfLines,
+    style,
+    height,
+    onPress,
+    underline,
+    ...otherProps
+  } = props;
 
-    const fontSize = fontSizes[size];
-    const fontWeight = fontWeights[weight];
-    const lineHeight = height || lineHeights[size];
+  const fontSize = fontSizes[size];
+  const fontWeight = fontWeights[weight];
+  const lineHeight = height || lineHeights[size];
 
-    return (
-      <ThemeConsumer>
-        {({colors}) => (
-          <NativeText
-            numberOfLines={numberOfLines}
-            style={{
-              ...style,
-              textAlign,
-              color: textColor || colors.textColor,
-              fontSize,
-              fontWeight,
-              lineHeight,
-              textDecorationLine: underline ? 'underline' : 'none',
-            }}
-            accessibilityRole='text'
-            onPress={onPress}
-            {...otherProps}
-          >
-            {children}
-          </NativeText>
-        )}
-      </ThemeConsumer>
-    );
-  }
+  const { colors } = useTheme();
+
+  const memoizedStyle = useMemo(() => ({
+    ...style,
+    textAlign,
+    color: textColor || colors.textColor,
+    fontSize,
+    fontWeight,
+    lineHeight,
+    textDecorationLine: underline ? 'underline' : 'none',
+  }));
+
+  return (
+    <NativeText
+      numberOfLines={numberOfLines}
+      style={memoizedStyle}
+      accessibilityRole='text'
+      onPress={onPress}
+      {...otherProps}
+    >
+      {children}
+    </NativeText>
+  );
 }
 
 Text.defaultProps = {

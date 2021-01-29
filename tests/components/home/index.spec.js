@@ -33,7 +33,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: () => {},
+        icon: undefined,
         main: {
           label: '',
           accessibility: {
@@ -74,7 +74,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: () => {},
+        icon: undefined,
         main: {
           label: '',
           accessibility: {
@@ -113,7 +113,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: () => {},
+        icon: undefined,
         main: {
           label: '',
           accessibility: {
@@ -153,7 +153,7 @@ describe('Home Screen', () => {
         title: i18n.translate('screens.home.errors.battery.title'),
         message: i18n.translate('screens.home.errors.battery.message'),
         submessage: i18n.translate('screens.home.errors.battery.submessage'),
-        icon: () => <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
+        icon: <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
         main: {
           label: i18n.translate('screens.home.errors.battery.actions.main.label'),
           accessibility: {
@@ -208,7 +208,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: () => {},
+        icon: undefined,
         main: {
           label: '',
           accessibility: {
@@ -246,7 +246,7 @@ describe('Home Screen', () => {
         status: false,
         title: '',
         message: '',
-        icon: () => {},
+        icon: undefined,
         main: {
           label: '',
           accessibility: {
@@ -284,7 +284,7 @@ describe('Home Screen', () => {
         title: i18n.translate('screens.home.errors.battery.title'),
         message: i18n.translate('screens.home.errors.battery.message'),
         submessage: i18n.translate('screens.home.errors.battery.submessage'),
-        icon: () => <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
+        icon: <Icon name='battery_optimized' width={iconSizes.size14} height={iconSizes.size28} />,
         main: {
           label: i18n.translate('screens.home.errors.battery.actions.main.label'),
           accessibility: {

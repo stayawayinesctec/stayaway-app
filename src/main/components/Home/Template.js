@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, StyleSheet, Platform, ImageBackground } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
@@ -179,63 +179,66 @@ function renderError(...args) {
   const [
     error,
     colors,
-    insets,
+    style,
   ] = args;
 
   return (
-    <View style={styles(colors, insets).errorsContainer}>
-      <Layout
-        padding='horizontal'
-        style={styles(colors, insets).errorsLayout}
-      >
-        <View style={styles(colors, insets).content}>
-          <View>
-            <View
-              style={{
-                ...styles(colors, insets).backgroundPanel,
-                backgroundColor: colors.panelWhiteBackgroundColor,
-              }}
-            />
-            <View style={styles(colors, insets).panel}>
-              <View style={styles(colors, insets).errorPanel}>
-                <View style={styles(colors, insets).errorPanelContainer}>
-                  <View style={styles(colors, insets).titleContainer}>
-                    { error.icon }
-                    <Text size='large' weight='bold' textColor={colors.panelWhiteTextColor} style={styles(colors, insets).iconTitle}>{error.title}</Text>
-                  </View>
-                  <View style={styles(colors, insets).messageContainer}>
-                    <Text textColor={colors.panelWhiteTextColor} style={styles(colors, insets).message}>{error.message}</Text>
-                    { error.submessage &&
-                      <Text size='small' textColor={colors.panelWhiteTextColor} style={styles(colors, insets).submessage}>{error.submessage}</Text>
+    <>
+      <View style={style.backdropContainer} />
+      <View style={style.errorsContainer}>
+        <Layout
+          padding='horizontal'
+          style={style.errorsLayout}
+        >
+          <View style={style.content}>
+            <View>
+              <View
+                style={{
+                  ...style.backgroundPanel,
+                  backgroundColor: colors.panelWhiteBackgroundColor,
+                }}
+              />
+              <View style={style.panel}>
+                <View style={style.errorPanel}>
+                  <View style={style.errorPanelContainer}>
+                    <View style={style.titleContainer}>
+                      { error.icon }
+                      <Text size='large' weight='bold' textColor={colors.panelWhiteTextColor} style={style.iconTitle}>{error.title}</Text>
+                    </View>
+                    <View style={style.messageContainer}>
+                      <Text textColor={colors.panelWhiteTextColor} style={style.message}>{error.message}</Text>
+                      { error.submessage &&
+                        <Text size='small' textColor={colors.panelWhiteTextColor} style={style.submessage}>{error.submessage}</Text>
+                      }
+                    </View>
+                    <Button
+                      title={error.main.label}
+                      accessibilityLabel={error.main.accessibility.label}
+                      accessibilityHint={error.main.accessibility.hint}
+                      containerStyle={style.errorButton}
+                      onPress={error.main.onPress}
+                    />
+                    { error.alternative &&
+                      <Button
+                        alternative
+                        title={error.alternative.label}
+                        accessibilityLabel={error.alternative.accessibility.label}
+                        accessibilityHint={error.alternative.accessibility.hint}
+                        containerStyle={style.errorAlternativeButton}
+                        onPress={error.alternative.onPress}
+                      />
                     }
                   </View>
-                  <Button
-                    title={error.main.label}
-                    accessibilityLabel={error.main.accessibility.label}
-                    accessibilityHint={error.main.accessibility.hint}
-                    containerStyle={styles(colors, insets).errorButton}
-                    onPress={error.main.onPress}
-                  />
-                  { error.alternative &&
-                    <Button
-                      alternative
-                      title={error.alternative.label}
-                      accessibilityLabel={error.alternative.accessibility.label}
-                      accessibilityHint={error.alternative.accessibility.hint}
-                      containerStyle={styles(colors, insets).errorAlternativeButton}
-                      onPress={error.alternative.onPress}
-                    />
-                  }
                 </View>
               </View>
             </View>
+            <View style={style.supportContainer}>
+              <SupportIcon />
+            </View>
           </View>
-          <View style={styles(colors, insets).supportContainer}>
-            <SupportIcon />
-          </View>
-        </View>
-      </Layout>
-    </View>
+        </Layout>
+      </View>
+    </>
   );
 }
 
@@ -258,56 +261,60 @@ export default function Template (props) {
   const hasUpdated = lastSync !== 0;
 
   const insets = useSafeAreaInsets();
-  const { colors } = useTheme();
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors, insets), [name, insets]);
 
   return (
     <TopComponent>
-      <View style={styles(colors, insets).settingsButtonContainer} pointerEvents='box-none'>
+      <View style={memoizedStyle.settingsButtonContainer} pointerEvents='box-none'>
         <ButtonWrapper
           onPress={onPressSettings}
           onLongPress={onLongPressSettings}
-          style={styles(colors, insets).settingsButton}
+          style={memoizedStyle.settingsButton}
           accessibilityLabel={i18n.translate('screens.home.actions.settings.accessibility.label')}
           accessibilityHint={i18n.translate('screens.home.actions.settings.accessibility.hint')}
         >
-          <Icon name='settings' width={iconSizes.size32} height={iconSizes.size32} tintColor={colors.iconMainTintColor} />
+          <Icon name='settings' width={iconSizes.size32} height={iconSizes.size32} />
         </ButtonWrapper>
         <ButtonWrapper
           onPress={onPressShare}
-          style={styles(colors, insets).shareButton}
+          style={memoizedStyle.shareButton}
           accessibilityLabel={i18n.translate('screens.home.actions.share.accessibility.label')}
           accessibilityHint={i18n.translate('screens.home.actions.share.accessibility.hint')}
         >
-          <Icon name='share' width={iconSizes.size20} height={iconSizes.size20} tintColor={colors.iconAltTintColor} />
+          <Icon
+            name='share'
+            width={iconSizes.size20}
+            height={iconSizes.size20}
+          />
         </ButtonWrapper>
       </View>
-      { error.status && <View style={styles(colors, insets).backdropContainer} /> }
-      { error.status && renderError(error, colors, insets) }
-      <View style={styles(colors, insets).homeContainer}>
+      { error.status && renderError(error, colors, memoizedStyle) }
+      <View style={memoizedStyle.homeContainer}>
         <ImageBackground
           testID="home_image_background"
           source={image}
-          style={styles(colors, insets).imageContainer}
+          style={memoizedStyle.imageContainer}
         />
         <Layout
           padding='horizontal'
-          style={styles(colors, insets).contentContainer}
+          style={memoizedStyle.contentContainer}
         >
-          <View style={styles(colors, insets).header}>
+          <View style={memoizedStyle.header}>
             <View>
               <View
                 style={{
-                  ...styles(colors, insets).backgroundPanel,
+                  ...memoizedStyle.backgroundPanel,
                   backgroundColor: panelBackgroundColor,
                 }}
               />
-              <View style={styles(colors, insets).panel}>
-                <View style={styles(colors, insets).panelContainer}>
+              <View style={memoizedStyle.panel}>
+                <View style={memoizedStyle.panelContainer}>
                   <Text size='xlarge' weight='bold' textColor={panelTextColor}>{header}</Text>
                 </View>
               </View>
             </View>
-            <View style={styles(colors, insets).supportContainer}>
+            <View style={memoizedStyle.supportContainer}>
               { showUpdatedAt && hasUpdated &&
                 <SupportIcon
                   label={i18n.translate('screens.home.last_updated')}
@@ -326,7 +333,7 @@ export default function Template (props) {
               }
             </View>
           </View>
-          <Text style={styles(colors, insets).descriptionsContent}>
+          <Text style={memoizedStyle.descriptionsContent}>
             {description}
           </Text>
         </Layout>

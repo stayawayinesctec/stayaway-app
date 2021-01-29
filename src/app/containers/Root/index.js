@@ -33,9 +33,9 @@ export default function Root () {
 
   const appLaunched = useSelector(isAppLaunched);
   const storedTheme = useSelector(getTheme);
-  const systemLanguage = useColorScheme();
+  const systemTheme = useColorScheme();
 
-  const theme = THEMES[storedTheme] || THEMES[systemLanguage || LIGHT];
+  const theme = THEMES[storedTheme] || THEMES[systemTheme || LIGHT];
 
   // Set navigationr reference
   const ref = useRef(null);

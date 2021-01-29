@@ -59,7 +59,7 @@ export default function TooMuchRequestsModal (props) {
     <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
       <Layout style={styles.content}>
         <View style={styles.titleContainer}>
-          <Icon name='too_much_requests' width={iconSizes.size73} height={iconSizes.size73} tintColor={colors.modalIconTintColor} />
+          <Icon name='too_much_requests' width={iconSizes.size73} height={iconSizes.size73} />
         </View>
         <View style={styles.descriptionsContainer}>
           <Text weight='bold' size='large' textAlign='center' style={styles.contentTitle}>{i18n.translate('common.dialogs.too_much_requests.title')}</Text>

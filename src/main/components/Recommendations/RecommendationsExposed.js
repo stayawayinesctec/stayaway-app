@@ -27,24 +27,24 @@ export default function RecommendationsExposed (props) {
       {
         "key": "1",
         "text": i18n.translate('screens.recommendations.exposed.encloused_spaces'),
-        "icon": <Icon name="encloused_spaces" width={iconSizes.size68} height={iconSizes.size70} tintColor={colors.recommendationsPanelIconTintColor} />,
+        "icon": <Icon name="encloused_spaces" width={iconSizes.size68} height={iconSizes.size70} />,
       },
       {
         "key": "2",
         "text": i18n.translate('screens.recommendations.exposed.stay_home'),
-        "icon": <Icon name="stay_home" width={iconSizes.size59} height={iconSizes.size60} tintColor={colors.recommendationsPanelIconTintColor} />,
+        "icon": <Icon name="stay_home" width={iconSizes.size59} height={iconSizes.size60} />,
       },
     ],
     [
       {
         "key": "3",
         "text": i18n.translate('screens.recommendations.exposed.increase_hygiene'),
-        "icon": <Icon name="increase_hygiene" width={iconSizes.size70} height={iconSizes.size70} tintColor={colors.recommendationsPanelIconTintColor} />,
+        "icon": <Icon name="increase_hygiene" width={iconSizes.size70} height={iconSizes.size70} />,
       },
       {
         "key": "4",
         "text": i18n.translate('screens.recommendations.exposed.wear_mask'),
-        "icon": <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} tintColor={colors.recommendationsPanelIconTintColor} />,
+        "icon": <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} />,
       },
     ],
   ];

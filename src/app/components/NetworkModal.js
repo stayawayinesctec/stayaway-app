@@ -59,7 +59,7 @@ export default function NetworkModal (props) {
     <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
       <Layout style={styles.content}>
         <View style={styles.titleContainer}>
-          <Icon name='network_disconnected' width={iconSizes.size70} height={iconSizes.size70} tintColor={colors.modalIconTintColor} />
+          <Icon name='network_disconnected' width={iconSizes.size70} height={iconSizes.size70} />
         </View>
         <View style={styles.descriptionsContainer}>
           <Text weight='bold' size='large' textAlign='center' style={styles.contentTitle}>{i18n.translate('common.dialogs.network.title')}</Text>

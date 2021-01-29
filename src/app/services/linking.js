@@ -9,6 +9,7 @@
  */
 
 import { Linking } from 'react-native';
+// eslint-disable-next-line import/no-unresolved
 import { openComposer } from 'react-native-email-link';
 import i18n from '@app/services/i18n';
 

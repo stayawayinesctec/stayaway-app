@@ -8,6 +8,8 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
+/* eslint-disable react/prop-types */
+
 import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -28,34 +30,32 @@ const { Navigator, Screen } = createBottomTabNavigator();
 export default () => (
   <Navigator
     initialRouteName={AppRoutes.HOME}
+    // lazy={false}
     tabBar={props => <TabBar {...props} />}
-    screenOptions={({ route }) => ({
-      // eslint-disable-next-line react/prop-types
-      tabBarIcon: ({ focused }) => {
-        const name = route.name.toLocaleLowerCase();
-
-        return (
-          <TabIcon
-            name={name}
-            title={i18n.translate(`common.tab_bar.${name}`)}
-            active={focused}
-          />
-        );
-      },
-      tabBarAccessibilityLabel: i18n.translate(`common.tab_bar.${route.name.toLocaleLowerCase()}`),
-    })}
   >
     <Screen
       name={AppRoutes.DIAGNOSIS}
       component={DiagnosisScreen}
+      options={{
+        tabBarIcon: ({focused}) => <TabIcon name='diagnosis' title={i18n.translate(`common.tab_bar.diagnosis`)} active={focused} />,
+        tabBarAccessibilityLabel: i18n.translate(`common.tab_bar.diagnosis`),
+      }}
     />
     <Screen
       name={AppRoutes.HOME}
       component={HomeScreen}
+      options={{
+        tabBarIcon: ({focused}) => <TabIcon name='home' title={i18n.translate(`common.tab_bar.home`)} active={focused} />,
+        tabBarAccessibilityLabel: i18n.translate(`common.tab_bar.home`),
+      }}
     />
     <Screen
       name={AppRoutes.RECOMMENDATIONS}
       component={RecommendationsScreen}
+      options={{
+        tabBarIcon: ({focused}) => <TabIcon name='recommendations' title={i18n.translate(`common.tab_bar.recommendations`)} active={focused} />,
+        tabBarAccessibilityLabel: i18n.translate(`common.tab_bar.recommendations`),
+      }}
     />
   </Navigator>
 );

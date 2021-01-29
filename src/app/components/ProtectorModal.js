@@ -51,7 +51,11 @@ export default function LoadingModal (props) {
     >
       <Layout style={styles.content}>
         <View style={styles.logoContainer}>
-          <Icon name='logo' width={iconSizes.size100} height={iconSizes.size100} tintColor={colors.protectorIconTintColor} />
+          <Icon
+            name='protector'
+            width={iconSizes.size100}
+            height={iconSizes.size100}
+          />
         </View>
       </Layout>
     </Modal>

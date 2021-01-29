@@ -8,11 +8,11 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
-import { Animated, StyleSheet, TouchableOpacity,ViewPropTypes } from 'react-native';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Animated, StyleSheet, TouchableOpacity, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
 import { sizes } from '@app/common/theme';
 
@@ -40,129 +40,87 @@ const themes = (value, colors) => ({
   containerStyle: { borderColor: value ? colors.switchBackgroundColorOff : colors.switchBackgroundColorOn },
 });
 
-export default class Switch extends Component {
-  constructor(props) {
-    super(props);
+export default function Switch(props) {
+  const { value, duration, onValueChange, disabled, style, ...otherProps} = props;
 
-    const { value } = this.props;
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => themes(value, colors), [name, value]);
 
-    const startPosition = 0;
-    const endPosition = styles.container.width - (styles.circle.width + styles.container.padding * 2);
+  const {
+    backgroundColorOn,
+    backgroundColorOff,
+    circleColorOn,
+    circleColorOff,
+    containerStyle,
+    circleStyle,
+  } = memoizedStyle;
+  const circlePosXStart = 0;
+  const circlePosXEnd = styles.container.width - (styles.circle.width + styles.container.padding * 2);
+  const [switchAnim, setswitchAnim] = useState(new Animated.Value(value ? 1 : 0));
 
-    this.state = {
-      value,
-      circlePosXStart: startPosition,
-      circlePosXEnd: endPosition,
-      animXValue: new Animated.Value(value ? 1 : 0),
-    };
-  }
+  useEffect(() => {
+    setswitchAnim(new Animated.Value(value ? 1 : 0));
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.value !== prevState.value) {
-      return { value: nextProps.value };
-    }
-
-    return null;
-  }
-
-  componentDidUpdate(prevProps) {
-    const { value } = this.props;
-
-    if (prevProps.value !== value) {
-      this.setState({ value });
-      this.runAnimation();
-    }
-  }
-
-  onValueChange = () => {
-    const { onValueChange, value } = this.props;
-
-    onValueChange(!value);
-  }
-
-  runAnimation = () => {
-    const { duration } = this.props;
-    const { value, animXValue } = this.state;
-
+    // Run animation
     const animValue = {
       fromValue: value ? 0 : 1,
       toValue: value ? 1 : 0,
       duration,
       useNativeDriver: false,
     };
-    Animated.timing(animXValue, animValue).start();
-  }
+    Animated.timing(switchAnim, animValue).start();
+  }, [value]);
 
-  render() {
-    const { disabled, style, ...otherProps } = this.props;
-    const { value, animXValue, circlePosXStart, circlePosXEnd } = this.state;
-
-    return (
-      <ThemeConsumer>
-        {({colors}) => {
-          const {
-            backgroundColorOn,
-            backgroundColorOff,
-            circleColorOn,
-            circleColorOff,
-            containerStyle,
+  return (
+    <TouchableOpacity
+      onPress={() => onValueChange(!value)}
+      disabled={disabled}
+      style={{
+        ...style,
+        opacity: disabled ? 0.4 : 1,
+      }}
+      accessibilityRole='switch'
+      accessibilityState={{checked: value}}
+      activeOpacity={0.4}
+      {...otherProps}
+    >
+      <Animated.View
+        style={[
+          styles.container,
+          containerStyle,
+          {
+            backgroundColor: switchAnim.interpolate({
+              inputRange: [ 0, 1 ],
+              outputRange: [ backgroundColorOff, backgroundColorOn ],
+            }),
+          },
+        ]}
+      >
+        <Animated.View
+          style={[
+            styles.circle,
             circleStyle,
-          } = themes(value, colors);
-
-          return (
-            <TouchableOpacity
-              onPress={() => this.onValueChange()}
-              disabled={disabled}
-              style={{
-                ...style,
-                opacity: disabled ? 0.4 : 1,
-              }}
-              accessibilityRole='switch'
-              accessibilityState={{checked: value}}
-              activeOpacity={0.4}
-              {...otherProps}
-            >
-              <Animated.View
-                style={[
-                  styles.container,
-                  containerStyle,
-                  {
-                    backgroundColor: animXValue.interpolate({
-                      inputRange: [ 0, 1 ],
-                      outputRange: [ backgroundColorOff, backgroundColorOn ],
-                    }),
-                  },
-                ]}
-              >
-                <Animated.View
-                  style={[
-                    styles.circle,
-                    circleStyle,
-                    {
-                      backgroundColor: animXValue.interpolate({
-                        inputRange: [ 0, 1 ],
-                        outputRange: [ circleColorOff, circleColorOn ],
-                      }),
-                    },
-                    {
-                      transform: [
-                        {
-                          translateX: animXValue.interpolate({
-                            inputRange: [ 0, 1 ],
-                            outputRange: [ circlePosXStart, circlePosXEnd ],
-                          }),
-                        },
-                      ],
-                    },
-                  ]}
-                />
-              </Animated.View>
-            </TouchableOpacity>
-          );
-        }}
-      </ThemeConsumer>
-    );
-  }
+            {
+              backgroundColor: switchAnim.interpolate({
+                inputRange: [ 0, 1 ],
+                outputRange: [ circleColorOff, circleColorOn ],
+              }),
+            },
+            {
+              transform: [
+                {
+                  translateX: switchAnim.interpolate({
+                    inputRange: [ 0, 1 ],
+                    outputRange: [ circlePosXStart, circlePosXEnd ],
+                  }),
+                },
+              ],
+            },
+          ]}
+        />
+      </Animated.View>
+    </TouchableOpacity>
+  );
 }
 
 Switch.defaultProps = {

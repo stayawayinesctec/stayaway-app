@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -72,16 +72,17 @@ function renderRecommendation(...args) {
   const [
     [recommendationA, recommendationB],
     colors,
+    style,
   ] = args;
 
   return (
-    <View key={recommendationA.key} style={styles(colors).recommendationsRow}>
-      <View style={{...styles(colors).recommendation, marginRight: sizes.size8}}>
-        <View style={styles(colors).recommendationIcon}>{recommendationA.icon}</View>
+    <View key={recommendationA.key} style={style.recommendationsRow}>
+      <View style={{...style.recommendation, marginRight: sizes.size8}}>
+        <View style={style.recommendationIcon}>{recommendationA.icon}</View>
         <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationA.text}</Text>
       </View>
-      <View style={styles(colors).recommendation}>
-        <View style={styles(colors).recommendationIcon}>{recommendationB.icon}</View>
+      <View style={style.recommendation}>
+        <View style={style.recommendationIcon}>{recommendationB.icon}</View>
         <Text textColor={colors.recommendationsPanelTextColor} size='small' textAlign='center'>{recommendationB.text}</Text>
       </View>
     </View>
@@ -91,30 +92,31 @@ function renderRecommendation(...args) {
 export default function Template (props) {
   const { borderColor, panelBorderColor, backgroundColor, recommendations, onPress } = props;
 
-  const { colors } = useTheme();
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors), [name]);
 
   return (
     <TopComponent>
       <Layout
         style={{
-          ...styles(colors).contentContainer,
+          ...memoizedStyle.contentContainer,
           backgroundColor,
         }}
       >
         <View
           style={{
-            ...styles(colors).recommendationsContainer,
+            ...memoizedStyle.recommendationsContainer,
             borderColor: panelBorderColor,
           }}
         >
-          <Text textColor={colors.recommendationsPanelTextColor} weight='bold' style={styles(colors).recommendationsTitle}>{i18n.translate('screens.recommendations.title')}</Text>
-          { recommendations.map(item => renderRecommendation(item, colors)) }
+          <Text textColor={colors.recommendationsPanelTextColor} weight='bold' style={memoizedStyle.recommendationsTitle}>{i18n.translate('screens.recommendations.title')}</Text>
+          { recommendations.map(item => renderRecommendation(item, colors, memoizedStyle)) }
         </View>
         <ButtonWrapper
           onPress={onPress}
           accessibilityLabel={i18n.translate('screens.recommendations.support.accessibility.label')}
           accessibilityHint={i18n.translate('screens.recommendations.support.accessibility.hint')}
-          style={styles(colors).supportContainer}
+          style={memoizedStyle.supportContainer}
         >
           <SupportIcon
             label={i18n.translate('screens.recommendations.support.label')}

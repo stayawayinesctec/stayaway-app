@@ -17,20 +17,29 @@ import SettingsNavigator from '@app/navigation/App/Settings';
 
 import AppRoutes from '@app/navigation/routes';
 
+import { useTheme } from '@app/contexts/Theme';
+
 const { Navigator, Screen } = createStackNavigator();
 
-export default () => (
-  <Navigator
-    initialRouteName={AppRoutes.MAIN}
-    headerMode='none'
-  >
-    <Screen
-      name={AppRoutes.MAIN}
-      component={MainNavigator}
-    />
-    <Screen
-      name={AppRoutes.SETTINGS}
-      component={SettingsNavigator}
-    />
-  </Navigator>
-);
+export default () => {
+  const { colors } = useTheme();
+
+  return (
+    <Navigator
+      initialRouteName={AppRoutes.MAIN}
+      screenOptions={{
+        headerShown: false,
+        cardStyle: { backgroundColor: colors.backgroundColor },
+      }}
+    >
+      <Screen
+        name={AppRoutes.MAIN}
+        component={MainNavigator}
+      />
+      <Screen
+        name={AppRoutes.SETTINGS}
+        component={SettingsNavigator}
+      />
+    </Navigator>
+  );
+};

@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
@@ -112,56 +112,57 @@ export default function PrivacyPolicy(props) {
 
   const insets = useSafeAreaInsets();
   const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors, insets), [name, insets]);
 
   return  (
-    <TopComponent scrollable={false} style={styles(colors, insets).container}>
-      <Layout style={styles(colors, insets).layoutContainer} padding='top'>
-        <View style={styles(colors, insets).header}>
+    <TopComponent scrollable={false} style={memoizedStyle.container}>
+      <Layout style={memoizedStyle.layoutContainer} padding='top'>
+        <View style={memoizedStyle.header}>
           <ButtonWrapper
             onPress={onClose}
-            style={styles(colors, insets).closeButton}
+            style={memoizedStyle.closeButton}
             accessibilityLabel={i18n.translate('screens.privacy_policy.actions.back.accessibility.label')}
             accessibilityHint={i18n.translate('screens.privacy_policy.actions.back.accessibility.hint')}
           >
-            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
           </ButtonWrapper>
-          <Text size='xlarge' weight='bold' style={styles(colors, insets).headerTitle}>{i18n.translate('screens.privacy_policy.title')}</Text>
+          <Text size='xlarge' weight='bold' style={memoizedStyle.headerTitle}>{i18n.translate('screens.privacy_policy.title')}</Text>
         </View>
         <ScrollView
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles(colors, insets).bodyContainer}
+          contentContainerStyle={memoizedStyle.bodyContainer}
         >
-          <Text size='xsmall' style={styles(colors, insets).description}>{i18n.translate('screens.privacy_policy.description')}</Text>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.data_treatment.name')}</Text>
-            <View style={styles(colors, insets).body}>
-              <View style={styles(colors, insets).responsible}>
-                <Text size='small' weight='bold' style={styles(colors, insets).subtitle}>{i18n.translate('screens.privacy_policy.data_treatment.responsible')}</Text>
+          <Text size='xsmall' style={memoizedStyle.description}>{i18n.translate('screens.privacy_policy.description')}</Text>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.data_treatment.name')}</Text>
+            <View style={memoizedStyle.body}>
+              <View style={memoizedStyle.responsible}>
+                <Text size='small' weight='bold' style={memoizedStyle.subtitle}>{i18n.translate('screens.privacy_policy.data_treatment.responsible')}</Text>
                 <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.dgs.name')}</Text>
                 <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.dgs.address')}</Text>
                 <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.dgs.phone')}</Text>
               </View>
-              <View style={styles(colors, insets).subcontractors}>
-                <Text size='small' weight='bold' style={styles(colors, insets).subtitle}>{i18n.translate('screens.privacy_policy.data_treatment.subcontractors')}</Text>
-                <View style={styles(colors, insets).subcontractor}>
+              <View style={memoizedStyle.subcontractors}>
+                <Text size='small' weight='bold' style={memoizedStyle.subtitle}>{i18n.translate('screens.privacy_policy.data_treatment.subcontractors')}</Text>
+                <View style={memoizedStyle.subcontractor}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.inesctec.name')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.inesctec.address')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.inesctec.phone')}</Text>
                 </View>
-                <View style={styles(colors, insets).subcontractor}>
+                <View style={memoizedStyle.subcontractor}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.keyruptive.name')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.keyruptive.address')}</Text>
                 </View>
-                <View style={styles(colors, insets).subcontractor}>
+                <View style={memoizedStyle.subcontractor}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.ubirider.name')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.ubirider.address')}</Text>
                 </View>
-                <View style={styles(colors, insets).subcontractor}>
+                <View style={memoizedStyle.subcontractor}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.spms.name')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.spms.address')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.spms.phone')}</Text>
                 </View>
-                <View style={styles(colors, insets).subcontractor}>
+                <View style={memoizedStyle.subcontractor}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.data_treatment.incm.name')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.incm.address')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_treatment.incm.phone')}</Text>
@@ -169,159 +170,159 @@ export default function PrivacyPolicy(props) {
               </View>
             </View>
           </View>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.purposes_of_personal_data_processing.name')}</Text>
-            <View style={styles(colors, insets).body}>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.purposes_of_personal_data_processing.name')}</Text>
+            <View style={memoizedStyle.body}>
               <Text size='xsmall'>{i18n.translate('screens.privacy_policy.purposes_of_personal_data_processing.body')}</Text>
             </View>
           </View>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.lawfulness_of_data_processing.name')}</Text>
-            <View style={styles(colors, insets).body}>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.lawfulness_of_data_processing.name')}</Text>
+            <View style={memoizedStyle.body}>
               <Text size='xsmall'>{i18n.translate('screens.privacy_policy.lawfulness_of_data_processing.body')}</Text>
             </View>
           </View>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.name')}</Text>
-            <View style={styles(colors, insets).body}>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.name')}</Text>
+            <View style={memoizedStyle.body}>
               <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.body')}</Text>
-              <View style={styles(colors, insets).data}>
-                <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.title')}</Text>
-                <View style={styles(colors, insets).label}>
+              <View style={memoizedStyle.data}>
+                <Text size='xsmall' weight='bold' style={memoizedStyle.dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.title')}</Text>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.definition')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.purpose')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_teks.storage')}</Text>
                 </View>
               </View>
-              <View style={styles(colors, insets).data}>
-                <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.title')}</Text>
-                <View style={styles(colors, insets).label}>
+              <View style={memoizedStyle.data}>
+                <Text size='xsmall' weight='bold' style={memoizedStyle.dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.title')}</Text>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.definition')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.purpose')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.pseudonymised_data_uui.storage')}</Text>
                 </View>
               </View>
-              <View style={styles(colors, insets).data}>
-                <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.title')}</Text>
-                <View style={styles(colors, insets).label}>
+              <View style={memoizedStyle.data}>
+                <Text size='xsmall' weight='bold' style={memoizedStyle.dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.title')}</Text>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.definition')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.purpose')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_teks.storage')}</Text>
                 </View>
               </View>
-              <View style={styles(colors, insets).data}>
-                <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.title')}</Text>
-                <View style={styles(colors, insets).label}>
+              <View style={memoizedStyle.data}>
+                <Text size='xsmall' weight='bold' style={memoizedStyle.dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.title')}</Text>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.definition')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.purpose')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_info.storage')}</Text>
                 </View>
               </View>
-              <View style={styles(colors, insets).data}>
-                <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.title')}</Text>
-                <View style={styles(colors, insets).label}>
+              <View style={memoizedStyle.data}>
+                <Text size='xsmall' weight='bold' style={memoizedStyle.dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.title')}</Text>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.definition')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.purpose')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.health_data_symptoms.storage')}</Text>
                 </View>
               </View>
-              <View style={styles(colors, insets).data}>
-                <Text size='xsmall' weight='bold' style={styles(colors, insets).dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.title')}</Text>
-                <View style={styles(colors, insets).label}>
+              <View style={memoizedStyle.data}>
+                <Text size='xsmall' weight='bold' style={memoizedStyle.dataTitle}>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.title')}</Text>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.definition')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.definition')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.purpose')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.purpose')}</Text>
                 </View>
-                <View style={styles(colors, insets).label}>
+                <View style={memoizedStyle.label}>
                   <Text size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.labels.storage')}</Text>
                   <Text size='xsmall'>{i18n.translate('screens.privacy_policy.personal_data_and_storage_periods.ip_address.storage')}</Text>
                 </View>
               </View>
             </View>
           </View>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.data_collecting_and_processing.name')}</Text>
-            <View style={styles(colors, insets).body}>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.data_collecting_and_processing.name')}</Text>
+            <View style={memoizedStyle.body}>
               <Text size='xsmall'>{i18n.translate('screens.privacy_policy.data_collecting_and_processing.body')}</Text>
             </View>
           </View>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.gaen_api.name')}</Text>
-            <View style={styles(colors, insets).body}>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.gaen_api.name')}</Text>
+            <View style={memoizedStyle.body}>
               <Text size='xsmall'>{i18n.translate('screens.privacy_policy.gaen_api.body')}</Text>
             </View>
           </View>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.use_of_equipment_resources.name')}</Text>
-            <View style={styles(colors, insets).body}>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.use_of_equipment_resources.name')}</Text>
+            <View style={memoizedStyle.body}>
               <Text size='xsmall'>{i18n.translate('screens.privacy_policy.use_of_equipment_resources.body')}</Text>
             </View>
           </View>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.rights_of_data_subjects.name')}</Text>
-            <View style={styles(colors, insets).body}>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.rights_of_data_subjects.name')}</Text>
+            <View style={memoizedStyle.body}>
               <Text size='xsmall'>{i18n.translate('screens.privacy_policy.rights_of_data_subjects.body')}</Text>
             </View>
           </View>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.uninstalling_and_suspending_the_application.name')}</Text>
-            <View style={styles(colors, insets).body}>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.uninstalling_and_suspending_the_application.name')}</Text>
+            <View style={memoizedStyle.body}>
               <Text size='xsmall'>{i18n.translate('screens.privacy_policy.uninstalling_and_suspending_the_application.body')}</Text>
             </View>
           </View>
-          <View style={styles(colors, insets).clause}>
-            <Text size='small' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.privacy_policy.changes_to_the_privacy_policy.name')}</Text>
-            <View style={styles(colors, insets).body}>
+          <View style={memoizedStyle.clause}>
+            <Text size='small' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.privacy_policy.changes_to_the_privacy_policy.name')}</Text>
+            <View style={memoizedStyle.body}>
               <Text size='xsmall'>{i18n.translate('screens.privacy_policy.changes_to_the_privacy_policy.body')}</Text>
             </View>
           </View>
           <Text textColor={colors.settingsLabelTextColor} size='xsmall' weight='bold'>{i18n.translate('screens.privacy_policy.last_review')}</Text>
-          <View style={styles(colors, insets).sponsors}>
-            <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-            <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+          <View style={memoizedStyle.sponsors}>
+            <Image source={getThemedImage('republica_portuguesa', name)} style={memoizedStyle.republicaPortuguesaImage} />
+            <Image source={getThemedImage('logo_dgs', name)} style={memoizedStyle.dgsImage} />
           </View>
         </ScrollView>
       </Layout>
-      <View style={styles(colors, insets).imagesContainer}>
-        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+      <View style={memoizedStyle.imagesContainer}>
+        <Image source={getThemedImage('splash', name)} style={memoizedStyle.splashImage} />
       </View>
     </TopComponent>
   );

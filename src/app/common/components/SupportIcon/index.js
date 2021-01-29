@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -62,25 +62,30 @@ const styles = (colors) => StyleSheet.create({
 export default function SupportIcon(props) {
   const { label, content, borderColor } = props;
 
-  const { colors } = useTheme();
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors), [name]);
 
   const hasLabel = label.length > 0;
   const hasContent = content.length > 0;
 
   return (
-    <View style={styles(colors).container}>
-      <View style={styles(colors).iconContainer}>
-        <Icon name='support' width={iconSizes.size30} height={iconSizes.size30} tintColor={colors.supportIconColor} />
+    <View style={memoizedStyle.container}>
+      <View style={memoizedStyle.iconContainer}>
+        <Icon
+          name='support'
+          width={iconSizes.size30}
+          height={iconSizes.size30}
+        />
       </View>
-      { ((hasLabel || hasContent)) &&
-        <View style={styles(colors).contentContainer}>
+      { (hasLabel || hasContent) &&
+        <View style={memoizedStyle.contentContainer}>
           <View
             style={{
-                ...styles(colors).contentWrapper,
+                ...memoizedStyle.contentWrapper,
                 borderColor,
               }}
           >
-            <View style={styles(colors).wrapper}>
+            <View style={memoizedStyle.wrapper}>
               { hasLabel &&
                 <Text textColor={colors.supportTextColor} size='xsmall'>{label}</Text>
               }

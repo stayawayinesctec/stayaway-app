@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
     View,
     StyleSheet,
@@ -19,10 +19,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTheme } from '@app/contexts/Theme';
 
-import { sizes, themes as commonThemes } from '@app/common/theme';
-
-const LIGHT = commonThemes.names.light;
-const DARK = commonThemes.names.dark;
+import { sizes } from '@app/common/theme';
 
 const styles = (colors, insets) => StyleSheet.create({
   container: {
@@ -58,18 +55,17 @@ const styles = (colors, insets) => StyleSheet.create({
 });
 
 export default function Layout(props) {
-  const { padding, type, style, children, ...otherProps } = props;
+  const { padding, style, children, ...otherProps } = props;
 
   const insets = useSafeAreaInsets();
-  const { name } = useTheme();
-
-  const { colors } = commonThemes[type || name];
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors, insets), [name, insets]);
 
   return (
     <View
       style={{
-        ...styles(colors, insets).container,
-        ...styles(colors, insets)[padding],
+        ...memoizedStyle.container,
+        ...memoizedStyle[padding],
         ...style,
       }}
       {...otherProps}
@@ -81,14 +77,12 @@ export default function Layout(props) {
 
 Layout.defaultProps = {
   padding: 'normal',
-  type: '',
   style: {},
   children: undefined,
 };
 
 Layout.propTypes = {
   padding: PropTypes.oneOf(['normal', 'horizontal', 'vertical', 'right', 'left', 'top', 'bottom']),
-  type: PropTypes.oneOf([LIGHT, DARK, '']),
   style: ViewPropTypes.style,
   children: PropTypes.oneOfType([
     PropTypes.string,

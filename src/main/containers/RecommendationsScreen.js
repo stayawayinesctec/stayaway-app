@@ -18,7 +18,7 @@ import Linking from '@app/services/linking';
 
 import { getInfectionStatus } from '@app/redux/account/selectors';
 
-export default function SettingsScreen () {
+export default function RecommendationsScreen () {
   const infectionStatus = useSelector(getInfectionStatus);
   const onPress = () => Linking.openURL(i18n.translate('common.links.min_saude_covid'));
 

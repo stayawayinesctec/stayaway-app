@@ -29,7 +29,6 @@ export const lightColors = {
 
   // Recommendations Panel
   recommendationsPanelTextColor: '#264B99',
-  recommendationsPanelIconTintColor: '#264B99',
   recommendationsPanelBackgroundColor: '#FFFFFF',
   recommendationsGreenPanelBorderColor: '#FFFFFF',
   recommendationsGreenPanelBackgroundColor: 'rgba(92, 215, 104, 0.2)',
@@ -42,12 +41,10 @@ export const lightColors = {
   tabBarActiveTextColor: '#264B99',
   tabBarInactiveIconColor: '#87A4E3',
   tabBarInactiveTextColor: '#87A4E3',
+
   tabBarHomeErrorPulseColor: '#EC4C52',
-  tabBarHomeErrorCircleColor: '#ED1C24',
-  tabBarHomeHealtyPulseColor: 'rgba(92, 215, 104, 0.2)',
-  tabBarHomeHealtyCircleColor: '#5CD768',
+  tabBarHomeHealthyPulseColor: 'rgba(92, 215, 104, 0.2)',
   tabBarHomeExposedPulseColor: 'rgba(247, 192, 0, 0.2)',
-  tabBarHomeExposedCircleColor: '#F7C000',
 
   // TextColors
   textColor: '#264B99',
@@ -67,11 +64,9 @@ export const lightColors = {
   // Icons
   iconMainTintColor: '#264B99',
   iconMainBackgroundColor: '#FFFFFF',
-  iconAltTintColor: '#FFFFFF',
   iconAltBackgroundColor: '#87A4E3',
 
   // Support Icon
-  supportIconColor: '#264B99',
   supportIconBackgroundColor: '#FFFFFF',
   supportTextColor: '#264B99',
 
@@ -99,12 +94,10 @@ export const lightColors = {
   switchCircleColorOff: '#FFFFFF',
 
   // Modals
-  modalIconTintColor: '#264B99',
   modalTextColor: '#264B99',
   modalBackgroundColor: '#FFFFFF',
 
   // Loading
-  loadingIconTintColor: '#FFFFFF',
   loadingTextColor: '#FFFFFF',
 
   // Protector
@@ -118,7 +111,6 @@ export const lightColors = {
   settingsMainButtonIconTintColor: '#264B99',
   settingsAltButtonTextColor: '#264B99',
   settingsAltButtonBackgroundColor: '#FFFFFF',
-  settingsAltButtonIconTintColor: '#264B99',
 
   // Licenses
   licensesProjectTextColor: '#FFFFFF',
@@ -149,7 +141,6 @@ export const darkColors = {
 
   // Recommendations Panel
   recommendationsPanelTextColor: '#242424',
-  recommendationsPanelIconTintColor: '#242424',
   recommendationsPanelBackgroundColor: '#E4F2FC',
   recommendationsGreenPanelBorderColor: 'rgba(114, 203, 125, 0.8)',
   recommendationsGreenPanelBackgroundColor: 'rgba(228, 242, 252, 0.2)',
@@ -164,11 +155,8 @@ export const darkColors = {
   tabBarInactiveTextColor: '#E4F2FC',
 
   tabBarHomeErrorPulseColor: 'rgba(151, 203, 246, 0.2)',
-  tabBarHomeErrorCircleColor: '#97CBF6',
-  tabBarHomeHealtyPulseColor: 'rgba(114, 203, 125, 0.2)',
-  tabBarHomeHealtyCircleColor: 'rgba(114, 203, 125, 0.8)',
+  tabBarHomeHealthyPulseColor: 'rgba(114, 203, 125, 0.2)',
   tabBarHomeExposedPulseColor: 'rgba(246, 192, 0, 0.2)',
-  tabBarHomeExposedCircleColor: 'rgba(246, 192, 0, 0.8)',
 
   // TextColors
   textColor: '#E4F2FC',
@@ -188,11 +176,9 @@ export const darkColors = {
   // Icons
   iconMainTintColor: '#E4F2FC',
   iconMainBackgroundColor: '#121212',
-  iconAltTintColor: '#121212',
   iconAltBackgroundColor: '#E4F2FC',
 
   // Support Icon
-  supportIconColor: '#121212',
   supportIconBackgroundColor: '#E4F2FC',
   supportTextColor: '#121212',
 
@@ -220,12 +206,10 @@ export const darkColors = {
   switchCircleColorOff: '#242424',
 
   // Modals
-  modalIconTintColor: '#E4F2FC',
   modalTextColor: '#E4F2FC',
   modalBackgroundColor: '#2C2C2C',
 
   // Loading
-  loadingIconTintColor: '#E4F2FC',
   loadingTextColor: '#E4F2FC',
 
   // Protector
@@ -239,7 +223,6 @@ export const darkColors = {
   settingsMainButtonIconTintColor: '#E4F2FC',
   settingsAltButtonTextColor: '#E4F2FC',
   settingsAltButtonBackgroundColor: '#2C2C2C',
-  settingsAltButtonIconTintColor: '#E4F2FC',
 
   // Licenses
   licensesProjectTextColor: '#121212',

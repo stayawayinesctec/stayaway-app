@@ -203,6 +203,7 @@ Some files contain code from the [DP3T applications](https://github.com/DP-3T), 
 | [i18n-js](https://www.npmjs.com/package/i18n-js)                                                                  | MIT          |
 | [jest](https://github.com/facebook/jest)                                                                          | MIT          |
 | [detox](https://github.com/wix/Detox)                                                                             | MIT          |
+| [lodash.isequal](https://www.npmjs.com/package/lodash.isequal)                                                    | MIT          |
 | [lodash.pickby](https://www.npmjs.com/package/lodash.pickby)                                                      | MIT          |
 | [lodash.memoize](https://www.npmjs.com/package/lodash.memoize)                                                    | MIT          |
 | [mirror-creator](https://www.npmjs.com/package/mirror-creator)                                                    | MIT          |

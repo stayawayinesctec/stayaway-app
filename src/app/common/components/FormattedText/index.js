@@ -8,52 +8,49 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Text from '@app/common/components/Text';
 
 import Linking from '@app/services/linking';
 
-export default class FormattedText extends Component {
-  render() {
-    const {
-      children,
-      ...otherProps
-    } = this.props;
+export default function FormattedText(props) {
+  const {
+    children,
+    ...otherProps
+  } = props;
 
-    if (Array.isArray(children)) {
+  if (Array.isArray(children)) {
+    return (
+      <Text {...otherProps}>
+        {children.map(({id: key, content, weight, link}) => {
+          const childrenProps = {
+            key,
+            weight,
+          };
 
-      return (
-        <Text {...otherProps}>
-          {children.map(({id: key, content, weight, link}) => {
-            const props = {
-              key,
-              weight,
-            };
+          const hasLink = link !== undefined;
+          if (hasLink) {
+            childrenProps.onPress = () => Linking.openURL(link);
+            childrenProps.underline = true;
+            childrenProps.weight = weight || 'bold';
+          }
 
-            const hasLink = link !== undefined;
-            if (hasLink) {
-              props.onPress = () => Linking.openURL(link);
-              props.underline = true;
-              props.weight = weight || 'bold';
-            }
-
-            return (
-              <Text
-                {...otherProps}
-                {...props}
-              >
-                { content }
-              </Text>
-            );
-          })}
-        </Text>
-      );
-    }
-
-    return <Text {...this.props} />;
+          return (
+            <Text
+              {...otherProps}
+              {...childrenProps}
+            >
+              { content }
+            </Text>
+          );
+        })}
+      </Text>
+    );
   }
+
+  return <Text {...props} />;
 }
 
 FormattedText.propTypes = {

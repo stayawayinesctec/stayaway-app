@@ -8,51 +8,38 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React from 'react';
 import { ViewPropTypes } from 'react-native';
+// eslint-disable-next-line import/no-unresolved
 import NativeCheckBox from '@react-native-community/checkbox';
-import PropTypes from 'prop-types';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
-import { themes as commonThemes, sizes } from '@app/common/theme';
+import { sizes } from '@app/common/theme';
 
-const LIGHT = commonThemes.names.light;
-const DARK = commonThemes.names.dark;
+export default function CheckBox(props) {
+  const { style, ...otherProps } = props;
 
-export default class CheckBox extends Component {
-  render() {
-    const { style, type, ...otherProps } = this.props;
+  const { colors } = useTheme();
 
-    return (
-      <ThemeConsumer>
-        {({name}) => {
-          const { colors } = commonThemes[type || name];
-
-          return (
-            <NativeCheckBox
-              tintColors={{true: colors.checkBoxTintTrueColor, false: colors.checkBoxTintFalseColor}}
-              boxType='circle'
-              lineWidth={sizes.size1}
-              tintColor={colors.checkBoxTintTrueColor}
-              onCheckColor={colors.checkBoxOnCheckColor}
-              onFillColor={colors.checkBoxOnFillColor}
-              onTintColor={colors.checkBoxOnTintColor}
-              {...otherProps}
-            />
-          );
-        }}
-      </ThemeConsumer>
-    );
-  }
+  return (
+    <NativeCheckBox
+      tintColors={{true: colors.checkBoxTintTrueColor, false: colors.checkBoxTintFalseColor}}
+      boxType='circle'
+      lineWidth={sizes.size1}
+      tintColor={colors.checkBoxTintTrueColor}
+      onCheckColor={colors.checkBoxOnCheckColor}
+      onFillColor={colors.checkBoxOnFillColor}
+      onTintColor={colors.checkBoxOnTintColor}
+      {...otherProps}
+    />
+  );
 }
 
 CheckBox.defaultProps = {
-  type: '',
   style: {},
 };
 
 CheckBox.propTypes = {
-  type: PropTypes.oneOf([LIGHT, DARK, '']),
   style: ViewPropTypes.style,
 };

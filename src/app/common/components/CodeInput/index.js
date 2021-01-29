@@ -8,46 +8,32 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Input from '@app/common/components/Input';
 
-export default class CodeInput extends Component {
-  focus() {
-    return this.input?.focus();
-  }
+export default function CodeInput(props) {
+  const { maxLength, forwardRef, ...otherProps } = props;
 
-  blur() {
-    return this.input?.blur();
-  }
-
-  shake() {
-    return this.input?.shake();
-  }
-
-  clear() {
-    return this.input?.clear();
-  }
-
-  render() {
-    const { maxLength, ...otherProps } = this.props;
-
-    return (
-      <Input
-        ref={element => {this.input = element}}
-        maxLength={maxLength}
-        keyboardType='number-pad'
-        {...otherProps}
-      />
-    );
-  }
+  return (
+    <Input
+      forwardRef={forwardRef}
+      maxLength={maxLength}
+      keyboardType='number-pad'
+      {...otherProps}
+    />
+  );
 }
 
 CodeInput.defaultProps = {
   maxLength: 15,
+  forwardRef: undefined,
 };
 
 CodeInput.propTypes = {
   maxLength: PropTypes.number,
+  forwardRef: PropTypes.shape({
+    current: PropTypes.object,
+  }),
 };

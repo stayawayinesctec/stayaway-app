@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
@@ -155,52 +155,52 @@ function renderThirdPartyLicenses (...args) {
   const [
     licenses,
     colors,
-    insets,
+    style,
   ] = args;
 
   return (
     <View>
       {
         licenses.map(license => (
-          <View key={license.name} style={styles(colors, insets).licenseContainer}>
-            <Text weight='bold' textColor={colors.licensesTitleTextColor} onPress={() => Linking.openURL(license.link)} style={styles(colors, insets).licenseTitle}>{license.name}</Text>
-            <View style={styles(colors, insets).lineBreak} />
+          <View key={license.name} style={style.licenseContainer}>
+            <Text weight='bold' textColor={colors.licensesTitleTextColor} onPress={() => Linking.openURL(license.link)} style={style.licenseTitle}>{license.name}</Text>
+            <View style={style.lineBreak} />
             {license.tools.length > 0 &&
-              <View style={styles(colors, insets).licenseToolsContainer}>
-                <Text weight='bold' textColor={colors.licensesSubtitleTextColor} style={styles(colors, insets).licenseTools}>{i18n.translate('screens.licenses.third_party.tools')}</Text>
+              <View style={style.licenseToolsContainer}>
+                <Text weight='bold' textColor={colors.licensesSubtitleTextColor} style={style.licenseTools}>{i18n.translate('screens.licenses.third_party.tools')}</Text>
                 {
                   license.tools.map(tool => (
-                    <Text key={tool.name} onPress={() => Linking.openURL(tool.link)} style={styles(colors, insets).licenseTool}>{tool.name}</Text>
+                    <Text key={tool.name} onPress={() => Linking.openURL(tool.link)} style={style.licenseTool}>{tool.name}</Text>
                   ))
                 }
               </View>
             }
             {license.libraries.length > 0 &&
-              <View style={styles(colors, insets).licenseLibrariesContainer}>
-                <Text weight='bold' style={styles(colors, insets).licenseLibraries} textColor={colors.licensesSubtitleTextColor}>{i18n.translate('screens.licenses.third_party.libraries')}</Text>
+              <View style={style.licenseLibrariesContainer}>
+                <Text weight='bold' style={style.licenseLibraries} textColor={colors.licensesSubtitleTextColor}>{i18n.translate('screens.licenses.third_party.libraries')}</Text>
                 {
                   license.libraries.map(library => (
-                    <Text key={library.name} onPress={() => Linking.openURL(library.link)} style={styles(colors, insets).licenseLibrary}>{library.name}</Text>
+                    <Text key={library.name} onPress={() => Linking.openURL(library.link)} style={style.licenseLibrary}>{library.name}</Text>
                   ))
                 }
               </View>
             }
             {license.react_native_packages.length > 0 &&
-              <View style={styles(colors, insets).licenseRNPackagesContainer}>
-                <Text weight='bold' style={styles(colors, insets).licenseRNPackages} textColor={colors.licensesSubtitleTextColor}>{i18n.translate('screens.licenses.third_party.react_native_packages')}</Text>
+              <View style={style.licenseRNPackagesContainer}>
+                <Text weight='bold' style={style.licenseRNPackages} textColor={colors.licensesSubtitleTextColor}>{i18n.translate('screens.licenses.third_party.react_native_packages')}</Text>
                 {
                   license.react_native_packages.map(rnpackage => (
-                    <Text key={rnpackage.name} onPress={() => Linking.openURL(rnpackage.link)} style={styles(colors, insets).licenseRNPackage}>{rnpackage.name}</Text>
+                    <Text key={rnpackage.name} onPress={() => Linking.openURL(rnpackage.link)} style={style.licenseRNPackage}>{rnpackage.name}</Text>
                   ))
                 }
               </View>
             }
             {license.fonts.length > 0 &&
-              <View style={styles(colors, insets).licenseFontsContainer}>
-                <Text weight='bold' style={styles(colors, insets).licenseFonts} textColor={colors.licensesSubtitleTextColor}>{i18n.translate('screens.licenses.third_party.fonts')}</Text>
+              <View style={style.licenseFontsContainer}>
+                <Text weight='bold' style={style.licenseFonts} textColor={colors.licensesSubtitleTextColor}>{i18n.translate('screens.licenses.third_party.fonts')}</Text>
                 {
                   license.fonts.map(font => (
-                    <Text key={font.name} onPress={() => Linking.openURL(font.link)} style={styles(colors, insets).licenseFont}>{font.name}</Text>
+                    <Text key={font.name} onPress={() => Linking.openURL(font.link)} style={style.licenseFont}>{font.name}</Text>
                   ))
                 }
               </View>
@@ -220,44 +220,45 @@ export default function Licenses(props) {
 
   const insets = useSafeAreaInsets();
   const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors, insets), [name, insets]);
 
   return (
-    <TopComponent scrollable={false} style={styles(colors, insets).container}>
-      <Layout style={styles(colors, insets).layoutContainer} padding='top'>
-        <View style={styles(colors, insets).header}>
+    <TopComponent scrollable={false} style={memoizedStyle.container}>
+      <Layout style={memoizedStyle.layoutContainer} padding='top'>
+        <View style={memoizedStyle.header}>
           <ButtonWrapper
             onPress={onClose}
-            style={styles(colors, insets).closeButton}
+            style={memoizedStyle.closeButton}
             accessibilityLabel={i18n.translate('screens.licenses.actions.back.accessibility.label')}
             accessibilityHint={i18n.translate('screens.licenses.actions.back.accessibility.hint')}
           >
-            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
           </ButtonWrapper>
-          <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.licenses.title')}</Text>
+          <Text size='xlarge' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.licenses.title')}</Text>
         </View>
         <ScrollView
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles(colors, insets).bodyContainer}
+          contentContainerStyle={memoizedStyle.bodyContainer}
         >
-          <View style={styles(colors, insets).projectInformation}>
+          <View style={memoizedStyle.projectInformation}>
             <Text textColor={colors.licensesProjectTextColor}>{i18n.translate('screens.licenses.project')}</Text>
           </View>
-          <View style={styles(colors, insets).copyrightAndLicense}>
-            <Text textColor={colors.licensesTitleTextColor} weight='bold' style={styles(colors, insets).copyrightAndLicenseTitle}>{i18n.translate('screens.licenses.copyright_and_license.title')}</Text>
+          <View style={memoizedStyle.copyrightAndLicense}>
+            <Text textColor={colors.licensesTitleTextColor} weight='bold' style={memoizedStyle.copyrightAndLicenseTitle}>{i18n.translate('screens.licenses.copyright_and_license.title')}</Text>
             <Text>{i18n.translate('screens.licenses.copyright_and_license.body')}</Text>
           </View>
-          <View style={styles(colors, insets).thirdPartyLicenses}>
-            <Text textColor={colors.licensesTitleTextColor} weight='bold' style={styles(colors, insets).thirdPartyLicensesTitle}>{i18n.translate('screens.licenses.third_party.title')}</Text>
-            {renderThirdPartyLicenses(licenses, colors, insets)}
+          <View style={memoizedStyle.thirdPartyLicenses}>
+            <Text textColor={colors.licensesTitleTextColor} weight='bold' style={memoizedStyle.thirdPartyLicensesTitle}>{i18n.translate('screens.licenses.third_party.title')}</Text>
+            {renderThirdPartyLicenses(licenses, colors, memoizedStyle)}
           </View>
-          <View style={styles(colors, insets).sponsors}>
-            <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-            <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+          <View style={memoizedStyle.sponsors}>
+            <Image source={getThemedImage('republica_portuguesa', name)} style={memoizedStyle.republicaPortuguesaImage} />
+            <Image source={getThemedImage('logo_dgs', name)} style={memoizedStyle.dgsImage} />
           </View>
         </ScrollView>
       </Layout>
-      <View style={styles(colors, insets).imagesContainer}>
-        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+      <View style={memoizedStyle.imagesContainer}>
+        <Image source={getThemedImage('splash', name)} style={memoizedStyle.splashImage} />
       </View>
     </TopComponent>
   );

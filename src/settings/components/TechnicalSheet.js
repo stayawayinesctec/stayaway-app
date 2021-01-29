@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
@@ -125,26 +125,27 @@ export default function TechnicalSheet (props) {
 
   const insets = useSafeAreaInsets();
   const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors, insets), [name, insets]);
 
   return (
     <TopComponent>
-      <Layout style={styles(colors, insets).layoutContainer}>
-        <View style={styles(colors, insets).header}>
+      <Layout style={memoizedStyle.layoutContainer}>
+        <View style={memoizedStyle.header}>
           <ButtonWrapper
             onPress={onClose}
-            style={styles(colors, insets).closeButton}
+            style={memoizedStyle.closeButton}
             accessibilityLabel={i18n.translate('screens.technical_sheet.actions.back.accessibility.label')}
             accessibilityHint={i18n.translate('screens.technical_sheet.actions.back.accessibility.hint')}
           >
-            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} tintColor={colors.iconMainTintColor} />
+            <Icon name='arrow' width={iconSizes.size24} height={iconSizes.size24} />
           </ButtonWrapper>
-          <Text size='xlarge' weight='bold' style={styles(colors, insets).title}>{i18n.translate('screens.technical_sheet.title')}</Text>
+          <Text size='xlarge' weight='bold' style={memoizedStyle.title}>{i18n.translate('screens.technical_sheet.title')}</Text>
         </View>
-        <View style={styles(colors, insets).itemsContainer}>
-          <View style={styles(colors, insets).coordinatorContainer}>
-            <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
+        <View style={memoizedStyle.itemsContainer}>
+          <View style={memoizedStyle.coordinatorContainer}>
+            <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={memoizedStyle.itemLabel}>{i18n.translate('screens.technical_sheet.coordination')}</Text>
             <ButtonWrapper
-              style={styles(colors, insets).item}
+              style={memoizedStyle.item}
               onPress={onPressCoordinator}
               accessibilityRole='link'
               accessibilityLabel={i18n.translate('screens.technical_sheet.inesctec.accessibility.label')}
@@ -153,12 +154,12 @@ export default function TechnicalSheet (props) {
               <Image source={getThemedImage('logo_inesctec', name)} />
             </ButtonWrapper>
           </View>
-          <View style={styles(colors, insets).partnersContainer}>
-            <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={styles(colors, insets).itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
-            <View style={styles(colors, insets).itemsRow}>
+          <View style={memoizedStyle.partnersContainer}>
+            <Text size='small' weight='bold' textColor={colors.settingsLabelTextColor} style={memoizedStyle.itemLabel}>{i18n.translate('screens.technical_sheet.partners')}</Text>
+            <View style={memoizedStyle.itemsRow}>
               <ButtonWrapper
                 style={{
-                  ...styles(colors, insets).item,
+                  ...memoizedStyle.item,
                   marginRight: sizes.size8,
                 }}
                 onPress={onPressISPUP}
@@ -169,7 +170,7 @@ export default function TechnicalSheet (props) {
                 <Image source={getThemedImage('logo_ispup', name)} />
               </ButtonWrapper>
               <ButtonWrapper
-                style={styles(colors, insets).item}
+                style={memoizedStyle.item}
                 onPress={onPressKeyruptive}
                 accessibilityRole='link'
                 accessibilityLabel={i18n.translate('screens.technical_sheet.keyruptive.accessibility.label')}
@@ -178,10 +179,10 @@ export default function TechnicalSheet (props) {
                 <Image source={getThemedImage('logo_keyruptive', name)} />
               </ButtonWrapper>
             </View>
-            <View style={styles(colors, insets).itemsRow}>
+            <View style={memoizedStyle.itemsRow}>
               <ButtonWrapper
                 style={{
-                  ...styles(colors, insets).item,
+                  ...memoizedStyle.item,
                   marginRight: sizes.size8,
                 }}
                 onPress={onPressUbirider}
@@ -192,7 +193,7 @@ export default function TechnicalSheet (props) {
                 <Image source={getThemedImage('logo_ubirider', name)} />
               </ButtonWrapper>
               <ButtonWrapper
-                style={styles(colors, insets).item}
+                style={memoizedStyle.item}
                 onPress={onPressSPMS}
                 accessibilityRole='link'
                 accessibilityLabel={i18n.translate('screens.technical_sheet.spms.accessibility.label')}
@@ -204,12 +205,12 @@ export default function TechnicalSheet (props) {
           </View>
         </View>
       </Layout>
-      <View style={styles(colors, insets).imagesContainer}>
-        <View style={styles(colors, insets).sponsors}>
-          <Image source={getThemedImage('republica_portuguesa', name)} style={styles(colors, insets).republicaPortuguesaImage} />
-          <Image source={getThemedImage('logo_dgs', name)} style={styles(colors, insets).dgsImage} />
+      <View style={memoizedStyle.imagesContainer}>
+        <View style={memoizedStyle.sponsors}>
+          <Image source={getThemedImage('republica_portuguesa', name)} style={memoizedStyle.republicaPortuguesaImage} />
+          <Image source={getThemedImage('logo_dgs', name)} style={memoizedStyle.dgsImage} />
         </View>
-        <Image source={getThemedImage('splash', name)} style={styles(colors, insets).splashImage} />
+        <Image source={getThemedImage('splash', name)} style={memoizedStyle.splashImage} />
       </View>
     </TopComponent>
   );

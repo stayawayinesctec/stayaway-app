@@ -23,44 +23,53 @@ import TermsOfUseScreen from '@settings/containers/TermsOfUseScreen';
 import PrivacyPolicyScreen from '@settings/containers/PrivacyPolicyScreen';
 import LicensesScreen from '@settings/containers/LicensesScreen';
 
+import { useTheme } from '@app/contexts/Theme';
+
 const { Navigator, Screen } = createStackNavigator();
 
-export default () => (
-  <Navigator
-    initialRouteName={AppRoutes.INFO}
-    headerMode='none'
-  >
-    <Screen
-      name={AppRoutes.INFO}
-      component={InfoScreen}
-    />
-    <Screen
-      name={AppRoutes.HOW_TO_USE}
-      component={HowToUseScreen}
-    />
-    <Screen
-      name={AppRoutes.DEBUG}
-      component={DebugScreen}
-    />
-    <Screen
-      name={AppRoutes.LEGAL_INFORMATION}
-      component={LegalInformationScreen}
-    />
-    <Screen
-      name={AppRoutes.TERMS_OF_USE}
-      component={TermsOfUseScreen}
-    />
-    <Screen
-      name={AppRoutes.PRIVACY_POLICY}
-      component={PrivacyPolicyScreen}
-    />
-    <Screen
-      name={AppRoutes.TECHNICAL_SHEET}
-      component={TechnicalSheetScreen}
-    />
-    <Screen
-      name={AppRoutes.LICENSES}
-      component={LicensesScreen}
-    />
-  </Navigator>
-);
+export default () => {
+  const { colors } = useTheme();
+
+  return (
+    <Navigator
+      initialRouteName={AppRoutes.INFO}
+      screenOptions={{
+        headerShown: false,
+        cardStyle: { backgroundColor: colors.backgroundColor },
+      }}
+    >
+      <Screen
+        name={AppRoutes.INFO}
+        component={InfoScreen}
+      />
+      <Screen
+        name={AppRoutes.HOW_TO_USE}
+        component={HowToUseScreen}
+      />
+      <Screen
+        name={AppRoutes.DEBUG}
+        component={DebugScreen}
+      />
+      <Screen
+        name={AppRoutes.LEGAL_INFORMATION}
+        component={LegalInformationScreen}
+      />
+      <Screen
+        name={AppRoutes.TERMS_OF_USE}
+        component={TermsOfUseScreen}
+      />
+      <Screen
+        name={AppRoutes.PRIVACY_POLICY}
+        component={PrivacyPolicyScreen}
+      />
+      <Screen
+        name={AppRoutes.TECHNICAL_SHEET}
+        component={TechnicalSheetScreen}
+      />
+      <Screen
+        name={AppRoutes.LICENSES}
+        component={LicensesScreen}
+      />
+    </Navigator>
+  );
+};

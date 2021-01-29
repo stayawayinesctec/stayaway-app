@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { StyleSheet } from 'react-native';
 import { BottomTabBar } from '@react-navigation/bottom-tabs';
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function TabBar (props) {
+function TabBar (props) {
   const infected = useSelector(isInfected);
 
   const insets = useSafeAreaInsets();
@@ -46,3 +46,5 @@ export default function TabBar (props) {
     />
   );
 }
+
+export default memo(TabBar);

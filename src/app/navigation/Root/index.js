@@ -20,6 +20,8 @@ import UnsupportedScreen from '@src/app/containers/UnsupportedScreen';
 import { isOnboarding } from '@app/redux/onboarding/selectors';
 import { isUnsupported } from '@app/redux/startup/selectors';
 
+import { useTheme } from '@app/contexts/Theme';
+
 import AppRoutes from '@app/navigation/routes';
 
 const { Navigator, Screen } = createStackNavigator();
@@ -28,8 +30,15 @@ export default () => {
   const unsupported = useSelector(isUnsupported);
   const onboarding = useSelector(isOnboarding);
 
+  const { colors } = useTheme();
+
   return (
-    <Navigator headerMode='none'>
+    <Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyle: { backgroundColor: colors.backgroundColor },
+      }}
+    >
       { unsupported &&
         <Screen
           name={AppRoutes.UNSUPPORTED}

@@ -8,33 +8,28 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Input from '@app/common/components/Input';
 
-export default class TextInput extends Component {
-  focus() {
-    return this.input?.focus();
-  }
+export default function TextInput(props) {
+  const { forwardRef } = props;
 
-  blur() {
-    return this.input?.blur();
-  }
-
-  shake() {
-    return this.input?.shake();
-  }
-
-  clear() {
-    return this.input?.clear();
-  }
-
-  render() {
-    return (
-      <Input
-        ref={element => {this.input = element}}
-        {...this.props}
-      />
-    );
-  }
+  return (
+    <Input
+      ref={forwardRef}
+      {...props}
+    />
+  );
 }
+
+TextInput.defaultProps = {
+  forwardRef: undefined,
+};
+
+TextInput.propTypes = {
+  forwardRef: PropTypes.shape({
+    current: PropTypes.object,
+  }),
+};

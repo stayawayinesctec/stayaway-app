@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Platform, View, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
@@ -52,7 +52,8 @@ const styles = (colors) => StyleSheet.create({
 export default function ContactModal (props) {
   const { visible, onClose, ...otherProps } = props;
 
-  const { colors } = useTheme();
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors), [name]);
 
   const [model, setModel] = useState('');
   const [OS, setOS] = useState('');
@@ -83,13 +84,21 @@ export default function ContactModal (props) {
   });
 
   return (
-    <Modal backdropColor={colors.backdropColor} backdropOpacity={0.8} isVisible={visible} statusBarTranslucent {...otherProps}>
-      <View style={styles(colors).content}>
-        <View style={styles(colors).titleContainer}>
-          <Icon name='mail' width={iconSizes.size32} height={iconSizes.size21} style={styles(colors).titleIcon} />
+    <Modal
+      backdropColor={colors.backdropColor}
+      backdropOpacity={0.8}
+      isVisible={visible}
+      statusBarTranslucent
+      animationIn='zoomIn'
+      animationOut='fadeOut'
+      {...otherProps}
+    >
+      <View style={memoizedStyle.content}>
+        <View style={memoizedStyle.titleContainer}>
+          <Icon name='mail' width={iconSizes.size32} height={iconSizes.size21} style={memoizedStyle.titleIcon} />
           <Text size='large' weight='bold'>{i18n.translate('common.dialogs.contact.title')}</Text>
         </View>
-        <View style={styles(colors).descriptionContainer}>
+        <View style={memoizedStyle.descriptionContainer}>
           <Text>{i18n.translate('common.dialogs.contact.description')}</Text>
         </View>
         <Button
@@ -99,7 +108,7 @@ export default function ContactModal (props) {
           onPress={() => Linking.openMailComposer(supportEmail, subject, body)}
         />
       </View>
-      <View style={styles(colors).supportContainer}>
+      <View style={memoizedStyle.supportContainer}>
         <SupportIcon />
       </View>
     </Modal>

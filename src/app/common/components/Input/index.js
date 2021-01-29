@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { PureComponent as Component } from 'react';
+import React, { useMemo } from 'react';
 import { View, ViewPropTypes, StyleSheet } from 'react-native';
 import { Input as NativeInput } from 'react-native-elements';
 import PropTypes from 'prop-types';
@@ -16,12 +16,9 @@ import PropTypes from 'prop-types';
 import Text from '@app/common/components/FormattedText';
 import SupportIcon from '@app/common/components/SupportIcon';
 
-import { ThemeConsumer } from '@app/contexts/Theme';
+import { useTheme } from '@app/contexts/Theme';
 
-import { themes as commonThemes, colors as commonColors, sizes, fontSizes, iconSizes } from '@app/common/theme';
-
-const LIGHT = commonThemes.names.light;
-const DARK = commonThemes.names.dark;
+import { colors as commonColors, sizes, fontSizes, iconSizes } from '@app/common/theme';
 
 const styles = (colors) => StyleSheet.create({
   container: {
@@ -68,74 +65,41 @@ const styles = (colors) => StyleSheet.create({
   },
 });
 
-export default class Input extends Component {
-  onFocus = () => {
-    const { onFocus } = this.props;
+export default function Input(props) {
+  const { style, styleInputContainer, textColor, placeholderTextColor, errorMessage, forwardRef, ...otherProps } = props;
 
-    onFocus();
-  }
+  const { name, colors } = useTheme();
+  const memoizedStyle = useMemo(() => styles(colors), [name]);
 
-  focus() {
-    return this.input?.focus();
-  }
-
-  isFocused() {
-    return this.input?.isFocused;
-  }
-
-  blur() {
-    return this.input?.blur();
-  }
-
-  shake() {
-    return this.input?.shake();
-  }
-
-  clear() {
-    return this.input?.clear();
-  }
-
-  render() {
-    const { style, type, styleInputContainer, textColor, placeholderTextColor, errorMessage, ...otherProps } = this.props;
-
-    return (
-      <ThemeConsumer>
-        {({name}) => {
-          const { colors } = commonThemes[type || name];
-
-          return (
-            <View>
-              <View style={styles(colors).wrapper}>
-                <View style={styles(colors).iconContainer}>
-                  <SupportIcon />
-                </View>
-                <NativeInput
-                  containerStyle={{...styles(colors).container, ...style}}
-                  inputContainerStyle={{...styles(colors).inputContainer, ...styleInputContainer}}
-                  inputStyle={{...styles(colors).input, color: textColor || colors.inputTextColor}}
-                  labelStyle={styles(colors).label}
-                  enablesReturnKeyAutomatically
-                  placeholderTextColor={placeholderTextColor || colors.inputPlaceholderColor}
-                  ref={element => {this.input = element}}
-                  fontSize={fontSizes.normal}
-                  selectable
-                  {...otherProps}
-                  onFocus={this.onFocus}
-                />
-              </View>
-              <Text
-                size='small'
-                textColor={colors.inputErrorColor}
-                style={styles(colors).error}
-              >
-                {errorMessage}
-              </Text>
-            </View>
-          );
-        }}
-      </ThemeConsumer>
-    );
-  }
+  return (
+    <View>
+      <View style={memoizedStyle.wrapper}>
+        <View style={memoizedStyle.iconContainer}>
+          <SupportIcon />
+        </View>
+        <NativeInput
+          containerStyle={{...memoizedStyle.container, ...style}}
+          inputContainerStyle={{...memoizedStyle.inputContainer, ...styleInputContainer}}
+          inputStyle={{...memoizedStyle.input, color: textColor || colors.inputTextColor}}
+          labelStyle={memoizedStyle.label}
+          enablesReturnKeyAutomatically
+          placeholderTextColor={placeholderTextColor || colors.inputPlaceholderColor}
+          ref={forwardRef}
+          fontSize={fontSizes.normal}
+          selectable
+          renderErrorMessage={false}
+          {...otherProps}
+        />
+      </View>
+      <Text
+        size='small'
+        textColor={colors.inputErrorColor}
+        style={memoizedStyle.error}
+      >
+        {errorMessage}
+      </Text>
+    </View>
+  );
 }
 
 Input.defaultProps = {
@@ -145,16 +109,15 @@ Input.defaultProps = {
   autoCapitalize: 'none',
   autoCorrect: false,
   secureTextEntry: false,
-  type: '',
   style: {},
   styleInputContainer: {},
   onFocus: () => {},
   errorMessage: '',
+  forwardRef: undefined,
 };
 
 Input.propTypes = {
   placeholder: PropTypes.string,
-  type: PropTypes.oneOf([LIGHT, DARK, '']),
   textColor: PropTypes.oneOf(['', ...commonColors]),
   placeholderTextColor: PropTypes.oneOf(['', ...commonColors]),
   autoCapitalize: PropTypes.oneOf(['none', 'words', 'sentences', 'characters']),
@@ -164,4 +127,7 @@ Input.propTypes = {
   style: ViewPropTypes.style,
   styleInputContainer: ViewPropTypes.style,
   errorMessage: PropTypes.string,
+  forwardRef: PropTypes.shape({
+    current: PropTypes.object,
+  }),
 };

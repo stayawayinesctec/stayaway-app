@@ -27,24 +27,24 @@ export default function RecommendationsHealthy (props) {
       {
         "key": "1",
         "text": i18n.translate('screens.recommendations.healthy.distance'),
-        "icon": <Icon name="distance" width={iconSizes.size78} height={iconSizes.size61} tintColor={colors.recommendationsPanelIconTintColor} />,
+        "icon": <Icon name="distance" width={iconSizes.size78} height={iconSizes.size61} />,
       },
       {
         "key": "2",
         "text": i18n.translate('screens.recommendations.healthy.wear_mask'),
-        "icon": <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} tintColor={colors.recommendationsPanelIconTintColor} />,
+        "icon": <Icon name="wear_mask" width={iconSizes.size70} height={iconSizes.size70} />,
       },
     ],
     [
       {
         "key": "3",
         "text": i18n.translate('screens.recommendations.healthy.wash_hands'),
-        "icon": <Icon name="wash_hands" width={iconSizes.size60} height={iconSizes.size61} tintColor={colors.recommendationsPanelIconTintColor} />,
+        "icon": <Icon name="wash_hands" width={iconSizes.size60} height={iconSizes.size61} />,
       },
       {
         "key": "4",
         "text": i18n.translate('screens.recommendations.healthy.feeling_sick'),
-        "icon": <Icon name="feeling_sick" width={iconSizes.size60} height={iconSizes.size61} tintColor={colors.recommendationsPanelIconTintColor} />,
+        "icon": <Icon name="feeling_sick" width={iconSizes.size60} height={iconSizes.size61} />,
       },
     ],
   ];
