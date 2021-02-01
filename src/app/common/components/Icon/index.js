@@ -8,8 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { memo, useMemo } from 'react';
-import isEqual from 'lodash.isequal';
+import React, { useMemo } from 'react';
 import SvgIcon from 'react-native-svg-icon';
 
 import { themes as commonThemes } from '@app/common/theme';
@@ -19,7 +18,7 @@ import { useTheme } from '@app/contexts/Theme';
 import darkSvgs from './svgs_dark';
 import lightSvgs from './svgs_light';
 
-function Icon(props) {
+export default function Icon(props) {
   const { name } = useTheme();
 
   const svgs = useMemo(() => name === commonThemes.names.light ? lightSvgs : darkSvgs, [name]);
@@ -28,14 +27,3 @@ function Icon(props) {
     <SvgIcon {...props} svgs={svgs} />
   );
 }
-
-function iconPropsAreEqual(prevIcon, nextIcon) {
-  const equal = prevIcon.name === nextIcon.name &&
-        prevIcon.width === nextIcon.width &&
-        prevIcon.height === nextIcon.height &&
-        isEqual(prevIcon.style, nextIcon.style);
-
-  return equal;
-}
-
-export default memo(Icon, iconPropsAreEqual);

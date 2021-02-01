@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EUPL-1.2
  */
 
-import React, { memo, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 import { PulseIndicator } from 'react-native-indicators';
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function TabIcon(props) {
+export default function TabIcon(props) {
   const { name, active, title } = props;
 
   const dispatch = useDispatch();
@@ -172,5 +172,3 @@ TabIcon.propTypes = {
     'home', 'recommendations', 'diagnosis',
   ]).isRequired,
 };
-
-export default memo(TabIcon);

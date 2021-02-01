@@ -63,7 +63,6 @@
     "@react-navigation/native": "5.9.2",
     "@react-navigation/stack": "5.14.2",
     "i18n-js": "3.7.1",
-    "lodash.isequal": "^4.5.0",
     "lodash.memoize": "4.1.2",
     "lodash.pickby": "4.6.0",
     "mirror-creator": "1.1.0",

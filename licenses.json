@@ -56,10 +56,6 @@
         "link": "https://github.com/wix/Detox"
       },
       {
-        "name": "lodash.isequal",
-        "link": "https://www.npmjs.com/package/lodash.isequal"
-      },
-      {
         "name": "lodash.pickby",
         "link": "https://www.npmjs.com/package/lodash.pickby"
       },
