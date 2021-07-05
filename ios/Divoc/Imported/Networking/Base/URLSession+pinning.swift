@@ -52,6 +52,7 @@ class CertificateEvaluator: NSObject, URLSessionDelegate {
         kTSKEnforcePinning : true,
         kTSKPublicKeyHashes: [
           "N36p2K8/nu2qtj9uNAIxjVv/GNlVgXggPVjdhLXbZQg=",
+          "Ud3zjF0T6gbOC5mwvzJSBPDLgAgu9OJ8ZbM9gkeZxxQ=",
           "fj/z1XrBbJbj18u72Y0mLqUd4ZCcXVyzgBr8QN9NXwA="
         ],],
       ]
