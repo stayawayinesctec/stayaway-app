@@ -24,8 +24,8 @@
 <div align="center">
     <!-- Version -->
     <a href="https://github.com/stayawayinesctec/stayaway-app">
-      <img alt="v1.1.3"
-      src="https://img.shields.io/badge/Version-1.1.3-blue">
+      <img alt="v1.1.4"
+      src="https://img.shields.io/badge/Version-1.1.4-blue">
     </a>
     <!-- Build -->
     <a href="https://github.com/stayawayinesctec/stayaway-app/actions?query=workflow%3A%22Android+Production+Build%22">

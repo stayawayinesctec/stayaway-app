@@ -78,15 +78,20 @@
 - Fix minor bugs
 - Fix typos
 
-## version 1.1.2 (19.01.2021)
+## version 1.1.2 (19.1.2021)
 - Add contact popup
 - Add iOS 12.5 compatibility
 - Fix minor bugs
 - Fix typos
 
-## version 1.1.3 (26.01.2021)
+## version 1.1.3 (26.1.2021)
 - Bump React Native to 0.63.4
 - Bump DP3T Android SDK to 2.0.2
 - Fix unsupported screen version check
+- Fix minor bugs
+- Fix typos
+
+## version 1.1.4 (5.7.2021)
+- Update certificate pinning
 - Fix minor bugs
 - Fix typos
