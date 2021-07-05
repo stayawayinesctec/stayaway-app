@@ -30,6 +30,7 @@ public class CertificatePinning {
 	private static final CertificatePinner CERTIFICATE_PINNER_LIVE = new CertificatePinner.Builder()
 			.add("stayaway.incm.pt", "sha256/KArAwbAlrVTa8DektoICjekhEwhJWKU39zEeo3SxzWA=")
 			.add("stayaway.min-saude.pt", "sha256/N36p2K8/nu2qtj9uNAIxjVv/GNlVgXggPVjdhLXbZQg=")
+			.add("stayaway.min-saude.pt", "sha256/Ud3zjF0T6gbOC5mwvzJSBPDLgAgu9OJ8ZbM9gkeZxxQ=")
 			.build();
 
 	private static final CertificatePinner CERTIFICATE_PINNER_DISABLED = new CertificatePinner.Builder().build();
