@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/BlueCryptor.git",
         "state": {
           "branch": null,
-          "revision": "12d2bf3ec7207ec3cd004b9582f69ef5fae1da3b",
-          "version": "1.0.32"
+          "revision": "ee5880e031da4c609f372cf7472476ab51d5dd19",
+          "version": "1.0.200"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/BlueECC.git",
         "state": {
           "branch": null,
-          "revision": "73f362cb0d9c5f1fd0089240d7b293cd2bff18db",
-          "version": "1.2.5"
+          "revision": "baf6ed3fc1a622675f0041b4aff7c02dd1a93818",
+          "version": "1.2.200"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/BlueRSA.git",
         "state": {
           "branch": null,
-          "revision": "8ea901f2582296837d88f882b0fa5a0601759598",
-          "version": "1.0.35"
+          "revision": "440f78db26d8bb073f29590f1c7bd31004da09ae",
+          "version": "1.0.201"
         }
       },
       {

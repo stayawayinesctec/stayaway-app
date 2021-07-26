@@ -95,3 +95,6 @@
 - Update certificate pinning
 - Fix minor bugs
 - Fix typos
+
+## version 1.1.5 (26.7.2021) (only iOS)
+- Fix iOS 14.6/14.7 bug

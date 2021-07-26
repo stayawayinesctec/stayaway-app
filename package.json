@@ -7,7 +7,7 @@
     "url": "https://keyruptive.com"
   },
   "main": "index.js",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "license": "EUPL-1.2",
   "keywords": [
     "covid19",

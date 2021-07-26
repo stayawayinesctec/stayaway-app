@@ -100,6 +100,8 @@ project.ext.react = [
 
     // whether to enable the Hermes VM.
     enableHermes: true,  // clean and rebuild if changing
+
+    nodeExecutableAndArgs: ["node"],
 ]
 
 project.ext.envConfigFiles = [
@@ -164,8 +166,8 @@ android {
         applicationId "fct.inesctec.stayaway"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 101040
-        versionName "1.1.4"
+        versionCode 101050
+        versionName "1.1.5"
 
         resValue "string", "build_config_package", "fct.inesctec.stayaway"
         resConfigs "en", "pt"
